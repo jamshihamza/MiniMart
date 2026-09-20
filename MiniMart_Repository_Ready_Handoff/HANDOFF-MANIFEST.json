@@ -1,0 +1,241 @@
+{
+  "product": "MiniMart",
+  "artifact": "Repository-Ready Specification and Codex Handoff",
+  "authoritativePackages": {
+    "FRS/NFRS": "v1.0 FROZEN",
+    "Domain Model": "v1.0 FROZEN",
+    "Database Model": "v1.2 FROZEN / active",
+    "Architecture": "v1.0 FROZEN",
+    "API Contracts": "v1.0 FROZEN",
+    "UI Specification": "v1.0 FROZEN",
+    "Development Backlog": "v0.1 baseline",
+    "BRD": "v0.1 source reference; not relabelled frozen"
+  },
+  "files": [
+    {
+      "path": ".gitignore",
+      "sha256": "7c63a41ab6df73376d95eff207c65704b73da944d2fb18e511f93fbd3d230f52",
+      "bytes": 113
+    },
+    {
+      "path": "AGENTS.md",
+      "sha256": "87846d7a095ed414bf45ba4740fe16d03d261bea4a51162a336c71a2f4762500",
+      "bytes": 2540
+    },
+    {
+      "path": "PHASE-0-INSTRUCTIONS.md",
+      "sha256": "1b81200698cc70497cb7f402bb26a0dbe520f02f336f390522e3aa65f37af78d",
+      "bytes": 757
+    },
+    {
+      "path": "PROJECT-CONTEXT.md",
+      "sha256": "cb5a984852692aa0ace36555d5f4089a7d39fa66aa4e6bf851800537fa8d79e6",
+      "bytes": 1351
+    },
+    {
+      "path": "README.md",
+      "sha256": "fff37c0095d359615deb0ffe8fca8a08fbaa07e1263ab4e52b43d28586fe6ad2",
+      "bytes": 1024
+    },
+    {
+      "path": "SPECIFICATION-INDEX.md",
+      "sha256": "20e40c855b0bc0af35e9cd634aaf058542b554b8ba9c22a4a221524e41dd3b23",
+      "bytes": 1669
+    },
+    {
+      "path": "apps/cloud/.gitkeep",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "apps/pos/.gitkeep",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "apps/store-node/.gitkeep",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "docs/backlog/README.md",
+      "sha256": "b9403211d5b635565b73c231acb50440b122add5a1d12632a1774791f25776f4",
+      "bytes": 617
+    },
+    {
+      "path": "docs/specifications/01-brd/MiniMart_BRD_v0.1.md",
+      "sha256": "5dc223fc6b5f0a25d0e8240a37522af51d9296c1ff931377c400386d089d32df",
+      "bytes": 25200
+    },
+    {
+      "path": "docs/specifications/01-brd/README.md",
+      "sha256": "4d88b3d54ee861cda738e5609e4164feb3bf91cf76a2a79a1f552a3b52d9a49c",
+      "bytes": 415
+    },
+    {
+      "path": "docs/specifications/02-frs-nfrs/CHANGELOG.md",
+      "sha256": "55e334cfa1c716e08665b1cac26df6252b16eda4210d6550c5a85ebddd4525b6",
+      "bytes": 4650
+    },
+    {
+      "path": "docs/specifications/02-frs-nfrs/FREEZE-MANIFEST.md",
+      "sha256": "d35db3d84bf376af64e49e03cbf4b0140de23ad3a482e467ab1602e64e958200",
+      "bytes": 939
+    },
+    {
+      "path": "docs/specifications/02-frs-nfrs/README.md",
+      "sha256": "fde19cde69afbc812343d809279baae2634bfb18a73735edc09d090ebf9b45b2",
+      "bytes": 830
+    },
+    {
+      "path": "docs/specifications/02-frs-nfrs/docs/02-functional/DECISION-REGISTER.md",
+      "sha256": "5eb662c9452fb607be3f597fe26e8f993f86eeeb0c9ab4c98506e12ba70c235a",
+      "bytes": 20249
+    },
+    {
+      "path": "docs/specifications/02-frs-nfrs/docs/02-functional/FRS-v1.0-FINAL-FREEZE-REVIEW.md",
+      "sha256": "9118f3336cddcea03d425d3a7281fcf30768cf1e5ce53ad196dc91cd54aebe39",
+      "bytes": 5403
+    },
+    {
+      "path": "docs/specifications/02-frs-nfrs/docs/02-functional/FRS-v1.0-RELEASE-NOTE.md",
+      "sha256": "4e4656c29ad37ca2fd1af5b21f50d9453649ee30921809dc353c2ed0fa47ea02",
+      "bytes": 1337
+    },
+    {
+      "path": "docs/specifications/02-frs-nfrs/docs/02-functional/FRS.md",
+      "sha256": "291a9d30450a1d6bb11090c7222e3758db1a93cafd491f687a4171386ccdaa72",
+      "bytes": 7288
+    },
+    {
+      "path": "docs/specifications/02-frs-nfrs/docs/02-functional/NFRS.md",
+      "sha256": "61445d387cfa087ebc361f1c293fecdee9429ca1753c4ced72606074df1e1c5a",
+      "bytes": 17299
+    },
+    {
+      "path": "docs/specifications/03-domain-model/FREEZE-RECORD.md",
+      "sha256": "dd637f9f63c703394fd4fe39f45d6c9fe53424c7f06509eb7da4e13c76d338fe",
+      "bytes": 1248
+    },
+    {
+      "path": "docs/specifications/03-domain-model/README.md",
+      "sha256": "23671abaa656e4e1189d65a7ae0488b275a87e68c902252b81c2e9f2cbe37609",
+      "bytes": 1562
+    },
+    {
+      "path": "docs/specifications/03-domain-model/validation/DOMAIN-MODEL-v1.0-FROZEN-VALIDATION.md",
+      "sha256": "674e579f26c8a336963846f1f5fb5ec65b0e28092d107a95a0a7c90ffb964ca4",
+      "bytes": 2078
+    },
+    {
+      "path": "docs/specifications/04-database-model/AMENDMENT-RECORD-v1.2.md",
+      "sha256": "4192d0202bcff9be58eb2dc83a576b9ab5a6fe36603e4ce2f805beeba74775e7",
+      "bytes": 575
+    },
+    {
+      "path": "docs/specifications/04-database-model/FINAL-DOCUMENTATION-CORRECTIONS.md",
+      "sha256": "ea6314e27329003964bd6cc9a484b5c4374829aa64da0a66978b3a60ba4eb8bd",
+      "bytes": 1598
+    },
+    {
+      "path": "docs/specifications/04-database-model/FREEZE-RECORD.md",
+      "sha256": "89d6fb6de5ef2897b2a9167d8219490d3108ce69bba767bac0789f184c7fb28c",
+      "bytes": 3136
+    },
+    {
+      "path": "docs/specifications/04-database-model/README.md",
+      "sha256": "e1d54ec90632424491cbce44fa49814c538a7d580ca19d3be59ebb85b0113cea",
+      "bytes": 757
+    },
+    {
+      "path": "docs/specifications/04-database-model/RELEASE-NOTE-v1.2-FROZEN.md",
+      "sha256": "7345d42b688c7d159929a3da6fc920c5c09a03cd94c55ab98d386de650929c03",
+      "bytes": 617
+    },
+    {
+      "path": "docs/specifications/05-architecture/FREEZE-RECORD.md",
+      "sha256": "56d148272c7e29d08b982908368a8b0ee2d768cd86fd5047e0547be4ad223bf8",
+      "bytes": 545
+    },
+    {
+      "path": "docs/specifications/05-architecture/README.md",
+      "sha256": "0585d6a121ef522398e1fb06f12ab715bfb454e784f67cfcd703b43574d76dfd",
+      "bytes": 1351
+    },
+    {
+      "path": "docs/specifications/05-architecture/RELEASE-NOTE-v1.0-FROZEN.md",
+      "sha256": "2efbf688ee95d7e950cec92faa6f3fcfed8d571edfab5425a6fde27dc4928b16",
+      "bytes": 556
+    },
+    {
+      "path": "docs/specifications/06-api-contracts/FINAL-FREEZE-PACKAGING-CORRECTIONS.md",
+      "sha256": "03bd4d26f59396328bd19df00658d1846d344dd0b53d1a46ab26fe4e9ab1ae56",
+      "bytes": 460
+    },
+    {
+      "path": "docs/specifications/06-api-contracts/FREEZE-RECORD.md",
+      "sha256": "45458b42d30630c063cb564dd642eb949a42def76f7901edf7e927073a31305d",
+      "bytes": 1183
+    },
+    {
+      "path": "docs/specifications/06-api-contracts/README.md",
+      "sha256": "d59c5f5b98c5782fa31494b1bb08699c042a5ac6144a3feda158647c4114e4b8",
+      "bytes": 521
+    },
+    {
+      "path": "docs/specifications/06-api-contracts/RELEASE-NOTE-v1.0-FROZEN.md",
+      "sha256": "42b84ac05a5764442c54ff69f46427f1121073876892f065569e596684e93fe6",
+      "bytes": 481
+    },
+    {
+      "path": "docs/specifications/07-ui-specification/FINAL-FREEZE-PACKAGING-CORRECTIONS.md",
+      "sha256": "67186078a5128b2cc9ab2aae48229f128bfa4570f5d5460d22539005c6ffb1cb",
+      "bytes": 376
+    },
+    {
+      "path": "docs/specifications/07-ui-specification/FREEZE-RECORD.md",
+      "sha256": "311a8372ead7df902f3ac777a238ed55fcfa0e610795365eb97f2409979c0611",
+      "bytes": 814
+    },
+    {
+      "path": "docs/specifications/07-ui-specification/README.md",
+      "sha256": "ab9317e2aa7f0b9f3cc7fec8dfd96c766127d3890c583c8f7c307703d4bd1ca3",
+      "bytes": 837
+    },
+    {
+      "path": "docs/specifications/07-ui-specification/RELEASE-NOTE-v1.0-FROZEN.md",
+      "sha256": "a1f4e7130200339d09e5e44925383d2b5ecddfeb56feda6a348ff9b99a1889fa",
+      "bytes": 422
+    },
+    {
+      "path": "packages/contracts/.gitkeep",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "packages/database/.gitkeep",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "packages/domain/.gitkeep",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "packages/shared/.gitkeep",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "packages/ui/.gitkeep",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "tests/.gitkeep",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    }
+  ]
+}
