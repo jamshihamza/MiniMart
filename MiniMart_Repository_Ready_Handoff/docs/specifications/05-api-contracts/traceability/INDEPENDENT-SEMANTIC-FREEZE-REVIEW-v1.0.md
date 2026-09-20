@@ -1,0 +1,2 @@
+# Independent Semantic Freeze Evidence v1.0
+The evidence was rebuilt after Database Model v1.2 adoption. It covers 1,257 FR rows, 102 acceptance scenarios, 84 NFRs and all 13 Posting Envelope coordinators. Each row retains frozen source text and exact operation/schema/error evidence. This is specification freeze evidence; executable implementation conformance remains a later CI/test responsibility.

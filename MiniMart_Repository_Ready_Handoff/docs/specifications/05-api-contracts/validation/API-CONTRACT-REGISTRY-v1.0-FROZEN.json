@@ -1,0 +1,22 @@
+{
+  "document_id": "MM-API-REG-100",
+  "version": "1.0",
+  "status": "FROZEN_ADOPTED",
+  "validation": "PASS_FROZEN",
+  "store_operations": 234,
+  "sync_operations": 4,
+  "cloud_operations": 5,
+  "posting_envelopes": 13,
+  "decision_seams": 60,
+  "functional_requirements_traced": 1257,
+  "acceptance_scenarios_traced": 102,
+  "nfrs_traced": 84,
+  "v0_3_final_review_findings_addressed": {
+    "blockers": 2,
+    "majors": 4,
+    "minors": 2,
+    "total": 8
+  },
+  "database_authority": "MiniMart Database Model v1.2 FROZEN",
+  "next_gate": "UI Specification"
+}

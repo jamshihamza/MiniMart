@@ -1,0 +1,47 @@
+[
+  {
+    "role": "Cashier",
+    "home": "UI-POS-001",
+    "principle": "Fast sale/return/collection work; no unrestricted administration."
+  },
+  {
+    "role": "Storekeeper",
+    "home": "UI-INV-001",
+    "principle": "Receiving, stock visibility and counts."
+  },
+  {
+    "role": "Purchase",
+    "home": "UI-PUR-001",
+    "principle": "Supplier, PO, GRN and purchase-return workflows."
+  },
+  {
+    "role": "Accounts",
+    "home": "UI-ACC-001",
+    "principle": "Credit, payables, financial accounts, expenses and reconciliation."
+  },
+  {
+    "role": "Manager",
+    "home": "UI-SYS-003",
+    "principle": "Store-wide operations, approvals, exceptions and reports."
+  },
+  {
+    "role": "Admin",
+    "home": "UI-SYS-003",
+    "principle": "Configuration, users, stores/counters, devices and support."
+  },
+  {
+    "role": "Management",
+    "home": "UI-SYS-003",
+    "principle": "Read-oriented KPIs/reports with permissions."
+  },
+  {
+    "role": "Audit",
+    "home": "UI-AUD-001",
+    "principle": "Read-only audit/ledger investigation."
+  },
+  {
+    "role": "Support",
+    "home": "UI-SUPT-001",
+    "principle": "Time-limited diagnostics/support only."
+  }
+]

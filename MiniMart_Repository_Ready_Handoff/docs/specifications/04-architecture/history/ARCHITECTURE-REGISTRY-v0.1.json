@@ -1,0 +1,11 @@
+{
+  "document_id": "MM-ARCH-REG-001",
+  "version": "0.1",
+  "status": "WORKING_BASELINE_VALIDATED",
+  "business_modules": 13,
+  "posting_envelope_coordinators": 13,
+  "architecture_decisions": 15,
+  "source_domain": "MiniMart Domain Model v1.0 FROZEN",
+  "source_database": "MiniMart Database Model v1.0 FROZEN",
+  "next_gate": "Deep Architecture Consistency Review"
+}

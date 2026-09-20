@@ -1,0 +1,449 @@
+{
+  "product": "MiniMart",
+  "artifact": "Architecture",
+  "version": "1.0",
+  "status": "FROZEN",
+  "freeze_basis": "Architecture Refinement v0.3 + MM-ARCH-FRZ-REV-002",
+  "final_review_blockers": 0,
+  "final_review_major_findings": 0,
+  "final_review_corrections_applied": 3,
+  "business_modules": 13,
+  "posting_envelope_coordinators": 13,
+  "architecture_decisions": 37,
+  "decision_seams_mapped": 60,
+  "frozen_db_tables_respected": 74,
+  "validation": "PASS",
+  "next_stage": "API Contracts",
+  "files": [
+    {
+      "path": "FREEZE-RECORD.md",
+      "sha256": "56d148272c7e29d08b982908368a8b0ee2d768cd86fd5047e0547be4ad223bf8",
+      "bytes": 545
+    },
+    {
+      "path": "README.md",
+      "sha256": "0585d6a121ef522398e1fb06f12ab715bfb454e784f67cfcd703b43574d76dfd",
+      "bytes": 1351
+    },
+    {
+      "path": "RELEASE-NOTE-v1.0-FROZEN.md",
+      "sha256": "2efbf688ee95d7e950cec92faa6f3fcfed8d571edfab5425a6fde27dc4928b16",
+      "bytes": 556
+    },
+    {
+      "path": "decisions/ARCHITECTURE-DECISIONS-v1.0-FROZEN.md",
+      "sha256": "a09782874ef9d2343a7248b99112eae5c9b398bb328fe57ffda162f313b58e91",
+      "bytes": 7630
+    },
+    {
+      "path": "diagrams/PROVIDER-CHOREOGRAPHY.md",
+      "sha256": "276411b2cd10c09f2847df562566745034155727437b23ae5fc106d6ef1f9507",
+      "bytes": 745
+    },
+    {
+      "path": "diagrams/REFINED-ARCHITECTURE.md",
+      "sha256": "b7fa6eb78a81589782c397e19afd239731861113ade5ebc0880dc42a9bc2ddcc",
+      "bytes": 1183
+    },
+    {
+      "path": "diagrams/STORE-CLOUD-COMPOSITION.md",
+      "sha256": "355cdd37033c1300b441899f3cc83c090ddf601db2093feb139331ac6a2bc47c",
+      "bytes": 860
+    },
+    {
+      "path": "diagrams/SYNC-APPLY.md",
+      "sha256": "0672273b6ab86c7b88d5018904dc1572797359c67f334c5b549f89f919b8d077",
+      "bytes": 343
+    },
+    {
+      "path": "diagrams/TRUST-AND-BUSINESS-CONTEXT.md",
+      "sha256": "ed38d57d818d20789fd7a42d85fabd9cc1d42d1fba19d99cd331db3119d8fc82",
+      "bytes": 448
+    },
+    {
+      "path": "diagrams/UOW-BOUNDARY.md",
+      "sha256": "088a3ff2faa3f19504518de334c5e0e1354586b157717727169cea780a6a9789",
+      "bytes": 547
+    },
+    {
+      "path": "docs/01-MODULE-BOUNDARIES.md",
+      "sha256": "d7ebc73acf3a6fe27d6941089b0f3523ad765b57caac065011bce7e398510638",
+      "bytes": 2690
+    },
+    {
+      "path": "docs/02-APPLICATION-COORDINATORS-AND-UOW.md",
+      "sha256": "b24978f2f0d678de9f0a2b512b8cc91a3d95247d1253f394721335668aeef90a",
+      "bytes": 1906
+    },
+    {
+      "path": "docs/03-STORE-NODE-RUNTIME.md",
+      "sha256": "ff4f6215c090ebda56e44a7c9d75b966a45476d9c22c640185194119d721a2f1",
+      "bytes": 2139
+    },
+    {
+      "path": "docs/04-EDGE-CLOUD-SYNC.md",
+      "sha256": "12e4bb432b100f2a5102d3a0c6fb4dc0259d50db8419602a65c1ac9562b4e6ee",
+      "bytes": 2010
+    },
+    {
+      "path": "docs/05-POS-BACKOFFICE-AND-HARDWARE.md",
+      "sha256": "0de19f94e059e85db6a1d8dbdbfdb090d3b6350947df8b7613bacb72db9389f6",
+      "bytes": 673
+    },
+    {
+      "path": "docs/06-COUNTRY-PACK-ARCHITECTURE.md",
+      "sha256": "7ea1f41c329a8305109036ee91fa588b7f9d8e8a9b7ba1c98d27fdce1bb06e95",
+      "bytes": 1078
+    },
+    {
+      "path": "docs/07-SECURITY-AND-TRUST-BOUNDARIES.md",
+      "sha256": "e79fa831daa40a7ea2c2beaa8f84ca0f1e8925bb734e30cc274796964e437683",
+      "bytes": 2897
+    },
+    {
+      "path": "docs/08-OBSERVABILITY-RELIABILITY-RECOVERY.md",
+      "sha256": "c6dc259754d7df94ba62f7f6a4005987deac72e1b9c1b4e59944009764f70de4",
+      "bytes": 1263
+    },
+    {
+      "path": "docs/09-MONOREPO-AND-PACKAGE-STRUCTURE.md",
+      "sha256": "34934fc158b3542b64a1988b9d1ddded91205be222eef54896a6bbb3649c4ee6",
+      "bytes": 1789
+    },
+    {
+      "path": "docs/10-API-BOUNDARY-PREPARATION.md",
+      "sha256": "2af8d1b8503dda5344202cd817468275c009be2813939ddab65de4ef1d7aca10",
+      "bytes": 970
+    },
+    {
+      "path": "docs/11-IMPLEMENTATION-DEPENDENCY-RULES.md",
+      "sha256": "acf7bf4246b3b6c947a8cb149d4bcc3dd89caa3c1a604a304186696aa3dfad64",
+      "bytes": 1634
+    },
+    {
+      "path": "docs/12-FAILURE-MODE-MATRIX.md",
+      "sha256": "d326f816a470113f8bf5bad88ecb169913674daee3da9141c7dff5607b75d912",
+      "bytes": 2890
+    },
+    {
+      "path": "docs/13-DEPLOYMENT-PACKAGING-AND-UPDATES.md",
+      "sha256": "28a1cfa56a8bbd7ac57d8899bc68ccc109864e2b14ecc4f1d14091dc20aade4f",
+      "bytes": 2366
+    },
+    {
+      "path": "docs/14-OPEN-SEAMS-AND-NON-GOALS.md",
+      "sha256": "1968bd567fb4ffc7c8b366109cc1a87b350c36f30710ff36f5439da839a5ab70",
+      "bytes": 838
+    },
+    {
+      "path": "docs/15-PROVIDER-CHOREOGRAPHY.md",
+      "sha256": "6a8f74520b3359bfb998e3c748e5646e4f7438ec2fb771d2bfabb92e6cdc32b0",
+      "bytes": 2888
+    },
+    {
+      "path": "docs/16-UOW-PERSISTENCE-CONTRACT.md",
+      "sha256": "e5491c99ed9f469c5f4a70ebf6ed0a0a2d1c21b9feb1c7d29cf917e9de1990c3",
+      "bytes": 1440
+    },
+    {
+      "path": "docs/17-STORE-NODE-TRUST-SESSION.md",
+      "sha256": "7bc40306434c64f3f30f790c08ead11ecef2a4d25447a3023f0214fd2a494b59",
+      "bytes": 1364
+    },
+    {
+      "path": "docs/18-SYNC-OWNERSHIP-APPLY-CONTRACT.md",
+      "sha256": "cabb4a13c32c404db5ad1fcf47d8016b4ee5a494d817e6c6e89dc171c6ac1a87",
+      "bytes": 1467
+    },
+    {
+      "path": "docs/19-COMPATIBILITY-UPGRADE-MATRIX.md",
+      "sha256": "ce476f48c3068836184408b3a2805889210bbdd4b8c3b8310747cdc95e058a0e",
+      "bytes": 2122
+    },
+    {
+      "path": "docs/20-READ-QUERY-ARCHITECTURE.md",
+      "sha256": "8255202d01978a4272ecfff9c30f47e151074f5bf76a10f0291655b0399c7589",
+      "bytes": 1917
+    },
+    {
+      "path": "docs/21-BUSINESS-CONTEXT-RESOLUTION.md",
+      "sha256": "7b623fa26466556497beb28b03265e6ca3368d4adad234b11c91834dabec9805",
+      "bytes": 1196
+    },
+    {
+      "path": "docs/22-WORKER-CONCURRENCY-AND-LEASING.md",
+      "sha256": "d8a6f19092781882f759716dff079efb8307cee3088f9698f0abfbedd0cc9658",
+      "bytes": 1328
+    },
+    {
+      "path": "docs/23-DATABASE-RUNTIME-POLICY.md",
+      "sha256": "eba91d86135f8b8bfb1564dfffb7e9c58fe8e6db3043341c1cde0b747076c88c",
+      "bytes": 1379
+    },
+    {
+      "path": "docs/24-OBSERVABILITY-AUDIT-TELEMETRY.md",
+      "sha256": "626d9845e8b7a4d26a4c479fa4957bcc7b2a995035c58cb485f04bab53e9ccbd",
+      "bytes": 1154
+    },
+    {
+      "path": "docs/25-HARDWARE-COMMAND-LIFECYCLE.md",
+      "sha256": "52f711d66f2eb5d5633f3565686ef063e34df02c087ffc9c3ed16173334cf5d8",
+      "bytes": 1455
+    },
+    {
+      "path": "docs/26-CONFIGURATION-OWNERSHIP-PRECEDENCE.md",
+      "sha256": "3b1508c923fec72c9c06975f87b2a76756bfd5c542354ba7c4d8fec566229dbf",
+      "bytes": 1259
+    },
+    {
+      "path": "docs/27-SUPPORT-DIAGNOSTICS-ISOLATION.md",
+      "sha256": "fb36e0d884ebe39577a0630785245d52b4cf564ba9d38422365459924a084ed4",
+      "bytes": 1090
+    },
+    {
+      "path": "docs/28-STORE-CLOUD-CAPABILITY-MATRIX.md",
+      "sha256": "59412fa25c3eafcdb1e8b8bf4f3febf3faaf1ad0b879a2f124cfdc47132fa432",
+      "bytes": 2049
+    },
+    {
+      "path": "docs/29-RECONCILIATION-REBUILD-OWNERSHIP.md",
+      "sha256": "1503d59ce679b3b5e8110db84a33f4c1bac05ffc4877bf02130e3dfdc9bc8a4b",
+      "bytes": 1837
+    },
+    {
+      "path": "docs/30-TRANSPORT-SECURITY-BOUNDARY.md",
+      "sha256": "055724ca9f098eb8ee5fa669247f5afd562f4f94993ab5bfb4178a8c88eadb9d",
+      "bytes": 556
+    },
+    {
+      "path": "docs/31-DEPENDENCY-BOUNDARY-ENFORCEMENT.md",
+      "sha256": "36ba0ff82da6936af6e9806e9c86881499ef0ea63090c6491d45b028fd302185",
+      "bytes": 1407
+    },
+    {
+      "path": "docs/32-TECHNOLOGY-BASELINE.md",
+      "sha256": "a6740d8f03a13981784228262ae208353d56dd1a6116611b619325910eb916bb",
+      "bytes": 2889
+    },
+    {
+      "path": "docs/33-ARCHITECTURE-VALIDATION-SPIKES.md",
+      "sha256": "9cb07a7b2def7f46fb82cb74c670591265513dceb280b9fd3f1efffcf210401f",
+      "bytes": 3171
+    },
+    {
+      "path": "docs/34-IMPLEMENTATION-GOVERNANCE-AND-AI-GUARDRAILS.md",
+      "sha256": "1ac6875c4ad5ddb08a13d8d8e3b1fc243362e26374edbe0264066bb588481e1a",
+      "bytes": 1329
+    },
+    {
+      "path": "docs/35-PHASE-0-EXACT-TRACEABILITY.md",
+      "sha256": "d06d271a929f5628758c238af1e1a471268d013d13b6dab86acef0fd0c2087af",
+      "bytes": 639
+    },
+    {
+      "path": "docs/ARCHITECTURE-REFINEMENT.md",
+      "sha256": "8e1e42845e3d917bc6d7336f8e4d8eebbe6d06762104fbeb6548b3d6a57a3ad0",
+      "bytes": 6485
+    },
+    {
+      "path": "history/ARCHITECTURE-DECISIONS-v0.2.md",
+      "sha256": "2998c0e9d280058a7ae1f5ce00582f1bbc390cff707c224a8aa4d75094bf76d6",
+      "bytes": 5835
+    },
+    {
+      "path": "history/ARCHITECTURE-DECISIONS-v0.3.md",
+      "sha256": "584dcb9f87cbed67aeb3455bed82e4c0104e4b8edff418f62c3c6463248a06df",
+      "bytes": 7976
+    },
+    {
+      "path": "history/ARCHITECTURE-REFINEMENT-v0.1-VALIDATION.md",
+      "sha256": "f9cc62491ba89788bad0de0c9905b26a367a06e3f6acd30a82cf2b82082a5b9c",
+      "bytes": 1692
+    },
+    {
+      "path": "history/ARCHITECTURE-REFINEMENT-v0.2-VALIDATION.md",
+      "sha256": "4e572b8ff98861edaf2a92a757c4bdb712f5901426138475d32fcde9c237cadc",
+      "bytes": 2745
+    },
+    {
+      "path": "history/ARCHITECTURE-REFINEMENT-v0.3-VALIDATION.md",
+      "sha256": "64936bffd1a603e4b5aa7d8ad591801475a9a0e65298bf8f8bcd86ae6f27718b",
+      "bytes": 3026
+    },
+    {
+      "path": "history/ARCHITECTURE-REGISTRY-v0.1.json",
+      "sha256": "04a406ea2ab41439514b2b78d44f6aa39328119719c371a224faefe9397bf9ae",
+      "bytes": 368
+    },
+    {
+      "path": "history/ARCHITECTURE-REGISTRY-v0.2.json",
+      "sha256": "48a2e067e86d3ff38533f3f3b7c55b8df7da92092c0525d794ab1e8df6827c2e",
+      "bytes": 581
+    },
+    {
+      "path": "history/ARCHITECTURE-REGISTRY-v0.3.json",
+      "sha256": "73455e00605dfbbcb21e13fc6b599ccb9bfab3365efa01f0a983025908166255",
+      "bytes": 797
+    },
+    {
+      "path": "history/ARCHITECTURE-REVIEW-FINDINGS-v0.1.json",
+      "sha256": "d0d59111d7751560fd55f8bd548c59e8920faa698d5cb73ece045f461dbee116",
+      "bytes": 7062
+    },
+    {
+      "path": "history/ARCHITECTURE-v0.1-REMEDIATION-REPORT.md",
+      "sha256": "a7ac129be0056c631d454c3242bc64a50293fbba131c948f650f8fd3aa14be8a",
+      "bytes": 749
+    },
+    {
+      "path": "history/DEEP-ARCHITECTURE-CONSISTENCY-REVIEW-v0.1.md",
+      "sha256": "d52e24adf8643ca273355c979e26c5672a8a52bb6a1f172f3d16decf7a967756",
+      "bytes": 9132
+    },
+    {
+      "path": "history/DEEP-REVIEW-REMEDIATION-MATRIX-v0.2.md",
+      "sha256": "d91c2e1ab3d93be466056ac7d5c64fd4003ff689136f86c23449a3e0e5ce2162",
+      "bytes": 11025
+    },
+    {
+      "path": "history/FINDINGS-DETAIL.md",
+      "sha256": "173521abb6fe94826e99c318deb95d7a6d9d12482faad461d7926defa02f37a1",
+      "bytes": 9663
+    },
+    {
+      "path": "history/FREEZE-CANDIDATE-RECORD-v0.3.md",
+      "sha256": "6b077e3e96713a7212e3aa48df5846663b3ea0e5843ce5c646773f1669f33611",
+      "bytes": 1053
+    },
+    {
+      "path": "history/MANIFEST-v0.2.json",
+      "sha256": "7da6844d65ee246fe013cf983877e010b4b4736203b95a843d535be3d1da1b74",
+      "bytes": 9825
+    },
+    {
+      "path": "history/MANIFEST-v0.3.json",
+      "sha256": "acb51e15b031acaed477167e41fbb606fb2fb0515e8464705d5286fa78fd42ab",
+      "bytes": 12960
+    },
+    {
+      "path": "history/RELEASE-NOTE-v0.2.md",
+      "sha256": "0240911f612973c9657148a09fcf1421e365d76036381d96fcf18f7495f9be3e",
+      "bytes": 703
+    },
+    {
+      "path": "history/RELEASE-NOTE-v0.3.md",
+      "sha256": "551c8c5d27bf4c488dd2a91bc28488c886a77da7e399ffe9f6c1e4522f740c30",
+      "bytes": 716
+    },
+    {
+      "path": "history/REMEDIATION-PLAN-v0.1.md",
+      "sha256": "739be6182415ec2fc59ed8a68a5866d295af488d90ef8af890edb9284866ee4e",
+      "bytes": 2117
+    },
+    {
+      "path": "history/final-architecture-freeze-review-v0.2/FINAL-ARCHITECTURE-FREEZE-REVIEW.md",
+      "sha256": "cdf084ef861516f736eca4eaecd0b139f6477e7f5b03bb74bfe5654501d05b41",
+      "bytes": 4162
+    },
+    {
+      "path": "history/final-architecture-freeze-review-v0.2/FINAL-REVIEW-FINDINGS.json",
+      "sha256": "728e6fc21a377b061bc439de10b5d3255ce1fa8699ae44ab011af63243d75db7",
+      "bytes": 6228
+    },
+    {
+      "path": "history/final-architecture-freeze-review-v0.2/FINDINGS-DETAIL.md",
+      "sha256": "f765ef397741f5566a8122cdc8ffda1193428f4a405a717d0f4526aa29200e12",
+      "bytes": 4784
+    },
+    {
+      "path": "history/final-architecture-freeze-review-v0.2/MANIFEST.json",
+      "sha256": "2bbc8846d61b977ca22db934fbac322446f287db85fc76a517d3125db8df2d4b",
+      "bytes": 1339
+    },
+    {
+      "path": "history/final-architecture-freeze-review-v0.2/REFERENCE-ARCHITECTURE-CROSSCHECK.md",
+      "sha256": "cee2d98f44cd955085377a1634e7914ea388981c2b6b961686cf7cb803dd1730",
+      "bytes": 3114
+    },
+    {
+      "path": "history/final-architecture-freeze-review-v0.2/REMEDIATION-PLAN-v0.3.md",
+      "sha256": "ec1c39acfdbd2d18061a4e80c7a9f8c3d08ef2919c21280c101d42c653c8243e",
+      "bytes": 2199
+    },
+    {
+      "path": "history/final-architecture-freeze-review-v0.2/validation/FINAL-ARCHITECTURE-FREEZE-REVIEW-VALIDATION.md",
+      "sha256": "d8951f029542700399af951dabff9bc3b56b5693344570fc16b76b6c9bffa559",
+      "bytes": 1076
+    },
+    {
+      "path": "history/final-architecture-freeze-review-v0.3/CORRECTIONS-FOR-v1.0-FROZEN.md",
+      "sha256": "d3e49725bcb4b306013220ed2743826813f7c3efa14cb1133f384a235c06d845",
+      "bytes": 1447
+    },
+    {
+      "path": "history/final-architecture-freeze-review-v0.3/FINAL-ARCHITECTURE-FREEZE-REVIEW-v0.3.md",
+      "sha256": "0f401d5da1111a667050d4831e054a2b088327a91146431e504d9e3a915949ff",
+      "bytes": 4313
+    },
+    {
+      "path": "history/final-architecture-freeze-review-v0.3/FINAL-REVIEW-FINDINGS-v0.3.json",
+      "sha256": "7abe8e3d62e3b3d0e88985b4f91dba5aa35f8992ab883085e73efd3ce56fbd8e",
+      "bytes": 3147
+    },
+    {
+      "path": "history/final-architecture-freeze-review-v0.3/FINDINGS-DETAIL-v0.3.md",
+      "sha256": "736fb2926712397cf92346554380e0ba8f87dfe0daba4c19feed0bd63f93d3aa",
+      "bytes": 2393
+    },
+    {
+      "path": "history/final-architecture-freeze-review-v0.3/FREEZE-GATE-MATRIX-v0.3.md",
+      "sha256": "a801f4d7604aa539469c4e269ce1bb2f8841bac361c194aebab012514da44836",
+      "bytes": 1893
+    },
+    {
+      "path": "history/final-architecture-freeze-review-v0.3/MANIFEST.json",
+      "sha256": "f7d649ed3bd698b96212da972defdeda5d3bbe524fde2ab32bfb9f8168a5bda4",
+      "bytes": 1426
+    },
+    {
+      "path": "history/final-architecture-freeze-review-v0.3/validation/FINAL-ARCHITECTURE-FREEZE-REVIEW-v0.3-VALIDATION.md",
+      "sha256": "221fa0b7573516c1c41eada49e1eca08a2ae70d13b7267260f0fd0b8c63396b7",
+      "bytes": 1179
+    },
+    {
+      "path": "traceability/DECISION-SEAM-ARCHITECTURE-MATRIX.md",
+      "sha256": "1f15b3633b6785a3769ad6a533a5c51d381ed409513b9f3190f24134fecfd768",
+      "bytes": 31799
+    },
+    {
+      "path": "traceability/FINAL-FREEZE-REVIEW-REMEDIATION-MATRIX.md",
+      "sha256": "3444af097f5dc621dbb2289a87f360d31223bbe5c116bd758b240fa70d006c38",
+      "bytes": 5195
+    },
+    {
+      "path": "traceability/FINAL-FREEZE-REVIEW-v0.3-CLOSURE.md",
+      "sha256": "a44888ef3d3c3c9181fa6c2874952c3bfba6fe4f5137f1fecdbf79bd3662c623",
+      "bytes": 1383
+    },
+    {
+      "path": "traceability/FROZEN-BASELINE-TO-ARCHITECTURE.md",
+      "sha256": "162e1adb8fa75e468cf33e6a51eaebfbf07e200cdbf250eb507d7d59b84c4f92",
+      "bytes": 3226
+    },
+    {
+      "path": "traceability/REFERENCE-ARCHITECTURE-TECHNOLOGY-MATRIX.md",
+      "sha256": "85e87329528594edccfc15c40dd3f10644e6cef60409b6e93de9fd8032d0d965",
+      "bytes": 2867
+    },
+    {
+      "path": "validation/ARCHITECTURE-REGISTRY-v1.0-FROZEN.json",
+      "sha256": "1e696d79387a9b40d4cc37f3796663a3578c4555f5be41899321db303d7ef0b4",
+      "bytes": 690
+    },
+    {
+      "path": "validation/ARCHITECTURE-v1.0-FINAL-FREEZE-VALIDATION.md",
+      "sha256": "01905a6beca44f3dac557d5b25d1b2034568cd99863d5308b609f9744663f7bb",
+      "bytes": 1148
+    }
+  ]
+}

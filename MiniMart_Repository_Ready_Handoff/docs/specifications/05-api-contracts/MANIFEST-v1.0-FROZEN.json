@@ -1,0 +1,276 @@
+{
+  "product": "MiniMart",
+  "artifact": "API Contracts",
+  "version": "1.0",
+  "status": "FROZEN_ADOPTED_API_CONTRACT_AUTHORITY",
+  "openapi_version": "1.0.0",
+  "store_operations": 234,
+  "sync_operations": 4,
+  "cloud_operations": 5,
+  "posting_envelopes": 13,
+  "decision_seams": 60,
+  "functional_requirements": 1257,
+  "acceptance_scenarios": 102,
+  "nfrs": 84,
+  "final_review": {
+    "blockers": 0,
+    "majors": 0,
+    "packaging_corrections": 2,
+    "applied": 2
+  },
+  "semantic_changes_during_final_packaging": 0,
+  "database_authority": "MiniMart Database Model v1.2 FROZEN",
+  "next_stage": "UI Specification",
+  "files": [
+    {
+      "path": "FINAL-FREEZE-PACKAGING-CORRECTIONS.md",
+      "sha256": "03bd4d26f59396328bd19df00658d1846d344dd0b53d1a46ab26fe4e9ab1ae56",
+      "bytes": 460
+    },
+    {
+      "path": "FREEZE-RECORD.md",
+      "sha256": "45458b42d30630c063cb564dd642eb949a42def76f7901edf7e927073a31305d",
+      "bytes": 1183
+    },
+    {
+      "path": "README.md",
+      "sha256": "d59c5f5b98c5782fa31494b1bb08699c042a5ac6144a3feda158647c4114e4b8",
+      "bytes": 521
+    },
+    {
+      "path": "RELEASE-NOTE-v1.0-FROZEN.md",
+      "sha256": "42b84ac05a5764442c54ff69f46427f1121073876892f065569e596684e93fe6",
+      "bytes": 481
+    },
+    {
+      "path": "conformance/openapi-zod-conformance-v1.json",
+      "sha256": "9b92a4fe6ec2549eef035c4c9c7960add4e1698df1fd650d9513053262d4a076",
+      "bytes": 1484
+    },
+    {
+      "path": "contracts/device-enrollment-port-v1.schema.json",
+      "sha256": "dda8982f23e65ae3f765bb623addb7e97f9ee335efddfedd05ca121f7271bc30",
+      "bytes": 3440
+    },
+    {
+      "path": "contracts/hardware-port-v1.schema.json",
+      "sha256": "d977c1a31b6e584152cfc56b282aac0ad1f1a55c771e771ac082d8d6ac97cd7e",
+      "bytes": 3363
+    },
+    {
+      "path": "contracts/provider-adapter-v1.schema.json",
+      "sha256": "1116c64be3757e66424ec922a43eb30e21082dfd18269f0ff4e59bfd356b556d",
+      "bytes": 2205
+    },
+    {
+      "path": "decisions/API-CONTRACT-DECISIONS-v1.0.md",
+      "sha256": "97bbe5ac2e88d47e52ac86b18cb057e1dcae9be241ae285d09b3613b3de0613e",
+      "bytes": 8470
+    },
+    {
+      "path": "docs/01-STORE-API-OPERATION-CATALOG.md",
+      "sha256": "61ef968486a7e7ddb9cf3b105a1975a8f83efe50af5fc63b694abeb425d2570f",
+      "bytes": 64719
+    },
+    {
+      "path": "docs/02-COMMON-HTTP-CONTRACT.md",
+      "sha256": "269e8b2b85ae2a433d30e4a1907b5fdb5b40bd9ac6130850e6cab80a48ecd06f",
+      "bytes": 1009
+    },
+    {
+      "path": "docs/03-IDEMPOTENCY-CONCURRENCY-RECOVERY.md",
+      "sha256": "4d4288ed31162c615b7e215ce13b930d3f33bfe3a7499ffb68201f094d8b256d",
+      "bytes": 1292
+    },
+    {
+      "path": "docs/04-PAYMENT-REFUND-RECOVERY.md",
+      "sha256": "4e3eddecaf8dcc72f05cd28abcc3ab5e48d0ec99aaa95d5d348ff77b92d70c50",
+      "bytes": 929
+    },
+    {
+      "path": "docs/05-POSTING-ENVELOPE-API-MAP.md",
+      "sha256": "86e4d273aa4bedde059260bba21b69a02378109bc28c8c3892cb185bf08a17b9",
+      "bytes": 2635
+    },
+    {
+      "path": "docs/06-READ-QUERY-REPORTING.md",
+      "sha256": "da758a86e8f95c826b34c5833e4128f100caf8ddbc2b2c09c03e6729df30b0b5",
+      "bytes": 578
+    },
+    {
+      "path": "docs/07-HARDWARE-PORT-CONTRACT.md",
+      "sha256": "426106b838c0eb702550f9cc2ca77b612b3c9db48ea8bd7400eac4b688bf79af",
+      "bytes": 579
+    },
+    {
+      "path": "docs/08-SYNC-API-CONTRACT.md",
+      "sha256": "93aeab73c68a85202efa3db5eb87eb3a2f4c6890ea7f98e52ea06b869c097bd2",
+      "bytes": 731
+    },
+    {
+      "path": "docs/09-SECURITY-TRUST-CONTEXT.md",
+      "sha256": "4d1f7e66f42b9d065ae0da3657de18f3c59e25e1e82e96e973aaa3eaff58f6b0",
+      "bytes": 568
+    },
+    {
+      "path": "docs/10-VERSIONING-COMPATIBILITY.md",
+      "sha256": "7c531e06abc0e11411d5683f2a2a244d8e59e9809af13be5e803b5426e524fe2",
+      "bytes": 627
+    },
+    {
+      "path": "docs/11-OPEN-SEAMS-NON-GOALS.md",
+      "sha256": "6867044d392bb6d9f61924ecd36013e7aead053f03a117646db8da1edfe8deb7",
+      "bytes": 1010
+    },
+    {
+      "path": "docs/12-PROVIDER-ADAPTER-CONTRACT.md",
+      "sha256": "b058cdf050eb3544d7ed1a5c2fb99be72fb7400764e6487d93b8bc74320d39fd",
+      "bytes": 560
+    },
+    {
+      "path": "docs/13-ZOD-OPENAPI-SOURCE.md",
+      "sha256": "75b8096edd5819fadb6fbf29eaf9e1fcc6cfbe9c2abcacd4c3f7cf4c0208ff90",
+      "bytes": 587
+    },
+    {
+      "path": "docs/14-PERMISSION-ERROR-MATRIX.md",
+      "sha256": "37dbfeb0c97d00928c946297b8e7cb48f42cf1cdb1cdee89f52d6b97d308f16c",
+      "bytes": 111202
+    },
+    {
+      "path": "docs/15-CORRECTION-REVERSAL-CONTRACT.md",
+      "sha256": "49b850cb1ae12915d8f290f20ff710f448075912117942b322de36129a28445e",
+      "bytes": 553
+    },
+    {
+      "path": "docs/16-IMPORT-EXPORT-JOB-ARTIFACT.md",
+      "sha256": "0c2c6186aea6960c0e016adc27715730911da9225bd5873d25635c0448751633",
+      "bytes": 739
+    },
+    {
+      "path": "docs/17-SYNC-MESSAGE-REGISTRY.md",
+      "sha256": "27e0fed2d14eaa718fc4ec7c21046b000c998e701270437066e9ec27ba278904",
+      "bytes": 674
+    },
+    {
+      "path": "docs/18-DEVICE-SESSION-ENROLLMENT.md",
+      "sha256": "bcfed0fd61e670ae488d3c9e7695a7dc660487458f1c2ba06ce147dd2dfa4da3",
+      "bytes": 819
+    },
+    {
+      "path": "docs/19-CLOUD-API-SCOPE.md",
+      "sha256": "33434571df16cd6e0633316e22a36cade819b0ff8ac705fb7f7765d3c07386cd",
+      "bytes": 420
+    },
+    {
+      "path": "docs/20-CONTRACT-SOURCE-AND-CI.md",
+      "sha256": "aba90b364fa0178e2ca10e5b5af3fde74bc99fd14c9702a3bf1272826d54f225",
+      "bytes": 757
+    },
+    {
+      "path": "docs/21-NFR-CONTRACT-GATES.md",
+      "sha256": "44621c81c2b2be42b4a16e35fd5a4aa941fbe4f6fad1120ece9feadfcf318186",
+      "bytes": 804
+    },
+    {
+      "path": "docs/22-API-DB-v1.2-PERSISTENCE-ALIGNMENT.md",
+      "sha256": "be7092939b4c1d914f3ef2e960292572a94e030769fca00c1ebd21c3853982e0",
+      "bytes": 472
+    },
+    {
+      "path": "docs/23-ARTIFACT-LIFECYCLE-v1.0.md",
+      "sha256": "7fbdc7718df421531cef7cdf101922b2d81f5496a160de0e6593b129d9717ee2",
+      "bytes": 376
+    },
+    {
+      "path": "docs/API-CONTRACTS.md",
+      "sha256": "685cdec86e6df37214401d1348c4273db84dd48cf25eb52fdb692be7b63a3ff3",
+      "bytes": 1498
+    },
+    {
+      "path": "openapi/minimart-cloud-v1.yaml",
+      "sha256": "a5a4b89e3cc28a131824dcfe4bc57509baa92ffaaf363788861f85af241ea1aa",
+      "bytes": 13211
+    },
+    {
+      "path": "openapi/minimart-store-node-v1.yaml",
+      "sha256": "41336f0e311ddc28615e730957c26c1e4fac1ee2d36bcef0def6c520075612b0",
+      "bytes": 893862
+    },
+    {
+      "path": "openapi/minimart-sync-v1.yaml",
+      "sha256": "fe013b8b31bb634ee7003a448e12d3cb0d2b16c4dd8e053a2f089803a984b53e",
+      "bytes": 52067
+    },
+    {
+      "path": "registry/PROBLEM-CODE-REGISTRY-v1.0.md",
+      "sha256": "5477a03c011f48b78c7d9dfcab2ab27616adc71eb8f9f1fb538261dcaf72db16",
+      "bytes": 314
+    },
+    {
+      "path": "registry/operations-v1.0.json",
+      "sha256": "fe30a363930e54e3be780b8f774798e6335fe9cf2c0197aca01b2faddb9c8807",
+      "bytes": 203025
+    },
+    {
+      "path": "registry/problem-codes-v1.0.json",
+      "sha256": "a354214528d0f41da0a94388290dfaaa74eb660355fe55feac52275b259d9ed6",
+      "bytes": 6171
+    },
+    {
+      "path": "registry/sync-message-registry-v1.0.json",
+      "sha256": "6134ec424d3f73435cc47219b8fd7a3b08ac383b2f0049a483c66ab16ee01a8a",
+      "bytes": 5046
+    },
+    {
+      "path": "traceability/ACCEPTANCE-TO-API-v1.0.json",
+      "sha256": "2aac791322b4690431959c2e82495301bfe10ee6d1bb71595bdbe7d6b11282be",
+      "bytes": 418989
+    },
+    {
+      "path": "traceability/API-DB-v1.2-ALIGNMENT-v1.0.json",
+      "sha256": "cba5306b64f37895cd093846a7ee9ac79e9f11e36a0d33770b1ddb8a4a27a418",
+      "bytes": 1809
+    },
+    {
+      "path": "traceability/DECISION-SEAM-API-MATRIX.md",
+      "sha256": "76a9755f893d2799756b7d3e17dfc899164e197f8e56933113f87cfb92f3df55",
+      "bytes": 16416
+    },
+    {
+      "path": "traceability/FR-TO-API-v1.0.json",
+      "sha256": "bcfa06245d0d35c7ba926d802ff8760d1658371062743b994775793f0fead723",
+      "bytes": 5792551
+    },
+    {
+      "path": "traceability/INDEPENDENT-CRITICAL-FLOW-EVIDENCE-v1.0.json",
+      "sha256": "3d3257e1c5c3244b6f9cce92ce00ebc6273408bec3f288ea3a91bf5d0d3d44ff",
+      "bytes": 3171
+    },
+    {
+      "path": "traceability/INDEPENDENT-SEMANTIC-FREEZE-REVIEW-v1.0.md",
+      "sha256": "5aaaded96364394d2d933220217503b6b84ec8a9e9ccb072e5a0cb9ded0f8491",
+      "bytes": 402
+    },
+    {
+      "path": "traceability/NFR-TO-API-v1.0.json",
+      "sha256": "818c84dae8f82b312d90bfa09ae34655393eedcfc601ad03bab13e04d29684fb",
+      "bytes": 55538
+    },
+    {
+      "path": "validation/API-CONTRACT-REGISTRY-v1.0-FROZEN.json",
+      "sha256": "103194cbdeddd05e60f5f2f3c9ea140a7de230ea1eeaa83d4a98cb840c5a4478",
+      "bytes": 561
+    },
+    {
+      "path": "validation/API-CONTRACTS-v1.0-FREEZE-VALIDATION.md",
+      "sha256": "9d80bd56f6eb48c73d7ba76d66b6fe143ad836480accef1afc8527f4b84fbf7d",
+      "bytes": 221
+    },
+    {
+      "path": "validation/API-CONTRACTS-v1.0-FROZEN-REGISTRY.json",
+      "sha256": "c5ab593d462f2678b09b389796ccb08e84e42a467fc8ae6be3e952b6fbba5578",
+      "bytes": 633
+    }
+  ]
+}

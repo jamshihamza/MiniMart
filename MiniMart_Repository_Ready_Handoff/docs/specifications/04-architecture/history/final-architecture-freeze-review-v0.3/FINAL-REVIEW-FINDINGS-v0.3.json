@@ -1,0 +1,49 @@
+{
+  "document_id": "MM-ARCH-FRZ-REV-002",
+  "reviewed_candidate": "MiniMart Architecture Refinement v0.3 Freeze Candidate",
+  "verdict": "PASS_WITH_NON_SEMANTIC_CORRECTIONS",
+  "freeze_blockers": 0,
+  "major_findings": 0,
+  "minor_non_semantic_corrections": 3,
+  "decision_seams": {
+    "expected": 60,
+    "observed": 60,
+    "exact_match": true
+  },
+  "posting_coordinators": {
+    "expected": 13,
+    "observed": 13
+  },
+  "architecture_decisions": 37,
+  "frozen_db_tables": 74,
+  "prior_final_review_findings_closed": 6,
+  "manifest_integrity": "PASS",
+  "eligible_for_v1_0_freeze_after_corrections": true,
+  "requires_v0_4_candidate": false,
+  "findings": [
+    {
+      "id": "AFR3-MIN-001",
+      "severity": "MINOR / NON-SEMANTIC",
+      "title": "One-counter co-location and multi-counter host placement are no longer stated explicitly",
+      "evidence": "Frozen NFR-DEP-002/003 requires one-counter deployment to allow POS + Store Node + PostgreSQL on the same Windows PC and multi-counter deployment to use counters over LAN to the designated Store Node/database host. v0.1 stated this explicitly; v0.3 remains compatible but no longer states it.",
+      "impact": "No architecture contradiction, but a deployment/coding agent could miss a required supported placement.",
+      "correction": "Restore explicit placement wording in Architecture v1.0: one-counter may colocate POS, Store Node and PostgreSQL on one Windows PC; multi-counter uses one designated Store Node/database host; placement does not change domain behavior."
+    },
+    {
+      "id": "AFR3-MIN-002",
+      "severity": "MINOR / NON-SEMANTIC",
+      "title": "AI-assisted development and release-quality guardrails are only partially explicit",
+      "evidence": "v0.3 preserves ADR triggers, migration checks and protected-test checks, but does not explicitly carry forward frozen NFR-TEST-002 or the approved reference guardrails for spec+acceptance before agent coding and contract/sync-simulation/ledger CI gates.",
+      "impact": "No business/domain/database semantic change, but the architecture package is less complete as the coding-agent handbook.",
+      "correction": "Add implementation governance: spec/acceptance first; AI agents may not weaken tests; production migrations are human-reviewed; material architecture changes require ADR; CI gates protected domain/ledger, contract and sync-simulation tests."
+    },
+    {
+      "id": "AFR3-MIN-003",
+      "severity": "MINOR / NON-SEMANTIC",
+      "title": "Phase-0 carry-forward wording is slightly incomplete",
+      "evidence": "v0.3 includes packaging, hardware, multilingual raster-receipt and real sync proof spikes, but the approved Reference Architecture Phase-0 plan also names sync-engine evaluation and specifically Malayalam/Malay receipt testing.",
+      "impact": "The current spikes are compatible and partly stronger, but approved Phase-0 traceability is not exact.",
+      "correction": "State that the sync spike records sync-engine evaluation/decision evidence and that the target-printer raster test includes Malayalam and Malay when those scripts are in the pilot scope."
+    }
+  ]
+}

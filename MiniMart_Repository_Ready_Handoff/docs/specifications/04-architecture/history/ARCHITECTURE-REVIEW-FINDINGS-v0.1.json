@@ -1,0 +1,123 @@
+{
+  "document_id": "MM-ARCH-REV-001",
+  "verdict": "NOT_READY_TO_FREEZE",
+  "blockers": 6,
+  "major_findings": 10,
+  "minor_findings": 3,
+  "findings": [
+    {
+      "id": "ARCH-BLK-001",
+      "severity": "BLOCKER",
+      "title": "Decision-seam traceability is not explicit",
+      "detail": "v0.1 states that open seams are preserved, but it does not provide a 60/60 architecture seam matrix tied to the frozen Decision IDs. A freeze review cannot prove that no seam was accidentally resolved."
+    },
+    {
+      "id": "ARCH-BLK-002",
+      "severity": "BLOCKER",
+      "title": "External-provider transaction choreography is ambiguous",
+      "detail": "The architecture says provider calls occur outside the DB transaction, but does not define pre-call/post-call choreography for card/QR/refund uncertainty, durable attempt/commitment state, crash points, and reconciliation. This is critical to the frozen PaymentAttempt/PaymentCommitment/PostedTender model."
+    },
+    {
+      "id": "ARCH-BLK-003",
+      "severity": "BLOCKER",
+      "title": "Shared UnitOfWork boundary lacks a concrete module-safe persistence contract",
+      "detail": "v0.1 says coordinators share one transaction, but does not specify how module-private repositories receive a transaction-scoped session without exposing schemas or allowing accidental independent commits."
+    },
+    {
+      "id": "ARCH-BLK-004",
+      "severity": "BLOCKER",
+      "title": "Store Node API trust/session model is incomplete",
+      "detail": "TLS/device enrollment are named, but the architecture does not define counter identity, user session propagation, authorization context resolution, replay/idempotency binding, or how LAN clients are prevented from impersonating another counter."
+    },
+    {
+      "id": "ARCH-BLK-005",
+      "severity": "BLOCKER",
+      "title": "Sync ownership/apply contract is under-specified",
+      "detail": "Outbox/inbox flow is described, but there is no explicit message ownership matrix, apply-handler contract, schema/version compatibility behavior, or rule preventing cloud-owned/configuration updates from mutating store-owned transactional facts."
+    },
+    {
+      "id": "ARCH-BLK-006",
+      "severity": "BLOCKER",
+      "title": "Upgrade compatibility gate is not operationally complete",
+      "detail": "Client/Store Node/schema compatibility ranges are mentioned, but startup/rolling-upgrade choreography, write gating, expand-contract sequencing, and rollback behavior across POS, Store Node, DB and sync protocol are not specified."
+    },
+    {
+      "id": "ARCH-MAJ-001",
+      "severity": "MAJOR",
+      "title": "Read/query architecture is under-defined",
+      "detail": "Transactional module ownership is clear, but cross-module search/reporting/read-model construction, freshness, rebuildability, and whether Store Node queries may join schemas are not sufficiently specified."
+    },
+    {
+      "id": "ARCH-MAJ-002",
+      "severity": "MAJOR",
+      "title": "BusinessContext resolution order and authority are incomplete",
+      "detail": "BusinessContext fields are listed, but exact resolution authority for Tenant/Company/Store/Counter/User, BusinessDate and CountryRuleSetVersion\u2014and failure behavior when context cannot be resolved\u2014is not fully specified."
+    },
+    {
+      "id": "ARCH-MAJ-003",
+      "severity": "MAJOR",
+      "title": "Background worker concurrency/leadership is unspecified",
+      "detail": "Outbox, reconciliation and scheduled jobs exist, but multi-process/duplicate-worker safety, leasing/locking, retry backoff and shutdown semantics are not architecturally fixed."
+    },
+    {
+      "id": "ARCH-MAJ-004",
+      "severity": "MAJOR",
+      "title": "Database connection and transaction policy is incomplete",
+      "detail": "No pool sizing principle, transaction timeout/statement timeout, lock timeout, cancellation, retry classification or connection-loss handling is defined for Posting Envelopes."
+    },
+    {
+      "id": "ARCH-MAJ-005",
+      "severity": "MAJOR",
+      "title": "Observability lacks audit/telemetry separation and cardinality controls",
+      "detail": "Structured telemetry is listed, but security/audit evidence versus operational logs, PII redaction, metric cardinality, retention and correlation across desktop/Store Node/cloud are not sufficiently bounded."
+    },
+    {
+      "id": "ARCH-MAJ-006",
+      "severity": "MAJOR",
+      "title": "Hardware command lifecycle is incomplete",
+      "detail": "Ports are defined, but device timeout/cancellation, printer duplicate-risk, cash-drawer behavior, scanner/scale reconnect, capability/version negotiation and hardware error taxonomy are missing."
+    },
+    {
+      "id": "ARCH-MAJ-007",
+      "severity": "MAJOR",
+      "title": "Configuration ownership and precedence are not specified",
+      "detail": "The runtime loads configuration, but local machine, store, company, country-pack and cloud-delivered configuration precedence/versioning and safe activation are not defined."
+    },
+    {
+      "id": "ARCH-MAJ-008",
+      "severity": "MAJOR",
+      "title": "Support/diagnostics architecture needs stronger isolation",
+      "detail": "Support sessions are time-limited/audited, but remote diagnostic access, command allow-listing, elevation, secret/database access restrictions and offline behavior are not concretely separated."
+    },
+    {
+      "id": "ARCH-MAJ-009",
+      "severity": "MAJOR",
+      "title": "Cloud-mode composition needs an explicit capability matrix",
+      "detail": "The same modular-monolith codebase is reused, but the exact Store-only, Cloud-only and shared capabilities/workers are not enumerated, leaving risk that cloud accidentally gains store posting authority."
+    },
+    {
+      "id": "ARCH-MAJ-010",
+      "severity": "MAJOR",
+      "title": "Reconciliation/rebuild ownership is not fully specified",
+      "detail": "Drift detection is mentioned, but the architecture does not define which module owns each reconciliation, whether repair is rebuild-only or compensating, and how repair is authorized/audited."
+    },
+    {
+      "id": "ARCH-MIN-001",
+      "severity": "MINOR",
+      "title": "API transport protocol naming is premature/inconsistent",
+      "detail": "The topology says HTTPS/LAN while deployment details do not define certificate/discovery mechanics. Keep transport security mandatory but defer concrete discovery/certificate profile to API/deployment contract."
+    },
+    {
+      "id": "ARCH-MIN-002",
+      "severity": "MINOR",
+      "title": "Monorepo package graph needs machine-enforceable boundary metadata",
+      "detail": "CI rules are described, but no concrete dependency tags/lint boundary scheme is specified."
+    },
+    {
+      "id": "ARCH-MIN-003",
+      "severity": "MINOR",
+      "title": "Terminology for Customer & Credit package should be normalized",
+      "detail": "Documentation alternates between Customer & Credit and customer-credit; this is understandable but should be normalized in the freeze candidate."
+    }
+  ]
+}

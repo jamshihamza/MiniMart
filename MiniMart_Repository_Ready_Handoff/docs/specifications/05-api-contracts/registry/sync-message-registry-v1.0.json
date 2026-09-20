@@ -1,0 +1,182 @@
+[
+  {
+    "messageType": "SalePosted",
+    "contractVersion": "1.0",
+    "producerMode": "EDGE",
+    "consumerMode": "CLOUD",
+    "ownerClass": "STORE_TRANSACTION_FACT",
+    "targetModule": "Sales",
+    "applyMode": "PROJECT_ONLY"
+  },
+  {
+    "messageType": "PaymentCommitted",
+    "contractVersion": "1.0",
+    "producerMode": "EDGE",
+    "consumerMode": "CLOUD",
+    "ownerClass": "STORE_TRANSACTION_FACT",
+    "targetModule": "Payments",
+    "applyMode": "PROJECT_ONLY"
+  },
+  {
+    "messageType": "TenderPosted",
+    "contractVersion": "1.0",
+    "producerMode": "EDGE",
+    "consumerMode": "CLOUD",
+    "ownerClass": "STORE_TRANSACTION_FACT",
+    "targetModule": "Payments",
+    "applyMode": "PROJECT_ONLY"
+  },
+  {
+    "messageType": "StockMovementPosted",
+    "contractVersion": "1.0",
+    "producerMode": "EDGE",
+    "consumerMode": "CLOUD",
+    "ownerClass": "STORE_TRANSACTION_FACT",
+    "targetModule": "Inventory",
+    "applyMode": "PROJECT_ONLY"
+  },
+  {
+    "messageType": "SalesReturnPosted",
+    "contractVersion": "1.0",
+    "producerMode": "EDGE",
+    "consumerMode": "CLOUD",
+    "ownerClass": "STORE_TRANSACTION_FACT",
+    "targetModule": "Returns",
+    "applyMode": "PROJECT_ONLY"
+  },
+  {
+    "messageType": "RefundObligationChanged",
+    "contractVersion": "1.0",
+    "producerMode": "EDGE",
+    "consumerMode": "CLOUD",
+    "ownerClass": "STORE_TRANSACTION_FACT",
+    "targetModule": "Returns",
+    "applyMode": "PROJECT_ONLY"
+  },
+  {
+    "messageType": "RefundExecutionChanged",
+    "contractVersion": "1.0",
+    "producerMode": "EDGE",
+    "consumerMode": "CLOUD",
+    "ownerClass": "STORE_TRANSACTION_FACT",
+    "targetModule": "Payments",
+    "applyMode": "PROJECT_ONLY"
+  },
+  {
+    "messageType": "CreditLedgerEntryPosted",
+    "contractVersion": "1.0",
+    "producerMode": "EDGE",
+    "consumerMode": "CLOUD",
+    "ownerClass": "STORE_TRANSACTION_FACT",
+    "targetModule": "Customer & Credit",
+    "applyMode": "PROJECT_ONLY"
+  },
+  {
+    "messageType": "CustomerCollectionPosted",
+    "contractVersion": "1.0",
+    "producerMode": "EDGE",
+    "consumerMode": "CLOUD",
+    "ownerClass": "STORE_TRANSACTION_FACT",
+    "targetModule": "Customer & Credit",
+    "applyMode": "PROJECT_ONLY"
+  },
+  {
+    "messageType": "CashMovementPosted",
+    "contractVersion": "1.0",
+    "producerMode": "EDGE",
+    "consumerMode": "CLOUD",
+    "ownerClass": "STORE_TRANSACTION_FACT",
+    "targetModule": "Cash & Business Day",
+    "applyMode": "PROJECT_ONLY"
+  },
+  {
+    "messageType": "ShiftStateChanged",
+    "contractVersion": "1.0",
+    "producerMode": "EDGE",
+    "consumerMode": "CLOUD",
+    "ownerClass": "STORE_TRANSACTION_FACT",
+    "targetModule": "Cash & Business Day",
+    "applyMode": "PROJECT_ONLY"
+  },
+  {
+    "messageType": "BusinessDayStateChanged",
+    "contractVersion": "1.0",
+    "producerMode": "EDGE",
+    "consumerMode": "CLOUD",
+    "ownerClass": "STORE_TRANSACTION_FACT",
+    "targetModule": "Cash & Business Day",
+    "applyMode": "PROJECT_ONLY"
+  },
+  {
+    "messageType": "SupplierPayableCreated",
+    "contractVersion": "1.0",
+    "producerMode": "EDGE",
+    "consumerMode": "CLOUD",
+    "ownerClass": "STORE_TRANSACTION_FACT",
+    "targetModule": "Accounting-Lite",
+    "applyMode": "PROJECT_ONLY"
+  },
+  {
+    "messageType": "SupplierPaymentPosted",
+    "contractVersion": "1.0",
+    "producerMode": "EDGE",
+    "consumerMode": "CLOUD",
+    "ownerClass": "STORE_TRANSACTION_FACT",
+    "targetModule": "Accounting-Lite",
+    "applyMode": "PROJECT_ONLY"
+  },
+  {
+    "messageType": "FinancialMovementPosted",
+    "contractVersion": "1.0",
+    "producerMode": "EDGE",
+    "consumerMode": "CLOUD",
+    "ownerClass": "STORE_TRANSACTION_FACT",
+    "targetModule": "Accounting-Lite",
+    "applyMode": "PROJECT_ONLY"
+  },
+  {
+    "messageType": "ExpensePosted",
+    "contractVersion": "1.0",
+    "producerMode": "EDGE",
+    "consumerMode": "CLOUD",
+    "ownerClass": "STORE_TRANSACTION_FACT",
+    "targetModule": "Accounting-Lite",
+    "applyMode": "PROJECT_ONLY"
+  },
+  {
+    "messageType": "StoreConfigurationPublished",
+    "contractVersion": "1.0",
+    "producerMode": "CLOUD",
+    "consumerMode": "EDGE",
+    "ownerClass": "CLOUD_MANAGED_CONFIGURATION",
+    "targetModule": "Organization",
+    "applyMode": "MUTABLE_CONFIG"
+  },
+  {
+    "messageType": "CountryRuleSetPublished",
+    "contractVersion": "1.0",
+    "producerMode": "CLOUD",
+    "consumerMode": "EDGE",
+    "ownerClass": "CLOUD_MANAGED_CONFIGURATION",
+    "targetModule": "Country Policy",
+    "applyMode": "MUTABLE_CONFIG"
+  },
+  {
+    "messageType": "CatalogMasterCommand",
+    "contractVersion": "1.0",
+    "producerMode": "CLOUD",
+    "consumerMode": "EDGE",
+    "ownerClass": "EXPLICITLY_VERSIONED_MASTER",
+    "targetModule": "Catalog",
+    "applyMode": "MASTER_COMMAND"
+  },
+  {
+    "messageType": "PricingMasterCommand",
+    "contractVersion": "1.0",
+    "producerMode": "CLOUD",
+    "consumerMode": "EDGE",
+    "ownerClass": "EXPLICITLY_VERSIONED_MASTER",
+    "targetModule": "Pricing",
+    "applyMode": "MASTER_COMMAND"
+  }
+]

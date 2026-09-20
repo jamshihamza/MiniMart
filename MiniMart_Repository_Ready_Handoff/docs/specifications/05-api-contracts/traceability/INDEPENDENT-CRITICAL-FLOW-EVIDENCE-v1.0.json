@@ -1,0 +1,106 @@
+[
+  {
+    "flow": "Sale posting",
+    "operationId": "API-POS-012",
+    "expectedCoordinator": "SalePostingCoordinator",
+    "registryCoordinator": "SalePostingCoordinator",
+    "idempotencyRequired": true,
+    "pass": true
+  },
+  {
+    "flow": "GRN posting",
+    "operationId": "API-PUR-010",
+    "expectedCoordinator": "GoodsReceiptPostingCoordinator",
+    "registryCoordinator": "GoodsReceiptPostingCoordinator",
+    "idempotencyRequired": true,
+    "pass": true
+  },
+  {
+    "flow": "Purchase return",
+    "operationId": "API-PUR-015",
+    "expectedCoordinator": "PurchaseReturnPostingCoordinator",
+    "registryCoordinator": "PurchaseReturnPostingCoordinator",
+    "idempotencyRequired": true,
+    "pass": true
+  },
+  {
+    "flow": "Sales return",
+    "operationId": "API-RET-006",
+    "expectedCoordinator": "SalesReturnPostingCoordinator",
+    "registryCoordinator": "SalesReturnPostingCoordinator",
+    "idempotencyRequired": true,
+    "pass": true
+  },
+  {
+    "flow": "Refund settlement",
+    "operationId": "API-PAY-013",
+    "expectedCoordinator": "RefundSettlementCoordinator",
+    "registryCoordinator": "RefundSettlementCoordinator",
+    "idempotencyRequired": true,
+    "pass": true
+  },
+  {
+    "flow": "Stock count",
+    "operationId": "API-INV-009",
+    "expectedCoordinator": "StockCountPostingCoordinator",
+    "registryCoordinator": "StockCountPostingCoordinator",
+    "idempotencyRequired": true,
+    "pass": true
+  },
+  {
+    "flow": "Customer collection",
+    "operationId": "API-CRD-008",
+    "expectedCoordinator": "CustomerCollectionPostingCoordinator",
+    "registryCoordinator": "CustomerCollectionPostingCoordinator",
+    "idempotencyRequired": true,
+    "pass": true
+  },
+  {
+    "flow": "Supplier payment",
+    "operationId": "API-ACC-006",
+    "expectedCoordinator": "SupplierPaymentPostingCoordinator",
+    "registryCoordinator": "SupplierPaymentPostingCoordinator",
+    "idempotencyRequired": true,
+    "pass": true
+  },
+  {
+    "flow": "Financial transaction",
+    "operationId": "API-ACC-012",
+    "expectedCoordinator": "FinancialTransactionPostingCoordinator",
+    "registryCoordinator": "FinancialTransactionPostingCoordinator",
+    "idempotencyRequired": true,
+    "pass": true
+  },
+  {
+    "flow": "Account transfer",
+    "operationId": "API-ACC-014",
+    "expectedCoordinator": "AccountTransferPostingCoordinator",
+    "registryCoordinator": "AccountTransferPostingCoordinator",
+    "idempotencyRequired": true,
+    "pass": true
+  },
+  {
+    "flow": "Expense",
+    "operationId": "API-ACC-020",
+    "expectedCoordinator": "ExpensePostingCoordinator",
+    "registryCoordinator": "ExpensePostingCoordinator",
+    "idempotencyRequired": true,
+    "pass": true
+  },
+  {
+    "flow": "Manual cash-in",
+    "operationId": "API-CSH-006",
+    "expectedCoordinator": "ManualCashInCoordinator",
+    "registryCoordinator": "ManualCashInCoordinator",
+    "idempotencyRequired": true,
+    "pass": true
+  },
+  {
+    "flow": "Manual cash-out",
+    "operationId": "API-CSH-007",
+    "expectedCoordinator": "ManualCashOutCoordinator",
+    "registryCoordinator": "ManualCashOutCoordinator",
+    "idempotencyRequired": true,
+    "pass": true
+  }
+]

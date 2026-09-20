@@ -1,19 +1,25 @@
-# Phase 0 --- First Codex Instructions
+# Phase 0 --- Implementation Instructions
 
 Do not implement retail business features yet.
 
-Initial target:
+Use the **exact frozen monorepo structure** in:
+`docs/specifications/04-architecture/docs/09-MONOREPO-AND-PACKAGE-STRUCTURE.md`
 
-**Repository boots → PostgreSQL connects → Store Node starts →
-Tauri/React POS starts → POS calls real Store Node `/health` → UI shows
-Store Node Online → tests/CI pass.**
+Initial executable milestone:
 
-Then complete the approved technical spikes: - Windows Store Node
-service packaging/start/stop; - PostgreSQL migration harness and
-upgrade/rollback proof; - printer port/test print; - barcode scanner
-keyboard-wedge capture; - non-Latin receipt rendering spike; - minimal
-real Store Node → Outbox → Cloud → Inbox/Dedup → ACK sync proof; -
-test/CI gates.
+**PostgreSQL connects → Store Node starts → POS terminal starts → POS
+calls the frozen Store Node system health/readiness contracts → UI
+displays Store Node Online when authoritative conditions are met →
+automated checks pass.**
 
-Before changing files, Codex must present the Phase 0 plan and exact
-files it proposes to create/change.
+Phase 0 then covers: - Windows Store Node service
+packaging/start/stop; - PostgreSQL migration harness and
+upgrade/rollback proof; - printer Tauri/Rust port spike; - barcode
+scanner keyboard-wedge spike; - non-Latin receipt rendering spike; -
+minimal real Store Node → outbox → cloud → inbox/dedup → ACK sync
+proof; - CI/test gates.
+
+Before writing code, present the exact proposed file changes,
+dependencies and tests. Any proposed repository/package name that
+differs from the frozen Architecture v1.0 structure requires explicit
+approval.

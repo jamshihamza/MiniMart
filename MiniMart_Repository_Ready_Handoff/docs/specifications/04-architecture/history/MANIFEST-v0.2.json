@@ -1,0 +1,292 @@
+{
+  "product": "MiniMart",
+  "artifact": "Architecture Refinement",
+  "version": "0.2",
+  "status": "FREEZE_CANDIDATE",
+  "upstream": [
+    "BRD/FRS/NFRS v1.0 FROZEN",
+    "Domain Model v1.0 FROZEN",
+    "Database Model v1.0 FROZEN"
+  ],
+  "business_modules": 13,
+  "posting_envelope_coordinators": 13,
+  "architecture_decisions": 33,
+  "decision_seams_mapped": 60,
+  "blockers_remediated": 6,
+  "major_findings_remediated": 10,
+  "minor_findings_corrected": 3,
+  "remaining_known_review_findings": 0,
+  "validation": "PASS",
+  "files": [
+    {
+      "path": "FREEZE-CANDIDATE-RECORD.md",
+      "sha256": "fe9afa2da2ebb63e1f8eb7490404d6c379e256e0ec5dcf0d9b87b91efaba2161",
+      "bytes": 753
+    },
+    {
+      "path": "README.md",
+      "sha256": "e150d3b642f51a76f3a18fde891c2d69c4f7d2ae70b3ca0904242b2ea0a5ed78",
+      "bytes": 1767
+    },
+    {
+      "path": "RELEASE-NOTE-v0.2.md",
+      "sha256": "0240911f612973c9657148a09fcf1421e365d76036381d96fcf18f7495f9be3e",
+      "bytes": 703
+    },
+    {
+      "path": "decisions/ARCHITECTURE-DECISIONS-v0.2.md",
+      "sha256": "2998c0e9d280058a7ae1f5ce00582f1bbc390cff707c224a8aa4d75094bf76d6",
+      "bytes": 5835
+    },
+    {
+      "path": "diagrams/PROVIDER-CHOREOGRAPHY.md",
+      "sha256": "276411b2cd10c09f2847df562566745034155727437b23ae5fc106d6ef1f9507",
+      "bytes": 745
+    },
+    {
+      "path": "diagrams/REFINED-ARCHITECTURE.md",
+      "sha256": "4a1b9d2736a4f7a18959ebe138eceae5b42b6d8a7d3d5067ee9f56861b9b2d6d",
+      "bytes": 805
+    },
+    {
+      "path": "diagrams/STORE-CLOUD-COMPOSITION.md",
+      "sha256": "9cdb9d95c7f7eac96771b3f4b15298553654e1233bda9eff332fac7f820b2e09",
+      "bytes": 426
+    },
+    {
+      "path": "diagrams/SYNC-APPLY.md",
+      "sha256": "0672273b6ab86c7b88d5018904dc1572797359c67f334c5b549f89f919b8d077",
+      "bytes": 343
+    },
+    {
+      "path": "diagrams/TRUST-AND-BUSINESS-CONTEXT.md",
+      "sha256": "ed38d57d818d20789fd7a42d85fabd9cc1d42d1fba19d99cd331db3119d8fc82",
+      "bytes": 448
+    },
+    {
+      "path": "diagrams/UOW-BOUNDARY.md",
+      "sha256": "088a3ff2faa3f19504518de334c5e0e1354586b157717727169cea780a6a9789",
+      "bytes": 547
+    },
+    {
+      "path": "docs/01-MODULE-BOUNDARIES.md",
+      "sha256": "c33b857f8dc1f05a38772c60853e07b0c948a35e5f773d80f17fcfb33475ae9f",
+      "bytes": 1632
+    },
+    {
+      "path": "docs/02-APPLICATION-COORDINATORS-AND-UOW.md",
+      "sha256": "b1fc9d5c1dc35958999be95c755bd6b0090912f6f41f912a47e23cf1cb82ffde",
+      "bytes": 1906
+    },
+    {
+      "path": "docs/03-STORE-NODE-RUNTIME.md",
+      "sha256": "339524e0345314a4ff2e30ca516250db59da48530edae5b8f6ae12eb8628687b",
+      "bytes": 1103
+    },
+    {
+      "path": "docs/04-EDGE-CLOUD-SYNC.md",
+      "sha256": "ac08db0d62b2ddfc80c584f4d240c75f6342a2b4e8a70db9bb461433ba653b8b",
+      "bytes": 2010
+    },
+    {
+      "path": "docs/05-POS-BACKOFFICE-AND-HARDWARE.md",
+      "sha256": "4ed76883a4ed934ad369628ef32d8bad79fe34c20253f5138701fe5a99b7a7f0",
+      "bytes": 673
+    },
+    {
+      "path": "docs/06-COUNTRY-PACK-ARCHITECTURE.md",
+      "sha256": "7ea1f41c329a8305109036ee91fa588b7f9d8e8a9b7ba1c98d27fdce1bb06e95",
+      "bytes": 1078
+    },
+    {
+      "path": "docs/07-SECURITY-AND-TRUST-BOUNDARIES.md",
+      "sha256": "342de01a77285ae7a85077b4104f20c93c7d39ca249e215494ab29f98f6995aa",
+      "bytes": 1520
+    },
+    {
+      "path": "docs/08-OBSERVABILITY-RELIABILITY-RECOVERY.md",
+      "sha256": "e9e7a75996631623e1620d3ed60c99ca0ca583ce3d420674680b029d05bc7084",
+      "bytes": 1263
+    },
+    {
+      "path": "docs/09-MONOREPO-AND-PACKAGE-STRUCTURE.md",
+      "sha256": "bda4eef4ed539f8b883c682af14a16aebf0cbf1a7af2350f1b92f7a6246c9ec4",
+      "bytes": 1260
+    },
+    {
+      "path": "docs/10-API-BOUNDARY-PREPARATION.md",
+      "sha256": "2af8d1b8503dda5344202cd817468275c009be2813939ddab65de4ef1d7aca10",
+      "bytes": 970
+    },
+    {
+      "path": "docs/11-IMPLEMENTATION-DEPENDENCY-RULES.md",
+      "sha256": "a6d09a0650ab52763dbe1cd7dc85a2cce7957678315a8a02aba8c0558c324062",
+      "bytes": 1096
+    },
+    {
+      "path": "docs/12-FAILURE-MODE-MATRIX.md",
+      "sha256": "1faa5233cf9b3ec613c5627c45f93df8d203be8b43b240c7351c5f0493d0175f",
+      "bytes": 2938
+    },
+    {
+      "path": "docs/13-DEPLOYMENT-PACKAGING-AND-UPDATES.md",
+      "sha256": "1e211e6b99cb26ed171ddf7199d0fd0f7fc61421e1279efb0acb2588ba7849c5",
+      "bytes": 1277
+    },
+    {
+      "path": "docs/14-OPEN-SEAMS-AND-NON-GOALS.md",
+      "sha256": "5593d815586186bd37bcb46a7f62684f272b2bad3ccbb799ec63ca8d8c01819d",
+      "bytes": 838
+    },
+    {
+      "path": "docs/15-PROVIDER-CHOREOGRAPHY.md",
+      "sha256": "6a8f74520b3359bfb998e3c748e5646e4f7438ec2fb771d2bfabb92e6cdc32b0",
+      "bytes": 2888
+    },
+    {
+      "path": "docs/16-UOW-PERSISTENCE-CONTRACT.md",
+      "sha256": "e5491c99ed9f469c5f4a70ebf6ed0a0a2d1c21b9feb1c7d29cf917e9de1990c3",
+      "bytes": 1440
+    },
+    {
+      "path": "docs/17-STORE-NODE-TRUST-SESSION.md",
+      "sha256": "7bc40306434c64f3f30f790c08ead11ecef2a4d25447a3023f0214fd2a494b59",
+      "bytes": 1364
+    },
+    {
+      "path": "docs/18-SYNC-OWNERSHIP-APPLY-CONTRACT.md",
+      "sha256": "cabb4a13c32c404db5ad1fcf47d8016b4ee5a494d817e6c6e89dc171c6ac1a87",
+      "bytes": 1467
+    },
+    {
+      "path": "docs/19-COMPATIBILITY-UPGRADE-MATRIX.md",
+      "sha256": "ce476f48c3068836184408b3a2805889210bbdd4b8c3b8310747cdc95e058a0e",
+      "bytes": 2122
+    },
+    {
+      "path": "docs/20-READ-QUERY-ARCHITECTURE.md",
+      "sha256": "9372e0b8b170346d50154ade31f40d2af9f3e78df8c364e935f95c0947cd0746",
+      "bytes": 1249
+    },
+    {
+      "path": "docs/21-BUSINESS-CONTEXT-RESOLUTION.md",
+      "sha256": "7b623fa26466556497beb28b03265e6ca3368d4adad234b11c91834dabec9805",
+      "bytes": 1196
+    },
+    {
+      "path": "docs/22-WORKER-CONCURRENCY-AND-LEASING.md",
+      "sha256": "5d03240ccb5553b2034e51f51881bb8a39864ee3e499e1ba8d991a0d91ebaa58",
+      "bytes": 1213
+    },
+    {
+      "path": "docs/23-DATABASE-RUNTIME-POLICY.md",
+      "sha256": "eba91d86135f8b8bfb1564dfffb7e9c58fe8e6db3043341c1cde0b747076c88c",
+      "bytes": 1379
+    },
+    {
+      "path": "docs/24-OBSERVABILITY-AUDIT-TELEMETRY.md",
+      "sha256": "626d9845e8b7a4d26a4c479fa4957bcc7b2a995035c58cb485f04bab53e9ccbd",
+      "bytes": 1154
+    },
+    {
+      "path": "docs/25-HARDWARE-COMMAND-LIFECYCLE.md",
+      "sha256": "52f711d66f2eb5d5633f3565686ef063e34df02c087ffc9c3ed16173334cf5d8",
+      "bytes": 1455
+    },
+    {
+      "path": "docs/26-CONFIGURATION-OWNERSHIP-PRECEDENCE.md",
+      "sha256": "3b1508c923fec72c9c06975f87b2a76756bfd5c542354ba7c4d8fec566229dbf",
+      "bytes": 1259
+    },
+    {
+      "path": "docs/27-SUPPORT-DIAGNOSTICS-ISOLATION.md",
+      "sha256": "fb36e0d884ebe39577a0630785245d52b4cf564ba9d38422365459924a084ed4",
+      "bytes": 1090
+    },
+    {
+      "path": "docs/28-STORE-CLOUD-CAPABILITY-MATRIX.md",
+      "sha256": "befe4a6fb202d090e7edbc473d559a4f7aee7cf4fe8997261b6d24cf88f202f3",
+      "bytes": 2139
+    },
+    {
+      "path": "docs/29-RECONCILIATION-REBUILD-OWNERSHIP.md",
+      "sha256": "042c8a1cefc04071750f58bd254dcf184f286f4840134d46600cc9c794caab3c",
+      "bytes": 1891
+    },
+    {
+      "path": "docs/30-TRANSPORT-SECURITY-BOUNDARY.md",
+      "sha256": "055724ca9f098eb8ee5fa669247f5afd562f4f94993ab5bfb4178a8c88eadb9d",
+      "bytes": 556
+    },
+    {
+      "path": "docs/31-DEPENDENCY-BOUNDARY-ENFORCEMENT.md",
+      "sha256": "00ced2b73012f1a64793b3897dfb2c5e01193f2ca828b19290f0e724046057aa",
+      "bytes": 860
+    },
+    {
+      "path": "docs/ARCHITECTURE-REFINEMENT.md",
+      "sha256": "bbc5aca3c66334c58d2965e997e69b64d9dcf6a0a1293f404fb2db2341955a1f",
+      "bytes": 4218
+    },
+    {
+      "path": "history/ARCHITECTURE-REFINEMENT-v0.1-VALIDATION.md",
+      "sha256": "f9cc62491ba89788bad0de0c9905b26a367a06e3f6acd30a82cf2b82082a5b9c",
+      "bytes": 1692
+    },
+    {
+      "path": "history/ARCHITECTURE-REGISTRY-v0.1.json",
+      "sha256": "04a406ea2ab41439514b2b78d44f6aa39328119719c371a224faefe9397bf9ae",
+      "bytes": 368
+    },
+    {
+      "path": "history/ARCHITECTURE-REVIEW-FINDINGS-v0.1.json",
+      "sha256": "d0d59111d7751560fd55f8bd548c59e8920faa698d5cb73ece045f461dbee116",
+      "bytes": 7062
+    },
+    {
+      "path": "history/ARCHITECTURE-v0.1-REMEDIATION-REPORT.md",
+      "sha256": "a7ac129be0056c631d454c3242bc64a50293fbba131c948f650f8fd3aa14be8a",
+      "bytes": 749
+    },
+    {
+      "path": "history/DEEP-ARCHITECTURE-CONSISTENCY-REVIEW-v0.1.md",
+      "sha256": "d52e24adf8643ca273355c979e26c5672a8a52bb6a1f172f3d16decf7a967756",
+      "bytes": 9132
+    },
+    {
+      "path": "history/FINDINGS-DETAIL.md",
+      "sha256": "173521abb6fe94826e99c318deb95d7a6d9d12482faad461d7926defa02f37a1",
+      "bytes": 9663
+    },
+    {
+      "path": "history/REMEDIATION-PLAN-v0.1.md",
+      "sha256": "739be6182415ec2fc59ed8a68a5866d295af488d90ef8af890edb9284866ee4e",
+      "bytes": 2117
+    },
+    {
+      "path": "traceability/DECISION-SEAM-ARCHITECTURE-MATRIX.md",
+      "sha256": "c4bf69ee03f04bb9536c41d35a39e49e15a78c596c808676f5902cecdd6bc5d3",
+      "bytes": 32361
+    },
+    {
+      "path": "traceability/FROZEN-BASELINE-TO-ARCHITECTURE.md",
+      "sha256": "b59d06978d50ded620d2199cf5260eb7eef332fa72d6f56b843ccc5016723b3d",
+      "bytes": 3102
+    },
+    {
+      "path": "traceability/REVIEW-FINDING-REMEDIATION-MATRIX.md",
+      "sha256": "d91c2e1ab3d93be466056ac7d5c64fd4003ff689136f86c23449a3e0e5ce2162",
+      "bytes": 11025
+    },
+    {
+      "path": "validation/ARCHITECTURE-REFINEMENT-v0.2-VALIDATION.md",
+      "sha256": "4e572b8ff98861edaf2a92a757c4bdb712f5901426138475d32fcde9c237cadc",
+      "bytes": 2745
+    },
+    {
+      "path": "validation/ARCHITECTURE-REGISTRY-v0.2.json",
+      "sha256": "48a2e067e86d3ff38533f3f3b7c55b8df7da92092c0525d794ab1e8df6827c2e",
+      "bytes": 581
+    }
+  ]
+}

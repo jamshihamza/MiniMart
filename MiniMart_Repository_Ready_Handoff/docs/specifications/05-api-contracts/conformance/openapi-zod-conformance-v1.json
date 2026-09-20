@@ -1,0 +1,66 @@
+{
+  "contract": "MiniMart OpenAPI/Zod Conformance v1",
+  "normativeSource": "openapi/minimart-store-node-v1.yaml",
+  "generatorPolicy": "Generator implementation is replaceable only if this conformance suite remains green.",
+  "requiredChecks": [
+    "OpenAPI 3.1 parse",
+    "all local refs resolve",
+    "all object schemas closed",
+    "positive fixtures accepted",
+    "negative fixtures rejected",
+    "operation IDs stable",
+    "ProblemCode enum/registry synchronized",
+    "compatibility diff blocks breaking write changes"
+  ],
+  "fixtures": [
+    {
+      "schema": "Money",
+      "valid": [
+        {
+          "amount": "10.25",
+          "currency": "INR"
+        }
+      ],
+      "invalid": [
+        {
+          "amount": 10.25,
+          "currency": "INR"
+        },
+        {
+          "amount": "10",
+          "currency": "inr"
+        }
+      ]
+    },
+    {
+      "schema": "Quantity",
+      "valid": [
+        {
+          "value": "1.250"
+        }
+      ],
+      "invalid": [
+        {
+          "value": 1.25
+        }
+      ]
+    },
+    {
+      "schema": "IdempotencyPolicy",
+      "valid": [
+        {
+          "retentionSeconds": 3600,
+          "expiresAtHeader": "Idempotency-Expires-At",
+          "expiredKeyBehavior": "MAY_BE_ACCEPTED_AS_NEW_AFTER_DOMAIN_DUPLICATE_GUARDS"
+        }
+      ],
+      "invalid": [
+        {
+          "retentionSeconds": 0,
+          "expiresAtHeader": "x",
+          "expiredKeyBehavior": "x"
+        }
+      ]
+    }
+  ]
+}

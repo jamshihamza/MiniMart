@@ -1,0 +1,1265 @@
+[
+  {
+    "id": "NFR-BACKUP-001",
+    "title": "Documented backup",
+    "text": "**Priority:** MUST Store and cloud business data shall have documented backup procedures appropriate to the deployment.",
+    "contractFlow": "Store API + Sync",
+    "releaseGate": "Cloud-disconnected acceptance suite; no checkout dependency.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-BACKUP-002",
+    "title": "Multiple recovery points",
+    "text": "**Priority:** MUST Production backup design shall maintain multiple recovery points and an off-device/off-host copy according to approved retention policy.",
+    "contractFlow": "API-BR-001..003 + API-SYS-006",
+    "releaseGate": "Backup/restore-test operational acceptance.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-BACKUP-003",
+    "title": "Restore testing",
+    "text": "**Priority:** MUST Backups shall be periodically restored in a controlled test and representative business data verified.",
+    "contractFlow": "API-BR-001..003 + API-SYS-006",
+    "releaseGate": "Backup/restore-test operational acceptance.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-BACKUP-004",
+    "title": "Migration recovery",
+    "text": "**Priority:** MUST Database/schema migration procedures shall include rollback/recovery strategy and backup compatibility checks.",
+    "contractFlow": "API-BR-001..003 + API-SYS-006",
+    "releaseGate": "Backup/restore-test operational acceptance.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-BACKUP-005",
+    "title": "RPO/RTO ownership",
+    "text": "**Priority:** MUST Each production deployment shall define approved RPO and RTO targets before go-live; exact values remain an operations decision until approved.",
+    "contractFlow": "Applicable Store/Sync/Cloud/port contract",
+    "releaseGate": "Contract or integration acceptance as applicable.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-BACKUP-006",
+    "title": "Backup health visibility",
+    "text": "**Priority:** MUST Failed, stale or missing backups shall be visible to authorized operations/support personnel.",
+    "contractFlow": "IAM + trust/session + permission metadata",
+    "releaseGate": "Contract security tests, revocation/fail-closed tests.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-BACKUP-007",
+    "title": "Post-restore idempotency",
+    "text": "**Priority:** MUST Recovery and subsequent synchronization/retry shall not duplicate transactions already accepted locally or centrally. ## 9. Observability, support and operability",
+    "contractFlow": "API-BR-001..003 + API-SYS-006",
+    "releaseGate": "Backup/restore-test operational acceptance.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-DATA-001",
+    "title": "Exact money",
+    "text": "**Priority:** MUST Money calculations shall use exact decimal/minor-unit semantics; JavaScript binary floating-point shall not be the authoritative representation of monetary value.",
+    "contractFlow": "IAM + trust/session + permission metadata",
+    "releaseGate": "Contract security tests, revocation/fail-closed tests.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-DATA-002",
+    "title": "Quantity precision",
+    "text": "**Priority:** MUST Quantity precision shall be deterministic for whole, fractional and weighed items according to item/UoM rules.",
+    "contractFlow": "Applicable Store/Sync/Cloud/port contract",
+    "releaseGate": "Contract or integration acceptance as applicable.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-DATA-003",
+    "title": "Atomic local posting",
+    "text": "**Priority:** MUST Where the FRS defines one local posting transaction, all required local effects shall commit together or roll back together.",
+    "contractFlow": "Applicable Store/Sync/Cloud/port contract",
+    "releaseGate": "Contract or integration acceptance as applicable.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-DATA-004",
+    "title": "Stable identifiers",
+    "text": "**Priority:** MUST Business documents, payment attempts/commitments, refunds, stock movements, audit events and synchronization messages shall have stable identities sufficient for retry and reconciliation.",
+    "contractFlow": "Applicable Store/Sync/Cloud/port contract",
+    "releaseGate": "Contract or integration acceptance as applicable.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-DATA-005",
+    "title": "Multi-counter consistency",
+    "text": "**Priority:** MUST Concurrent counters shall not silently overwrite or double-consume protected business state such as held sales, stock-count sessions, customer credit exposure or document numbering.",
+    "contractFlow": "Applicable Store/Sync/Cloud/port contract",
+    "releaseGate": "Contract or integration acceptance as applicable.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-DATA-006",
+    "title": "Historical meaning",
+    "text": "**Priority:** MUST Later master-data, price, country-rule or configuration changes shall not silently reinterpret posted historical transactions.",
+    "contractFlow": "Applicable Store/Sync/Cloud/port contract",
+    "releaseGate": "Contract or integration acceptance as applicable.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-DATA-007",
+    "title": "Country-rule versioning",
+    "text": "**Priority:** MUST Posted transactions shall retain sufficient country context/version/effective-rule outcome to preserve historical meaning after country-pack updates. ## 5. Scalability",
+    "contractFlow": "Applicable Store/Sync/Cloud/port contract",
+    "releaseGate": "Contract or integration acceptance as applicable.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-DEP-001",
+    "title": "Store Node service",
+    "text": "**Priority:** MUST Store Node shall support reliable Windows service operation and restart behavior appropriate to store deployment.",
+    "contractFlow": "Applicable Store/Sync/Cloud/port contract",
+    "releaseGate": "Contract or integration acceptance as applicable.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-DEP-002",
+    "title": "One-counter topology",
+    "text": "**Priority:** MUST A one-counter deployment may run Store Node and PostgreSQL on the same Windows PC without changing domain behavior.",
+    "contractFlow": "Applicable Store/Sync/Cloud/port contract",
+    "releaseGate": "Contract or integration acceptance as applicable.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-DEP-003",
+    "title": "Multi-counter topology",
+    "text": "**Priority:** MUST A multi-counter deployment shall support counters connecting over LAN to the designated Store Node/database host.",
+    "contractFlow": "Applicable Store/Sync/Cloud/port contract",
+    "releaseGate": "Contract or integration acceptance as applicable.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-DEP-004",
+    "title": "Signed/controlled update",
+    "text": "**Priority:** MUST Production updates shall be controlled, versioned and recoverable; incompatible schema/application combinations shall be detected.",
+    "contractFlow": "Applicable Store/Sync/Cloud/port contract",
+    "releaseGate": "Contract or integration acceptance as applicable.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-DEP-005",
+    "title": "Hardware capability verification",
+    "text": "**Priority:** MUST Required printer/scanner/scale/display capabilities shall be verified against supported target hardware before production reliance. ## 15. Release-gate note The following remain deployment or later-phase decisions rather than invented numeric requirements: - exact production RPO/RTO; - exact backup/log/audit retention periods; - exact supported peripheral models/interfaces; - remote-support provider; - integrated payment provider; - Phase-3 synchronization freshness/service-level targets; - current Malaysia/India legal thresholds, rates and deadlines. They must be approved in the relevant deployment/compliance specification before becoming production release gates.",
+    "contractFlow": "API-BR-001..003 + API-SYS-006",
+    "releaseGate": "Backup/restore-test operational acceptance.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-LOC-001",
+    "title": "Multiple languages",
+    "text": "**Priority:** MUST MiniMart shall support multiple UI languages without separate application forks.",
+    "contractFlow": "Applicable Store/Sync/Cloud/port contract",
+    "releaseGate": "Contract or integration acceptance as applicable.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-LOC-002",
+    "title": "Locale presentation",
+    "text": "**Priority:** MUST Currency, date, time, number and address presentation shall be configurable by store/country context.",
+    "contractFlow": "Applicable Store/Sync/Cloud/port contract",
+    "releaseGate": "Contract or integration acceptance as applicable.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-LOC-003",
+    "title": "Receipt scripts",
+    "text": "**Priority:** MUST Receipt rendering shall support required customer-facing scripts subject to verified printer capability.",
+    "contractFlow": "Applicable Store/Sync/Cloud/port contract",
+    "releaseGate": "Contract or integration acceptance as applicable.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-LOC-004",
+    "title": "Country-pack isolation",
+    "text": "**Priority:** MUST Country-specific tax, rounding, document and compliance behavior shall reside behind country-pack boundaries rather than fork the core product.",
+    "contractFlow": "Applicable Store/Sync/Cloud/port contract",
+    "releaseGate": "Contract or integration acceptance as applicable.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-LOC-005",
+    "title": "Compliance verification gate",
+    "text": "**Priority:** MUST A country rule shall not be represented as production-compliant solely from assumption; current legal/tax/e-invoice behavior requires dated authoritative verification. ## 12. Maintainability and architecture governance",
+    "contractFlow": "IAM + trust/session + permission metadata",
+    "releaseGate": "Contract security tests, revocation/fail-closed tests.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-MAINT-001",
+    "title": "Modular boundaries",
+    "text": "**Priority:** MUST Business modules shall have explicit ownership and public interfaces.",
+    "contractFlow": "Applicable Store/Sync/Cloud/port contract",
+    "releaseGate": "Contract or integration acceptance as applicable.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-MAINT-002",
+    "title": "No cross-module internal-table dependency",
+    "text": "**Priority:** MUST One module shall not depend directly on another module's private/internal tables as its functional integration contract.",
+    "contractFlow": "Applicable Store/Sync/Cloud/port contract",
+    "releaseGate": "Contract or integration acceptance as applicable.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-MAINT-003",
+    "title": "Modular monolith baseline",
+    "text": "**Priority:** MUST The initial backend remains a modular monolith; microservices require an explicit later architectural decision.",
+    "contractFlow": "Applicable Store/Sync/Cloud/port contract",
+    "releaseGate": "Contract or integration acceptance as applicable.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-MAINT-004",
+    "title": "ADR governance",
+    "text": "**Priority:** MUST Material architecture changes require an ADR or equivalent approved decision rather than silent implementation-agent divergence.",
+    "contractFlow": "Applicable Store/Sync/Cloud/port contract",
+    "releaseGate": "Contract or integration acceptance as applicable.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-MAINT-005",
+    "title": "Migration review",
+    "text": "**Priority:** MUST Production database migrations require explicit review and automated verification.",
+    "contractFlow": "Applicable Store/Sync/Cloud/port contract",
+    "releaseGate": "Contract or integration acceptance as applicable.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-MAINT-006",
+    "title": "Country extension stability",
+    "text": "**Priority:** MUST Adding a country pack shall not require duplicating core retail modules. ## 13. Testability and release quality",
+    "contractFlow": "All contract surfaces",
+    "releaseGate": "CI contract/replay/concurrency/offline suite.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-OFF-001",
+    "title": "Internet independence",
+    "text": "**Priority:** MUST Loss of internet/cloud connectivity shall not block defined local store checkout while Store Node and local PostgreSQL remain healthy.",
+    "contractFlow": "Store API + Sync",
+    "releaseGate": "Cloud-disconnected acceptance suite; no checkout dependency.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-OFF-002",
+    "title": "Local outcome authority",
+    "text": "**Priority:** MUST Delayed cloud synchronization shall not change the locally confirmed outcome of a completed store transaction.",
+    "contractFlow": "IAM + trust/session + permission metadata",
+    "releaseGate": "Contract security tests, revocation/fail-closed tests.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-OFF-003",
+    "title": "Store-service failure distinction",
+    "text": "**Priority:** MUST The product shall distinguish cloud-offline operation from Store Node/database unavailability; the latter may safely block posting.",
+    "contractFlow": "Store API + Sync",
+    "releaseGate": "Cloud-disconnected acceptance suite; no checkout dependency.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-OFF-004",
+    "title": "Local diagnostics",
+    "text": "**Priority:** MUST Store/L1 support shall be able to inspect essential Store Node, database, hardware, backup and synchronization health without internet access.",
+    "contractFlow": "API-BR-001..003 + API-SYS-006",
+    "releaseGate": "Backup/restore-test operational acceptance.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-OFF-005",
+    "title": "Offline authorization",
+    "text": "**Priority:** MUST Permissions required for offline operations shall be enforceable locally without requiring a live cloud authorization round trip. ## 4. Data integrity and concurrency",
+    "contractFlow": "IAM + trust/session + permission metadata",
+    "releaseGate": "Contract security tests, revocation/fail-closed tests.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-OPS-001",
+    "title": "Health indicators",
+    "text": "**Priority:** MUST Health indicators shall distinguish common application, Store Node, database, cloud/sync and peripheral failure classes.",
+    "contractFlow": "Store API + Sync",
+    "releaseGate": "Cloud-disconnected acceptance suite; no checkout dependency.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-OPS-002",
+    "title": "Actionable diagnostics",
+    "text": "**Priority:** MUST Operational failures shall produce actionable diagnostic information without exposing secrets.",
+    "contractFlow": "Applicable Store/Sync/Cloud/port contract",
+    "releaseGate": "Contract or integration acceptance as applicable.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-OPS-003",
+    "title": "Correlation",
+    "text": "**Priority:** MUST Critical requests/transactions shall have correlation identifiers sufficient to trace activity across POS, Store Node and synchronization logs.",
+    "contractFlow": "Applicable Store/Sync/Cloud/port contract",
+    "releaseGate": "Contract or integration acceptance as applicable.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-OPS-004",
+    "title": "Time-limited support access",
+    "text": "**Priority:** MUST Remote/elevated support access shall be identity-based, time-limited/revocable and audited.",
+    "contractFlow": "Applicable Store/Sync/Cloud/port contract",
+    "releaseGate": "Contract or integration acceptance as applicable.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-OPS-005",
+    "title": "No support superuser shortcut",
+    "text": "**Priority:** MUST Support capability shall not depend on a permanent universal business-administrator credential.",
+    "contractFlow": "Applicable Store/Sync/Cloud/port contract",
+    "releaseGate": "Contract or integration acceptance as applicable.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-OPS-006",
+    "title": "Bounded logs",
+    "text": "**Priority:** MUST Operational logs shall have configurable bounded retention and shall not grow without control.",
+    "contractFlow": "Applicable Store/Sync/Cloud/port contract",
+    "releaseGate": "Contract or integration acceptance as applicable.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-OPS-007",
+    "title": "Clock/timezone visibility",
+    "text": "**Priority:** MUST Diagnostics shall expose relevant store timezone/business-date/time context needed to investigate ordering, day-close and synchronization issues. ## 10. Usability",
+    "contractFlow": "Applicable Store/Sync/Cloud/port contract",
+    "releaseGate": "Contract or integration acceptance as applicable.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-PERF-001",
+    "title": "Barcode scan responsiveness",
+    "text": "**Priority:** MUST Under the defined Phase-1 benchmark, normal barcode scan-to-cart-line response should be under **100 ms** excluding hardware scan latency.",
+    "contractFlow": "API-CAT-007 GET /api/v1/catalog/barcodes/{barcode}:resolve \u2192 BarcodeResolution; contract test measures Store Node resolve path and UI scan-to-cart budget.",
+    "releaseGate": "Barcode resolve/add-line benchmark; <100 ms under frozen benchmark conditions.",
+    "apiOperations": [
+      "API-CAT-007"
+    ],
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-PERF-002",
+    "title": "Product search",
+    "text": "**Priority:** MUST Typical local product search should be under **50 ms** at approximately 50,000 active items under the defined benchmark.",
+    "contractFlow": "API-CAT-001",
+    "releaseGate": "Catalog search benchmark around 50k items; <50 ms under frozen benchmark conditions.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-PERF-003",
+    "title": "Checkout completion",
+    "text": "**Priority:** MUST After all required local payment conditions are satisfied, local sale posting to receipt-ready state should normally complete within **1.5 seconds**, excluding external provider latency and physical printer throughput.",
+    "contractFlow": "API-POS-012 \u2192 API-POS-013",
+    "releaseGate": "Local payment-confirmed to receipt-ready benchmark; normally <1.5 s excluding provider/printer.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-PERF-004",
+    "title": "Performance isolation",
+    "text": "**Priority:** MUST Cloud synchronization, reporting, export, backup and diagnostic work shall not materially block foreground checkout under normal operating load.",
+    "contractFlow": "Store API + Sync",
+    "releaseGate": "Cloud-disconnected acceptance suite; no checkout dependency.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-PERF-005",
+    "title": "Multi-counter benchmark",
+    "text": "**Priority:** MUST Release qualification for multi-counter deployment shall include representative concurrent sale, stock and held-sale workloads. ## 2. Reliability and durability",
+    "contractFlow": "Applicable Store/Sync/Cloud/port contract",
+    "releaseGate": "Contract or integration acceptance as applicable.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-PRIV-001",
+    "title": "Data minimization",
+    "text": "**Priority:** MUST Collect only customer/person data required for defined business, support or compliance purposes.",
+    "contractFlow": "Applicable Store/Sync/Cloud/port contract",
+    "releaseGate": "Contract or integration acceptance as applicable.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-PRIV-002",
+    "title": "Role-based visibility",
+    "text": "**Priority:** MUST PII and sensitive financial data shall be visible only to roles/functions that require it.",
+    "contractFlow": "Applicable Store/Sync/Cloud/port contract",
+    "releaseGate": "Contract or integration acceptance as applicable.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-PRIV-003",
+    "title": "Diagnostic minimization",
+    "text": "**Priority:** MUST Support bundles shall minimize PII/business-data exposure and redact secrets by default.",
+    "contractFlow": "Applicable Store/Sync/Cloud/port contract",
+    "releaseGate": "Contract or integration acceptance as applicable.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-PRIV-004",
+    "title": "Export control",
+    "text": "**Priority:** MUST Bulk customer/financial exports require explicit authorization and audit where specified.",
+    "contractFlow": "IAM + trust/session + permission metadata",
+    "releaseGate": "Contract security tests, revocation/fail-closed tests.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-PRIV-005",
+    "title": "Retention policy boundary",
+    "text": "**Priority:** MUST Retention/anonymization/deletion behavior shall follow approved deployment/country policy and shall not destroy records required to preserve financial/audit history. ## 8. Backup, recovery and continuity",
+    "contractFlow": "API-BR-001..003 + API-SYS-006",
+    "releaseGate": "Backup/restore-test operational acceptance.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-REL-001",
+    "title": "Posted transaction durability",
+    "text": "**Priority:** MUST A locally confirmed posted business transaction shall survive application/service restart.",
+    "contractFlow": "Applicable Store/Sync/Cloud/port contract",
+    "releaseGate": "Contract or integration acceptance as applicable.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-REL-002",
+    "title": "No silent loss",
+    "text": "**Priority:** MUST Committed business transactions, Payment Commitments, Refund Obligations and other recoverable monetary states shall not be silently lost after restart.",
+    "contractFlow": "Applicable Store/Sync/Cloud/port contract",
+    "releaseGate": "Contract or integration acceptance as applicable.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-REL-003",
+    "title": "Crash/power-loss qualification",
+    "text": "**Priority:** MUST Critical posting workflows shall be tested for process crash, forced termination and representative power-loss/restart recovery.",
+    "contractFlow": "All contract surfaces",
+    "releaseGate": "CI contract/replay/concurrency/offline suite.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-REL-004",
+    "title": "Idempotent retry",
+    "text": "**Priority:** MUST Retry shall not create duplicate sale, stock, tender, payment, refund, purchase, accounting-lite or synchronization effects.",
+    "contractFlow": "Applicable Store/Sync/Cloud/port contract",
+    "releaseGate": "Contract or integration acceptance as applicable.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-REL-005",
+    "title": "Explicit uncertain state",
+    "text": "**Priority:** MUST When an external monetary outcome cannot be determined safely, MiniMart shall preserve an explicit uncertain/reconciliation state rather than guess success or failure.",
+    "contractFlow": "Applicable Store/Sync/Cloud/port contract",
+    "releaseGate": "Contract or integration acceptance as applicable.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-REL-006",
+    "title": "Recovery without historical rewrite",
+    "text": "**Priority:** MUST Recovery shall complete, reverse or reconcile an interrupted workflow without destructively rewriting already posted history.",
+    "contractFlow": "Applicable Store/Sync/Cloud/port contract",
+    "releaseGate": "Contract or integration acceptance as applicable.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-REL-007",
+    "title": "Hardware failure isolation",
+    "text": "**Priority:** MUST Peripheral failure after business posting shall not invalidate or duplicate the posted business transaction. ## 3. Offline and degraded operation",
+    "contractFlow": "Store API + Sync",
+    "releaseGate": "Cloud-disconnected acceptance suite; no checkout dependency.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-SCALE-001",
+    "title": "Phase-1 catalog",
+    "text": "**Priority:** MUST The Phase-1 design shall support at least 30,000--50,000+ active items without unacceptable checkout degradation.",
+    "contractFlow": "Applicable Store/Sync/Cloud/port contract",
+    "releaseGate": "Contract or integration acceptance as applicable.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-SCALE-002",
+    "title": "Growth headroom",
+    "text": "**Priority:** SHOULD The design should not prevent materially larger catalogs without replacing core domain concepts.",
+    "contractFlow": "Applicable Store/Sync/Cloud/port contract",
+    "releaseGate": "Contract or integration acceptance as applicable.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-SCALE-003",
+    "title": "Counter growth",
+    "text": "**Priority:** MUST MiniMart shall progress from one counter to multiple counters without replacing the application or cloning company-wide masters.",
+    "contractFlow": "Applicable Store/Sync/Cloud/port contract",
+    "releaseGate": "Contract or integration acceptance as applicable.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-SCALE-004",
+    "title": "Store growth",
+    "text": "**Priority:** MUST Core identity and ownership shall support later multi-store operation without redefining Item, Supplier or Customer identity.",
+    "contractFlow": "Applicable Store/Sync/Cloud/port contract",
+    "releaseGate": "Contract or integration acceptance as applicable.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-SCALE-005",
+    "title": "Tenant readiness",
+    "text": "**Priority:** MUST Cloud-facing records and contracts shall not prevent later shared multi-tenancy even when early customers use dedicated deployment. ## 6. Security",
+    "contractFlow": "IAM + trust/session + permission metadata",
+    "releaseGate": "Contract security tests, revocation/fail-closed tests.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-SEC-001",
+    "title": "Authorization",
+    "text": "**Priority:** MUST Sensitive operations require explicit authorization and, where specified, manager approval.",
+    "contractFlow": "IAM + trust/session + permission metadata",
+    "releaseGate": "Contract security tests, revocation/fail-closed tests.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-SEC-002",
+    "title": "Credential protection",
+    "text": "**Priority:** MUST Passwords, tokens, encryption keys and provider secrets shall not be stored in source code or ordinary plaintext configuration.",
+    "contractFlow": "Applicable Store/Sync/Cloud/port contract",
+    "releaseGate": "Contract or integration acceptance as applicable.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-SEC-003",
+    "title": "Password/PIN protection",
+    "text": "**Priority:** MUST Password-equivalent secrets shall use approved modern password hashing and secure secret-storage mechanisms appropriate to their type.",
+    "contractFlow": "Applicable Store/Sync/Cloud/port contract",
+    "releaseGate": "Contract or integration acceptance as applicable.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-SEC-004",
+    "title": "No universal hidden credential",
+    "text": "**Priority:** MUST MiniMart shall not use an undocumented universal master password or equivalent support bypass.",
+    "contractFlow": "Applicable Store/Sync/Cloud/port contract",
+    "releaseGate": "Contract or integration acceptance as applicable.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-SEC-005",
+    "title": "Audit of sensitive actions",
+    "text": "**Priority:** MUST Manager overrides, permission changes, support elevation, sensitive exports and financial corrections shall be auditable.",
+    "contractFlow": "Applicable Store/Sync/Cloud/port contract",
+    "releaseGate": "Contract or integration acceptance as applicable.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-SEC-006",
+    "title": "Transport security",
+    "text": "**Priority:** MUST Network communication carrying authentication, business or personal data shall use authenticated encrypted transport appropriate to the deployment.",
+    "contractFlow": "IAM + trust/session + permission metadata",
+    "releaseGate": "Contract security tests, revocation/fail-closed tests.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-SEC-007",
+    "title": "Device enrollment",
+    "text": "**Priority:** MUST Store/counter/cloud trust shall use explicit device/installation enrollment rather than implicit trust by network location alone.",
+    "contractFlow": "Store API + Sync",
+    "releaseGate": "Cloud-disconnected acceptance suite; no checkout dependency.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-SEC-008",
+    "title": "Payment-data minimization",
+    "text": "**Priority:** MUST MiniMart shall avoid storing PAN or unnecessary payment-card credentials and shall retain only references/status data required by the approved integration.",
+    "contractFlow": "Applicable Store/Sync/Cloud/port contract",
+    "releaseGate": "Contract or integration acceptance as applicable.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-SEC-009",
+    "title": "Signed release artifacts",
+    "text": "**Priority:** MUST Production installers/updates shall support authenticity/integrity verification through approved signing/release controls. ## 7. Privacy",
+    "contractFlow": "IAM + trust/session + permission metadata",
+    "releaseGate": "Contract security tests, revocation/fail-closed tests.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-TEST-001",
+    "title": "Protected domain tests",
+    "text": "**Priority:** MUST Critical money, inventory, posting, reversal, credit, accounting-lite and synchronization rules shall have automated tests.",
+    "contractFlow": "All contract surfaces",
+    "releaseGate": "CI contract/replay/concurrency/offline suite.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-TEST-002",
+    "title": "AI test guardrail",
+    "text": "**Priority:** MUST AI coding agents shall not delete, weaken or bypass tests merely to make a change pass.",
+    "contractFlow": "All contract surfaces",
+    "releaseGate": "CI contract/replay/concurrency/offline suite.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-TEST-003",
+    "title": "Failure-mode acceptance",
+    "text": "**Priority:** MUST Crash, retry, concurrency, offline, hardware-failure and uncertain external-payment/refund scenarios shall be included in acceptance testing.",
+    "contractFlow": "Store API + Sync",
+    "releaseGate": "Cloud-disconnected acceptance suite; no checkout dependency.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-TEST-004",
+    "title": "Contract tests",
+    "text": "**Priority:** MUST Public module/API/synchronization contracts shall have automated compatibility/contract tests where appropriate.",
+    "contractFlow": "All contract surfaces",
+    "releaseGate": "CI contract/replay/concurrency/offline suite.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-TEST-005",
+    "title": "Country-pack regression",
+    "text": "**Priority:** MUST Country-pack changes shall run common-core and relevant country regression tests and shall not alter posted historical outcomes.",
+    "contractFlow": "All contract surfaces",
+    "releaseGate": "CI contract/replay/concurrency/offline suite.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-TEST-006",
+    "title": "Restore drill evidence",
+    "text": "**Priority:** MUST Release/operations evidence shall include successful restore-drill results according to the approved schedule. ## 14. Deployment and compatibility",
+    "contractFlow": "API-BR-001..003 + API-SYS-006",
+    "releaseGate": "Backup/restore-test operational acceptance.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-UX-001",
+    "title": "High-frequency POS input",
+    "text": "**Priority:** MUST High-frequency POS workflows shall be usable primarily with barcode scanner and keyboard, with mouse/touch as appropriate.",
+    "contractFlow": "Applicable Store/Sync/Cloud/port contract",
+    "releaseGate": "Contract or integration acceptance as applicable.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-UX-002",
+    "title": "Offline visibility",
+    "text": "**Priority:** MUST Cloud-offline status shall be visible without unnecessarily interrupting local checkout.",
+    "contractFlow": "Store API + Sync",
+    "releaseGate": "Cloud-disconnected acceptance suite; no checkout dependency.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-UX-003",
+    "title": "Error classification",
+    "text": "**Priority:** MUST User messages shall distinguish correctable validation errors, permission/approval requirements, hardware failures, uncertain payment/refund states and technical recovery conditions.",
+    "contractFlow": "Applicable Store/Sync/Cloud/port contract",
+    "releaseGate": "Contract or integration acceptance as applicable.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-UX-004",
+    "title": "No duplicate-action encouragement",
+    "text": "**Priority:** MUST During uncertain posting/payment/refund states, the UI shall not encourage users to repeat an action that may duplicate money or stock effects.",
+    "contractFlow": "Applicable Store/Sync/Cloud/port contract",
+    "releaseGate": "Contract or integration acceptance as applicable.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  },
+  {
+    "id": "NFR-UX-005",
+    "title": "Recovery guidance",
+    "text": "**Priority:** MUST Interrupted monetary workflows shall present explicit recovery/reconciliation guidance appropriate to user permission. ## 11. Localization and country packs",
+    "contractFlow": "Applicable Store/Sync/Cloud/port contract",
+    "releaseGate": "Contract or integration acceptance as applicable.",
+    "semanticReview": "INDEPENDENTLY_REVIEWED_V0_4",
+    "independentFreezeEvidence": {
+      "nfrTextPresent": true,
+      "contractFlowPresent": true,
+      "releaseGatePresent": true,
+      "reviewedAgainstFrozenText": true,
+      "reviewVersion": "v0.4-final-freeze-review"
+    }
+  }
+]

@@ -1,0 +1,9 @@
+{
+  "status": "PASS_BACKLOG_BASELINE",
+  "epics": 12,
+  "items": 115,
+  "frozenUiScreensCovered": 88,
+  "phase0Items": 12,
+  "codingStarted": false,
+  "next": "Phase 0 implementation preparation: repository + AGENTS.md + first issue"
+}

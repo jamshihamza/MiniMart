@@ -1,0 +1,13 @@
+{
+  "document_id": "MM-DB-AMEND-VAL-001",
+  "version": "1.1-amendment-candidate",
+  "status": "PASS_FOR_CONSISTENCY_REVIEW",
+  "schemas": 15,
+  "logical_tables": 78,
+  "new_tables": 4,
+  "decision_seams_preserved": 60,
+  "parent_baseline": "MiniMart Database Model v1.0 FROZEN",
+  "api_blocker_targeted": "API-FRZ3-BLK-001",
+  "not_frozen": true,
+  "next_gate": "Database v1.1 Amendment Consistency Review"
+}

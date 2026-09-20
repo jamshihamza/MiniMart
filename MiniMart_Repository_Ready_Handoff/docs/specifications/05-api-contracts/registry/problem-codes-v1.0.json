@@ -1,0 +1,224 @@
+[
+  {
+    "code": "AUTHENTICATION_REQUIRED",
+    "defaultHttpStatus": 401,
+    "retryable": false,
+    "recovery": "Authenticate again."
+  },
+  {
+    "code": "BUSINESS_DAY_STATE_CHANGED",
+    "defaultHttpStatus": 409,
+    "retryable": true,
+    "recovery": "Refresh business date/day state and revalidate."
+  },
+  {
+    "code": "BUSINESS_RULE_REJECTED",
+    "defaultHttpStatus": 422,
+    "retryable": false,
+    "recovery": "Show the server-provided reason and correct the business input."
+  },
+  {
+    "code": "CREDIT_CHANGED",
+    "defaultHttpStatus": 409,
+    "retryable": true,
+    "recovery": "Refresh credit exposure and revalidate."
+  },
+  {
+    "code": "CREDIT_POLICY_REJECTED",
+    "defaultHttpStatus": 422,
+    "retryable": false,
+    "recovery": "Use allowed credit/tender/override policy."
+  },
+  {
+    "code": "DEVICE_NOT_TRUSTED",
+    "defaultHttpStatus": 403,
+    "retryable": false,
+    "recovery": "Complete device enrollment/trust recovery."
+  },
+  {
+    "code": "DEVICE_REVOKED",
+    "defaultHttpStatus": 403,
+    "retryable": false,
+    "recovery": "Stop protected use and re-enroll only through approved administration."
+  },
+  {
+    "code": "IDEMPOTENCY_KEY_REUSED_WITH_DIFFERENT_REQUEST",
+    "defaultHttpStatus": 409,
+    "retryable": false,
+    "recovery": "Use the original request or a new key for a genuinely new command."
+  },
+  {
+    "code": "IMPORT_CANCEL_NOT_SAFE",
+    "defaultHttpStatus": 409,
+    "retryable": false,
+    "recovery": "Wait for a safe boundary or let current atomic unit complete."
+  },
+  {
+    "code": "IMPORT_VALIDATION_FAILED",
+    "defaultHttpStatus": 422,
+    "retryable": false,
+    "recovery": "Review row/field error artifact and correct source."
+  },
+  {
+    "code": "INCOMPATIBLE_CLIENT",
+    "defaultHttpStatus": 426,
+    "retryable": false,
+    "recovery": "Upgrade to a compatible client before mutation."
+  },
+  {
+    "code": "INSUFFICIENT_STOCK",
+    "defaultHttpStatus": 422,
+    "retryable": false,
+    "recovery": "Reduce quantity or resolve stock according to policy."
+  },
+  {
+    "code": "INVALID_REQUEST",
+    "defaultHttpStatus": 400,
+    "retryable": false,
+    "recovery": "Correct the request and submit again."
+  },
+  {
+    "code": "OVERRIDE_REQUIRED",
+    "defaultHttpStatus": 422,
+    "retryable": false,
+    "recovery": "Request an authorized manager override."
+  },
+  {
+    "code": "PAYMENT_ALREADY_COMMITTED",
+    "defaultHttpStatus": 409,
+    "retryable": false,
+    "recovery": "Recover/use the existing commitment; do not charge again."
+  },
+  {
+    "code": "PAYMENT_RECOVERY_REQUIRED",
+    "defaultHttpStatus": 409,
+    "retryable": false,
+    "recovery": "Enter payment recovery and reconcile existing commitment."
+  },
+  {
+    "code": "PAYMENT_UNCERTAIN",
+    "defaultHttpStatus": 409,
+    "retryable": true,
+    "recovery": "Reconcile the same provider request identity; do not blindly retry charge."
+  },
+  {
+    "code": "PERMISSION_DENIED",
+    "defaultHttpStatus": 403,
+    "retryable": false,
+    "recovery": "Do not retry unchanged; request authorized access."
+  },
+  {
+    "code": "POSTED_DOCUMENT_IMMUTABLE",
+    "defaultHttpStatus": 409,
+    "retryable": false,
+    "recovery": "Use the approved compensating/reversal flow."
+  },
+  {
+    "code": "PRECONDITION_FAILED",
+    "defaultHttpStatus": 412,
+    "retryable": false,
+    "recovery": "Reload the current resource and reapply the intended change."
+  },
+  {
+    "code": "REASON_REQUIRED",
+    "defaultHttpStatus": 422,
+    "retryable": false,
+    "recovery": "Capture an allowed reason."
+  },
+  {
+    "code": "REFUND_OBLIGATION_OUTSTANDING",
+    "defaultHttpStatus": 409,
+    "retryable": false,
+    "recovery": "Continue/refine refund settlement; do not repost the return."
+  },
+  {
+    "code": "REFUND_UNCERTAIN",
+    "defaultHttpStatus": 409,
+    "retryable": true,
+    "recovery": "Reconcile the same refund request identity; do not blindly retry refund."
+  },
+  {
+    "code": "RESOURCE_NOT_FOUND",
+    "defaultHttpStatus": 404,
+    "retryable": false,
+    "recovery": "Refresh resource/search context."
+  },
+  {
+    "code": "RETURN_ELIGIBILITY_CHANGED",
+    "defaultHttpStatus": 409,
+    "retryable": true,
+    "recovery": "Refresh original-sale return eligibility."
+  },
+  {
+    "code": "SERVICE_UNAVAILABLE",
+    "defaultHttpStatus": 503,
+    "retryable": true,
+    "recovery": "Retry with bounded backoff when safe."
+  },
+  {
+    "code": "SESSION_EXPIRED",
+    "defaultHttpStatus": 401,
+    "retryable": false,
+    "recovery": "Re-authenticate; do not replay protected mutation without the original idempotency key."
+  },
+  {
+    "code": "SESSION_LOCKED",
+    "defaultHttpStatus": 423,
+    "retryable": false,
+    "recovery": "Unlock the session."
+  },
+  {
+    "code": "SHIFT_REQUIRED",
+    "defaultHttpStatus": 422,
+    "retryable": false,
+    "recovery": "Open/select an authorized shift."
+  },
+  {
+    "code": "SHIFT_STATE_CHANGED",
+    "defaultHttpStatus": 409,
+    "retryable": true,
+    "recovery": "Refresh shift state and revalidate."
+  },
+  {
+    "code": "STALE_RESOURCE_VERSION",
+    "defaultHttpStatus": 412,
+    "retryable": true,
+    "recovery": "Reload current version; never overwrite blindly."
+  },
+  {
+    "code": "STOCK_CHANGED",
+    "defaultHttpStatus": 409,
+    "retryable": true,
+    "recovery": "Refresh stock and revalidate the command."
+  },
+  {
+    "code": "SYNC_MESSAGE_INCOMPATIBLE",
+    "defaultHttpStatus": 409,
+    "retryable": false,
+    "recovery": "Quarantine and upgrade/translate through an approved compatible contract."
+  },
+  {
+    "code": "SYNC_OWNERSHIP_VIOLATION",
+    "defaultHttpStatus": 409,
+    "retryable": false,
+    "recovery": "Reject apply and investigate ownership/source contract."
+  },
+  {
+    "code": "UNSUPPORTED_POLICY",
+    "defaultHttpStatus": 422,
+    "retryable": false,
+    "recovery": "Do not invent a value; use published capability/policy descriptors."
+  },
+  {
+    "code": "UPGRADE_REQUIRED",
+    "defaultHttpStatus": 426,
+    "retryable": false,
+    "recovery": "Upgrade before mutation."
+  },
+  {
+    "code": "VALIDATION_FAILED",
+    "defaultHttpStatus": 422,
+    "retryable": false,
+    "recovery": "Correct field-level validation errors."
+  }
+]

@@ -1,31 +1,14 @@
-# MiniMart --- Repository-Ready Specification & Codex Handoff
+# MiniMart --- Corrected Repository-Ready Handoff v2
 
-This folder is intended to become the root of the `minimart` Git
-repository.
+This package supersedes the earlier repository-ready handoff.
 
-## What is included
+The earlier handoff accidentally copied only the locally expanded
+summary subsets of several frozen packages. This corrected package is
+assembled directly from the **full frozen ZIP artifacts**.
 
--   agent operating rules;
--   project context;
--   specification authority index;
--   Phase 0 instructions;
--   frozen FRS/NFRS v1.0;
--   frozen Domain Model v1.0;
--   frozen Database Model v1.2;
--   frozen Architecture v1.0;
--   frozen API Contracts v1.0;
--   frozen UI Specification v1.0;
--   Development Backlog v0.1;
--   available BRD v0.1 source, explicitly marked as reference rather
-    than falsely relabelled frozen.
+Included source-file counts: - Business + FRS/NFRS v1.0: 61 - Domain
+Model v1.0: 25 - Database Model v1.2: 62 - Architecture v1.0: 87 - API
+Contracts v1.0: 51 - UI Specification v1.0: 132 - Development Backlog
+v0.1: 9
 
-## First use
-
-1.  Extract this ZIP.
-2.  Rename the extracted root folder to `minimart` if desired.
-3.  Create/open that folder as a Git repository.
-4.  Commit these specification files before coding.
-5.  Connect the GitHub repository to Codex.
-6.  Ask Codex to read `AGENTS.md`, `SPECIFICATION-INDEX.md`,
-    `PROJECT-CONTEXT.md`, and `PHASE-0-INSTRUCTIONS.md`.
-7.  Ask for a Phase 0 implementation plan before allowing code changes.
+Use this package as the repository specification baseline.

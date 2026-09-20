@@ -1,0 +1,74 @@
+[
+  {
+    "id": "EPIC-00",
+    "name": "Phase 0 \u2014 Technical Foundation",
+    "priority": "P0",
+    "scope": "Repo, CI, Store Node, PostgreSQL, Tauri shell, hardware and sync proof."
+  },
+  {
+    "id": "EPIC-01",
+    "name": "Phase 1A \u2014 Platform & Security",
+    "priority": "P0",
+    "scope": "Enrollment, authentication, authorization, context, compatibility and audit foundation."
+  },
+  {
+    "id": "EPIC-02",
+    "name": "Phase 1B \u2014 Catalog & Pricing",
+    "priority": "P0",
+    "scope": "Items, UoM, barcode, category, brand, assortment and price schedules."
+  },
+  {
+    "id": "EPIC-03",
+    "name": "Phase 1C \u2014 Procurement & Inventory",
+    "priority": "P0",
+    "scope": "Suppliers, PO, GRN, purchase returns, stock ledger, counts and availability."
+  },
+  {
+    "id": "EPIC-04",
+    "name": "Phase 1D \u2014 POS Sales & Payments",
+    "priority": "P0",
+    "scope": "Cashier workspace, sale lifecycle, tenders, receipt and recovery."
+  },
+  {
+    "id": "EPIC-05",
+    "name": "Phase 1E \u2014 Returns, Credit & Cash",
+    "priority": "P0",
+    "scope": "Returns/refunds, customer credit, collections, shifts and business day."
+  },
+  {
+    "id": "EPIC-06",
+    "name": "Phase 2 \u2014 Accounting-Lite",
+    "priority": "P1",
+    "scope": "Payables, supplier payments, accounts, transfers, expenses and reconciliation."
+  },
+  {
+    "id": "EPIC-07",
+    "name": "Phase 2 \u2014 Reports, Import/Export & Operations",
+    "priority": "P1",
+    "scope": "Reports, import/export, backup, diagnostics and audit tooling."
+  },
+  {
+    "id": "EPIC-08",
+    "name": "Phase 2 \u2014 Country Pack Foundation",
+    "priority": "P1",
+    "scope": "Versioned country capabilities and Malaysia-first verified configuration."
+  },
+  {
+    "id": "EPIC-09",
+    "name": "Phase 3 \u2014 Cloud & Full Sync",
+    "priority": "P1",
+    "scope": "Cloud management, full sync, multi-branch and recovery hardening."
+  },
+  {
+    "id": "EPIC-10",
+    "name": "Phase 4 \u2014 India Country Pack",
+    "priority": "P2",
+    "scope": "India-specific verified country behavior on the same core."
+  },
+  {
+    "id": "EPIC-11",
+    "name": "Quality, UX & Release Engineering",
+    "priority": "P0",
+    "scope": "Accessibility, performance, packaging, security, restore drills and release gates."
+  }
+]

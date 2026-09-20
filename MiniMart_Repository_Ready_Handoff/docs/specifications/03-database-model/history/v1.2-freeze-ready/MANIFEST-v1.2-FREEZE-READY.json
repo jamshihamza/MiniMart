@@ -1,0 +1,297 @@
+{
+  "product": "MiniMart",
+  "artifact": "Database Model",
+  "version": "1.2-freeze-ready",
+  "status": "FREEZE_READY_NOT_FROZEN",
+  "schemas": 15,
+  "logical_tables": 79,
+  "decision_seams": 60,
+  "final_review_blockers": 0,
+  "final_review_majors": 0,
+  "documentation_corrections_required": 2,
+  "documentation_corrections_applied": 2,
+  "semantic_changes_from_reviewed_candidate": 0,
+  "next_gate": "Controlled Database Amendment adoption/freeze",
+  "files": [
+    {
+      "path": "AMENDMENT-RECORD-v1.2.md",
+      "sha256": "d13e52910a6d0e855992ad154440413a1876451a5641e5b564debefeb658c97d",
+      "bytes": 578
+    },
+    {
+      "path": "FINAL-DOCUMENTATION-CORRECTIONS.md",
+      "sha256": "b9801cef776a102ebe7b6de31d4db50ba600a0833a8f54030ba04dcce0ae326a",
+      "bytes": 1515
+    },
+    {
+      "path": "README.md",
+      "sha256": "8691699fc90e0857c1d4ed84a89cf0c7ed72970f83096db5a2127cc66baa0eed",
+      "bytes": 547
+    },
+    {
+      "path": "RELEASE-NOTE-v1.2-FREEZE-READY.md",
+      "sha256": "a591b5e6bed1e1785fdd97b41b3cffa97ef546104e81220f648dc15d8fe61473",
+      "bytes": 547
+    },
+    {
+      "path": "RELEASE-NOTE-v1.2.md",
+      "sha256": "8ef758650a5f78f9f1d0b970304554bf4b4801ca4027f8f8a47b879f9c25cd31",
+      "bytes": 268
+    },
+    {
+      "path": "diagrams/CORE-ERD.md",
+      "sha256": "0931b07e3476bbbe19d7adfa78e0bba00668a98918260a35c6309c2e7b2d6a7b",
+      "bytes": 1362
+    },
+    {
+      "path": "diagrams/SALE-POSTING-TRANSACTION.md",
+      "sha256": "aa57e4fcbda3f963710d28e27463eb8ded3f687b279347d3643a6eabbd607489",
+      "bytes": 773
+    },
+    {
+      "path": "docs/01-PERSISTENCE-CONVENTIONS.md",
+      "sha256": "c118ad14e9b366dae69c28626f9b7201fcb85db2e20d188283bdc886ff5f0946",
+      "bytes": 3179
+    },
+    {
+      "path": "docs/02-SCHEMA-AND-TABLE-CATALOG.md",
+      "sha256": "5fccf907133006af8c9122ab6fd90ef0b3d3d388630da064627886f5ce8bc4b1",
+      "bytes": 2736
+    },
+    {
+      "path": "docs/03-KEYS-RELATIONSHIPS-AND-OWNERSHIP.md",
+      "sha256": "6479400ff21708cc9bd609e05ba72afa41ec1eea00cb2afc489e08493ea4fa79",
+      "bytes": 3237
+    },
+    {
+      "path": "docs/04-IMMUTABILITY-LEDGERS-AND-HISTORY.md",
+      "sha256": "c51a31849402f6d005849aa4fb02b2f21661789aade8962ecd6617ea196aba16",
+      "bytes": 1111
+    },
+    {
+      "path": "docs/05-TRANSACTIONS-AND-CONCURRENCY.md",
+      "sha256": "725cd55adae1b51137989c8ba619df9b5b5d92653814934cf74787bafe6e3cef",
+      "bytes": 4175
+    },
+    {
+      "path": "docs/06-CONSTRAINTS-AND-INDEXES.md",
+      "sha256": "b096336db92e4bccb0322241ad1f2d86d14cb5043efb83122e60b22cfb805a5c",
+      "bytes": 2941
+    },
+    {
+      "path": "docs/07-SYNC-IDEMPOTENCY-AND-OUTBOX.md",
+      "sha256": "3c86981b7e125631e22933e297cf0e3c282db788f66fd2ddf683ff50266f0dd6",
+      "bytes": 1991
+    },
+    {
+      "path": "docs/08-SECURITY-TENANCY-AND-PRIVACY.md",
+      "sha256": "36ecd832fb7adb0c7128aec892b8131f92e03573870e255a107467728264649e",
+      "bytes": 1442
+    },
+    {
+      "path": "docs/09-MIGRATION-AND-RECOVERY-RULES.md",
+      "sha256": "d76f2bcfb908c02d90013b2c136cdd579db7ed17738935e46b10239dc8f8ec0d",
+      "bytes": 1859
+    },
+    {
+      "path": "docs/10-DECISION-SEAM-DATABASE-TREATMENT.md",
+      "sha256": "de3f309cb03912369f9cadd82a61ea7d7623300609ca4d2585559d9b9f13f530",
+      "bytes": 17375
+    },
+    {
+      "path": "docs/11-NUMERIC-PRECISION-BUDGET.md",
+      "sha256": "fd3656e893fe3f721c9aa4d313bdcac05c18e9b4bfedc1fd8fd3e0ee3982c94c",
+      "bytes": 2175
+    },
+    {
+      "path": "docs/12-RECONCILIATION-AND-DRIFT-CONTROLS.md",
+      "sha256": "06eb9425e77d636030c7e6efbe9a5c02e748cde6ab89aae6f39d0593e0c5435f",
+      "bytes": 1929
+    },
+    {
+      "path": "docs/13-POSTING-ENVELOPE-PHYSICAL-SPEC.md",
+      "sha256": "c5959e490dfc54eefd7441c3131ff487f993c9b54c86faaff7cc8c75eb371b75",
+      "bytes": 7315
+    },
+    {
+      "path": "docs/14-LIFECYCLE-PERSISTENCE-MATRIX.md",
+      "sha256": "935c617a463a698a88d6675b043072a0a43425acdcd9fb46be2b586d0d8e0820",
+      "bytes": 4298
+    },
+    {
+      "path": "docs/15-QUERY-INDEX-COVERAGE.md",
+      "sha256": "145294f9a7ab96ddd3e0dba049f537343a2fcdcdf64eb4df4c7044324ea35763",
+      "bytes": 477
+    },
+    {
+      "path": "docs/16-V1.2-PERSISTENCE-AMENDMENT.md",
+      "sha256": "169214ded57beb8e730c957addf3a954160033e914870b652ee99f07db30b222",
+      "bytes": 2292
+    },
+    {
+      "path": "docs/17-MIGRATION-BLUEPRINT-GOVERNANCE.md",
+      "sha256": "50bc2e12dfe9f08d7cf9d03f83f58341ae56546e94f9dfc2d7ebc215dc5f4953",
+      "bytes": 1069
+    },
+    {
+      "path": "docs/DATABASE-MODEL.md",
+      "sha256": "a17344775959988cf45b668eb90c5a8179d5fd5d1870119ad87649192f798546",
+      "bytes": 841
+    },
+    {
+      "path": "history/AUTOMATED-EVIDENCE.md",
+      "sha256": "6cac883054d9c6c8dcaceb25d618bc0a4888e5bade1a57a33d0dadbc6bacb489",
+      "bytes": 730
+    },
+    {
+      "path": "history/DATABASE-MODEL-DEEP-CONSISTENCY-REVIEW-v0.1.md",
+      "sha256": "78deeed3cd489939051a5ddf8cc45a5637fd34788d9455a7cf99f52acb55e704",
+      "bytes": 15806
+    },
+    {
+      "path": "history/DATABASE-MODEL-v0.1-REMEDIATION-REPORT.md",
+      "sha256": "6713fc1a4fea5ac67966044bb029ba8b4eca7533a39a2f3aca7f708e308e4d2c",
+      "bytes": 3846
+    },
+    {
+      "path": "history/DATABASE-MODEL-v0.1-VALIDATION.md",
+      "sha256": "1e72ec0e05e3047c4cdbf7634d0c26d543ff16820eb53d8b7f13426826098e5e",
+      "bytes": 2332
+    },
+    {
+      "path": "history/DATABASE-MODEL-v0.2-VALIDATION.md",
+      "sha256": "bb476e5e0d49d53375697169e6a475d44869b1a6ba620d4182a2e44a21385d6e",
+      "bytes": 2057
+    },
+    {
+      "path": "history/DATABASE-REVIEW-MATRIX-v0.1.md",
+      "sha256": "e336ed990b01b37d7a9fc5399ec1d8b0abb9115f89b5e112b3825c5cf46d3f15",
+      "bytes": 4793
+    },
+    {
+      "path": "history/REVIEW-FINDINGS.json",
+      "sha256": "dd26e22fd47f0fea478175300d496ce91d7092a0cdb04549b4be9d6b4a167919",
+      "bytes": 14561
+    },
+    {
+      "path": "history/v1.0-frozen/DATABASE-MODEL-v1.0-FINAL-FREEZE-REVIEW.md",
+      "sha256": "aecd1dc5e08ebb43147f34c876f32fd21f4f1c477c882f8f906a03b7cad956a0",
+      "bytes": 2926
+    },
+    {
+      "path": "history/v1.0-frozen/DATABASE-MODEL-v1.0-VALIDATION.md",
+      "sha256": "99a564a84cb2e4d1badf1871f08ed2f4e2e66afc4a1c96479d107a7c1df76119",
+      "bytes": 735
+    },
+    {
+      "path": "history/v1.0-frozen/DATABASE-REGISTRY-v1.0-FROZEN.json",
+      "sha256": "6cd99064bb1d8ffef0dead2684442fe86637c8750e15a65ce0659ea2575a27d9",
+      "bytes": 2975
+    },
+    {
+      "path": "history/v1.0-frozen/FREEZE-RECORD.md",
+      "sha256": "ea83005d868d3065871124d9923279a93075be384e09d6f927a745ad78aa38f0",
+      "bytes": 601
+    },
+    {
+      "path": "history/v1.0-frozen/MANIFEST-v1.0-FROZEN.json",
+      "sha256": "e65dee42797a3934566aa6117248698110377dc3d804f3733113a76af7a21eb1",
+      "bytes": 6190
+    },
+    {
+      "path": "history/v1.0-frozen/REFERENCE-DDL-v1.0-FROZEN.sql",
+      "sha256": "12afd2995b1aba06c1410f991b1df0653205bb5b9b727923dc749489a9a31924",
+      "bytes": 38033
+    },
+    {
+      "path": "history/v1.0-frozen/RELEASE-NOTE.md",
+      "sha256": "b98494be8a36b08ccc23f04a3171b4a697c85ccbb6103cb9a63f4a0f3bd75705",
+      "bytes": 411
+    },
+    {
+      "path": "history/v1.1-amendment-candidate/16-V1.1-PERSISTENCE-AMENDMENT.md",
+      "sha256": "6e6bf40baa2da3a3bff0df7d2b45b0307037326dbbca0a097b9047c1dfa1da0c",
+      "bytes": 2927
+    },
+    {
+      "path": "history/v1.1-amendment-candidate/AMENDMENT-RECORD-v1.1.md",
+      "sha256": "a8886e885d624f328d940071ee616253903118e867add2ce2cbf2ec6e8c0671e",
+      "bytes": 1967
+    },
+    {
+      "path": "history/v1.1-amendment-candidate/DATABASE-MODEL-v1.1-AMENDMENT-CANDIDATE-VALIDATION.md",
+      "sha256": "7c68b606a3016d106369dfbe461b1f098379bd881750acb6706d31b00590cbef",
+      "bytes": 1177
+    },
+    {
+      "path": "history/v1.1-amendment-candidate/DATABASE-REGISTRY-v1.1-AMENDMENT-CANDIDATE.json",
+      "sha256": "c2bbf44173a1ea9eb904d3fc644cd09a7e1b5cc19ffffa63f0021be2140701ba",
+      "bytes": 408
+    },
+    {
+      "path": "history/v1.1-amendment-candidate/MANIFEST-v1.1-AMENDMENT-CANDIDATE.json",
+      "sha256": "18ba5d969a7d0f9f17a865c2a337981d20d30b2456b5e6f3fc5d753715d804ae",
+      "bytes": 7674
+    },
+    {
+      "path": "history/v1.1-amendment-candidate/RELEASE-NOTE-v1.1.md",
+      "sha256": "72ba3d9a17654c4f5c397feb1ac6f1c49c029c034394f067b5bfcd8f8774075e",
+      "bytes": 821
+    },
+    {
+      "path": "history/v1.1-amendment-candidate/V1_1__api_persistence_alignment.sql",
+      "sha256": "874f7947650268145cafa045bae854cb15ae1ee53a08713147c48e3ce09d3273",
+      "bytes": 7018
+    },
+    {
+      "path": "history/v1.2-amendment-candidate/MANIFEST-v1.2-AMENDMENT-CANDIDATE.json",
+      "sha256": "ceb1c422e2b8c17c8caad5e616ef8c46958dbc4d5d40b9c2d32cb81f3ff9b07d",
+      "bytes": 9273
+    },
+    {
+      "path": "schema/REFERENCE-DDL-v1.2-AMENDMENT-CANDIDATE.sql",
+      "sha256": "c529661449665b372695979f85d8fdfb25770c8f2ab83d0c62c759aa82d5e967",
+      "bytes": 47027
+    },
+    {
+      "path": "schema/V1_2__final_persistence_alignment.sql",
+      "sha256": "035771baa3d917407948eca352217ce5205cefaca6eb08e4c51bd5b9911eafa8",
+      "bytes": 6272
+    },
+    {
+      "path": "traceability/API-V0.3-FINDING-TO-DB-v1.1.md",
+      "sha256": "906a4b24ac41c6db9b44274af31739505b6f37d24c5b4557ce3b9d4d3831d4f0",
+      "bytes": 2594
+    },
+    {
+      "path": "traceability/DOMAIN-TO-DATABASE-MAP.md",
+      "sha256": "5038b982e6059bfe02cbecfd710884e34515674372604ac8ae2b14002a7aadf3",
+      "bytes": 6487
+    },
+    {
+      "path": "traceability/v1.1-REVIEW-REMEDIATION-MATRIX.md",
+      "sha256": "471152cc6a542663104a7852a4e7e6b51cfca344cbcae81178a4dcf1b645a7eb",
+      "bytes": 1349
+    },
+    {
+      "path": "validation/DATABASE-MODEL-v1.2-AMENDMENT-CANDIDATE-VALIDATION.md",
+      "sha256": "c033edada9b38a2553cbfe3c1f6ea6d6d1b43e86abc8e1414a84fa7a3290214a",
+      "bytes": 455
+    },
+    {
+      "path": "validation/DATABASE-REGISTRY-v1.2-AMENDMENT-CANDIDATE.json",
+      "sha256": "1729a2493fd1a0da81f0f98c3a791a67df23245f98da0b979f38a12dbcad2ff4",
+      "bytes": 263
+    },
+    {
+      "path": "validation/FINAL-DOCUMENTATION-CORRECTIONS-VALIDATION.json",
+      "sha256": "09828aeffe10b925f1dbda6fa7c13e91e5684324211e0ee4f9fb14092757b7b5",
+      "bytes": 694
+    },
+    {
+      "path": "validation/FINAL-DOCUMENTATION-CORRECTIONS-VALIDATION.md",
+      "sha256": "f2c939ec27a0cbe73483246975d4830f21ad9f91e500a4e008b396e2e446b49c",
+      "bytes": 390
+    }
+  ]
+}

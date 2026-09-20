@@ -1,0 +1,43 @@
+{
+  "product": "MiniMart",
+  "artifact": "Independent Final Architecture Freeze Review",
+  "reviewed_version": "Architecture Refinement v0.3 Freeze Candidate",
+  "verdict": "PASS_WITH_NON_SEMANTIC_CORRECTIONS",
+  "freeze_blockers": 0,
+  "major_findings": 0,
+  "minor_non_semantic_corrections": 3,
+  "eligible_for_v1_0_freeze_after_corrections": true,
+  "requires_v0_4_candidate": false,
+  "files": [
+    {
+      "path": "CORRECTIONS-FOR-v1.0-FROZEN.md",
+      "sha256": "d3e49725bcb4b306013220ed2743826813f7c3efa14cb1133f384a235c06d845",
+      "bytes": 1447
+    },
+    {
+      "path": "FINAL-ARCHITECTURE-FREEZE-REVIEW-v0.3.md",
+      "sha256": "0f401d5da1111a667050d4831e054a2b088327a91146431e504d9e3a915949ff",
+      "bytes": 4313
+    },
+    {
+      "path": "FINAL-REVIEW-FINDINGS-v0.3.json",
+      "sha256": "7abe8e3d62e3b3d0e88985b4f91dba5aa35f8992ab883085e73efd3ce56fbd8e",
+      "bytes": 3147
+    },
+    {
+      "path": "FINDINGS-DETAIL-v0.3.md",
+      "sha256": "736fb2926712397cf92346554380e0ba8f87dfe0daba4c19feed0bd63f93d3aa",
+      "bytes": 2393
+    },
+    {
+      "path": "FREEZE-GATE-MATRIX-v0.3.md",
+      "sha256": "a801f4d7604aa539469c4e269ce1bb2f8841bac361c194aebab012514da44836",
+      "bytes": 1893
+    },
+    {
+      "path": "validation/FINAL-ARCHITECTURE-FREEZE-REVIEW-v0.3-VALIDATION.md",
+      "sha256": "221fa0b7573516c1c41eada49e1eca08a2ae70d13b7267260f0fd0b8c63396b7",
+      "bytes": 1179
+    }
+  ]
+}

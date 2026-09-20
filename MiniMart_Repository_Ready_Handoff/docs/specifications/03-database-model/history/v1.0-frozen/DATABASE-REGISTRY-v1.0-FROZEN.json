@@ -1,0 +1,126 @@
+{
+  "document_id": "MM-DB-REG-100",
+  "version": "1.0",
+  "status": "FROZEN",
+  "database": "PostgreSQL",
+  "source_domain_model": "MiniMart Domain Model v1.0 FROZEN",
+  "schemas": {
+    "org": [
+      "tenants",
+      "companies",
+      "stores",
+      "counters"
+    ],
+    "iam": [
+      "user_accounts",
+      "roles",
+      "permissions",
+      "role_permissions",
+      "user_roles",
+      "override_authorizations",
+      "support_sessions"
+    ],
+    "catalog": [
+      "items",
+      "item_barcodes",
+      "item_uoms",
+      "categories",
+      "brands",
+      "item_categories"
+    ],
+    "pricing": [
+      "item_price_schedules",
+      "item_price_entries"
+    ],
+    "procurement": [
+      "suppliers",
+      "supplier_items",
+      "purchase_orders",
+      "purchase_order_lines",
+      "goods_receipts",
+      "goods_receipt_lines",
+      "purchase_returns",
+      "purchase_return_lines"
+    ],
+    "inventory": [
+      "inventory_positions",
+      "inventory_bucket_positions",
+      "inventory_batches",
+      "stock_movements",
+      "stock_counts",
+      "stock_count_lines"
+    ],
+    "sales": [
+      "sales",
+      "sale_lines",
+      "sale_state_history"
+    ],
+    "payments": [
+      "checkout_payments",
+      "payment_attempts",
+      "payment_commitments",
+      "posted_tenders",
+      "refund_executions",
+      "refund_attempts"
+    ],
+    "returns": [
+      "sales_returns",
+      "sales_return_lines",
+      "refund_obligations"
+    ],
+    "customer": [
+      "customers",
+      "credit_accounts",
+      "credit_ledger_entries",
+      "customer_collections",
+      "collection_allocations"
+    ],
+    "cash": [
+      "business_days",
+      "cashier_shifts",
+      "cash_movements",
+      "shift_tender_summaries"
+    ],
+    "accounting": [
+      "supplier_payables",
+      "supplier_payable_allocations",
+      "supplier_payments",
+      "supplier_payment_allocations",
+      "financial_accounts",
+      "financial_transactions",
+      "financial_movements",
+      "account_transfers",
+      "expense_categories",
+      "expenses",
+      "reconciliation_sessions",
+      "reconciliation_matches"
+    ],
+    "country": [
+      "country_rule_sets",
+      "country_rule_values"
+    ],
+    "audit": [
+      "audit_events"
+    ],
+    "integration": [
+      "outbox_messages",
+      "inbox_receipts",
+      "idempotency_records",
+      "sync_checkpoints",
+      "dead_letters"
+    ]
+  },
+  "schema_count": 15,
+  "table_count": 74,
+  "frozen_aggregate_roots": 35,
+  "identity": "application-generated UUIDv7 stored as uuid",
+  "numeric_baseline": "numeric(24,8)",
+  "default_isolation": "READ COMMITTED with explicit row locks/version checks",
+  "cross_context_fk_policy": "owned hard FKs; cross-context business references normally soft UUID refs",
+  "reference_ddl_tables": 74,
+  "decision_seams_mapped": 60,
+  "posting_envelopes": 13,
+  "v0_1_blockers_remediated": 7,
+  "v0_1_major_findings_remediated": 8,
+  "validation": "PASS_FINAL_FREEZE"
+}

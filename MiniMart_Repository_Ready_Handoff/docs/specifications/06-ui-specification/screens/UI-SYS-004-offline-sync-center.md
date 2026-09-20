@@ -1,0 +1,83 @@
+# UI-SYS-004 --- Offline & Sync Center
+
+**Surface:** Shared\
+**Area:** System\
+**Primary roles/personas:** Manager, Admin, Support\
+**Offline behavior:** READ_WRITE_LOCAL
+
+## Purpose
+
+Show Store Node, LAN, cloud sync, queue/retry and compatibility status.
+
+## Authorization
+
+Role labels guide navigation only. Actual action visibility follows API
+permission/capability data. Relevant permission codes: `support.read`,
+`system.read`
+
+## Layout / information hierarchy
+
+1.  Context/header: Store/Counter/Business Date when relevant, user,
+    local/cloud state.
+2.  Primary task region: Offline & Sync Center.
+3.  Command region: only actions valid for current server
+    state/capability.
+4.  Status/audit/recovery region when applicable.
+5.  Secondary detail is a drawer or routed detail; it must not hide the
+    primary posting/recovery state.
+
+## Screen states
+
+LOADING → READY/EMPTY, with explicit VALIDATION_ERROR,
+PERMISSION_DENIED, CONFLICT, LOCAL_CLOUD_OFFLINE, STORE_NODE_UNREACHABLE
+and INCOMPATIBLE_CLIENT handling where applicable. Critical commands may
+enter RECOVERY_REQUIRED.
+
+## API contract
+
+-   `API-SUPT-001` GET `/api/v1/support/health-summary` --- Get
+    allow-listed support health summary
+-   `API-SUPT-003` GET `/api/v1/support/sync-summary` --- Get
+    outbox/inbox/dead-letter summary
+-   `API-SYS-001` GET `/api/v1/system/health` --- Process liveness
+-   `API-SYS-002` GET `/api/v1/system/readiness` --- Transactional
+    readiness and dependency gates
+-   `API-SYS-003` GET `/api/v1/system/version` --- Build/API/schema/sync
+    compatibility versions
+-   `API-SYS-004` POST `/api/v1/system/compatibility:check` --- Check
+    client/API compatibility before writes
+-   `API-SYS-005` GET `/api/v1/system/context` --- Get trusted resolved
+    operational context
+-   `API-SYS-006` GET `/api/v1/system/capabilities` --- Get enabled edge
+    capabilities and policy-neutral feature flags
+
+## Mutation behavior
+
+-   `API-SYS-004`: disable duplicate submit; preserve idempotency
+    identity; handle
+    `AUTHENTICATION_REQUIRED, INCOMPATIBLE_CLIENT, PERMISSION_DENIED, RESOURCE_NOT_FOUND, SERVICE_UNAVAILABLE, VALIDATION_FAILED`.
+
+## Data presentation
+
+-   Money uses exact decimal-string UI boundary.
+-   Quantity respects Item-UoM precision.
+-   Dates show localized presentation while preserving
+    BusinessDate/RFC3339 meaning.
+-   Posted document identity/snapshots are read-only.
+-   Country-specific fields appear only through verified
+    capabilities/rule metadata.
+
+## Accessibility / keyboard
+
+Visible focus, logical order, text-plus-icon status, scalable layout and
+keyboard access to primary commands. Function-key shortcuts, where
+shown, are accelerators rather than the only control.
+
+## Critical-flow acceptance
+
+-   The primary workflow is keyboard completable.
+-   Lost-response retry preserves the same logical command identity.
+-   Posted success is shown only after authoritative response/recovery.
+-   Store Node loss cannot be mistaken for ordinary cloud-offline.
+-   Permission/override and conflict states have an explicit recovery
+    path.

@@ -1,0 +1,21 @@
+{
+  "document_id": "MM-API-FRZ-VAL-001",
+  "version": "1.0",
+  "status": "PASS_FROZEN_ADOPTED",
+  "store_operations": 234,
+  "sync_operations": 4,
+  "cloud_operations": 5,
+  "posting_envelopes": 13,
+  "decision_seams": 60,
+  "functional_requirements": 1257,
+  "acceptance_scenarios": 102,
+  "nfrs": 84,
+  "final_review_blockers": 0,
+  "final_review_majors": 0,
+  "freeze_packaging_corrections_required": 2,
+  "freeze_packaging_corrections_applied": 2,
+  "semantic_api_changes_during_final_packaging": 0,
+  "openapi_version": "1.0.0",
+  "database_authority": "MiniMart Database Model v1.2 FROZEN",
+  "next_stage": "UI Specification"
+}

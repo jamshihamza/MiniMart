@@ -1,0 +1,17 @@
+{
+  "document_id": "MM-ARCH-REG-002",
+  "version": "0.2",
+  "status": "FREEZE_CANDIDATE",
+  "business_modules": 13,
+  "posting_envelope_coordinators": 13,
+  "architecture_decisions": 33,
+  "decision_seams_mapped": 60,
+  "deep_review_blockers_remediated": 6,
+  "deep_review_major_findings_remediated": 10,
+  "deep_review_minor_findings_corrected": 3,
+  "remaining_known_review_findings": 0,
+  "source_domain": "MiniMart Domain Model v1.0 FROZEN",
+  "source_database": "MiniMart Database Model v1.0 FROZEN",
+  "validation": "PASS",
+  "next_gate": "Final Architecture Freeze Review"
+}

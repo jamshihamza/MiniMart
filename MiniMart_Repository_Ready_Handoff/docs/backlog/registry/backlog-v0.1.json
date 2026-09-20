@@ -1,0 +1,2877 @@
+[
+  {
+    "id": "MM-001",
+    "epic": "EPIC-00",
+    "title": [
+      "Initialize MiniMart monorepo and protected branch/CI conventions",
+      "Architecture/repo structure exists and formatter/typecheck/test commands run."
+    ],
+    "priority": "P0",
+    "phase": "Phase 0",
+    "kind": "Technical Spike",
+    "uiIds": [],
+    "apiOperations": [],
+    "acceptance": [
+      [
+        "Initialize MiniMart monorepo and protected branch/CI conventions",
+        "Architecture/repo structure exists and formatter/typecheck/test commands run."
+      ]
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-002",
+    "epic": "EPIC-00",
+    "title": [
+      "Configure shared TypeScript, lint, formatting and package boundaries",
+      "Module-boundary checks can fail CI."
+    ],
+    "priority": "P0",
+    "phase": "Phase 0",
+    "kind": "Technical Spike",
+    "uiIds": [],
+    "apiOperations": [],
+    "acceptance": [
+      [
+        "Configure shared TypeScript, lint, formatting and package boundaries",
+        "Module-boundary checks can fail CI."
+      ]
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-003",
+    "epic": "EPIC-00",
+    "title": [
+      "Create Store Node Windows service skeleton",
+      "Service starts/stops cleanly and exposes local process health."
+    ],
+    "priority": "P0",
+    "phase": "Phase 0",
+    "kind": "Technical Spike",
+    "uiIds": [],
+    "apiOperations": [],
+    "acceptance": [
+      [
+        "Create Store Node Windows service skeleton",
+        "Service starts/stops cleanly and exposes local process health."
+      ]
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-004",
+    "epic": "EPIC-00",
+    "title": [
+      "Provision local PostgreSQL migration harness",
+      "Fresh database can be created and schema migration lifecycle is testable."
+    ],
+    "priority": "P0",
+    "phase": "Phase 0",
+    "kind": "Technical Spike",
+    "uiIds": [],
+    "apiOperations": [],
+    "acceptance": [
+      [
+        "Provision local PostgreSQL migration harness",
+        "Fresh database can be created and schema migration lifecycle is testable."
+      ]
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-005",
+    "epic": "EPIC-00",
+    "title": [
+      "Create Tauri + React POS desktop shell",
+      "Windows desktop app launches and renders frozen POS shell."
+    ],
+    "priority": "P0",
+    "phase": "Phase 0",
+    "kind": "Technical Spike",
+    "uiIds": [],
+    "apiOperations": [],
+    "acceptance": [
+      [
+        "Create Tauri + React POS desktop shell",
+        "Windows desktop app launches and renders frozen POS shell."
+      ]
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-006",
+    "epic": "EPIC-00",
+    "title": [
+      "Implement POS \u2192 Store Node GET /health connectivity",
+      "POS visibly shows Store Node Online from real local API."
+    ],
+    "priority": "P0",
+    "phase": "Phase 0",
+    "kind": "Technical Spike",
+    "uiIds": [],
+    "apiOperations": [],
+    "acceptance": [
+      [
+        "Implement POS \u2192 Store Node GET /health connectivity",
+        "POS visibly shows Store Node Online from real local API."
+      ]
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-007",
+    "epic": "EPIC-00",
+    "title": [
+      "Implement printer hardware spike through Tauri/Rust port",
+      "Test receipt prints without coupling printer driver to business module."
+    ],
+    "priority": "P0",
+    "phase": "Phase 0",
+    "kind": "Technical Spike",
+    "uiIds": [],
+    "apiOperations": [],
+    "acceptance": [
+      [
+        "Implement printer hardware spike through Tauri/Rust port",
+        "Test receipt prints without coupling printer driver to business module."
+      ]
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-008",
+    "epic": "EPIC-00",
+    "title": [
+      "Implement barcode scanner keyboard-wedge spike",
+      "Repeated scans are captured without triggering global shortcuts."
+    ],
+    "priority": "P0",
+    "phase": "Phase 0",
+    "kind": "Technical Spike",
+    "uiIds": [],
+    "apiOperations": [],
+    "acceptance": [
+      [
+        "Implement barcode scanner keyboard-wedge spike",
+        "Repeated scans are captured without triggering global shortcuts."
+      ]
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-009",
+    "epic": "EPIC-00",
+    "title": [
+      "Implement non-Latin raster receipt spike",
+      "Receipt test proves selected rendering path for required scripts."
+    ],
+    "priority": "P0",
+    "phase": "Phase 0",
+    "kind": "Technical Spike",
+    "uiIds": [],
+    "apiOperations": [],
+    "acceptance": [
+      [
+        "Implement non-Latin raster receipt spike",
+        "Receipt test proves selected rendering path for required scripts."
+      ]
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-010",
+    "epic": "EPIC-00",
+    "title": [
+      "Implement minimal real sync proof Store Node\u2192Outbox\u2192Cloud\u2192Inbox/Dedup\u2192ACK",
+      "One safe message round-trips with retry/dedupe evidence."
+    ],
+    "priority": "P0",
+    "phase": "Phase 0",
+    "kind": "Technical Spike",
+    "uiIds": [],
+    "apiOperations": [],
+    "acceptance": [
+      [
+        "Implement minimal real sync proof Store Node\u2192Outbox\u2192Cloud\u2192Inbox/Dedup\u2192ACK",
+        "One safe message round-trips with retry/dedupe evidence."
+      ]
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-011",
+    "epic": "EPIC-00",
+    "title": [
+      "Validate Windows installer/service/PostgreSQL upgrade and rollback spike",
+      "Install, upgrade and rollback procedure is documented and repeatable."
+    ],
+    "priority": "P0",
+    "phase": "Phase 0",
+    "kind": "Technical Spike",
+    "uiIds": [],
+    "apiOperations": [],
+    "acceptance": [
+      [
+        "Validate Windows installer/service/PostgreSQL upgrade and rollback spike",
+        "Install, upgrade and rollback procedure is documented and repeatable."
+      ]
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-012",
+    "epic": "EPIC-00",
+    "title": [
+      "Establish test pyramid and CI release gates",
+      "Contract, domain, DB, sync and UI smoke gates are represented."
+    ],
+    "priority": "P0",
+    "phase": "Phase 0",
+    "kind": "Technical Spike",
+    "uiIds": [],
+    "apiOperations": [],
+    "acceptance": [
+      [
+        "Establish test pyramid and CI release gates",
+        "Contract, domain, DB, sync and UI smoke gates are represented."
+      ]
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-013",
+    "epic": "EPIC-01",
+    "title": "Implement Sign in",
+    "priority": "P0",
+    "phase": "Phase 1A",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-SYS-001"
+    ],
+    "apiOperations": [
+      "API-IAM-001",
+      "API-IAM-002",
+      "API-IAM-003",
+      "API-IAM-004",
+      "API-IAM-005",
+      "API-IAM-006",
+      "API-IAM-015",
+      "API-IAM-016",
+      "API-IAM-017",
+      "API-IAM-018"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-SYS-001 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-014",
+    "epic": "EPIC-01",
+    "title": "Implement Unlock with PIN",
+    "priority": "P0",
+    "phase": "Phase 1A",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-SYS-002"
+    ],
+    "apiOperations": [
+      "API-IAM-001",
+      "API-IAM-002",
+      "API-IAM-003",
+      "API-IAM-004",
+      "API-IAM-005",
+      "API-IAM-006",
+      "API-IAM-022"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-SYS-002 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-015",
+    "epic": "EPIC-01",
+    "title": "Implement Home / Role Dashboard",
+    "priority": "P0",
+    "phase": "Phase 1A",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-SYS-003"
+    ],
+    "apiOperations": [
+      "API-SYS-001",
+      "API-SYS-002",
+      "API-SYS-003",
+      "API-SYS-004",
+      "API-SYS-005",
+      "API-SYS-006",
+      "API-SYS-007",
+      "API-SYS-008"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-SYS-003 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-016",
+    "epic": "EPIC-01",
+    "title": "Implement Offline & Sync Center",
+    "priority": "P0",
+    "phase": "Phase 1A",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-SYS-004"
+    ],
+    "apiOperations": [
+      "API-SUPT-001",
+      "API-SUPT-003",
+      "API-SYS-001",
+      "API-SYS-002",
+      "API-SYS-003",
+      "API-SYS-004",
+      "API-SYS-005",
+      "API-SYS-006"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-SYS-004 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable.",
+      "Keyboard and lost-response/recovery acceptance passes for this critical workflow."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-017",
+    "epic": "EPIC-01",
+    "title": "Implement Notifications & Tasks",
+    "priority": "P0",
+    "phase": "Phase 1A",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-SYS-005"
+    ],
+    "apiOperations": [
+      "API-SYS-001",
+      "API-SYS-002",
+      "API-SYS-003",
+      "API-SYS-004",
+      "API-SYS-005",
+      "API-SYS-006"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-SYS-005 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-018",
+    "epic": "EPIC-01",
+    "title": "Implement Global Search",
+    "priority": "P0",
+    "phase": "Phase 1A",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-SYS-006"
+    ],
+    "apiOperations": [
+      "API-SYS-001",
+      "API-SYS-002",
+      "API-SYS-003",
+      "API-SYS-004",
+      "API-SYS-005",
+      "API-SYS-006"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-SYS-006 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-019",
+    "epic": "EPIC-01",
+    "title": "Implement User Profile & Session",
+    "priority": "P0",
+    "phase": "Phase 1A",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-SYS-007"
+    ],
+    "apiOperations": [
+      "API-IAM-001",
+      "API-IAM-002",
+      "API-IAM-003",
+      "API-IAM-004",
+      "API-IAM-005",
+      "API-IAM-006"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-SYS-007 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-020",
+    "epic": "EPIC-01",
+    "title": "Implement About / Version / Compatibility",
+    "priority": "P0",
+    "phase": "Phase 1A",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-SYS-008"
+    ],
+    "apiOperations": [
+      "API-SYS-001",
+      "API-SYS-002",
+      "API-SYS-003",
+      "API-SYS-004",
+      "API-SYS-005",
+      "API-SYS-006"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-SYS-008 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-021",
+    "epic": "EPIC-04",
+    "title": "Implement POS Sale Workspace",
+    "priority": "P0",
+    "phase": "Phase 1D",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-POS-001"
+    ],
+    "apiOperations": [
+      "API-POS-001",
+      "API-POS-002",
+      "API-POS-003",
+      "API-POS-004",
+      "API-POS-005",
+      "API-POS-006",
+      "API-POS-007",
+      "API-POS-008",
+      "API-POS-010",
+      "API-POS-011",
+      "API-POS-012",
+      "API-POS-013",
+      "API-POS-014"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-POS-001 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable.",
+      "Keyboard and lost-response/recovery acceptance passes for this critical workflow."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-022",
+    "epic": "EPIC-04",
+    "title": "Implement Item Search / Scan Resolution",
+    "priority": "P0",
+    "phase": "Phase 1D",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-POS-002"
+    ],
+    "apiOperations": [
+      "API-CAT-001",
+      "API-CAT-002",
+      "API-CAT-003",
+      "API-CAT-004",
+      "API-CAT-005",
+      "API-CAT-006"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-POS-002 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-023",
+    "epic": "EPIC-04",
+    "title": "Implement Line Edit Drawer",
+    "priority": "P0",
+    "phase": "Phase 1D",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-POS-003"
+    ],
+    "apiOperations": [
+      "API-POS-001",
+      "API-POS-002",
+      "API-POS-003",
+      "API-POS-004",
+      "API-POS-005",
+      "API-POS-006"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-POS-003 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-024",
+    "epic": "EPIC-04",
+    "title": "Implement Customer Attach / Quick Search",
+    "priority": "P0",
+    "phase": "Phase 1D",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-POS-004"
+    ],
+    "apiOperations": [
+      "API-CRD-001",
+      "API-CRD-002",
+      "API-CRD-003",
+      "API-CRD-004",
+      "API-CRD-005",
+      "API-CRD-006"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-POS-004 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-025",
+    "epic": "EPIC-04",
+    "title": "Implement Hold / Recall Sale",
+    "priority": "P0",
+    "phase": "Phase 1D",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-POS-005"
+    ],
+    "apiOperations": [
+      "API-POS-001",
+      "API-POS-002",
+      "API-POS-003",
+      "API-POS-004",
+      "API-POS-005",
+      "API-POS-006",
+      "API-POS-009"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-POS-005 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-026",
+    "epic": "EPIC-04",
+    "title": "Implement Payment Workspace",
+    "priority": "P0",
+    "phase": "Phase 1D",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-POS-006"
+    ],
+    "apiOperations": [
+      "API-PAY-001",
+      "API-PAY-002",
+      "API-PAY-003",
+      "API-PAY-004",
+      "API-PAY-005",
+      "API-PAY-006",
+      "API-PAY-007",
+      "API-PAY-008",
+      "API-PAY-009",
+      "API-PAY-014",
+      "API-PAY-016"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-POS-006 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable.",
+      "Keyboard and lost-response/recovery acceptance passes for this critical workflow."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-027",
+    "epic": "EPIC-04",
+    "title": "Implement Payment Recovery",
+    "priority": "P0",
+    "phase": "Phase 1D",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-POS-007"
+    ],
+    "apiOperations": [
+      "API-PAY-001",
+      "API-PAY-002",
+      "API-PAY-003",
+      "API-PAY-004",
+      "API-PAY-005",
+      "API-PAY-006"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-POS-007 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable.",
+      "Keyboard and lost-response/recovery acceptance passes for this critical workflow."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-028",
+    "epic": "EPIC-04",
+    "title": "Implement Sale Completion / Receipt",
+    "priority": "P0",
+    "phase": "Phase 1D",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-POS-008"
+    ],
+    "apiOperations": [
+      "API-POS-001",
+      "API-POS-002",
+      "API-POS-003",
+      "API-POS-004",
+      "API-POS-005",
+      "API-POS-006"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-POS-008 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-029",
+    "epic": "EPIC-04",
+    "title": "Implement Sale History",
+    "priority": "P0",
+    "phase": "Phase 1D",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-POS-009"
+    ],
+    "apiOperations": [
+      "API-POS-001",
+      "API-POS-002",
+      "API-POS-003",
+      "API-POS-004",
+      "API-POS-005",
+      "API-POS-006"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-POS-009 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-030",
+    "epic": "EPIC-04",
+    "title": "Implement Receipt Reprint",
+    "priority": "P0",
+    "phase": "Phase 1D",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-POS-010"
+    ],
+    "apiOperations": [
+      "API-HW-001",
+      "API-HW-002"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-POS-010 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-031",
+    "epic": "EPIC-05",
+    "title": "Implement Return / Refund Workspace",
+    "priority": "P0",
+    "phase": "Phase 1E",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-POS-011"
+    ],
+    "apiOperations": [
+      "API-RET-001",
+      "API-RET-002",
+      "API-RET-003",
+      "API-RET-004",
+      "API-RET-005",
+      "API-RET-006",
+      "API-RET-008"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-POS-011 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable.",
+      "Keyboard and lost-response/recovery acceptance passes for this critical workflow."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-032",
+    "epic": "EPIC-05",
+    "title": "Implement Refund Recovery",
+    "priority": "P0",
+    "phase": "Phase 1E",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-POS-012"
+    ],
+    "apiOperations": [
+      "API-PAY-001",
+      "API-PAY-002",
+      "API-PAY-003",
+      "API-PAY-004",
+      "API-PAY-005",
+      "API-PAY-006",
+      "API-PAY-010",
+      "API-PAY-011",
+      "API-PAY-012",
+      "API-PAY-013",
+      "API-PAY-015",
+      "API-RET-003",
+      "API-RET-005",
+      "API-RET-006",
+      "API-RET-007"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-POS-012 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable.",
+      "Keyboard and lost-response/recovery acceptance passes for this critical workflow."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-033",
+    "epic": "EPIC-05",
+    "title": "Implement Credit Sale Review",
+    "priority": "P0",
+    "phase": "Phase 1E",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-POS-013"
+    ],
+    "apiOperations": [
+      "API-CRD-001",
+      "API-CRD-002",
+      "API-CRD-003",
+      "API-CRD-004",
+      "API-CRD-005",
+      "API-CRD-006"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-POS-013 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-034",
+    "epic": "EPIC-05",
+    "title": "Implement Cash In / Cash Out",
+    "priority": "P0",
+    "phase": "Phase 1E",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-POS-014"
+    ],
+    "apiOperations": [
+      "API-CSH-001",
+      "API-CSH-002",
+      "API-CSH-003",
+      "API-CSH-004",
+      "API-CSH-005",
+      "API-CSH-006",
+      "API-CSH-008",
+      "API-CSH-010"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-POS-014 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-035",
+    "epic": "EPIC-05",
+    "title": "Implement Open Shift",
+    "priority": "P0",
+    "phase": "Phase 1E",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-POS-015"
+    ],
+    "apiOperations": [
+      "API-CSH-001",
+      "API-CSH-002",
+      "API-CSH-003",
+      "API-CSH-004",
+      "API-CSH-005",
+      "API-CSH-006"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-POS-015 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-036",
+    "epic": "EPIC-05",
+    "title": "Implement Shift Summary / Close",
+    "priority": "P0",
+    "phase": "Phase 1E",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-POS-016"
+    ],
+    "apiOperations": [
+      "API-CSH-001",
+      "API-CSH-002",
+      "API-CSH-003",
+      "API-CSH-004",
+      "API-CSH-005",
+      "API-CSH-006"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-POS-016 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable.",
+      "Keyboard and lost-response/recovery acceptance passes for this critical workflow."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-037",
+    "epic": "EPIC-01",
+    "title": "Implement Manager Override Dialog",
+    "priority": "P0",
+    "phase": "Phase 1A",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-POS-017"
+    ],
+    "apiOperations": [
+      "API-IAM-001",
+      "API-IAM-002",
+      "API-IAM-003",
+      "API-IAM-004",
+      "API-IAM-005",
+      "API-IAM-006"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-POS-017 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-038",
+    "epic": "EPIC-04",
+    "title": "Implement Printer / Scanner Status",
+    "priority": "P0",
+    "phase": "Phase 1D",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-POS-018"
+    ],
+    "apiOperations": [
+      "API-HW-001",
+      "API-HW-002"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-POS-018 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-039",
+    "epic": "EPIC-02",
+    "title": "Implement Item List",
+    "priority": "P0",
+    "phase": "Phase 1B",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-CAT-001"
+    ],
+    "apiOperations": [
+      "API-CAT-001",
+      "API-CAT-002",
+      "API-CAT-003",
+      "API-CAT-004",
+      "API-CAT-005",
+      "API-CAT-006",
+      "API-CAT-012"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-CAT-001 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-040",
+    "epic": "EPIC-02",
+    "title": "Implement Item Editor",
+    "priority": "P0",
+    "phase": "Phase 1B",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-CAT-002"
+    ],
+    "apiOperations": [
+      "API-CAT-001",
+      "API-CAT-002",
+      "API-CAT-003",
+      "API-CAT-004",
+      "API-CAT-005",
+      "API-CAT-006"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-CAT-002 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-041",
+    "epic": "EPIC-02",
+    "title": "Implement Barcode Manager",
+    "priority": "P0",
+    "phase": "Phase 1B",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-CAT-003"
+    ],
+    "apiOperations": [
+      "API-CAT-001",
+      "API-CAT-002",
+      "API-CAT-003",
+      "API-CAT-004",
+      "API-CAT-005",
+      "API-CAT-006",
+      "API-CAT-007",
+      "API-CAT-008",
+      "API-CAT-009"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-CAT-003 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-042",
+    "epic": "EPIC-02",
+    "title": "Implement UoM Manager",
+    "priority": "P0",
+    "phase": "Phase 1B",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-CAT-004"
+    ],
+    "apiOperations": [
+      "API-CAT-001",
+      "API-CAT-002",
+      "API-CAT-003",
+      "API-CAT-004",
+      "API-CAT-005",
+      "API-CAT-006",
+      "API-CAT-010",
+      "API-CAT-011"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-CAT-004 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-043",
+    "epic": "EPIC-02",
+    "title": "Implement Category Manager",
+    "priority": "P0",
+    "phase": "Phase 1B",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-CAT-005"
+    ],
+    "apiOperations": [
+      "API-CAT-001",
+      "API-CAT-002",
+      "API-CAT-003",
+      "API-CAT-004",
+      "API-CAT-005",
+      "API-CAT-006",
+      "API-CAT-013",
+      "API-CAT-014"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-CAT-005 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-044",
+    "epic": "EPIC-02",
+    "title": "Implement Brand Manager",
+    "priority": "P0",
+    "phase": "Phase 1B",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-CAT-006"
+    ],
+    "apiOperations": [
+      "API-CAT-001",
+      "API-CAT-002",
+      "API-CAT-003",
+      "API-CAT-004",
+      "API-CAT-005",
+      "API-CAT-006",
+      "API-CAT-015",
+      "API-CAT-016",
+      "API-CAT-017"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-CAT-006 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-045",
+    "epic": "EPIC-02",
+    "title": "Implement Price Schedule List",
+    "priority": "P0",
+    "phase": "Phase 1B",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-PRI-001"
+    ],
+    "apiOperations": [
+      "API-PRI-001",
+      "API-PRI-002",
+      "API-PRI-003",
+      "API-PRI-004",
+      "API-PRI-005",
+      "API-PRI-006",
+      "API-PRI-007",
+      "API-PRI-008"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-PRI-001 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-046",
+    "epic": "EPIC-02",
+    "title": "Implement Price Schedule Editor",
+    "priority": "P0",
+    "phase": "Phase 1B",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-PRI-002"
+    ],
+    "apiOperations": [
+      "API-PRI-001",
+      "API-PRI-002",
+      "API-PRI-003",
+      "API-PRI-004",
+      "API-PRI-005",
+      "API-PRI-006"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-PRI-002 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-047",
+    "epic": "EPIC-02",
+    "title": "Implement Price Lookup",
+    "priority": "P0",
+    "phase": "Phase 1B",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-PRI-003"
+    ],
+    "apiOperations": [
+      "API-PRI-001",
+      "API-PRI-002",
+      "API-PRI-003",
+      "API-PRI-004",
+      "API-PRI-005",
+      "API-PRI-006"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-PRI-003 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-048",
+    "epic": "EPIC-03",
+    "title": "Implement Supplier List",
+    "priority": "P0",
+    "phase": "Phase 1C",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-SUP-001"
+    ],
+    "apiOperations": [
+      "API-PUR-001",
+      "API-PUR-002",
+      "API-PUR-003",
+      "API-PUR-004",
+      "API-PUR-005",
+      "API-PUR-006",
+      "API-PUR-007",
+      "API-PUR-008",
+      "API-PUR-009",
+      "API-PUR-010",
+      "API-PUR-012",
+      "API-PUR-014",
+      "API-PUR-016",
+      "API-PUR-017"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-SUP-001 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-049",
+    "epic": "EPIC-03",
+    "title": "Implement Supplier Editor",
+    "priority": "P0",
+    "phase": "Phase 1C",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-SUP-002"
+    ],
+    "apiOperations": [
+      "API-PUR-001",
+      "API-PUR-002",
+      "API-PUR-003",
+      "API-PUR-004",
+      "API-PUR-005",
+      "API-PUR-006",
+      "API-SUP-001",
+      "API-SUP-002",
+      "API-SUP-003",
+      "API-SUP-004",
+      "API-SUP-005",
+      "API-SUP-006",
+      "API-SUP-007",
+      "API-SUP-008",
+      "API-SUP-009"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-SUP-002 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-050",
+    "epic": "EPIC-03",
+    "title": "Implement Purchase Order List",
+    "priority": "P0",
+    "phase": "Phase 1C",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-PUR-001"
+    ],
+    "apiOperations": [
+      "API-PUR-001",
+      "API-PUR-002",
+      "API-PUR-003",
+      "API-PUR-004",
+      "API-PUR-005",
+      "API-PUR-006"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-PUR-001 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-051",
+    "epic": "EPIC-03",
+    "title": "Implement Purchase Order Editor",
+    "priority": "P0",
+    "phase": "Phase 1C",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-PUR-002"
+    ],
+    "apiOperations": [
+      "API-PUR-001",
+      "API-PUR-002",
+      "API-PUR-003",
+      "API-PUR-004",
+      "API-PUR-005",
+      "API-PUR-006"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-PUR-002 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-052",
+    "epic": "EPIC-03",
+    "title": "Implement Goods Receipt List",
+    "priority": "P0",
+    "phase": "Phase 1C",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-PUR-003"
+    ],
+    "apiOperations": [
+      "API-PUR-001",
+      "API-PUR-002",
+      "API-PUR-003",
+      "API-PUR-004",
+      "API-PUR-005",
+      "API-PUR-006"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-PUR-003 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-053",
+    "epic": "EPIC-03",
+    "title": "Implement Goods Receipt Workspace",
+    "priority": "P0",
+    "phase": "Phase 1C",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-PUR-004"
+    ],
+    "apiOperations": [
+      "API-PUR-001",
+      "API-PUR-002",
+      "API-PUR-003",
+      "API-PUR-004",
+      "API-PUR-005",
+      "API-PUR-006"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-PUR-004 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable.",
+      "Keyboard and lost-response/recovery acceptance passes for this critical workflow."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-054",
+    "epic": "EPIC-03",
+    "title": "Implement Purchase Return List",
+    "priority": "P0",
+    "phase": "Phase 1C",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-PUR-005"
+    ],
+    "apiOperations": [
+      "API-PUR-001",
+      "API-PUR-002",
+      "API-PUR-003",
+      "API-PUR-004",
+      "API-PUR-005",
+      "API-PUR-006"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-PUR-005 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-055",
+    "epic": "EPIC-03",
+    "title": "Implement Purchase Return Workspace",
+    "priority": "P0",
+    "phase": "Phase 1C",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-PUR-006"
+    ],
+    "apiOperations": [
+      "API-PUR-001",
+      "API-PUR-002",
+      "API-PUR-003",
+      "API-PUR-004",
+      "API-PUR-005",
+      "API-PUR-006",
+      "API-PUR-011",
+      "API-PUR-013",
+      "API-PUR-015"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-PUR-006 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-056",
+    "epic": "EPIC-03",
+    "title": "Implement Inventory Overview",
+    "priority": "P0",
+    "phase": "Phase 1C",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-INV-001"
+    ],
+    "apiOperations": [
+      "API-INV-001",
+      "API-INV-002",
+      "API-INV-003",
+      "API-INV-004",
+      "API-INV-005",
+      "API-INV-006",
+      "API-INV-010",
+      "API-INV-011",
+      "API-INV-012",
+      "API-INV-013"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-INV-001 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-057",
+    "epic": "EPIC-03",
+    "title": "Implement Item Stock Detail",
+    "priority": "P0",
+    "phase": "Phase 1C",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-INV-002"
+    ],
+    "apiOperations": [
+      "API-INV-001",
+      "API-INV-002",
+      "API-INV-003",
+      "API-INV-004",
+      "API-INV-005",
+      "API-INV-006"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-INV-002 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-058",
+    "epic": "EPIC-03",
+    "title": "Implement Stock Movement Explorer",
+    "priority": "P0",
+    "phase": "Phase 1C",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-INV-003"
+    ],
+    "apiOperations": [
+      "API-INV-001",
+      "API-INV-002",
+      "API-INV-003",
+      "API-INV-004",
+      "API-INV-005",
+      "API-INV-006",
+      "API-INV-014",
+      "API-INV-015"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-INV-003 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-059",
+    "epic": "EPIC-03",
+    "title": "Implement Stock Count List",
+    "priority": "P0",
+    "phase": "Phase 1C",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-INV-004"
+    ],
+    "apiOperations": [
+      "API-INV-001",
+      "API-INV-002",
+      "API-INV-003",
+      "API-INV-004",
+      "API-INV-005",
+      "API-INV-006"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-INV-004 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-060",
+    "epic": "EPIC-03",
+    "title": "Implement Stock Count Workspace",
+    "priority": "P0",
+    "phase": "Phase 1C",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-INV-005"
+    ],
+    "apiOperations": [
+      "API-INV-001",
+      "API-INV-002",
+      "API-INV-003",
+      "API-INV-004",
+      "API-INV-005",
+      "API-INV-006",
+      "API-INV-007",
+      "API-INV-008",
+      "API-INV-009"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-INV-005 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable.",
+      "Keyboard and lost-response/recovery acceptance passes for this critical workflow."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-061",
+    "epic": "EPIC-03",
+    "title": "Implement Reorder / Low Stock",
+    "priority": "P0",
+    "phase": "Phase 1C",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-INV-006"
+    ],
+    "apiOperations": [
+      "API-INV-001",
+      "API-INV-002",
+      "API-INV-003",
+      "API-INV-004",
+      "API-INV-005",
+      "API-INV-006"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-INV-006 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-062",
+    "epic": "EPIC-05",
+    "title": "Implement Customer List",
+    "priority": "P0",
+    "phase": "Phase 1E",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-CUS-001"
+    ],
+    "apiOperations": [
+      "API-CRD-001",
+      "API-CRD-002",
+      "API-CRD-003",
+      "API-CRD-004",
+      "API-CRD-005",
+      "API-CRD-006"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-CUS-001 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-063",
+    "epic": "EPIC-05",
+    "title": "Implement Customer Editor",
+    "priority": "P0",
+    "phase": "Phase 1E",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-CUS-002"
+    ],
+    "apiOperations": [
+      "API-CRD-001",
+      "API-CRD-002",
+      "API-CRD-003",
+      "API-CRD-004",
+      "API-CRD-005",
+      "API-CRD-006",
+      "API-CUS-001",
+      "API-CUS-002",
+      "API-CUS-003",
+      "API-CUS-004",
+      "API-CUS-005",
+      "API-CUS-006"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-CUS-002 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-064",
+    "epic": "EPIC-05",
+    "title": "Implement Credit Account",
+    "priority": "P0",
+    "phase": "Phase 1E",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-CRD-001"
+    ],
+    "apiOperations": [
+      "API-CRD-001",
+      "API-CRD-002",
+      "API-CRD-003",
+      "API-CRD-004",
+      "API-CRD-005",
+      "API-CRD-006",
+      "API-CRD-008"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-CRD-001 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-065",
+    "epic": "EPIC-05",
+    "title": "Implement Customer Collection",
+    "priority": "P0",
+    "phase": "Phase 1E",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-CRD-002"
+    ],
+    "apiOperations": [
+      "API-CRD-001",
+      "API-CRD-002",
+      "API-CRD-003",
+      "API-CRD-004",
+      "API-CRD-005",
+      "API-CRD-006",
+      "API-CRD-007",
+      "API-CRD-009"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-CRD-002 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable.",
+      "Keyboard and lost-response/recovery acceptance passes for this critical workflow."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-066",
+    "epic": "EPIC-05",
+    "title": "Implement Credit Ledger",
+    "priority": "P0",
+    "phase": "Phase 1E",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-CRD-003"
+    ],
+    "apiOperations": [
+      "API-CRD-001",
+      "API-CRD-002",
+      "API-CRD-003",
+      "API-CRD-004",
+      "API-CRD-005",
+      "API-CRD-006"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-CRD-003 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-067",
+    "epic": "EPIC-05",
+    "title": "Implement Business Day",
+    "priority": "P0",
+    "phase": "Phase 1E",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-CSH-001"
+    ],
+    "apiOperations": [
+      "API-CSH-001",
+      "API-CSH-002",
+      "API-CSH-003",
+      "API-CSH-004",
+      "API-CSH-005",
+      "API-CSH-006",
+      "API-CSH-009"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-CSH-001 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable.",
+      "Keyboard and lost-response/recovery acceptance passes for this critical workflow."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-068",
+    "epic": "EPIC-05",
+    "title": "Implement Shift Monitor",
+    "priority": "P0",
+    "phase": "Phase 1E",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-CSH-002"
+    ],
+    "apiOperations": [
+      "API-CSH-001",
+      "API-CSH-002",
+      "API-CSH-003",
+      "API-CSH-004",
+      "API-CSH-005",
+      "API-CSH-006",
+      "API-CSH-007"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-CSH-002 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-069",
+    "epic": "EPIC-05",
+    "title": "Implement Cash Movement Ledger",
+    "priority": "P0",
+    "phase": "Phase 1E",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-CSH-003"
+    ],
+    "apiOperations": [
+      "API-CSH-001",
+      "API-CSH-002",
+      "API-CSH-003",
+      "API-CSH-004",
+      "API-CSH-005",
+      "API-CSH-006"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-CSH-003 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-070",
+    "epic": "EPIC-06",
+    "title": "Implement Accounting Dashboard",
+    "priority": "P1",
+    "phase": "Phase 2",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-ACC-001"
+    ],
+    "apiOperations": [
+      "API-ACC-001",
+      "API-ACC-002",
+      "API-ACC-003",
+      "API-ACC-004",
+      "API-ACC-005",
+      "API-ACC-006",
+      "API-ACC-010",
+      "API-ACC-011",
+      "API-ACC-012",
+      "API-ACC-025",
+      "API-ACC-026",
+      "API-ACC-029"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-ACC-001 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-071",
+    "epic": "EPIC-06",
+    "title": "Implement Supplier Payables",
+    "priority": "P1",
+    "phase": "Phase 2",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-ACC-002"
+    ],
+    "apiOperations": [
+      "API-ACC-001",
+      "API-ACC-002",
+      "API-ACC-003",
+      "API-ACC-004",
+      "API-ACC-005",
+      "API-ACC-006"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-ACC-002 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-072",
+    "epic": "EPIC-06",
+    "title": "Implement Supplier Payment",
+    "priority": "P1",
+    "phase": "Phase 2",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-ACC-003"
+    ],
+    "apiOperations": [
+      "API-ACC-001",
+      "API-ACC-002",
+      "API-ACC-003",
+      "API-ACC-004",
+      "API-ACC-005",
+      "API-ACC-006"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-ACC-003 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable.",
+      "Keyboard and lost-response/recovery acceptance passes for this critical workflow."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-073",
+    "epic": "EPIC-06",
+    "title": "Implement Financial Accounts",
+    "priority": "P1",
+    "phase": "Phase 2",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-ACC-004"
+    ],
+    "apiOperations": [
+      "API-ACC-001",
+      "API-ACC-002",
+      "API-ACC-003",
+      "API-ACC-004",
+      "API-ACC-005",
+      "API-ACC-006",
+      "API-ACC-007",
+      "API-ACC-008",
+      "API-ACC-009"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-ACC-004 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-074",
+    "epic": "EPIC-06",
+    "title": "Implement Financial Transactions",
+    "priority": "P1",
+    "phase": "Phase 2",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-ACC-005"
+    ],
+    "apiOperations": [
+      "API-ACC-001",
+      "API-ACC-002",
+      "API-ACC-003",
+      "API-ACC-004",
+      "API-ACC-005",
+      "API-ACC-006",
+      "API-ACC-030"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-ACC-005 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-075",
+    "epic": "EPIC-06",
+    "title": "Implement Account Transfer",
+    "priority": "P1",
+    "phase": "Phase 2",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-ACC-006"
+    ],
+    "apiOperations": [
+      "API-ACC-001",
+      "API-ACC-002",
+      "API-ACC-003",
+      "API-ACC-004",
+      "API-ACC-005",
+      "API-ACC-006",
+      "API-ACC-013",
+      "API-ACC-014",
+      "API-ACC-027",
+      "API-ACC-031",
+      "API-ACC-032"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-ACC-006 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-076",
+    "epic": "EPIC-06",
+    "title": "Implement Expense Categories",
+    "priority": "P1",
+    "phase": "Phase 2",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-ACC-007"
+    ],
+    "apiOperations": [
+      "API-ACC-001",
+      "API-ACC-002",
+      "API-ACC-003",
+      "API-ACC-004",
+      "API-ACC-005",
+      "API-ACC-006",
+      "API-ACC-015",
+      "API-ACC-016",
+      "API-ACC-017"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-ACC-007 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-077",
+    "epic": "EPIC-06",
+    "title": "Implement Expense Entry",
+    "priority": "P1",
+    "phase": "Phase 2",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-ACC-008"
+    ],
+    "apiOperations": [
+      "API-ACC-001",
+      "API-ACC-002",
+      "API-ACC-003",
+      "API-ACC-004",
+      "API-ACC-005",
+      "API-ACC-006",
+      "API-ACC-018",
+      "API-ACC-019",
+      "API-ACC-020",
+      "API-ACC-028",
+      "API-ACC-033"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-ACC-008 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-078",
+    "epic": "EPIC-06",
+    "title": "Implement Reconciliation",
+    "priority": "P1",
+    "phase": "Phase 2",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-ACC-009"
+    ],
+    "apiOperations": [
+      "API-ACC-001",
+      "API-ACC-002",
+      "API-ACC-003",
+      "API-ACC-004",
+      "API-ACC-005",
+      "API-ACC-006",
+      "API-ACC-021",
+      "API-ACC-022",
+      "API-ACC-023",
+      "API-ACC-024"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-ACC-009 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-079",
+    "epic": "EPIC-07",
+    "title": "Implement Reports Home",
+    "priority": "P1",
+    "phase": "Phase 2",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-RPT-001"
+    ],
+    "apiOperations": [
+      "API-RPT-001",
+      "API-RPT-002",
+      "API-RPT-003"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-RPT-001 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-080",
+    "epic": "EPIC-07",
+    "title": "Implement Sales Report",
+    "priority": "P1",
+    "phase": "Phase 2",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-RPT-002"
+    ],
+    "apiOperations": [
+      "API-RPT-001",
+      "API-RPT-002",
+      "API-RPT-003"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-RPT-002 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-081",
+    "epic": "EPIC-07",
+    "title": "Implement Inventory Report",
+    "priority": "P1",
+    "phase": "Phase 2",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-RPT-003"
+    ],
+    "apiOperations": [
+      "API-RPT-001",
+      "API-RPT-002",
+      "API-RPT-003"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-RPT-003 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-082",
+    "epic": "EPIC-07",
+    "title": "Implement Purchase / Supplier Report",
+    "priority": "P1",
+    "phase": "Phase 2",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-RPT-004"
+    ],
+    "apiOperations": [
+      "API-RPT-001",
+      "API-RPT-002",
+      "API-RPT-003"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-RPT-004 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-083",
+    "epic": "EPIC-07",
+    "title": "Implement Credit / Collection Report",
+    "priority": "P1",
+    "phase": "Phase 2",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-RPT-005"
+    ],
+    "apiOperations": [
+      "API-RPT-001",
+      "API-RPT-002",
+      "API-RPT-003"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-RPT-005 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-084",
+    "epic": "EPIC-07",
+    "title": "Implement Audit Explorer",
+    "priority": "P1",
+    "phase": "Phase 2",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-AUD-001"
+    ],
+    "apiOperations": [
+      "API-AUD-001",
+      "API-AUD-002"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-AUD-001 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-085",
+    "epic": "EPIC-01",
+    "title": "Implement Users",
+    "priority": "P0",
+    "phase": "Phase 1A",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-IAM-001"
+    ],
+    "apiOperations": [
+      "API-IAM-001",
+      "API-IAM-002",
+      "API-IAM-003",
+      "API-IAM-004",
+      "API-IAM-005",
+      "API-IAM-006",
+      "API-IAM-007",
+      "API-IAM-008",
+      "API-IAM-009",
+      "API-IAM-010",
+      "API-IAM-011",
+      "API-IAM-021",
+      "API-IAM-023"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-IAM-001 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-086",
+    "epic": "EPIC-01",
+    "title": "Implement Roles & Permissions",
+    "priority": "P0",
+    "phase": "Phase 1A",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-IAM-002"
+    ],
+    "apiOperations": [
+      "API-IAM-001",
+      "API-IAM-002",
+      "API-IAM-003",
+      "API-IAM-004",
+      "API-IAM-005",
+      "API-IAM-006",
+      "API-IAM-012",
+      "API-IAM-013",
+      "API-IAM-014"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-IAM-002 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable.",
+      "Keyboard and lost-response/recovery acceptance passes for this critical workflow."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-087",
+    "epic": "EPIC-01",
+    "title": "Implement Override History",
+    "priority": "P0",
+    "phase": "Phase 1A",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-IAM-003"
+    ],
+    "apiOperations": [
+      "API-IAM-001",
+      "API-IAM-002",
+      "API-IAM-003",
+      "API-IAM-004",
+      "API-IAM-005",
+      "API-IAM-006"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-IAM-003 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-088",
+    "epic": "EPIC-07",
+    "title": "Implement Company Settings",
+    "priority": "P1",
+    "phase": "Phase 2",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-ORG-001"
+    ],
+    "apiOperations": [
+      "API-ORG-001",
+      "API-ORG-002",
+      "API-ORG-003",
+      "API-ORG-004",
+      "API-ORG-005",
+      "API-ORG-006"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-ORG-001 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-089",
+    "epic": "EPIC-07",
+    "title": "Implement Stores",
+    "priority": "P1",
+    "phase": "Phase 2",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-ORG-002"
+    ],
+    "apiOperations": [
+      "API-ORG-001",
+      "API-ORG-002",
+      "API-ORG-003",
+      "API-ORG-004",
+      "API-ORG-005",
+      "API-ORG-006",
+      "API-ORG-007",
+      "API-ORG-008"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-ORG-002 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-090",
+    "epic": "EPIC-07",
+    "title": "Implement Counters",
+    "priority": "P1",
+    "phase": "Phase 2",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-ORG-003"
+    ],
+    "apiOperations": [
+      "API-ORG-001",
+      "API-ORG-002",
+      "API-ORG-003",
+      "API-ORG-004",
+      "API-ORG-005",
+      "API-ORG-006",
+      "API-ORG-009",
+      "API-ORG-010",
+      "API-ORG-011",
+      "API-ORG-012",
+      "API-ORG-013",
+      "API-ORG-014"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-ORG-003 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-091",
+    "epic": "EPIC-08",
+    "title": "Implement Country Rule Status",
+    "priority": "P1",
+    "phase": "Phase 2",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-CTRY-001"
+    ],
+    "apiOperations": [
+      "API-CTRY-001",
+      "API-CTRY-002",
+      "API-CTRY-003"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-CTRY-001 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-092",
+    "epic": "EPIC-08",
+    "title": "Implement Country Rule Draft / Validation",
+    "priority": "P1",
+    "phase": "Phase 2",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-CTRY-002"
+    ],
+    "apiOperations": [
+      "API-CTRY-001",
+      "API-CTRY-002",
+      "API-CTRY-003"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-CTRY-002 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-093",
+    "epic": "EPIC-07",
+    "title": "Implement Hardware Setup",
+    "priority": "P1",
+    "phase": "Phase 2",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-HW-001"
+    ],
+    "apiOperations": [
+      "API-HW-001",
+      "API-HW-002"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-HW-001 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable.",
+      "Keyboard and lost-response/recovery acceptance passes for this critical workflow."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-094",
+    "epic": "EPIC-07",
+    "title": "Implement Backup & Restore Center",
+    "priority": "P1",
+    "phase": "Phase 2",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-BAK-001"
+    ],
+    "apiOperations": [
+      "API-BR-001",
+      "API-BR-002",
+      "API-BR-003"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-BAK-001 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-095",
+    "epic": "EPIC-07",
+    "title": "Implement Support & Diagnostics",
+    "priority": "P1",
+    "phase": "Phase 2",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-SUPT-001"
+    ],
+    "apiOperations": [
+      "API-SUPT-001",
+      "API-SUPT-002",
+      "API-SUPT-003"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-SUPT-001 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-096",
+    "epic": "EPIC-07",
+    "title": "Implement Import Center",
+    "priority": "P1",
+    "phase": "Phase 2",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-IMP-001"
+    ],
+    "apiOperations": [
+      "API-IMP-001",
+      "API-IMP-002",
+      "API-IMP-003",
+      "API-IMP-004",
+      "API-IMP-005",
+      "API-IMP-006",
+      "API-IMP-007",
+      "API-IMP-008",
+      "API-IMP-009",
+      "API-IMP-010",
+      "API-IMP-011",
+      "API-IMP-012",
+      "API-IMP-013"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-IMP-001 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-097",
+    "epic": "EPIC-07",
+    "title": "Implement Export Center",
+    "priority": "P1",
+    "phase": "Phase 2",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-EXP-001"
+    ],
+    "apiOperations": [
+      "API-IMP-001",
+      "API-IMP-002",
+      "API-IMP-003",
+      "API-IMP-004",
+      "API-IMP-005",
+      "API-IMP-006"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-EXP-001 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-098",
+    "epic": "EPIC-09",
+    "title": "Implement Cloud Organization Dashboard",
+    "priority": "P1",
+    "phase": "Phase 3",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-CLD-001"
+    ],
+    "apiOperations": [
+      "API-SYS-001",
+      "API-SYS-002",
+      "API-SYS-003",
+      "API-SYS-004",
+      "API-SYS-005",
+      "API-SYS-006"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-CLD-001 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-099",
+    "epic": "EPIC-09",
+    "title": "Implement Store Sync Health",
+    "priority": "P1",
+    "phase": "Phase 3",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-CLD-002"
+    ],
+    "apiOperations": [
+      "API-SYS-001",
+      "API-SYS-002",
+      "API-SYS-003",
+      "API-SYS-004",
+      "API-SYS-005",
+      "API-SYS-006"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-CLD-002 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-100",
+    "epic": "EPIC-09",
+    "title": "Implement Cloud Configuration Distribution",
+    "priority": "P1",
+    "phase": "Phase 3",
+    "kind": "UI + API Story",
+    "uiIds": [
+      "UI-CLD-003"
+    ],
+    "apiOperations": [
+      "API-SYS-001",
+      "API-SYS-002",
+      "API-SYS-003",
+      "API-SYS-004",
+      "API-SYS-005",
+      "API-SYS-006"
+    ],
+    "acceptance": [
+      "Implements frozen screen UI-CLD-003 without weakening its state/offline contract.",
+      "Permission/capability controls are UI hints only; server authorization remains authoritative.",
+      "Loading, empty, validation, conflict and connectivity states are tested where applicable."
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-101",
+    "epic": "EPIC-11",
+    "title": "Implement shared Money and Quantity exact-decimal components",
+    "priority": "P0",
+    "phase": "Phase 1A",
+    "kind": "Cross-cutting",
+    "uiIds": [],
+    "apiOperations": [],
+    "acceptance": [
+      "Implement shared Money and Quantity exact-decimal components"
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-102",
+    "epic": "EPIC-11",
+    "title": "Implement standard screen-state and ProblemCode presentation",
+    "priority": "P0",
+    "phase": "Phase 1A",
+    "kind": "Cross-cutting",
+    "uiIds": [],
+    "apiOperations": [],
+    "acceptance": [
+      "Implement standard screen-state and ProblemCode presentation"
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-103",
+    "epic": "EPIC-11",
+    "title": "Implement permission/capability UI guards and manager override component",
+    "priority": "P0",
+    "phase": "Phase 1A",
+    "kind": "Cross-cutting",
+    "uiIds": [],
+    "apiOperations": [],
+    "acceptance": [
+      "Implement permission/capability UI guards and manager override component"
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-104",
+    "epic": "EPIC-11",
+    "title": "Implement immutable posted-document viewer pattern",
+    "priority": "P0",
+    "phase": "Phase 1B",
+    "kind": "Cross-cutting",
+    "uiIds": [],
+    "apiOperations": [],
+    "acceptance": [
+      "Implement immutable posted-document viewer pattern"
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-105",
+    "epic": "EPIC-11",
+    "title": "Implement command idempotency/lost-response recovery client layer",
+    "priority": "P0",
+    "phase": "Phase 1A",
+    "kind": "Cross-cutting",
+    "uiIds": [],
+    "apiOperations": [],
+    "acceptance": [
+      "Implement command idempotency/lost-response recovery client layer"
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-106",
+    "epic": "EPIC-11",
+    "title": "Run 1280\u00d7720 and Windows scaling UI acceptance suite",
+    "priority": "P0",
+    "phase": "Phase 1D",
+    "kind": "Cross-cutting",
+    "uiIds": [],
+    "apiOperations": [],
+    "acceptance": [
+      "Run 1280\u00d7720 and Windows scaling UI acceptance suite"
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-107",
+    "epic": "EPIC-11",
+    "title": "Run keyboard-only critical workflow acceptance suite",
+    "priority": "P0",
+    "phase": "Phase 1D",
+    "kind": "Cross-cutting",
+    "uiIds": [],
+    "apiOperations": [],
+    "acceptance": [
+      "Run keyboard-only critical workflow acceptance suite"
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-108",
+    "epic": "EPIC-11",
+    "title": "Run accessibility focus/status/error acceptance suite",
+    "priority": "P1",
+    "phase": "Phase 1E",
+    "kind": "Cross-cutting",
+    "uiIds": [],
+    "apiOperations": [],
+    "acceptance": [
+      "Run accessibility focus/status/error acceptance suite"
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-109",
+    "epic": "EPIC-11",
+    "title": "Establish signed installer and update compatibility gate",
+    "priority": "P0",
+    "phase": "Phase 1E",
+    "kind": "Cross-cutting",
+    "uiIds": [],
+    "apiOperations": [],
+    "acceptance": [
+      "Establish signed installer and update compatibility gate"
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-110",
+    "epic": "EPIC-11",
+    "title": "Run backup restore drill and publish recovery evidence",
+    "priority": "P0",
+    "phase": "Phase 1E",
+    "kind": "Cross-cutting",
+    "uiIds": [],
+    "apiOperations": [],
+    "acceptance": [
+      "Run backup restore drill and publish recovery evidence"
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-111",
+    "epic": "EPIC-08",
+    "title": "Implement versioned CountryRuleSet capability client",
+    "priority": "P1",
+    "phase": "Phase 2",
+    "kind": "Cross-cutting",
+    "uiIds": [],
+    "apiOperations": [],
+    "acceptance": [
+      "Implement versioned CountryRuleSet capability client"
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-112",
+    "epic": "EPIC-08",
+    "title": "Verify and configure Malaysia country behavior from official sources",
+    "priority": "P1",
+    "phase": "Phase 2",
+    "kind": "Cross-cutting",
+    "uiIds": [],
+    "apiOperations": [],
+    "acceptance": [
+      "Verify and configure Malaysia country behavior from official sources"
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-113",
+    "epic": "EPIC-09",
+    "title": "Implement full outbox/inbox retry, ACK and dead-letter operations",
+    "priority": "P1",
+    "phase": "Phase 3",
+    "kind": "Cross-cutting",
+    "uiIds": [],
+    "apiOperations": [],
+    "acceptance": [
+      "Implement full outbox/inbox retry, ACK and dead-letter operations"
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-114",
+    "epic": "EPIC-09",
+    "title": "Implement cloud management shell without checkout/posting coordinators",
+    "priority": "P1",
+    "phase": "Phase 3",
+    "kind": "Cross-cutting",
+    "uiIds": [],
+    "apiOperations": [],
+    "acceptance": [
+      "Implement cloud management shell without checkout/posting coordinators"
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  },
+  {
+    "id": "MM-115",
+    "epic": "EPIC-10",
+    "title": "Verify and configure India country behavior from official sources",
+    "priority": "P2",
+    "phase": "Phase 4",
+    "kind": "Cross-cutting",
+    "uiIds": [],
+    "apiOperations": [],
+    "acceptance": [
+      "Verify and configure India country behavior from official sources"
+    ],
+    "dependsOn": [],
+    "status": "READY_FOR_REFINEMENT"
+  }
+]

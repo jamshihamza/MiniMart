@@ -1,0 +1,673 @@
+{
+  "product": "MiniMart",
+  "artifact": "UI Specification",
+  "version": "1.0",
+  "status": "FROZEN_ADOPTED_UI_AUTHORITY",
+  "screens": 88,
+  "apiOperationsDispositioned": 234,
+  "deepReviewFindingsClosed": 10,
+  "finalReview": {
+    "blockers": 0,
+    "majors": 0,
+    "packagingCorrectionsApplied": 2
+  },
+  "semanticChangesDuringFinalPackaging": 0,
+  "next": "Development Backlog",
+  "files": [
+    {
+      "path": "FINAL-FREEZE-PACKAGING-CORRECTIONS.md",
+      "sha256": "67186078a5128b2cc9ab2aae48229f128bfa4570f5d5460d22539005c6ffb1cb",
+      "bytes": 376
+    },
+    {
+      "path": "FREEZE-RECORD.md",
+      "sha256": "311a8372ead7df902f3ac777a238ed55fcfa0e610795365eb97f2409979c0611",
+      "bytes": 814
+    },
+    {
+      "path": "README.md",
+      "sha256": "ab9317e2aa7f0b9f3cc7fec8dfd96c766127d3890c583c8f7c307703d4bd1ca3",
+      "bytes": 837
+    },
+    {
+      "path": "RELEASE-NOTE-v1.0-FROZEN.md",
+      "sha256": "a1f4e7130200339d09e5e44925383d2b5ecddfeb56feda6a348ff9b99a1889fa",
+      "bytes": 422
+    },
+    {
+      "path": "docs/00-UI-SPECIFICATION.md",
+      "sha256": "1d981a1dec174d04794bb805bb946cce34bee008f8f90f3f9028d0a8ab123ede",
+      "bytes": 1687
+    },
+    {
+      "path": "docs/01-DESIGN-SYSTEM.md",
+      "sha256": "deaddc5f7de684d4e51b78f9db50fc442071ebf8a25bab279fa57e3f40ebe050",
+      "bytes": 2452
+    },
+    {
+      "path": "docs/02-INFORMATION-ARCHITECTURE-AND-NAVIGATION.md",
+      "sha256": "1e35dc6a566a3f8869696ec2e8b3a48b901ddd8726437f8ca08435cc8b75d846",
+      "bytes": 1234
+    },
+    {
+      "path": "docs/03-POS-EXPERIENCE.md",
+      "sha256": "9421715ce0759fc53d0d26013f03124c01988dd8c1365c4255d06a4067e2a0a9",
+      "bytes": 1735
+    },
+    {
+      "path": "docs/04-BACK-OFFICE-EXPERIENCE.md",
+      "sha256": "08c815e498f59bcb398c7390b63b285c9c9d9849ec8eddbb6716ea6a24041306",
+      "bytes": 861
+    },
+    {
+      "path": "docs/05-STATE-OFFLINE-RECOVERY.md",
+      "sha256": "7c78560f0ed496aee6cc372b376d003fab0ac0a9eec3cff06469a5151decbbcf",
+      "bytes": 921
+    },
+    {
+      "path": "docs/06-PERMISSIONS-OVERRIDES-AUDIT.md",
+      "sha256": "4869d83a41480e549e5efe976d487c14f75c5e8fdbbfd3030b1d56a16bfff731",
+      "bytes": 607
+    },
+    {
+      "path": "docs/07-KEYBOARD-ACCESSIBILITY.md",
+      "sha256": "281bda5fc44c1d8b072a0ffefe8b595d2bbc0eb56ad67b4e74dd358bc55c6765",
+      "bytes": 631
+    },
+    {
+      "path": "docs/08-LOCALIZATION-COUNTRY-UX.md",
+      "sha256": "c1033a2fa139ef073b4b04cd8ba4560974fa993ba5805173454b7e0a5469a31e",
+      "bytes": 592
+    },
+    {
+      "path": "docs/09-HARDWARE-UX.md",
+      "sha256": "b09c9e733c2445804aaaaf1002f0e6f8d52bca01ce6bd62e7615ff603a66af6b",
+      "bytes": 583
+    },
+    {
+      "path": "docs/10-ERROR-MESSAGE-STANDARD.md",
+      "sha256": "1d958160680dc653738b160b200e33d92718f9bfa6b78c56445b2ae5ceaf8656",
+      "bytes": 705
+    },
+    {
+      "path": "docs/11-RESPONSIVE-WINDOW-BEHAVIOR.md",
+      "sha256": "279070d3a0cb833d640f6396f918343aff7129364e70301bb40293d9eb1fc246",
+      "bytes": 500
+    },
+    {
+      "path": "docs/12-UI-API-TRACEABILITY.md",
+      "sha256": "07ad6a0202134c4158e978b313210e94703cc01517390edd8a62eb993e71bc64",
+      "bytes": 766
+    },
+    {
+      "path": "docs/13-SCREEN-INVENTORY.md",
+      "sha256": "7d1e0048edbff8f3904a7542484395857ea5bd9d447a8faab40d722083764a24",
+      "bytes": 10719
+    },
+    {
+      "path": "docs/14-ROLE-EXPERIENCE.md",
+      "sha256": "2f1bc2aee18805cdb47cfd5e76e9899f9219b51ee3028c8734ea5f49758fe675",
+      "bytes": 890
+    },
+    {
+      "path": "docs/15-OPEN-UI-DECISIONS.md",
+      "sha256": "5e3702771a0c5bd6e00290beadb5b258393d6ad877252cea88dbf73c11ba526e",
+      "bytes": 1056
+    },
+    {
+      "path": "docs/16-UI-ACCEPTANCE-BASELINE.md",
+      "sha256": "55aff733b70ce83370533b0d231da5526a6259a284eab5cf576b506586d64bbc",
+      "bytes": 1180
+    },
+    {
+      "path": "docs/17-SCREEN-STATE-CONTRACT.md",
+      "sha256": "a309f1d3f095bf2143c9cc50365459ca910bd72fa0aaaae5682846bab95a9f72",
+      "bytes": 1173
+    },
+    {
+      "path": "docs/18-COMMAND-AND-RECOVERY-CONTRACT.md",
+      "sha256": "f309ac15b5550ca53d10992a0095f869fa995a037e05cdfdedbed09c582a1593",
+      "bytes": 634
+    },
+    {
+      "path": "docs/19-AUTHORIZATION-UI-CONTRACT.md",
+      "sha256": "5f484b8744413c96ac3e541f01b3630f0cd84a9ded1fc397db8d4a9765c12865",
+      "bytes": 481
+    },
+    {
+      "path": "docs/20-MONEY-QUANTITY-CONTRACT.md",
+      "sha256": "3a59f7101c6b554518018ec6268dac0b0b061cb7b809602e7ef2dc5f359986bb",
+      "bytes": 714
+    },
+    {
+      "path": "docs/21-COUNTRY-CAPABILITY-UI-MATRIX.md",
+      "sha256": "ef7a3c04fabb5e95a3897e69e18cf02f869ab84efe8382f4e10e82c2a4beffd3",
+      "bytes": 1447
+    },
+    {
+      "path": "docs/22-HARDWARE-BOUNDARY.md",
+      "sha256": "0238e0a649f3a8825a7c75c64af117cfef1bfb302e6ce704fc6e097af9ab99ac",
+      "bytes": 470
+    },
+    {
+      "path": "docs/23-KEYBOARD-SHORTCUT-VERIFICATION.md",
+      "sha256": "6c79e8df06b9c90523698327413b27c4780181bbc4bfd85273c65b69e928ba7d",
+      "bytes": 579
+    },
+    {
+      "path": "docs/24-ACCESSIBILITY-ACCEPTANCE-MATRIX.md",
+      "sha256": "d01050a42933800ac0566f5f66a32879ef3d9cac1312c5bfb404ee20b6e1937a",
+      "bytes": 675
+    },
+    {
+      "path": "docs/25-DOCUMENT-LIFECYCLE-PATTERN.md",
+      "sha256": "399cf237b3f895394577c72bdbfcbda1a274839d46dea873716c0cd0787c0ba9",
+      "bytes": 782
+    },
+    {
+      "path": "registry/navigation-v1.0.json",
+      "sha256": "9ad2cbfc856ea25d9b8655ff4e14fa2ff5c73324c789936efadd63f0f33019e9",
+      "bytes": 1064
+    },
+    {
+      "path": "registry/roles-v1.0.json",
+      "sha256": "53a6b1890a866efb80ac365f25583f2083dc775eea6202776ea97cbc88dee931",
+      "bytes": 1163
+    },
+    {
+      "path": "registry/screens-v1.0.json",
+      "sha256": "628043f8aabd5db5fbbf3b5a7fdefdf9d2e7b7442f0dcfa43babcecd97116dd7",
+      "bytes": 100644
+    },
+    {
+      "path": "screens/UI-ACC-001-accounting-dashboard.md",
+      "sha256": "339c26175c56808c44117f6643adae7717d1f348cda9295bc099abe331725275",
+      "bytes": 4797
+    },
+    {
+      "path": "screens/UI-ACC-002-supplier-payables.md",
+      "sha256": "2c4ac8196e055bf477c56b86b3909323d24d77b16c7b69bca6288a1f12617933",
+      "bytes": 2889
+    },
+    {
+      "path": "screens/UI-ACC-003-supplier-payment.md",
+      "sha256": "8ecf86c44dcfe7315cbd49e8440cc3cd52db0401430694b3dcbce57ae99644b8",
+      "bytes": 3262
+    },
+    {
+      "path": "screens/UI-ACC-004-financial-accounts.md",
+      "sha256": "6e6edb5c0551c2410a5e9f8b1d2d4ddd9aecb3861c619f99dec78ab625ec7673",
+      "bytes": 3707
+    },
+    {
+      "path": "screens/UI-ACC-005-financial-transactions.md",
+      "sha256": "3b3f2434ec40b36d64cb351891c6bddc1e9599d48d6ae86651447d69728d6221",
+      "bytes": 3043
+    },
+    {
+      "path": "screens/UI-ACC-006-account-transfer.md",
+      "sha256": "813928d7d4c12b244a82574806fde5137588cc4c56a6633f53a6cddcb4acaef1",
+      "bytes": 4228
+    },
+    {
+      "path": "screens/UI-ACC-007-expense-categories.md",
+      "sha256": "bd972107af35a21776a23c8da8ba6d0c5ead9cff5448790dc36646bde6a547cd",
+      "bytes": 3691
+    },
+    {
+      "path": "screens/UI-ACC-008-expense-entry.md",
+      "sha256": "4dd6ecf32fb3702370626732ade2a28a013d94cced90472c53e5d265732e5b2e",
+      "bytes": 4130
+    },
+    {
+      "path": "screens/UI-ACC-009-reconciliation.md",
+      "sha256": "1d45ac17ffb94b21a744c3cc206feafeae9a58ef8a5bee845e9246bf4ef97c65",
+      "bytes": 4118
+    },
+    {
+      "path": "screens/UI-AUD-001-audit-explorer.md",
+      "sha256": "fa2e81eeb22b1c0fb3cc3823080fc39679ef2928b0d818114a820f1f6238d76b",
+      "bytes": 1861
+    },
+    {
+      "path": "screens/UI-BAK-001-backup-restore-center.md",
+      "sha256": "c2b4a5f4f939d551c90dd15002f8abdf0b00d0b7697ba3f3f00587143a559091",
+      "bytes": 2512
+    },
+    {
+      "path": "screens/UI-CAT-001-item-list.md",
+      "sha256": "b89d440205a21663fbff62d88a5606a5afbf9d973f1a00f689af73fb1e6dd85a",
+      "bytes": 3248
+    },
+    {
+      "path": "screens/UI-CAT-002-item-editor.md",
+      "sha256": "f33b56e4b89298ea59f36f9116963d8ba8cff5733943b5e16de3b6777695088e",
+      "bytes": 3173
+    },
+    {
+      "path": "screens/UI-CAT-003-barcode-manager.md",
+      "sha256": "8f10b2d393fff17a753bd4eef6ba60f72fd577fa5a7554a87a8439b10b6c2afb",
+      "bytes": 4001
+    },
+    {
+      "path": "screens/UI-CAT-004-uom-manager.md",
+      "sha256": "9e0863f27699242ed7a3e28c1c6feebd333dfef9a7d8b57a344b789f6c819f17",
+      "bytes": 3863
+    },
+    {
+      "path": "screens/UI-CAT-005-category-manager.md",
+      "sha256": "4b18379250b12440fad3da9efd462a93ed3949cd357fed97ca39e6833c1a907e",
+      "bytes": 3824
+    },
+    {
+      "path": "screens/UI-CAT-006-brand-manager.md",
+      "sha256": "1fbba80504fc632867acbc7f1314d42e7cce9f4ff1e2ceaa808a24e5c3a8fff9",
+      "bytes": 3855
+    },
+    {
+      "path": "screens/UI-CLD-001-cloud-organization-dashboard.md",
+      "sha256": "8b4caff2676a7fc5a0b92097db5bf8f8b913810cb485e3acdda2005c64aacbc9",
+      "bytes": 2500
+    },
+    {
+      "path": "screens/UI-CLD-002-store-sync-health.md",
+      "sha256": "eca587bb953a3e940a0daa37fafa743474802edabe1a37bb6780c4f5d25ebe2f",
+      "bytes": 2479
+    },
+    {
+      "path": "screens/UI-CLD-003-cloud-configuration-distribution.md",
+      "sha256": "b567166452d8dad7171d488a998a8accd07b15c998a0555df8231938412ef39f",
+      "bytes": 2493
+    },
+    {
+      "path": "screens/UI-CRD-001-credit-account.md",
+      "sha256": "084f21a4064c395fe9301706a9d6720a134b5375b0746747f7261538d36b06b2",
+      "bytes": 3417
+    },
+    {
+      "path": "screens/UI-CRD-002-customer-collection.md",
+      "sha256": "d388c4a84a13b33f3c559c263f01386d74fcdf97fc2ad05a8e6268c16c59f832",
+      "bytes": 3921
+    },
+    {
+      "path": "screens/UI-CRD-003-credit-ledger.md",
+      "sha256": "698c9ef0fbd9b6405675663d855325b6ecf2a8ce47b87a92561aed28d2e4912a",
+      "bytes": 3014
+    },
+    {
+      "path": "screens/UI-CSH-001-business-day.md",
+      "sha256": "91ea720a2441f3c7eba2fb62bb328375784b523850cd7e56303aff0d51974860",
+      "bytes": 3415
+    },
+    {
+      "path": "screens/UI-CSH-002-shift-monitor.md",
+      "sha256": "9c5116db548e17ba9768136bc26a69e7c921f18b3d8d2ba8d0eecd89ac18c28d",
+      "bytes": 3311
+    },
+    {
+      "path": "screens/UI-CSH-003-cash-movement-ledger.md",
+      "sha256": "0da0c84be58ef8bb8dc4bb1aa0fc42c1436bb8bda27c2f14ff0b4f5a7894ad20",
+      "bytes": 2966
+    },
+    {
+      "path": "screens/UI-CTRY-001-country-rule-status.md",
+      "sha256": "1aff3e392dc95fde14051c8d933386cab264ad22b6726835fba012890ad93f85",
+      "bytes": 2216
+    },
+    {
+      "path": "screens/UI-CTRY-002-country-rule-draft-validation.md",
+      "sha256": "90062b86b556cf7786f606b98362309df12f5ed500a86e03fde7ec604e4ddb2e",
+      "bytes": 2257
+    },
+    {
+      "path": "screens/UI-CUS-001-customer-list.md",
+      "sha256": "656d6923c034d26219afe8230ef36eadcd662df50120d7f79c981fbe477a98b6",
+      "bytes": 3026
+    },
+    {
+      "path": "screens/UI-CUS-002-customer-editor.md",
+      "sha256": "5fb941a6e523eac52d58853d5b0c64c208a81c2d798bdb32000c48b95a795979",
+      "bytes": 4552
+    },
+    {
+      "path": "screens/UI-EXP-001-export-center.md",
+      "sha256": "80c8bb9357ca262c770225473101e4a6bd38ef82d99614d5faa397e3dabce651",
+      "bytes": 3042
+    },
+    {
+      "path": "screens/UI-HW-001-hardware-setup.md",
+      "sha256": "7438f8b7e46483d7bedc26db3d3654219eaf0ad856d8d8cf285b62c8448ae5d6",
+      "bytes": 2311
+    },
+    {
+      "path": "screens/UI-IAM-001-users.md",
+      "sha256": "9b0d5e2bfb902de2100061d6f33fe062d9cd934260ddcaace8777d4f80d0b785",
+      "bytes": 5361
+    },
+    {
+      "path": "screens/UI-IAM-002-roles-permissions.md",
+      "sha256": "48938d217989abd289f7079b07c847adf95a9bf0972876b916f875cda6eb488e",
+      "bytes": 4264
+    },
+    {
+      "path": "screens/UI-IAM-003-override-history.md",
+      "sha256": "14aaef7ca61a21eabebe869f1f2fdfe24e19a4df884b9bdab7aafbef323b8855",
+      "bytes": 3173
+    },
+    {
+      "path": "screens/UI-IMP-001-import-center.md",
+      "sha256": "80d045f4030495ab522eb72a2af195043b711b9bbe871c50d9ce5bf820528750",
+      "bytes": 4915
+    },
+    {
+      "path": "screens/UI-INV-001-inventory-overview.md",
+      "sha256": "46e7f356671ccb0101594811b4bce979704b708c0dac82ce55b1d6b54e855334",
+      "bytes": 3585
+    },
+    {
+      "path": "screens/UI-INV-002-item-stock-detail.md",
+      "sha256": "26df9f5f8c4eb9e6cc3a5decf707b90747eabca8783ded10a9f003495809a51a",
+      "bytes": 2557
+    },
+    {
+      "path": "screens/UI-INV-003-stock-movement-explorer.md",
+      "sha256": "842a6215bcef43656f0e1add1d5f8fc18c07a1119e382e244659194708991ea4",
+      "bytes": 3410
+    },
+    {
+      "path": "screens/UI-INV-004-stock-count-list.md",
+      "sha256": "bc4b5244aae3f73db7935adfeb5785178f05c445c419bf4fb07299dc6a7f7ea5",
+      "bytes": 2531
+    },
+    {
+      "path": "screens/UI-INV-005-stock-count-workspace.md",
+      "sha256": "8e1cce7cd7ca38d3e6f5968783feda7e262f275779ef5bc88b5e94f4bf56d6a0",
+      "bytes": 3805
+    },
+    {
+      "path": "screens/UI-INV-006-reorder-low-stock.md",
+      "sha256": "e4659c14608fe1fd6f761ffb485b2d23c014d8346e58ef9ac63216ada7272b20",
+      "bytes": 2563
+    },
+    {
+      "path": "screens/UI-ORG-001-company-settings.md",
+      "sha256": "08377411b1c5b123af692733cb7aaf3da3b36f5cc76fb0a740d33c55a3ffbfda",
+      "bytes": 2898
+    },
+    {
+      "path": "screens/UI-ORG-002-stores.md",
+      "sha256": "0fbb099f75eb6876b48aa780654669d2191432af5e804f3ada7539b34df8680d",
+      "bytes": 3611
+    },
+    {
+      "path": "screens/UI-ORG-003-counters.md",
+      "sha256": "845db1f664093ed4734571faa45eea5a0b022dfc8fe708b99ba8c8605b1d6c17",
+      "bytes": 4443
+    },
+    {
+      "path": "screens/UI-POS-001-pos-sale-workspace.md",
+      "sha256": "b9dab0fffb2346559768d39d0b5de93680a2367062830d0f7411d2ba5b29d887",
+      "bytes": 5813
+    },
+    {
+      "path": "screens/UI-POS-002-item-search-scan-resolution.md",
+      "sha256": "7ad1c8f601ec599e65eb6b23c1a16219eb7d2d50b58e82631770b3f55197c259",
+      "bytes": 3182
+    },
+    {
+      "path": "screens/UI-POS-003-line-edit-drawer.md",
+      "sha256": "93deb05b8c22397c9bd0a9cb334afafc4f4f850bd732707e846641615b7cfed7",
+      "bytes": 3177
+    },
+    {
+      "path": "screens/UI-POS-004-customer-attach-quick-search.md",
+      "sha256": "0a8b7244d47498cad1aac663256054852e80ddc8923413a1d5eaa1fde51d3340",
+      "bytes": 3057
+    },
+    {
+      "path": "screens/UI-POS-005-hold-recall-sale.md",
+      "sha256": "6b3ae2d59696689cbc4bdd727fb0ed0538ca010209ece0a4589b2f89eb8b131c",
+      "bytes": 3492
+    },
+    {
+      "path": "screens/UI-POS-006-payment-workspace.md",
+      "sha256": "f6282f5d94ff6bdddca0e2d771d190985fc8505671332bf2da187a49f3c35568",
+      "bytes": 5119
+    },
+    {
+      "path": "screens/UI-POS-007-payment-recovery.md",
+      "sha256": "643737f10b2dd6b84d13c59cdcaea60bfc03a6cc7782a59fa84d23f5c1e04fcf",
+      "bytes": 3902
+    },
+    {
+      "path": "screens/UI-POS-008-sale-completion-receipt.md",
+      "sha256": "9e2418c3987131a2dff6fa12890a652fa4397866e6fbd88c5c1e226105ea8ae5",
+      "bytes": 3189
+    },
+    {
+      "path": "screens/UI-POS-009-sale-history.md",
+      "sha256": "e8efd32328207295f1e2fd54842595e4470e0430d5a25fadb0c062b255dfdadd",
+      "bytes": 3148
+    },
+    {
+      "path": "screens/UI-POS-010-receipt-reprint.md",
+      "sha256": "35842b6bdeeeb369ce8e1d8d7169c2afe8e7395f1ef87ae7ad3a93031f3d2249",
+      "bytes": 1954
+    },
+    {
+      "path": "screens/UI-POS-011-return-refund-workspace.md",
+      "sha256": "6e4d033f4b3dbe5eb2e2a756e997457ee84eebe095ba5411b662dd6ab7f140cd",
+      "bytes": 3814
+    },
+    {
+      "path": "screens/UI-POS-012-refund-recovery.md",
+      "sha256": "2a1a6d480ce842286ba10582e9c75df0bf3441b72f8ab72a7aa5426cf2df7c43",
+      "bytes": 6696
+    },
+    {
+      "path": "screens/UI-POS-013-credit-sale-review.md",
+      "sha256": "163428b0e306a1533ff45349f516a0a68b4f0d81de591c53418f2b50f064a317",
+      "bytes": 3046
+    },
+    {
+      "path": "screens/UI-POS-014-cash-in-cash-out.md",
+      "sha256": "f1aa13ca5faf2f2a980feda7713d1327250f2ba676865eb12a59f74161782c0e",
+      "bytes": 3458
+    },
+    {
+      "path": "screens/UI-POS-015-open-shift.md",
+      "sha256": "48016ea4681f9329832b1ef4b4ce93d376098553d0308e2e70279507dd308cf8",
+      "bytes": 2957
+    },
+    {
+      "path": "screens/UI-POS-016-shift-summary-close.md",
+      "sha256": "16ba224582963a942d3f35853b4e4470d4f023413fd26a568675d3380cfd873c",
+      "bytes": 3340
+    },
+    {
+      "path": "screens/UI-POS-017-manager-override-dialog.md",
+      "sha256": "f77386c13b04bce87996dd67eda8a7d79565bfc8dfbd5fad9454bd16cb40b25c",
+      "bytes": 3203
+    },
+    {
+      "path": "screens/UI-POS-018-printer-scanner-status.md",
+      "sha256": "2d5e8ca6dbb56611874cbdba05066d7753485193bdbb4b81c90633706fc5bdf1",
+      "bytes": 1957
+    },
+    {
+      "path": "screens/UI-PRI-001-price-schedule-list.md",
+      "sha256": "500c8beb6195a39f21a3e596e27145202a17313688d8e926603e9fcad67539a2",
+      "bytes": 3712
+    },
+    {
+      "path": "screens/UI-PRI-002-price-schedule-editor.md",
+      "sha256": "39cdc4492407d2fbfc8d5e0e9be616bf06db070193a2005a548417f3f0d6931b",
+      "bytes": 3259
+    },
+    {
+      "path": "screens/UI-PRI-003-price-lookup.md",
+      "sha256": "873aae78e0b960f4a29b9228b523417ae714139707f00ea50ddf1c88c474b486",
+      "bytes": 3239
+    },
+    {
+      "path": "screens/UI-PUR-001-purchase-order-list.md",
+      "sha256": "de96bcfcdbbed504eda6c04177c8b93b84e635a257b22fab9676ea94f587bac7",
+      "bytes": 3092
+    },
+    {
+      "path": "screens/UI-PUR-002-purchase-order-editor.md",
+      "sha256": "e9464a7ec27b58ea002fe1154e0600861b4267dd9a9a8f0b57f82cc39f3ae501",
+      "bytes": 3119
+    },
+    {
+      "path": "screens/UI-PUR-003-goods-receipt-list.md",
+      "sha256": "b2462a3c85a9908e25bb890fb2faaafa49aa0a0c2301caff22efee6f4b2b5310",
+      "bytes": 3105
+    },
+    {
+      "path": "screens/UI-PUR-004-goods-receipt-workspace.md",
+      "sha256": "f7f5623fd986f81e88a0748801ca2199005f84a36916e3b41cd981dad948f111",
+      "bytes": 3510
+    },
+    {
+      "path": "screens/UI-PUR-005-purchase-return-list.md",
+      "sha256": "31cfb6e1d6ec08db54575c2ac2a82c6b3c8efd82363fd1de24e60b9ba0f424e8",
+      "bytes": 3090
+    },
+    {
+      "path": "screens/UI-PUR-006-purchase-return-workspace.md",
+      "sha256": "b8ff437133b48b3ea1752f3bc42d8036d28a7378fc43dc35b78134d1577cefe1",
+      "bytes": 3746
+    },
+    {
+      "path": "screens/UI-RPT-001-reports-home.md",
+      "sha256": "d6b492c897ecd7ed7974f5b885bdfd59b4d03db901743b34e722d40abbb8bf8c",
+      "bytes": 2432
+    },
+    {
+      "path": "screens/UI-RPT-002-sales-report.md",
+      "sha256": "d69b96c565f4d74cc12b8fa37c38c69b886d63c195de719f842e10602f80fc8a",
+      "bytes": 2426
+    },
+    {
+      "path": "screens/UI-RPT-003-inventory-report.md",
+      "sha256": "2422cfa86937b21d4e7ff341d63eb41a5108137eb4f32f3968b6e45d0063f612",
+      "bytes": 2452
+    },
+    {
+      "path": "screens/UI-RPT-004-purchase-supplier-report.md",
+      "sha256": "a5e6db3ba10caddf278f0a09e531f6f9b0e2b5c27a0a66531ddf9622d8536401",
+      "bytes": 2462
+    },
+    {
+      "path": "screens/UI-RPT-005-credit-collection-report.md",
+      "sha256": "02b55d04fbe8d06e8df9188cbd4cb1acdc96d82e4ba389a15c8071853dc89b97",
+      "bytes": 2454
+    },
+    {
+      "path": "screens/UI-SUP-001-supplier-list.md",
+      "sha256": "faae4932c57ae8561707dc01fe5d2e3d88bc88065989a57d373060b91406e8bc",
+      "bytes": 5930
+    },
+    {
+      "path": "screens/UI-SUP-002-supplier-editor.md",
+      "sha256": "4089cacbc5a5bc8c07c7d22923626c7c887765fc6e88be225a294cbf0f396ff6",
+      "bytes": 5454
+    },
+    {
+      "path": "screens/UI-SUPT-001-support-diagnostics.md",
+      "sha256": "e0b5bc940e279ec209cbdbe1b18150339cef35e396087911c077355bd0c1b1ed",
+      "bytes": 2248
+    },
+    {
+      "path": "screens/UI-SYS-001-sign-in.md",
+      "sha256": "97b22e6c702ff1b7c6982ffcaa0ea26ecb6a27d19a827632f6c8999ec5af8820",
+      "bytes": 4317
+    },
+    {
+      "path": "screens/UI-SYS-002-unlock-with-pin.md",
+      "sha256": "4cb584ae423400306e64d1ec94478e4c51de1a6432ca75123b7261f1f17c55cf",
+      "bytes": 3571
+    },
+    {
+      "path": "screens/UI-SYS-003-home-role-dashboard.md",
+      "sha256": "89bfabedf5b7d5e299ac080032d69356723f69f96a498017c4e0718f2b5c8c03",
+      "bytes": 3055
+    },
+    {
+      "path": "screens/UI-SYS-004-offline-sync-center.md",
+      "sha256": "36591c8094e9426148cec085c2e8f55bad480a543bed07a1acc939902bba86e3",
+      "bytes": 3094
+    },
+    {
+      "path": "screens/UI-SYS-005-notifications-tasks.md",
+      "sha256": "9a20c5911dfb58c5ace828d1c76a69dadea4831d5b7037e0c73e3551ff8813de",
+      "bytes": 2476
+    },
+    {
+      "path": "screens/UI-SYS-006-global-search.md",
+      "sha256": "0602bf97a619f5c2d5880ec01941260384c052adf04ac2ad11a5347b9db259ba",
+      "bytes": 2507
+    },
+    {
+      "path": "screens/UI-SYS-007-user-profile-session.md",
+      "sha256": "0c3bc4523cc58186d3b0dc011c93552af982ba34d306c89153c420564c626916",
+      "bytes": 3186
+    },
+    {
+      "path": "screens/UI-SYS-008-about-version-compatibility.md",
+      "sha256": "461e31b465c6a9c3a0fe34c198a22cea616c6f777fe5062fa7d436fa1f43d874",
+      "bytes": 2502
+    },
+    {
+      "path": "traceability/API-TO-UI-DISPOSITION-v1.0.json",
+      "sha256": "7963b0e3f09c4db286eddb4a17af73f473c0bf2ec8cec0c0a8bb49d5a2091d38",
+      "bytes": 147464
+    },
+    {
+      "path": "traceability/ROLE-TO-UI-v1.0.json",
+      "sha256": "03b4ede5346639af26679da799c4497b8cb6167fa4002664c212f18dbe240dee",
+      "bytes": 28201
+    },
+    {
+      "path": "traceability/UI-TO-API-v1.0.json",
+      "sha256": "40c91273e82ce749f6fd50d11316620758e9d186ba00bffa73f4f7b52bd2148d",
+      "bytes": 21382
+    },
+    {
+      "path": "validation/UI-SPECIFICATION-v1.0-FROZEN.json",
+      "sha256": "fd468ddfb5c62778077f35ef3124ba47f34bf408e1734f223540b3853045a21d",
+      "bytes": 392
+    },
+    {
+      "path": "wireframes/BACK-OFFICE-DOCUMENT-DETAIL.md",
+      "sha256": "95d66ce17062d0232c1f769ca537f9dc8750fb40ac40ce6ebb549faffa5111b2",
+      "bytes": 1350
+    },
+    {
+      "path": "wireframes/BACK-OFFICE-SHELL.md",
+      "sha256": "313ae1493ec0b78c73d0cbdb5119b3bb83fa17aaecb7a283d78b18fe324bb40c",
+      "bytes": 2053
+    },
+    {
+      "path": "wireframes/GOODS-RECEIPT-WORKSPACE.md",
+      "sha256": "4f7e6c930ba9499911b15cd3c2f9d1ba503918fd6900d25317e025d01419be1d",
+      "bytes": 1782
+    },
+    {
+      "path": "wireframes/POS-PAYMENT-RECOVERY.md",
+      "sha256": "5e8dfad6a563c628cebaecc40e9f7ccbc13d90a07d6fc6b9f93598b62c1245a0",
+      "bytes": 1759
+    },
+    {
+      "path": "wireframes/POS-SALE-WORKSPACE.md",
+      "sha256": "d4dd1ed522e53dc9d6027a0076a66fc55c5c04fa3c5ab147289971b43fd7b487",
+      "bytes": 2444
+    },
+    {
+      "path": "wireframes/STOCK-COUNT-WORKSPACE.md",
+      "sha256": "69d2a050e7aa40213b93397dc31a2e50fd4ec40f103db27ec473a0e3bd28dd63",
+      "bytes": 1587
+    }
+  ]
+}

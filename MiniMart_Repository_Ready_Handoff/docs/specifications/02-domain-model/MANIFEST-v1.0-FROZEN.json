@@ -1,0 +1,139 @@
+{
+  "product": "MiniMart",
+  "artifact": "Domain Model",
+  "version": "1.0",
+  "status": "FROZEN",
+  "upstream": "MiniMart FRS/NFRS v1.0 FROZEN",
+  "upstream_sha256": "65bc5c014c3965e0001439caf8c5af7e1fb940e5b6b73582d51ed66a002a0ca1",
+  "freeze_candidate": "v0.2",
+  "final_freeze_review": "MM-DM-FRZ-REV-001",
+  "functional_requirements_checked": 1257,
+  "fr_namespaces": 22,
+  "bounded_contexts": 13,
+  "aggregate_roots": 35,
+  "decision_seams_preserved": 60,
+  "remaining_semantic_blockers": 0,
+  "remaining_major_findings": 0,
+  "files": [
+    {
+      "path": "FREEZE-RECORD.md",
+      "sha256": "dd637f9f63c703394fd4fe39f45d6c9fe53424c7f06509eb7da4e13c76d338fe",
+      "bytes": 1248
+    },
+    {
+      "path": "README.md",
+      "sha256": "23671abaa656e4e1189d65a7ae0488b275a87e68c902252b81c2e9f2cbe37609",
+      "bytes": 1562
+    },
+    {
+      "path": "diagrams/DOMAIN-CONTEXT-MAP.md",
+      "sha256": "65abb8dac2a0ef417be10bae9ee8e3d8d134e7818f6b3d24595d91ab5821a938",
+      "bytes": 1492
+    },
+    {
+      "path": "docs/01-CONTEXT-MAP.md",
+      "sha256": "8151281a3b8a9bb07946e0429046861dacda567579d3a7d5b74fa98dcbedd945",
+      "bytes": 3230
+    },
+    {
+      "path": "docs/02-SHARED-LANGUAGE-AND-VALUE-OBJECTS.md",
+      "sha256": "5366ac0e630bc78e79d94eb868907060584baba8ea46fad5b4f2b0f7822f6d36",
+      "bytes": 5130
+    },
+    {
+      "path": "docs/03-AGGREGATE-CATALOG.md",
+      "sha256": "c11a016ede1ce43584b30501f01eb1ce7e9b354aa2b3b28abcfd1104a0fdea9e",
+      "bytes": 6308
+    },
+    {
+      "path": "docs/04-COMMERCE-LIFECYCLES.md",
+      "sha256": "72203fb2acf3faf77758942bae525987c3e8213eb604c759580d7ac4e10f111c",
+      "bytes": 4027
+    },
+    {
+      "path": "docs/05-INVENTORY-AND-COSTING.md",
+      "sha256": "43067d84edb63e829f7cddd9394c28d8f8c0f4f267dd6612cc1149c1fa054910",
+      "bytes": 2924
+    },
+    {
+      "path": "docs/06-CREDIT-CASH-ACCOUNTING.md",
+      "sha256": "ded34385471d13f9386e1b6f036c223c6e6cd10227cb000d699ca0de2551b854",
+      "bytes": 3891
+    },
+    {
+      "path": "docs/07-DOMAIN-EVENTS.md",
+      "sha256": "c259584b75d2ccd13d915d6d36ae9ec32c0c0a34f294205e634efa4b1f13eb3f",
+      "bytes": 2556
+    },
+    {
+      "path": "docs/08-CROSS-CONTEXT-CONTRACTS.md",
+      "sha256": "7ccf3f506e06675f16d2a2a0bea705481d15981fb0e3dea1ec8c361e40429053",
+      "bytes": 2086
+    },
+    {
+      "path": "docs/09-OPEN-DECISION-SEAMS.md",
+      "sha256": "3f589fe780e9c942ab684142417f8b4d87c7ab7cbebda407a0da712c12ddac4c",
+      "bytes": 955
+    },
+    {
+      "path": "docs/10-DOMAIN-DESIGN-DECISIONS.md",
+      "sha256": "6c469f1b133c2ca3f3e11a83fcce9131e338909b2164d8e71c0ae6e92f4a962c",
+      "bytes": 3113
+    },
+    {
+      "path": "docs/11-TRANSACTION-AND-CONCURRENCY-MATRIX.md",
+      "sha256": "885fbe28a1b58cedc79fa30d0fe7a516d541d4741c718347b61647cb7116433a",
+      "bytes": 9028
+    },
+    {
+      "path": "docs/12-EVENT-CAUSALITY-AND-ORCHESTRATION.md",
+      "sha256": "87297ca82adbbcb252cab86ef2051442ae5f1928a3864376162e4db89ca163e6",
+      "bytes": 3556
+    },
+    {
+      "path": "docs/13-DECISION-SEAM-MATRIX.md",
+      "sha256": "dfd2bdd9f3672687819836fd70b3ced6e3e741ec0eaab7c1114ec87b47433932",
+      "bytes": 15483
+    },
+    {
+      "path": "docs/DOMAIN-MODEL.md",
+      "sha256": "bc27c6d5b14a0afc5931705748be6fd092011ca2a075ab2deb49703a0e6d78d4",
+      "bytes": 9458
+    },
+    {
+      "path": "history/DOMAIN-MODEL-DEEP-CONSISTENCY-REVIEW-v0.1.md",
+      "sha256": "624aa4a4c960c042e00cc0f55f1ad374b02085a9fe3f6fc3f160ab4f6e31e38d",
+      "bytes": 13428
+    },
+    {
+      "path": "history/DOMAIN-MODEL-v0.2-FREEZE-CANDIDATE-VALIDATION.md",
+      "sha256": "dbadb0268b700a0db9b449ab1bf961f6b5efd1f028202b8b8db6bd7abb669c5f",
+      "bytes": 2570
+    },
+    {
+      "path": "history/FINAL-DOMAIN-MODEL-FREEZE-REVIEW.md",
+      "sha256": "c449f57afa303951d71129e561b5086eb4ffe2283b7564afd70ff0de12974d70",
+      "bytes": 3398
+    },
+    {
+      "path": "history/REVIEW-FINDINGS-v0.1.json",
+      "sha256": "77590f64c3945587cbe51c725949442e42729b189585255609ffc3cd5510dc87",
+      "bytes": 495
+    },
+    {
+      "path": "traceability/FRS-TO-DOMAIN-MAP.md",
+      "sha256": "437435cc863d7baf3d1e09a2c4dc79f5a7fb665cda67c486199281173509c89d",
+      "bytes": 4943
+    },
+    {
+      "path": "validation/DOMAIN-MODEL-v1.0-FROZEN-VALIDATION.md",
+      "sha256": "674e579f26c8a336963846f1f5fb5ec65b0e28092d107a95a0a7c90ffb964ca4",
+      "bytes": 2078
+    },
+    {
+      "path": "validation/DOMAIN-REGISTRY-v1.0-FROZEN.json",
+      "sha256": "c85869f8295560fbdc6d1b4050d12855cf4988826531cc29576c00f543eb5113",
+      "bytes": 2193
+    }
+  ]
+}

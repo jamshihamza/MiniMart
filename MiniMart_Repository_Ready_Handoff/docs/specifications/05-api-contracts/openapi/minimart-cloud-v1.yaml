@@ -1,0 +1,565 @@
+openapi: 3.1.0
+info:
+  title: MiniMart Cloud API
+  version: 1.0.0
+  description: 'Cloud reporting/configuration surface only. Cloud does not expose
+    Store checkout/posting commands.
+
+
+    MiniMart API Contracts v1.0 FROZEN.'
+paths:
+  /cloud/v1/reports/{reportCode}:run:
+    post:
+      operationId: cloud_report_run
+      summary: Run approved cross-store report
+      security:
+      - cloudSession: []
+      parameters:
+      - name: reportCode
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CloudReportRequest'
+      responses:
+        '200':
+          description: Result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CloudReportResult'
+  /cloud/v1/configuration-bundles:
+    get:
+      operationId: cloud_config_list
+      summary: List approved configuration bundles
+      security:
+      - cloudSession: []
+      responses:
+        '200':
+          description: List
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagedResult'
+  /cloud/v1/configuration-bundles/{bundleId}:
+    get:
+      operationId: cloud_config_get
+      summary: Get versioned configuration bundle
+      security:
+      - cloudSession: []
+      parameters:
+      - name: bundleId
+        in: path
+        required: true
+        schema: &id001
+          type: string
+          format: uuid
+          description: UUIDv7-compatible identity.
+      responses:
+        '200':
+          description: Bundle
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConfigurationBundle'
+  /cloud/v1/country-packs:
+    get:
+      operationId: cloud_country_pack_list
+      summary: List verified country-pack descriptors
+      security:
+      - cloudSession: []
+      responses:
+        '200':
+          description: List
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagedResult'
+  /cloud/v1/country-packs/{countryCode}/{version}:
+    get:
+      operationId: cloud_country_pack_get
+      summary: Get verified country-pack descriptor
+      security:
+      - cloudSession: []
+      parameters:
+      - name: countryCode
+        in: path
+        required: true
+        schema:
+          type: string
+          pattern: ^[A-Z]{2}$
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Descriptor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CountryPackDescriptor'
+components:
+  securitySchemes:
+    cloudSession:
+      type: http
+      scheme: bearer
+  schemas:
+    Problem:
+      type: object
+      additionalProperties: false
+      required:
+      - type
+      - title
+      - status
+      - code
+      - category
+      - correlationId
+      properties:
+        type:
+          type: string
+        title:
+          type: string
+        status:
+          type: integer
+          minimum: 400
+          maximum: 599
+        detail:
+          anyOf:
+          - type: string
+          - type: 'null'
+        code:
+          $ref: '#/components/schemas/ProblemCode'
+        category:
+          type: string
+          enum:
+          - VALIDATION
+          - AUTHENTICATION
+          - AUTHORIZATION
+          - NOT_FOUND
+          - CONFLICT
+          - CONCURRENCY
+          - IDEMPOTENCY
+          - BUSINESS_RULE
+          - UNCERTAIN_EXTERNAL_OUTCOME
+          - INFRASTRUCTURE
+          - INCOMPATIBLE_CLIENT
+          - UNSUPPORTED_POLICY
+        correlationId:
+          type: string
+        fieldErrors:
+          type: array
+          items:
+            $ref: '#/components/schemas/FieldError'
+        recovery:
+          anyOf:
+          - $ref: '#/components/schemas/RecoveryHint'
+          - type: 'null'
+    ProblemCode:
+      type: string
+      enum:
+      - AUTHENTICATION_REQUIRED
+      - BUSINESS_DAY_STATE_CHANGED
+      - BUSINESS_RULE_REJECTED
+      - CREDIT_CHANGED
+      - CREDIT_POLICY_REJECTED
+      - DEVICE_NOT_TRUSTED
+      - DEVICE_REVOKED
+      - IDEMPOTENCY_KEY_REUSED_WITH_DIFFERENT_REQUEST
+      - IMPORT_CANCEL_NOT_SAFE
+      - IMPORT_VALIDATION_FAILED
+      - INCOMPATIBLE_CLIENT
+      - INSUFFICIENT_STOCK
+      - INVALID_REQUEST
+      - OVERRIDE_REQUIRED
+      - PAYMENT_ALREADY_COMMITTED
+      - PAYMENT_RECOVERY_REQUIRED
+      - PAYMENT_UNCERTAIN
+      - PERMISSION_DENIED
+      - POSTED_DOCUMENT_IMMUTABLE
+      - PRECONDITION_FAILED
+      - REASON_REQUIRED
+      - REFUND_OBLIGATION_OUTSTANDING
+      - REFUND_UNCERTAIN
+      - RESOURCE_NOT_FOUND
+      - RETURN_ELIGIBILITY_CHANGED
+      - SERVICE_UNAVAILABLE
+      - SESSION_EXPIRED
+      - SESSION_LOCKED
+      - SHIFT_REQUIRED
+      - SHIFT_STATE_CHANGED
+      - STALE_RESOURCE_VERSION
+      - STOCK_CHANGED
+      - SYNC_MESSAGE_INCOMPATIBLE
+      - SYNC_OWNERSHIP_VIOLATION
+      - UNSUPPORTED_POLICY
+      - UPGRADE_REQUIRED
+      - VALIDATION_FAILED
+    FieldError:
+      type: object
+      additionalProperties: false
+      required:
+      - field
+      - code
+      properties:
+        field:
+          type: string
+        code:
+          type: string
+        messageKey:
+          type: string
+        detail:
+          anyOf:
+          - type: string
+          - type: 'null'
+    RecoveryHint:
+      type: object
+      additionalProperties: false
+      required:
+      - action
+      properties:
+        action:
+          type: string
+          enum:
+          - RETRY_SAME_IDEMPOTENCY_KEY
+          - REFRESH_RESOURCE
+          - REAUTHENTICATE
+          - REQUEST_OVERRIDE
+          - OPEN_RECOVERY_RESOURCE
+          - UPGRADE_CLIENT
+          - CONTACT_SUPPORT
+          - NONE
+        resource:
+          anyOf:
+          - $ref: '#/components/schemas/ResourceRef'
+          - type: 'null'
+        retryAfterSeconds:
+          anyOf:
+          - type: integer
+            minimum: 0
+          - type: 'null'
+    Uuid: *id001
+    ResourceRef:
+      type: object
+      additionalProperties: false
+      required:
+      - type
+      - id
+      properties:
+        type:
+          type: string
+          minLength: 1
+        id:
+          $ref: '#/components/schemas/Uuid'
+        documentNumber:
+          anyOf:
+          - type: string
+          - type: 'null'
+        version:
+          anyOf:
+          - type: integer
+            minimum: 0
+          - type: 'null'
+    PageInfo:
+      type: object
+      additionalProperties: false
+      required:
+      - hasMore
+      - limit
+      properties:
+        nextCursor:
+          anyOf:
+          - type: string
+          - type: 'null'
+        hasMore:
+          type: boolean
+        limit:
+          type: integer
+          minimum: 1
+          maximum: 200
+    ResourceSummary:
+      type: object
+      additionalProperties: false
+      required:
+      - type
+      - id
+      properties:
+        type:
+          type: string
+        id:
+          $ref: '#/components/schemas/Uuid'
+        version:
+          anyOf:
+          - type: integer
+            minimum: 0
+          - type: 'null'
+        status:
+          anyOf:
+          - type: string
+          - type: 'null'
+        code:
+          anyOf:
+          - type: string
+          - type: 'null'
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+        documentNumber:
+          anyOf:
+          - type: string
+          - type: 'null'
+        occurredAt:
+          anyOf:
+          - &id002
+            type: string
+            format: date-time
+          - type: 'null'
+        businessDate:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+        amount:
+          anyOf:
+          - $ref: '#/components/schemas/Money'
+          - type: 'null'
+    PagedResult:
+      type: object
+      additionalProperties: false
+      required:
+      - items
+      - page
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceSummary'
+        page:
+          $ref: '#/components/schemas/PageInfo'
+    CloudReportRequest:
+      type: object
+      additionalProperties: false
+      required: []
+      properties:
+        filters:
+          type: array
+          items:
+            type: object
+            additionalProperties: false
+            required:
+            - field
+            - operator
+            - value
+            properties:
+              field:
+                type: string
+              operator:
+                type: string
+              value:
+                type: string
+        groupingMode:
+          anyOf:
+          - type: string
+          - type: 'null'
+        cursor:
+          anyOf:
+          - type: string
+          - type: 'null'
+        limit:
+          type: integer
+          minimum: 1
+          maximum: 500
+    CloudReportResult:
+      type: object
+      additionalProperties: false
+      required:
+      - columns
+      - rows
+      properties:
+        columns:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReportColumn'
+        rows:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReportRow'
+        nextCursor:
+          anyOf:
+          - type: string
+          - type: 'null'
+    ConfigurationBundle:
+      type: object
+      additionalProperties: false
+      required:
+      - activationState
+      - bundleId
+      - effectiveFrom
+      - entries
+      - scope
+      - version
+      properties:
+        bundleId: *id001
+        scope:
+          type: string
+        version:
+          type: string
+        effectiveFrom: *id002
+        entries:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConfigurationEntry'
+        activationState:
+          type: string
+          enum:
+          - STAGED
+          - VALIDATED
+          - ACTIVE
+          - REJECTED
+    CountryPackDescriptor:
+      type: object
+      additionalProperties: false
+      required:
+      - countryCode
+      - version
+      - effectiveFrom
+      - verified
+      properties:
+        countryCode:
+          type: string
+          pattern: ^[A-Z]{2}$
+        version:
+          type: string
+        effectiveFrom: *id002
+        verified:
+          type: boolean
+    Money:
+      type: object
+      additionalProperties: false
+      required:
+      - amount
+      - currency
+      properties:
+        amount:
+          $ref: '#/components/schemas/Decimal'
+        currency:
+          type: string
+          pattern: ^[A-Z]{3}$
+    Decimal:
+      type: string
+      pattern: ^-?(0|[1-9]\d*)(\.\d+)?$
+      description: Exact decimal encoded as JSON string.
+    ReportColumn:
+      type: object
+      additionalProperties: false
+      required:
+      - key
+      - labelKey
+      - type
+      properties:
+        key:
+          type: string
+        labelKey:
+          type: string
+        type:
+          type: string
+          enum:
+          - STRING
+          - DECIMAL
+          - MONEY
+          - DATE
+          - DATETIME
+          - INTEGER
+          - BOOLEAN
+    ReportRow:
+      type: object
+      additionalProperties: false
+      required:
+      - cells
+      properties:
+        cells:
+          type: array
+          items:
+            type: string
+    ConfigurationDescriptor:
+      type: object
+      additionalProperties: false
+      required:
+      - key
+      - owner
+      - allowedScopes
+      - valueType
+      - sensitivity
+      - activationBehavior
+      - overridePolicy
+      properties:
+        key:
+          type: string
+        owner:
+          type: string
+          enum:
+          - BUILD
+          - MACHINE
+          - ENROLLMENT
+          - COMPANY
+          - STORE
+          - COUNTRY_POLICY
+        allowedScopes:
+          type: array
+          minItems: 1
+          items:
+            type: string
+            enum:
+            - MACHINE
+            - COMPANY
+            - STORE
+            - COUNTER
+            - COUNTRY
+        valueType:
+          type: string
+          enum:
+          - STRING
+          - INTEGER
+          - DECIMAL
+          - BOOLEAN
+          - ENUM
+          - JSON_TEXT
+          - SECRET_REFERENCE
+        sensitivity:
+          type: string
+          enum:
+          - PUBLIC
+          - INTERNAL
+          - SENSITIVE
+          - SECRET_REFERENCE
+        activationBehavior:
+          type: string
+          enum:
+          - IMMEDIATE
+          - STAGED_RESTART
+          - STAGED_BUSINESS_BOUNDARY
+          - STAGED_MANUAL_ACTIVATION
+        overridePolicy:
+          type: string
+          enum:
+          - NO_OVERRIDE
+          - LOWER_SCOPE_MAY_OVERRIDE
+          - OWNER_APPROVAL_REQUIRED
+    ConfigurationEntry:
+      type: object
+      additionalProperties: false
+      required:
+      - descriptor
+      - valueCanonicalText
+      properties:
+        descriptor:
+          $ref: '#/components/schemas/ConfigurationDescriptor'
+        valueCanonicalText:
+          type: string

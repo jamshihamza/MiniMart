@@ -1,0 +1,117 @@
+{
+  "document_id": "MM-DM-REG-001-FROZEN",
+  "version": "1.0",
+  "status": "FROZEN",
+  "bounded_contexts": [
+    {
+      "name": "Organization",
+      "aggregates": [
+        "Company",
+        "Store",
+        "Counter"
+      ]
+    },
+    {
+      "name": "Identity & Access",
+      "aggregates": [
+        "UserAccount",
+        "Role",
+        "OverrideAuthorization",
+        "SupportSession"
+      ]
+    },
+    {
+      "name": "Catalog",
+      "aggregates": [
+        "Item",
+        "Category",
+        "Brand"
+      ]
+    },
+    {
+      "name": "Pricing",
+      "aggregates": [
+        "ItemPriceSchedule"
+      ]
+    },
+    {
+      "name": "Procurement",
+      "aggregates": [
+        "Supplier",
+        "PurchaseOrder",
+        "GoodsReceipt",
+        "PurchaseReturn"
+      ]
+    },
+    {
+      "name": "Inventory",
+      "aggregates": [
+        "InventoryPosition",
+        "StockCount"
+      ]
+    },
+    {
+      "name": "Sales",
+      "aggregates": [
+        "Sale"
+      ]
+    },
+    {
+      "name": "Payments",
+      "aggregates": [
+        "CheckoutPayment",
+        "RefundExecution"
+      ]
+    },
+    {
+      "name": "Returns",
+      "aggregates": [
+        "SalesReturn"
+      ]
+    },
+    {
+      "name": "Customer & Credit",
+      "aggregates": [
+        "Customer",
+        "CreditAccount",
+        "CustomerCollection"
+      ]
+    },
+    {
+      "name": "Cash & Business Day",
+      "aggregates": [
+        "CashierShift",
+        "BusinessDay"
+      ]
+    },
+    {
+      "name": "Accounting-Lite",
+      "aggregates": [
+        "SupplierPayable",
+        "SupplierPayment",
+        "FinancialAccount",
+        "FinancialTransaction",
+        "AccountTransfer",
+        "ExpenseCategory",
+        "Expense",
+        "ReconciliationSession"
+      ]
+    },
+    {
+      "name": "Country Policy",
+      "aggregates": [
+        "CountryRuleSet"
+      ]
+    }
+  ],
+  "aggregate_root_count": 35,
+  "decision_seams_mapped": 60,
+  "review_remediations": {
+    "freeze_blockers": 5,
+    "major_findings": 7,
+    "remaining_blockers": 0,
+    "remaining_major_findings": 0
+  },
+  "freeze_source": "Domain Model v0.2 Freeze Candidate",
+  "final_freeze_review": "MM-DM-FRZ-REV-001"
+}

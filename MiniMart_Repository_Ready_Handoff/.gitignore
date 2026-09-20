@@ -6,8 +6,8 @@ coverage/
 .env.*
 !.env.example
 *.log
+target/
 .DS_Store
 Thumbs.db
-target/
-.vscode/
 .idea/
+.vscode/

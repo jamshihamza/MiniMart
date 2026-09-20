@@ -1,0 +1,77 @@
+[
+  {
+    "api": "Store.defaultLanguage",
+    "db": "org.stores.default_language_code",
+    "treatment": "PERSISTED"
+  },
+  {
+    "api": "Store.receiptIdentity",
+    "db": "org.stores receipt fields",
+    "treatment": "PERSISTED"
+  },
+  {
+    "api": "Store.contact",
+    "db": "org.stores contact/address",
+    "treatment": "PERSISTED"
+  },
+  {
+    "api": "Store.storeNodeAssociation",
+    "db": "integration.store_service_instances",
+    "treatment": "DERIVED_READ_ONLY"
+  },
+  {
+    "api": "Item.shortDescription",
+    "db": "catalog.items.short_description",
+    "treatment": "PERSISTED"
+  },
+  {
+    "api": "Item.stockManaged",
+    "db": "catalog.items.stock_managed",
+    "treatment": "PERSISTED"
+  },
+  {
+    "api": "Item UoM roles",
+    "db": "catalog.items *_item_uom_id",
+    "treatment": "PERSISTED"
+  },
+  {
+    "api": "Item.quantityPrecision",
+    "db": "catalog.item_uoms.quantity_precision",
+    "treatment": "DERIVED_FROM_SALES_UOM"
+  },
+  {
+    "api": "Supplier contacts/terms/country/notes",
+    "db": "procurement.suppliers + supplier_contacts",
+    "treatment": "PERSISTED"
+  },
+  {
+    "api": "Customer type/address/notes",
+    "db": "customer.customers",
+    "treatment": "PERSISTED"
+  },
+  {
+    "api": "Customer.communicationConsent",
+    "db": "Phase 3+ verification gate",
+    "treatment": "REMOVED_FROM_V1_CORE_API"
+  },
+  {
+    "api": "Pricing context/reason/reference",
+    "db": "pricing.item_price_entries",
+    "treatment": "PERSISTED"
+  },
+  {
+    "api": "Credit terms",
+    "db": "customer.credit_accounts",
+    "treatment": "PERSISTED"
+  },
+  {
+    "api": "Credit.pendingExposure",
+    "db": "runtime credit evaluation",
+    "treatment": "DERIVED_READ_ONLY"
+  },
+  {
+    "api": "Sales Return reason/note",
+    "db": "returns.sales_returns",
+    "treatment": "PERSISTED"
+  }
+]

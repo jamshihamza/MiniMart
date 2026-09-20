@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MiniMart Payment Provider Adapter Port v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "adapterVersion",
+    "capabilities",
+    "request"
+  ],
+  "properties": {
+    "adapterVersion": {
+      "const": "1.0"
+    },
+    "capabilities": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": [
+          "PAYMENT_INITIATE",
+          "PAYMENT_QUERY",
+          "PAYMENT_CANCEL",
+          "REFUND_INITIATE",
+          "REFUND_QUERY"
+        ]
+      }
+    },
+    "request": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "operation",
+        "requestIdentity",
+        "amount",
+        "currency"
+      ],
+      "properties": {
+        "operation": {
+          "type": "string",
+          "enum": [
+            "PAYMENT_INITIATE",
+            "PAYMENT_QUERY",
+            "PAYMENT_CANCEL",
+            "REFUND_INITIATE",
+            "REFUND_QUERY"
+          ]
+        },
+        "requestIdentity": {
+          "type": "string"
+        },
+        "amount": {
+          "type": "string",
+          "pattern": "^-?(0|[1-9]\\d*)(\\.\\d+)?$",
+          "description": "Exact decimal encoded as JSON string."
+        },
+        "currency": {
+          "type": "string",
+          "pattern": "^[A-Z]{3}$"
+        },
+        "providerReference": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    }
+  },
+  "$defs": {
+    "result": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "outcome",
+        "requestIdentity"
+      ],
+      "properties": {
+        "outcome": {
+          "type": "string",
+          "enum": [
+            "CONFIRMED",
+            "FAILED",
+            "PENDING",
+            "UNCERTAIN",
+            "CANCELLED"
+          ]
+        },
+        "requestIdentity": {
+          "type": "string"
+        },
+        "providerReference": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "safeToRetry": {
+          "type": "boolean"
+        }
+      }
+    }
+  }
+}

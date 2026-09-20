@@ -1,0 +1,73 @@
+{
+  "POS": [
+    "UI-POS-001",
+    "UI-POS-009",
+    "UI-POS-011",
+    "UI-POS-015",
+    "UI-POS-016"
+  ],
+  "Home": [
+    "UI-SYS-003",
+    "UI-SYS-005"
+  ],
+  "Sales": [
+    "UI-POS-009",
+    "UI-POS-011"
+  ],
+  "Catalog": [
+    "UI-CAT-001",
+    "UI-CAT-005",
+    "UI-CAT-006",
+    "UI-PRI-001"
+  ],
+  "Purchasing": [
+    "UI-SUP-001",
+    "UI-PUR-001",
+    "UI-PUR-003",
+    "UI-PUR-005"
+  ],
+  "Inventory": [
+    "UI-INV-001",
+    "UI-INV-002",
+    "UI-INV-004",
+    "UI-INV-006"
+  ],
+  "Customers": [
+    "UI-CUS-001",
+    "UI-CRD-001",
+    "UI-CRD-002"
+  ],
+  "Cash": [
+    "UI-CSH-001",
+    "UI-CSH-002",
+    "UI-CSH-003"
+  ],
+  "Accounting": [
+    "UI-ACC-001",
+    "UI-ACC-002",
+    "UI-ACC-004",
+    "UI-ACC-008",
+    "UI-ACC-009"
+  ],
+  "Reports": [
+    "UI-RPT-001"
+  ],
+  "Administration": [
+    "UI-IAM-001",
+    "UI-IAM-002",
+    "UI-AUD-001"
+  ],
+  "Settings": [
+    "UI-ORG-001",
+    "UI-ORG-002",
+    "UI-ORG-003",
+    "UI-CTRY-001",
+    "UI-HW-001",
+    "UI-BAK-001",
+    "UI-SUPT-001"
+  ],
+  "Tools": [
+    "UI-IMP-001",
+    "UI-EXP-001"
+  ]
+}

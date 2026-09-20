@@ -1,0 +1,155 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MiniMart Hardware Port v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "portVersion",
+    "capabilities",
+    "command"
+  ],
+  "properties": {
+    "portVersion": {
+      "const": "1.0"
+    },
+    "capabilities": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": [
+          "PRINTER",
+          "SCANNER",
+          "SCALE",
+          "CUSTOMER_DISPLAY",
+          "CASH_DRAWER"
+        ]
+      }
+    },
+    "command": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "type",
+            "printJobId",
+            "receipt"
+          ],
+          "properties": {
+            "type": {
+              "const": "PRINT_RECEIPT"
+            },
+            "printJobId": {
+              "type": "string",
+              "format": "uuid",
+              "description": "UUIDv7-compatible identity."
+            },
+            "receipt": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "documentId",
+                "renderPayload"
+              ],
+              "properties": {
+                "documentId": {
+                  "type": "string",
+                  "format": "uuid",
+                  "description": "UUIDv7-compatible identity."
+                },
+                "renderPayload": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "type"
+          ],
+          "properties": {
+            "type": {
+              "const": "READ_SCALE"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "type",
+            "text"
+          ],
+          "properties": {
+            "type": {
+              "const": "DISPLAY_TEXT"
+            },
+            "text": {
+              "type": "string"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "type"
+          ],
+          "properties": {
+            "type": {
+              "const": "OPEN_DRAWER"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "$defs": {
+    "result": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "outcome"
+      ],
+      "properties": {
+        "outcome": {
+          "type": "string",
+          "enum": [
+            "SUCCESS",
+            "FAILED",
+            "TIMEOUT",
+            "CANCELLED",
+            "UNKNOWN"
+          ]
+        },
+        "errorCategory": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "NOT_CONNECTED",
+            "BUSY",
+            "UNSUPPORTED",
+            "DEVICE_ERROR",
+            "DRIVER_ERROR",
+            "INVALID_DATA",
+            "TIMEOUT",
+            "UNKNOWN",
+            null
+          ]
+        },
+        "deviceReference": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,2306 @@
+{
+  "product": "MiniMart",
+  "artifact": "Repository-Ready Specification and Codex Handoff",
+  "version": "2",
+  "supersedes": "MiniMart_Repository_Ready_Handoff.zip",
+  "sourceCounts": {
+    "brd_frs_nfrs": 61,
+    "domain": 25,
+    "database": 62,
+    "architecture": 87,
+    "api": 51,
+    "ui": 132,
+    "backlog": 9
+  },
+  "criticalValidation": {
+    "requiredFiles": [
+      "docs/specifications/03-database-model/schema/REFERENCE-DDL-v1.2-FROZEN.sql",
+      "docs/specifications/04-architecture/docs/09-MONOREPO-AND-PACKAGE-STRUCTURE.md",
+      "docs/specifications/05-api-contracts/openapi/minimart-store-node-v1.yaml",
+      "docs/specifications/05-api-contracts/openapi/minimart-sync-v1.yaml",
+      "docs/specifications/05-api-contracts/openapi/minimart-cloud-v1.yaml",
+      "docs/specifications/06-ui-specification/docs/00-UI-SPECIFICATION.md",
+      "docs/specifications/06-ui-specification/registry/screens-v1.0.json",
+      "docs/backlog/registry/backlog-v0.1.json"
+    ],
+    "missing": [],
+    "status": "PASS"
+  },
+  "files": [
+    {
+      "path": ".gitignore",
+      "sha256": "140a6ebc37594325798fc7ea08c91c08c89bcc8ec5d3307869204a45c6486c00",
+      "bytes": 113
+    },
+    {
+      "path": "AGENTS.md",
+      "sha256": "19d2920278fc97908972609f3b723d271a8bd01acf5404d6fd86d62aca610008",
+      "bytes": 1765
+    },
+    {
+      "path": "PHASE-0-INSTRUCTIONS.md",
+      "sha256": "05b4be71fd11d76f05ac10bffde46723b40bce805e5a9325b4204266d163d04d",
+      "bytes": 1041
+    },
+    {
+      "path": "PROJECT-CONTEXT.md",
+      "sha256": "7d81ba0ac24e929904e35c43617045bc8749d7fc83bdd99b8116316216e2760f",
+      "bytes": 705
+    },
+    {
+      "path": "README.md",
+      "sha256": "a01a52fa7307fe475c7f2eb8d681e16f3cb8560cf7b8efbbfe7ce635753794b8",
+      "bytes": 591
+    },
+    {
+      "path": "SPECIFICATION-INDEX.md",
+      "sha256": "fdf16fd8b5f0a8dc32c21811a24f10480d515495f6ac0b8bbfb82c4496819069",
+      "bytes": 1751
+    },
+    {
+      "path": "apps/backoffice/.gitkeep",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "apps/cloud/.gitkeep",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "apps/pos-terminal/.gitkeep",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "apps/store-node/.gitkeep",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "crates/hw-display/.gitkeep",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "crates/hw-printer/.gitkeep",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "crates/hw-scale/.gitkeep",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "crates/hw-scanner/.gitkeep",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "database/migrations/.gitkeep",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "docs/backlog/MANIFEST-v0.1.json",
+      "sha256": "3263f181d6a6fd313732c893d60f561c2fcb24b582b0ff17b0a247574a786b57",
+      "bytes": 1490
+    },
+    {
+      "path": "docs/backlog/README.md",
+      "sha256": "b9403211d5b635565b73c231acb50440b122add5a1d12632a1774791f25776f4",
+      "bytes": 617
+    },
+    {
+      "path": "docs/backlog/docs/01-IMPLEMENTATION-SEQUENCE.md",
+      "sha256": "de2be7c8ec8c9598365606a43b679332145ed95b9ccfe3490b89cf14cf68c781",
+      "bytes": 616
+    },
+    {
+      "path": "docs/backlog/docs/02-DEFINITION-OF-DONE.md",
+      "sha256": "c9f475531bf34a7a3aa859d7bac2667a3b1ad8d29111e89f800cacbe1033d8c4",
+      "bytes": 731
+    },
+    {
+      "path": "docs/backlog/docs/03-AI-AGENT-EXECUTION-RULES.md",
+      "sha256": "d404614cbf50b2b47df9fe6fa7ece0327397ec35f199ee5719b1077199f890af",
+      "bytes": 777
+    },
+    {
+      "path": "docs/backlog/docs/04-BACKLOG-CATALOG.md",
+      "sha256": "493099f1a32cfee03ee179758815434e5b029e1291d8ac01e306d359202bda89",
+      "bytes": 12007
+    },
+    {
+      "path": "docs/backlog/registry/backlog-v0.1.json",
+      "sha256": "50dbcb2f94234cc563f873bc4ab41a15bc3f636903419df50834023a75303a85",
+      "bytes": 81838
+    },
+    {
+      "path": "docs/backlog/registry/epics-v0.1.json",
+      "sha256": "e6e5474eda6ed424d99c680a06a3f5e9988002578870424927208b76574bb560",
+      "bytes": 2299
+    },
+    {
+      "path": "docs/backlog/validation/BACKLOG-v0.1-VALIDATION.json",
+      "sha256": "ed594c83ac5dc3640db9a8b09425f1dab9aac527555fb6d4b27342da4428c346",
+      "bytes": 235
+    },
+    {
+      "path": "docs/specifications/01-business-and-functional/CHANGELOG.md",
+      "sha256": "55e334cfa1c716e08665b1cac26df6252b16eda4210d6550c5a85ebddd4525b6",
+      "bytes": 4650
+    },
+    {
+      "path": "docs/specifications/01-business-and-functional/FREEZE-MANIFEST.json",
+      "sha256": "091d4eafc3d4c283aa70a462f894408840b21c8a12c882a05320e784615e2b03",
+      "bytes": 10844
+    },
+    {
+      "path": "docs/specifications/01-business-and-functional/FREEZE-MANIFEST.md",
+      "sha256": "d35db3d84bf376af64e49e03cbf4b0140de23ad3a482e467ab1602e64e958200",
+      "bytes": 939
+    },
+    {
+      "path": "docs/specifications/01-business-and-functional/README.md",
+      "sha256": "fde19cde69afbc812343d809279baae2634bfb18a73735edc09d090ebf9b45b2",
+      "bytes": 830
+    },
+    {
+      "path": "docs/specifications/01-business-and-functional/docs/01-business/BRD.md",
+      "sha256": "5dc223fc6b5f0a25d0e8240a37522af51d9296c1ff931377c400386d089d32df",
+      "bytes": 25200
+    },
+    {
+      "path": "docs/specifications/01-business-and-functional/docs/02-functional/00-common/common-foundation.md",
+      "sha256": "3706734e7a92b4c48b1f70e2f2c7a283bb97e66bd934e7bac2b9c0056390f92a",
+      "bytes": 17997
+    },
+    {
+      "path": "docs/specifications/01-business-and-functional/docs/02-functional/01-organization/organization.md",
+      "sha256": "3b6681d7f05ddf04e2c7f9d6bfd61305b82f74d6d43e94bbdb8f9a1e22dba9ff",
+      "bytes": 17400
+    },
+    {
+      "path": "docs/specifications/01-business-and-functional/docs/02-functional/02-identity-access/identity-access.md",
+      "sha256": "c3d5865ecec247bb48d74ee67fc0f2ca738075226765e3dba3e97fb54152c052",
+      "bytes": 20409
+    },
+    {
+      "path": "docs/specifications/01-business-and-functional/docs/02-functional/03-catalog/catalog.md",
+      "sha256": "187aef495f9113cef6ba992597a70dba9132cdcfdf43bf134954db587b719073",
+      "bytes": 26960
+    },
+    {
+      "path": "docs/specifications/01-business-and-functional/docs/02-functional/04-pricing/pricing.md",
+      "sha256": "45fe3a0351111361c9d3b87441136ab921c4ce517907401feb9430d927311a40",
+      "bytes": 17724
+    },
+    {
+      "path": "docs/specifications/01-business-and-functional/docs/02-functional/05-suppliers/suppliers.md",
+      "sha256": "f2661bd5fb562388be39d4c49193db9d7f8a5ba07264b240dc889181e13dfeb9",
+      "bytes": 16846
+    },
+    {
+      "path": "docs/specifications/01-business-and-functional/docs/02-functional/06-purchasing/goods-receipt.md",
+      "sha256": "1cd15ad9755a4e8cd81835945f0b7b97888f5dfbc455c0359956d8ba785d1f7b",
+      "bytes": 10796
+    },
+    {
+      "path": "docs/specifications/01-business-and-functional/docs/02-functional/06-purchasing/purchase-order.md",
+      "sha256": "d70f3a92f6617e81a0909c5a9f90a893beedb2beb4825c2ca55f04863247ec12",
+      "bytes": 7204
+    },
+    {
+      "path": "docs/specifications/01-business-and-functional/docs/02-functional/06-purchasing/purchase-return.md",
+      "sha256": "6e8b9892162b4d08b8d3eda5ba08e673fe4efe00a5435dc937a9ff481261dcee",
+      "bytes": 6990
+    },
+    {
+      "path": "docs/specifications/01-business-and-functional/docs/02-functional/06-purchasing/purchasing.md",
+      "sha256": "13f767ef8b2b5456e3366a6766c740d81f296aad51e0f40093eafa8ab40ca015",
+      "bytes": 7166
+    },
+    {
+      "path": "docs/specifications/01-business-and-functional/docs/02-functional/07-inventory/inventory-costing.md",
+      "sha256": "7d7ba58fdfc8cb84d04d915fca1e793b5c2d456d6b8f0e2a882e84a6aad280da",
+      "bytes": 7851
+    },
+    {
+      "path": "docs/specifications/01-business-and-functional/docs/02-functional/07-inventory/inventory.md",
+      "sha256": "5c3cc7ec4d8618e170ce163af7fbeef24de6cd4e03f5d82cf0135c116f28e6e6",
+      "bytes": 8344
+    },
+    {
+      "path": "docs/specifications/01-business-and-functional/docs/02-functional/07-inventory/stock-count-adjustment.md",
+      "sha256": "068486b7b85671c9e1eda324926b7bfb5fbf35623adc297ffb8069beb8714a59",
+      "bytes": 9127
+    },
+    {
+      "path": "docs/specifications/01-business-and-functional/docs/02-functional/07-inventory/stock-movement.md",
+      "sha256": "d74a089e6a442b03dd62b543f3686d5e4a4ed87c6c4f1eacf12da8ce6fb99eec",
+      "bytes": 6720
+    },
+    {
+      "path": "docs/specifications/01-business-and-functional/docs/02-functional/08-pos/pos.md",
+      "sha256": "1266d8a23e51b195fc0d0e64485f892bb0dbffed2128db9081ffb96f6bf593a6",
+      "bytes": 9735
+    },
+    {
+      "path": "docs/specifications/01-business-and-functional/docs/02-functional/08-pos/receipt-recovery.md",
+      "sha256": "d53e6e058e2247c09cb0535cc64cbf499132aa8e5772db5a0bbb77b6d99eca62",
+      "bytes": 7550
+    },
+    {
+      "path": "docs/specifications/01-business-and-functional/docs/02-functional/08-pos/sale-lifecycle.md",
+      "sha256": "728323b7ca0ad57fb5b00189e8e604aeb8e1a069a98b339ffd1713b413eab05d",
+      "bytes": 9703
+    },
+    {
+      "path": "docs/specifications/01-business-and-functional/docs/02-functional/09-payments/electronic-payments.md",
+      "sha256": "6827ae7d7af3cb4854c24839c163f2d9c39986138711272010758f98fded516a",
+      "bytes": 8936
+    },
+    {
+      "path": "docs/specifications/01-business-and-functional/docs/02-functional/09-payments/payments.md",
+      "sha256": "2f605e41f0840c1f355428aa9ced44fb3642a98742c413eb6351be69bc4cd451",
+      "bytes": 6924
+    },
+    {
+      "path": "docs/specifications/01-business-and-functional/docs/02-functional/09-payments/split-credit-payments.md",
+      "sha256": "e168162fd986f60e992f57297a8d9a701282c0bad773e065cc9036fba37995b4",
+      "bytes": 7935
+    },
+    {
+      "path": "docs/specifications/01-business-and-functional/docs/02-functional/10-returns/refund-recovery.md",
+      "sha256": "bb56e1a38ff4cef7f86088f3ad38dc6060fed26ecded9c32f0880983a89b2097",
+      "bytes": 7949
+    },
+    {
+      "path": "docs/specifications/01-business-and-functional/docs/02-functional/10-returns/sales-returns.md",
+      "sha256": "622206b06637e3bd899fac13f579968d61a785ab7eaabd87a0ce732a6be47123",
+      "bytes": 9982
+    },
+    {
+      "path": "docs/specifications/01-business-and-functional/docs/02-functional/11-customers/customers.md",
+      "sha256": "16cc5c04e683abd04115a15f54a8aed3e179183317266170a9368bd7f9d8c3a2",
+      "bytes": 13090
+    },
+    {
+      "path": "docs/specifications/01-business-and-functional/docs/02-functional/12-credit/customer-credit.md",
+      "sha256": "d786ed5c28da4b5972962d0c9ef62ddf047881b698c9c0b9a166a50b076482f8",
+      "bytes": 18978
+    },
+    {
+      "path": "docs/specifications/01-business-and-functional/docs/02-functional/13-cash-shift/cash-shift-day-close.md",
+      "sha256": "fc1330cc19a670d4de1104a7dc3e3f226dd9ae25cdd35a7b6dc650edcf8b4bd1",
+      "bytes": 19699
+    },
+    {
+      "path": "docs/specifications/01-business-and-functional/docs/02-functional/14-reporting/reporting.md",
+      "sha256": "46a2c3419851dec68970c8e0dc2c1c9d7eff9cd8f04029b246a599447ac8129c",
+      "bytes": 17521
+    },
+    {
+      "path": "docs/specifications/01-business-and-functional/docs/02-functional/15-import-export/import-export.md",
+      "sha256": "c506bb6f6f9ffc116b88007d51ad76e9d095e66794660af5fe6a1f0bade908f0",
+      "bytes": 11896
+    },
+    {
+      "path": "docs/specifications/01-business-and-functional/docs/02-functional/16-audit/audit.md",
+      "sha256": "c95eac07699b2f37cf6d43ff177488cbbeda8dc49eeb0f6a1a7696b39567ab41",
+      "bytes": 11326
+    },
+    {
+      "path": "docs/specifications/01-business-and-functional/docs/02-functional/17-hardware/hardware.md",
+      "sha256": "86d7547ee5643903f94d95d16c9e61fc83528b288a12e9e4d9b16a42a1f45f4b",
+      "bytes": 13258
+    },
+    {
+      "path": "docs/specifications/01-business-and-functional/docs/02-functional/18-backup-recovery/backup-recovery.md",
+      "sha256": "eef87864e98b742fd1fe4f844d676d96178220748698bb1e3521fcb475e236b7",
+      "bytes": 11926
+    },
+    {
+      "path": "docs/specifications/01-business-and-functional/docs/02-functional/19-support/support-diagnostics.md",
+      "sha256": "00b195fd3784564028d5867ef824edba7acaefba7bff8c362e23abc795eecb82",
+      "bytes": 11780
+    },
+    {
+      "path": "docs/specifications/01-business-and-functional/docs/02-functional/20-country/country-behavior.md",
+      "sha256": "361c591b05b45e14e7876857e503b1c87e1ed2906b649a62e0411361a25e40ea",
+      "bytes": 6317
+    },
+    {
+      "path": "docs/specifications/01-business-and-functional/docs/02-functional/20-country/india.md",
+      "sha256": "a0637528902cd2b8e59ce033ccfbb7d37220b8d6e67023228011dc4e2d8b27be",
+      "bytes": 5224
+    },
+    {
+      "path": "docs/specifications/01-business-and-functional/docs/02-functional/20-country/malaysia.md",
+      "sha256": "5c8e7cfa6dac105b91c0d8214af4648e77718dfb99d965f23b66a64acea64c59",
+      "bytes": 5569
+    },
+    {
+      "path": "docs/specifications/01-business-and-functional/docs/02-functional/21-accounting-lite/accounting-lite.md",
+      "sha256": "41079a6df9f6e2590f26077959a07bf4db428be58284250a763ce1c9190ecd8c",
+      "bytes": 15538
+    },
+    {
+      "path": "docs/specifications/01-business-and-functional/docs/02-functional/BATCH3-ACCEPTANCE.md",
+      "sha256": "46fab1af68513840e0cb937dce2a84fa70cd61c7fb6b2f0ce7315ffe7fdf505e",
+      "bytes": 4849
+    },
+    {
+      "path": "docs/specifications/01-business-and-functional/docs/02-functional/BATCH4-ACCEPTANCE.md",
+      "sha256": "f463b078f8b1c862610eb6618e35e24e0cf802f1b2873ee8fe4174c0b3264f34",
+      "bytes": 6065
+    },
+    {
+      "path": "docs/specifications/01-business-and-functional/docs/02-functional/BATCH5-ACCEPTANCE.md",
+      "sha256": "09bb8b4035926e02ae677f6bac3f9e85065e6801edf1e5d14905e632564afeb5",
+      "bytes": 3691
+    },
+    {
+      "path": "docs/specifications/01-business-and-functional/docs/02-functional/DECISION-REGISTER-LEGACY-v0.8.md",
+      "sha256": "fe77a035d77cdaee72fa81577b78ee019689bb6c54f202bf3d8b717c609f3ab3",
+      "bytes": 27450
+    },
+    {
+      "path": "docs/specifications/01-business-and-functional/docs/02-functional/DECISION-REGISTER.md",
+      "sha256": "5eb662c9452fb607be3f597fe26e8f993f86eeeb0c9ab4c98506e12ba70c235a",
+      "bytes": 20249
+    },
+    {
+      "path": "docs/specifications/01-business-and-functional/docs/02-functional/DOMAIN-OWNERSHIP-BASELINE-v0.8.md",
+      "sha256": "0df7f58304ff650b8a232b7809824a08e48b6ab27b87d337b73bc95e23dbe1ad",
+      "bytes": 3497
+    },
+    {
+      "path": "docs/specifications/01-business-and-functional/docs/02-functional/FREEZE-BLOCKER-REMEDIATION-v0.8.md",
+      "sha256": "b6b057f496ce1ddb0488d8121220adf8059b6d7d1686d30c0cbc6c71a0a8f470",
+      "bytes": 6852
+    },
+    {
+      "path": "docs/specifications/01-business-and-functional/docs/02-functional/FRS-CONSISTENCY-AUDIT-SECOND-v0.9.md",
+      "sha256": "32bbbfb9d6d647d166499aa0f83fe0c96181b0ff002fd494491889b4afb0811b",
+      "bytes": 8317
+    },
+    {
+      "path": "docs/specifications/01-business-and-functional/docs/02-functional/FRS-CONSISTENCY-AUDIT-v0.6.md",
+      "sha256": "ed8713b1faa25090df590be346edbd158885130f5a3b7ab2386800a311a84fbc",
+      "bytes": 13502
+    },
+    {
+      "path": "docs/specifications/01-business-and-functional/docs/02-functional/FRS-CONSISTENCY-AUDIT-v0.9.md",
+      "sha256": "98496a26f589ac4e7ed221f3399cb6fa58cafff6af79714905cc27ca3727522e",
+      "bytes": 6849
+    },
+    {
+      "path": "docs/specifications/01-business-and-functional/docs/02-functional/FRS-FREEZE-BLOCKERS.md",
+      "sha256": "ae076a4d4983132fb515dde2e1f78ed4bf53025be92590c3b11377a827a0a8d6",
+      "bytes": 2809
+    },
+    {
+      "path": "docs/specifications/01-business-and-functional/docs/02-functional/FRS-V1-FREEZE-PLAN.md",
+      "sha256": "8078fe01c1fe2523a058de8623fee75c3d587de9558134a5f69cd9d3b38f7662",
+      "bytes": 2869
+    },
+    {
+      "path": "docs/specifications/01-business-and-functional/docs/02-functional/FRS-v1.0-FINAL-FREEZE-REVIEW.md",
+      "sha256": "9118f3336cddcea03d425d3a7281fcf30768cf1e5ce53ad196dc91cd54aebe39",
+      "bytes": 5403
+    },
+    {
+      "path": "docs/specifications/01-business-and-functional/docs/02-functional/FRS-v1.0-RC1-RELEASE-NOTE.md",
+      "sha256": "edf276657cca7e4ce03b4ebdf6efbc8f093b905e301b3b644cdcac06695a2ff2",
+      "bytes": 4189
+    },
+    {
+      "path": "docs/specifications/01-business-and-functional/docs/02-functional/FRS-v1.0-RELEASE-NOTE.md",
+      "sha256": "4e4656c29ad37ca2fd1af5b21f50d9453649ee30921809dc353c2ed0fa47ea02",
+      "bytes": 1337
+    },
+    {
+      "path": "docs/specifications/01-business-and-functional/docs/02-functional/FRS.md",
+      "sha256": "291a9d30450a1d6bb11090c7222e3758db1a93cafd491f687a4171386ccdaa72",
+      "bytes": 7288
+    },
+    {
+      "path": "docs/specifications/01-business-and-functional/docs/02-functional/NFRS.md",
+      "sha256": "61445d387cfa087ebc361f1c293fecdee9429ca1753c4ced72606074df1e1c5a",
+      "bytes": 17299
+    },
+    {
+      "path": "docs/specifications/01-business-and-functional/docs/02-functional/README.md",
+      "sha256": "10d9098aa9997efa52c18f8791f9eb8a80f5d35241c593b965b346a1733cb3e5",
+      "bytes": 1277
+    },
+    {
+      "path": "docs/specifications/01-business-and-functional/docs/02-functional/REMEDIATION-ACCEPTANCE-v0.8.md",
+      "sha256": "828092118b0ed86e1e43d0def89366f67ab2f818c411543296e4b7a34b670b6c",
+      "bytes": 3151
+    },
+    {
+      "path": "docs/specifications/01-business-and-functional/docs/02-functional/REQUIREMENT-TEMPLATE.md",
+      "sha256": "cd0bed46ccfa7fbae507f7426b26f8bde37602f8f012eaf5ad2eaa7aadc99146",
+      "bytes": 1094
+    },
+    {
+      "path": "docs/specifications/01-business-and-functional/docs/02-functional/TRACEABILITY.md",
+      "sha256": "8736b2ae2814c9a762d48f351ce3493846fefe6d1b8678d7c15465dec5998b92",
+      "bytes": 32140
+    },
+    {
+      "path": "docs/specifications/02-domain-model/FREEZE-RECORD.md",
+      "sha256": "dd637f9f63c703394fd4fe39f45d6c9fe53424c7f06509eb7da4e13c76d338fe",
+      "bytes": 1248
+    },
+    {
+      "path": "docs/specifications/02-domain-model/MANIFEST-v1.0-FROZEN.json",
+      "sha256": "c14e275e2b9693f70326bdb282b482c3302232806bfc5618f48f750fb0c330d5",
+      "bytes": 4603
+    },
+    {
+      "path": "docs/specifications/02-domain-model/README.md",
+      "sha256": "23671abaa656e4e1189d65a7ae0488b275a87e68c902252b81c2e9f2cbe37609",
+      "bytes": 1562
+    },
+    {
+      "path": "docs/specifications/02-domain-model/diagrams/DOMAIN-CONTEXT-MAP.md",
+      "sha256": "65abb8dac2a0ef417be10bae9ee8e3d8d134e7818f6b3d24595d91ab5821a938",
+      "bytes": 1492
+    },
+    {
+      "path": "docs/specifications/02-domain-model/docs/01-CONTEXT-MAP.md",
+      "sha256": "8151281a3b8a9bb07946e0429046861dacda567579d3a7d5b74fa98dcbedd945",
+      "bytes": 3230
+    },
+    {
+      "path": "docs/specifications/02-domain-model/docs/02-SHARED-LANGUAGE-AND-VALUE-OBJECTS.md",
+      "sha256": "5366ac0e630bc78e79d94eb868907060584baba8ea46fad5b4f2b0f7822f6d36",
+      "bytes": 5130
+    },
+    {
+      "path": "docs/specifications/02-domain-model/docs/03-AGGREGATE-CATALOG.md",
+      "sha256": "c11a016ede1ce43584b30501f01eb1ce7e9b354aa2b3b28abcfd1104a0fdea9e",
+      "bytes": 6308
+    },
+    {
+      "path": "docs/specifications/02-domain-model/docs/04-COMMERCE-LIFECYCLES.md",
+      "sha256": "72203fb2acf3faf77758942bae525987c3e8213eb604c759580d7ac4e10f111c",
+      "bytes": 4027
+    },
+    {
+      "path": "docs/specifications/02-domain-model/docs/05-INVENTORY-AND-COSTING.md",
+      "sha256": "43067d84edb63e829f7cddd9394c28d8f8c0f4f267dd6612cc1149c1fa054910",
+      "bytes": 2924
+    },
+    {
+      "path": "docs/specifications/02-domain-model/docs/06-CREDIT-CASH-ACCOUNTING.md",
+      "sha256": "ded34385471d13f9386e1b6f036c223c6e6cd10227cb000d699ca0de2551b854",
+      "bytes": 3891
+    },
+    {
+      "path": "docs/specifications/02-domain-model/docs/07-DOMAIN-EVENTS.md",
+      "sha256": "c259584b75d2ccd13d915d6d36ae9ec32c0c0a34f294205e634efa4b1f13eb3f",
+      "bytes": 2556
+    },
+    {
+      "path": "docs/specifications/02-domain-model/docs/08-CROSS-CONTEXT-CONTRACTS.md",
+      "sha256": "7ccf3f506e06675f16d2a2a0bea705481d15981fb0e3dea1ec8c361e40429053",
+      "bytes": 2086
+    },
+    {
+      "path": "docs/specifications/02-domain-model/docs/09-OPEN-DECISION-SEAMS.md",
+      "sha256": "3f589fe780e9c942ab684142417f8b4d87c7ab7cbebda407a0da712c12ddac4c",
+      "bytes": 955
+    },
+    {
+      "path": "docs/specifications/02-domain-model/docs/10-DOMAIN-DESIGN-DECISIONS.md",
+      "sha256": "6c469f1b133c2ca3f3e11a83fcce9131e338909b2164d8e71c0ae6e92f4a962c",
+      "bytes": 3113
+    },
+    {
+      "path": "docs/specifications/02-domain-model/docs/11-TRANSACTION-AND-CONCURRENCY-MATRIX.md",
+      "sha256": "885fbe28a1b58cedc79fa30d0fe7a516d541d4741c718347b61647cb7116433a",
+      "bytes": 9028
+    },
+    {
+      "path": "docs/specifications/02-domain-model/docs/12-EVENT-CAUSALITY-AND-ORCHESTRATION.md",
+      "sha256": "87297ca82adbbcb252cab86ef2051442ae5f1928a3864376162e4db89ca163e6",
+      "bytes": 3556
+    },
+    {
+      "path": "docs/specifications/02-domain-model/docs/13-DECISION-SEAM-MATRIX.md",
+      "sha256": "dfd2bdd9f3672687819836fd70b3ced6e3e741ec0eaab7c1114ec87b47433932",
+      "bytes": 15483
+    },
+    {
+      "path": "docs/specifications/02-domain-model/docs/DOMAIN-MODEL.md",
+      "sha256": "bc27c6d5b14a0afc5931705748be6fd092011ca2a075ab2deb49703a0e6d78d4",
+      "bytes": 9458
+    },
+    {
+      "path": "docs/specifications/02-domain-model/history/DOMAIN-MODEL-DEEP-CONSISTENCY-REVIEW-v0.1.md",
+      "sha256": "624aa4a4c960c042e00cc0f55f1ad374b02085a9fe3f6fc3f160ab4f6e31e38d",
+      "bytes": 13428
+    },
+    {
+      "path": "docs/specifications/02-domain-model/history/DOMAIN-MODEL-v0.2-FREEZE-CANDIDATE-VALIDATION.md",
+      "sha256": "dbadb0268b700a0db9b449ab1bf961f6b5efd1f028202b8b8db6bd7abb669c5f",
+      "bytes": 2570
+    },
+    {
+      "path": "docs/specifications/02-domain-model/history/FINAL-DOMAIN-MODEL-FREEZE-REVIEW.md",
+      "sha256": "c449f57afa303951d71129e561b5086eb4ffe2283b7564afd70ff0de12974d70",
+      "bytes": 3398
+    },
+    {
+      "path": "docs/specifications/02-domain-model/history/REVIEW-FINDINGS-v0.1.json",
+      "sha256": "77590f64c3945587cbe51c725949442e42729b189585255609ffc3cd5510dc87",
+      "bytes": 495
+    },
+    {
+      "path": "docs/specifications/02-domain-model/traceability/FRS-TO-DOMAIN-MAP.md",
+      "sha256": "437435cc863d7baf3d1e09a2c4dc79f5a7fb665cda67c486199281173509c89d",
+      "bytes": 4943
+    },
+    {
+      "path": "docs/specifications/02-domain-model/validation/DOMAIN-MODEL-v1.0-FROZEN-VALIDATION.md",
+      "sha256": "674e579f26c8a336963846f1f5fb5ec65b0e28092d107a95a0a7c90ffb964ca4",
+      "bytes": 2078
+    },
+    {
+      "path": "docs/specifications/02-domain-model/validation/DOMAIN-REGISTRY-v1.0-FROZEN.json",
+      "sha256": "c85869f8295560fbdc6d1b4050d12855cf4988826531cc29576c00f543eb5113",
+      "bytes": 2193
+    },
+    {
+      "path": "docs/specifications/03-database-model/AMENDMENT-RECORD-v1.2.md",
+      "sha256": "4192d0202bcff9be58eb2dc83a576b9ab5a6fe36603e4ce2f805beeba74775e7",
+      "bytes": 575
+    },
+    {
+      "path": "docs/specifications/03-database-model/FINAL-DOCUMENTATION-CORRECTIONS.md",
+      "sha256": "ea6314e27329003964bd6cc9a484b5c4374829aa64da0a66978b3a60ba4eb8bd",
+      "bytes": 1598
+    },
+    {
+      "path": "docs/specifications/03-database-model/FREEZE-RECORD.md",
+      "sha256": "89d6fb6de5ef2897b2a9167d8219490d3108ce69bba767bac0789f184c7fb28c",
+      "bytes": 3136
+    },
+    {
+      "path": "docs/specifications/03-database-model/MANIFEST-v1.2-FROZEN.json",
+      "sha256": "c2f2e53f9ed363a802e225a949a6f367294c283f0c2197b8f519a2d622a6676a",
+      "bytes": 11657
+    },
+    {
+      "path": "docs/specifications/03-database-model/README.md",
+      "sha256": "e1d54ec90632424491cbce44fa49814c538a7d580ca19d3be59ebb85b0113cea",
+      "bytes": 757
+    },
+    {
+      "path": "docs/specifications/03-database-model/RELEASE-NOTE-v1.2-FROZEN.md",
+      "sha256": "7345d42b688c7d159929a3da6fc920c5c09a03cd94c55ab98d386de650929c03",
+      "bytes": 617
+    },
+    {
+      "path": "docs/specifications/03-database-model/diagrams/CORE-ERD.md",
+      "sha256": "0931b07e3476bbbe19d7adfa78e0bba00668a98918260a35c6309c2e7b2d6a7b",
+      "bytes": 1362
+    },
+    {
+      "path": "docs/specifications/03-database-model/diagrams/SALE-POSTING-TRANSACTION.md",
+      "sha256": "aa57e4fcbda3f963710d28e27463eb8ded3f687b279347d3643a6eabbd607489",
+      "bytes": 773
+    },
+    {
+      "path": "docs/specifications/03-database-model/docs/01-PERSISTENCE-CONVENTIONS.md",
+      "sha256": "c118ad14e9b366dae69c28626f9b7201fcb85db2e20d188283bdc886ff5f0946",
+      "bytes": 3179
+    },
+    {
+      "path": "docs/specifications/03-database-model/docs/02-SCHEMA-AND-TABLE-CATALOG.md",
+      "sha256": "5fccf907133006af8c9122ab6fd90ef0b3d3d388630da064627886f5ce8bc4b1",
+      "bytes": 2736
+    },
+    {
+      "path": "docs/specifications/03-database-model/docs/03-KEYS-RELATIONSHIPS-AND-OWNERSHIP.md",
+      "sha256": "6479400ff21708cc9bd609e05ba72afa41ec1eea00cb2afc489e08493ea4fa79",
+      "bytes": 3237
+    },
+    {
+      "path": "docs/specifications/03-database-model/docs/04-IMMUTABILITY-LEDGERS-AND-HISTORY.md",
+      "sha256": "c51a31849402f6d005849aa4fb02b2f21661789aade8962ecd6617ea196aba16",
+      "bytes": 1111
+    },
+    {
+      "path": "docs/specifications/03-database-model/docs/05-TRANSACTIONS-AND-CONCURRENCY.md",
+      "sha256": "725cd55adae1b51137989c8ba619df9b5b5d92653814934cf74787bafe6e3cef",
+      "bytes": 4175
+    },
+    {
+      "path": "docs/specifications/03-database-model/docs/06-CONSTRAINTS-AND-INDEXES.md",
+      "sha256": "b096336db92e4bccb0322241ad1f2d86d14cb5043efb83122e60b22cfb805a5c",
+      "bytes": 2941
+    },
+    {
+      "path": "docs/specifications/03-database-model/docs/07-SYNC-IDEMPOTENCY-AND-OUTBOX.md",
+      "sha256": "3c86981b7e125631e22933e297cf0e3c282db788f66fd2ddf683ff50266f0dd6",
+      "bytes": 1991
+    },
+    {
+      "path": "docs/specifications/03-database-model/docs/08-SECURITY-TENANCY-AND-PRIVACY.md",
+      "sha256": "36ecd832fb7adb0c7128aec892b8131f92e03573870e255a107467728264649e",
+      "bytes": 1442
+    },
+    {
+      "path": "docs/specifications/03-database-model/docs/09-MIGRATION-AND-RECOVERY-RULES.md",
+      "sha256": "d76f2bcfb908c02d90013b2c136cdd579db7ed17738935e46b10239dc8f8ec0d",
+      "bytes": 1859
+    },
+    {
+      "path": "docs/specifications/03-database-model/docs/10-DECISION-SEAM-DATABASE-TREATMENT.md",
+      "sha256": "de3f309cb03912369f9cadd82a61ea7d7623300609ca4d2585559d9b9f13f530",
+      "bytes": 17375
+    },
+    {
+      "path": "docs/specifications/03-database-model/docs/11-NUMERIC-PRECISION-BUDGET.md",
+      "sha256": "fd3656e893fe3f721c9aa4d313bdcac05c18e9b4bfedc1fd8fd3e0ee3982c94c",
+      "bytes": 2175
+    },
+    {
+      "path": "docs/specifications/03-database-model/docs/12-RECONCILIATION-AND-DRIFT-CONTROLS.md",
+      "sha256": "06eb9425e77d636030c7e6efbe9a5c02e748cde6ab89aae6f39d0593e0c5435f",
+      "bytes": 1929
+    },
+    {
+      "path": "docs/specifications/03-database-model/docs/13-POSTING-ENVELOPE-PHYSICAL-SPEC.md",
+      "sha256": "c5959e490dfc54eefd7441c3131ff487f993c9b54c86faaff7cc8c75eb371b75",
+      "bytes": 7315
+    },
+    {
+      "path": "docs/specifications/03-database-model/docs/14-LIFECYCLE-PERSISTENCE-MATRIX.md",
+      "sha256": "935c617a463a698a88d6675b043072a0a43425acdcd9fb46be2b586d0d8e0820",
+      "bytes": 4298
+    },
+    {
+      "path": "docs/specifications/03-database-model/docs/15-QUERY-INDEX-COVERAGE.md",
+      "sha256": "145294f9a7ab96ddd3e0dba049f537343a2fcdcdf64eb4df4c7044324ea35763",
+      "bytes": 477
+    },
+    {
+      "path": "docs/specifications/03-database-model/docs/16-V1.2-PERSISTENCE-AMENDMENT.md",
+      "sha256": "169214ded57beb8e730c957addf3a954160033e914870b652ee99f07db30b222",
+      "bytes": 2292
+    },
+    {
+      "path": "docs/specifications/03-database-model/docs/17-MIGRATION-BLUEPRINT-GOVERNANCE.md",
+      "sha256": "50bc2e12dfe9f08d7cf9d03f83f58341ae56546e94f9dfc2d7ebc215dc5f4953",
+      "bytes": 1069
+    },
+    {
+      "path": "docs/specifications/03-database-model/docs/DATABASE-MODEL.md",
+      "sha256": "9464b3ba32829732eb46984e6db72ace98918fcf77e480700af8618d4e25df04",
+      "bytes": 825
+    },
+    {
+      "path": "docs/specifications/03-database-model/history/AUTOMATED-EVIDENCE.md",
+      "sha256": "6cac883054d9c6c8dcaceb25d618bc0a4888e5bade1a57a33d0dadbc6bacb489",
+      "bytes": 730
+    },
+    {
+      "path": "docs/specifications/03-database-model/history/DATABASE-MODEL-DEEP-CONSISTENCY-REVIEW-v0.1.md",
+      "sha256": "78deeed3cd489939051a5ddf8cc45a5637fd34788d9455a7cf99f52acb55e704",
+      "bytes": 15806
+    },
+    {
+      "path": "docs/specifications/03-database-model/history/DATABASE-MODEL-v0.1-REMEDIATION-REPORT.md",
+      "sha256": "6713fc1a4fea5ac67966044bb029ba8b4eca7533a39a2f3aca7f708e308e4d2c",
+      "bytes": 3846
+    },
+    {
+      "path": "docs/specifications/03-database-model/history/DATABASE-MODEL-v0.1-VALIDATION.md",
+      "sha256": "1e72ec0e05e3047c4cdbf7634d0c26d543ff16820eb53d8b7f13426826098e5e",
+      "bytes": 2332
+    },
+    {
+      "path": "docs/specifications/03-database-model/history/DATABASE-MODEL-v0.2-VALIDATION.md",
+      "sha256": "bb476e5e0d49d53375697169e6a475d44869b1a6ba620d4182a2e44a21385d6e",
+      "bytes": 2057
+    },
+    {
+      "path": "docs/specifications/03-database-model/history/DATABASE-REVIEW-MATRIX-v0.1.md",
+      "sha256": "e336ed990b01b37d7a9fc5399ec1d8b0abb9115f89b5e112b3825c5cf46d3f15",
+      "bytes": 4793
+    },
+    {
+      "path": "docs/specifications/03-database-model/history/REVIEW-FINDINGS.json",
+      "sha256": "dd26e22fd47f0fea478175300d496ce91d7092a0cdb04549b4be9d6b4a167919",
+      "bytes": 14561
+    },
+    {
+      "path": "docs/specifications/03-database-model/history/v1.0-frozen/DATABASE-MODEL-v1.0-FINAL-FREEZE-REVIEW.md",
+      "sha256": "aecd1dc5e08ebb43147f34c876f32fd21f4f1c477c882f8f906a03b7cad956a0",
+      "bytes": 2926
+    },
+    {
+      "path": "docs/specifications/03-database-model/history/v1.0-frozen/DATABASE-MODEL-v1.0-VALIDATION.md",
+      "sha256": "99a564a84cb2e4d1badf1871f08ed2f4e2e66afc4a1c96479d107a7c1df76119",
+      "bytes": 735
+    },
+    {
+      "path": "docs/specifications/03-database-model/history/v1.0-frozen/DATABASE-REGISTRY-v1.0-FROZEN.json",
+      "sha256": "6cd99064bb1d8ffef0dead2684442fe86637c8750e15a65ce0659ea2575a27d9",
+      "bytes": 2975
+    },
+    {
+      "path": "docs/specifications/03-database-model/history/v1.0-frozen/FREEZE-RECORD.md",
+      "sha256": "ea83005d868d3065871124d9923279a93075be384e09d6f927a745ad78aa38f0",
+      "bytes": 601
+    },
+    {
+      "path": "docs/specifications/03-database-model/history/v1.0-frozen/MANIFEST-v1.0-FROZEN.json",
+      "sha256": "e65dee42797a3934566aa6117248698110377dc3d804f3733113a76af7a21eb1",
+      "bytes": 6190
+    },
+    {
+      "path": "docs/specifications/03-database-model/history/v1.0-frozen/REFERENCE-DDL-v1.0-FROZEN.sql",
+      "sha256": "12afd2995b1aba06c1410f991b1df0653205bb5b9b727923dc749489a9a31924",
+      "bytes": 38033
+    },
+    {
+      "path": "docs/specifications/03-database-model/history/v1.0-frozen/RELEASE-NOTE.md",
+      "sha256": "b98494be8a36b08ccc23f04a3171b4a697c85ccbb6103cb9a63f4a0f3bd75705",
+      "bytes": 411
+    },
+    {
+      "path": "docs/specifications/03-database-model/history/v1.1-amendment-candidate/16-V1.1-PERSISTENCE-AMENDMENT.md",
+      "sha256": "6e6bf40baa2da3a3bff0df7d2b45b0307037326dbbca0a097b9047c1dfa1da0c",
+      "bytes": 2927
+    },
+    {
+      "path": "docs/specifications/03-database-model/history/v1.1-amendment-candidate/AMENDMENT-RECORD-v1.1.md",
+      "sha256": "a8886e885d624f328d940071ee616253903118e867add2ce2cbf2ec6e8c0671e",
+      "bytes": 1967
+    },
+    {
+      "path": "docs/specifications/03-database-model/history/v1.1-amendment-candidate/DATABASE-MODEL-v1.1-AMENDMENT-CANDIDATE-VALIDATION.md",
+      "sha256": "7c68b606a3016d106369dfbe461b1f098379bd881750acb6706d31b00590cbef",
+      "bytes": 1177
+    },
+    {
+      "path": "docs/specifications/03-database-model/history/v1.1-amendment-candidate/DATABASE-REGISTRY-v1.1-AMENDMENT-CANDIDATE.json",
+      "sha256": "c2bbf44173a1ea9eb904d3fc644cd09a7e1b5cc19ffffa63f0021be2140701ba",
+      "bytes": 408
+    },
+    {
+      "path": "docs/specifications/03-database-model/history/v1.1-amendment-candidate/MANIFEST-v1.1-AMENDMENT-CANDIDATE.json",
+      "sha256": "18ba5d969a7d0f9f17a865c2a337981d20d30b2456b5e6f3fc5d753715d804ae",
+      "bytes": 7674
+    },
+    {
+      "path": "docs/specifications/03-database-model/history/v1.1-amendment-candidate/RELEASE-NOTE-v1.1.md",
+      "sha256": "72ba3d9a17654c4f5c397feb1ac6f1c49c029c034394f067b5bfcd8f8774075e",
+      "bytes": 821
+    },
+    {
+      "path": "docs/specifications/03-database-model/history/v1.1-amendment-candidate/V1_1__api_persistence_alignment.sql",
+      "sha256": "874f7947650268145cafa045bae854cb15ae1ee53a08713147c48e3ce09d3273",
+      "bytes": 7018
+    },
+    {
+      "path": "docs/specifications/03-database-model/history/v1.2-amendment-candidate/MANIFEST-v1.2-AMENDMENT-CANDIDATE.json",
+      "sha256": "ceb1c422e2b8c17c8caad5e616ef8c46958dbc4d5d40b9c2d32cb81f3ff9b07d",
+      "bytes": 9273
+    },
+    {
+      "path": "docs/specifications/03-database-model/history/v1.2-amendment-candidate/RELEASE-NOTE-v1.2.md",
+      "sha256": "8ef758650a5f78f9f1d0b970304554bf4b4801ca4027f8f8a47b879f9c25cd31",
+      "bytes": 268
+    },
+    {
+      "path": "docs/specifications/03-database-model/history/v1.2-freeze-ready/MANIFEST-v1.2-FREEZE-READY.json",
+      "sha256": "48552136244a94ad64a2abc406ccc1f5567b96337ff0e60a5a8ce13d17b53155",
+      "bytes": 10491
+    },
+    {
+      "path": "docs/specifications/03-database-model/history/v1.2-freeze-ready/RELEASE-NOTE-v1.2-FREEZE-READY.md",
+      "sha256": "a591b5e6bed1e1785fdd97b41b3cffa97ef546104e81220f648dc15d8fe61473",
+      "bytes": 547
+    },
+    {
+      "path": "docs/specifications/03-database-model/history/v1.2-pre-freeze-validation/DATABASE-MODEL-v1.2-AMENDMENT-CANDIDATE-VALIDATION.md",
+      "sha256": "c033edada9b38a2553cbfe3c1f6ea6d6d1b43e86abc8e1414a84fa7a3290214a",
+      "bytes": 455
+    },
+    {
+      "path": "docs/specifications/03-database-model/history/v1.2-pre-freeze-validation/DATABASE-REGISTRY-v1.2-AMENDMENT-CANDIDATE.json",
+      "sha256": "1729a2493fd1a0da81f0f98c3a791a67df23245f98da0b979f38a12dbcad2ff4",
+      "bytes": 263
+    },
+    {
+      "path": "docs/specifications/03-database-model/history/v1.2-pre-freeze-validation/FINAL-DOCUMENTATION-CORRECTIONS-VALIDATION.json",
+      "sha256": "09828aeffe10b925f1dbda6fa7c13e91e5684324211e0ee4f9fb14092757b7b5",
+      "bytes": 694
+    },
+    {
+      "path": "docs/specifications/03-database-model/history/v1.2-pre-freeze-validation/FINAL-DOCUMENTATION-CORRECTIONS-VALIDATION.md",
+      "sha256": "f2c939ec27a0cbe73483246975d4830f21ad9f91e500a4e008b396e2e446b49c",
+      "bytes": 390
+    },
+    {
+      "path": "docs/specifications/03-database-model/schema/REFERENCE-DDL-v1.2-FROZEN.sql",
+      "sha256": "0e24376ca7f8916cdcbbde6e3ebc87051899a177589e38c5393c17544c282f47",
+      "bytes": 46997
+    },
+    {
+      "path": "docs/specifications/03-database-model/schema/V1_2__final_persistence_alignment.sql",
+      "sha256": "035771baa3d917407948eca352217ce5205cefaca6eb08e4c51bd5b9911eafa8",
+      "bytes": 6272
+    },
+    {
+      "path": "docs/specifications/03-database-model/traceability/API-V0.3-FINDING-TO-DB-v1.1.md",
+      "sha256": "906a4b24ac41c6db9b44274af31739505b6f37d24c5b4557ce3b9d4d3831d4f0",
+      "bytes": 2594
+    },
+    {
+      "path": "docs/specifications/03-database-model/traceability/DOMAIN-TO-DATABASE-MAP.md",
+      "sha256": "5038b982e6059bfe02cbecfd710884e34515674372604ac8ae2b14002a7aadf3",
+      "bytes": 6487
+    },
+    {
+      "path": "docs/specifications/03-database-model/traceability/v1.1-REVIEW-REMEDIATION-MATRIX.md",
+      "sha256": "471152cc6a542663104a7852a4e7e6b51cfca344cbcae81178a4dcf1b645a7eb",
+      "bytes": 1349
+    },
+    {
+      "path": "docs/specifications/03-database-model/validation/DATABASE-MODEL-v1.2-FREEZE-VALIDATION.md",
+      "sha256": "b93875bec7ba1192816e6198207d7d10293079bbdc6bac8c6d26187b99b314b5",
+      "bytes": 533
+    },
+    {
+      "path": "docs/specifications/03-database-model/validation/DATABASE-REGISTRY-v1.2-FROZEN.json",
+      "sha256": "82456028a8e61a278b0a0c63c0e941323719003e80f5d45dc5ce09698396d908",
+      "bytes": 1078
+    },
+    {
+      "path": "docs/specifications/04-architecture/FREEZE-RECORD.md",
+      "sha256": "56d148272c7e29d08b982908368a8b0ee2d768cd86fd5047e0547be4ad223bf8",
+      "bytes": 545
+    },
+    {
+      "path": "docs/specifications/04-architecture/MANIFEST-v1.0-FROZEN.json",
+      "sha256": "db023328b34d33712aeaed33eb9c449f17c1edf407e248e7b40fb85575b2758d",
+      "bytes": 15925
+    },
+    {
+      "path": "docs/specifications/04-architecture/README.md",
+      "sha256": "0585d6a121ef522398e1fb06f12ab715bfb454e784f67cfcd703b43574d76dfd",
+      "bytes": 1351
+    },
+    {
+      "path": "docs/specifications/04-architecture/RELEASE-NOTE-v1.0-FROZEN.md",
+      "sha256": "2efbf688ee95d7e950cec92faa6f3fcfed8d571edfab5425a6fde27dc4928b16",
+      "bytes": 556
+    },
+    {
+      "path": "docs/specifications/04-architecture/decisions/ARCHITECTURE-DECISIONS-v1.0-FROZEN.md",
+      "sha256": "a09782874ef9d2343a7248b99112eae5c9b398bb328fe57ffda162f313b58e91",
+      "bytes": 7630
+    },
+    {
+      "path": "docs/specifications/04-architecture/diagrams/PROVIDER-CHOREOGRAPHY.md",
+      "sha256": "276411b2cd10c09f2847df562566745034155727437b23ae5fc106d6ef1f9507",
+      "bytes": 745
+    },
+    {
+      "path": "docs/specifications/04-architecture/diagrams/REFINED-ARCHITECTURE.md",
+      "sha256": "b7fa6eb78a81589782c397e19afd239731861113ade5ebc0880dc42a9bc2ddcc",
+      "bytes": 1183
+    },
+    {
+      "path": "docs/specifications/04-architecture/diagrams/STORE-CLOUD-COMPOSITION.md",
+      "sha256": "355cdd37033c1300b441899f3cc83c090ddf601db2093feb139331ac6a2bc47c",
+      "bytes": 860
+    },
+    {
+      "path": "docs/specifications/04-architecture/diagrams/SYNC-APPLY.md",
+      "sha256": "0672273b6ab86c7b88d5018904dc1572797359c67f334c5b549f89f919b8d077",
+      "bytes": 343
+    },
+    {
+      "path": "docs/specifications/04-architecture/diagrams/TRUST-AND-BUSINESS-CONTEXT.md",
+      "sha256": "ed38d57d818d20789fd7a42d85fabd9cc1d42d1fba19d99cd331db3119d8fc82",
+      "bytes": 448
+    },
+    {
+      "path": "docs/specifications/04-architecture/diagrams/UOW-BOUNDARY.md",
+      "sha256": "088a3ff2faa3f19504518de334c5e0e1354586b157717727169cea780a6a9789",
+      "bytes": 547
+    },
+    {
+      "path": "docs/specifications/04-architecture/docs/01-MODULE-BOUNDARIES.md",
+      "sha256": "d7ebc73acf3a6fe27d6941089b0f3523ad765b57caac065011bce7e398510638",
+      "bytes": 2690
+    },
+    {
+      "path": "docs/specifications/04-architecture/docs/02-APPLICATION-COORDINATORS-AND-UOW.md",
+      "sha256": "b24978f2f0d678de9f0a2b512b8cc91a3d95247d1253f394721335668aeef90a",
+      "bytes": 1906
+    },
+    {
+      "path": "docs/specifications/04-architecture/docs/03-STORE-NODE-RUNTIME.md",
+      "sha256": "ff4f6215c090ebda56e44a7c9d75b966a45476d9c22c640185194119d721a2f1",
+      "bytes": 2139
+    },
+    {
+      "path": "docs/specifications/04-architecture/docs/04-EDGE-CLOUD-SYNC.md",
+      "sha256": "12e4bb432b100f2a5102d3a0c6fb4dc0259d50db8419602a65c1ac9562b4e6ee",
+      "bytes": 2010
+    },
+    {
+      "path": "docs/specifications/04-architecture/docs/05-POS-BACKOFFICE-AND-HARDWARE.md",
+      "sha256": "0de19f94e059e85db6a1d8dbdbfdb090d3b6350947df8b7613bacb72db9389f6",
+      "bytes": 673
+    },
+    {
+      "path": "docs/specifications/04-architecture/docs/06-COUNTRY-PACK-ARCHITECTURE.md",
+      "sha256": "7ea1f41c329a8305109036ee91fa588b7f9d8e8a9b7ba1c98d27fdce1bb06e95",
+      "bytes": 1078
+    },
+    {
+      "path": "docs/specifications/04-architecture/docs/07-SECURITY-AND-TRUST-BOUNDARIES.md",
+      "sha256": "e79fa831daa40a7ea2c2beaa8f84ca0f1e8925bb734e30cc274796964e437683",
+      "bytes": 2897
+    },
+    {
+      "path": "docs/specifications/04-architecture/docs/08-OBSERVABILITY-RELIABILITY-RECOVERY.md",
+      "sha256": "c6dc259754d7df94ba62f7f6a4005987deac72e1b9c1b4e59944009764f70de4",
+      "bytes": 1263
+    },
+    {
+      "path": "docs/specifications/04-architecture/docs/09-MONOREPO-AND-PACKAGE-STRUCTURE.md",
+      "sha256": "34934fc158b3542b64a1988b9d1ddded91205be222eef54896a6bbb3649c4ee6",
+      "bytes": 1789
+    },
+    {
+      "path": "docs/specifications/04-architecture/docs/10-API-BOUNDARY-PREPARATION.md",
+      "sha256": "2af8d1b8503dda5344202cd817468275c009be2813939ddab65de4ef1d7aca10",
+      "bytes": 970
+    },
+    {
+      "path": "docs/specifications/04-architecture/docs/11-IMPLEMENTATION-DEPENDENCY-RULES.md",
+      "sha256": "acf7bf4246b3b6c947a8cb149d4bcc3dd89caa3c1a604a304186696aa3dfad64",
+      "bytes": 1634
+    },
+    {
+      "path": "docs/specifications/04-architecture/docs/12-FAILURE-MODE-MATRIX.md",
+      "sha256": "d326f816a470113f8bf5bad88ecb169913674daee3da9141c7dff5607b75d912",
+      "bytes": 2890
+    },
+    {
+      "path": "docs/specifications/04-architecture/docs/13-DEPLOYMENT-PACKAGING-AND-UPDATES.md",
+      "sha256": "28a1cfa56a8bbd7ac57d8899bc68ccc109864e2b14ecc4f1d14091dc20aade4f",
+      "bytes": 2366
+    },
+    {
+      "path": "docs/specifications/04-architecture/docs/14-OPEN-SEAMS-AND-NON-GOALS.md",
+      "sha256": "1968bd567fb4ffc7c8b366109cc1a87b350c36f30710ff36f5439da839a5ab70",
+      "bytes": 838
+    },
+    {
+      "path": "docs/specifications/04-architecture/docs/15-PROVIDER-CHOREOGRAPHY.md",
+      "sha256": "6a8f74520b3359bfb998e3c748e5646e4f7438ec2fb771d2bfabb92e6cdc32b0",
+      "bytes": 2888
+    },
+    {
+      "path": "docs/specifications/04-architecture/docs/16-UOW-PERSISTENCE-CONTRACT.md",
+      "sha256": "e5491c99ed9f469c5f4a70ebf6ed0a0a2d1c21b9feb1c7d29cf917e9de1990c3",
+      "bytes": 1440
+    },
+    {
+      "path": "docs/specifications/04-architecture/docs/17-STORE-NODE-TRUST-SESSION.md",
+      "sha256": "7bc40306434c64f3f30f790c08ead11ecef2a4d25447a3023f0214fd2a494b59",
+      "bytes": 1364
+    },
+    {
+      "path": "docs/specifications/04-architecture/docs/18-SYNC-OWNERSHIP-APPLY-CONTRACT.md",
+      "sha256": "cabb4a13c32c404db5ad1fcf47d8016b4ee5a494d817e6c6e89dc171c6ac1a87",
+      "bytes": 1467
+    },
+    {
+      "path": "docs/specifications/04-architecture/docs/19-COMPATIBILITY-UPGRADE-MATRIX.md",
+      "sha256": "ce476f48c3068836184408b3a2805889210bbdd4b8c3b8310747cdc95e058a0e",
+      "bytes": 2122
+    },
+    {
+      "path": "docs/specifications/04-architecture/docs/20-READ-QUERY-ARCHITECTURE.md",
+      "sha256": "8255202d01978a4272ecfff9c30f47e151074f5bf76a10f0291655b0399c7589",
+      "bytes": 1917
+    },
+    {
+      "path": "docs/specifications/04-architecture/docs/21-BUSINESS-CONTEXT-RESOLUTION.md",
+      "sha256": "7b623fa26466556497beb28b03265e6ca3368d4adad234b11c91834dabec9805",
+      "bytes": 1196
+    },
+    {
+      "path": "docs/specifications/04-architecture/docs/22-WORKER-CONCURRENCY-AND-LEASING.md",
+      "sha256": "d8a6f19092781882f759716dff079efb8307cee3088f9698f0abfbedd0cc9658",
+      "bytes": 1328
+    },
+    {
+      "path": "docs/specifications/04-architecture/docs/23-DATABASE-RUNTIME-POLICY.md",
+      "sha256": "eba91d86135f8b8bfb1564dfffb7e9c58fe8e6db3043341c1cde0b747076c88c",
+      "bytes": 1379
+    },
+    {
+      "path": "docs/specifications/04-architecture/docs/24-OBSERVABILITY-AUDIT-TELEMETRY.md",
+      "sha256": "626d9845e8b7a4d26a4c479fa4957bcc7b2a995035c58cb485f04bab53e9ccbd",
+      "bytes": 1154
+    },
+    {
+      "path": "docs/specifications/04-architecture/docs/25-HARDWARE-COMMAND-LIFECYCLE.md",
+      "sha256": "52f711d66f2eb5d5633f3565686ef063e34df02c087ffc9c3ed16173334cf5d8",
+      "bytes": 1455
+    },
+    {
+      "path": "docs/specifications/04-architecture/docs/26-CONFIGURATION-OWNERSHIP-PRECEDENCE.md",
+      "sha256": "3b1508c923fec72c9c06975f87b2a76756bfd5c542354ba7c4d8fec566229dbf",
+      "bytes": 1259
+    },
+    {
+      "path": "docs/specifications/04-architecture/docs/27-SUPPORT-DIAGNOSTICS-ISOLATION.md",
+      "sha256": "fb36e0d884ebe39577a0630785245d52b4cf564ba9d38422365459924a084ed4",
+      "bytes": 1090
+    },
+    {
+      "path": "docs/specifications/04-architecture/docs/28-STORE-CLOUD-CAPABILITY-MATRIX.md",
+      "sha256": "59412fa25c3eafcdb1e8b8bf4f3febf3faaf1ad0b879a2f124cfdc47132fa432",
+      "bytes": 2049
+    },
+    {
+      "path": "docs/specifications/04-architecture/docs/29-RECONCILIATION-REBUILD-OWNERSHIP.md",
+      "sha256": "1503d59ce679b3b5e8110db84a33f4c1bac05ffc4877bf02130e3dfdc9bc8a4b",
+      "bytes": 1837
+    },
+    {
+      "path": "docs/specifications/04-architecture/docs/30-TRANSPORT-SECURITY-BOUNDARY.md",
+      "sha256": "055724ca9f098eb8ee5fa669247f5afd562f4f94993ab5bfb4178a8c88eadb9d",
+      "bytes": 556
+    },
+    {
+      "path": "docs/specifications/04-architecture/docs/31-DEPENDENCY-BOUNDARY-ENFORCEMENT.md",
+      "sha256": "36ba0ff82da6936af6e9806e9c86881499ef0ea63090c6491d45b028fd302185",
+      "bytes": 1407
+    },
+    {
+      "path": "docs/specifications/04-architecture/docs/32-TECHNOLOGY-BASELINE.md",
+      "sha256": "a6740d8f03a13981784228262ae208353d56dd1a6116611b619325910eb916bb",
+      "bytes": 2889
+    },
+    {
+      "path": "docs/specifications/04-architecture/docs/33-ARCHITECTURE-VALIDATION-SPIKES.md",
+      "sha256": "9cb07a7b2def7f46fb82cb74c670591265513dceb280b9fd3f1efffcf210401f",
+      "bytes": 3171
+    },
+    {
+      "path": "docs/specifications/04-architecture/docs/34-IMPLEMENTATION-GOVERNANCE-AND-AI-GUARDRAILS.md",
+      "sha256": "1ac6875c4ad5ddb08a13d8d8e3b1fc243362e26374edbe0264066bb588481e1a",
+      "bytes": 1329
+    },
+    {
+      "path": "docs/specifications/04-architecture/docs/35-PHASE-0-EXACT-TRACEABILITY.md",
+      "sha256": "d06d271a929f5628758c238af1e1a471268d013d13b6dab86acef0fd0c2087af",
+      "bytes": 639
+    },
+    {
+      "path": "docs/specifications/04-architecture/docs/ARCHITECTURE-REFINEMENT.md",
+      "sha256": "8e1e42845e3d917bc6d7336f8e4d8eebbe6d06762104fbeb6548b3d6a57a3ad0",
+      "bytes": 6485
+    },
+    {
+      "path": "docs/specifications/04-architecture/history/ARCHITECTURE-DECISIONS-v0.2.md",
+      "sha256": "2998c0e9d280058a7ae1f5ce00582f1bbc390cff707c224a8aa4d75094bf76d6",
+      "bytes": 5835
+    },
+    {
+      "path": "docs/specifications/04-architecture/history/ARCHITECTURE-DECISIONS-v0.3.md",
+      "sha256": "584dcb9f87cbed67aeb3455bed82e4c0104e4b8edff418f62c3c6463248a06df",
+      "bytes": 7976
+    },
+    {
+      "path": "docs/specifications/04-architecture/history/ARCHITECTURE-REFINEMENT-v0.1-VALIDATION.md",
+      "sha256": "f9cc62491ba89788bad0de0c9905b26a367a06e3f6acd30a82cf2b82082a5b9c",
+      "bytes": 1692
+    },
+    {
+      "path": "docs/specifications/04-architecture/history/ARCHITECTURE-REFINEMENT-v0.2-VALIDATION.md",
+      "sha256": "4e572b8ff98861edaf2a92a757c4bdb712f5901426138475d32fcde9c237cadc",
+      "bytes": 2745
+    },
+    {
+      "path": "docs/specifications/04-architecture/history/ARCHITECTURE-REFINEMENT-v0.3-VALIDATION.md",
+      "sha256": "64936bffd1a603e4b5aa7d8ad591801475a9a0e65298bf8f8bcd86ae6f27718b",
+      "bytes": 3026
+    },
+    {
+      "path": "docs/specifications/04-architecture/history/ARCHITECTURE-REGISTRY-v0.1.json",
+      "sha256": "04a406ea2ab41439514b2b78d44f6aa39328119719c371a224faefe9397bf9ae",
+      "bytes": 368
+    },
+    {
+      "path": "docs/specifications/04-architecture/history/ARCHITECTURE-REGISTRY-v0.2.json",
+      "sha256": "48a2e067e86d3ff38533f3f3b7c55b8df7da92092c0525d794ab1e8df6827c2e",
+      "bytes": 581
+    },
+    {
+      "path": "docs/specifications/04-architecture/history/ARCHITECTURE-REGISTRY-v0.3.json",
+      "sha256": "73455e00605dfbbcb21e13fc6b599ccb9bfab3365efa01f0a983025908166255",
+      "bytes": 797
+    },
+    {
+      "path": "docs/specifications/04-architecture/history/ARCHITECTURE-REVIEW-FINDINGS-v0.1.json",
+      "sha256": "d0d59111d7751560fd55f8bd548c59e8920faa698d5cb73ece045f461dbee116",
+      "bytes": 7062
+    },
+    {
+      "path": "docs/specifications/04-architecture/history/ARCHITECTURE-v0.1-REMEDIATION-REPORT.md",
+      "sha256": "a7ac129be0056c631d454c3242bc64a50293fbba131c948f650f8fd3aa14be8a",
+      "bytes": 749
+    },
+    {
+      "path": "docs/specifications/04-architecture/history/DEEP-ARCHITECTURE-CONSISTENCY-REVIEW-v0.1.md",
+      "sha256": "d52e24adf8643ca273355c979e26c5672a8a52bb6a1f172f3d16decf7a967756",
+      "bytes": 9132
+    },
+    {
+      "path": "docs/specifications/04-architecture/history/DEEP-REVIEW-REMEDIATION-MATRIX-v0.2.md",
+      "sha256": "d91c2e1ab3d93be466056ac7d5c64fd4003ff689136f86c23449a3e0e5ce2162",
+      "bytes": 11025
+    },
+    {
+      "path": "docs/specifications/04-architecture/history/FINDINGS-DETAIL.md",
+      "sha256": "173521abb6fe94826e99c318deb95d7a6d9d12482faad461d7926defa02f37a1",
+      "bytes": 9663
+    },
+    {
+      "path": "docs/specifications/04-architecture/history/FREEZE-CANDIDATE-RECORD-v0.3.md",
+      "sha256": "6b077e3e96713a7212e3aa48df5846663b3ea0e5843ce5c646773f1669f33611",
+      "bytes": 1053
+    },
+    {
+      "path": "docs/specifications/04-architecture/history/MANIFEST-v0.2.json",
+      "sha256": "7da6844d65ee246fe013cf983877e010b4b4736203b95a843d535be3d1da1b74",
+      "bytes": 9825
+    },
+    {
+      "path": "docs/specifications/04-architecture/history/MANIFEST-v0.3.json",
+      "sha256": "acb51e15b031acaed477167e41fbb606fb2fb0515e8464705d5286fa78fd42ab",
+      "bytes": 12960
+    },
+    {
+      "path": "docs/specifications/04-architecture/history/RELEASE-NOTE-v0.2.md",
+      "sha256": "0240911f612973c9657148a09fcf1421e365d76036381d96fcf18f7495f9be3e",
+      "bytes": 703
+    },
+    {
+      "path": "docs/specifications/04-architecture/history/RELEASE-NOTE-v0.3.md",
+      "sha256": "551c8c5d27bf4c488dd2a91bc28488c886a77da7e399ffe9f6c1e4522f740c30",
+      "bytes": 716
+    },
+    {
+      "path": "docs/specifications/04-architecture/history/REMEDIATION-PLAN-v0.1.md",
+      "sha256": "739be6182415ec2fc59ed8a68a5866d295af488d90ef8af890edb9284866ee4e",
+      "bytes": 2117
+    },
+    {
+      "path": "docs/specifications/04-architecture/history/final-architecture-freeze-review-v0.2/FINAL-ARCHITECTURE-FREEZE-REVIEW.md",
+      "sha256": "cdf084ef861516f736eca4eaecd0b139f6477e7f5b03bb74bfe5654501d05b41",
+      "bytes": 4162
+    },
+    {
+      "path": "docs/specifications/04-architecture/history/final-architecture-freeze-review-v0.2/FINAL-REVIEW-FINDINGS.json",
+      "sha256": "728e6fc21a377b061bc439de10b5d3255ce1fa8699ae44ab011af63243d75db7",
+      "bytes": 6228
+    },
+    {
+      "path": "docs/specifications/04-architecture/history/final-architecture-freeze-review-v0.2/FINDINGS-DETAIL.md",
+      "sha256": "f765ef397741f5566a8122cdc8ffda1193428f4a405a717d0f4526aa29200e12",
+      "bytes": 4784
+    },
+    {
+      "path": "docs/specifications/04-architecture/history/final-architecture-freeze-review-v0.2/MANIFEST.json",
+      "sha256": "2bbc8846d61b977ca22db934fbac322446f287db85fc76a517d3125db8df2d4b",
+      "bytes": 1339
+    },
+    {
+      "path": "docs/specifications/04-architecture/history/final-architecture-freeze-review-v0.2/REFERENCE-ARCHITECTURE-CROSSCHECK.md",
+      "sha256": "cee2d98f44cd955085377a1634e7914ea388981c2b6b961686cf7cb803dd1730",
+      "bytes": 3114
+    },
+    {
+      "path": "docs/specifications/04-architecture/history/final-architecture-freeze-review-v0.2/REMEDIATION-PLAN-v0.3.md",
+      "sha256": "ec1c39acfdbd2d18061a4e80c7a9f8c3d08ef2919c21280c101d42c653c8243e",
+      "bytes": 2199
+    },
+    {
+      "path": "docs/specifications/04-architecture/history/final-architecture-freeze-review-v0.2/validation/FINAL-ARCHITECTURE-FREEZE-REVIEW-VALIDATION.md",
+      "sha256": "d8951f029542700399af951dabff9bc3b56b5693344570fc16b76b6c9bffa559",
+      "bytes": 1076
+    },
+    {
+      "path": "docs/specifications/04-architecture/history/final-architecture-freeze-review-v0.3/CORRECTIONS-FOR-v1.0-FROZEN.md",
+      "sha256": "d3e49725bcb4b306013220ed2743826813f7c3efa14cb1133f384a235c06d845",
+      "bytes": 1447
+    },
+    {
+      "path": "docs/specifications/04-architecture/history/final-architecture-freeze-review-v0.3/FINAL-ARCHITECTURE-FREEZE-REVIEW-v0.3.md",
+      "sha256": "0f401d5da1111a667050d4831e054a2b088327a91146431e504d9e3a915949ff",
+      "bytes": 4313
+    },
+    {
+      "path": "docs/specifications/04-architecture/history/final-architecture-freeze-review-v0.3/FINAL-REVIEW-FINDINGS-v0.3.json",
+      "sha256": "7abe8e3d62e3b3d0e88985b4f91dba5aa35f8992ab883085e73efd3ce56fbd8e",
+      "bytes": 3147
+    },
+    {
+      "path": "docs/specifications/04-architecture/history/final-architecture-freeze-review-v0.3/FINDINGS-DETAIL-v0.3.md",
+      "sha256": "736fb2926712397cf92346554380e0ba8f87dfe0daba4c19feed0bd63f93d3aa",
+      "bytes": 2393
+    },
+    {
+      "path": "docs/specifications/04-architecture/history/final-architecture-freeze-review-v0.3/FREEZE-GATE-MATRIX-v0.3.md",
+      "sha256": "a801f4d7604aa539469c4e269ce1bb2f8841bac361c194aebab012514da44836",
+      "bytes": 1893
+    },
+    {
+      "path": "docs/specifications/04-architecture/history/final-architecture-freeze-review-v0.3/MANIFEST.json",
+      "sha256": "f7d649ed3bd698b96212da972defdeda5d3bbe524fde2ab32bfb9f8168a5bda4",
+      "bytes": 1426
+    },
+    {
+      "path": "docs/specifications/04-architecture/history/final-architecture-freeze-review-v0.3/validation/FINAL-ARCHITECTURE-FREEZE-REVIEW-v0.3-VALIDATION.md",
+      "sha256": "221fa0b7573516c1c41eada49e1eca08a2ae70d13b7267260f0fd0b8c63396b7",
+      "bytes": 1179
+    },
+    {
+      "path": "docs/specifications/04-architecture/traceability/DECISION-SEAM-ARCHITECTURE-MATRIX.md",
+      "sha256": "1f15b3633b6785a3769ad6a533a5c51d381ed409513b9f3190f24134fecfd768",
+      "bytes": 31799
+    },
+    {
+      "path": "docs/specifications/04-architecture/traceability/FINAL-FREEZE-REVIEW-REMEDIATION-MATRIX.md",
+      "sha256": "3444af097f5dc621dbb2289a87f360d31223bbe5c116bd758b240fa70d006c38",
+      "bytes": 5195
+    },
+    {
+      "path": "docs/specifications/04-architecture/traceability/FINAL-FREEZE-REVIEW-v0.3-CLOSURE.md",
+      "sha256": "a44888ef3d3c3c9181fa6c2874952c3bfba6fe4f5137f1fecdbf79bd3662c623",
+      "bytes": 1383
+    },
+    {
+      "path": "docs/specifications/04-architecture/traceability/FROZEN-BASELINE-TO-ARCHITECTURE.md",
+      "sha256": "162e1adb8fa75e468cf33e6a51eaebfbf07e200cdbf250eb507d7d59b84c4f92",
+      "bytes": 3226
+    },
+    {
+      "path": "docs/specifications/04-architecture/traceability/REFERENCE-ARCHITECTURE-TECHNOLOGY-MATRIX.md",
+      "sha256": "85e87329528594edccfc15c40dd3f10644e6cef60409b6e93de9fd8032d0d965",
+      "bytes": 2867
+    },
+    {
+      "path": "docs/specifications/04-architecture/validation/ARCHITECTURE-REGISTRY-v1.0-FROZEN.json",
+      "sha256": "1e696d79387a9b40d4cc37f3796663a3578c4555f5be41899321db303d7ef0b4",
+      "bytes": 690
+    },
+    {
+      "path": "docs/specifications/04-architecture/validation/ARCHITECTURE-v1.0-FINAL-FREEZE-VALIDATION.md",
+      "sha256": "01905a6beca44f3dac557d5b25d1b2034568cd99863d5308b609f9744663f7bb",
+      "bytes": 1148
+    },
+    {
+      "path": "docs/specifications/05-api-contracts/FINAL-FREEZE-PACKAGING-CORRECTIONS.md",
+      "sha256": "03bd4d26f59396328bd19df00658d1846d344dd0b53d1a46ab26fe4e9ab1ae56",
+      "bytes": 460
+    },
+    {
+      "path": "docs/specifications/05-api-contracts/FREEZE-RECORD.md",
+      "sha256": "45458b42d30630c063cb564dd642eb949a42def76f7901edf7e927073a31305d",
+      "bytes": 1183
+    },
+    {
+      "path": "docs/specifications/05-api-contracts/MANIFEST-v1.0-FROZEN.json",
+      "sha256": "62771d0cc57fdb7758a4244181a0fcdecf806f29b30ffd96668f2f367c7fcf30",
+      "bytes": 9166
+    },
+    {
+      "path": "docs/specifications/05-api-contracts/README.md",
+      "sha256": "d59c5f5b98c5782fa31494b1bb08699c042a5ac6144a3feda158647c4114e4b8",
+      "bytes": 521
+    },
+    {
+      "path": "docs/specifications/05-api-contracts/RELEASE-NOTE-v1.0-FROZEN.md",
+      "sha256": "42b84ac05a5764442c54ff69f46427f1121073876892f065569e596684e93fe6",
+      "bytes": 481
+    },
+    {
+      "path": "docs/specifications/05-api-contracts/conformance/openapi-zod-conformance-v1.json",
+      "sha256": "9b92a4fe6ec2549eef035c4c9c7960add4e1698df1fd650d9513053262d4a076",
+      "bytes": 1484
+    },
+    {
+      "path": "docs/specifications/05-api-contracts/contracts/device-enrollment-port-v1.schema.json",
+      "sha256": "dda8982f23e65ae3f765bb623addb7e97f9ee335efddfedd05ca121f7271bc30",
+      "bytes": 3440
+    },
+    {
+      "path": "docs/specifications/05-api-contracts/contracts/hardware-port-v1.schema.json",
+      "sha256": "d977c1a31b6e584152cfc56b282aac0ad1f1a55c771e771ac082d8d6ac97cd7e",
+      "bytes": 3363
+    },
+    {
+      "path": "docs/specifications/05-api-contracts/contracts/provider-adapter-v1.schema.json",
+      "sha256": "1116c64be3757e66424ec922a43eb30e21082dfd18269f0ff4e59bfd356b556d",
+      "bytes": 2205
+    },
+    {
+      "path": "docs/specifications/05-api-contracts/decisions/API-CONTRACT-DECISIONS-v1.0.md",
+      "sha256": "97bbe5ac2e88d47e52ac86b18cb057e1dcae9be241ae285d09b3613b3de0613e",
+      "bytes": 8470
+    },
+    {
+      "path": "docs/specifications/05-api-contracts/docs/01-STORE-API-OPERATION-CATALOG.md",
+      "sha256": "61ef968486a7e7ddb9cf3b105a1975a8f83efe50af5fc63b694abeb425d2570f",
+      "bytes": 64719
+    },
+    {
+      "path": "docs/specifications/05-api-contracts/docs/02-COMMON-HTTP-CONTRACT.md",
+      "sha256": "269e8b2b85ae2a433d30e4a1907b5fdb5b40bd9ac6130850e6cab80a48ecd06f",
+      "bytes": 1009
+    },
+    {
+      "path": "docs/specifications/05-api-contracts/docs/03-IDEMPOTENCY-CONCURRENCY-RECOVERY.md",
+      "sha256": "4d4288ed31162c615b7e215ce13b930d3f33bfe3a7499ffb68201f094d8b256d",
+      "bytes": 1292
+    },
+    {
+      "path": "docs/specifications/05-api-contracts/docs/04-PAYMENT-REFUND-RECOVERY.md",
+      "sha256": "4e3eddecaf8dcc72f05cd28abcc3ab5e48d0ec99aaa95d5d348ff77b92d70c50",
+      "bytes": 929
+    },
+    {
+      "path": "docs/specifications/05-api-contracts/docs/05-POSTING-ENVELOPE-API-MAP.md",
+      "sha256": "86e4d273aa4bedde059260bba21b69a02378109bc28c8c3892cb185bf08a17b9",
+      "bytes": 2635
+    },
+    {
+      "path": "docs/specifications/05-api-contracts/docs/06-READ-QUERY-REPORTING.md",
+      "sha256": "da758a86e8f95c826b34c5833e4128f100caf8ddbc2b2c09c03e6729df30b0b5",
+      "bytes": 578
+    },
+    {
+      "path": "docs/specifications/05-api-contracts/docs/07-HARDWARE-PORT-CONTRACT.md",
+      "sha256": "426106b838c0eb702550f9cc2ca77b612b3c9db48ea8bd7400eac4b688bf79af",
+      "bytes": 579
+    },
+    {
+      "path": "docs/specifications/05-api-contracts/docs/08-SYNC-API-CONTRACT.md",
+      "sha256": "93aeab73c68a85202efa3db5eb87eb3a2f4c6890ea7f98e52ea06b869c097bd2",
+      "bytes": 731
+    },
+    {
+      "path": "docs/specifications/05-api-contracts/docs/09-SECURITY-TRUST-CONTEXT.md",
+      "sha256": "4d1f7e66f42b9d065ae0da3657de18f3c59e25e1e82e96e973aaa3eaff58f6b0",
+      "bytes": 568
+    },
+    {
+      "path": "docs/specifications/05-api-contracts/docs/10-VERSIONING-COMPATIBILITY.md",
+      "sha256": "7c531e06abc0e11411d5683f2a2a244d8e59e9809af13be5e803b5426e524fe2",
+      "bytes": 627
+    },
+    {
+      "path": "docs/specifications/05-api-contracts/docs/11-OPEN-SEAMS-NON-GOALS.md",
+      "sha256": "6867044d392bb6d9f61924ecd36013e7aead053f03a117646db8da1edfe8deb7",
+      "bytes": 1010
+    },
+    {
+      "path": "docs/specifications/05-api-contracts/docs/12-PROVIDER-ADAPTER-CONTRACT.md",
+      "sha256": "b058cdf050eb3544d7ed1a5c2fb99be72fb7400764e6487d93b8bc74320d39fd",
+      "bytes": 560
+    },
+    {
+      "path": "docs/specifications/05-api-contracts/docs/13-ZOD-OPENAPI-SOURCE.md",
+      "sha256": "75b8096edd5819fadb6fbf29eaf9e1fcc6cfbe9c2abcacd4c3f7cf4c0208ff90",
+      "bytes": 587
+    },
+    {
+      "path": "docs/specifications/05-api-contracts/docs/14-PERMISSION-ERROR-MATRIX.md",
+      "sha256": "37dbfeb0c97d00928c946297b8e7cb48f42cf1cdb1cdee89f52d6b97d308f16c",
+      "bytes": 111202
+    },
+    {
+      "path": "docs/specifications/05-api-contracts/docs/15-CORRECTION-REVERSAL-CONTRACT.md",
+      "sha256": "49b850cb1ae12915d8f290f20ff710f448075912117942b322de36129a28445e",
+      "bytes": 553
+    },
+    {
+      "path": "docs/specifications/05-api-contracts/docs/16-IMPORT-EXPORT-JOB-ARTIFACT.md",
+      "sha256": "0c2c6186aea6960c0e016adc27715730911da9225bd5873d25635c0448751633",
+      "bytes": 739
+    },
+    {
+      "path": "docs/specifications/05-api-contracts/docs/17-SYNC-MESSAGE-REGISTRY.md",
+      "sha256": "27e0fed2d14eaa718fc4ec7c21046b000c998e701270437066e9ec27ba278904",
+      "bytes": 674
+    },
+    {
+      "path": "docs/specifications/05-api-contracts/docs/18-DEVICE-SESSION-ENROLLMENT.md",
+      "sha256": "bcfed0fd61e670ae488d3c9e7695a7dc660487458f1c2ba06ce147dd2dfa4da3",
+      "bytes": 819
+    },
+    {
+      "path": "docs/specifications/05-api-contracts/docs/19-CLOUD-API-SCOPE.md",
+      "sha256": "33434571df16cd6e0633316e22a36cade819b0ff8ac705fb7f7765d3c07386cd",
+      "bytes": 420
+    },
+    {
+      "path": "docs/specifications/05-api-contracts/docs/20-CONTRACT-SOURCE-AND-CI.md",
+      "sha256": "aba90b364fa0178e2ca10e5b5af3fde74bc99fd14c9702a3bf1272826d54f225",
+      "bytes": 757
+    },
+    {
+      "path": "docs/specifications/05-api-contracts/docs/21-NFR-CONTRACT-GATES.md",
+      "sha256": "44621c81c2b2be42b4a16e35fd5a4aa941fbe4f6fad1120ece9feadfcf318186",
+      "bytes": 804
+    },
+    {
+      "path": "docs/specifications/05-api-contracts/docs/22-API-DB-v1.2-PERSISTENCE-ALIGNMENT.md",
+      "sha256": "be7092939b4c1d914f3ef2e960292572a94e030769fca00c1ebd21c3853982e0",
+      "bytes": 472
+    },
+    {
+      "path": "docs/specifications/05-api-contracts/docs/23-ARTIFACT-LIFECYCLE-v1.0.md",
+      "sha256": "7fbdc7718df421531cef7cdf101922b2d81f5496a160de0e6593b129d9717ee2",
+      "bytes": 376
+    },
+    {
+      "path": "docs/specifications/05-api-contracts/docs/API-CONTRACTS.md",
+      "sha256": "685cdec86e6df37214401d1348c4273db84dd48cf25eb52fdb692be7b63a3ff3",
+      "bytes": 1498
+    },
+    {
+      "path": "docs/specifications/05-api-contracts/openapi/minimart-cloud-v1.yaml",
+      "sha256": "a5a4b89e3cc28a131824dcfe4bc57509baa92ffaaf363788861f85af241ea1aa",
+      "bytes": 13211
+    },
+    {
+      "path": "docs/specifications/05-api-contracts/openapi/minimart-store-node-v1.yaml",
+      "sha256": "41336f0e311ddc28615e730957c26c1e4fac1ee2d36bcef0def6c520075612b0",
+      "bytes": 893862
+    },
+    {
+      "path": "docs/specifications/05-api-contracts/openapi/minimart-sync-v1.yaml",
+      "sha256": "fe013b8b31bb634ee7003a448e12d3cb0d2b16c4dd8e053a2f089803a984b53e",
+      "bytes": 52067
+    },
+    {
+      "path": "docs/specifications/05-api-contracts/registry/PROBLEM-CODE-REGISTRY-v1.0.md",
+      "sha256": "5477a03c011f48b78c7d9dfcab2ab27616adc71eb8f9f1fb538261dcaf72db16",
+      "bytes": 314
+    },
+    {
+      "path": "docs/specifications/05-api-contracts/registry/operations-v1.0.json",
+      "sha256": "fe30a363930e54e3be780b8f774798e6335fe9cf2c0197aca01b2faddb9c8807",
+      "bytes": 203025
+    },
+    {
+      "path": "docs/specifications/05-api-contracts/registry/problem-codes-v1.0.json",
+      "sha256": "a354214528d0f41da0a94388290dfaaa74eb660355fe55feac52275b259d9ed6",
+      "bytes": 6171
+    },
+    {
+      "path": "docs/specifications/05-api-contracts/registry/sync-message-registry-v1.0.json",
+      "sha256": "6134ec424d3f73435cc47219b8fd7a3b08ac383b2f0049a483c66ab16ee01a8a",
+      "bytes": 5046
+    },
+    {
+      "path": "docs/specifications/05-api-contracts/traceability/ACCEPTANCE-TO-API-v1.0.json",
+      "sha256": "2aac791322b4690431959c2e82495301bfe10ee6d1bb71595bdbe7d6b11282be",
+      "bytes": 418989
+    },
+    {
+      "path": "docs/specifications/05-api-contracts/traceability/API-DB-v1.2-ALIGNMENT-v1.0.json",
+      "sha256": "cba5306b64f37895cd093846a7ee9ac79e9f11e36a0d33770b1ddb8a4a27a418",
+      "bytes": 1809
+    },
+    {
+      "path": "docs/specifications/05-api-contracts/traceability/DECISION-SEAM-API-MATRIX.md",
+      "sha256": "76a9755f893d2799756b7d3e17dfc899164e197f8e56933113f87cfb92f3df55",
+      "bytes": 16416
+    },
+    {
+      "path": "docs/specifications/05-api-contracts/traceability/FR-TO-API-v1.0.json",
+      "sha256": "bcfa06245d0d35c7ba926d802ff8760d1658371062743b994775793f0fead723",
+      "bytes": 5792551
+    },
+    {
+      "path": "docs/specifications/05-api-contracts/traceability/INDEPENDENT-CRITICAL-FLOW-EVIDENCE-v1.0.json",
+      "sha256": "3d3257e1c5c3244b6f9cce92ce00ebc6273408bec3f288ea3a91bf5d0d3d44ff",
+      "bytes": 3171
+    },
+    {
+      "path": "docs/specifications/05-api-contracts/traceability/INDEPENDENT-SEMANTIC-FREEZE-REVIEW-v1.0.md",
+      "sha256": "5aaaded96364394d2d933220217503b6b84ec8a9e9ccb072e5a0cb9ded0f8491",
+      "bytes": 402
+    },
+    {
+      "path": "docs/specifications/05-api-contracts/traceability/NFR-TO-API-v1.0.json",
+      "sha256": "818c84dae8f82b312d90bfa09ae34655393eedcfc601ad03bab13e04d29684fb",
+      "bytes": 55538
+    },
+    {
+      "path": "docs/specifications/05-api-contracts/validation/API-CONTRACT-REGISTRY-v1.0-FROZEN.json",
+      "sha256": "103194cbdeddd05e60f5f2f3c9ea140a7de230ea1eeaa83d4a98cb840c5a4478",
+      "bytes": 561
+    },
+    {
+      "path": "docs/specifications/05-api-contracts/validation/API-CONTRACTS-v1.0-FREEZE-VALIDATION.md",
+      "sha256": "9d80bd56f6eb48c73d7ba76d66b6fe143ad836480accef1afc8527f4b84fbf7d",
+      "bytes": 221
+    },
+    {
+      "path": "docs/specifications/05-api-contracts/validation/API-CONTRACTS-v1.0-FROZEN-REGISTRY.json",
+      "sha256": "c5ab593d462f2678b09b389796ccb08e84e42a467fc8ae6be3e952b6fbba5578",
+      "bytes": 633
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/FINAL-FREEZE-PACKAGING-CORRECTIONS.md",
+      "sha256": "67186078a5128b2cc9ab2aae48229f128bfa4570f5d5460d22539005c6ffb1cb",
+      "bytes": 376
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/FREEZE-RECORD.md",
+      "sha256": "311a8372ead7df902f3ac777a238ed55fcfa0e610795365eb97f2409979c0611",
+      "bytes": 814
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/MANIFEST-v1.0-FROZEN.json",
+      "sha256": "97d2029595ee6431b91f94237d305b15247d5464ec530819d4a14b5284a0a101",
+      "bytes": 22918
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/README.md",
+      "sha256": "ab9317e2aa7f0b9f3cc7fec8dfd96c766127d3890c583c8f7c307703d4bd1ca3",
+      "bytes": 837
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/RELEASE-NOTE-v1.0-FROZEN.md",
+      "sha256": "a1f4e7130200339d09e5e44925383d2b5ecddfeb56feda6a348ff9b99a1889fa",
+      "bytes": 422
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/docs/00-UI-SPECIFICATION.md",
+      "sha256": "1d981a1dec174d04794bb805bb946cce34bee008f8f90f3f9028d0a8ab123ede",
+      "bytes": 1687
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/docs/01-DESIGN-SYSTEM.md",
+      "sha256": "deaddc5f7de684d4e51b78f9db50fc442071ebf8a25bab279fa57e3f40ebe050",
+      "bytes": 2452
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/docs/02-INFORMATION-ARCHITECTURE-AND-NAVIGATION.md",
+      "sha256": "1e35dc6a566a3f8869696ec2e8b3a48b901ddd8726437f8ca08435cc8b75d846",
+      "bytes": 1234
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/docs/03-POS-EXPERIENCE.md",
+      "sha256": "9421715ce0759fc53d0d26013f03124c01988dd8c1365c4255d06a4067e2a0a9",
+      "bytes": 1735
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/docs/04-BACK-OFFICE-EXPERIENCE.md",
+      "sha256": "08c815e498f59bcb398c7390b63b285c9c9d9849ec8eddbb6716ea6a24041306",
+      "bytes": 861
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/docs/05-STATE-OFFLINE-RECOVERY.md",
+      "sha256": "7c78560f0ed496aee6cc372b376d003fab0ac0a9eec3cff06469a5151decbbcf",
+      "bytes": 921
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/docs/06-PERMISSIONS-OVERRIDES-AUDIT.md",
+      "sha256": "4869d83a41480e549e5efe976d487c14f75c5e8fdbbfd3030b1d56a16bfff731",
+      "bytes": 607
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/docs/07-KEYBOARD-ACCESSIBILITY.md",
+      "sha256": "281bda5fc44c1d8b072a0ffefe8b595d2bbc0eb56ad67b4e74dd358bc55c6765",
+      "bytes": 631
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/docs/08-LOCALIZATION-COUNTRY-UX.md",
+      "sha256": "c1033a2fa139ef073b4b04cd8ba4560974fa993ba5805173454b7e0a5469a31e",
+      "bytes": 592
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/docs/09-HARDWARE-UX.md",
+      "sha256": "b09c9e733c2445804aaaaf1002f0e6f8d52bca01ce6bd62e7615ff603a66af6b",
+      "bytes": 583
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/docs/10-ERROR-MESSAGE-STANDARD.md",
+      "sha256": "1d958160680dc653738b160b200e33d92718f9bfa6b78c56445b2ae5ceaf8656",
+      "bytes": 705
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/docs/11-RESPONSIVE-WINDOW-BEHAVIOR.md",
+      "sha256": "279070d3a0cb833d640f6396f918343aff7129364e70301bb40293d9eb1fc246",
+      "bytes": 500
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/docs/12-UI-API-TRACEABILITY.md",
+      "sha256": "07ad6a0202134c4158e978b313210e94703cc01517390edd8a62eb993e71bc64",
+      "bytes": 766
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/docs/13-SCREEN-INVENTORY.md",
+      "sha256": "7d1e0048edbff8f3904a7542484395857ea5bd9d447a8faab40d722083764a24",
+      "bytes": 10719
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/docs/14-ROLE-EXPERIENCE.md",
+      "sha256": "2f1bc2aee18805cdb47cfd5e76e9899f9219b51ee3028c8734ea5f49758fe675",
+      "bytes": 890
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/docs/15-OPEN-UI-DECISIONS.md",
+      "sha256": "5e3702771a0c5bd6e00290beadb5b258393d6ad877252cea88dbf73c11ba526e",
+      "bytes": 1056
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/docs/16-UI-ACCEPTANCE-BASELINE.md",
+      "sha256": "55aff733b70ce83370533b0d231da5526a6259a284eab5cf576b506586d64bbc",
+      "bytes": 1180
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/docs/17-SCREEN-STATE-CONTRACT.md",
+      "sha256": "a309f1d3f095bf2143c9cc50365459ca910bd72fa0aaaae5682846bab95a9f72",
+      "bytes": 1173
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/docs/18-COMMAND-AND-RECOVERY-CONTRACT.md",
+      "sha256": "f309ac15b5550ca53d10992a0095f869fa995a037e05cdfdedbed09c582a1593",
+      "bytes": 634
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/docs/19-AUTHORIZATION-UI-CONTRACT.md",
+      "sha256": "5f484b8744413c96ac3e541f01b3630f0cd84a9ded1fc397db8d4a9765c12865",
+      "bytes": 481
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/docs/20-MONEY-QUANTITY-CONTRACT.md",
+      "sha256": "3a59f7101c6b554518018ec6268dac0b0b061cb7b809602e7ef2dc5f359986bb",
+      "bytes": 714
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/docs/21-COUNTRY-CAPABILITY-UI-MATRIX.md",
+      "sha256": "ef7a3c04fabb5e95a3897e69e18cf02f869ab84efe8382f4e10e82c2a4beffd3",
+      "bytes": 1447
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/docs/22-HARDWARE-BOUNDARY.md",
+      "sha256": "0238e0a649f3a8825a7c75c64af117cfef1bfb302e6ce704fc6e097af9ab99ac",
+      "bytes": 470
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/docs/23-KEYBOARD-SHORTCUT-VERIFICATION.md",
+      "sha256": "6c79e8df06b9c90523698327413b27c4780181bbc4bfd85273c65b69e928ba7d",
+      "bytes": 579
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/docs/24-ACCESSIBILITY-ACCEPTANCE-MATRIX.md",
+      "sha256": "d01050a42933800ac0566f5f66a32879ef3d9cac1312c5bfb404ee20b6e1937a",
+      "bytes": 675
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/docs/25-DOCUMENT-LIFECYCLE-PATTERN.md",
+      "sha256": "399cf237b3f895394577c72bdbfcbda1a274839d46dea873716c0cd0787c0ba9",
+      "bytes": 782
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/registry/navigation-v1.0.json",
+      "sha256": "9ad2cbfc856ea25d9b8655ff4e14fa2ff5c73324c789936efadd63f0f33019e9",
+      "bytes": 1064
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/registry/roles-v1.0.json",
+      "sha256": "53a6b1890a866efb80ac365f25583f2083dc775eea6202776ea97cbc88dee931",
+      "bytes": 1163
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/registry/screens-v1.0.json",
+      "sha256": "628043f8aabd5db5fbbf3b5a7fdefdf9d2e7b7442f0dcfa43babcecd97116dd7",
+      "bytes": 100644
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-ACC-001-accounting-dashboard.md",
+      "sha256": "339c26175c56808c44117f6643adae7717d1f348cda9295bc099abe331725275",
+      "bytes": 4797
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-ACC-002-supplier-payables.md",
+      "sha256": "2c4ac8196e055bf477c56b86b3909323d24d77b16c7b69bca6288a1f12617933",
+      "bytes": 2889
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-ACC-003-supplier-payment.md",
+      "sha256": "8ecf86c44dcfe7315cbd49e8440cc3cd52db0401430694b3dcbce57ae99644b8",
+      "bytes": 3262
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-ACC-004-financial-accounts.md",
+      "sha256": "6e6edb5c0551c2410a5e9f8b1d2d4ddd9aecb3861c619f99dec78ab625ec7673",
+      "bytes": 3707
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-ACC-005-financial-transactions.md",
+      "sha256": "3b3f2434ec40b36d64cb351891c6bddc1e9599d48d6ae86651447d69728d6221",
+      "bytes": 3043
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-ACC-006-account-transfer.md",
+      "sha256": "813928d7d4c12b244a82574806fde5137588cc4c56a6633f53a6cddcb4acaef1",
+      "bytes": 4228
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-ACC-007-expense-categories.md",
+      "sha256": "bd972107af35a21776a23c8da8ba6d0c5ead9cff5448790dc36646bde6a547cd",
+      "bytes": 3691
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-ACC-008-expense-entry.md",
+      "sha256": "4dd6ecf32fb3702370626732ade2a28a013d94cced90472c53e5d265732e5b2e",
+      "bytes": 4130
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-ACC-009-reconciliation.md",
+      "sha256": "1d45ac17ffb94b21a744c3cc206feafeae9a58ef8a5bee845e9246bf4ef97c65",
+      "bytes": 4118
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-AUD-001-audit-explorer.md",
+      "sha256": "fa2e81eeb22b1c0fb3cc3823080fc39679ef2928b0d818114a820f1f6238d76b",
+      "bytes": 1861
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-BAK-001-backup-restore-center.md",
+      "sha256": "c2b4a5f4f939d551c90dd15002f8abdf0b00d0b7697ba3f3f00587143a559091",
+      "bytes": 2512
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-CAT-001-item-list.md",
+      "sha256": "b89d440205a21663fbff62d88a5606a5afbf9d973f1a00f689af73fb1e6dd85a",
+      "bytes": 3248
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-CAT-002-item-editor.md",
+      "sha256": "f33b56e4b89298ea59f36f9116963d8ba8cff5733943b5e16de3b6777695088e",
+      "bytes": 3173
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-CAT-003-barcode-manager.md",
+      "sha256": "8f10b2d393fff17a753bd4eef6ba60f72fd577fa5a7554a87a8439b10b6c2afb",
+      "bytes": 4001
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-CAT-004-uom-manager.md",
+      "sha256": "9e0863f27699242ed7a3e28c1c6feebd333dfef9a7d8b57a344b789f6c819f17",
+      "bytes": 3863
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-CAT-005-category-manager.md",
+      "sha256": "4b18379250b12440fad3da9efd462a93ed3949cd357fed97ca39e6833c1a907e",
+      "bytes": 3824
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-CAT-006-brand-manager.md",
+      "sha256": "1fbba80504fc632867acbc7f1314d42e7cce9f4ff1e2ceaa808a24e5c3a8fff9",
+      "bytes": 3855
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-CLD-001-cloud-organization-dashboard.md",
+      "sha256": "8b4caff2676a7fc5a0b92097db5bf8f8b913810cb485e3acdda2005c64aacbc9",
+      "bytes": 2500
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-CLD-002-store-sync-health.md",
+      "sha256": "eca587bb953a3e940a0daa37fafa743474802edabe1a37bb6780c4f5d25ebe2f",
+      "bytes": 2479
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-CLD-003-cloud-configuration-distribution.md",
+      "sha256": "b567166452d8dad7171d488a998a8accd07b15c998a0555df8231938412ef39f",
+      "bytes": 2493
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-CRD-001-credit-account.md",
+      "sha256": "084f21a4064c395fe9301706a9d6720a134b5375b0746747f7261538d36b06b2",
+      "bytes": 3417
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-CRD-002-customer-collection.md",
+      "sha256": "d388c4a84a13b33f3c559c263f01386d74fcdf97fc2ad05a8e6268c16c59f832",
+      "bytes": 3921
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-CRD-003-credit-ledger.md",
+      "sha256": "698c9ef0fbd9b6405675663d855325b6ecf2a8ce47b87a92561aed28d2e4912a",
+      "bytes": 3014
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-CSH-001-business-day.md",
+      "sha256": "91ea720a2441f3c7eba2fb62bb328375784b523850cd7e56303aff0d51974860",
+      "bytes": 3415
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-CSH-002-shift-monitor.md",
+      "sha256": "9c5116db548e17ba9768136bc26a69e7c921f18b3d8d2ba8d0eecd89ac18c28d",
+      "bytes": 3311
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-CSH-003-cash-movement-ledger.md",
+      "sha256": "0da0c84be58ef8bb8dc4bb1aa0fc42c1436bb8bda27c2f14ff0b4f5a7894ad20",
+      "bytes": 2966
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-CTRY-001-country-rule-status.md",
+      "sha256": "1aff3e392dc95fde14051c8d933386cab264ad22b6726835fba012890ad93f85",
+      "bytes": 2216
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-CTRY-002-country-rule-draft-validation.md",
+      "sha256": "90062b86b556cf7786f606b98362309df12f5ed500a86e03fde7ec604e4ddb2e",
+      "bytes": 2257
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-CUS-001-customer-list.md",
+      "sha256": "656d6923c034d26219afe8230ef36eadcd662df50120d7f79c981fbe477a98b6",
+      "bytes": 3026
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-CUS-002-customer-editor.md",
+      "sha256": "5fb941a6e523eac52d58853d5b0c64c208a81c2d798bdb32000c48b95a795979",
+      "bytes": 4552
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-EXP-001-export-center.md",
+      "sha256": "80c8bb9357ca262c770225473101e4a6bd38ef82d99614d5faa397e3dabce651",
+      "bytes": 3042
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-HW-001-hardware-setup.md",
+      "sha256": "7438f8b7e46483d7bedc26db3d3654219eaf0ad856d8d8cf285b62c8448ae5d6",
+      "bytes": 2311
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-IAM-001-users.md",
+      "sha256": "9b0d5e2bfb902de2100061d6f33fe062d9cd934260ddcaace8777d4f80d0b785",
+      "bytes": 5361
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-IAM-002-roles-permissions.md",
+      "sha256": "48938d217989abd289f7079b07c847adf95a9bf0972876b916f875cda6eb488e",
+      "bytes": 4264
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-IAM-003-override-history.md",
+      "sha256": "14aaef7ca61a21eabebe869f1f2fdfe24e19a4df884b9bdab7aafbef323b8855",
+      "bytes": 3173
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-IMP-001-import-center.md",
+      "sha256": "80d045f4030495ab522eb72a2af195043b711b9bbe871c50d9ce5bf820528750",
+      "bytes": 4915
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-INV-001-inventory-overview.md",
+      "sha256": "46e7f356671ccb0101594811b4bce979704b708c0dac82ce55b1d6b54e855334",
+      "bytes": 3585
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-INV-002-item-stock-detail.md",
+      "sha256": "26df9f5f8c4eb9e6cc3a5decf707b90747eabca8783ded10a9f003495809a51a",
+      "bytes": 2557
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-INV-003-stock-movement-explorer.md",
+      "sha256": "842a6215bcef43656f0e1add1d5f8fc18c07a1119e382e244659194708991ea4",
+      "bytes": 3410
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-INV-004-stock-count-list.md",
+      "sha256": "bc4b5244aae3f73db7935adfeb5785178f05c445c419bf4fb07299dc6a7f7ea5",
+      "bytes": 2531
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-INV-005-stock-count-workspace.md",
+      "sha256": "8e1cce7cd7ca38d3e6f5968783feda7e262f275779ef5bc88b5e94f4bf56d6a0",
+      "bytes": 3805
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-INV-006-reorder-low-stock.md",
+      "sha256": "e4659c14608fe1fd6f761ffb485b2d23c014d8346e58ef9ac63216ada7272b20",
+      "bytes": 2563
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-ORG-001-company-settings.md",
+      "sha256": "08377411b1c5b123af692733cb7aaf3da3b36f5cc76fb0a740d33c55a3ffbfda",
+      "bytes": 2898
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-ORG-002-stores.md",
+      "sha256": "0fbb099f75eb6876b48aa780654669d2191432af5e804f3ada7539b34df8680d",
+      "bytes": 3611
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-ORG-003-counters.md",
+      "sha256": "845db1f664093ed4734571faa45eea5a0b022dfc8fe708b99ba8c8605b1d6c17",
+      "bytes": 4443
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-POS-001-pos-sale-workspace.md",
+      "sha256": "b9dab0fffb2346559768d39d0b5de93680a2367062830d0f7411d2ba5b29d887",
+      "bytes": 5813
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-POS-002-item-search-scan-resolution.md",
+      "sha256": "7ad1c8f601ec599e65eb6b23c1a16219eb7d2d50b58e82631770b3f55197c259",
+      "bytes": 3182
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-POS-003-line-edit-drawer.md",
+      "sha256": "93deb05b8c22397c9bd0a9cb334afafc4f4f850bd732707e846641615b7cfed7",
+      "bytes": 3177
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-POS-004-customer-attach-quick-search.md",
+      "sha256": "0a8b7244d47498cad1aac663256054852e80ddc8923413a1d5eaa1fde51d3340",
+      "bytes": 3057
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-POS-005-hold-recall-sale.md",
+      "sha256": "6b3ae2d59696689cbc4bdd727fb0ed0538ca010209ece0a4589b2f89eb8b131c",
+      "bytes": 3492
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-POS-006-payment-workspace.md",
+      "sha256": "f6282f5d94ff6bdddca0e2d771d190985fc8505671332bf2da187a49f3c35568",
+      "bytes": 5119
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-POS-007-payment-recovery.md",
+      "sha256": "643737f10b2dd6b84d13c59cdcaea60bfc03a6cc7782a59fa84d23f5c1e04fcf",
+      "bytes": 3902
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-POS-008-sale-completion-receipt.md",
+      "sha256": "9e2418c3987131a2dff6fa12890a652fa4397866e6fbd88c5c1e226105ea8ae5",
+      "bytes": 3189
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-POS-009-sale-history.md",
+      "sha256": "e8efd32328207295f1e2fd54842595e4470e0430d5a25fadb0c062b255dfdadd",
+      "bytes": 3148
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-POS-010-receipt-reprint.md",
+      "sha256": "35842b6bdeeeb369ce8e1d8d7169c2afe8e7395f1ef87ae7ad3a93031f3d2249",
+      "bytes": 1954
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-POS-011-return-refund-workspace.md",
+      "sha256": "6e4d033f4b3dbe5eb2e2a756e997457ee84eebe095ba5411b662dd6ab7f140cd",
+      "bytes": 3814
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-POS-012-refund-recovery.md",
+      "sha256": "2a1a6d480ce842286ba10582e9c75df0bf3441b72f8ab72a7aa5426cf2df7c43",
+      "bytes": 6696
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-POS-013-credit-sale-review.md",
+      "sha256": "163428b0e306a1533ff45349f516a0a68b4f0d81de591c53418f2b50f064a317",
+      "bytes": 3046
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-POS-014-cash-in-cash-out.md",
+      "sha256": "f1aa13ca5faf2f2a980feda7713d1327250f2ba676865eb12a59f74161782c0e",
+      "bytes": 3458
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-POS-015-open-shift.md",
+      "sha256": "48016ea4681f9329832b1ef4b4ce93d376098553d0308e2e70279507dd308cf8",
+      "bytes": 2957
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-POS-016-shift-summary-close.md",
+      "sha256": "16ba224582963a942d3f35853b4e4470d4f023413fd26a568675d3380cfd873c",
+      "bytes": 3340
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-POS-017-manager-override-dialog.md",
+      "sha256": "f77386c13b04bce87996dd67eda8a7d79565bfc8dfbd5fad9454bd16cb40b25c",
+      "bytes": 3203
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-POS-018-printer-scanner-status.md",
+      "sha256": "2d5e8ca6dbb56611874cbdba05066d7753485193bdbb4b81c90633706fc5bdf1",
+      "bytes": 1957
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-PRI-001-price-schedule-list.md",
+      "sha256": "500c8beb6195a39f21a3e596e27145202a17313688d8e926603e9fcad67539a2",
+      "bytes": 3712
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-PRI-002-price-schedule-editor.md",
+      "sha256": "39cdc4492407d2fbfc8d5e0e9be616bf06db070193a2005a548417f3f0d6931b",
+      "bytes": 3259
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-PRI-003-price-lookup.md",
+      "sha256": "873aae78e0b960f4a29b9228b523417ae714139707f00ea50ddf1c88c474b486",
+      "bytes": 3239
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-PUR-001-purchase-order-list.md",
+      "sha256": "de96bcfcdbbed504eda6c04177c8b93b84e635a257b22fab9676ea94f587bac7",
+      "bytes": 3092
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-PUR-002-purchase-order-editor.md",
+      "sha256": "e9464a7ec27b58ea002fe1154e0600861b4267dd9a9a8f0b57f82cc39f3ae501",
+      "bytes": 3119
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-PUR-003-goods-receipt-list.md",
+      "sha256": "b2462a3c85a9908e25bb890fb2faaafa49aa0a0c2301caff22efee6f4b2b5310",
+      "bytes": 3105
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-PUR-004-goods-receipt-workspace.md",
+      "sha256": "f7f5623fd986f81e88a0748801ca2199005f84a36916e3b41cd981dad948f111",
+      "bytes": 3510
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-PUR-005-purchase-return-list.md",
+      "sha256": "31cfb6e1d6ec08db54575c2ac2a82c6b3c8efd82363fd1de24e60b9ba0f424e8",
+      "bytes": 3090
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-PUR-006-purchase-return-workspace.md",
+      "sha256": "b8ff437133b48b3ea1752f3bc42d8036d28a7378fc43dc35b78134d1577cefe1",
+      "bytes": 3746
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-RPT-001-reports-home.md",
+      "sha256": "d6b492c897ecd7ed7974f5b885bdfd59b4d03db901743b34e722d40abbb8bf8c",
+      "bytes": 2432
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-RPT-002-sales-report.md",
+      "sha256": "d69b96c565f4d74cc12b8fa37c38c69b886d63c195de719f842e10602f80fc8a",
+      "bytes": 2426
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-RPT-003-inventory-report.md",
+      "sha256": "2422cfa86937b21d4e7ff341d63eb41a5108137eb4f32f3968b6e45d0063f612",
+      "bytes": 2452
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-RPT-004-purchase-supplier-report.md",
+      "sha256": "a5e6db3ba10caddf278f0a09e531f6f9b0e2b5c27a0a66531ddf9622d8536401",
+      "bytes": 2462
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-RPT-005-credit-collection-report.md",
+      "sha256": "02b55d04fbe8d06e8df9188cbd4cb1acdc96d82e4ba389a15c8071853dc89b97",
+      "bytes": 2454
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-SUP-001-supplier-list.md",
+      "sha256": "faae4932c57ae8561707dc01fe5d2e3d88bc88065989a57d373060b91406e8bc",
+      "bytes": 5930
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-SUP-002-supplier-editor.md",
+      "sha256": "4089cacbc5a5bc8c07c7d22923626c7c887765fc6e88be225a294cbf0f396ff6",
+      "bytes": 5454
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-SUPT-001-support-diagnostics.md",
+      "sha256": "e0b5bc940e279ec209cbdbe1b18150339cef35e396087911c077355bd0c1b1ed",
+      "bytes": 2248
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-SYS-001-sign-in.md",
+      "sha256": "97b22e6c702ff1b7c6982ffcaa0ea26ecb6a27d19a827632f6c8999ec5af8820",
+      "bytes": 4317
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-SYS-002-unlock-with-pin.md",
+      "sha256": "4cb584ae423400306e64d1ec94478e4c51de1a6432ca75123b7261f1f17c55cf",
+      "bytes": 3571
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-SYS-003-home-role-dashboard.md",
+      "sha256": "89bfabedf5b7d5e299ac080032d69356723f69f96a498017c4e0718f2b5c8c03",
+      "bytes": 3055
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-SYS-004-offline-sync-center.md",
+      "sha256": "36591c8094e9426148cec085c2e8f55bad480a543bed07a1acc939902bba86e3",
+      "bytes": 3094
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-SYS-005-notifications-tasks.md",
+      "sha256": "9a20c5911dfb58c5ace828d1c76a69dadea4831d5b7037e0c73e3551ff8813de",
+      "bytes": 2476
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-SYS-006-global-search.md",
+      "sha256": "0602bf97a619f5c2d5880ec01941260384c052adf04ac2ad11a5347b9db259ba",
+      "bytes": 2507
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-SYS-007-user-profile-session.md",
+      "sha256": "0c3bc4523cc58186d3b0dc011c93552af982ba34d306c89153c420564c626916",
+      "bytes": 3186
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/screens/UI-SYS-008-about-version-compatibility.md",
+      "sha256": "461e31b465c6a9c3a0fe34c198a22cea616c6f777fe5062fa7d436fa1f43d874",
+      "bytes": 2502
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/traceability/API-TO-UI-DISPOSITION-v1.0.json",
+      "sha256": "7963b0e3f09c4db286eddb4a17af73f473c0bf2ec8cec0c0a8bb49d5a2091d38",
+      "bytes": 147464
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/traceability/ROLE-TO-UI-v1.0.json",
+      "sha256": "03b4ede5346639af26679da799c4497b8cb6167fa4002664c212f18dbe240dee",
+      "bytes": 28201
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/traceability/UI-TO-API-v1.0.json",
+      "sha256": "40c91273e82ce749f6fd50d11316620758e9d186ba00bffa73f4f7b52bd2148d",
+      "bytes": 21382
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/validation/UI-SPECIFICATION-v1.0-FROZEN.json",
+      "sha256": "fd468ddfb5c62778077f35ef3124ba47f34bf408e1734f223540b3853045a21d",
+      "bytes": 392
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/wireframes/BACK-OFFICE-DOCUMENT-DETAIL.md",
+      "sha256": "95d66ce17062d0232c1f769ca537f9dc8750fb40ac40ce6ebb549faffa5111b2",
+      "bytes": 1350
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/wireframes/BACK-OFFICE-SHELL.md",
+      "sha256": "313ae1493ec0b78c73d0cbdb5119b3bb83fa17aaecb7a283d78b18fe324bb40c",
+      "bytes": 2053
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/wireframes/GOODS-RECEIPT-WORKSPACE.md",
+      "sha256": "4f7e6c930ba9499911b15cd3c2f9d1ba503918fd6900d25317e025d01419be1d",
+      "bytes": 1782
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/wireframes/POS-PAYMENT-RECOVERY.md",
+      "sha256": "5e8dfad6a563c628cebaecc40e9f7ccbc13d90a07d6fc6b9f93598b62c1245a0",
+      "bytes": 1759
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/wireframes/POS-SALE-WORKSPACE.md",
+      "sha256": "d4dd1ed522e53dc9d6027a0076a66fc55c5c04fa3c5ab147289971b43fd7b487",
+      "bytes": 2444
+    },
+    {
+      "path": "docs/specifications/06-ui-specification/wireframes/STOCK-COUNT-WORKSPACE.md",
+      "sha256": "69d2a050e7aa40213b93397dc31a2e50fd4ec40f103db27ec473a0e3bd28dd63",
+      "bytes": 1587
+    },
+    {
+      "path": "infra/.gitkeep",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "packages/api-contract/.gitkeep",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "packages/application/coordinators/.gitkeep",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "packages/country-packs/.gitkeep",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "packages/database/.gitkeep",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "packages/modules/.gitkeep",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "packages/observability/.gitkeep",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "packages/query/.gitkeep",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "packages/service-runtime/.gitkeep",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "packages/shared-kernel/.gitkeep",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "packages/sync-protocol/.gitkeep",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "packages/test-support/.gitkeep",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "tests/.gitkeep",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    }
+  ]
+}

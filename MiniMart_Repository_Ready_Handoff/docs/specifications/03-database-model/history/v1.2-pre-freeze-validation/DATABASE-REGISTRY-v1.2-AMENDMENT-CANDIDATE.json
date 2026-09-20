@@ -1,0 +1,10 @@
+{
+  "document_id": "MM-DB-AMEND-VAL-002",
+  "version": "1.2-amendment-candidate",
+  "status": "PASS_FOR_FINAL_DB_AMENDMENT_REVIEW",
+  "schemas": 15,
+  "logical_tables": 79,
+  "decision_seams_preserved": 60,
+  "v1_1_findings_remediated": 10,
+  "not_frozen": true
+}

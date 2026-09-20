@@ -1,0 +1,2 @@
+# API ↔ Database Model v1.2 Persistence Alignment
+Database Model v1.2 FROZEN is the persistence authority. API values must be persisted by the owning module, explicitly derived from frozen state, or an allowed external/ephemeral recovery state. Store service association is derived/read-only; customer communication consent is absent from v1 core; Item quantity precision derives from sales Item-UoM; Credit pending exposure is derived and does not resolve DEC-CRD-005.

@@ -1,0 +1,3097 @@
+[
+  {
+    "id": "UI-SYS-001",
+    "name": "Sign in",
+    "area": "System",
+    "surface": "Shared",
+    "roles": [
+      "All users"
+    ],
+    "purpose": "Authenticate to the enrolled Store Node.",
+    "apiOperations": [
+      "API-IAM-001",
+      "API-IAM-002",
+      "API-IAM-003",
+      "API-IAM-004",
+      "API-IAM-005",
+      "API-IAM-006",
+      "API-IAM-015",
+      "API-IAM-016",
+      "API-IAM-017",
+      "API-IAM-018"
+    ],
+    "offlineBehavior": "LOCAL_AUTH_REQUIRED",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-SYS-002",
+    "name": "Unlock with PIN",
+    "area": "System",
+    "surface": "POS",
+    "roles": [
+      "Cashier",
+      "Manager"
+    ],
+    "purpose": "Fast workstation unlock without replacing the authenticated device context.",
+    "apiOperations": [
+      "API-IAM-001",
+      "API-IAM-002",
+      "API-IAM-003",
+      "API-IAM-004",
+      "API-IAM-005",
+      "API-IAM-006",
+      "API-IAM-022"
+    ],
+    "offlineBehavior": "LOCAL_AUTH_REQUIRED",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-SYS-003",
+    "name": "Home / Role Dashboard",
+    "area": "System",
+    "surface": "Back Office",
+    "roles": [
+      "Manager",
+      "Admin",
+      "Management"
+    ],
+    "purpose": "Role-aware operational landing page with alerts, shortcuts and local/cloud status.",
+    "apiOperations": [
+      "API-SYS-001",
+      "API-SYS-002",
+      "API-SYS-003",
+      "API-SYS-004",
+      "API-SYS-005",
+      "API-SYS-006",
+      "API-SYS-007",
+      "API-SYS-008"
+    ],
+    "offlineBehavior": "READ_WRITE_LOCAL",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-SYS-004",
+    "name": "Offline & Sync Center",
+    "area": "System",
+    "surface": "Shared",
+    "roles": [
+      "Manager",
+      "Admin",
+      "Support"
+    ],
+    "purpose": "Show Store Node, LAN, cloud sync, queue/retry and compatibility status.",
+    "apiOperations": [
+      "API-SUPT-001",
+      "API-SUPT-003",
+      "API-SYS-001",
+      "API-SYS-002",
+      "API-SYS-003",
+      "API-SYS-004",
+      "API-SYS-005",
+      "API-SYS-006"
+    ],
+    "offlineBehavior": "READ_WRITE_LOCAL",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-SYS-005",
+    "name": "Notifications & Tasks",
+    "area": "System",
+    "surface": "Back Office",
+    "roles": [
+      "Manager",
+      "Admin"
+    ],
+    "purpose": "Operational alerts requiring user attention.",
+    "apiOperations": [
+      "API-SYS-001",
+      "API-SYS-002",
+      "API-SYS-003",
+      "API-SYS-004",
+      "API-SYS-005",
+      "API-SYS-006"
+    ],
+    "offlineBehavior": "READ_WRITE_LOCAL",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-SYS-006",
+    "name": "Global Search",
+    "area": "System",
+    "surface": "Back Office",
+    "roles": [
+      "Manager",
+      "Admin",
+      "Back Office"
+    ],
+    "purpose": "Search authorized masters/documents without cross-module private-table access.",
+    "apiOperations": [
+      "API-SYS-001",
+      "API-SYS-002",
+      "API-SYS-003",
+      "API-SYS-004",
+      "API-SYS-005",
+      "API-SYS-006"
+    ],
+    "offlineBehavior": "READ_WRITE_LOCAL",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-SYS-007",
+    "name": "User Profile & Session",
+    "area": "System",
+    "surface": "Shared",
+    "roles": [
+      "All users"
+    ],
+    "purpose": "Current user/session/device context and sign-out.",
+    "apiOperations": [
+      "API-IAM-001",
+      "API-IAM-002",
+      "API-IAM-003",
+      "API-IAM-004",
+      "API-IAM-005",
+      "API-IAM-006"
+    ],
+    "offlineBehavior": "READ_WRITE_LOCAL",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-SYS-008",
+    "name": "About / Version / Compatibility",
+    "area": "System",
+    "surface": "Shared",
+    "roles": [
+      "All users"
+    ],
+    "purpose": "Installed versions, Store Node compatibility and build information.",
+    "apiOperations": [
+      "API-SYS-001",
+      "API-SYS-002",
+      "API-SYS-003",
+      "API-SYS-004",
+      "API-SYS-005",
+      "API-SYS-006"
+    ],
+    "offlineBehavior": "READ_ONLY",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-POS-001",
+    "name": "POS Sale Workspace",
+    "area": "Sales",
+    "surface": "POS",
+    "roles": [
+      "Cashier",
+      "Manager"
+    ],
+    "purpose": "Primary keyboard-first billing workspace.",
+    "apiOperations": [
+      "API-POS-001",
+      "API-POS-002",
+      "API-POS-003",
+      "API-POS-004",
+      "API-POS-005",
+      "API-POS-006",
+      "API-POS-007",
+      "API-POS-008",
+      "API-POS-010",
+      "API-POS-011",
+      "API-POS-012",
+      "API-POS-013",
+      "API-POS-014"
+    ],
+    "offlineBehavior": "READ_WRITE_LOCAL",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-POS-002",
+    "name": "Item Search / Scan Resolution",
+    "area": "Sales",
+    "surface": "POS",
+    "roles": [
+      "Cashier",
+      "Manager"
+    ],
+    "purpose": "Resolve barcode, item, UoM and sellable price.",
+    "apiOperations": [
+      "API-CAT-001",
+      "API-CAT-002",
+      "API-CAT-003",
+      "API-CAT-004",
+      "API-CAT-005",
+      "API-CAT-006"
+    ],
+    "offlineBehavior": "READ_WRITE_LOCAL",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-POS-003",
+    "name": "Line Edit Drawer",
+    "area": "Sales",
+    "surface": "POS",
+    "roles": [
+      "Cashier",
+      "Manager"
+    ],
+    "purpose": "Edit quantity/UoM/allowed price or discount data without leaving checkout.",
+    "apiOperations": [
+      "API-POS-001",
+      "API-POS-002",
+      "API-POS-003",
+      "API-POS-004",
+      "API-POS-005",
+      "API-POS-006"
+    ],
+    "offlineBehavior": "READ_WRITE_LOCAL",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-POS-004",
+    "name": "Customer Attach / Quick Search",
+    "area": "Sales",
+    "surface": "POS",
+    "roles": [
+      "Cashier",
+      "Manager"
+    ],
+    "purpose": "Attach authorized customer/credit identity to active sale.",
+    "apiOperations": [
+      "API-CRD-001",
+      "API-CRD-002",
+      "API-CRD-003",
+      "API-CRD-004",
+      "API-CRD-005",
+      "API-CRD-006"
+    ],
+    "offlineBehavior": "READ_WRITE_LOCAL",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-POS-005",
+    "name": "Hold / Recall Sale",
+    "area": "Sales",
+    "surface": "POS",
+    "roles": [
+      "Cashier",
+      "Manager"
+    ],
+    "purpose": "Hold active basket and safely recall it later.",
+    "apiOperations": [
+      "API-POS-001",
+      "API-POS-002",
+      "API-POS-003",
+      "API-POS-004",
+      "API-POS-005",
+      "API-POS-006",
+      "API-POS-009"
+    ],
+    "offlineBehavior": "READ_WRITE_LOCAL",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-POS-006",
+    "name": "Payment Workspace",
+    "area": "Payments",
+    "surface": "POS",
+    "roles": [
+      "Cashier",
+      "Manager"
+    ],
+    "purpose": "Cash, manual card/QR and supported tender orchestration.",
+    "apiOperations": [
+      "API-PAY-001",
+      "API-PAY-002",
+      "API-PAY-003",
+      "API-PAY-004",
+      "API-PAY-005",
+      "API-PAY-006",
+      "API-PAY-007",
+      "API-PAY-008",
+      "API-PAY-009",
+      "API-PAY-014",
+      "API-PAY-016"
+    ],
+    "offlineBehavior": "READ_WRITE_LOCAL",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-POS-007",
+    "name": "Payment Recovery",
+    "area": "Payments",
+    "surface": "POS",
+    "roles": [
+      "Cashier",
+      "Manager"
+    ],
+    "purpose": "Recover durable committed/uncertain payment without duplicate charge.",
+    "apiOperations": [
+      "API-PAY-001",
+      "API-PAY-002",
+      "API-PAY-003",
+      "API-PAY-004",
+      "API-PAY-005",
+      "API-PAY-006"
+    ],
+    "offlineBehavior": "READ_WRITE_LOCAL",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-POS-008",
+    "name": "Sale Completion / Receipt",
+    "area": "Sales",
+    "surface": "POS",
+    "roles": [
+      "Cashier",
+      "Manager"
+    ],
+    "purpose": "Show posted sale identity, receipt actions and post-commit warnings.",
+    "apiOperations": [
+      "API-POS-001",
+      "API-POS-002",
+      "API-POS-003",
+      "API-POS-004",
+      "API-POS-005",
+      "API-POS-006"
+    ],
+    "offlineBehavior": "READ_WRITE_LOCAL",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-POS-009",
+    "name": "Sale History",
+    "area": "Sales",
+    "surface": "POS",
+    "roles": [
+      "Cashier",
+      "Manager"
+    ],
+    "purpose": "Find completed sales for receipt/review/return entry.",
+    "apiOperations": [
+      "API-POS-001",
+      "API-POS-002",
+      "API-POS-003",
+      "API-POS-004",
+      "API-POS-005",
+      "API-POS-006"
+    ],
+    "offlineBehavior": "READ_WRITE_LOCAL",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-POS-010",
+    "name": "Receipt Reprint",
+    "area": "Hardware",
+    "surface": "POS",
+    "roles": [
+      "Cashier",
+      "Manager"
+    ],
+    "purpose": "Reprint from immutable posted snapshot without changing sale.",
+    "apiOperations": [
+      "API-HW-001",
+      "API-HW-002"
+    ],
+    "offlineBehavior": "READ_WRITE_LOCAL",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-POS-011",
+    "name": "Return / Refund Workspace",
+    "area": "Returns",
+    "surface": "POS",
+    "roles": [
+      "Cashier",
+      "Manager"
+    ],
+    "purpose": "Build return against original sale and track refund obligation.",
+    "apiOperations": [
+      "API-RET-001",
+      "API-RET-002",
+      "API-RET-003",
+      "API-RET-004",
+      "API-RET-005",
+      "API-RET-006",
+      "API-RET-008"
+    ],
+    "offlineBehavior": "READ_WRITE_LOCAL",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-POS-012",
+    "name": "Refund Recovery",
+    "area": "Returns",
+    "surface": "POS",
+    "roles": [
+      "Manager"
+    ],
+    "purpose": "Resolve pending/failed/uncertain refund execution.",
+    "apiOperations": [
+      "API-PAY-001",
+      "API-PAY-002",
+      "API-PAY-003",
+      "API-PAY-004",
+      "API-PAY-005",
+      "API-PAY-006",
+      "API-PAY-010",
+      "API-PAY-011",
+      "API-PAY-012",
+      "API-PAY-013",
+      "API-PAY-015",
+      "API-RET-003",
+      "API-RET-005",
+      "API-RET-006",
+      "API-RET-007"
+    ],
+    "offlineBehavior": "READ_WRITE_LOCAL",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-POS-013",
+    "name": "Credit Sale Review",
+    "area": "Credit",
+    "surface": "POS",
+    "roles": [
+      "Cashier",
+      "Manager"
+    ],
+    "purpose": "Show customer exposure, terms and override requirement before posting.",
+    "apiOperations": [
+      "API-CRD-001",
+      "API-CRD-002",
+      "API-CRD-003",
+      "API-CRD-004",
+      "API-CRD-005",
+      "API-CRD-006"
+    ],
+    "offlineBehavior": "READ_WRITE_LOCAL",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-POS-014",
+    "name": "Cash In / Cash Out",
+    "area": "Cash",
+    "surface": "POS",
+    "roles": [
+      "Cashier",
+      "Manager"
+    ],
+    "purpose": "Authorized manual drawer movement.",
+    "apiOperations": [
+      "API-CSH-001",
+      "API-CSH-002",
+      "API-CSH-003",
+      "API-CSH-004",
+      "API-CSH-005",
+      "API-CSH-006",
+      "API-CSH-008",
+      "API-CSH-010"
+    ],
+    "offlineBehavior": "READ_WRITE_LOCAL",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-POS-015",
+    "name": "Open Shift",
+    "area": "Cash",
+    "surface": "POS",
+    "roles": [
+      "Cashier",
+      "Manager"
+    ],
+    "purpose": "Open cashier shift with opening cash/count context.",
+    "apiOperations": [
+      "API-CSH-001",
+      "API-CSH-002",
+      "API-CSH-003",
+      "API-CSH-004",
+      "API-CSH-005",
+      "API-CSH-006"
+    ],
+    "offlineBehavior": "READ_WRITE_LOCAL",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-POS-016",
+    "name": "Shift Summary / Close",
+    "area": "Cash",
+    "surface": "POS",
+    "roles": [
+      "Cashier",
+      "Manager"
+    ],
+    "purpose": "Tender summary, variance and close workflow.",
+    "apiOperations": [
+      "API-CSH-001",
+      "API-CSH-002",
+      "API-CSH-003",
+      "API-CSH-004",
+      "API-CSH-005",
+      "API-CSH-006"
+    ],
+    "offlineBehavior": "READ_WRITE_LOCAL",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-POS-017",
+    "name": "Manager Override Dialog",
+    "area": "Security",
+    "surface": "POS",
+    "roles": [
+      "Manager"
+    ],
+    "purpose": "Audited approval for guarded operation without sharing credentials.",
+    "apiOperations": [
+      "API-IAM-001",
+      "API-IAM-002",
+      "API-IAM-003",
+      "API-IAM-004",
+      "API-IAM-005",
+      "API-IAM-006"
+    ],
+    "offlineBehavior": "READ_WRITE_LOCAL",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-POS-018",
+    "name": "Printer / Scanner Status",
+    "area": "Hardware",
+    "surface": "POS",
+    "roles": [
+      "Cashier",
+      "Manager"
+    ],
+    "purpose": "Non-blocking hardware health and test actions.",
+    "apiOperations": [
+      "API-HW-001",
+      "API-HW-002"
+    ],
+    "offlineBehavior": "READ_WRITE_LOCAL",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-CAT-001",
+    "name": "Item List",
+    "area": "Catalog",
+    "surface": "Back Office",
+    "roles": [
+      "Back Office",
+      "Manager",
+      "Admin"
+    ],
+    "purpose": "Search/filter items, status and store assortment.",
+    "apiOperations": [
+      "API-CAT-001",
+      "API-CAT-002",
+      "API-CAT-003",
+      "API-CAT-004",
+      "API-CAT-005",
+      "API-CAT-006",
+      "API-CAT-012"
+    ],
+    "offlineBehavior": "READ_WRITE_LOCAL",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-CAT-002",
+    "name": "Item Editor",
+    "area": "Catalog",
+    "surface": "Back Office",
+    "roles": [
+      "Back Office",
+      "Manager",
+      "Admin"
+    ],
+    "purpose": "Create/edit company-wide item identity and behavior.",
+    "apiOperations": [
+      "API-CAT-001",
+      "API-CAT-002",
+      "API-CAT-003",
+      "API-CAT-004",
+      "API-CAT-005",
+      "API-CAT-006"
+    ],
+    "offlineBehavior": "READ_WRITE_LOCAL",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-CAT-003",
+    "name": "Barcode Manager",
+    "area": "Catalog",
+    "surface": "Back Office",
+    "roles": [
+      "Back Office",
+      "Manager"
+    ],
+    "purpose": "Maintain tenant/company-scoped barcodes.",
+    "apiOperations": [
+      "API-CAT-001",
+      "API-CAT-002",
+      "API-CAT-003",
+      "API-CAT-004",
+      "API-CAT-005",
+      "API-CAT-006",
+      "API-CAT-007",
+      "API-CAT-008",
+      "API-CAT-009"
+    ],
+    "offlineBehavior": "READ_WRITE_LOCAL",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-CAT-004",
+    "name": "UoM Manager",
+    "area": "Catalog",
+    "surface": "Back Office",
+    "roles": [
+      "Back Office",
+      "Manager"
+    ],
+    "purpose": "Maintain Item-UoMs and conversion/precision.",
+    "apiOperations": [
+      "API-CAT-001",
+      "API-CAT-002",
+      "API-CAT-003",
+      "API-CAT-004",
+      "API-CAT-005",
+      "API-CAT-006",
+      "API-CAT-010",
+      "API-CAT-011"
+    ],
+    "offlineBehavior": "READ_WRITE_LOCAL",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-CAT-005",
+    "name": "Category Manager",
+    "area": "Catalog",
+    "surface": "Back Office",
+    "roles": [
+      "Back Office",
+      "Manager"
+    ],
+    "purpose": "Maintain category hierarchy/assignment.",
+    "apiOperations": [
+      "API-CAT-001",
+      "API-CAT-002",
+      "API-CAT-003",
+      "API-CAT-004",
+      "API-CAT-005",
+      "API-CAT-006",
+      "API-CAT-013",
+      "API-CAT-014"
+    ],
+    "offlineBehavior": "READ_WRITE_LOCAL",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-CAT-006",
+    "name": "Brand Manager",
+    "area": "Catalog",
+    "surface": "Back Office",
+    "roles": [
+      "Back Office",
+      "Manager"
+    ],
+    "purpose": "Maintain brand masters.",
+    "apiOperations": [
+      "API-CAT-001",
+      "API-CAT-002",
+      "API-CAT-003",
+      "API-CAT-004",
+      "API-CAT-005",
+      "API-CAT-006",
+      "API-CAT-015",
+      "API-CAT-016",
+      "API-CAT-017"
+    ],
+    "offlineBehavior": "READ_WRITE_LOCAL",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-PRI-001",
+    "name": "Price Schedule List",
+    "area": "Pricing",
+    "surface": "Back Office",
+    "roles": [
+      "Manager",
+      "Admin"
+    ],
+    "purpose": "Browse effective-dated store prices.",
+    "apiOperations": [
+      "API-PRI-001",
+      "API-PRI-002",
+      "API-PRI-003",
+      "API-PRI-004",
+      "API-PRI-005",
+      "API-PRI-006",
+      "API-PRI-007",
+      "API-PRI-008"
+    ],
+    "offlineBehavior": "READ_WRITE_LOCAL",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-PRI-002",
+    "name": "Price Schedule Editor",
+    "area": "Pricing",
+    "surface": "Back Office",
+    "roles": [
+      "Manager",
+      "Admin"
+    ],
+    "purpose": "Create staged/effective price entries with reason/context.",
+    "apiOperations": [
+      "API-PRI-001",
+      "API-PRI-002",
+      "API-PRI-003",
+      "API-PRI-004",
+      "API-PRI-005",
+      "API-PRI-006"
+    ],
+    "offlineBehavior": "READ_WRITE_LOCAL",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-PRI-003",
+    "name": "Price Lookup",
+    "area": "Pricing",
+    "surface": "Back Office",
+    "roles": [
+      "Back Office",
+      "Manager"
+    ],
+    "purpose": "Explain current price/effective source for an item/store.",
+    "apiOperations": [
+      "API-PRI-001",
+      "API-PRI-002",
+      "API-PRI-003",
+      "API-PRI-004",
+      "API-PRI-005",
+      "API-PRI-006"
+    ],
+    "offlineBehavior": "READ_ONLY",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-SUP-001",
+    "name": "Supplier List",
+    "area": "Suppliers",
+    "surface": "Back Office",
+    "roles": [
+      "Back Office",
+      "Manager",
+      "Accounts"
+    ],
+    "purpose": "Search supplier by name/code/identifier.",
+    "apiOperations": [
+      "API-PUR-001",
+      "API-PUR-002",
+      "API-PUR-003",
+      "API-PUR-004",
+      "API-PUR-005",
+      "API-PUR-006",
+      "API-PUR-007",
+      "API-PUR-008",
+      "API-PUR-009",
+      "API-PUR-010",
+      "API-PUR-012",
+      "API-PUR-014",
+      "API-PUR-016",
+      "API-PUR-017"
+    ],
+    "offlineBehavior": "READ_WRITE_LOCAL",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-SUP-002",
+    "name": "Supplier Editor",
+    "area": "Suppliers",
+    "surface": "Back Office",
+    "roles": [
+      "Back Office",
+      "Manager",
+      "Accounts"
+    ],
+    "purpose": "Maintain identity, contacts and commercial terms.",
+    "apiOperations": [
+      "API-PUR-001",
+      "API-PUR-002",
+      "API-PUR-003",
+      "API-PUR-004",
+      "API-PUR-005",
+      "API-PUR-006",
+      "API-SUP-001",
+      "API-SUP-002",
+      "API-SUP-003",
+      "API-SUP-004",
+      "API-SUP-005",
+      "API-SUP-006",
+      "API-SUP-007",
+      "API-SUP-008",
+      "API-SUP-009"
+    ],
+    "offlineBehavior": "READ_WRITE_LOCAL",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-PUR-001",
+    "name": "Purchase Order List",
+    "area": "Purchasing",
+    "surface": "Back Office",
+    "roles": [
+      "Purchase",
+      "Manager"
+    ],
+    "purpose": "Find/filter purchase orders.",
+    "apiOperations": [
+      "API-PUR-001",
+      "API-PUR-002",
+      "API-PUR-003",
+      "API-PUR-004",
+      "API-PUR-005",
+      "API-PUR-006"
+    ],
+    "offlineBehavior": "READ_WRITE_LOCAL",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-PUR-002",
+    "name": "Purchase Order Editor",
+    "area": "Purchasing",
+    "surface": "Back Office",
+    "roles": [
+      "Purchase",
+      "Manager"
+    ],
+    "purpose": "Create/edit PO draft under unresolved policy gates.",
+    "apiOperations": [
+      "API-PUR-001",
+      "API-PUR-002",
+      "API-PUR-003",
+      "API-PUR-004",
+      "API-PUR-005",
+      "API-PUR-006"
+    ],
+    "offlineBehavior": "READ_WRITE_LOCAL",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-PUR-003",
+    "name": "Goods Receipt List",
+    "area": "Purchasing",
+    "surface": "Back Office",
+    "roles": [
+      "Purchase",
+      "Storekeeper",
+      "Manager"
+    ],
+    "purpose": "Browse GRNs and posting state.",
+    "apiOperations": [
+      "API-PUR-001",
+      "API-PUR-002",
+      "API-PUR-003",
+      "API-PUR-004",
+      "API-PUR-005",
+      "API-PUR-006"
+    ],
+    "offlineBehavior": "READ_WRITE_LOCAL",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-PUR-004",
+    "name": "Goods Receipt Workspace",
+    "area": "Purchasing",
+    "surface": "Back Office",
+    "roles": [
+      "Purchase",
+      "Storekeeper",
+      "Manager"
+    ],
+    "purpose": "Receive against PO or direct-GRN capability when allowed.",
+    "apiOperations": [
+      "API-PUR-001",
+      "API-PUR-002",
+      "API-PUR-003",
+      "API-PUR-004",
+      "API-PUR-005",
+      "API-PUR-006"
+    ],
+    "offlineBehavior": "READ_WRITE_LOCAL",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-PUR-005",
+    "name": "Purchase Return List",
+    "area": "Purchasing",
+    "surface": "Back Office",
+    "roles": [
+      "Purchase",
+      "Manager"
+    ],
+    "purpose": "Browse purchase returns.",
+    "apiOperations": [
+      "API-PUR-001",
+      "API-PUR-002",
+      "API-PUR-003",
+      "API-PUR-004",
+      "API-PUR-005",
+      "API-PUR-006"
+    ],
+    "offlineBehavior": "READ_WRITE_LOCAL",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-PUR-006",
+    "name": "Purchase Return Workspace",
+    "area": "Purchasing",
+    "surface": "Back Office",
+    "roles": [
+      "Purchase",
+      "Manager"
+    ],
+    "purpose": "Create source-linked purchase return using current WAC rules.",
+    "apiOperations": [
+      "API-PUR-001",
+      "API-PUR-002",
+      "API-PUR-003",
+      "API-PUR-004",
+      "API-PUR-005",
+      "API-PUR-006",
+      "API-PUR-011",
+      "API-PUR-013",
+      "API-PUR-015"
+    ],
+    "offlineBehavior": "READ_WRITE_LOCAL",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-INV-001",
+    "name": "Inventory Overview",
+    "area": "Inventory",
+    "surface": "Back Office",
+    "roles": [
+      "Storekeeper",
+      "Manager",
+      "Management"
+    ],
+    "purpose": "Store stock position, low stock and exceptions.",
+    "apiOperations": [
+      "API-INV-001",
+      "API-INV-002",
+      "API-INV-003",
+      "API-INV-004",
+      "API-INV-005",
+      "API-INV-006",
+      "API-INV-010",
+      "API-INV-011",
+      "API-INV-012",
+      "API-INV-013"
+    ],
+    "offlineBehavior": "READ_WRITE_LOCAL",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-INV-002",
+    "name": "Item Stock Detail",
+    "area": "Inventory",
+    "surface": "Back Office",
+    "roles": [
+      "Storekeeper",
+      "Manager"
+    ],
+    "purpose": "Balances, buckets/batches and immutable movement history.",
+    "apiOperations": [
+      "API-INV-001",
+      "API-INV-002",
+      "API-INV-003",
+      "API-INV-004",
+      "API-INV-005",
+      "API-INV-006"
+    ],
+    "offlineBehavior": "READ_WRITE_LOCAL",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-INV-003",
+    "name": "Stock Movement Explorer",
+    "area": "Inventory",
+    "surface": "Back Office",
+    "roles": [
+      "Storekeeper",
+      "Manager",
+      "Audit"
+    ],
+    "purpose": "Filter immutable stock ledger.",
+    "apiOperations": [
+      "API-INV-001",
+      "API-INV-002",
+      "API-INV-003",
+      "API-INV-004",
+      "API-INV-005",
+      "API-INV-006",
+      "API-INV-014",
+      "API-INV-015"
+    ],
+    "offlineBehavior": "READ_ONLY",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-INV-004",
+    "name": "Stock Count List",
+    "area": "Inventory",
+    "surface": "Back Office",
+    "roles": [
+      "Storekeeper",
+      "Manager"
+    ],
+    "purpose": "Browse count sessions and status.",
+    "apiOperations": [
+      "API-INV-001",
+      "API-INV-002",
+      "API-INV-003",
+      "API-INV-004",
+      "API-INV-005",
+      "API-INV-006"
+    ],
+    "offlineBehavior": "READ_WRITE_LOCAL",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-INV-005",
+    "name": "Stock Count Workspace",
+    "area": "Inventory",
+    "surface": "Back Office",
+    "roles": [
+      "Storekeeper",
+      "Manager"
+    ],
+    "purpose": "Enter/reconcile physical count and post adjustments.",
+    "apiOperations": [
+      "API-INV-001",
+      "API-INV-002",
+      "API-INV-003",
+      "API-INV-004",
+      "API-INV-005",
+      "API-INV-006",
+      "API-INV-007",
+      "API-INV-008",
+      "API-INV-009"
+    ],
+    "offlineBehavior": "READ_WRITE_LOCAL",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-INV-006",
+    "name": "Reorder / Low Stock",
+    "area": "Inventory",
+    "surface": "Back Office",
+    "roles": [
+      "Purchase",
+      "Manager"
+    ],
+    "purpose": "Decision-support view without inventing unresolved reorder ownership.",
+    "apiOperations": [
+      "API-INV-001",
+      "API-INV-002",
+      "API-INV-003",
+      "API-INV-004",
+      "API-INV-005",
+      "API-INV-006"
+    ],
+    "offlineBehavior": "READ_ONLY",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-CUS-001",
+    "name": "Customer List",
+    "area": "Customers",
+    "surface": "Back Office",
+    "roles": [
+      "Cashier",
+      "Back Office",
+      "Manager"
+    ],
+    "purpose": "Search customer identity and status.",
+    "apiOperations": [
+      "API-CRD-001",
+      "API-CRD-002",
+      "API-CRD-003",
+      "API-CRD-004",
+      "API-CRD-005",
+      "API-CRD-006"
+    ],
+    "offlineBehavior": "READ_WRITE_LOCAL",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-CUS-002",
+    "name": "Customer Editor",
+    "area": "Customers",
+    "surface": "Back Office",
+    "roles": [
+      "Back Office",
+      "Manager"
+    ],
+    "purpose": "Maintain company-wide customer master.",
+    "apiOperations": [
+      "API-CRD-001",
+      "API-CRD-002",
+      "API-CRD-003",
+      "API-CRD-004",
+      "API-CRD-005",
+      "API-CRD-006",
+      "API-CUS-001",
+      "API-CUS-002",
+      "API-CUS-003",
+      "API-CUS-004",
+      "API-CUS-005",
+      "API-CUS-006"
+    ],
+    "offlineBehavior": "READ_WRITE_LOCAL",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-CRD-001",
+    "name": "Credit Account",
+    "area": "Credit",
+    "surface": "Back Office",
+    "roles": [
+      "Accounts",
+      "Manager"
+    ],
+    "purpose": "Limit/terms/exposure/ledger view.",
+    "apiOperations": [
+      "API-CRD-001",
+      "API-CRD-002",
+      "API-CRD-003",
+      "API-CRD-004",
+      "API-CRD-005",
+      "API-CRD-006",
+      "API-CRD-008"
+    ],
+    "offlineBehavior": "READ_WRITE_LOCAL",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-CRD-002",
+    "name": "Customer Collection",
+    "area": "Credit",
+    "surface": "Back Office",
+    "roles": [
+      "Accounts",
+      "Cashier",
+      "Manager"
+    ],
+    "purpose": "Post collection and allocation.",
+    "apiOperations": [
+      "API-CRD-001",
+      "API-CRD-002",
+      "API-CRD-003",
+      "API-CRD-004",
+      "API-CRD-005",
+      "API-CRD-006",
+      "API-CRD-007",
+      "API-CRD-009"
+    ],
+    "offlineBehavior": "READ_WRITE_LOCAL",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-CRD-003",
+    "name": "Credit Ledger",
+    "area": "Credit",
+    "surface": "Back Office",
+    "roles": [
+      "Accounts",
+      "Manager"
+    ],
+    "purpose": "Immutable customer credit ledger and balances.",
+    "apiOperations": [
+      "API-CRD-001",
+      "API-CRD-002",
+      "API-CRD-003",
+      "API-CRD-004",
+      "API-CRD-005",
+      "API-CRD-006"
+    ],
+    "offlineBehavior": "READ_ONLY",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-CSH-001",
+    "name": "Business Day",
+    "area": "Cash",
+    "surface": "Back Office",
+    "roles": [
+      "Manager",
+      "Accounts"
+    ],
+    "purpose": "Business-date status, open/close controls and exceptions.",
+    "apiOperations": [
+      "API-CSH-001",
+      "API-CSH-002",
+      "API-CSH-003",
+      "API-CSH-004",
+      "API-CSH-005",
+      "API-CSH-006",
+      "API-CSH-009"
+    ],
+    "offlineBehavior": "READ_WRITE_LOCAL",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-CSH-002",
+    "name": "Shift Monitor",
+    "area": "Cash",
+    "surface": "Back Office",
+    "roles": [
+      "Manager",
+      "Accounts"
+    ],
+    "purpose": "Monitor cashier shifts/tender summaries.",
+    "apiOperations": [
+      "API-CSH-001",
+      "API-CSH-002",
+      "API-CSH-003",
+      "API-CSH-004",
+      "API-CSH-005",
+      "API-CSH-006",
+      "API-CSH-007"
+    ],
+    "offlineBehavior": "READ_WRITE_LOCAL",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-CSH-003",
+    "name": "Cash Movement Ledger",
+    "area": "Cash",
+    "surface": "Back Office",
+    "roles": [
+      "Manager",
+      "Accounts",
+      "Audit"
+    ],
+    "purpose": "Immutable drawer movement view.",
+    "apiOperations": [
+      "API-CSH-001",
+      "API-CSH-002",
+      "API-CSH-003",
+      "API-CSH-004",
+      "API-CSH-005",
+      "API-CSH-006"
+    ],
+    "offlineBehavior": "READ_ONLY",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-ACC-001",
+    "name": "Accounting Dashboard",
+    "area": "Accounting",
+    "surface": "Back Office",
+    "roles": [
+      "Accounts",
+      "Manager"
+    ],
+    "purpose": "Payables, account balances, expenses and reconciliation alerts.",
+    "apiOperations": [
+      "API-ACC-001",
+      "API-ACC-002",
+      "API-ACC-003",
+      "API-ACC-004",
+      "API-ACC-005",
+      "API-ACC-006",
+      "API-ACC-010",
+      "API-ACC-011",
+      "API-ACC-012",
+      "API-ACC-025",
+      "API-ACC-026",
+      "API-ACC-029"
+    ],
+    "offlineBehavior": "READ_WRITE_LOCAL",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-ACC-002",
+    "name": "Supplier Payables",
+    "area": "Accounting",
+    "surface": "Back Office",
+    "roles": [
+      "Accounts",
+      "Manager"
+    ],
+    "purpose": "Browse payable obligations and allocations.",
+    "apiOperations": [
+      "API-ACC-001",
+      "API-ACC-002",
+      "API-ACC-003",
+      "API-ACC-004",
+      "API-ACC-005",
+      "API-ACC-006"
+    ],
+    "offlineBehavior": "READ_WRITE_LOCAL",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-ACC-003",
+    "name": "Supplier Payment",
+    "area": "Accounting",
+    "surface": "Back Office",
+    "roles": [
+      "Accounts",
+      "Manager"
+    ],
+    "purpose": "Post payment with financial account/method source.",
+    "apiOperations": [
+      "API-ACC-001",
+      "API-ACC-002",
+      "API-ACC-003",
+      "API-ACC-004",
+      "API-ACC-005",
+      "API-ACC-006"
+    ],
+    "offlineBehavior": "READ_WRITE_LOCAL",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-ACC-004",
+    "name": "Financial Accounts",
+    "area": "Accounting",
+    "surface": "Back Office",
+    "roles": [
+      "Accounts",
+      "Manager"
+    ],
+    "purpose": "Cash/bank/payment accounts.",
+    "apiOperations": [
+      "API-ACC-001",
+      "API-ACC-002",
+      "API-ACC-003",
+      "API-ACC-004",
+      "API-ACC-005",
+      "API-ACC-006",
+      "API-ACC-007",
+      "API-ACC-008",
+      "API-ACC-009"
+    ],
+    "offlineBehavior": "READ_WRITE_LOCAL",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-ACC-005",
+    "name": "Financial Transactions",
+    "area": "Accounting",
+    "surface": "Back Office",
+    "roles": [
+      "Accounts",
+      "Manager"
+    ],
+    "purpose": "Receipts/payments and movement history.",
+    "apiOperations": [
+      "API-ACC-001",
+      "API-ACC-002",
+      "API-ACC-003",
+      "API-ACC-004",
+      "API-ACC-005",
+      "API-ACC-006",
+      "API-ACC-030"
+    ],
+    "offlineBehavior": "READ_WRITE_LOCAL",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-ACC-006",
+    "name": "Account Transfer",
+    "area": "Accounting",
+    "surface": "Back Office",
+    "roles": [
+      "Accounts",
+      "Manager"
+    ],
+    "purpose": "Transfer between financial accounts atomically.",
+    "apiOperations": [
+      "API-ACC-001",
+      "API-ACC-002",
+      "API-ACC-003",
+      "API-ACC-004",
+      "API-ACC-005",
+      "API-ACC-006",
+      "API-ACC-013",
+      "API-ACC-014",
+      "API-ACC-027",
+      "API-ACC-031",
+      "API-ACC-032"
+    ],
+    "offlineBehavior": "READ_WRITE_LOCAL",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-ACC-007",
+    "name": "Expense Categories",
+    "area": "Accounting",
+    "surface": "Back Office",
+    "roles": [
+      "Accounts",
+      "Manager"
+    ],
+    "purpose": "Maintain expense categories.",
+    "apiOperations": [
+      "API-ACC-001",
+      "API-ACC-002",
+      "API-ACC-003",
+      "API-ACC-004",
+      "API-ACC-005",
+      "API-ACC-006",
+      "API-ACC-015",
+      "API-ACC-016",
+      "API-ACC-017"
+    ],
+    "offlineBehavior": "READ_WRITE_LOCAL",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-ACC-008",
+    "name": "Expense Entry",
+    "area": "Accounting",
+    "surface": "Back Office",
+    "roles": [
+      "Accounts",
+      "Manager"
+    ],
+    "purpose": "Post operational expense.",
+    "apiOperations": [
+      "API-ACC-001",
+      "API-ACC-002",
+      "API-ACC-003",
+      "API-ACC-004",
+      "API-ACC-005",
+      "API-ACC-006",
+      "API-ACC-018",
+      "API-ACC-019",
+      "API-ACC-020",
+      "API-ACC-028",
+      "API-ACC-033"
+    ],
+    "offlineBehavior": "READ_WRITE_LOCAL",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-ACC-009",
+    "name": "Reconciliation",
+    "area": "Accounting",
+    "surface": "Back Office",
+    "roles": [
+      "Accounts",
+      "Manager"
+    ],
+    "purpose": "Reconciliation session and matching workflow.",
+    "apiOperations": [
+      "API-ACC-001",
+      "API-ACC-002",
+      "API-ACC-003",
+      "API-ACC-004",
+      "API-ACC-005",
+      "API-ACC-006",
+      "API-ACC-021",
+      "API-ACC-022",
+      "API-ACC-023",
+      "API-ACC-024"
+    ],
+    "offlineBehavior": "READ_WRITE_LOCAL",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-RPT-001",
+    "name": "Reports Home",
+    "area": "Reports",
+    "surface": "Back Office",
+    "roles": [
+      "Manager",
+      "Management",
+      "Accounts"
+    ],
+    "purpose": "Authorized report catalog.",
+    "apiOperations": [
+      "API-RPT-001",
+      "API-RPT-002",
+      "API-RPT-003"
+    ],
+    "offlineBehavior": "READ_WRITE_LOCAL",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-RPT-002",
+    "name": "Sales Report",
+    "area": "Reports",
+    "surface": "Back Office",
+    "roles": [
+      "Manager",
+      "Management"
+    ],
+    "purpose": "Sales/tender/date/store views.",
+    "apiOperations": [
+      "API-RPT-001",
+      "API-RPT-002",
+      "API-RPT-003"
+    ],
+    "offlineBehavior": "READ_WRITE_LOCAL",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-RPT-003",
+    "name": "Inventory Report",
+    "area": "Reports",
+    "surface": "Back Office",
+    "roles": [
+      "Manager",
+      "Management",
+      "Storekeeper"
+    ],
+    "purpose": "Stock/movement/low-stock reporting.",
+    "apiOperations": [
+      "API-RPT-001",
+      "API-RPT-002",
+      "API-RPT-003"
+    ],
+    "offlineBehavior": "READ_WRITE_LOCAL",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-RPT-004",
+    "name": "Purchase / Supplier Report",
+    "area": "Reports",
+    "surface": "Back Office",
+    "roles": [
+      "Manager",
+      "Purchase",
+      "Accounts"
+    ],
+    "purpose": "Purchasing/payables reporting.",
+    "apiOperations": [
+      "API-RPT-001",
+      "API-RPT-002",
+      "API-RPT-003"
+    ],
+    "offlineBehavior": "READ_WRITE_LOCAL",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-RPT-005",
+    "name": "Credit / Collection Report",
+    "area": "Reports",
+    "surface": "Back Office",
+    "roles": [
+      "Manager",
+      "Accounts"
+    ],
+    "purpose": "Customer credit and collections.",
+    "apiOperations": [
+      "API-RPT-001",
+      "API-RPT-002",
+      "API-RPT-003"
+    ],
+    "offlineBehavior": "READ_WRITE_LOCAL",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-AUD-001",
+    "name": "Audit Explorer",
+    "area": "Audit",
+    "surface": "Back Office",
+    "roles": [
+      "Admin",
+      "Audit",
+      "Management"
+    ],
+    "purpose": "Search immutable audit events.",
+    "apiOperations": [
+      "API-AUD-001",
+      "API-AUD-002"
+    ],
+    "offlineBehavior": "READ_ONLY",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-IAM-001",
+    "name": "Users",
+    "area": "Administration",
+    "surface": "Back Office",
+    "roles": [
+      "Admin"
+    ],
+    "purpose": "User account administration.",
+    "apiOperations": [
+      "API-IAM-001",
+      "API-IAM-002",
+      "API-IAM-003",
+      "API-IAM-004",
+      "API-IAM-005",
+      "API-IAM-006",
+      "API-IAM-007",
+      "API-IAM-008",
+      "API-IAM-009",
+      "API-IAM-010",
+      "API-IAM-011",
+      "API-IAM-021",
+      "API-IAM-023"
+    ],
+    "offlineBehavior": "READ_WRITE_LOCAL",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-IAM-002",
+    "name": "Roles & Permissions",
+    "area": "Administration",
+    "surface": "Back Office",
+    "roles": [
+      "Admin"
+    ],
+    "purpose": "Role/permission assignment.",
+    "apiOperations": [
+      "API-IAM-001",
+      "API-IAM-002",
+      "API-IAM-003",
+      "API-IAM-004",
+      "API-IAM-005",
+      "API-IAM-006",
+      "API-IAM-012",
+      "API-IAM-013",
+      "API-IAM-014"
+    ],
+    "offlineBehavior": "READ_WRITE_LOCAL",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-IAM-003",
+    "name": "Override History",
+    "area": "Administration",
+    "surface": "Back Office",
+    "roles": [
+      "Admin",
+      "Audit"
+    ],
+    "purpose": "Review manager override authorizations.",
+    "apiOperations": [
+      "API-IAM-001",
+      "API-IAM-002",
+      "API-IAM-003",
+      "API-IAM-004",
+      "API-IAM-005",
+      "API-IAM-006"
+    ],
+    "offlineBehavior": "READ_ONLY",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-ORG-001",
+    "name": "Company Settings",
+    "area": "Settings",
+    "surface": "Back Office",
+    "roles": [
+      "Admin"
+    ],
+    "purpose": "Company identity and identifiers.",
+    "apiOperations": [
+      "API-ORG-001",
+      "API-ORG-002",
+      "API-ORG-003",
+      "API-ORG-004",
+      "API-ORG-005",
+      "API-ORG-006"
+    ],
+    "offlineBehavior": "READ_WRITE_LOCAL",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-ORG-002",
+    "name": "Stores",
+    "area": "Settings",
+    "surface": "Back Office",
+    "roles": [
+      "Admin"
+    ],
+    "purpose": "Store master and local presentation settings.",
+    "apiOperations": [
+      "API-ORG-001",
+      "API-ORG-002",
+      "API-ORG-003",
+      "API-ORG-004",
+      "API-ORG-005",
+      "API-ORG-006",
+      "API-ORG-007",
+      "API-ORG-008"
+    ],
+    "offlineBehavior": "READ_WRITE_LOCAL",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-ORG-003",
+    "name": "Counters",
+    "area": "Settings",
+    "surface": "Back Office",
+    "roles": [
+      "Admin"
+    ],
+    "purpose": "Counter master and assignment.",
+    "apiOperations": [
+      "API-ORG-001",
+      "API-ORG-002",
+      "API-ORG-003",
+      "API-ORG-004",
+      "API-ORG-005",
+      "API-ORG-006",
+      "API-ORG-009",
+      "API-ORG-010",
+      "API-ORG-011",
+      "API-ORG-012",
+      "API-ORG-013",
+      "API-ORG-014"
+    ],
+    "offlineBehavior": "READ_WRITE_LOCAL",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-CTRY-001",
+    "name": "Country Rule Status",
+    "area": "Settings",
+    "surface": "Back Office",
+    "roles": [
+      "Admin",
+      "Manager"
+    ],
+    "purpose": "Active country rule-set version and effective status.",
+    "apiOperations": [
+      "API-CTRY-001",
+      "API-CTRY-002",
+      "API-CTRY-003"
+    ],
+    "offlineBehavior": "READ_ONLY",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-CTRY-002",
+    "name": "Country Rule Draft / Validation",
+    "area": "Settings",
+    "surface": "Back Office",
+    "roles": [
+      "Admin"
+    ],
+    "purpose": "Stage and validate country configuration without inventing legal values.",
+    "apiOperations": [
+      "API-CTRY-001",
+      "API-CTRY-002",
+      "API-CTRY-003"
+    ],
+    "offlineBehavior": "READ_WRITE_LOCAL",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-HW-001",
+    "name": "Hardware Setup",
+    "area": "Settings",
+    "surface": "Back Office",
+    "roles": [
+      "Admin",
+      "Support"
+    ],
+    "purpose": "Printer/scanner/drawer configuration and tests.",
+    "apiOperations": [
+      "API-HW-001",
+      "API-HW-002"
+    ],
+    "offlineBehavior": "READ_WRITE_LOCAL",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-BAK-001",
+    "name": "Backup & Restore Center",
+    "area": "Settings",
+    "surface": "Back Office",
+    "roles": [
+      "Admin",
+      "Support"
+    ],
+    "purpose": "Backup status, restore verification and recovery actions.",
+    "apiOperations": [
+      "API-BR-001",
+      "API-BR-002",
+      "API-BR-003"
+    ],
+    "offlineBehavior": "READ_WRITE_LOCAL",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-SUPT-001",
+    "name": "Support & Diagnostics",
+    "area": "Settings",
+    "surface": "Back Office",
+    "roles": [
+      "Admin",
+      "Support"
+    ],
+    "purpose": "Diagnostics bundle, health and controlled support session.",
+    "apiOperations": [
+      "API-SUPT-001",
+      "API-SUPT-002",
+      "API-SUPT-003"
+    ],
+    "offlineBehavior": "READ_WRITE_LOCAL",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-IMP-001",
+    "name": "Import Center",
+    "area": "Tools",
+    "surface": "Back Office",
+    "roles": [
+      "Admin",
+      "Back Office"
+    ],
+    "purpose": "Upload, validate, preview and run supported imports.",
+    "apiOperations": [
+      "API-IMP-001",
+      "API-IMP-002",
+      "API-IMP-003",
+      "API-IMP-004",
+      "API-IMP-005",
+      "API-IMP-006",
+      "API-IMP-007",
+      "API-IMP-008",
+      "API-IMP-009",
+      "API-IMP-010",
+      "API-IMP-011",
+      "API-IMP-012",
+      "API-IMP-013"
+    ],
+    "offlineBehavior": "READ_WRITE_LOCAL",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-EXP-001",
+    "name": "Export Center",
+    "area": "Tools",
+    "surface": "Back Office",
+    "roles": [
+      "Admin",
+      "Manager"
+    ],
+    "purpose": "Create/download authorized export artifacts.",
+    "apiOperations": [
+      "API-IMP-001",
+      "API-IMP-002",
+      "API-IMP-003",
+      "API-IMP-004",
+      "API-IMP-005",
+      "API-IMP-006"
+    ],
+    "offlineBehavior": "READ_WRITE_LOCAL",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-CLD-001",
+    "name": "Cloud Organization Dashboard",
+    "area": "Cloud",
+    "surface": "Cloud Web",
+    "roles": [
+      "Management",
+      "Admin"
+    ],
+    "purpose": "Cross-store health/sync/summary without running billing.",
+    "apiOperations": [
+      "API-SYS-001",
+      "API-SYS-002",
+      "API-SYS-003",
+      "API-SYS-004",
+      "API-SYS-005",
+      "API-SYS-006"
+    ],
+    "offlineBehavior": "CLOUD_REQUIRED",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-CLD-002",
+    "name": "Store Sync Health",
+    "area": "Cloud",
+    "surface": "Cloud Web",
+    "roles": [
+      "Management",
+      "Admin",
+      "Support"
+    ],
+    "purpose": "Store enrollment, sync status and compatibility.",
+    "apiOperations": [
+      "API-SYS-001",
+      "API-SYS-002",
+      "API-SYS-003",
+      "API-SYS-004",
+      "API-SYS-005",
+      "API-SYS-006"
+    ],
+    "offlineBehavior": "CLOUD_REQUIRED",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  },
+  {
+    "id": "UI-CLD-003",
+    "name": "Cloud Configuration Distribution",
+    "area": "Cloud",
+    "surface": "Cloud Web",
+    "roles": [
+      "Admin"
+    ],
+    "purpose": "Stage validated configuration distribution to stores.",
+    "apiOperations": [
+      "API-SYS-001",
+      "API-SYS-002",
+      "API-SYS-003",
+      "API-SYS-004",
+      "API-SYS-005",
+      "API-SYS-006"
+    ],
+    "offlineBehavior": "CLOUD_REQUIRED",
+    "permissionModel": "Action visibility is driven by API permission codes/capabilities; server authorization remains authoritative.",
+    "stateModel": [
+      "LOADING",
+      "READY",
+      "EMPTY",
+      "VALIDATION_ERROR",
+      "PERMISSION_DENIED",
+      "CONFLICT",
+      "LOCAL_CLOUD_OFFLINE",
+      "STORE_NODE_UNREACHABLE",
+      "INCOMPATIBLE_CLIENT"
+    ],
+    "commandModel": "Mutations preserve command/idempotency identity across lost-response recovery; do not synthesize success/failure for uncertain external state.",
+    "accessibility": "Keyboard reachable; visible focus; status not color-only; 1280\u00d7720/Windows scaling acceptance applies where relevant."
+  }
+]

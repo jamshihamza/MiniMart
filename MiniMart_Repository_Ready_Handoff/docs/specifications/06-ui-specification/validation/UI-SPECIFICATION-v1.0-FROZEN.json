@@ -1,0 +1,15 @@
+{
+  "documentId": "MM-UI-FRZ-VAL-001",
+  "version": "1.0",
+  "status": "PASS_FROZEN_ADOPTED",
+  "screens": 88,
+  "detailedScreenSpecs": 88,
+  "apiOperationsDispositioned": 234,
+  "roles": 9,
+  "deepReviewFindingsClosed": 10,
+  "finalReviewBlockers": 0,
+  "finalReviewMajors": 0,
+  "packagingCorrectionsApplied": 2,
+  "semanticChangesDuringFinalPackaging": 0,
+  "next": "Development Backlog"
+}

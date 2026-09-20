@@ -1,0 +1,2088 @@
+openapi: 3.1.0
+info:
+  title: MiniMart Edge/Cloud Sync API
+  version: 1.0.0
+  description: 'Registered, ownership-aware at-least-once sync contract.
+
+
+    MiniMart API Contracts v1.0 FROZEN.'
+paths:
+  /sync/v1/messages:push:
+    post:
+      operationId: sync_push
+      summary: Push registered messages
+      security:
+      - peerMtls: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SyncPushRequest'
+      responses:
+        '200':
+          description: Result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SyncPushResult'
+        '409':
+          description: Ownership/compatibility conflict
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+  /sync/v1/messages:pull:
+    get:
+      operationId: sync_pull
+      summary: Pull messages after checkpoint
+      security:
+      - peerMtls: []
+      parameters:
+      - name: checkpoint
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 500
+          default: 100
+      responses:
+        '200':
+          description: Result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SyncPullResult'
+  /sync/v1/messages:ack:
+    post:
+      operationId: sync_ack
+      summary: Acknowledge message identities
+      security:
+      - peerMtls: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SyncAckRequest'
+      responses:
+        '200':
+          description: Acknowledged
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommandReceipt'
+  /sync/v1/compatibility:
+    get:
+      operationId: sync_compatibility
+      summary: Return supported sync contract versions
+      security:
+      - peerMtls: []
+      responses:
+        '200':
+          description: Version
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VersionResult'
+components:
+  securitySchemes:
+    peerMtls:
+      type: mutualTLS
+  schemas:
+    Uuid:
+      type: string
+      format: uuid
+      description: UUIDv7-compatible identity.
+    Problem:
+      type: object
+      additionalProperties: false
+      required:
+      - type
+      - title
+      - status
+      - code
+      - category
+      - correlationId
+      properties:
+        type:
+          type: string
+        title:
+          type: string
+        status:
+          type: integer
+          minimum: 400
+          maximum: 599
+        detail:
+          anyOf:
+          - type: string
+          - type: 'null'
+        code:
+          $ref: '#/components/schemas/ProblemCode'
+        category:
+          type: string
+          enum:
+          - VALIDATION
+          - AUTHENTICATION
+          - AUTHORIZATION
+          - NOT_FOUND
+          - CONFLICT
+          - CONCURRENCY
+          - IDEMPOTENCY
+          - BUSINESS_RULE
+          - UNCERTAIN_EXTERNAL_OUTCOME
+          - INFRASTRUCTURE
+          - INCOMPATIBLE_CLIENT
+          - UNSUPPORTED_POLICY
+        correlationId:
+          type: string
+        fieldErrors:
+          type: array
+          items:
+            $ref: '#/components/schemas/FieldError'
+        recovery:
+          anyOf:
+          - $ref: '#/components/schemas/RecoveryHint'
+          - type: 'null'
+    ProblemCode:
+      type: string
+      enum:
+      - AUTHENTICATION_REQUIRED
+      - BUSINESS_DAY_STATE_CHANGED
+      - BUSINESS_RULE_REJECTED
+      - CREDIT_CHANGED
+      - CREDIT_POLICY_REJECTED
+      - DEVICE_NOT_TRUSTED
+      - DEVICE_REVOKED
+      - IDEMPOTENCY_KEY_REUSED_WITH_DIFFERENT_REQUEST
+      - IMPORT_CANCEL_NOT_SAFE
+      - IMPORT_VALIDATION_FAILED
+      - INCOMPATIBLE_CLIENT
+      - INSUFFICIENT_STOCK
+      - INVALID_REQUEST
+      - OVERRIDE_REQUIRED
+      - PAYMENT_ALREADY_COMMITTED
+      - PAYMENT_RECOVERY_REQUIRED
+      - PAYMENT_UNCERTAIN
+      - PERMISSION_DENIED
+      - POSTED_DOCUMENT_IMMUTABLE
+      - PRECONDITION_FAILED
+      - REASON_REQUIRED
+      - REFUND_OBLIGATION_OUTSTANDING
+      - REFUND_UNCERTAIN
+      - RESOURCE_NOT_FOUND
+      - RETURN_ELIGIBILITY_CHANGED
+      - SERVICE_UNAVAILABLE
+      - SESSION_EXPIRED
+      - SESSION_LOCKED
+      - SHIFT_REQUIRED
+      - SHIFT_STATE_CHANGED
+      - STALE_RESOURCE_VERSION
+      - STOCK_CHANGED
+      - SYNC_MESSAGE_INCOMPATIBLE
+      - SYNC_OWNERSHIP_VIOLATION
+      - UNSUPPORTED_POLICY
+      - UPGRADE_REQUIRED
+      - VALIDATION_FAILED
+    FieldError:
+      type: object
+      additionalProperties: false
+      required:
+      - field
+      - code
+      properties:
+        field:
+          type: string
+        code:
+          type: string
+        messageKey:
+          type: string
+        detail:
+          anyOf:
+          - type: string
+          - type: 'null'
+    RecoveryHint:
+      type: object
+      additionalProperties: false
+      required:
+      - action
+      properties:
+        action:
+          type: string
+          enum:
+          - RETRY_SAME_IDEMPOTENCY_KEY
+          - REFRESH_RESOURCE
+          - REAUTHENTICATE
+          - REQUEST_OVERRIDE
+          - OPEN_RECOVERY_RESOURCE
+          - UPGRADE_CLIENT
+          - CONTACT_SUPPORT
+          - NONE
+        resource:
+          anyOf:
+          - $ref: '#/components/schemas/ResourceRef'
+          - type: 'null'
+        retryAfterSeconds:
+          anyOf:
+          - type: integer
+            minimum: 0
+          - type: 'null'
+    ResourceRef:
+      type: object
+      additionalProperties: false
+      required:
+      - type
+      - id
+      properties:
+        type:
+          type: string
+          minLength: 1
+        id:
+          $ref: '#/components/schemas/Uuid'
+        documentNumber:
+          anyOf:
+          - type: string
+          - type: 'null'
+        version:
+          anyOf:
+          - type: integer
+            minimum: 0
+          - type: 'null'
+    BusinessContextSnapshot:
+      type: object
+      additionalProperties: false
+      required:
+      - tenantId
+      - companyId
+      - storeId
+      - counterId
+      - userId
+      - businessDate
+      - countryRuleSetVersion
+      - correlationId
+      properties:
+        tenantId:
+          $ref: '#/components/schemas/Uuid'
+        companyId:
+          $ref: '#/components/schemas/Uuid'
+        storeId:
+          $ref: '#/components/schemas/Uuid'
+        counterId:
+          $ref: '#/components/schemas/Uuid'
+        userId:
+          $ref: '#/components/schemas/Uuid'
+        businessDate:
+          type: string
+          format: date
+        countryRuleSetVersion:
+          type: string
+          minLength: 1
+        correlationId:
+          type: string
+          minLength: 1
+        causationId:
+          anyOf:
+          - type: string
+          - type: 'null'
+    CommandReceipt:
+      type: object
+      additionalProperties: false
+      required:
+      - commandId
+      - outcome
+      - correlationId
+      - replayed
+      properties:
+        commandId:
+          $ref: '#/components/schemas/Uuid'
+        outcome:
+          type: string
+          enum:
+          - COMPLETED
+          - ACCEPTED
+          - UNCERTAIN
+          - NO_EFFECT
+        resource:
+          anyOf:
+          - $ref: '#/components/schemas/ResourceRef'
+          - type: 'null'
+        correlationId:
+          type: string
+        replayed:
+          type: boolean
+        businessContext:
+          anyOf:
+          - $ref: '#/components/schemas/BusinessContextSnapshot'
+          - type: 'null'
+    VersionResult:
+      type: object
+      additionalProperties: false
+      required:
+      - buildVersion
+      - apiVersions
+      - schemaVersion
+      - syncVersions
+      properties:
+        buildVersion:
+          type: string
+        apiVersions:
+          type: array
+          items:
+            type: string
+        schemaVersion:
+          type: string
+        syncVersions:
+          type: array
+          items:
+            type: string
+    SyncPayloadRef:
+      type: object
+      additionalProperties: false
+      required:
+      - resourceType
+      - resourceId
+      - sourceVersion
+      properties:
+        resourceType:
+          type: string
+        resourceId:
+          $ref: '#/components/schemas/Uuid'
+        sourceVersion:
+          type: integer
+          minimum: 0
+        documentNumber:
+          anyOf:
+          - type: string
+          - type: 'null'
+        payloadHash:
+          type: string
+    SyncMessage:
+      oneOf:
+      - $ref: '#/components/schemas/SyncMessage_SalePosted'
+      - $ref: '#/components/schemas/SyncMessage_PaymentCommitted'
+      - $ref: '#/components/schemas/SyncMessage_TenderPosted'
+      - $ref: '#/components/schemas/SyncMessage_StockMovementPosted'
+      - $ref: '#/components/schemas/SyncMessage_SalesReturnPosted'
+      - $ref: '#/components/schemas/SyncMessage_RefundObligationChanged'
+      - $ref: '#/components/schemas/SyncMessage_RefundExecutionChanged'
+      - $ref: '#/components/schemas/SyncMessage_CreditLedgerEntryPosted'
+      - $ref: '#/components/schemas/SyncMessage_CustomerCollectionPosted'
+      - $ref: '#/components/schemas/SyncMessage_CashMovementPosted'
+      - $ref: '#/components/schemas/SyncMessage_ShiftStateChanged'
+      - $ref: '#/components/schemas/SyncMessage_BusinessDayStateChanged'
+      - $ref: '#/components/schemas/SyncMessage_SupplierPayableCreated'
+      - $ref: '#/components/schemas/SyncMessage_SupplierPaymentPosted'
+      - $ref: '#/components/schemas/SyncMessage_FinancialMovementPosted'
+      - $ref: '#/components/schemas/SyncMessage_ExpensePosted'
+      - $ref: '#/components/schemas/SyncMessage_StoreConfigurationPublished'
+      - $ref: '#/components/schemas/SyncMessage_CountryRuleSetPublished'
+      - $ref: '#/components/schemas/SyncMessage_CatalogMasterCommand'
+      - $ref: '#/components/schemas/SyncMessage_PricingMasterCommand'
+      discriminator:
+        propertyName: messageType
+    SyncPushRequest:
+      type: object
+      additionalProperties: false
+      required:
+      - peerId
+      - messages
+      properties:
+        peerId:
+          type: string
+        messages:
+          type: array
+          minItems: 1
+          maxItems: 500
+          items:
+            $ref: '#/components/schemas/SyncMessage'
+    SyncMessageResult:
+      type: object
+      additionalProperties: false
+      required:
+      - messageId
+      - outcome
+      properties:
+        messageId:
+          $ref: '#/components/schemas/Uuid'
+        outcome:
+          type: string
+          enum:
+          - APPLIED
+          - DUPLICATE
+          - QUARANTINED
+          - REJECTED
+        problem:
+          anyOf:
+          - $ref: '#/components/schemas/Problem'
+          - type: 'null'
+    SyncPushResult:
+      type: object
+      additionalProperties: false
+      required:
+      - results
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/SyncMessageResult'
+    SyncPullResult:
+      type: object
+      additionalProperties: false
+      required:
+      - messages
+      - checkpoint
+      properties:
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/SyncMessage'
+        checkpoint:
+          type: string
+        hasMore:
+          type: boolean
+    SyncAckRequest:
+      type: object
+      additionalProperties: false
+      required:
+      - messageIds
+      - checkpoint
+      properties:
+        messageIds:
+          type: array
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/Uuid'
+        checkpoint:
+          type: string
+    Decimal:
+      type: string
+      pattern: ^-?(0|[1-9]\d*)(\.\d+)?$
+    Money:
+      type: object
+      additionalProperties: false
+      required:
+      - amount
+      - currency
+      properties:
+        amount:
+          $ref: '#/components/schemas/Decimal'
+        currency:
+          type: string
+          pattern: ^[A-Z]{3}$
+    SyncConfigEntry:
+      type: object
+      additionalProperties: false
+      required:
+      - key
+      - value
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+    SalePostedPayload:
+      type: object
+      additionalProperties: false
+      required:
+      - saleId
+      - sourceVersion
+      - businessDate
+      - documentNumber
+      - total
+      - customerId
+      properties:
+        saleId:
+          $ref: '#/components/schemas/Uuid'
+        sourceVersion:
+          type: integer
+          minimum: 0
+        businessDate:
+          type: string
+          format: date
+        documentNumber:
+          anyOf:
+          - type: string
+          - type: 'null'
+        total:
+          $ref: '#/components/schemas/Money'
+        customerId:
+          anyOf:
+          - $ref: '#/components/schemas/Uuid'
+          - type: 'null'
+    PaymentCommittedPayload:
+      type: object
+      additionalProperties: false
+      required:
+      - paymentCommitmentId
+      - checkoutPaymentId
+      - status
+      - amount
+      - methodCode
+      properties:
+        paymentCommitmentId:
+          $ref: '#/components/schemas/Uuid'
+        checkoutPaymentId:
+          $ref: '#/components/schemas/Uuid'
+        status:
+          type: string
+        amount:
+          $ref: '#/components/schemas/Money'
+        methodCode:
+          type: string
+    TenderPostedPayload:
+      type: object
+      additionalProperties: false
+      required:
+      - postedTenderId
+      - saleId
+      - amount
+      - methodCode
+      properties:
+        postedTenderId:
+          $ref: '#/components/schemas/Uuid'
+        saleId:
+          $ref: '#/components/schemas/Uuid'
+        amount:
+          $ref: '#/components/schemas/Money'
+        methodCode:
+          type: string
+    StockMovementPostedPayload:
+      type: object
+      additionalProperties: false
+      required:
+      - stockMovementId
+      - itemId
+      - storeId
+      - quantityDelta
+      - reasonCode
+      - source
+      properties:
+        stockMovementId:
+          $ref: '#/components/schemas/Uuid'
+        itemId:
+          $ref: '#/components/schemas/Uuid'
+        storeId:
+          $ref: '#/components/schemas/Uuid'
+        quantityDelta:
+          $ref: '#/components/schemas/Decimal'
+        reasonCode:
+          type: string
+        source:
+          $ref: '#/components/schemas/ResourceRef'
+    SalesReturnPostedPayload:
+      type: object
+      additionalProperties: false
+      required:
+      - salesReturnId
+      - originalSaleId
+      - total
+      - businessDate
+      properties:
+        salesReturnId:
+          $ref: '#/components/schemas/Uuid'
+        originalSaleId:
+          anyOf:
+          - $ref: '#/components/schemas/Uuid'
+          - type: 'null'
+        total:
+          $ref: '#/components/schemas/Money'
+        businessDate:
+          type: string
+          format: date
+    RefundObligationChangedPayload:
+      type: object
+      additionalProperties: false
+      required:
+      - refundObligationId
+      - salesReturnId
+      - status
+      - amountOutstanding
+      properties:
+        refundObligationId:
+          $ref: '#/components/schemas/Uuid'
+        salesReturnId:
+          $ref: '#/components/schemas/Uuid'
+        status:
+          type: string
+        amountOutstanding:
+          $ref: '#/components/schemas/Money'
+    RefundExecutionChangedPayload:
+      type: object
+      additionalProperties: false
+      required:
+      - refundExecutionId
+      - refundObligationId
+      - status
+      - amount
+      properties:
+        refundExecutionId:
+          $ref: '#/components/schemas/Uuid'
+        refundObligationId:
+          $ref: '#/components/schemas/Uuid'
+        status:
+          type: string
+        amount:
+          $ref: '#/components/schemas/Money'
+    CreditLedgerEntryPostedPayload:
+      type: object
+      additionalProperties: false
+      required:
+      - creditLedgerEntryId
+      - customerId
+      - amountDelta
+      - source
+      properties:
+        creditLedgerEntryId:
+          $ref: '#/components/schemas/Uuid'
+        customerId:
+          $ref: '#/components/schemas/Uuid'
+        amountDelta:
+          $ref: '#/components/schemas/Money'
+        source:
+          $ref: '#/components/schemas/ResourceRef'
+    CustomerCollectionPostedPayload:
+      type: object
+      additionalProperties: false
+      required:
+      - collectionId
+      - customerId
+      - amount
+      - businessDate
+      properties:
+        collectionId:
+          $ref: '#/components/schemas/Uuid'
+        customerId:
+          $ref: '#/components/schemas/Uuid'
+        amount:
+          $ref: '#/components/schemas/Money'
+        businessDate:
+          type: string
+          format: date
+    CashMovementPostedPayload:
+      type: object
+      additionalProperties: false
+      required:
+      - cashMovementId
+      - shiftId
+      - direction
+      - amount
+      - reasonCode
+      properties:
+        cashMovementId:
+          $ref: '#/components/schemas/Uuid'
+        shiftId:
+          $ref: '#/components/schemas/Uuid'
+        direction:
+          type: string
+          enum:
+          - IN
+          - OUT
+        amount:
+          $ref: '#/components/schemas/Money'
+        reasonCode:
+          type: string
+    ShiftStateChangedPayload:
+      type: object
+      additionalProperties: false
+      required:
+      - shiftId
+      - status
+      - businessDate
+      - sourceVersion
+      properties:
+        shiftId:
+          $ref: '#/components/schemas/Uuid'
+        status:
+          type: string
+        businessDate:
+          type: string
+          format: date
+        sourceVersion:
+          type: integer
+          minimum: 0
+    BusinessDayStateChangedPayload:
+      type: object
+      additionalProperties: false
+      required:
+      - businessDayId
+      - status
+      - businessDate
+      - sourceVersion
+      properties:
+        businessDayId:
+          $ref: '#/components/schemas/Uuid'
+        status:
+          type: string
+        businessDate:
+          type: string
+          format: date
+        sourceVersion:
+          type: integer
+          minimum: 0
+    SupplierPayableCreatedPayload:
+      type: object
+      additionalProperties: false
+      required:
+      - supplierPayableId
+      - supplierId
+      - outstanding
+      - source
+      properties:
+        supplierPayableId:
+          $ref: '#/components/schemas/Uuid'
+        supplierId:
+          $ref: '#/components/schemas/Uuid'
+        outstanding:
+          $ref: '#/components/schemas/Money'
+        source:
+          $ref: '#/components/schemas/ResourceRef'
+    SupplierPaymentPostedPayload:
+      type: object
+      additionalProperties: false
+      required:
+      - supplierPaymentId
+      - supplierId
+      - amount
+      - businessDate
+      properties:
+        supplierPaymentId:
+          $ref: '#/components/schemas/Uuid'
+        supplierId:
+          $ref: '#/components/schemas/Uuid'
+        amount:
+          $ref: '#/components/schemas/Money'
+        businessDate:
+          type: string
+          format: date
+    FinancialMovementPostedPayload:
+      type: object
+      additionalProperties: false
+      required:
+      - financialMovementId
+      - financialAccountId
+      - amountDelta
+      - source
+      properties:
+        financialMovementId:
+          $ref: '#/components/schemas/Uuid'
+        financialAccountId:
+          $ref: '#/components/schemas/Uuid'
+        amountDelta:
+          $ref: '#/components/schemas/Money'
+        source:
+          $ref: '#/components/schemas/ResourceRef'
+    ExpensePostedPayload:
+      type: object
+      additionalProperties: false
+      required:
+      - expenseId
+      - categoryId
+      - amount
+      - businessDate
+      properties:
+        expenseId:
+          $ref: '#/components/schemas/Uuid'
+        categoryId:
+          $ref: '#/components/schemas/Uuid'
+        amount:
+          $ref: '#/components/schemas/Money'
+        businessDate:
+          type: string
+          format: date
+    StoreConfigurationPublishedPayload:
+      type: object
+      additionalProperties: false
+      required:
+      - activationState
+      - bundleId
+      - effectiveFrom
+      - entries
+      - version
+      properties:
+        bundleId:
+          $ref: '#/components/schemas/Uuid'
+        version:
+          type: string
+        effectiveFrom:
+          type: string
+          format: date-time
+        entries:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConfigurationEntry'
+        activationState:
+          type: string
+          enum:
+          - STAGED
+          - VALIDATED
+          - ACTIVE
+          - REJECTED
+    CountryRuleSetPublishedPayload:
+      type: object
+      additionalProperties: false
+      required:
+      - countryCode
+      - version
+      - effectiveFrom
+      - verified
+      - entries
+      properties:
+        countryCode:
+          type: string
+          pattern: ^[A-Z]{2}$
+        version:
+          type: string
+        effectiveFrom:
+          type: string
+          format: date-time
+        verified:
+          type: boolean
+        entries:
+          type: array
+          items:
+            $ref: '#/components/schemas/SyncConfigEntry'
+    CatalogMasterCommandPayload:
+      type: object
+      additionalProperties: false
+      required:
+      - action
+      - active
+      - barcodes
+      - batchTracked
+      - code
+      - description
+      - expiryTracked
+      - fractionalQuantityAllowed
+      - itemId
+      - purchasable
+      - sellable
+      - skeletonStatus
+      - sourceVersion
+      - uoms
+      - weighed
+      - shortDescription
+      - stockManaged
+      - baseUomId
+      - salesUomId
+      - purchaseUomId
+      - notes
+      properties:
+        itemId:
+          $ref: '#/components/schemas/Uuid'
+        sourceVersion:
+          type: integer
+          minimum: 0
+        action:
+          type: string
+          enum:
+          - UPSERT
+          - DEACTIVATE
+        code:
+          anyOf:
+          - type: string
+          - type: 'null'
+        description:
+          type: string
+        active:
+          type: boolean
+        shortDescription:
+          anyOf:
+          - type: string
+          - type: 'null'
+        sellable:
+          type: boolean
+        purchasable:
+          type: boolean
+        fractionalQuantityAllowed:
+          type: boolean
+        weighed:
+          type: boolean
+        batchTracked:
+          type: boolean
+        expiryTracked:
+          type: boolean
+        skeletonStatus:
+          type: string
+          enum:
+          - COMPLETE
+          - SKELETON
+        baseUomId:
+          anyOf:
+          - $ref: '#/components/schemas/Uuid'
+          - type: 'null'
+        salesUomId:
+          anyOf:
+          - $ref: '#/components/schemas/Uuid'
+          - type: 'null'
+        purchaseUomId:
+          anyOf:
+          - $ref: '#/components/schemas/Uuid'
+          - type: 'null'
+        barcodes:
+          type: array
+          items:
+            $ref: '#/components/schemas/CatalogBarcodeSnapshot'
+        uoms:
+          type: array
+          items:
+            $ref: '#/components/schemas/CatalogUomSnapshot'
+        stockManaged:
+          type: boolean
+        notes:
+          anyOf:
+          - type: string
+          - type: 'null'
+    PricingMasterCommandPayload:
+      type: object
+      additionalProperties: false
+      required:
+      - priceScheduleId
+      - itemId
+      - storeId
+      - sourceVersion
+      - price
+      - effectiveFrom
+      properties:
+        priceScheduleId:
+          $ref: '#/components/schemas/Uuid'
+        itemId:
+          $ref: '#/components/schemas/Uuid'
+        storeId:
+          $ref: '#/components/schemas/Uuid'
+        sourceVersion:
+          type: integer
+          minimum: 0
+        price:
+          $ref: '#/components/schemas/Money'
+        effectiveFrom:
+          type: string
+          format: date-time
+    SyncMessage_SalePosted:
+      type: object
+      additionalProperties: false
+      required:
+      - messageId
+      - messageType
+      - contractVersion
+      - ownerClass
+      - tenantId
+      - storeId
+      - sourceMode
+      - sourceIdentity
+      - occurredAt
+      - payload
+      properties:
+        messageId:
+          $ref: '#/components/schemas/Uuid'
+        messageType:
+          const: SalePosted
+        contractVersion:
+          const: '1.0'
+        ownerClass:
+          const: STORE_TRANSACTION_FACT
+        tenantId:
+          $ref: '#/components/schemas/Uuid'
+        storeId:
+          anyOf:
+          - $ref: '#/components/schemas/Uuid'
+          - type: 'null'
+        sourceMode:
+          const: EDGE
+        sourceIdentity:
+          type: string
+          minLength: 1
+        postingEnvelopeId:
+          anyOf:
+          - $ref: '#/components/schemas/Uuid'
+          - type: 'null'
+        correlationId:
+          anyOf:
+          - type: string
+          - type: 'null'
+        causationId:
+          anyOf:
+          - type: string
+          - type: 'null'
+        occurredAt:
+          type: string
+          format: date-time
+        payload:
+          $ref: '#/components/schemas/SalePostedPayload'
+    SyncMessage_PaymentCommitted:
+      type: object
+      additionalProperties: false
+      required:
+      - messageId
+      - messageType
+      - contractVersion
+      - ownerClass
+      - tenantId
+      - storeId
+      - sourceMode
+      - sourceIdentity
+      - occurredAt
+      - payload
+      properties:
+        messageId:
+          $ref: '#/components/schemas/Uuid'
+        messageType:
+          const: PaymentCommitted
+        contractVersion:
+          const: '1.0'
+        ownerClass:
+          const: STORE_TRANSACTION_FACT
+        tenantId:
+          $ref: '#/components/schemas/Uuid'
+        storeId:
+          anyOf:
+          - $ref: '#/components/schemas/Uuid'
+          - type: 'null'
+        sourceMode:
+          const: EDGE
+        sourceIdentity:
+          type: string
+          minLength: 1
+        postingEnvelopeId:
+          anyOf:
+          - $ref: '#/components/schemas/Uuid'
+          - type: 'null'
+        correlationId:
+          anyOf:
+          - type: string
+          - type: 'null'
+        causationId:
+          anyOf:
+          - type: string
+          - type: 'null'
+        occurredAt:
+          type: string
+          format: date-time
+        payload:
+          $ref: '#/components/schemas/PaymentCommittedPayload'
+    SyncMessage_TenderPosted:
+      type: object
+      additionalProperties: false
+      required:
+      - messageId
+      - messageType
+      - contractVersion
+      - ownerClass
+      - tenantId
+      - storeId
+      - sourceMode
+      - sourceIdentity
+      - occurredAt
+      - payload
+      properties:
+        messageId:
+          $ref: '#/components/schemas/Uuid'
+        messageType:
+          const: TenderPosted
+        contractVersion:
+          const: '1.0'
+        ownerClass:
+          const: STORE_TRANSACTION_FACT
+        tenantId:
+          $ref: '#/components/schemas/Uuid'
+        storeId:
+          anyOf:
+          - $ref: '#/components/schemas/Uuid'
+          - type: 'null'
+        sourceMode:
+          const: EDGE
+        sourceIdentity:
+          type: string
+          minLength: 1
+        postingEnvelopeId:
+          anyOf:
+          - $ref: '#/components/schemas/Uuid'
+          - type: 'null'
+        correlationId:
+          anyOf:
+          - type: string
+          - type: 'null'
+        causationId:
+          anyOf:
+          - type: string
+          - type: 'null'
+        occurredAt:
+          type: string
+          format: date-time
+        payload:
+          $ref: '#/components/schemas/TenderPostedPayload'
+    SyncMessage_StockMovementPosted:
+      type: object
+      additionalProperties: false
+      required:
+      - messageId
+      - messageType
+      - contractVersion
+      - ownerClass
+      - tenantId
+      - storeId
+      - sourceMode
+      - sourceIdentity
+      - occurredAt
+      - payload
+      properties:
+        messageId:
+          $ref: '#/components/schemas/Uuid'
+        messageType:
+          const: StockMovementPosted
+        contractVersion:
+          const: '1.0'
+        ownerClass:
+          const: STORE_TRANSACTION_FACT
+        tenantId:
+          $ref: '#/components/schemas/Uuid'
+        storeId:
+          anyOf:
+          - $ref: '#/components/schemas/Uuid'
+          - type: 'null'
+        sourceMode:
+          const: EDGE
+        sourceIdentity:
+          type: string
+          minLength: 1
+        postingEnvelopeId:
+          anyOf:
+          - $ref: '#/components/schemas/Uuid'
+          - type: 'null'
+        correlationId:
+          anyOf:
+          - type: string
+          - type: 'null'
+        causationId:
+          anyOf:
+          - type: string
+          - type: 'null'
+        occurredAt:
+          type: string
+          format: date-time
+        payload:
+          $ref: '#/components/schemas/StockMovementPostedPayload'
+    SyncMessage_SalesReturnPosted:
+      type: object
+      additionalProperties: false
+      required:
+      - messageId
+      - messageType
+      - contractVersion
+      - ownerClass
+      - tenantId
+      - storeId
+      - sourceMode
+      - sourceIdentity
+      - occurredAt
+      - payload
+      properties:
+        messageId:
+          $ref: '#/components/schemas/Uuid'
+        messageType:
+          const: SalesReturnPosted
+        contractVersion:
+          const: '1.0'
+        ownerClass:
+          const: STORE_TRANSACTION_FACT
+        tenantId:
+          $ref: '#/components/schemas/Uuid'
+        storeId:
+          anyOf:
+          - $ref: '#/components/schemas/Uuid'
+          - type: 'null'
+        sourceMode:
+          const: EDGE
+        sourceIdentity:
+          type: string
+          minLength: 1
+        postingEnvelopeId:
+          anyOf:
+          - $ref: '#/components/schemas/Uuid'
+          - type: 'null'
+        correlationId:
+          anyOf:
+          - type: string
+          - type: 'null'
+        causationId:
+          anyOf:
+          - type: string
+          - type: 'null'
+        occurredAt:
+          type: string
+          format: date-time
+        payload:
+          $ref: '#/components/schemas/SalesReturnPostedPayload'
+    SyncMessage_RefundObligationChanged:
+      type: object
+      additionalProperties: false
+      required:
+      - messageId
+      - messageType
+      - contractVersion
+      - ownerClass
+      - tenantId
+      - storeId
+      - sourceMode
+      - sourceIdentity
+      - occurredAt
+      - payload
+      properties:
+        messageId:
+          $ref: '#/components/schemas/Uuid'
+        messageType:
+          const: RefundObligationChanged
+        contractVersion:
+          const: '1.0'
+        ownerClass:
+          const: STORE_TRANSACTION_FACT
+        tenantId:
+          $ref: '#/components/schemas/Uuid'
+        storeId:
+          anyOf:
+          - $ref: '#/components/schemas/Uuid'
+          - type: 'null'
+        sourceMode:
+          const: EDGE
+        sourceIdentity:
+          type: string
+          minLength: 1
+        postingEnvelopeId:
+          anyOf:
+          - $ref: '#/components/schemas/Uuid'
+          - type: 'null'
+        correlationId:
+          anyOf:
+          - type: string
+          - type: 'null'
+        causationId:
+          anyOf:
+          - type: string
+          - type: 'null'
+        occurredAt:
+          type: string
+          format: date-time
+        payload:
+          $ref: '#/components/schemas/RefundObligationChangedPayload'
+    SyncMessage_RefundExecutionChanged:
+      type: object
+      additionalProperties: false
+      required:
+      - messageId
+      - messageType
+      - contractVersion
+      - ownerClass
+      - tenantId
+      - storeId
+      - sourceMode
+      - sourceIdentity
+      - occurredAt
+      - payload
+      properties:
+        messageId:
+          $ref: '#/components/schemas/Uuid'
+        messageType:
+          const: RefundExecutionChanged
+        contractVersion:
+          const: '1.0'
+        ownerClass:
+          const: STORE_TRANSACTION_FACT
+        tenantId:
+          $ref: '#/components/schemas/Uuid'
+        storeId:
+          anyOf:
+          - $ref: '#/components/schemas/Uuid'
+          - type: 'null'
+        sourceMode:
+          const: EDGE
+        sourceIdentity:
+          type: string
+          minLength: 1
+        postingEnvelopeId:
+          anyOf:
+          - $ref: '#/components/schemas/Uuid'
+          - type: 'null'
+        correlationId:
+          anyOf:
+          - type: string
+          - type: 'null'
+        causationId:
+          anyOf:
+          - type: string
+          - type: 'null'
+        occurredAt:
+          type: string
+          format: date-time
+        payload:
+          $ref: '#/components/schemas/RefundExecutionChangedPayload'
+    SyncMessage_CreditLedgerEntryPosted:
+      type: object
+      additionalProperties: false
+      required:
+      - messageId
+      - messageType
+      - contractVersion
+      - ownerClass
+      - tenantId
+      - storeId
+      - sourceMode
+      - sourceIdentity
+      - occurredAt
+      - payload
+      properties:
+        messageId:
+          $ref: '#/components/schemas/Uuid'
+        messageType:
+          const: CreditLedgerEntryPosted
+        contractVersion:
+          const: '1.0'
+        ownerClass:
+          const: STORE_TRANSACTION_FACT
+        tenantId:
+          $ref: '#/components/schemas/Uuid'
+        storeId:
+          anyOf:
+          - $ref: '#/components/schemas/Uuid'
+          - type: 'null'
+        sourceMode:
+          const: EDGE
+        sourceIdentity:
+          type: string
+          minLength: 1
+        postingEnvelopeId:
+          anyOf:
+          - $ref: '#/components/schemas/Uuid'
+          - type: 'null'
+        correlationId:
+          anyOf:
+          - type: string
+          - type: 'null'
+        causationId:
+          anyOf:
+          - type: string
+          - type: 'null'
+        occurredAt:
+          type: string
+          format: date-time
+        payload:
+          $ref: '#/components/schemas/CreditLedgerEntryPostedPayload'
+    SyncMessage_CustomerCollectionPosted:
+      type: object
+      additionalProperties: false
+      required:
+      - messageId
+      - messageType
+      - contractVersion
+      - ownerClass
+      - tenantId
+      - storeId
+      - sourceMode
+      - sourceIdentity
+      - occurredAt
+      - payload
+      properties:
+        messageId:
+          $ref: '#/components/schemas/Uuid'
+        messageType:
+          const: CustomerCollectionPosted
+        contractVersion:
+          const: '1.0'
+        ownerClass:
+          const: STORE_TRANSACTION_FACT
+        tenantId:
+          $ref: '#/components/schemas/Uuid'
+        storeId:
+          anyOf:
+          - $ref: '#/components/schemas/Uuid'
+          - type: 'null'
+        sourceMode:
+          const: EDGE
+        sourceIdentity:
+          type: string
+          minLength: 1
+        postingEnvelopeId:
+          anyOf:
+          - $ref: '#/components/schemas/Uuid'
+          - type: 'null'
+        correlationId:
+          anyOf:
+          - type: string
+          - type: 'null'
+        causationId:
+          anyOf:
+          - type: string
+          - type: 'null'
+        occurredAt:
+          type: string
+          format: date-time
+        payload:
+          $ref: '#/components/schemas/CustomerCollectionPostedPayload'
+    SyncMessage_CashMovementPosted:
+      type: object
+      additionalProperties: false
+      required:
+      - messageId
+      - messageType
+      - contractVersion
+      - ownerClass
+      - tenantId
+      - storeId
+      - sourceMode
+      - sourceIdentity
+      - occurredAt
+      - payload
+      properties:
+        messageId:
+          $ref: '#/components/schemas/Uuid'
+        messageType:
+          const: CashMovementPosted
+        contractVersion:
+          const: '1.0'
+        ownerClass:
+          const: STORE_TRANSACTION_FACT
+        tenantId:
+          $ref: '#/components/schemas/Uuid'
+        storeId:
+          anyOf:
+          - $ref: '#/components/schemas/Uuid'
+          - type: 'null'
+        sourceMode:
+          const: EDGE
+        sourceIdentity:
+          type: string
+          minLength: 1
+        postingEnvelopeId:
+          anyOf:
+          - $ref: '#/components/schemas/Uuid'
+          - type: 'null'
+        correlationId:
+          anyOf:
+          - type: string
+          - type: 'null'
+        causationId:
+          anyOf:
+          - type: string
+          - type: 'null'
+        occurredAt:
+          type: string
+          format: date-time
+        payload:
+          $ref: '#/components/schemas/CashMovementPostedPayload'
+    SyncMessage_ShiftStateChanged:
+      type: object
+      additionalProperties: false
+      required:
+      - messageId
+      - messageType
+      - contractVersion
+      - ownerClass
+      - tenantId
+      - storeId
+      - sourceMode
+      - sourceIdentity
+      - occurredAt
+      - payload
+      properties:
+        messageId:
+          $ref: '#/components/schemas/Uuid'
+        messageType:
+          const: ShiftStateChanged
+        contractVersion:
+          const: '1.0'
+        ownerClass:
+          const: STORE_TRANSACTION_FACT
+        tenantId:
+          $ref: '#/components/schemas/Uuid'
+        storeId:
+          anyOf:
+          - $ref: '#/components/schemas/Uuid'
+          - type: 'null'
+        sourceMode:
+          const: EDGE
+        sourceIdentity:
+          type: string
+          minLength: 1
+        postingEnvelopeId:
+          anyOf:
+          - $ref: '#/components/schemas/Uuid'
+          - type: 'null'
+        correlationId:
+          anyOf:
+          - type: string
+          - type: 'null'
+        causationId:
+          anyOf:
+          - type: string
+          - type: 'null'
+        occurredAt:
+          type: string
+          format: date-time
+        payload:
+          $ref: '#/components/schemas/ShiftStateChangedPayload'
+    SyncMessage_BusinessDayStateChanged:
+      type: object
+      additionalProperties: false
+      required:
+      - messageId
+      - messageType
+      - contractVersion
+      - ownerClass
+      - tenantId
+      - storeId
+      - sourceMode
+      - sourceIdentity
+      - occurredAt
+      - payload
+      properties:
+        messageId:
+          $ref: '#/components/schemas/Uuid'
+        messageType:
+          const: BusinessDayStateChanged
+        contractVersion:
+          const: '1.0'
+        ownerClass:
+          const: STORE_TRANSACTION_FACT
+        tenantId:
+          $ref: '#/components/schemas/Uuid'
+        storeId:
+          anyOf:
+          - $ref: '#/components/schemas/Uuid'
+          - type: 'null'
+        sourceMode:
+          const: EDGE
+        sourceIdentity:
+          type: string
+          minLength: 1
+        postingEnvelopeId:
+          anyOf:
+          - $ref: '#/components/schemas/Uuid'
+          - type: 'null'
+        correlationId:
+          anyOf:
+          - type: string
+          - type: 'null'
+        causationId:
+          anyOf:
+          - type: string
+          - type: 'null'
+        occurredAt:
+          type: string
+          format: date-time
+        payload:
+          $ref: '#/components/schemas/BusinessDayStateChangedPayload'
+    SyncMessage_SupplierPayableCreated:
+      type: object
+      additionalProperties: false
+      required:
+      - messageId
+      - messageType
+      - contractVersion
+      - ownerClass
+      - tenantId
+      - storeId
+      - sourceMode
+      - sourceIdentity
+      - occurredAt
+      - payload
+      properties:
+        messageId:
+          $ref: '#/components/schemas/Uuid'
+        messageType:
+          const: SupplierPayableCreated
+        contractVersion:
+          const: '1.0'
+        ownerClass:
+          const: STORE_TRANSACTION_FACT
+        tenantId:
+          $ref: '#/components/schemas/Uuid'
+        storeId:
+          anyOf:
+          - $ref: '#/components/schemas/Uuid'
+          - type: 'null'
+        sourceMode:
+          const: EDGE
+        sourceIdentity:
+          type: string
+          minLength: 1
+        postingEnvelopeId:
+          anyOf:
+          - $ref: '#/components/schemas/Uuid'
+          - type: 'null'
+        correlationId:
+          anyOf:
+          - type: string
+          - type: 'null'
+        causationId:
+          anyOf:
+          - type: string
+          - type: 'null'
+        occurredAt:
+          type: string
+          format: date-time
+        payload:
+          $ref: '#/components/schemas/SupplierPayableCreatedPayload'
+    SyncMessage_SupplierPaymentPosted:
+      type: object
+      additionalProperties: false
+      required:
+      - messageId
+      - messageType
+      - contractVersion
+      - ownerClass
+      - tenantId
+      - storeId
+      - sourceMode
+      - sourceIdentity
+      - occurredAt
+      - payload
+      properties:
+        messageId:
+          $ref: '#/components/schemas/Uuid'
+        messageType:
+          const: SupplierPaymentPosted
+        contractVersion:
+          const: '1.0'
+        ownerClass:
+          const: STORE_TRANSACTION_FACT
+        tenantId:
+          $ref: '#/components/schemas/Uuid'
+        storeId:
+          anyOf:
+          - $ref: '#/components/schemas/Uuid'
+          - type: 'null'
+        sourceMode:
+          const: EDGE
+        sourceIdentity:
+          type: string
+          minLength: 1
+        postingEnvelopeId:
+          anyOf:
+          - $ref: '#/components/schemas/Uuid'
+          - type: 'null'
+        correlationId:
+          anyOf:
+          - type: string
+          - type: 'null'
+        causationId:
+          anyOf:
+          - type: string
+          - type: 'null'
+        occurredAt:
+          type: string
+          format: date-time
+        payload:
+          $ref: '#/components/schemas/SupplierPaymentPostedPayload'
+    SyncMessage_FinancialMovementPosted:
+      type: object
+      additionalProperties: false
+      required:
+      - messageId
+      - messageType
+      - contractVersion
+      - ownerClass
+      - tenantId
+      - storeId
+      - sourceMode
+      - sourceIdentity
+      - occurredAt
+      - payload
+      properties:
+        messageId:
+          $ref: '#/components/schemas/Uuid'
+        messageType:
+          const: FinancialMovementPosted
+        contractVersion:
+          const: '1.0'
+        ownerClass:
+          const: STORE_TRANSACTION_FACT
+        tenantId:
+          $ref: '#/components/schemas/Uuid'
+        storeId:
+          anyOf:
+          - $ref: '#/components/schemas/Uuid'
+          - type: 'null'
+        sourceMode:
+          const: EDGE
+        sourceIdentity:
+          type: string
+          minLength: 1
+        postingEnvelopeId:
+          anyOf:
+          - $ref: '#/components/schemas/Uuid'
+          - type: 'null'
+        correlationId:
+          anyOf:
+          - type: string
+          - type: 'null'
+        causationId:
+          anyOf:
+          - type: string
+          - type: 'null'
+        occurredAt:
+          type: string
+          format: date-time
+        payload:
+          $ref: '#/components/schemas/FinancialMovementPostedPayload'
+    SyncMessage_ExpensePosted:
+      type: object
+      additionalProperties: false
+      required:
+      - messageId
+      - messageType
+      - contractVersion
+      - ownerClass
+      - tenantId
+      - storeId
+      - sourceMode
+      - sourceIdentity
+      - occurredAt
+      - payload
+      properties:
+        messageId:
+          $ref: '#/components/schemas/Uuid'
+        messageType:
+          const: ExpensePosted
+        contractVersion:
+          const: '1.0'
+        ownerClass:
+          const: STORE_TRANSACTION_FACT
+        tenantId:
+          $ref: '#/components/schemas/Uuid'
+        storeId:
+          anyOf:
+          - $ref: '#/components/schemas/Uuid'
+          - type: 'null'
+        sourceMode:
+          const: EDGE
+        sourceIdentity:
+          type: string
+          minLength: 1
+        postingEnvelopeId:
+          anyOf:
+          - $ref: '#/components/schemas/Uuid'
+          - type: 'null'
+        correlationId:
+          anyOf:
+          - type: string
+          - type: 'null'
+        causationId:
+          anyOf:
+          - type: string
+          - type: 'null'
+        occurredAt:
+          type: string
+          format: date-time
+        payload:
+          $ref: '#/components/schemas/ExpensePostedPayload'
+    SyncMessage_StoreConfigurationPublished:
+      type: object
+      additionalProperties: false
+      required:
+      - messageId
+      - messageType
+      - contractVersion
+      - ownerClass
+      - tenantId
+      - storeId
+      - sourceMode
+      - sourceIdentity
+      - occurredAt
+      - payload
+      properties:
+        messageId:
+          $ref: '#/components/schemas/Uuid'
+        messageType:
+          const: StoreConfigurationPublished
+        contractVersion:
+          const: '1.0'
+        ownerClass:
+          const: CLOUD_MANAGED_CONFIGURATION
+        tenantId:
+          $ref: '#/components/schemas/Uuid'
+        storeId:
+          anyOf:
+          - $ref: '#/components/schemas/Uuid'
+          - type: 'null'
+        sourceMode:
+          const: CLOUD
+        sourceIdentity:
+          type: string
+          minLength: 1
+        postingEnvelopeId:
+          anyOf:
+          - $ref: '#/components/schemas/Uuid'
+          - type: 'null'
+        correlationId:
+          anyOf:
+          - type: string
+          - type: 'null'
+        causationId:
+          anyOf:
+          - type: string
+          - type: 'null'
+        occurredAt:
+          type: string
+          format: date-time
+        payload:
+          $ref: '#/components/schemas/StoreConfigurationPublishedPayload'
+    SyncMessage_CountryRuleSetPublished:
+      type: object
+      additionalProperties: false
+      required:
+      - messageId
+      - messageType
+      - contractVersion
+      - ownerClass
+      - tenantId
+      - storeId
+      - sourceMode
+      - sourceIdentity
+      - occurredAt
+      - payload
+      properties:
+        messageId:
+          $ref: '#/components/schemas/Uuid'
+        messageType:
+          const: CountryRuleSetPublished
+        contractVersion:
+          const: '1.0'
+        ownerClass:
+          const: CLOUD_MANAGED_CONFIGURATION
+        tenantId:
+          $ref: '#/components/schemas/Uuid'
+        storeId:
+          anyOf:
+          - $ref: '#/components/schemas/Uuid'
+          - type: 'null'
+        sourceMode:
+          const: CLOUD
+        sourceIdentity:
+          type: string
+          minLength: 1
+        postingEnvelopeId:
+          anyOf:
+          - $ref: '#/components/schemas/Uuid'
+          - type: 'null'
+        correlationId:
+          anyOf:
+          - type: string
+          - type: 'null'
+        causationId:
+          anyOf:
+          - type: string
+          - type: 'null'
+        occurredAt:
+          type: string
+          format: date-time
+        payload:
+          $ref: '#/components/schemas/CountryRuleSetPublishedPayload'
+    SyncMessage_CatalogMasterCommand:
+      type: object
+      additionalProperties: false
+      required:
+      - messageId
+      - messageType
+      - contractVersion
+      - ownerClass
+      - tenantId
+      - storeId
+      - sourceMode
+      - sourceIdentity
+      - occurredAt
+      - payload
+      properties:
+        messageId:
+          $ref: '#/components/schemas/Uuid'
+        messageType:
+          const: CatalogMasterCommand
+        contractVersion:
+          const: '1.0'
+        ownerClass:
+          const: EXPLICITLY_VERSIONED_MASTER
+        tenantId:
+          $ref: '#/components/schemas/Uuid'
+        storeId:
+          anyOf:
+          - $ref: '#/components/schemas/Uuid'
+          - type: 'null'
+        sourceMode:
+          const: CLOUD
+        sourceIdentity:
+          type: string
+          minLength: 1
+        postingEnvelopeId:
+          anyOf:
+          - $ref: '#/components/schemas/Uuid'
+          - type: 'null'
+        correlationId:
+          anyOf:
+          - type: string
+          - type: 'null'
+        causationId:
+          anyOf:
+          - type: string
+          - type: 'null'
+        occurredAt:
+          type: string
+          format: date-time
+        payload:
+          $ref: '#/components/schemas/CatalogMasterCommandPayload'
+    SyncMessage_PricingMasterCommand:
+      type: object
+      additionalProperties: false
+      required:
+      - messageId
+      - messageType
+      - contractVersion
+      - ownerClass
+      - tenantId
+      - storeId
+      - sourceMode
+      - sourceIdentity
+      - occurredAt
+      - payload
+      properties:
+        messageId:
+          $ref: '#/components/schemas/Uuid'
+        messageType:
+          const: PricingMasterCommand
+        contractVersion:
+          const: '1.0'
+        ownerClass:
+          const: EXPLICITLY_VERSIONED_MASTER
+        tenantId:
+          $ref: '#/components/schemas/Uuid'
+        storeId:
+          anyOf:
+          - $ref: '#/components/schemas/Uuid'
+          - type: 'null'
+        sourceMode:
+          const: CLOUD
+        sourceIdentity:
+          type: string
+          minLength: 1
+        postingEnvelopeId:
+          anyOf:
+          - $ref: '#/components/schemas/Uuid'
+          - type: 'null'
+        correlationId:
+          anyOf:
+          - type: string
+          - type: 'null'
+        causationId:
+          anyOf:
+          - type: string
+          - type: 'null'
+        occurredAt:
+          type: string
+          format: date-time
+        payload:
+          $ref: '#/components/schemas/PricingMasterCommandPayload'
+    ConfigurationDescriptor:
+      type: object
+      additionalProperties: false
+      required:
+      - key
+      - owner
+      - allowedScopes
+      - valueType
+      - sensitivity
+      - activationBehavior
+      - overridePolicy
+      properties:
+        key:
+          type: string
+        owner:
+          type: string
+          enum:
+          - BUILD
+          - MACHINE
+          - ENROLLMENT
+          - COMPANY
+          - STORE
+          - COUNTRY_POLICY
+        allowedScopes:
+          type: array
+          minItems: 1
+          items:
+            type: string
+            enum:
+            - MACHINE
+            - COMPANY
+            - STORE
+            - COUNTER
+            - COUNTRY
+        valueType:
+          type: string
+          enum:
+          - STRING
+          - INTEGER
+          - DECIMAL
+          - BOOLEAN
+          - ENUM
+          - JSON_TEXT
+          - SECRET_REFERENCE
+        sensitivity:
+          type: string
+          enum:
+          - PUBLIC
+          - INTERNAL
+          - SENSITIVE
+          - SECRET_REFERENCE
+        activationBehavior:
+          type: string
+          enum:
+          - IMMEDIATE
+          - STAGED_RESTART
+          - STAGED_BUSINESS_BOUNDARY
+          - STAGED_MANUAL_ACTIVATION
+        overridePolicy:
+          type: string
+          enum:
+          - NO_OVERRIDE
+          - LOWER_SCOPE_MAY_OVERRIDE
+          - OWNER_APPROVAL_REQUIRED
+    ConfigurationEntry:
+      type: object
+      additionalProperties: false
+      required:
+      - descriptor
+      - valueCanonicalText
+      properties:
+        descriptor:
+          $ref: '#/components/schemas/ConfigurationDescriptor'
+        valueCanonicalText:
+          type: string
+    CatalogBarcodeSnapshot:
+      type: object
+      additionalProperties: false
+      required:
+      - barcode
+      properties:
+        barcode:
+          type: string
+        active:
+          type: boolean
+    CatalogUomSnapshot:
+      type: object
+      additionalProperties: false
+      required:
+      - uomId
+      - conversionToBase
+      - quantityPrecision
+      properties:
+        uomId:
+          $ref: '#/components/schemas/Uuid'
+        conversionToBase:
+          $ref: '#/components/schemas/Decimal'
+        active:
+          type: boolean
+        quantityPrecision:
+          type: integer
+          minimum: 0
+          maximum: 8

@@ -1,0 +1,1154 @@
+[
+  {
+    "uiId": "UI-SYS-001",
+    "apiOperations": [
+      "API-IAM-001",
+      "API-IAM-002",
+      "API-IAM-003",
+      "API-IAM-004",
+      "API-IAM-005",
+      "API-IAM-006",
+      "API-IAM-015",
+      "API-IAM-016",
+      "API-IAM-017",
+      "API-IAM-018"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-SYS-002",
+    "apiOperations": [
+      "API-IAM-001",
+      "API-IAM-002",
+      "API-IAM-003",
+      "API-IAM-004",
+      "API-IAM-005",
+      "API-IAM-006",
+      "API-IAM-022"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-SYS-003",
+    "apiOperations": [
+      "API-SYS-001",
+      "API-SYS-002",
+      "API-SYS-003",
+      "API-SYS-004",
+      "API-SYS-005",
+      "API-SYS-006",
+      "API-SYS-007",
+      "API-SYS-008"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-SYS-004",
+    "apiOperations": [
+      "API-SUPT-001",
+      "API-SUPT-003",
+      "API-SYS-001",
+      "API-SYS-002",
+      "API-SYS-003",
+      "API-SYS-004",
+      "API-SYS-005",
+      "API-SYS-006"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-SYS-005",
+    "apiOperations": [
+      "API-SYS-001",
+      "API-SYS-002",
+      "API-SYS-003",
+      "API-SYS-004",
+      "API-SYS-005",
+      "API-SYS-006"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-SYS-006",
+    "apiOperations": [
+      "API-SYS-001",
+      "API-SYS-002",
+      "API-SYS-003",
+      "API-SYS-004",
+      "API-SYS-005",
+      "API-SYS-006"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-SYS-007",
+    "apiOperations": [
+      "API-IAM-001",
+      "API-IAM-002",
+      "API-IAM-003",
+      "API-IAM-004",
+      "API-IAM-005",
+      "API-IAM-006"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-SYS-008",
+    "apiOperations": [
+      "API-SYS-001",
+      "API-SYS-002",
+      "API-SYS-003",
+      "API-SYS-004",
+      "API-SYS-005",
+      "API-SYS-006"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-POS-001",
+    "apiOperations": [
+      "API-POS-001",
+      "API-POS-002",
+      "API-POS-003",
+      "API-POS-004",
+      "API-POS-005",
+      "API-POS-006",
+      "API-POS-007",
+      "API-POS-008",
+      "API-POS-010",
+      "API-POS-011",
+      "API-POS-012",
+      "API-POS-013",
+      "API-POS-014"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-POS-002",
+    "apiOperations": [
+      "API-CAT-001",
+      "API-CAT-002",
+      "API-CAT-003",
+      "API-CAT-004",
+      "API-CAT-005",
+      "API-CAT-006"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-POS-003",
+    "apiOperations": [
+      "API-POS-001",
+      "API-POS-002",
+      "API-POS-003",
+      "API-POS-004",
+      "API-POS-005",
+      "API-POS-006"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-POS-004",
+    "apiOperations": [
+      "API-CRD-001",
+      "API-CRD-002",
+      "API-CRD-003",
+      "API-CRD-004",
+      "API-CRD-005",
+      "API-CRD-006"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-POS-005",
+    "apiOperations": [
+      "API-POS-001",
+      "API-POS-002",
+      "API-POS-003",
+      "API-POS-004",
+      "API-POS-005",
+      "API-POS-006",
+      "API-POS-009"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-POS-006",
+    "apiOperations": [
+      "API-PAY-001",
+      "API-PAY-002",
+      "API-PAY-003",
+      "API-PAY-004",
+      "API-PAY-005",
+      "API-PAY-006",
+      "API-PAY-007",
+      "API-PAY-008",
+      "API-PAY-009",
+      "API-PAY-014",
+      "API-PAY-016"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-POS-007",
+    "apiOperations": [
+      "API-PAY-001",
+      "API-PAY-002",
+      "API-PAY-003",
+      "API-PAY-004",
+      "API-PAY-005",
+      "API-PAY-006"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-POS-008",
+    "apiOperations": [
+      "API-POS-001",
+      "API-POS-002",
+      "API-POS-003",
+      "API-POS-004",
+      "API-POS-005",
+      "API-POS-006"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-POS-009",
+    "apiOperations": [
+      "API-POS-001",
+      "API-POS-002",
+      "API-POS-003",
+      "API-POS-004",
+      "API-POS-005",
+      "API-POS-006"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-POS-010",
+    "apiOperations": [
+      "API-HW-001",
+      "API-HW-002"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-POS-011",
+    "apiOperations": [
+      "API-RET-001",
+      "API-RET-002",
+      "API-RET-003",
+      "API-RET-004",
+      "API-RET-005",
+      "API-RET-006",
+      "API-RET-008"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-POS-012",
+    "apiOperations": [
+      "API-PAY-001",
+      "API-PAY-002",
+      "API-PAY-003",
+      "API-PAY-004",
+      "API-PAY-005",
+      "API-PAY-006",
+      "API-PAY-010",
+      "API-PAY-011",
+      "API-PAY-012",
+      "API-PAY-013",
+      "API-PAY-015",
+      "API-RET-003",
+      "API-RET-005",
+      "API-RET-006",
+      "API-RET-007"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-POS-013",
+    "apiOperations": [
+      "API-CRD-001",
+      "API-CRD-002",
+      "API-CRD-003",
+      "API-CRD-004",
+      "API-CRD-005",
+      "API-CRD-006"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-POS-014",
+    "apiOperations": [
+      "API-CSH-001",
+      "API-CSH-002",
+      "API-CSH-003",
+      "API-CSH-004",
+      "API-CSH-005",
+      "API-CSH-006",
+      "API-CSH-008",
+      "API-CSH-010"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-POS-015",
+    "apiOperations": [
+      "API-CSH-001",
+      "API-CSH-002",
+      "API-CSH-003",
+      "API-CSH-004",
+      "API-CSH-005",
+      "API-CSH-006"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-POS-016",
+    "apiOperations": [
+      "API-CSH-001",
+      "API-CSH-002",
+      "API-CSH-003",
+      "API-CSH-004",
+      "API-CSH-005",
+      "API-CSH-006"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-POS-017",
+    "apiOperations": [
+      "API-IAM-001",
+      "API-IAM-002",
+      "API-IAM-003",
+      "API-IAM-004",
+      "API-IAM-005",
+      "API-IAM-006"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-POS-018",
+    "apiOperations": [
+      "API-HW-001",
+      "API-HW-002"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-CAT-001",
+    "apiOperations": [
+      "API-CAT-001",
+      "API-CAT-002",
+      "API-CAT-003",
+      "API-CAT-004",
+      "API-CAT-005",
+      "API-CAT-006",
+      "API-CAT-012"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-CAT-002",
+    "apiOperations": [
+      "API-CAT-001",
+      "API-CAT-002",
+      "API-CAT-003",
+      "API-CAT-004",
+      "API-CAT-005",
+      "API-CAT-006"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-CAT-003",
+    "apiOperations": [
+      "API-CAT-001",
+      "API-CAT-002",
+      "API-CAT-003",
+      "API-CAT-004",
+      "API-CAT-005",
+      "API-CAT-006",
+      "API-CAT-007",
+      "API-CAT-008",
+      "API-CAT-009"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-CAT-004",
+    "apiOperations": [
+      "API-CAT-001",
+      "API-CAT-002",
+      "API-CAT-003",
+      "API-CAT-004",
+      "API-CAT-005",
+      "API-CAT-006",
+      "API-CAT-010",
+      "API-CAT-011"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-CAT-005",
+    "apiOperations": [
+      "API-CAT-001",
+      "API-CAT-002",
+      "API-CAT-003",
+      "API-CAT-004",
+      "API-CAT-005",
+      "API-CAT-006",
+      "API-CAT-013",
+      "API-CAT-014"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-CAT-006",
+    "apiOperations": [
+      "API-CAT-001",
+      "API-CAT-002",
+      "API-CAT-003",
+      "API-CAT-004",
+      "API-CAT-005",
+      "API-CAT-006",
+      "API-CAT-015",
+      "API-CAT-016",
+      "API-CAT-017"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-PRI-001",
+    "apiOperations": [
+      "API-PRI-001",
+      "API-PRI-002",
+      "API-PRI-003",
+      "API-PRI-004",
+      "API-PRI-005",
+      "API-PRI-006",
+      "API-PRI-007",
+      "API-PRI-008"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-PRI-002",
+    "apiOperations": [
+      "API-PRI-001",
+      "API-PRI-002",
+      "API-PRI-003",
+      "API-PRI-004",
+      "API-PRI-005",
+      "API-PRI-006"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-PRI-003",
+    "apiOperations": [
+      "API-PRI-001",
+      "API-PRI-002",
+      "API-PRI-003",
+      "API-PRI-004",
+      "API-PRI-005",
+      "API-PRI-006"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-SUP-001",
+    "apiOperations": [
+      "API-PUR-001",
+      "API-PUR-002",
+      "API-PUR-003",
+      "API-PUR-004",
+      "API-PUR-005",
+      "API-PUR-006",
+      "API-PUR-007",
+      "API-PUR-008",
+      "API-PUR-009",
+      "API-PUR-010",
+      "API-PUR-012",
+      "API-PUR-014",
+      "API-PUR-016",
+      "API-PUR-017"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-SUP-002",
+    "apiOperations": [
+      "API-PUR-001",
+      "API-PUR-002",
+      "API-PUR-003",
+      "API-PUR-004",
+      "API-PUR-005",
+      "API-PUR-006",
+      "API-SUP-001",
+      "API-SUP-002",
+      "API-SUP-003",
+      "API-SUP-004",
+      "API-SUP-005",
+      "API-SUP-006",
+      "API-SUP-007",
+      "API-SUP-008",
+      "API-SUP-009"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-PUR-001",
+    "apiOperations": [
+      "API-PUR-001",
+      "API-PUR-002",
+      "API-PUR-003",
+      "API-PUR-004",
+      "API-PUR-005",
+      "API-PUR-006"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-PUR-002",
+    "apiOperations": [
+      "API-PUR-001",
+      "API-PUR-002",
+      "API-PUR-003",
+      "API-PUR-004",
+      "API-PUR-005",
+      "API-PUR-006"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-PUR-003",
+    "apiOperations": [
+      "API-PUR-001",
+      "API-PUR-002",
+      "API-PUR-003",
+      "API-PUR-004",
+      "API-PUR-005",
+      "API-PUR-006"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-PUR-004",
+    "apiOperations": [
+      "API-PUR-001",
+      "API-PUR-002",
+      "API-PUR-003",
+      "API-PUR-004",
+      "API-PUR-005",
+      "API-PUR-006"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-PUR-005",
+    "apiOperations": [
+      "API-PUR-001",
+      "API-PUR-002",
+      "API-PUR-003",
+      "API-PUR-004",
+      "API-PUR-005",
+      "API-PUR-006"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-PUR-006",
+    "apiOperations": [
+      "API-PUR-001",
+      "API-PUR-002",
+      "API-PUR-003",
+      "API-PUR-004",
+      "API-PUR-005",
+      "API-PUR-006",
+      "API-PUR-011",
+      "API-PUR-013",
+      "API-PUR-015"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-INV-001",
+    "apiOperations": [
+      "API-INV-001",
+      "API-INV-002",
+      "API-INV-003",
+      "API-INV-004",
+      "API-INV-005",
+      "API-INV-006",
+      "API-INV-010",
+      "API-INV-011",
+      "API-INV-012",
+      "API-INV-013"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-INV-002",
+    "apiOperations": [
+      "API-INV-001",
+      "API-INV-002",
+      "API-INV-003",
+      "API-INV-004",
+      "API-INV-005",
+      "API-INV-006"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-INV-003",
+    "apiOperations": [
+      "API-INV-001",
+      "API-INV-002",
+      "API-INV-003",
+      "API-INV-004",
+      "API-INV-005",
+      "API-INV-006",
+      "API-INV-014",
+      "API-INV-015"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-INV-004",
+    "apiOperations": [
+      "API-INV-001",
+      "API-INV-002",
+      "API-INV-003",
+      "API-INV-004",
+      "API-INV-005",
+      "API-INV-006"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-INV-005",
+    "apiOperations": [
+      "API-INV-001",
+      "API-INV-002",
+      "API-INV-003",
+      "API-INV-004",
+      "API-INV-005",
+      "API-INV-006",
+      "API-INV-007",
+      "API-INV-008",
+      "API-INV-009"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-INV-006",
+    "apiOperations": [
+      "API-INV-001",
+      "API-INV-002",
+      "API-INV-003",
+      "API-INV-004",
+      "API-INV-005",
+      "API-INV-006"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-CUS-001",
+    "apiOperations": [
+      "API-CRD-001",
+      "API-CRD-002",
+      "API-CRD-003",
+      "API-CRD-004",
+      "API-CRD-005",
+      "API-CRD-006"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-CUS-002",
+    "apiOperations": [
+      "API-CRD-001",
+      "API-CRD-002",
+      "API-CRD-003",
+      "API-CRD-004",
+      "API-CRD-005",
+      "API-CRD-006",
+      "API-CUS-001",
+      "API-CUS-002",
+      "API-CUS-003",
+      "API-CUS-004",
+      "API-CUS-005",
+      "API-CUS-006"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-CRD-001",
+    "apiOperations": [
+      "API-CRD-001",
+      "API-CRD-002",
+      "API-CRD-003",
+      "API-CRD-004",
+      "API-CRD-005",
+      "API-CRD-006",
+      "API-CRD-008"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-CRD-002",
+    "apiOperations": [
+      "API-CRD-001",
+      "API-CRD-002",
+      "API-CRD-003",
+      "API-CRD-004",
+      "API-CRD-005",
+      "API-CRD-006",
+      "API-CRD-007",
+      "API-CRD-009"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-CRD-003",
+    "apiOperations": [
+      "API-CRD-001",
+      "API-CRD-002",
+      "API-CRD-003",
+      "API-CRD-004",
+      "API-CRD-005",
+      "API-CRD-006"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-CSH-001",
+    "apiOperations": [
+      "API-CSH-001",
+      "API-CSH-002",
+      "API-CSH-003",
+      "API-CSH-004",
+      "API-CSH-005",
+      "API-CSH-006",
+      "API-CSH-009"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-CSH-002",
+    "apiOperations": [
+      "API-CSH-001",
+      "API-CSH-002",
+      "API-CSH-003",
+      "API-CSH-004",
+      "API-CSH-005",
+      "API-CSH-006",
+      "API-CSH-007"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-CSH-003",
+    "apiOperations": [
+      "API-CSH-001",
+      "API-CSH-002",
+      "API-CSH-003",
+      "API-CSH-004",
+      "API-CSH-005",
+      "API-CSH-006"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-ACC-001",
+    "apiOperations": [
+      "API-ACC-001",
+      "API-ACC-002",
+      "API-ACC-003",
+      "API-ACC-004",
+      "API-ACC-005",
+      "API-ACC-006",
+      "API-ACC-010",
+      "API-ACC-011",
+      "API-ACC-012",
+      "API-ACC-025",
+      "API-ACC-026",
+      "API-ACC-029"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-ACC-002",
+    "apiOperations": [
+      "API-ACC-001",
+      "API-ACC-002",
+      "API-ACC-003",
+      "API-ACC-004",
+      "API-ACC-005",
+      "API-ACC-006"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-ACC-003",
+    "apiOperations": [
+      "API-ACC-001",
+      "API-ACC-002",
+      "API-ACC-003",
+      "API-ACC-004",
+      "API-ACC-005",
+      "API-ACC-006"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-ACC-004",
+    "apiOperations": [
+      "API-ACC-001",
+      "API-ACC-002",
+      "API-ACC-003",
+      "API-ACC-004",
+      "API-ACC-005",
+      "API-ACC-006",
+      "API-ACC-007",
+      "API-ACC-008",
+      "API-ACC-009"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-ACC-005",
+    "apiOperations": [
+      "API-ACC-001",
+      "API-ACC-002",
+      "API-ACC-003",
+      "API-ACC-004",
+      "API-ACC-005",
+      "API-ACC-006",
+      "API-ACC-030"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-ACC-006",
+    "apiOperations": [
+      "API-ACC-001",
+      "API-ACC-002",
+      "API-ACC-003",
+      "API-ACC-004",
+      "API-ACC-005",
+      "API-ACC-006",
+      "API-ACC-013",
+      "API-ACC-014",
+      "API-ACC-027",
+      "API-ACC-031",
+      "API-ACC-032"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-ACC-007",
+    "apiOperations": [
+      "API-ACC-001",
+      "API-ACC-002",
+      "API-ACC-003",
+      "API-ACC-004",
+      "API-ACC-005",
+      "API-ACC-006",
+      "API-ACC-015",
+      "API-ACC-016",
+      "API-ACC-017"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-ACC-008",
+    "apiOperations": [
+      "API-ACC-001",
+      "API-ACC-002",
+      "API-ACC-003",
+      "API-ACC-004",
+      "API-ACC-005",
+      "API-ACC-006",
+      "API-ACC-018",
+      "API-ACC-019",
+      "API-ACC-020",
+      "API-ACC-028",
+      "API-ACC-033"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-ACC-009",
+    "apiOperations": [
+      "API-ACC-001",
+      "API-ACC-002",
+      "API-ACC-003",
+      "API-ACC-004",
+      "API-ACC-005",
+      "API-ACC-006",
+      "API-ACC-021",
+      "API-ACC-022",
+      "API-ACC-023",
+      "API-ACC-024"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-RPT-001",
+    "apiOperations": [
+      "API-RPT-001",
+      "API-RPT-002",
+      "API-RPT-003"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-RPT-002",
+    "apiOperations": [
+      "API-RPT-001",
+      "API-RPT-002",
+      "API-RPT-003"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-RPT-003",
+    "apiOperations": [
+      "API-RPT-001",
+      "API-RPT-002",
+      "API-RPT-003"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-RPT-004",
+    "apiOperations": [
+      "API-RPT-001",
+      "API-RPT-002",
+      "API-RPT-003"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-RPT-005",
+    "apiOperations": [
+      "API-RPT-001",
+      "API-RPT-002",
+      "API-RPT-003"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-AUD-001",
+    "apiOperations": [
+      "API-AUD-001",
+      "API-AUD-002"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-IAM-001",
+    "apiOperations": [
+      "API-IAM-001",
+      "API-IAM-002",
+      "API-IAM-003",
+      "API-IAM-004",
+      "API-IAM-005",
+      "API-IAM-006",
+      "API-IAM-007",
+      "API-IAM-008",
+      "API-IAM-009",
+      "API-IAM-010",
+      "API-IAM-011",
+      "API-IAM-021",
+      "API-IAM-023"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-IAM-002",
+    "apiOperations": [
+      "API-IAM-001",
+      "API-IAM-002",
+      "API-IAM-003",
+      "API-IAM-004",
+      "API-IAM-005",
+      "API-IAM-006",
+      "API-IAM-012",
+      "API-IAM-013",
+      "API-IAM-014"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-IAM-003",
+    "apiOperations": [
+      "API-IAM-001",
+      "API-IAM-002",
+      "API-IAM-003",
+      "API-IAM-004",
+      "API-IAM-005",
+      "API-IAM-006"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-ORG-001",
+    "apiOperations": [
+      "API-ORG-001",
+      "API-ORG-002",
+      "API-ORG-003",
+      "API-ORG-004",
+      "API-ORG-005",
+      "API-ORG-006"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-ORG-002",
+    "apiOperations": [
+      "API-ORG-001",
+      "API-ORG-002",
+      "API-ORG-003",
+      "API-ORG-004",
+      "API-ORG-005",
+      "API-ORG-006",
+      "API-ORG-007",
+      "API-ORG-008"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-ORG-003",
+    "apiOperations": [
+      "API-ORG-001",
+      "API-ORG-002",
+      "API-ORG-003",
+      "API-ORG-004",
+      "API-ORG-005",
+      "API-ORG-006",
+      "API-ORG-009",
+      "API-ORG-010",
+      "API-ORG-011",
+      "API-ORG-012",
+      "API-ORG-013",
+      "API-ORG-014"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-CTRY-001",
+    "apiOperations": [
+      "API-CTRY-001",
+      "API-CTRY-002",
+      "API-CTRY-003"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-CTRY-002",
+    "apiOperations": [
+      "API-CTRY-001",
+      "API-CTRY-002",
+      "API-CTRY-003"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-HW-001",
+    "apiOperations": [
+      "API-HW-001",
+      "API-HW-002"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-BAK-001",
+    "apiOperations": [
+      "API-BR-001",
+      "API-BR-002",
+      "API-BR-003"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-SUPT-001",
+    "apiOperations": [
+      "API-SUPT-001",
+      "API-SUPT-002",
+      "API-SUPT-003"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-IMP-001",
+    "apiOperations": [
+      "API-IMP-001",
+      "API-IMP-002",
+      "API-IMP-003",
+      "API-IMP-004",
+      "API-IMP-005",
+      "API-IMP-006",
+      "API-IMP-007",
+      "API-IMP-008",
+      "API-IMP-009",
+      "API-IMP-010",
+      "API-IMP-011",
+      "API-IMP-012",
+      "API-IMP-013"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-EXP-001",
+    "apiOperations": [
+      "API-IMP-001",
+      "API-IMP-002",
+      "API-IMP-003",
+      "API-IMP-004",
+      "API-IMP-005",
+      "API-IMP-006"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-CLD-001",
+    "apiOperations": [
+      "API-SYS-001",
+      "API-SYS-002",
+      "API-SYS-003",
+      "API-SYS-004",
+      "API-SYS-005",
+      "API-SYS-006"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-CLD-002",
+    "apiOperations": [
+      "API-SYS-001",
+      "API-SYS-002",
+      "API-SYS-003",
+      "API-SYS-004",
+      "API-SYS-005",
+      "API-SYS-006"
+    ],
+    "status": "REVIEWED_V0_2"
+  },
+  {
+    "uiId": "UI-CLD-003",
+    "apiOperations": [
+      "API-SYS-001",
+      "API-SYS-002",
+      "API-SYS-003",
+      "API-SYS-004",
+      "API-SYS-005",
+      "API-SYS-006"
+    ],
+    "status": "REVIEWED_V0_2"
+  }
+]

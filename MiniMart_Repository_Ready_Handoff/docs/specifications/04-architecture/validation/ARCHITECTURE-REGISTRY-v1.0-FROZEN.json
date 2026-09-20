@@ -1,0 +1,22 @@
+{
+  "document_id": "MM-ARCH-REG-100",
+  "product": "MiniMart",
+  "artifact": "Architecture",
+  "version": "1.0",
+  "status": "FROZEN",
+  "final_review": "MM-ARCH-FRZ-REV-002",
+  "corrections_applied": 3,
+  "remaining_blockers": 0,
+  "remaining_major_findings": 0,
+  "remaining_corrections": 0,
+  "business_modules": 13,
+  "posting_envelope_coordinators": 13,
+  "architecture_decisions": 37,
+  "decision_seams_mapped": 60,
+  "frozen_db_tables_respected": 74,
+  "cross_module_internal_table_reads": "FORBIDDEN",
+  "store_transaction_authority": "STORE_NODE_LOCAL_POSTGRESQL",
+  "synchronous_cloud_dependency_for_store_posting": false,
+  "next_stage": "API Contracts",
+  "validation": "PASS"
+}

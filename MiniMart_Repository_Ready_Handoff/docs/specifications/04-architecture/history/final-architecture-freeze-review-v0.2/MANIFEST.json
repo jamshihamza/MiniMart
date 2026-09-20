@@ -1,0 +1,42 @@
+{
+  "product": "MiniMart",
+  "artifact": "Final Architecture Freeze Review",
+  "reviewed_version": "Architecture Refinement v0.2 Freeze Candidate",
+  "verdict": "NOT_READY_TO_FREEZE",
+  "blockers": 2,
+  "major_findings": 3,
+  "minor_findings": 1,
+  "next_candidate": "Architecture Refinement v0.3 Freeze Candidate",
+  "files": [
+    {
+      "path": "FINAL-ARCHITECTURE-FREEZE-REVIEW.md",
+      "sha256": "cdf084ef861516f736eca4eaecd0b139f6477e7f5b03bb74bfe5654501d05b41",
+      "bytes": 4162
+    },
+    {
+      "path": "FINAL-REVIEW-FINDINGS.json",
+      "sha256": "728e6fc21a377b061bc439de10b5d3255ce1fa8699ae44ab011af63243d75db7",
+      "bytes": 6228
+    },
+    {
+      "path": "FINDINGS-DETAIL.md",
+      "sha256": "f765ef397741f5566a8122cdc8ffda1193428f4a405a717d0f4526aa29200e12",
+      "bytes": 4784
+    },
+    {
+      "path": "REFERENCE-ARCHITECTURE-CROSSCHECK.md",
+      "sha256": "cee2d98f44cd955085377a1634e7914ea388981c2b6b961686cf7cb803dd1730",
+      "bytes": 3114
+    },
+    {
+      "path": "REMEDIATION-PLAN-v0.3.md",
+      "sha256": "ec1c39acfdbd2d18061a4e80c7a9f8c3d08ef2919c21280c101d42c653c8243e",
+      "bytes": 2199
+    },
+    {
+      "path": "validation/FINAL-ARCHITECTURE-FREEZE-REVIEW-VALIDATION.md",
+      "sha256": "d8951f029542700399af951dabff9bc3b56b5693344570fc16b76b6c9bffa559",
+      "bytes": 1076
+    }
+  ]
+}

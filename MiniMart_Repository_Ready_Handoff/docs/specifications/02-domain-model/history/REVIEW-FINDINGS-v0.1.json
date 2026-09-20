@@ -1,0 +1,22 @@
+{
+  "review_id": "MM-DM-AUD-001",
+  "verdict": "REMEDIATE_BEFORE_FREEZE",
+  "freeze_blockers": [
+    "DM-AUD-BLK-001",
+    "DM-AUD-BLK-002",
+    "DM-AUD-BLK-003",
+    "DM-AUD-BLK-004",
+    "DM-AUD-BLK-005"
+  ],
+  "major_findings": [
+    "DM-AUD-MAJ-001",
+    "DM-AUD-MAJ-002",
+    "DM-AUD-MAJ-003",
+    "DM-AUD-MAJ-004",
+    "DM-AUD-MAJ-005",
+    "DM-AUD-MAJ-006",
+    "DM-AUD-MAJ-007"
+  ],
+  "frs_change_required": false,
+  "next_stage": "Domain Model v0.2 Freeze Candidate after remediation"
+}

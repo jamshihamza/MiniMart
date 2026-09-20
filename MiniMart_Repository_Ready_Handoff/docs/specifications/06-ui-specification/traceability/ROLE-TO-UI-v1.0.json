@@ -1,0 +1,1283 @@
+[
+  {
+    "role": "All users",
+    "uiId": "UI-SYS-001",
+    "surface": "Shared",
+    "area": "System",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Cashier",
+    "uiId": "UI-SYS-002",
+    "surface": "POS",
+    "area": "System",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Manager",
+    "uiId": "UI-SYS-002",
+    "surface": "POS",
+    "area": "System",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Manager",
+    "uiId": "UI-SYS-003",
+    "surface": "Back Office",
+    "area": "System",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Admin",
+    "uiId": "UI-SYS-003",
+    "surface": "Back Office",
+    "area": "System",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Management",
+    "uiId": "UI-SYS-003",
+    "surface": "Back Office",
+    "area": "System",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Manager",
+    "uiId": "UI-SYS-004",
+    "surface": "Shared",
+    "area": "System",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Admin",
+    "uiId": "UI-SYS-004",
+    "surface": "Shared",
+    "area": "System",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Support",
+    "uiId": "UI-SYS-004",
+    "surface": "Shared",
+    "area": "System",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Manager",
+    "uiId": "UI-SYS-005",
+    "surface": "Back Office",
+    "area": "System",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Admin",
+    "uiId": "UI-SYS-005",
+    "surface": "Back Office",
+    "area": "System",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Manager",
+    "uiId": "UI-SYS-006",
+    "surface": "Back Office",
+    "area": "System",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Admin",
+    "uiId": "UI-SYS-006",
+    "surface": "Back Office",
+    "area": "System",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Back Office",
+    "uiId": "UI-SYS-006",
+    "surface": "Back Office",
+    "area": "System",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "All users",
+    "uiId": "UI-SYS-007",
+    "surface": "Shared",
+    "area": "System",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "All users",
+    "uiId": "UI-SYS-008",
+    "surface": "Shared",
+    "area": "System",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Cashier",
+    "uiId": "UI-POS-001",
+    "surface": "POS",
+    "area": "Sales",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Manager",
+    "uiId": "UI-POS-001",
+    "surface": "POS",
+    "area": "Sales",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Cashier",
+    "uiId": "UI-POS-002",
+    "surface": "POS",
+    "area": "Sales",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Manager",
+    "uiId": "UI-POS-002",
+    "surface": "POS",
+    "area": "Sales",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Cashier",
+    "uiId": "UI-POS-003",
+    "surface": "POS",
+    "area": "Sales",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Manager",
+    "uiId": "UI-POS-003",
+    "surface": "POS",
+    "area": "Sales",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Cashier",
+    "uiId": "UI-POS-004",
+    "surface": "POS",
+    "area": "Sales",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Manager",
+    "uiId": "UI-POS-004",
+    "surface": "POS",
+    "area": "Sales",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Cashier",
+    "uiId": "UI-POS-005",
+    "surface": "POS",
+    "area": "Sales",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Manager",
+    "uiId": "UI-POS-005",
+    "surface": "POS",
+    "area": "Sales",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Cashier",
+    "uiId": "UI-POS-006",
+    "surface": "POS",
+    "area": "Payments",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Manager",
+    "uiId": "UI-POS-006",
+    "surface": "POS",
+    "area": "Payments",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Cashier",
+    "uiId": "UI-POS-007",
+    "surface": "POS",
+    "area": "Payments",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Manager",
+    "uiId": "UI-POS-007",
+    "surface": "POS",
+    "area": "Payments",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Cashier",
+    "uiId": "UI-POS-008",
+    "surface": "POS",
+    "area": "Sales",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Manager",
+    "uiId": "UI-POS-008",
+    "surface": "POS",
+    "area": "Sales",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Cashier",
+    "uiId": "UI-POS-009",
+    "surface": "POS",
+    "area": "Sales",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Manager",
+    "uiId": "UI-POS-009",
+    "surface": "POS",
+    "area": "Sales",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Cashier",
+    "uiId": "UI-POS-010",
+    "surface": "POS",
+    "area": "Hardware",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Manager",
+    "uiId": "UI-POS-010",
+    "surface": "POS",
+    "area": "Hardware",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Cashier",
+    "uiId": "UI-POS-011",
+    "surface": "POS",
+    "area": "Returns",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Manager",
+    "uiId": "UI-POS-011",
+    "surface": "POS",
+    "area": "Returns",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Manager",
+    "uiId": "UI-POS-012",
+    "surface": "POS",
+    "area": "Returns",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Cashier",
+    "uiId": "UI-POS-013",
+    "surface": "POS",
+    "area": "Credit",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Manager",
+    "uiId": "UI-POS-013",
+    "surface": "POS",
+    "area": "Credit",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Cashier",
+    "uiId": "UI-POS-014",
+    "surface": "POS",
+    "area": "Cash",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Manager",
+    "uiId": "UI-POS-014",
+    "surface": "POS",
+    "area": "Cash",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Cashier",
+    "uiId": "UI-POS-015",
+    "surface": "POS",
+    "area": "Cash",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Manager",
+    "uiId": "UI-POS-015",
+    "surface": "POS",
+    "area": "Cash",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Cashier",
+    "uiId": "UI-POS-016",
+    "surface": "POS",
+    "area": "Cash",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Manager",
+    "uiId": "UI-POS-016",
+    "surface": "POS",
+    "area": "Cash",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Manager",
+    "uiId": "UI-POS-017",
+    "surface": "POS",
+    "area": "Security",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Cashier",
+    "uiId": "UI-POS-018",
+    "surface": "POS",
+    "area": "Hardware",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Manager",
+    "uiId": "UI-POS-018",
+    "surface": "POS",
+    "area": "Hardware",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Back Office",
+    "uiId": "UI-CAT-001",
+    "surface": "Back Office",
+    "area": "Catalog",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Manager",
+    "uiId": "UI-CAT-001",
+    "surface": "Back Office",
+    "area": "Catalog",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Admin",
+    "uiId": "UI-CAT-001",
+    "surface": "Back Office",
+    "area": "Catalog",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Back Office",
+    "uiId": "UI-CAT-002",
+    "surface": "Back Office",
+    "area": "Catalog",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Manager",
+    "uiId": "UI-CAT-002",
+    "surface": "Back Office",
+    "area": "Catalog",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Admin",
+    "uiId": "UI-CAT-002",
+    "surface": "Back Office",
+    "area": "Catalog",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Back Office",
+    "uiId": "UI-CAT-003",
+    "surface": "Back Office",
+    "area": "Catalog",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Manager",
+    "uiId": "UI-CAT-003",
+    "surface": "Back Office",
+    "area": "Catalog",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Back Office",
+    "uiId": "UI-CAT-004",
+    "surface": "Back Office",
+    "area": "Catalog",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Manager",
+    "uiId": "UI-CAT-004",
+    "surface": "Back Office",
+    "area": "Catalog",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Back Office",
+    "uiId": "UI-CAT-005",
+    "surface": "Back Office",
+    "area": "Catalog",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Manager",
+    "uiId": "UI-CAT-005",
+    "surface": "Back Office",
+    "area": "Catalog",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Back Office",
+    "uiId": "UI-CAT-006",
+    "surface": "Back Office",
+    "area": "Catalog",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Manager",
+    "uiId": "UI-CAT-006",
+    "surface": "Back Office",
+    "area": "Catalog",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Manager",
+    "uiId": "UI-PRI-001",
+    "surface": "Back Office",
+    "area": "Pricing",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Admin",
+    "uiId": "UI-PRI-001",
+    "surface": "Back Office",
+    "area": "Pricing",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Manager",
+    "uiId": "UI-PRI-002",
+    "surface": "Back Office",
+    "area": "Pricing",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Admin",
+    "uiId": "UI-PRI-002",
+    "surface": "Back Office",
+    "area": "Pricing",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Back Office",
+    "uiId": "UI-PRI-003",
+    "surface": "Back Office",
+    "area": "Pricing",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Manager",
+    "uiId": "UI-PRI-003",
+    "surface": "Back Office",
+    "area": "Pricing",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Back Office",
+    "uiId": "UI-SUP-001",
+    "surface": "Back Office",
+    "area": "Suppliers",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Manager",
+    "uiId": "UI-SUP-001",
+    "surface": "Back Office",
+    "area": "Suppliers",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Accounts",
+    "uiId": "UI-SUP-001",
+    "surface": "Back Office",
+    "area": "Suppliers",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Back Office",
+    "uiId": "UI-SUP-002",
+    "surface": "Back Office",
+    "area": "Suppliers",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Manager",
+    "uiId": "UI-SUP-002",
+    "surface": "Back Office",
+    "area": "Suppliers",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Accounts",
+    "uiId": "UI-SUP-002",
+    "surface": "Back Office",
+    "area": "Suppliers",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Purchase",
+    "uiId": "UI-PUR-001",
+    "surface": "Back Office",
+    "area": "Purchasing",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Manager",
+    "uiId": "UI-PUR-001",
+    "surface": "Back Office",
+    "area": "Purchasing",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Purchase",
+    "uiId": "UI-PUR-002",
+    "surface": "Back Office",
+    "area": "Purchasing",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Manager",
+    "uiId": "UI-PUR-002",
+    "surface": "Back Office",
+    "area": "Purchasing",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Purchase",
+    "uiId": "UI-PUR-003",
+    "surface": "Back Office",
+    "area": "Purchasing",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Storekeeper",
+    "uiId": "UI-PUR-003",
+    "surface": "Back Office",
+    "area": "Purchasing",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Manager",
+    "uiId": "UI-PUR-003",
+    "surface": "Back Office",
+    "area": "Purchasing",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Purchase",
+    "uiId": "UI-PUR-004",
+    "surface": "Back Office",
+    "area": "Purchasing",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Storekeeper",
+    "uiId": "UI-PUR-004",
+    "surface": "Back Office",
+    "area": "Purchasing",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Manager",
+    "uiId": "UI-PUR-004",
+    "surface": "Back Office",
+    "area": "Purchasing",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Purchase",
+    "uiId": "UI-PUR-005",
+    "surface": "Back Office",
+    "area": "Purchasing",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Manager",
+    "uiId": "UI-PUR-005",
+    "surface": "Back Office",
+    "area": "Purchasing",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Purchase",
+    "uiId": "UI-PUR-006",
+    "surface": "Back Office",
+    "area": "Purchasing",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Manager",
+    "uiId": "UI-PUR-006",
+    "surface": "Back Office",
+    "area": "Purchasing",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Storekeeper",
+    "uiId": "UI-INV-001",
+    "surface": "Back Office",
+    "area": "Inventory",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Manager",
+    "uiId": "UI-INV-001",
+    "surface": "Back Office",
+    "area": "Inventory",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Management",
+    "uiId": "UI-INV-001",
+    "surface": "Back Office",
+    "area": "Inventory",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Storekeeper",
+    "uiId": "UI-INV-002",
+    "surface": "Back Office",
+    "area": "Inventory",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Manager",
+    "uiId": "UI-INV-002",
+    "surface": "Back Office",
+    "area": "Inventory",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Storekeeper",
+    "uiId": "UI-INV-003",
+    "surface": "Back Office",
+    "area": "Inventory",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Manager",
+    "uiId": "UI-INV-003",
+    "surface": "Back Office",
+    "area": "Inventory",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Audit",
+    "uiId": "UI-INV-003",
+    "surface": "Back Office",
+    "area": "Inventory",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Storekeeper",
+    "uiId": "UI-INV-004",
+    "surface": "Back Office",
+    "area": "Inventory",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Manager",
+    "uiId": "UI-INV-004",
+    "surface": "Back Office",
+    "area": "Inventory",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Storekeeper",
+    "uiId": "UI-INV-005",
+    "surface": "Back Office",
+    "area": "Inventory",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Manager",
+    "uiId": "UI-INV-005",
+    "surface": "Back Office",
+    "area": "Inventory",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Purchase",
+    "uiId": "UI-INV-006",
+    "surface": "Back Office",
+    "area": "Inventory",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Manager",
+    "uiId": "UI-INV-006",
+    "surface": "Back Office",
+    "area": "Inventory",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Cashier",
+    "uiId": "UI-CUS-001",
+    "surface": "Back Office",
+    "area": "Customers",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Back Office",
+    "uiId": "UI-CUS-001",
+    "surface": "Back Office",
+    "area": "Customers",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Manager",
+    "uiId": "UI-CUS-001",
+    "surface": "Back Office",
+    "area": "Customers",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Back Office",
+    "uiId": "UI-CUS-002",
+    "surface": "Back Office",
+    "area": "Customers",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Manager",
+    "uiId": "UI-CUS-002",
+    "surface": "Back Office",
+    "area": "Customers",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Accounts",
+    "uiId": "UI-CRD-001",
+    "surface": "Back Office",
+    "area": "Credit",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Manager",
+    "uiId": "UI-CRD-001",
+    "surface": "Back Office",
+    "area": "Credit",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Accounts",
+    "uiId": "UI-CRD-002",
+    "surface": "Back Office",
+    "area": "Credit",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Cashier",
+    "uiId": "UI-CRD-002",
+    "surface": "Back Office",
+    "area": "Credit",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Manager",
+    "uiId": "UI-CRD-002",
+    "surface": "Back Office",
+    "area": "Credit",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Accounts",
+    "uiId": "UI-CRD-003",
+    "surface": "Back Office",
+    "area": "Credit",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Manager",
+    "uiId": "UI-CRD-003",
+    "surface": "Back Office",
+    "area": "Credit",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Manager",
+    "uiId": "UI-CSH-001",
+    "surface": "Back Office",
+    "area": "Cash",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Accounts",
+    "uiId": "UI-CSH-001",
+    "surface": "Back Office",
+    "area": "Cash",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Manager",
+    "uiId": "UI-CSH-002",
+    "surface": "Back Office",
+    "area": "Cash",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Accounts",
+    "uiId": "UI-CSH-002",
+    "surface": "Back Office",
+    "area": "Cash",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Manager",
+    "uiId": "UI-CSH-003",
+    "surface": "Back Office",
+    "area": "Cash",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Accounts",
+    "uiId": "UI-CSH-003",
+    "surface": "Back Office",
+    "area": "Cash",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Audit",
+    "uiId": "UI-CSH-003",
+    "surface": "Back Office",
+    "area": "Cash",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Accounts",
+    "uiId": "UI-ACC-001",
+    "surface": "Back Office",
+    "area": "Accounting",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Manager",
+    "uiId": "UI-ACC-001",
+    "surface": "Back Office",
+    "area": "Accounting",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Accounts",
+    "uiId": "UI-ACC-002",
+    "surface": "Back Office",
+    "area": "Accounting",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Manager",
+    "uiId": "UI-ACC-002",
+    "surface": "Back Office",
+    "area": "Accounting",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Accounts",
+    "uiId": "UI-ACC-003",
+    "surface": "Back Office",
+    "area": "Accounting",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Manager",
+    "uiId": "UI-ACC-003",
+    "surface": "Back Office",
+    "area": "Accounting",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Accounts",
+    "uiId": "UI-ACC-004",
+    "surface": "Back Office",
+    "area": "Accounting",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Manager",
+    "uiId": "UI-ACC-004",
+    "surface": "Back Office",
+    "area": "Accounting",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Accounts",
+    "uiId": "UI-ACC-005",
+    "surface": "Back Office",
+    "area": "Accounting",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Manager",
+    "uiId": "UI-ACC-005",
+    "surface": "Back Office",
+    "area": "Accounting",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Accounts",
+    "uiId": "UI-ACC-006",
+    "surface": "Back Office",
+    "area": "Accounting",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Manager",
+    "uiId": "UI-ACC-006",
+    "surface": "Back Office",
+    "area": "Accounting",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Accounts",
+    "uiId": "UI-ACC-007",
+    "surface": "Back Office",
+    "area": "Accounting",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Manager",
+    "uiId": "UI-ACC-007",
+    "surface": "Back Office",
+    "area": "Accounting",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Accounts",
+    "uiId": "UI-ACC-008",
+    "surface": "Back Office",
+    "area": "Accounting",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Manager",
+    "uiId": "UI-ACC-008",
+    "surface": "Back Office",
+    "area": "Accounting",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Accounts",
+    "uiId": "UI-ACC-009",
+    "surface": "Back Office",
+    "area": "Accounting",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Manager",
+    "uiId": "UI-ACC-009",
+    "surface": "Back Office",
+    "area": "Accounting",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Manager",
+    "uiId": "UI-RPT-001",
+    "surface": "Back Office",
+    "area": "Reports",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Management",
+    "uiId": "UI-RPT-001",
+    "surface": "Back Office",
+    "area": "Reports",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Accounts",
+    "uiId": "UI-RPT-001",
+    "surface": "Back Office",
+    "area": "Reports",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Manager",
+    "uiId": "UI-RPT-002",
+    "surface": "Back Office",
+    "area": "Reports",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Management",
+    "uiId": "UI-RPT-002",
+    "surface": "Back Office",
+    "area": "Reports",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Manager",
+    "uiId": "UI-RPT-003",
+    "surface": "Back Office",
+    "area": "Reports",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Management",
+    "uiId": "UI-RPT-003",
+    "surface": "Back Office",
+    "area": "Reports",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Storekeeper",
+    "uiId": "UI-RPT-003",
+    "surface": "Back Office",
+    "area": "Reports",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Manager",
+    "uiId": "UI-RPT-004",
+    "surface": "Back Office",
+    "area": "Reports",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Purchase",
+    "uiId": "UI-RPT-004",
+    "surface": "Back Office",
+    "area": "Reports",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Accounts",
+    "uiId": "UI-RPT-004",
+    "surface": "Back Office",
+    "area": "Reports",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Manager",
+    "uiId": "UI-RPT-005",
+    "surface": "Back Office",
+    "area": "Reports",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Accounts",
+    "uiId": "UI-RPT-005",
+    "surface": "Back Office",
+    "area": "Reports",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Admin",
+    "uiId": "UI-AUD-001",
+    "surface": "Back Office",
+    "area": "Audit",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Audit",
+    "uiId": "UI-AUD-001",
+    "surface": "Back Office",
+    "area": "Audit",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Management",
+    "uiId": "UI-AUD-001",
+    "surface": "Back Office",
+    "area": "Audit",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Admin",
+    "uiId": "UI-IAM-001",
+    "surface": "Back Office",
+    "area": "Administration",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Admin",
+    "uiId": "UI-IAM-002",
+    "surface": "Back Office",
+    "area": "Administration",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Admin",
+    "uiId": "UI-IAM-003",
+    "surface": "Back Office",
+    "area": "Administration",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Audit",
+    "uiId": "UI-IAM-003",
+    "surface": "Back Office",
+    "area": "Administration",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Admin",
+    "uiId": "UI-ORG-001",
+    "surface": "Back Office",
+    "area": "Settings",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Admin",
+    "uiId": "UI-ORG-002",
+    "surface": "Back Office",
+    "area": "Settings",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Admin",
+    "uiId": "UI-ORG-003",
+    "surface": "Back Office",
+    "area": "Settings",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Admin",
+    "uiId": "UI-CTRY-001",
+    "surface": "Back Office",
+    "area": "Settings",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Manager",
+    "uiId": "UI-CTRY-001",
+    "surface": "Back Office",
+    "area": "Settings",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Admin",
+    "uiId": "UI-CTRY-002",
+    "surface": "Back Office",
+    "area": "Settings",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Admin",
+    "uiId": "UI-HW-001",
+    "surface": "Back Office",
+    "area": "Settings",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Support",
+    "uiId": "UI-HW-001",
+    "surface": "Back Office",
+    "area": "Settings",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Admin",
+    "uiId": "UI-BAK-001",
+    "surface": "Back Office",
+    "area": "Settings",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Support",
+    "uiId": "UI-BAK-001",
+    "surface": "Back Office",
+    "area": "Settings",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Admin",
+    "uiId": "UI-SUPT-001",
+    "surface": "Back Office",
+    "area": "Settings",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Support",
+    "uiId": "UI-SUPT-001",
+    "surface": "Back Office",
+    "area": "Settings",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Admin",
+    "uiId": "UI-IMP-001",
+    "surface": "Back Office",
+    "area": "Tools",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Back Office",
+    "uiId": "UI-IMP-001",
+    "surface": "Back Office",
+    "area": "Tools",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Admin",
+    "uiId": "UI-EXP-001",
+    "surface": "Back Office",
+    "area": "Tools",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Manager",
+    "uiId": "UI-EXP-001",
+    "surface": "Back Office",
+    "area": "Tools",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Management",
+    "uiId": "UI-CLD-001",
+    "surface": "Cloud Web",
+    "area": "Cloud",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Admin",
+    "uiId": "UI-CLD-001",
+    "surface": "Cloud Web",
+    "area": "Cloud",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Management",
+    "uiId": "UI-CLD-002",
+    "surface": "Cloud Web",
+    "area": "Cloud",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Admin",
+    "uiId": "UI-CLD-002",
+    "surface": "Cloud Web",
+    "area": "Cloud",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Support",
+    "uiId": "UI-CLD-002",
+    "surface": "Cloud Web",
+    "area": "Cloud",
+    "authorization": "API_PERMISSION_CODES"
+  },
+  {
+    "role": "Admin",
+    "uiId": "UI-CLD-003",
+    "surface": "Cloud Web",
+    "area": "Cloud",
+    "authorization": "API_PERMISSION_CODES"
+  }
+]

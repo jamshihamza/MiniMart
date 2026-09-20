@@ -1,0 +1,151 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MiniMart Device Enrollment Port v1",
+  "description": "Deployment/bootstrap contract. Carrier, licensing limits and exact re-enrollment policy remain unresolved legacy seams.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "protocolVersion",
+    "action",
+    "counterId",
+    "bootstrapReference"
+  ],
+  "properties": {
+    "protocolVersion": {
+      "const": "1.0"
+    },
+    "action": {
+      "type": "string",
+      "enum": [
+        "ENROLL",
+        "ROTATE_CREDENTIAL",
+        "REVOKE"
+      ]
+    },
+    "counterId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "UUIDv7-compatible identity."
+    },
+    "bootstrapReference": {
+      "type": "string",
+      "description": "Deployment-issued one-time/administrative reference; issuance mechanism is not frozen here."
+    },
+    "credentialFingerprint": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "credentialRequest": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "csrPem": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Device-generated CSR; private key never leaves device."
+        },
+        "requestedCredentialType": {
+          "type": "string",
+          "enum": [
+            "MTLS_CLIENT_CERTIFICATE"
+          ]
+        }
+      }
+    }
+  },
+  "$defs": {
+    "result": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "outcome",
+        "counterId"
+      ],
+      "properties": {
+        "outcome": {
+          "type": "string",
+          "enum": [
+            "ENROLLED",
+            "ROTATED",
+            "REVOKED",
+            "REJECTED"
+          ]
+        },
+        "counterId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "credentialFingerprint": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "issuedAt": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "expiresAt": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "failureCode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "credentialArtifact": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "certificatePem": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "certificateChainPem": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "privateKeyReference": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "OS/device secret-store reference; never raw private-key material."
+            },
+            "installAction": {
+              "type": "string",
+              "enum": [
+                "INSTALL_NEW",
+                "REPLACE_EXISTING",
+                "REMOVE",
+                "NONE"
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

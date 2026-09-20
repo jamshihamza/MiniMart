@@ -1,0 +1,51 @@
+{
+  "product": "MiniMart",
+  "artifact": "Development Backlog",
+  "version": "0.1",
+  "status": "BASELINE_NOT_CODE",
+  "epics": 12,
+  "items": 115,
+  "uiScreensCovered": 88,
+  "files": [
+    {
+      "path": "README.md",
+      "sha256": "b9403211d5b635565b73c231acb50440b122add5a1d12632a1774791f25776f4",
+      "bytes": 617
+    },
+    {
+      "path": "docs/01-IMPLEMENTATION-SEQUENCE.md",
+      "sha256": "de2be7c8ec8c9598365606a43b679332145ed95b9ccfe3490b89cf14cf68c781",
+      "bytes": 616
+    },
+    {
+      "path": "docs/02-DEFINITION-OF-DONE.md",
+      "sha256": "c9f475531bf34a7a3aa859d7bac2667a3b1ad8d29111e89f800cacbe1033d8c4",
+      "bytes": 731
+    },
+    {
+      "path": "docs/03-AI-AGENT-EXECUTION-RULES.md",
+      "sha256": "d404614cbf50b2b47df9fe6fa7ece0327397ec35f199ee5719b1077199f890af",
+      "bytes": 777
+    },
+    {
+      "path": "docs/04-BACKLOG-CATALOG.md",
+      "sha256": "493099f1a32cfee03ee179758815434e5b029e1291d8ac01e306d359202bda89",
+      "bytes": 12007
+    },
+    {
+      "path": "registry/backlog-v0.1.json",
+      "sha256": "50dbcb2f94234cc563f873bc4ab41a15bc3f636903419df50834023a75303a85",
+      "bytes": 81838
+    },
+    {
+      "path": "registry/epics-v0.1.json",
+      "sha256": "e6e5474eda6ed424d99c680a06a3f5e9988002578870424927208b76574bb560",
+      "bytes": 2299
+    },
+    {
+      "path": "validation/BACKLOG-v0.1-VALIDATION.json",
+      "sha256": "ed594c83ac5dc3640db9a8b09425f1dab9aac527555fb6d4b27342da4428c346",
+      "bytes": 235
+    }
+  ]
+}
