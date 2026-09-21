@@ -1,14 +1,18 @@
-# MiniMart --- Corrected Repository-Ready Handoff v2
+# MiniMart
 
-This package supersedes the earlier repository-ready handoff.
+MiniMart is an offline-first retail POS and retail-management platform. This repository is
+organized according to the frozen Architecture v1.0 monorepo structure.
 
-The earlier handoff accidentally copied only the locally expanded
-summary subsets of several frozen packages. This corrected package is
-assembled directly from the **full frozen ZIP artifacts**.
+## Foundation commands
 
-Included source-file counts: - Business + FRS/NFRS v1.0: 61 - Domain
-Model v1.0: 25 - Database Model v1.2: 62 - Architecture v1.0: 87 - API
-Contracts v1.0: 51 - UI Specification v1.0: 132 - Development Backlog
-v0.1: 9
+- pnpm install --frozen-lockfile installs the JavaScript/TypeScript toolchain.
+- pnpm format:check verifies formatting without changing files.
+- pnpm lint runs ESLint.
+- pnpm check:boundaries validates frozen package topology and dependency rules.
+- pnpm test:boundaries exercises the boundary checker with valid and invalid graphs.
+- pnpm typecheck builds the TypeScript project-reference graph.
+- pnpm check:rust checks the Rust workspace boundaries.
+- pnpm run ci runs the JavaScript/TypeScript MM-001/MM-002 validation suite.
 
-Use this package as the repository specification baseline.
+The authoritative specifications are indexed by SPECIFICATION-INDEX.md. Files under
+docs/specifications/ and docs/backlog/ are controlled specification artifacts.

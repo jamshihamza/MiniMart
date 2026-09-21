@@ -1,0 +1,9 @@
+**/dist
+**/node_modules
+**/target
+docs/specifications/**
+docs/backlog/**
+HANDOFF-MANIFEST*.json
+pnpm-lock.yaml
+AGENTS.md
+SPECIFICATION-INDEX.md

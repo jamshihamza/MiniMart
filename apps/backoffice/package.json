@@ -1,0 +1,18 @@
+{
+  "name": "@minimart/backoffice",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc -b",
+    "clean": "tsc -b --clean",
+    "typecheck": "tsc -b --pretty false"
+  },
+  "minimart": {
+    "layer": "ui",
+    "module": "backoffice",
+    "capabilities": [
+      "store-api-client"
+    ]
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "name": "minimart",
+  "version": "0.0.0",
+  "private": true,
+  "description": "MiniMart offline-first retail platform monorepo",
+  "packageManager": "pnpm@12.5.1",
+  "engines": {
+    "node": ">=22 <25",
+    "pnpm": ">=12 <13"
+  },
+  "scripts": {
+    "build": "tsc -b",
+    "clean": "tsc -b --clean",
+    "typecheck": "tsc -b --pretty false",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "check:boundaries": "node infra/tooling/check-dependency-boundaries.mjs",
+    "test:boundaries": "node --test --test-isolation=none infra/tooling/check-dependency-boundaries.test.mjs",
+    "test:database": "pnpm --filter @minimart/database test",
+    "check:rust": "cargo fmt --all --check && cargo check --workspace && cargo clippy --workspace --all-targets -- -D warnings",
+    "ci": "prettier --check . && eslint . && node infra/tooling/check-dependency-boundaries.mjs && node --test --test-isolation=none infra/tooling/check-dependency-boundaries.test.mjs && tsc -b --pretty false"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^24.5.2",
+    "eslint": "^10.11.0",
+    "globals": "^16.4.0",
+    "prettier": "^3.6.2",
+    "typescript": "^5.9.2",
+    "typescript-eslint": "^8.44.1"
+  }
+}

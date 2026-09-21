@@ -1,0 +1,22 @@
+[workspace]
+resolver = "2"
+members = [
+  "crates/hw-display",
+  "crates/hw-printer",
+  "crates/hw-scale",
+  "crates/hw-scanner",
+]
+
+[workspace.package]
+edition = "2024"
+license = "UNLICENSED"
+publish = false
+rust-version = "1.85"
+version = "0.0.0"
+
+[workspace.lints.rust]
+unsafe_code = "forbid"
+
+[workspace.lints.clippy]
+all = "deny"
+pedantic = "deny"

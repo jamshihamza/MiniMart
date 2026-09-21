@@ -1,0 +1,86 @@
+{
+  "files": [],
+  "references": [
+    {
+      "path": "./apps/pos-terminal"
+    },
+    {
+      "path": "./apps/backoffice"
+    },
+    {
+      "path": "./apps/store-node"
+    },
+    {
+      "path": "./apps/cloud"
+    },
+    {
+      "path": "./packages/service-runtime"
+    },
+    {
+      "path": "./packages/shared-kernel"
+    },
+    {
+      "path": "./packages/application/coordinators"
+    },
+    {
+      "path": "./packages/query"
+    },
+    {
+      "path": "./packages/database"
+    },
+    {
+      "path": "./packages/sync-protocol"
+    },
+    {
+      "path": "./packages/api-contract"
+    },
+    {
+      "path": "./packages/country-packs"
+    },
+    {
+      "path": "./packages/observability"
+    },
+    {
+      "path": "./packages/test-support"
+    },
+    {
+      "path": "./packages/modules/organization"
+    },
+    {
+      "path": "./packages/modules/iam"
+    },
+    {
+      "path": "./packages/modules/catalog"
+    },
+    {
+      "path": "./packages/modules/pricing"
+    },
+    {
+      "path": "./packages/modules/procurement"
+    },
+    {
+      "path": "./packages/modules/inventory"
+    },
+    {
+      "path": "./packages/modules/sales"
+    },
+    {
+      "path": "./packages/modules/payments"
+    },
+    {
+      "path": "./packages/modules/returns"
+    },
+    {
+      "path": "./packages/modules/customer-and-credit"
+    },
+    {
+      "path": "./packages/modules/cash-business-day"
+    },
+    {
+      "path": "./packages/modules/accounting-lite"
+    },
+    {
+      "path": "./packages/modules/country-policy"
+    }
+  ]
+}

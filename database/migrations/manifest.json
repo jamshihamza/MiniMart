@@ -1,0 +1,15 @@
+{
+  "formatVersion": 1,
+  "migrations": [
+    {
+      "id": "0001_v1_2_frozen_baseline",
+      "module": "platform",
+      "schemaVersion": "1.2.0",
+      "minimumApplicationBuild": "0.0.0",
+      "maximumApplicationBuild": "0.99.99",
+      "resumable": false,
+      "transactionSafe": true,
+      "file": "0001_v1_2_frozen_baseline.sql"
+    }
+  ]
+}
