@@ -7,3 +7,4 @@ HANDOFF-MANIFEST*.json
 pnpm-lock.yaml
 AGENTS.md
 SPECIFICATION-INDEX.md
+apps/pos-terminal/src-tauri/gen/

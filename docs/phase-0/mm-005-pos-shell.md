@@ -66,9 +66,17 @@ The POS tests cover visible regions, disabled business controls, non-live status
 presentation-only search, absence of network requests, and navigation. The root `ci` command
 also checks formatting, lint, dependency boundaries, and TypeScript.
 
-The local Windows review host has WebView2 and MSVC, but no Rust/Cargo installation. The Vite
-frontend can be run and reviewed here; native Tauri compilation and window launch remain to be
-validated in a Rust-equipped environment using the pinned 1.85 toolchain.
+Native Windows acceptance on this host used the pinned Rust/Cargo 1.85.0 MSVC toolchain,
+Visual Studio 2022 C++ build tools, and WebView2 153.0.4234.48. The POS Tauri host passed
+`cargo check --locked`, and `tauri dev` compiled and opened the actual WebView2 window without
+a startup error or blank screen. Native review at 1366×768 and 1280×720 found no page overflow
+or clipped primary controls; totals, payment, and `Not connected (preview)` remained visible.
+F2 focused item entry, Escape cleared preview search, and F4/F6/F8 remained non-functional.
+The shell makes no Store Node health or readiness request.
+
+The native dependency graph is recorded in `src-tauri/Cargo.lock` because `yoke-derive` 0.8.3
+failed to compile with the pinned toolchain; the lock selects 0.8.2. `icons/icon.ico` supplies
+the Windows resource required by Tauri; `public/favicon.ico` prevents the missing favicon request.
 
 ## Deferred
 
