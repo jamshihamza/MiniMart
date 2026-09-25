@@ -15,7 +15,14 @@
   "scripts": {
     "build": "tsc -b",
     "clean": "tsc -b --clean",
-    "typecheck": "tsc -b --pretty false"
+    "typecheck": "tsc -b --pretty false",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@minimart/database": "workspace:*"
+  },
+  "devDependencies": {
+    "vitest": "^3.2.4"
   },
   "minimart": {
     "layer": "application",

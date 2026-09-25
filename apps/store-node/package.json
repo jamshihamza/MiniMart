@@ -6,7 +6,11 @@
   "scripts": {
     "build": "tsc -b",
     "clean": "tsc -b --clean",
-    "typecheck": "tsc -b --pretty false"
+    "typecheck": "tsc -b --pretty false",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "@minimart/service-runtime": "workspace:*"
   },
   "minimart": {
     "layer": "launcher",

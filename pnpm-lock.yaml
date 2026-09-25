@@ -194,7 +194,11 @@ importers:
 
   apps/pos-terminal: {}
 
-  apps/store-node: {}
+  apps/store-node:
+    dependencies:
+      '@minimart/service-runtime':
+        specifier: workspace:*
+        version: link:../../packages/service-runtime
 
   packages/api-contract: {}
 
@@ -251,7 +255,15 @@ importers:
 
   packages/query: {}
 
-  packages/service-runtime: {}
+  packages/service-runtime:
+    dependencies:
+      '@minimart/database':
+        specifier: workspace:*
+        version: link:../database
+    devDependencies:
+      vitest:
+        specifier: ^3.2.4
+        version: 3.2.7(@types/node@24.13.6)(supports-color@7.2.0)(yaml@2.9.1)
 
   packages/shared-kernel: {}
 
