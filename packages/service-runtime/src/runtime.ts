@@ -85,6 +85,9 @@ export class StoreServiceRuntime {
   #database: RuntimeDatabase | undefined;
   #databaseReadiness: DatabaseReadiness | undefined;
   #stopPromise: Promise<void> | undefined;
+  #refreshPromise: Promise<ServiceReadinessResult> | undefined;
+  #databaseAssessment: Promise<DatabaseReadiness> | undefined;
+  #databaseAssessmentTimedOut = false;
 
   constructor(options: StoreServiceRuntimeOptions) {
     this.#configuration = options.configuration;
@@ -117,6 +120,84 @@ export class StoreServiceRuntime {
       schemaCompatible,
       reasons,
     };
+  }
+
+  refreshReadiness(): Promise<ServiceReadinessResult> {
+    if (this.#refreshPromise !== undefined) return this.#refreshPromise;
+    const operation = this.#refreshReadiness();
+    this.#refreshPromise = operation;
+    void operation.then(
+      () => {
+        if (this.#refreshPromise === operation) this.#refreshPromise = undefined;
+      },
+      () => {
+        if (this.#refreshPromise === operation) this.#refreshPromise = undefined;
+      },
+    );
+    return operation;
+  }
+
+  async #refreshReadiness(): Promise<ServiceReadinessResult> {
+    if (this.state !== "RUNNING" && this.state !== "DEGRADED") return this.readiness();
+    const database = this.#database;
+    if (database === undefined) return this.readiness();
+    let assessed: DatabaseReadiness;
+    try {
+      if (this.#databaseAssessmentTimedOut && this.#databaseAssessment !== undefined) {
+        throw new Error("Previous readiness assessment is still pending");
+      }
+      const assessment = database.assessReadiness(this.#configuration.applicationBuild);
+      this.#databaseAssessment = assessment;
+      void assessment.then(
+        () => {
+          if (this.#databaseAssessment === assessment) {
+            this.#databaseAssessment = undefined;
+            this.#databaseAssessmentTimedOut = false;
+          }
+        },
+        () => {
+          if (this.#databaseAssessment === assessment) {
+            this.#databaseAssessment = undefined;
+            this.#databaseAssessmentTimedOut = false;
+          }
+        },
+      );
+      const timeoutMilliseconds = Math.min(
+        this.#configuration.database.connectionTimeoutMilliseconds,
+        2_500,
+      );
+      let timeout: NodeJS.Timeout | undefined;
+      try {
+        assessed = await Promise.race([
+          assessment,
+          new Promise<never>((_resolve, reject) => {
+            timeout = setTimeout(() => {
+              this.#databaseAssessmentTimedOut = true;
+              reject(new Error("Readiness assessment timed out"));
+            }, timeoutMilliseconds);
+            timeout.unref();
+          }),
+        ]);
+      } finally {
+        if (timeout !== undefined) clearTimeout(timeout);
+      }
+    } catch {
+      assessed = {
+        readyForWrites: false,
+        health: { healthy: false, latencyMilliseconds: 0, reason: "ReadinessAssessmentError" },
+        schemaVersion: null,
+        reasons: ["DATABASE_UNHEALTHY"],
+      };
+    }
+    this.#databaseReadiness = assessed;
+    if (this.state === "RUNNING" && !assessed.readyForWrites) {
+      this.#lifecycle.transition("DEGRADED");
+      this.#log("info", "service.degraded", undefined, assessed.reasons);
+    } else if (this.state === "DEGRADED" && assessed.readyForWrites) {
+      this.#lifecycle.transition("RUNNING");
+      this.#log("info", "service.recovered");
+    }
+    return this.readiness();
   }
 
   async start(): Promise<ServiceReadinessResult> {

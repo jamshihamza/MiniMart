@@ -1,8 +1,11 @@
 import {
   createConsoleRuntimeLogger,
+  loadDevelopmentSystemHttpOptions,
   loadServiceConfiguration,
   registerShutdownSignals,
   StoreServiceRuntime,
+  StoreSystemHost,
+  StoreSystemHttpServer,
 } from "@minimart/service-runtime";
 
 const logger = createConsoleRuntimeLogger();
@@ -10,7 +13,18 @@ const logger = createConsoleRuntimeLogger();
 try {
   const configuration = loadServiceConfiguration("edge");
   const runtime = new StoreServiceRuntime({ configuration, logger });
-  registerShutdownSignals(runtime, (error, signal) => {
+  const httpOptions = loadDevelopmentSystemHttpOptions();
+  const host =
+    httpOptions === undefined
+      ? runtime
+      : new StoreSystemHost(
+          runtime,
+          new StoreSystemHttpServer(
+            { liveness: () => runtime.liveness(), readiness: () => runtime.refreshReadiness() },
+            httpOptions,
+          ),
+        );
+  registerShutdownSignals(host, (error, signal) => {
     logger.write({
       timestamp: new Date().toISOString(),
       level: "error",
@@ -22,7 +36,7 @@ try {
     });
     process.exitCode = 1;
   });
-  await runtime.start();
+  await host.start();
 } catch (error) {
   logger.write({
     timestamp: new Date().toISOString(),

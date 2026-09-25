@@ -1,7 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 
 import { KeyHint, ShellButton, StatusBadge } from "./components/ShellControls.js";
+import {
+  STORE_NODE_STATUS_LABEL,
+  interpretStoreNodeStatus,
+  type StoreNodeStatus,
+} from "./connectivity.js";
 import { SHELL_PREVIEW } from "./fixtures.js";
+import { probeStoreNode } from "./system-status-transport.js";
 
 type ShellPage = "sale" | "history" | "returns" | "shift";
 
@@ -22,7 +28,27 @@ export function PosApp() {
   const [page, setPage] = useState<ShellPage>("sale");
   const [query, setQuery] = useState("");
   const [message, setMessage] = useState("Shell preview. No transaction data is loaded.");
+  const [storeNodeStatus, setStoreNodeStatus] = useState<StoreNodeStatus>("checking");
   const searchRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    let active = true;
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    async function refresh() {
+      try {
+        const result = interpretStoreNodeStatus(await probeStoreNode());
+        if (active) setStoreNodeStatus(result);
+      } catch {
+        if (active) setStoreNodeStatus("unavailable");
+      }
+      if (active) timer = setTimeout(() => void refresh(), 5_000);
+    }
+    void refresh();
+    return () => {
+      active = false;
+      if (timer !== undefined) clearTimeout(timer);
+    };
+  }, []);
 
   useEffect(() => {
     function handleShellShortcut(event: KeyboardEvent) {
@@ -77,9 +103,12 @@ export function PosApp() {
         </div>
       </header>
 
-      <div className="status-strip" aria-label="Operational status placeholders">
+      <div className="status-strip" aria-label="Operational status">
         <div className="status-strip__group">
-          <StatusBadge tone="attention" label="Store Node · Not connected (preview)" />
+          <StatusBadge
+            tone={storeNodeStatus === "online" ? "neutral" : "attention"}
+            label={STORE_NODE_STATUS_LABEL[storeNodeStatus]}
+          />
           <StatusBadge label="Cloud · Not checked" />
         </div>
         <span className="business-date">Business date · Not loaded</span>

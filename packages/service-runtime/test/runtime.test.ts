@@ -129,4 +129,90 @@ describe("StoreServiceRuntime", () => {
     expect(close).toHaveBeenCalledOnce();
     expect(runtime.state).toBe("STOPPED");
   });
+
+  it("refreshes authoritative database readiness after startup", async () => {
+    let current: DatabaseReadiness | Error = ready;
+    const runtime = new StoreServiceRuntime({
+      configuration,
+      logger: { write: () => {} },
+      databaseFactory: () => ({
+        assessReadiness: async () => {
+          if (current instanceof Error) throw current;
+          return current;
+        },
+        close: async () => {},
+      }),
+    });
+    await runtime.start();
+    current = {
+      readyForWrites: false,
+      health: { healthy: false, latencyMilliseconds: 1, reason: "ConnectionError" },
+      schemaVersion: null,
+      reasons: ["DATABASE_UNHEALTHY"],
+    };
+    await expect(runtime.refreshReadiness()).resolves.toMatchObject({
+      status: "DEGRADED",
+      transactionalReady: false,
+      databaseReady: false,
+    });
+    current = {
+      readyForWrites: false,
+      health: { healthy: true, latencyMilliseconds: 1 },
+      schemaVersion: "2.0.0",
+      reasons: ["APPLICATION_BUILD_INCOMPATIBLE:0001_foundation"],
+    };
+    await expect(runtime.refreshReadiness()).resolves.toMatchObject({
+      transactionalReady: false,
+      databaseReady: true,
+      schemaCompatible: false,
+    });
+    current = ready;
+    await expect(runtime.refreshReadiness()).resolves.toMatchObject({
+      status: "RUNNING",
+      transactionalReady: true,
+    });
+    current = new Error("connection details must not leak");
+    await expect(runtime.refreshReadiness()).resolves.toMatchObject({
+      transactionalReady: false,
+      reasons: ["DATABASE_UNHEALTHY"],
+    });
+    await runtime.stop();
+  });
+
+  it("degrades on a stalled assessment without accumulating database queries", async () => {
+    let finishAssessment!: (value: DatabaseReadiness) => void;
+    const stalled = new Promise<DatabaseReadiness>((resolve) => {
+      finishAssessment = resolve;
+    });
+    const assessReadiness = vi
+      .fn()
+      .mockResolvedValueOnce(ready)
+      .mockReturnValueOnce(stalled)
+      .mockResolvedValue(ready);
+    const runtime = new StoreServiceRuntime({
+      configuration: {
+        ...configuration,
+        database: { ...configuration.database, connectionTimeoutMilliseconds: 20 },
+      },
+      logger: { write: () => {} },
+      databaseFactory: () => ({ assessReadiness, close: async () => {} }),
+    });
+    await runtime.start();
+    await expect(runtime.refreshReadiness()).resolves.toMatchObject({
+      status: "DEGRADED",
+      databaseReady: false,
+      transactionalReady: false,
+    });
+    await expect(runtime.refreshReadiness()).resolves.toMatchObject({
+      databaseReady: false,
+    });
+    expect(assessReadiness).toHaveBeenCalledTimes(2);
+    finishAssessment(ready);
+    await stalled;
+    await expect(runtime.refreshReadiness()).resolves.toMatchObject({
+      status: "RUNNING",
+      transactionalReady: true,
+    });
+    await runtime.stop();
+  });
 });

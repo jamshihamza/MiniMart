@@ -14,3 +14,4 @@ Thumbs.db
 .idea/
 .vscode/
 apps/pos-terminal/src-tauri/gen/
+infra/mm-006/dev-certificates/

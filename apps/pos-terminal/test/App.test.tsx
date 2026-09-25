@@ -10,14 +10,14 @@ afterEach(() => {
 });
 
 describe("POS shell", () => {
-  it("renders the three-zone sale workspace and clearly non-live status", () => {
+  it("renders the three-zone sale workspace and unavailable Store Node status", async () => {
     render(<PosApp />);
     expect(screen.getByRole("heading", { name: "New sale" })).toBeVisible();
     expect(screen.getByRole("searchbox", { name: "Scan barcode or search item" })).toBeVisible();
     expect(screen.getByRole("table", { name: "Sale lines" })).toBeVisible();
     expect(screen.getByRole("heading", { name: "Customer" })).toBeVisible();
     expect(screen.getByRole("heading", { name: "Summary" })).toBeVisible();
-    expect(screen.getByText("Store Node · Not connected (preview)")).toBeVisible();
+    expect(await screen.findByText("Store Node · Unavailable")).toBeVisible();
     expect(screen.getByText("Cloud · Not checked")).toBeVisible();
     expect(screen.getByRole("button", { name: /Continue to payment/ })).toBeDisabled();
   });

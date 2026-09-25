@@ -20,3 +20,13 @@ export {
   type StoreServiceRuntimeOptions,
 } from "./runtime.js";
 export { registerShutdownSignals, type ShutdownSignal, type StoppableRuntime } from "./signals.js";
+export {
+  StoreSystemHttpServer,
+  isEnrolledDevice,
+  systemResponse,
+  type EnrolledDevice,
+  type SystemHttpOptions,
+  type SystemStatusSource,
+} from "./system-http.js";
+export { StoreSystemHost, type SystemHostResource } from "./system-host.js";
+export { loadDevelopmentSystemHttpOptions } from "./system-http-config.js";

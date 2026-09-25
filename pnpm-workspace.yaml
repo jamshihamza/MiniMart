@@ -10,6 +10,9 @@ allowBuilds:
   protobufjs: false
   ssh2: false
 
+catalog:
+  "@tauri-apps/api": ^2.11.1
+
 catalogMode: strict
 
 minimumReleaseAge: 1440
