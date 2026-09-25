@@ -38,6 +38,31 @@ describe("clean installation", () => {
            AND (n.nspname || '.' || c.relname) <> 'integration.schema_migrations'
       `);
       expect(count.rows[0]?.count).toBe("79");
+
+      const syncCheckpointColumns = await database.pool.query<{
+        column_name: string;
+        data_type: string;
+        is_nullable: string;
+      }>(`
+        SELECT column_name, data_type, is_nullable
+          FROM information_schema.columns
+         WHERE table_schema = 'integration' AND table_name = 'sync_checkpoints'
+         ORDER BY ordinal_position
+      `);
+      expect(syncCheckpointColumns.rows).toEqual([
+        { column_name: "sync_checkpoint_id", data_type: "uuid", is_nullable: "NO" },
+        { column_name: "tenant_id", data_type: "uuid", is_nullable: "NO" },
+        { column_name: "peer_id", data_type: "uuid", is_nullable: "NO" },
+        { column_name: "stream_code", data_type: "text", is_nullable: "NO" },
+        { column_name: "checkpoint_value", data_type: "text", is_nullable: "YES" },
+        {
+          column_name: "updated_at",
+          data_type: "timestamp with time zone",
+          is_nullable: "NO",
+        },
+        { column_name: "created_at", data_type: "timestamp with time zone", is_nullable: "NO" },
+        { column_name: "version", data_type: "bigint", is_nullable: "NO" },
+      ]);
     } finally {
       await database.drop();
     }

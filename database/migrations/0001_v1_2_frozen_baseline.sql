@@ -901,7 +901,6 @@ sync_checkpoint_id uuid PRIMARY KEY,
 tenant_id uuid NOT NULL,
 peer_id uuid NOT NULL, stream_code text NOT NULL, checkpoint_value text, updated_at timestamptz NOT NULL,
 created_at timestamptz NOT NULL,
-updated_at timestamptz,
 version bigint NOT NULL DEFAULT 0,
 UNIQUE (tenant_id, sync_checkpoint_id)
 );

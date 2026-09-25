@@ -68,14 +68,14 @@ describe("frozen schema equivalence", () => {
       }>(`
           SELECT
             ARRAY(
-              SELECT a.attname
+              SELECT a.attname::text
                 FROM unnest(con.conkey) WITH ORDINALITY AS key(attnum, position)
                 JOIN pg_attribute a ON a.attrelid = con.conrelid AND a.attnum = key.attnum
                ORDER BY key.position
             ) AS source_columns,
             rn.nspname AS referenced_schema, rc.relname AS referenced_table,
             ARRAY(
-              SELECT a.attname
+              SELECT a.attname::text
                 FROM unnest(con.confkey) WITH ORDINALITY AS key(attnum, position)
                 JOIN pg_attribute a ON a.attrelid = con.confrelid AND a.attnum = key.attnum
                ORDER BY key.position

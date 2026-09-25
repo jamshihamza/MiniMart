@@ -3,6 +3,7 @@ import { readFile } from "node:fs/promises";
 export const CR_DB_002_INVALID_STATEMENT = "UNIQUE (tenant_id, tenant_id)";
 export const CR_DB_003_INLINE_FOREIGN_KEY =
   "FOREIGN KEY (tenant_id, refund_obligation_id) REFERENCES returns.refund_obligations(tenant_id, refund_obligation_id),";
+export const CR_DB_004_DUPLICATE_NULLABLE_UPDATED_AT = "updated_at timestamptz,";
 
 const EXPECTED_ORG_TENANTS_DEFINITION = `CREATE TABLE org.tenants (
 tenant_id uuid PRIMARY KEY,
@@ -58,6 +59,25 @@ const DEFERRED_REFUND_OBLIGATION_FOREIGN_KEY = `ALTER TABLE payments.refund_exec
 ADD FOREIGN KEY (tenant_id, refund_obligation_id)
 REFERENCES returns.refund_obligations(tenant_id, refund_obligation_id);`;
 
+const EXPECTED_SYNC_CHECKPOINTS_DEFINITION = `CREATE TABLE integration.sync_checkpoints (
+sync_checkpoint_id uuid PRIMARY KEY,
+tenant_id uuid NOT NULL,
+peer_id uuid NOT NULL, stream_code text NOT NULL, checkpoint_value text, updated_at timestamptz NOT NULL,
+created_at timestamptz NOT NULL,
+updated_at timestamptz,
+version bigint NOT NULL DEFAULT 0,
+UNIQUE (tenant_id, sync_checkpoint_id)
+);`;
+
+const CORRECTED_SYNC_CHECKPOINTS_DEFINITION = `CREATE TABLE integration.sync_checkpoints (
+sync_checkpoint_id uuid PRIMARY KEY,
+tenant_id uuid NOT NULL,
+peer_id uuid NOT NULL, stream_code text NOT NULL, checkpoint_value text, updated_at timestamptz NOT NULL,
+created_at timestamptz NOT NULL,
+version bigint NOT NULL DEFAULT 0,
+UNIQUE (tenant_id, sync_checkpoint_id)
+);`;
+
 export function applyCrDb002(frozenDdl: string): string {
   const occurrenceCount = frozenDdl.split(CR_DB_002_INVALID_STATEMENT).length - 1;
   if (occurrenceCount !== 1) {
@@ -107,6 +127,24 @@ export function applyCrDb003(crDb002Ddl: string): string {
   );
 }
 
+export function applyCrDb004(crDb003Ddl: string): string {
+  const sourceCount = crDb003Ddl.split(EXPECTED_SYNC_CHECKPOINTS_DEFINITION).length - 1;
+  if (sourceCount !== 1) {
+    throw new Error(
+      `CR-DB-004 expected exactly one approved integration.sync_checkpoints definition; found ${sourceCount}`,
+    );
+  }
+  const effectiveDdl = crDb003Ddl.replace(
+    EXPECTED_SYNC_CHECKPOINTS_DEFINITION,
+    CORRECTED_SYNC_CHECKPOINTS_DEFINITION,
+  );
+  const correctedCount = effectiveDdl.split(CORRECTED_SYNC_CHECKPOINTS_DEFINITION).length - 1;
+  if (correctedCount !== 1) {
+    throw new Error("CR-DB-004 failed to produce the approved sync_checkpoints definition");
+  }
+  return effectiveDdl;
+}
+
 export async function effectiveAuthorityDdl(): Promise<string> {
   const frozenDdl = await readFile(
     new URL(
@@ -115,5 +153,6 @@ export async function effectiveAuthorityDdl(): Promise<string> {
     ),
     "utf8",
   );
-  return applyCrDb003(applyCrDb002(frozenDdl));
+  const normalizedFrozenDdl = frozenDdl.replaceAll("\r\n", "\n");
+  return applyCrDb004(applyCrDb003(applyCrDb002(normalizedFrozenDdl)));
 }
