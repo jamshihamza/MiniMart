@@ -19,7 +19,10 @@ describe("POS shell", () => {
     expect(screen.getByRole("heading", { name: "Summary" })).toBeVisible();
     expect(await screen.findByText("Store Node · Unavailable")).toBeVisible();
     expect(screen.getByText("Cloud · Not checked")).toBeVisible();
-    expect(screen.getByRole("button", { name: /Continue to payment/ })).toBeDisabled();
+    expect(screen.getByRole("button", { name: /Complete Sale/ })).toBeDisabled();
+    for (const method of ["Cash", "Card", "DuitNow", "Other", "Credit"]) {
+      expect(screen.getByRole("button", { name: method, exact: true })).toBeDisabled();
+    }
   });
 
   it("focuses search with F2 and leaves business shortcuts unavailable", async () => {
@@ -29,6 +32,23 @@ describe("POS shell", () => {
     expect(screen.getByRole("searchbox", { name: "Scan barcode or search item" })).toHaveFocus();
     expect(screen.getByRole("button", { name: /Hold sale/ })).toBeDisabled();
     expect(screen.getByRole("button", { name: /Attach/ })).toBeDisabled();
+  });
+
+  it("keeps the reference workspace controls as safe preview components", async () => {
+    const user = userEvent.setup();
+    render(<PosApp />);
+    expect(screen.getByRole("navigation", { name: "POS sections" })).toBeVisible();
+    expect(screen.getByRole("heading", { name: "POS - Sales" })).toBeVisible();
+    expect(screen.getByRole("button", { name: /Cola 320ml/ })).toBeDisabled();
+    expect(screen.getByRole("button", { name: /Price Check/ })).toBeDisabled();
+    expect(screen.getByRole("button", { name: /Clear Cart/ })).toBeDisabled();
+    expect(screen.getByRole("button", { name: /Complete Sale/ })).toBeDisabled();
+
+    const search = screen.getByRole("searchbox", { name: "Scan barcode or search item" });
+    await user.type(search, "demo");
+    await user.keyboard("{Escape}");
+    expect(search).toHaveValue("");
+    expect(screen.getByText("0 items")).toBeVisible();
   });
 
   it("does not turn presentation search into a lookup or cart mutation", async () => {

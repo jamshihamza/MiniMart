@@ -86,3 +86,23 @@ the Windows resource required by Tauri; `public/favicon.ico` prevents the missin
 - Sync, cloud status, and survival mode
 - Tauri hardware ports and device integration
 - Windows installer and update packaging
+
+## Reference mockup visual correction
+
+The later MM-005 frontend correction uses the supplied _MiniMart Retail POS
+Showcase_ as the visual authority for desktop composition. The Sale screen now
+has a navy left navigation rail, compact light store/status/operator bar,
+search and adjacent quick actions, presentation-only quick product tiles, cart
+table, bottom customer/notes area, and a dedicated right checkout column.
+The same navy/blue/white shell frames the deferred navigation pages so future
+Dashboard, Inventory, Purchase Orders, and Reports work can share one design
+system.
+
+Sample catalog tiles and prices are explicitly labeled demo content and cannot
+add items. The cart remains empty, totals remain a zero preview, and payment,
+customer, hold, recall, price check, and complete-sale controls remain disabled.
+F2 and Escape retain their shell behavior. Existing Store Node health/readiness
+interpretation remains authoritative; the top bar never infers Online from the
+mockup. This correction changes React presentation, CSS, fixtures, and POS
+tests only. The original checkpoint description above remains as historical
+MM-005 acceptance evidence.
