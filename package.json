@@ -19,6 +19,7 @@
     "test:boundaries": "node --test --test-isolation=none infra/tooling/check-dependency-boundaries.test.mjs",
     "test:database": "pnpm --filter @minimart/database test",
     "test:service-runtime": "pnpm --filter @minimart/service-runtime test",
+    "test:pos-shell": "pnpm --filter @minimart/pos-terminal test",
     "check:rust": "cargo fmt --all --check && cargo check --workspace && cargo clippy --workspace --all-targets -- -D warnings",
     "ci": "prettier --check . && eslint . && node infra/tooling/check-dependency-boundaries.mjs && node --test --test-isolation=none infra/tooling/check-dependency-boundaries.test.mjs && tsc -b --pretty false"
   },

@@ -1,0 +1,20 @@
+[package]
+name = "minimart-pos-terminal"
+version = "0.0.0"
+edition = "2024"
+rust-version = "1.85"
+publish = false
+
+[lib]
+name = "minimart_pos_terminal_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = [] }
+
+# The native shell is self-contained; the frozen root workspace continues
+# to own only the four hardware-port crates.
+[workspace]

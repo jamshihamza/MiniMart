@@ -1,1 +1,1 @@
-export {};
+export { PosApp } from "./App.js";
