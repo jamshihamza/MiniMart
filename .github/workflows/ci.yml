@@ -36,9 +36,18 @@ jobs:
         with:
           node-version: 22
           cache: pnpm
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm run ci
-      - run: pnpm run test:database
+      - name: Install locked dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Static, boundary, and frozen-authority gates
+        run: pnpm run ci
+      - name: PostgreSQL migration and schema integration tests
+        run: pnpm run test:database
+      - name: Service runtime and system-contract tests
+        run: pnpm run test:service-runtime
+      - name: POS shell and connectivity tests
+        run: pnpm run test:pos-shell
+      - name: POS frontend production build
+        run: pnpm --filter @minimart/pos-terminal build
 
   rust-foundation:
     runs-on: windows-latest
@@ -48,6 +57,15 @@ jobs:
         with:
           toolchain: 1.85.0
           components: rustfmt, clippy
-      - run: cargo fmt --all --check
-      - run: cargo check --workspace
-      - run: cargo clippy --workspace --all-targets -- -D warnings
+      - name: Root hardware-port formatting
+        run: cargo fmt --all --check
+      - name: Root hardware-port locked check
+        run: cargo check --workspace --locked
+      - name: Root hardware-port Clippy
+        run: cargo clippy --workspace --all-targets --locked -- -D warnings
+      - name: POS Tauri formatting
+        run: cargo fmt --manifest-path apps/pos-terminal/src-tauri/Cargo.toml --check
+      - name: POS Tauri locked check
+        run: cargo check --manifest-path apps/pos-terminal/src-tauri/Cargo.toml --locked
+      - name: POS Tauri Clippy
+        run: cargo clippy --manifest-path apps/pos-terminal/src-tauri/Cargo.toml --all-targets --locked -- -D warnings
