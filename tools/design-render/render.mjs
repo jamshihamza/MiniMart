@@ -142,6 +142,33 @@ function screenUrl(sourceUrl, screen) {
   return url.href;
 }
 
+// Some design packages ship the REAL Claude Design runtime (`support.js`)
+// alongside their `.dc.html` source, rather than the compatible
+// reimplementation in dc-runtime.mjs standing in for a missing dependency.
+// When it's genuinely present, prefer it: it is the authentic renderer, not
+// an approximation. It boots asynchronously (fetches the real React/
+// ReactDOM UMD builds, then mounts), replaces <x-dc> with a `#dc-root` host,
+// and exposes `window.__dcRootName()` / `window.__dcSetProps(name, props)`
+// for a host to drive the screen prop live -- it has no URL-query-param
+// screen switching of its own, so the ?screen= convention used for the
+// compatible adapter does not apply here.
+async function renderScreenWithRealDcRuntime(page, screenNumber) {
+  await page.waitForFunction(
+    () =>
+      typeof globalThis.window.__dcRootName === "function" &&
+      Boolean(globalThis.window.__dcRootName()),
+  );
+  const padded = String(screenNumber);
+  await page.evaluate((screen) => {
+    const name = globalThis.window.__dcRootName();
+    globalThis.window.__dcSetProps(name, { screen, embedded: false });
+  }, padded);
+  await page.waitForFunction((expected) => {
+    const el = globalThis.document.querySelector("[data-screen-label]");
+    return Boolean(el) && (el.getAttribute("data-screen-label") ?? "").startsWith(`${expected} `);
+  }, padded);
+}
+
 function escapeHtml(value) {
   return String(value)
     .replaceAll("&", "&amp;")
@@ -167,6 +194,14 @@ async function writePdf(browser, manifest, outputPaths, exportsRoot) {
   return pdfPath;
 }
 
+// `viewportOverride` and `outputRoot` exist solely for non-authoritative,
+// throwaway viewport-acceptance checks (e.g. verifying a package's declared
+// `supportedViewports` without disturbing its canonical primaryViewport
+// renders/diagnostics). They change nothing about source handling, primitive
+// support, or failure behaviour -- every existing check still applies.
+// `screensOverride` lets a caller validate a subset of the manifest's
+// screens (for a representative spot-check at a secondary viewport) without
+// writing a second manifest file to disk.
 export async function renderPackage(manifestPath, options = {}) {
   const manifest = loadAndValidateManifest(manifestPath);
   const packageRoot = dirname(manifestPath);
@@ -174,15 +209,18 @@ export async function renderPackage(manifestPath, options = {}) {
   const sourcePath = resolve(packageRoot, manifest.sourceFile);
   if (!existsSync(sourcePath))
     throw new Error(`${manifest.slug}: source file missing: ${manifest.sourceFile}`);
-  if (!Array.isArray(manifest.screens) || manifest.screens.length === 0) {
+  const screensToRender = options.screensOverride ?? manifest.screens;
+  if (!Array.isArray(screensToRender) || screensToRender.length === 0) {
     throw new Error(`${manifest.slug}: no screens are defined`);
   }
-  for (const screen of manifest.screens) {
+  for (const screen of screensToRender) {
     if (!screen.renderFile)
       throw new Error(`${manifest.slug}: screen ${screen.number} has no renderFile`);
   }
 
-  const rendersRoot = resolve(packageRoot, "renders");
+  const rendersRoot = options.outputRoot
+    ? resolve(options.outputRoot)
+    : resolve(packageRoot, "renders");
   const exportsRoot = resolve(packageRoot, "exports");
   mkdirSync(rendersRoot, { recursive: true });
   const { server, origin } = await startStaticServer(packageRoot);
@@ -193,11 +231,16 @@ export async function renderPackage(manifestPath, options = {}) {
       headless: true,
       ...(executablePath ? { executablePath } : {}),
     });
-    const context = await browser.newContext({ viewport: viewport(manifest.primaryViewport) });
+    const context = await browser.newContext({
+      viewport: viewport(options.viewportOverride ?? manifest.primaryViewport),
+    });
     const screenDiagnostics = [];
     const outputPaths = [];
+    const realSupportPath = resolve(dirname(sourcePath), "support.js");
+    const usesRealDcRuntime =
+      manifest.sourceFile.toLowerCase().endsWith(".dc.html") && existsSync(realSupportPath);
 
-    for (const screen of manifest.screens) {
+    for (const screen of screensToRender) {
       const page = await context.newPage();
       const pageErrors = [];
       const blockedRequests = [];
@@ -247,8 +290,11 @@ export async function renderPackage(manifestPath, options = {}) {
         throw new Error(
           `screen ${screen.number} returned HTTP ${response?.status() ?? "no response"}`,
         );
-      let diagnostics = { primitivesEncountered: [], imageSlotsEmulated: 0 };
-      if (manifest.sourceFile.toLowerCase().endsWith(".dc.html")) {
+      let diagnostics = { primitivesEncountered: [], imageSlotsEmulated: 0, realRuntime: false };
+      if (usesRealDcRuntime) {
+        await renderScreenWithRealDcRuntime(page, screen.number);
+        diagnostics = { primitivesEncountered: [], imageSlotsEmulated: 0, realRuntime: true };
+      } else if (manifest.sourceFile.toLowerCase().endsWith(".dc.html")) {
         diagnostics = await page.evaluate(renderClaudeDesignSource, {
           screen: String(screen.number),
         });
@@ -289,6 +335,7 @@ export async function renderPackage(manifestPath, options = {}) {
         screenName: screen.name,
         primitivesEncountered: diagnostics.primitivesEncountered,
         imageSlotsEmulated: diagnostics.imageSlotsEmulated,
+        realRuntime: Boolean(diagnostics.realRuntime),
         knownMissingAssets,
         status: diagnostics.imageSlotsEmulated > 0 ? "KNOWN-DIFFERENCE" : "RUNTIME-COMPLETE",
       });
@@ -296,7 +343,7 @@ export async function renderPackage(manifestPath, options = {}) {
       await page.close();
     }
 
-    for (const screen of manifest.screens) {
+    for (const screen of screensToRender) {
       if (!existsSync(resolve(rendersRoot, screen.renderFile))) {
         throw new Error(`manifest references missing render output: ${screen.renderFile}`);
       }

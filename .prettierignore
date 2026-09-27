@@ -10,3 +10,4 @@ SPECIFICATION-INDEX.md
 apps/pos-terminal/src-tauri/gen/
 Mockups/**/*.html
 docs/design/**/source/**/*.html
+docs/design/**/source/**/*.js

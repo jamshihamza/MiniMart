@@ -23,6 +23,11 @@ function loadDiagnostics(slug) {
 
 function screenStatusLine(screen) {
   const notes = [];
+  if (screen.realRuntime) {
+    notes.push(
+      "rendered by the real Claude Design runtime (support.js), not the compatible adapter",
+    );
+  }
   if (screen.imageSlotsEmulated > 0) {
     notes.push(
       `${screen.imageSlotsEmulated} \`image-slot\` element(s) emulated (no real dependency exists)`,
@@ -77,6 +82,52 @@ export function buildReportMarkdown() {
       " which silently produced blank icons and a fallback typeface across every screen despite a passing" +
       " render count — this was the primary root cause of the reported missing visual elements. Any other" +
       " cross-origin host stays blocked and fails the render loudly.",
+    "- `procurement` ships a genuine `support.js` alongside its source — the real Claude Design `dc-runtime`" +
+      " (fetches real React/ReactDOM UMD builds from `unpkg.com`, mounts the actual component via" +
+      " `ReactDOM.createRoot`), not a reimplementation. `render.mjs` detects this and drives every screen" +
+      " through the real runtime's `window.__dcSetProps` API instead of the compatible `dc-runtime.mjs`" +
+      " adapter used by `pos`/`back-office` (which have no local `support.js`). This is a strictly higher-" +
+      " fidelity path: every `procurement` primitive is the authentic renderer's own output.",
+    "",
+    "## Procurement visual review notes",
+    "",
+    "- Screens 07 and 08 (`Create Supplier`) place the tab bar mid-page with a right-side live-value summary" +
+      " panel, leaving a large empty region on the left. This pattern is identical and reproducible across" +
+      " both screens and is rendered by the authentic runtime (no adapter emulation involved), so it is the" +
+      " design's own layout choice, not a rendering defect. Flagged for design review, not classified as a" +
+      " pipeline issue.",
+    "- No forbidden inventions (Purchase Requisition, RFQ, vendor scorecards, AI/auto-PO, editable WAC," +
+      " editable posted GRN/Return, silent over-receipt, silent duplicate-invoice acceptance, etc.) were found" +
+      " across the representative screens inspected. Every policy-sensitive point in the source (over-receipt," +
+      " expired-goods handling, return-approval threshold, credit-limit semantics) is explicitly labelled as" +
+      " policy-dependent/not decided by the design, matching the requirement that no unresolved policy be" +
+      " silently selected.",
+    "",
+    "## Procurement viewport verification",
+    "",
+    "`primaryViewport` (1366x768) is verified as part of the normal `pnpm design:render --package procurement`" +
+      " run (see the table below). The package's declared `supportedViewports` were additionally verified with" +
+      " a one-off, non-authoritative render pass (`renderPackage()` called directly with `viewportOverride`/" +
+      "`outputRoot`, screenshots kept outside the tracked tree) using the same strict renderer -- every check" +
+      " (unsupported primitive, pageerror, unresolved asset) still applied:",
+    "",
+    "- **1280x720** (smallest supported): all 74 screens rendered without error. Representative dense screens" +
+      " inspected (Supplier List/Detail/Create, PO List/Detail, GRN entry/review, Batch Allocation, Purchase" +
+      " Return line entry, negative-stock-blocked state, component inventory) showed no clipping of primary" +
+      " actions, dialogs, or tables. One finding: the PO List's rightmost `APPROVAL` column falls outside the" +
+      " immediately visible area of its own scroll region at this width; inspection of computed styles" +
+      " confirmed the containing element has a genuine `overflow-x: auto` scroll container (`scrollWidth`" +
+      ' 1134px vs `clientWidth` ~1028px) -- the same "horizontal scroll only where needed" pattern the' +
+      " design system page documents for dense tables -- so the column is reachable by scrolling, not lost." +
+      " No hidden submit/post buttons were found at this viewport.",
+    "- **1368x800**: representative dense screens re-inspected; PO List's `APPROVAL` column is fully visible" +
+      " without scrolling at this width. No clipping or overlap found.",
+    "- **1920x1080**: representative dense screens re-inspected; layout stays left-aligned in its fixed-width" +
+      " column with no stretching artifacts, sidebar/top bar/content do not overlap. No clipping found.",
+    "- Screens 07/08 (`Create Supplier`) were re-checked at all four viewports: the mid-page tab bar and" +
+      " sparse-left layout is identical and usable at every size (tabs and the right-side summary panel stay" +
+      " fully visible and non-overlapping); retained as-is per instruction not to redesign a source layout" +
+      " choice.",
     "",
   ];
 
@@ -101,7 +152,7 @@ export function buildReportMarkdown() {
     );
   }
 
-  return lines.join("\n") + "\n";
+  return lines.join("\n").replace(/\n+$/, "") + "\n";
 }
 
 async function main() {

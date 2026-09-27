@@ -10,6 +10,7 @@ export default tseslint.config(
       "**/target/**",
       "docs/specifications/**",
       "docs/backlog/**",
+      "docs/design/**/source/**",
       "HANDOFF-MANIFEST*.json",
       "pnpm-lock.yaml",
     ],

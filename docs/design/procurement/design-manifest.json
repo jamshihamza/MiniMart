@@ -1,0 +1,465 @@
+{
+  "package": "MiniMart Suppliers + Procurement",
+  "slug": "procurement",
+  "status": "approved-visual-reference",
+  "sourceFile": "source/MiniMartProcurement.dc.html",
+  "sourceOfTruth": "Claude Design export committed at docs/design/procurement/source/MiniMartProcurement.dc.html",
+  "screenCount": 74,
+  "primaryViewport": "1366x768",
+  "supportedViewports": ["1280x720", "1368x800", "1920x1080"],
+  "screenGroups": [
+    "Supplier Foundation",
+    "Supplier Detail / Create / Edit / Audit",
+    "Purchase Orders",
+    "Goods Receipt",
+    "Purchase Returns",
+    "Design System / Documentation / Cross-module Map"
+  ],
+  "screens": [
+    {
+      "number": "01",
+      "name": "Supplier List — populated",
+      "group": "Supplier Foundation",
+      "renderFile": "01-supplier-list-populated.png"
+    },
+    {
+      "number": "02",
+      "name": "Supplier List — filtered",
+      "group": "Supplier Foundation",
+      "renderFile": "02-supplier-list-filtered.png"
+    },
+    {
+      "number": "03",
+      "name": "Supplier List — empty / no results",
+      "group": "Supplier Foundation",
+      "renderFile": "03-supplier-list-empty-no-results.png"
+    },
+    {
+      "number": "04",
+      "name": "Supplier List — Store Node unavailable",
+      "group": "Supplier Foundation",
+      "renderFile": "04-supplier-list-store-node-unavailable.png"
+    },
+    {
+      "number": "05",
+      "name": "Supplier List — Cloud Sync unavailable",
+      "group": "Supplier Foundation",
+      "renderFile": "05-supplier-list-cloud-sync-unavailable.png"
+    },
+    {
+      "number": "06",
+      "name": "Supplier List — read-only / permission-limited",
+      "group": "Supplier Foundation",
+      "renderFile": "06-supplier-list-read-only-permission-limited.png"
+    },
+    {
+      "number": "07",
+      "name": "Create Supplier — Basic Info & Identifiers",
+      "group": "Supplier Detail / Create / Edit / Audit",
+      "renderFile": "07-create-supplier-basic-info-identifiers.png"
+    },
+    {
+      "number": "08",
+      "name": "Create Supplier — Contact / Address / Terms",
+      "group": "Supplier Detail / Create / Edit / Audit",
+      "renderFile": "08-create-supplier-contact-address-terms.png"
+    },
+    {
+      "number": "09",
+      "name": "Supplier Detail — Overview",
+      "group": "Supplier Detail / Create / Edit / Audit",
+      "renderFile": "09-supplier-detail-overview.png"
+    },
+    {
+      "number": "10",
+      "name": "Supplier Detail — Identifiers",
+      "group": "Supplier Detail / Create / Edit / Audit",
+      "renderFile": "10-supplier-detail-identifiers.png"
+    },
+    {
+      "number": "11",
+      "name": "Supplier Detail — Contacts / Address",
+      "group": "Supplier Detail / Create / Edit / Audit",
+      "renderFile": "11-supplier-detail-contacts-address.png"
+    },
+    {
+      "number": "12",
+      "name": "Supplier Detail — Items",
+      "group": "Supplier Detail / Create / Edit / Audit",
+      "renderFile": "12-supplier-detail-items.png"
+    },
+    {
+      "number": "13",
+      "name": "Supplier Detail — Purchase Orders",
+      "group": "Supplier Detail / Create / Edit / Audit",
+      "renderFile": "13-supplier-detail-purchase-orders.png"
+    },
+    {
+      "number": "14",
+      "name": "Supplier Detail — Goods Receipts",
+      "group": "Supplier Detail / Create / Edit / Audit",
+      "renderFile": "14-supplier-detail-goods-receipts.png"
+    },
+    {
+      "number": "15",
+      "name": "Supplier Detail — Purchase Returns",
+      "group": "Supplier Detail / Create / Edit / Audit",
+      "renderFile": "15-supplier-detail-purchase-returns.png"
+    },
+    {
+      "number": "16",
+      "name": "Supplier Detail — Transactions / Financial Context",
+      "group": "Supplier Detail / Create / Edit / Audit",
+      "renderFile": "16-supplier-detail-transactions-financial-context.png"
+    },
+    {
+      "number": "17",
+      "name": "Supplier Detail — History / Audit",
+      "group": "Supplier Detail / Create / Edit / Audit",
+      "renderFile": "17-supplier-detail-history-audit.png"
+    },
+    {
+      "number": "18",
+      "name": "Supplier Deactivate confirmation",
+      "group": "Supplier Detail / Create / Edit / Audit",
+      "renderFile": "18-supplier-deactivate-confirmation.png"
+    },
+    {
+      "number": "19",
+      "name": "Supplier Reactivate confirmation",
+      "group": "Supplier Detail / Create / Edit / Audit",
+      "renderFile": "19-supplier-reactivate-confirmation.png"
+    },
+    {
+      "number": "20",
+      "name": "Duplicate Identifier detection",
+      "group": "Supplier Detail / Create / Edit / Audit",
+      "renderFile": "20-duplicate-identifier-detection.png"
+    },
+    {
+      "number": "21",
+      "name": "Purchases workspace — summary",
+      "group": "Purchase Orders",
+      "renderFile": "21-purchases-workspace-summary.png"
+    },
+    {
+      "number": "22",
+      "name": "PO List — populated",
+      "group": "Purchase Orders",
+      "renderFile": "22-po-list-populated.png"
+    },
+    {
+      "number": "23",
+      "name": "PO List — filtered Awaiting Approval",
+      "group": "Purchase Orders",
+      "renderFile": "23-po-list-filtered-awaiting-approval.png"
+    },
+    {
+      "number": "24",
+      "name": "Create PO — header & lines",
+      "group": "Purchase Orders",
+      "renderFile": "24-create-po-header-lines.png"
+    },
+    {
+      "number": "25",
+      "name": "PO Draft — no stock effect",
+      "group": "Purchase Orders",
+      "renderFile": "25-po-draft-no-stock-effect.png"
+    },
+    {
+      "number": "26",
+      "name": "PO Approval states gallery",
+      "group": "Purchase Orders",
+      "renderFile": "26-po-approval-states-gallery.png"
+    },
+    {
+      "number": "27",
+      "name": "PO Detail — Overview & receipt progress",
+      "group": "Purchase Orders",
+      "renderFile": "27-po-detail-overview-receipt-progress.png"
+    },
+    {
+      "number": "28",
+      "name": "PO Detail — Partial receipt history",
+      "group": "Purchase Orders",
+      "renderFile": "28-po-detail-partial-receipt-history.png"
+    },
+    {
+      "number": "29",
+      "name": "PO Concurrent receiving conflict",
+      "group": "Purchase Orders",
+      "renderFile": "29-po-concurrent-receiving-conflict.png"
+    },
+    {
+      "number": "30",
+      "name": "Over-receipt — policy-dependent examples",
+      "group": "Purchase Orders",
+      "renderFile": "30-over-receipt-policy-dependent-examples.png"
+    },
+    {
+      "number": "31",
+      "name": "Close With Unreceived Remainder",
+      "group": "Purchase Orders",
+      "renderFile": "31-close-with-unreceived-remainder.png"
+    },
+    {
+      "number": "32",
+      "name": "PO Cancellation",
+      "group": "Purchase Orders",
+      "renderFile": "32-po-cancellation.png"
+    },
+    {
+      "number": "33",
+      "name": "PO Detail — Fully Received / Closed",
+      "group": "Purchase Orders",
+      "renderFile": "33-po-detail-fully-received-closed.png"
+    },
+    {
+      "number": "34",
+      "name": "Receive Goods — entry choice",
+      "group": "Goods Receipt",
+      "renderFile": "34-receive-goods-entry-choice.png"
+    },
+    {
+      "number": "35",
+      "name": "PO-based GRN — select & lines",
+      "group": "Goods Receipt",
+      "renderFile": "35-po-based-grn-select-lines.png"
+    },
+    {
+      "number": "36",
+      "name": "PO-based GRN — receiving now / after receipt",
+      "group": "Goods Receipt",
+      "renderFile": "36-po-based-grn-receiving-now-after-receipt.png"
+    },
+    {
+      "number": "37",
+      "name": "Direct GRN — header (no PO linked)",
+      "group": "Goods Receipt",
+      "renderFile": "37-direct-grn-header-no-po-linked.png"
+    },
+    {
+      "number": "38",
+      "name": "Duplicate Supplier Document warning",
+      "group": "Goods Receipt",
+      "renderFile": "38-duplicate-supplier-document-warning.png"
+    },
+    {
+      "number": "39",
+      "name": "GRN Item Entry — lookup / table",
+      "group": "Goods Receipt",
+      "renderFile": "39-grn-item-entry-lookup-table.png"
+    },
+    {
+      "number": "40",
+      "name": "Unknown Item During Receipt",
+      "group": "Goods Receipt",
+      "renderFile": "40-unknown-item-during-receipt.png"
+    },
+    {
+      "number": "41",
+      "name": "Quick Create Skeleton Item (from GRN)",
+      "group": "Goods Receipt",
+      "renderFile": "41-quick-create-skeleton-item-from-grn.png"
+    },
+    {
+      "number": "42",
+      "name": "Inactive / Non-purchasable Item block",
+      "group": "Goods Receipt",
+      "renderFile": "42-inactive-non-purchasable-item-block.png"
+    },
+    {
+      "number": "43",
+      "name": "Purchase UoM conversion context",
+      "group": "Goods Receipt",
+      "renderFile": "43-purchase-uom-conversion-context.png"
+    },
+    {
+      "number": "44",
+      "name": "Received + Free Quantity",
+      "group": "Goods Receipt",
+      "renderFile": "44-received-free-quantity.png"
+    },
+    {
+      "number": "45",
+      "name": "GRN Commercial Inputs",
+      "group": "Goods Receipt",
+      "renderFile": "45-grn-commercial-inputs.png"
+    },
+    {
+      "number": "46",
+      "name": "Batch Split allocation",
+      "group": "Goods Receipt",
+      "renderFile": "46-batch-split-allocation.png"
+    },
+    {
+      "number": "47",
+      "name": "Expiry capture — valid / near / expired",
+      "group": "Goods Receipt",
+      "renderFile": "47-expiry-capture-valid-near-expired.png"
+    },
+    {
+      "number": "48",
+      "name": "Expired Goods warning / block",
+      "group": "Goods Receipt",
+      "renderFile": "48-expired-goods-warning-block.png"
+    },
+    {
+      "number": "49",
+      "name": "PO Quantity & Price Variance",
+      "group": "Goods Receipt",
+      "renderFile": "49-po-quantity-price-variance.png"
+    },
+    {
+      "number": "50",
+      "name": "Supplier Total Comparison",
+      "group": "Goods Receipt",
+      "renderFile": "50-supplier-total-comparison.png"
+    },
+    {
+      "number": "51",
+      "name": "GRN Review (before posting)",
+      "group": "Goods Receipt",
+      "renderFile": "51-grn-review-before-posting.png"
+    },
+    {
+      "number": "52",
+      "name": "GRN Validation errors",
+      "group": "Goods Receipt",
+      "renderFile": "52-grn-validation-errors.png"
+    },
+    {
+      "number": "53",
+      "name": "GRN Posted confirmation",
+      "group": "Goods Receipt",
+      "renderFile": "53-grn-posted-confirmation.png"
+    },
+    {
+      "number": "54",
+      "name": "Posted GRN — read-only",
+      "group": "Goods Receipt",
+      "renderFile": "54-posted-grn-read-only.png"
+    },
+    {
+      "number": "55",
+      "name": "GRN Safe Retry / uncertain",
+      "group": "Goods Receipt",
+      "renderFile": "55-grn-safe-retry-uncertain.png"
+    },
+    {
+      "number": "56",
+      "name": "GRN Offline (Store Node up, Cloud down)",
+      "group": "Goods Receipt",
+      "renderFile": "56-grn-offline-store-node-up-cloud-down.png"
+    },
+    {
+      "number": "57",
+      "name": "Purchase Return List — populated",
+      "group": "Purchase Returns",
+      "renderFile": "57-purchase-return-list-populated.png"
+    },
+    {
+      "number": "58",
+      "name": "New Purchase Return — select Supplier/GRN",
+      "group": "Purchase Returns",
+      "renderFile": "58-new-purchase-return-select-supplier-grn.png"
+    },
+    {
+      "number": "59",
+      "name": "Return Without Original GRN — exceptional",
+      "group": "Purchase Returns",
+      "renderFile": "59-return-without-original-grn-exceptional.png"
+    },
+    {
+      "number": "60",
+      "name": "Purchase Return Line — returnable quantity",
+      "group": "Purchase Returns",
+      "renderFile": "60-purchase-return-line-returnable-quantity.png"
+    },
+    {
+      "number": "61",
+      "name": "Over Return — blocked",
+      "group": "Purchase Returns",
+      "renderFile": "61-over-return-blocked.png"
+    },
+    {
+      "number": "62",
+      "name": "Current Stock Check — negative stock blocked",
+      "group": "Purchase Returns",
+      "renderFile": "62-current-stock-check-negative-stock-blocked.png"
+    },
+    {
+      "number": "63",
+      "name": "Return Reason",
+      "group": "Purchase Returns",
+      "renderFile": "63-return-reason.png"
+    },
+    {
+      "number": "64",
+      "name": "Purchase Return Commercial Values",
+      "group": "Purchase Returns",
+      "renderFile": "64-purchase-return-commercial-values.png"
+    },
+    {
+      "number": "65",
+      "name": "Purchase Return Approval",
+      "group": "Purchase Returns",
+      "renderFile": "65-purchase-return-approval.png"
+    },
+    {
+      "number": "66",
+      "name": "Purchase Return Review",
+      "group": "Purchase Returns",
+      "renderFile": "66-purchase-return-review.png"
+    },
+    {
+      "number": "67",
+      "name": "Purchase Return Posted",
+      "group": "Purchase Returns",
+      "renderFile": "67-purchase-return-posted.png"
+    },
+    {
+      "number": "68",
+      "name": "Posted Purchase Return — read-only",
+      "group": "Purchase Returns",
+      "renderFile": "68-posted-purchase-return-read-only.png"
+    },
+    {
+      "number": "69",
+      "name": "Purchase Return Safe Retry",
+      "group": "Purchase Returns",
+      "renderFile": "69-purchase-return-safe-retry.png"
+    },
+    {
+      "number": "70",
+      "name": "Cross-module Map",
+      "group": "Design System / Documentation / Cross-module Map",
+      "renderFile": "70-cross-module-map.png"
+    },
+    {
+      "number": "71",
+      "name": "Design System — Table / Status components",
+      "group": "Design System / Documentation / Cross-module Map",
+      "renderFile": "71-design-system-table-status-components.png"
+    },
+    {
+      "number": "72",
+      "name": "Design System — Form / Approval components",
+      "group": "Design System / Documentation / Cross-module Map",
+      "renderFile": "72-design-system-form-approval-components.png"
+    },
+    {
+      "number": "73",
+      "name": "Permission / Audit components",
+      "group": "Design System / Documentation / Cross-module Map",
+      "renderFile": "73-permission-audit-components.png"
+    },
+    {
+      "number": "74",
+      "name": "Component inventory + documentation",
+      "group": "Design System / Documentation / Cross-module Map",
+      "renderFile": "74-component-inventory-documentation.png"
+    }
+  ],
+  "notes": "The approved source and all 74 screen names were verified from the Claude Design source (screen prop values 01-74, instantiated directly from the inline component script). routeOrState and phaseLabel remain unset because the source does not assign product routes or the manifest phase-label vocabulary to individual screens. This package ships a real support.js (the genuine Claude Design dc-runtime, not a compatible reimplementation); the renderer uses it directly for this package. All 74 screens render RUNTIME-COMPLETE at the primary 1366x768 viewport; all four declared viewports (1280x720, 1366x768, 1368x800, 1920x1080) were independently verified with no clipping of primary actions and no hidden submit/post controls -- see docs/design/RENDER-FIDELITY-REPORT.md for the per-viewport findings."
+}
