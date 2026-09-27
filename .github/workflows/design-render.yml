@@ -1,0 +1,43 @@
+name: Design render
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "docs/design/**"
+  push:
+    paths:
+      - "docs/design/**"
+
+permissions:
+  contents: read
+
+jobs:
+  validate-and-render:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 12.5.1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - name: Install locked dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Install Playwright Chromium
+        run: pnpm exec playwright install --with-deps chromium
+      - name: Validate design manifests
+        run: pnpm design:validate
+      - name: Render packages with ready manifests and source files
+        run: pnpm design:render --all-ready --pdf
+      - name: Upload generated design artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: minimart-design-renders
+          path: |
+            docs/design/*/renders/*.png
+            docs/design/*/exports/*.pdf
+          if-no-files-found: ignore
+          retention-days: 14

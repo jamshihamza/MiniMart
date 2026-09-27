@@ -15,3 +15,12 @@ Thumbs.db
 .vscode/
 apps/pos-terminal/src-tauri/gen/
 infra/mm-006/dev-certificates/
+
+# Design renders and PDF exports are reproducible CI/local artifacts.
+docs/design/*/renders/*
+docs/design/*/exports/*
+!docs/design/*/renders/.gitkeep
+!docs/design/*/exports/.gitkeep
+
+# Cached real CDN assets (fonts/icons) fetched during design rendering.
+tools/design-render/vendor-cache/

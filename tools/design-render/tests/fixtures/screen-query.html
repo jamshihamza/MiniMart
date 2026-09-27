@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Design renderer fixture</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        width: 100%;
+        height: 100%;
+      }
+      main {
+        box-sizing: border-box;
+        width: 100%;
+        height: 100%;
+        padding: 24px;
+        color: white;
+        background: #16324f;
+        font: 24px sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <main data-ready></main>
+    <script>
+      const screen = new URLSearchParams(window.location.search).get("screen");
+      document.querySelector("main").textContent = `Fixture screen ${screen}`;
+    </script>
+  </body>
+</html>

@@ -1,0 +1,185 @@
+{
+  "package": "MiniMart POS",
+  "slug": "pos",
+  "status": "review-ready",
+  "sourceFile": "source/MiniMartPOS.dc.html",
+  "sourceOfTruth": "Claude Design export committed at docs/design/pos/source/MiniMartPOS.dc.html",
+  "screenCount": 31,
+  "primaryViewport": "1366x768",
+  "supportedViewports": ["1280x720", "1368x800", "1920x1080"],
+  "screenGroups": ["Checkout", "Payment", "History and returns", "Shift", "Operational states"],
+  "screens": [
+    {
+      "number": "01",
+      "name": "Sale — empty cart",
+      "group": "Checkout",
+      "renderFile": "01-sale-empty-cart.png"
+    },
+    {
+      "number": "02",
+      "name": "Sale — populated cart",
+      "group": "Checkout",
+      "renderFile": "02-sale-populated-cart.png"
+    },
+    {
+      "number": "02b",
+      "name": "Sale — Grid view (concept)",
+      "group": "Checkout",
+      "renderFile": "02b-sale-grid-view.png"
+    },
+    {
+      "number": "03",
+      "name": "Product search results",
+      "group": "Checkout",
+      "renderFile": "03-product-search-results.png"
+    },
+    {
+      "number": "04",
+      "name": "Product not found",
+      "group": "Checkout",
+      "renderFile": "04-product-not-found.png"
+    },
+    {
+      "number": "05",
+      "name": "Customer selection",
+      "group": "Checkout",
+      "renderFile": "05-customer-selection.png"
+    },
+    {
+      "number": "06",
+      "name": "Identified customer",
+      "group": "Checkout",
+      "renderFile": "06-identified-customer.png"
+    },
+    { "number": "07", "name": "Hold sale", "group": "Checkout", "renderFile": "07-hold-sale.png" },
+    {
+      "number": "08",
+      "name": "Held sales",
+      "group": "Checkout",
+      "renderFile": "08-held-sales.png"
+    },
+    {
+      "number": "09",
+      "name": "Payment selection",
+      "group": "Payment",
+      "renderFile": "09-payment-selection.png"
+    },
+    {
+      "number": "10",
+      "name": "Cash payment",
+      "group": "Payment",
+      "renderFile": "10-cash-payment.png"
+    },
+    {
+      "number": "11",
+      "name": "Card — waiting",
+      "group": "Payment",
+      "renderFile": "11-card-waiting.png"
+    },
+    {
+      "number": "12",
+      "name": "Card — failed",
+      "group": "Payment",
+      "renderFile": "12-card-failed.png"
+    },
+    {
+      "number": "13",
+      "name": "Card — uncertain",
+      "group": "Payment",
+      "renderFile": "13-card-uncertain.png"
+    },
+    { "number": "14", "name": "DuitNow QR", "group": "Payment", "renderFile": "14-duitnow-qr.png" },
+    {
+      "number": "15",
+      "name": "Sale completed",
+      "group": "Payment",
+      "renderFile": "15-sale-completed.png"
+    },
+    {
+      "number": "16",
+      "name": "Sale history",
+      "group": "History and returns",
+      "renderFile": "16-sale-history.png"
+    },
+    {
+      "number": "17",
+      "name": "Sale detail",
+      "group": "History and returns",
+      "renderFile": "17-sale-detail.png"
+    },
+    {
+      "number": "18",
+      "name": "Return — locate sale",
+      "group": "History and returns",
+      "renderFile": "18-return-locate-sale.png"
+    },
+    {
+      "number": "19",
+      "name": "Return — select items",
+      "group": "History and returns",
+      "renderFile": "19-return-select-items.png"
+    },
+    {
+      "number": "20",
+      "name": "Return confirmation",
+      "group": "History and returns",
+      "renderFile": "20-return-confirmation.png"
+    },
+    {
+      "number": "21",
+      "name": "Refund unconfirmed",
+      "group": "History and returns",
+      "renderFile": "21-refund-unconfirmed.png"
+    },
+    { "number": "22", "name": "Shift open", "group": "Shift", "renderFile": "22-shift-open.png" },
+    { "number": "23", "name": "Shift close", "group": "Shift", "renderFile": "23-shift-close.png" },
+    {
+      "number": "24",
+      "name": "Manager override",
+      "group": "History and returns",
+      "renderFile": "24-manager-override.png"
+    },
+    {
+      "number": "25",
+      "name": "Printer unavailable",
+      "group": "Payment",
+      "renderFile": "25-printer-unavailable.png"
+    },
+    {
+      "number": "26",
+      "name": "Store Node unavailable",
+      "group": "Operational states",
+      "renderFile": "26-store-node-unavailable.png"
+    },
+    {
+      "number": "27",
+      "name": "Cloud sync unavailable",
+      "group": "Operational states",
+      "renderFile": "27-cloud-sync-unavailable.png"
+    },
+    {
+      "number": "28",
+      "name": "Permission denied",
+      "group": "History and returns",
+      "renderFile": "28-permission-denied.png"
+    },
+    {
+      "number": "29",
+      "name": "Loading",
+      "group": "Operational states",
+      "renderFile": "29-loading.png"
+    },
+    {
+      "number": "30",
+      "name": "Empty history",
+      "group": "Operational states",
+      "renderFile": "30-empty-history.png"
+    }
+  ],
+  "authorityDependent": false,
+  "openDecisions": [],
+  "laterPhase": false,
+  "changelog": [],
+  "lastReviewedCommit": null,
+  "notes": "All 31 screen identifiers and names were verified from the approved interactive Claude Design source. The source references ./support.js, which is not present in the repository; the local renderer's Claude Design adapter supplies the required render-only runtime without modifying the source. No additional local design source file is directly required. Routes and per-screen phase labels remain unset because the source does not define them using the manifest vocabulary."
+}

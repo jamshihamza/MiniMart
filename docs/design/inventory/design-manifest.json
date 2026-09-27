@@ -1,0 +1,18 @@
+{
+  "package": "Inventory",
+  "slug": "inventory",
+  "status": "draft",
+  "sourceFile": null,
+  "sourceOfTruth": null,
+  "screenCount": null,
+  "primaryViewport": "1366x768",
+  "supportedViewports": ["1280x720", "1368x800", "1920x1080"],
+  "screenGroups": [],
+  "screens": [],
+  "authorityDependent": false,
+  "openDecisions": [],
+  "laterPhase": false,
+  "changelog": [],
+  "lastReviewedCommit": null,
+  "notes": "Approved Inventory source exists in Claude Design but has not yet been copied into the repository. The approved filename is MiniMartInventory.dc.html; do not change this package to a render-ready status until that real source file is present."
+}

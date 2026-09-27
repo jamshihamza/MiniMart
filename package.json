@@ -24,6 +24,10 @@
     "test:database": "pnpm --filter @minimart/database test",
     "test:service-runtime": "pnpm --filter @minimart/service-runtime test",
     "test:pos-shell": "pnpm --filter @minimart/pos-terminal test",
+    "design:validate": "node tools/design-render/validate.mjs",
+    "design:render": "node tools/design-render/render.mjs",
+    "test:design-render": "node --test tools/design-render/tests/*.test.mjs",
+    "design:report": "node tools/design-render/report.mjs",
     "check:rust": "cargo fmt --all --check && cargo check --workspace --locked && cargo clippy --workspace --all-targets --locked -- -D warnings && cargo fmt --manifest-path apps/pos-terminal/src-tauri/Cargo.toml --check && cargo check --manifest-path apps/pos-terminal/src-tauri/Cargo.toml --locked && cargo clippy --manifest-path apps/pos-terminal/src-tauri/Cargo.toml --all-targets --locked -- -D warnings",
     "ci": "prettier --check . && eslint . && node infra/tooling/check-frozen-manifests.mjs && node --test infra/tooling/check-frozen-manifests.test.mjs && node infra/tooling/check-protected-test-ownership.mjs && node --test infra/tooling/check-protected-test-ownership.test.mjs && node infra/tooling/check-dependency-boundaries.mjs && node --test infra/tooling/check-dependency-boundaries.test.mjs && tsc -b --pretty false",
     "validate:phase0": "pnpm run ci && pnpm run test:database && pnpm run test:service-runtime && pnpm run test:pos-shell && pnpm --filter @minimart/pos-terminal build && pnpm run check:rust"
@@ -31,8 +35,10 @@
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@types/node": "^24.5.2",
+    "ajv": "^8.17.1",
     "eslint": "^10.11.0",
     "globals": "^16.4.0",
+    "playwright": "^1.55.0",
     "prettier": "^3.6.2",
     "typescript": "^5.9.2",
     "typescript-eslint": "^8.44.1"

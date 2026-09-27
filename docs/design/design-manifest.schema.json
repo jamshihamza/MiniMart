@@ -1,0 +1,122 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://minimart.local/schemas/design-manifest.schema.json",
+  "title": "MiniMart design package manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["package", "slug"],
+  "properties": {
+    "package": { "type": "string", "minLength": 1 },
+    "slug": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "review-ready",
+        "approved-visual-reference",
+        "implementation-in-progress",
+        "superseded"
+      ]
+    },
+    "sourceFile": {
+      "type": ["string", "null"],
+      "minLength": 1,
+      "pattern": "^source/[^/].*"
+    },
+    "sourceOfTruth": { "type": ["string", "null"], "minLength": 1 },
+    "screenCount": { "type": ["integer", "null"], "minimum": 0 },
+    "primaryViewport": { "$ref": "#/$defs/nullableViewport" },
+    "supportedViewports": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/viewport" },
+      "uniqueItems": true
+    },
+    "screenGroups": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "uniqueItems": true
+    },
+    "screens": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/screen" }
+    },
+    "authorityDependent": { "type": "boolean" },
+    "openDecisions": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "laterPhase": { "type": "boolean" },
+    "changelog": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/changelogEntry" }
+    },
+    "lastReviewedCommit": {
+      "type": ["string", "null"],
+      "minLength": 7,
+      "pattern": "^[0-9a-fA-F]{7,40}$"
+    },
+    "notes": { "type": "string" }
+  },
+  "$defs": {
+    "viewport": {
+      "type": "string",
+      "pattern": "^[1-9][0-9]*x[1-9][0-9]*$"
+    },
+    "nullableViewport": {
+      "oneOf": [{ "$ref": "#/$defs/viewport" }, { "type": "null" }]
+    },
+    "screen": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["number", "name"],
+      "properties": {
+        "number": {
+          "oneOf": [
+            { "type": "integer", "minimum": 1 },
+            { "type": "string", "pattern": "^0*[1-9][0-9]*[a-zA-Z]?$" }
+          ]
+        },
+        "name": { "type": "string", "minLength": 1 },
+        "group": { "type": ["string", "null"] },
+        "routeOrState": { "type": ["string", "null"] },
+        "phaseLabel": {
+          "type": ["string", "null"],
+          "enum": [
+            "CURRENT FOUNDATION",
+            "PLANNED PRODUCT FLOW",
+            "DESIGN CONCEPT",
+            "AUTHORITY-DEPENDENT",
+            null
+          ]
+        },
+        "renderFile": {
+          "type": ["string", "null"],
+          "pattern": "^[^/\\\\]+\\.png$"
+        },
+        "render": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "url": { "type": "string", "minLength": 1 },
+            "readySelector": { "type": "string", "minLength": 1 },
+            "captureSelector": { "type": "string", "minLength": 1 }
+          }
+        },
+        "notes": { "type": "string" }
+      }
+    },
+    "changelogEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["date", "summary"],
+      "properties": {
+        "date": { "type": "string", "format": "date" },
+        "summary": { "type": "string", "minLength": 1 },
+        "commit": {
+          "type": ["string", "null"],
+          "pattern": "^[0-9a-fA-F]{7,40}$"
+        }
+      }
+    }
+  }
+}

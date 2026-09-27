@@ -1,0 +1,390 @@
+{
+  "package": "MiniMart Back Office + Catalog + Pricing",
+  "slug": "back-office",
+  "status": "review-ready",
+  "sourceFile": "source/MiniMartBackOffice.dc.html",
+  "sourceOfTruth": "Claude Design export committed at docs/design/back-office/source/MiniMartBackOffice.dc.html",
+  "screenCount": 60,
+  "primaryViewport": "1366x768",
+  "supportedViewports": ["1280x720", "1368x800", "1920x1080"],
+  "screenGroups": [
+    "Foundation and operational states",
+    "Product list and quick detail",
+    "Product detail",
+    "Product create, edit, and lifecycle",
+    "Skeleton and incomplete items",
+    "Categories and brands",
+    "Product import",
+    "Pricing",
+    "Bulk pricing, price import, and labels",
+    "Responsive and design system references"
+  ],
+  "screens": [
+    {
+      "number": "01",
+      "name": "Dashboard — normal",
+      "group": "Foundation and operational states",
+      "renderFile": "01-dashboard-normal.png"
+    },
+    {
+      "number": "02",
+      "name": "Dashboard — attention states",
+      "group": "Foundation and operational states",
+      "renderFile": "02-dashboard-attention-states.png"
+    },
+    {
+      "number": "03",
+      "name": "Back Office — Store Node unavailable",
+      "group": "Foundation and operational states",
+      "renderFile": "03-store-node-unavailable.png"
+    },
+    {
+      "number": "04",
+      "name": "Back Office — cloud sync unavailable",
+      "group": "Foundation and operational states",
+      "renderFile": "04-cloud-sync-unavailable.png"
+    },
+    {
+      "number": "05",
+      "name": "Back Office — permission-limited / read-only",
+      "group": "Foundation and operational states",
+      "renderFile": "05-permission-limited-read-only.png"
+    },
+    {
+      "number": "06",
+      "name": "Products — populated",
+      "group": "Product list and quick detail",
+      "renderFile": "06-products-populated.png"
+    },
+    {
+      "number": "07",
+      "name": "Products — loading",
+      "group": "Product list and quick detail",
+      "renderFile": "07-products-loading.png"
+    },
+    {
+      "number": "08",
+      "name": "Products — empty (first run)",
+      "group": "Product list and quick detail",
+      "renderFile": "08-products-empty-first-run.png"
+    },
+    {
+      "number": "09",
+      "name": "Products — no search results",
+      "group": "Product list and quick detail",
+      "renderFile": "09-products-no-search-results.png"
+    },
+    {
+      "number": "10",
+      "name": "Products — filtered",
+      "group": "Product list and quick detail",
+      "renderFile": "10-products-filtered.png"
+    },
+    {
+      "number": "11",
+      "name": "Product quick-detail drawer",
+      "group": "Product list and quick detail",
+      "renderFile": "11-product-quick-detail-drawer.png"
+    },
+    {
+      "number": "12",
+      "name": "Product Detail — Overview",
+      "group": "Product detail",
+      "renderFile": "12-product-detail-overview.png"
+    },
+    {
+      "number": "13",
+      "name": "Product Detail — Identifiers",
+      "group": "Product detail",
+      "renderFile": "13-product-detail-identifiers.png"
+    },
+    {
+      "number": "14",
+      "name": "Product Detail — Units",
+      "group": "Product detail",
+      "renderFile": "14-product-detail-units.png"
+    },
+    {
+      "number": "15",
+      "name": "Product Detail — Tracking",
+      "group": "Product detail",
+      "renderFile": "15-product-detail-tracking.png"
+    },
+    {
+      "number": "16",
+      "name": "Product Detail — Suppliers",
+      "group": "Product detail",
+      "renderFile": "16-product-detail-suppliers.png"
+    },
+    {
+      "number": "17",
+      "name": "Product Detail — Store Availability",
+      "group": "Product detail",
+      "renderFile": "17-product-detail-store-availability.png"
+    },
+    {
+      "number": "18",
+      "name": "Product Detail — History / Audit",
+      "group": "Product detail",
+      "renderFile": "18-product-detail-history-audit.png"
+    },
+    {
+      "number": "19",
+      "name": "New Product — Basic",
+      "group": "Product create, edit, and lifecycle",
+      "renderFile": "19-new-product-basic.png"
+    },
+    {
+      "number": "20",
+      "name": "New Product — Identifiers",
+      "group": "Product create, edit, and lifecycle",
+      "renderFile": "20-new-product-identifiers.png"
+    },
+    {
+      "number": "21",
+      "name": "New Product — Units",
+      "group": "Product create, edit, and lifecycle",
+      "renderFile": "21-new-product-units.png"
+    },
+    {
+      "number": "22",
+      "name": "New Product — Tracking",
+      "group": "Product create, edit, and lifecycle",
+      "renderFile": "22-new-product-tracking.png"
+    },
+    {
+      "number": "23",
+      "name": "New Product — Supplier Associations",
+      "group": "Product create, edit, and lifecycle",
+      "renderFile": "23-new-product-supplier-associations.png"
+    },
+    {
+      "number": "24",
+      "name": "Edit Product",
+      "group": "Product create, edit, and lifecycle",
+      "renderFile": "24-edit-product.png"
+    },
+    {
+      "number": "25",
+      "name": "Product validation errors",
+      "group": "Product create, edit, and lifecycle",
+      "renderFile": "25-product-validation-errors.png"
+    },
+    {
+      "number": "26",
+      "name": "Duplicate identifier conflict",
+      "group": "Product create, edit, and lifecycle",
+      "renderFile": "26-duplicate-identifier-conflict.png"
+    },
+    {
+      "number": "27",
+      "name": "Potential duplicate warning",
+      "group": "Product create, edit, and lifecycle",
+      "renderFile": "27-potential-duplicate-warning.png"
+    },
+    {
+      "number": "28",
+      "name": "Deactivate Product",
+      "group": "Product create, edit, and lifecycle",
+      "renderFile": "28-deactivate-product.png"
+    },
+    {
+      "number": "29",
+      "name": "Reactivate Product",
+      "group": "Product create, edit, and lifecycle",
+      "renderFile": "29-reactivate-product.png"
+    },
+    {
+      "number": "30",
+      "name": "Quick Create Skeleton Item",
+      "group": "Skeleton and incomplete items",
+      "renderFile": "30-quick-create-skeleton-item.png"
+    },
+    {
+      "number": "31",
+      "name": "Incomplete Item Detail",
+      "group": "Skeleton and incomplete items",
+      "renderFile": "31-incomplete-item-detail.png"
+    },
+    {
+      "number": "32",
+      "name": "Skeleton Completion Queue",
+      "group": "Skeleton and incomplete items",
+      "renderFile": "32-skeleton-completion-queue.png"
+    },
+    {
+      "number": "33",
+      "name": "Complete Item",
+      "group": "Skeleton and incomplete items",
+      "renderFile": "33-complete-item.png"
+    },
+    {
+      "number": "34",
+      "name": "Categories",
+      "group": "Categories and brands",
+      "renderFile": "34-categories.png"
+    },
+    {
+      "number": "35",
+      "name": "Category edit",
+      "group": "Categories and brands",
+      "renderFile": "35-category-edit.png"
+    },
+    {
+      "number": "36",
+      "name": "Brands",
+      "group": "Categories and brands",
+      "renderFile": "36-brands.png"
+    },
+    {
+      "number": "37",
+      "name": "Product Import — upload",
+      "group": "Product import",
+      "renderFile": "37-product-import-upload.png"
+    },
+    {
+      "number": "38",
+      "name": "Product Import — validation",
+      "group": "Product import",
+      "renderFile": "38-product-import-validation.png"
+    },
+    {
+      "number": "39",
+      "name": "Product Import — duplicate/error review",
+      "group": "Product import",
+      "renderFile": "39-product-import-duplicate-error-review.png"
+    },
+    {
+      "number": "40",
+      "name": "Product Import — confirmation/result",
+      "group": "Product import",
+      "renderFile": "40-product-import-confirmation-result.png"
+    },
+    {
+      "number": "41",
+      "name": "Pricing — master list",
+      "group": "Pricing",
+      "renderFile": "41-pricing-master-list.png"
+    },
+    {
+      "number": "42",
+      "name": "Pricing — missing-price filter",
+      "group": "Pricing",
+      "renderFile": "42-pricing-missing-price-filter.png"
+    },
+    {
+      "number": "43",
+      "name": "Item Pricing Detail",
+      "group": "Pricing",
+      "renderFile": "43-item-pricing-detail.png"
+    },
+    {
+      "number": "44",
+      "name": "Price History",
+      "group": "Pricing",
+      "renderFile": "44-price-history.png"
+    },
+    {
+      "number": "45",
+      "name": "Schedule Future Price",
+      "group": "Pricing",
+      "renderFile": "45-schedule-future-price.png"
+    },
+    {
+      "number": "46",
+      "name": "Price Change confirmation",
+      "group": "Pricing",
+      "renderFile": "46-price-change-confirmation.png"
+    },
+    {
+      "number": "47",
+      "name": "Price Validation warning",
+      "group": "Pricing",
+      "renderFile": "47-price-validation-warning.png"
+    },
+    {
+      "number": "48",
+      "name": "Bulk Price Change — selection",
+      "group": "Bulk pricing, price import, and labels",
+      "renderFile": "48-bulk-price-change-selection.png"
+    },
+    {
+      "number": "49",
+      "name": "Bulk Price Change — edit",
+      "group": "Bulk pricing, price import, and labels",
+      "renderFile": "49-bulk-price-change-edit.png"
+    },
+    {
+      "number": "50",
+      "name": "Bulk Price Change — validation/preview",
+      "group": "Bulk pricing, price import, and labels",
+      "renderFile": "50-bulk-price-change-validation-preview.png"
+    },
+    {
+      "number": "51",
+      "name": "Bulk Price Change — result",
+      "group": "Bulk pricing, price import, and labels",
+      "renderFile": "51-bulk-price-change-result.png"
+    },
+    {
+      "number": "52",
+      "name": "Price Import",
+      "group": "Bulk pricing, price import, and labels",
+      "renderFile": "52-price-import.png"
+    },
+    {
+      "number": "53",
+      "name": "Price Label Queue",
+      "group": "Bulk pricing, price import, and labels",
+      "renderFile": "53-price-label-queue.png"
+    },
+    {
+      "number": "54",
+      "name": "Unauthorized Price Edit",
+      "group": "Bulk pricing, price import, and labels",
+      "renderFile": "54-unauthorized-price-edit.png"
+    },
+    {
+      "number": "55",
+      "name": "Product list — 1280×720",
+      "group": "Responsive and design system references",
+      "renderFile": "55-product-list-1280x720.png"
+    },
+    {
+      "number": "56",
+      "name": "Product form — 1280×720",
+      "group": "Responsive and design system references",
+      "renderFile": "56-product-form-1280x720.png"
+    },
+    {
+      "number": "57",
+      "name": "DataTable design system",
+      "group": "Responsive and design system references",
+      "renderFile": "57-datatable-design-system.png"
+    },
+    {
+      "number": "58",
+      "name": "Form design system",
+      "group": "Responsive and design system references",
+      "renderFile": "58-form-design-system.png"
+    },
+    {
+      "number": "59",
+      "name": "Status/Validation/Permission design system",
+      "group": "Responsive and design system references",
+      "renderFile": "59-status-validation-permission-design-system.png"
+    },
+    {
+      "number": "60",
+      "name": "Product/Pricing component inventory",
+      "group": "Responsive and design system references",
+      "renderFile": "60-product-pricing-component-inventory.png"
+    }
+  ],
+  "authorityDependent": false,
+  "openDecisions": [],
+  "laterPhase": false,
+  "changelog": [],
+  "lastReviewedCommit": null,
+  "notes": "The approved source and all 60 screen names were verified from the Claude Design source. routeOrState and phaseLabel remain unset because the source does not assign product routes or the manifest phase-label vocabulary to individual screens."
+}

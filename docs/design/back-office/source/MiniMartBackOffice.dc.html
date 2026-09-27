@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/lucide-static@0.469.0/font/lucide.css">
+<script src="./image-slot.js"></script>
+<style>
+html,body{margin:0;height:100%;background:#f2f4f7}
+button,input,select,textarea{font-family:inherit;color:inherit}
+[class^="icon-"]{font-family:lucide!important;font-style:normal;line-height:1;display:inline-block;speak:never}
+*:focus-visible{outline:2px solid #1b5fd1;outline-offset:2px}
+a{color:#1b5fd1}a:hover{color:#174fb0}
+</style>
+</helmet>
+<div data-screen-label="{{ scrLabel }}" style="position:relative;display:flex;width:100%;height:{{ rootH }};min-width:1160px;background:#f2f4f7;font-family:'IBM Plex Sans',system-ui,sans-serif;color:#0f1a2b;overflow:hidden;font-variant-numeric:tabular-nums;font-size:13.5px;line-height:1.35">
+
+<aside style="width:190px;flex:none;background:#0e1b33;color:#c3cbd9;display:flex;flex-direction:column;padding:14px 10px 12px;gap:6px;overflow:auto">
+  <div style="display:flex;align-items:center;gap:9px;padding:2px 6px 10px">
+    <div style="width:30px;height:30px;border-radius:8px;background:#1b5fd1;display:grid;place-items:center;color:#fff"><i class="icon-store" style="font-size:16px"></i></div>
+    <div style="display:flex;flex-direction:column;gap:1px"><span style="color:#fff;font-weight:700;font-size:13px;letter-spacing:.08em">MINIMART</span><span style="font-size:10.5px;color:#8c98ad">Back Office</span></div>
+  </div>
+  <sc-for list="{{ nav }}" as="grp" hint-placeholder-count="6">
+    <div style="display:flex;flex-direction:column;gap:1px;margin-top:6px">
+      <span style="font-size:10px;font-weight:600;letter-spacing:.09em;color:#6f7c93;padding:4px 10px">{{ grp.label }}</span>
+      <sc-for list="{{ grp.items }}" as="it" hint-placeholder-count="3">
+        <button onClick="{{ it.go }}" disabled="{{ it.stub }}" style="display:flex;align-items:center;gap:9px;height:34px;padding:0 10px;border-radius:7px;border:0;background:{{ it.bg }};color:{{ it.fg }};font-size:12.5px;font-weight:{{ it.fw }};cursor:{{ it.cursor }};text-align:left">
+          <i class="{{ it.icon }}" style="font-size:15px"></i><span style="flex:1">{{ it.label }}</span>
+          <sc-if value="{{ it.stub }}" hint-placeholder-val="{{ false }}"><i class="icon-corner-down-right" style="font-size:11px;color:#4d5a72"></i></sc-if>
+        </button>
+      </sc-for>
+    </div>
+  </sc-for>
+  <div style="margin-top:auto;padding-top:10px;display:flex;flex-direction:column;gap:2px">
+    <span style="font-size:10px;color:#5d6a82;padding:0 10px">Structural navigation only outside this package</span>
+  </div>
+</aside>
+
+<div style="flex:1;min-width:0;display:flex;flex-direction:column">
+  <header style="height:50px;flex:none;background:#fff;border-bottom:1px solid #e1e5eb;display:flex;align-items:center;padding:0 16px;gap:16px">
+    <div style="display:flex;align-items:center;gap:6px;font-weight:600;font-size:13px"><i class="icon-building-2" style="font-size:15px;color:#4a5567"></i>MiniMart Sdn Bhd</div>
+    <div style="display:flex;align-items:center;gap:6px;font-size:12.5px;color:#4a5567"><i class="icon-store" style="font-size:14px"></i>Store <span style="font-weight:600;color:#0f1a2b">MiniMart Central</span></div>
+    <sc-if value="{{ showBizDate }}" hint-placeholder-val="{{ true }}">
+      <div style="display:flex;align-items:center;gap:6px;font-size:12.5px;color:#4a5567"><i class="icon-calendar" style="font-size:14px"></i>Business date <span style="color:#0f1a2b;font-weight:500">Sat, 26 Sep 2026</span></div>
+    </sc-if>
+    <div style="margin-left:auto;display:flex;align-items:center;gap:8px">
+      <div title="Store Node connection" style="display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 10px;border-radius:999px;border:1px solid {{ nodeP.bd }};background:{{ nodeP.bg }};color:{{ nodeP.fg }};font-size:12px;font-weight:600"><i class="{{ nodeP.icon }}" style="font-size:13px"></i>{{ nodeP.label }}</div>
+      <div title="Cloud synchronisation" style="display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 10px;border-radius:999px;border:1px solid {{ syncP.bd }};background:{{ syncP.bg }};color:{{ syncP.fg }};font-size:12px;font-weight:600"><i class="{{ syncP.icon }}" style="font-size:13px"></i>{{ syncP.label }}</div>
+      <button aria-label="Notifications" style="position:relative;width:32px;height:32px;border-radius:7px;border:1px solid #e1e5eb;background:#fff;display:grid;place-items:center;cursor:pointer;color:#4a5567"><i class="icon-bell" style="font-size:15px"></i></button>
+      <button style="display:flex;align-items:center;gap:7px;height:32px;padding:0 8px 0 4px;border-radius:7px;border:1px solid #e1e5eb;background:#fff;cursor:pointer;font-size:12.5px;font-weight:500"><span style="width:24px;height:24px;border-radius:50%;background:#e8f0fc;color:#1b5fd1;display:grid;place-items:center;font-size:10.5px;font-weight:700">SM</span>Siti M. <span style="color:#6b7585">· {{ roleLabel }}</span></button>
+    </div>
+  </header>
+
+  <div style="position:relative;flex:1;min-height:0;overflow:auto">
+
+  <sc-if value="{{ nodeDown }}" hint-placeholder-val="{{ false }}">
+    <div style="padding:40px;display:flex;justify-content:center">
+      <div style="max-width:520px;width:100%;background:#fff;border:1px solid #e1e5eb;border-radius:14px;padding:24px;display:flex;flex-direction:column;gap:14px">
+        <div style="display:flex;gap:14px;align-items:flex-start">
+          <div style="width:44px;height:44px;flex:none;border-radius:11px;background:#fcebea;color:#b3261e;display:grid;place-items:center"><i class="icon-server-off" style="font-size:22px"></i></div>
+          <div style="display:flex;flex-direction:column;gap:6px"><span style="font-size:17px;font-weight:600">Store Node unavailable</span><span style="font-size:13.5px;color:#4a5567">Back Office can't safely load or save Store Node-backed records — Products, Pricing, Inventory and Sales history for MiniMart Central are unavailable until the connection returns.</span></div>
+        </div>
+        <div style="display:grid;grid-template-columns:auto 1fr;gap:6px 16px;padding:12px 14px;border-radius:10px;background:#f7f9fb;font-size:12.5px"><span style="color:#6b7585">Last connected</span><span style="font-weight:500">14:28:40</span><span style="color:#6b7585">Affects</span><span style="font-weight:500">This store's local operations only</span></div>
+        <button style="height:40px;border-radius:8px;border:0;background:#1b5fd1;color:#fff;font-size:14px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px"><i class="icon-refresh-cw" style="font-size:15px"></i>Retry connection</button>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isDash }}" hint-placeholder-val="{{ false }}">
+    <div style="padding:20px 24px;display:flex;flex-direction:column;gap:16px">
+      <div style="display:flex;align-items:baseline;gap:10px"><span style="font-size:19px;font-weight:700">Dashboard</span><span style="font-size:12.5px;color:#6b7585">MiniMart Central · Sat, 26 Sep 2026</span></div>
+      <sc-if value="{{ cloudDown }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:10px;background:#fdf3e1;border:1px solid #f0d4a0;color:#6b4000;font-size:12.5px"><i class="icon-cloud-off" style="font-size:16px"></i><div style="flex:1"><strong style="font-weight:600">Cloud sync unavailable.</strong> Local operations on the Store Node continue normally. 22 records are queued.</div></div>
+      </sc-if>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px">
+        <sc-for list="{{ dashTiles }}" as="t" hint-placeholder-count="4">
+          <div style="background:#fff;border:1px solid #e1e5eb;border-radius:11px;padding:14px 16px;display:flex;flex-direction:column;gap:6px">
+            <span style="display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:600;color:#6b7585"><i class="{{ t.icon }}" style="font-size:13px"></i>{{ t.label }}</span>
+            <span style="font-size:24px;font-weight:700">{{ t.value }}</span>
+            <span style="font-size:11.5px;color:{{ t.tc }}">{{ t.sub }}</span>
+          </div>
+        </sc-for>
+      </div>
+      <div style="display:grid;grid-template-columns:1.4fr 1fr;gap:14px">
+        <div style="background:#fff;border:1px solid #e1e5eb;border-radius:12px;overflow:hidden">
+          <div style="padding:12px 16px;border-bottom:1px solid #e1e5eb;display:flex;align-items:baseline;gap:8px"><span style="font-size:14px;font-weight:600">Attention queue</span><span style="font-size:12px;color:#6b7585">Needs review before it affects checkout</span></div>
+          <sc-for list="{{ attention }}" as="a" hint-placeholder-count="4">
+            <button onClick="{{ a.go }}" style="width:100%;display:flex;align-items:center;gap:12px;padding:11px 16px;border:0;border-top:1px solid #eef1f5;background:#fff;text-align:left;cursor:pointer" style-hover="background:#f7f9fb">
+              <div style="width:32px;height:32px;border-radius:8px;background:{{ a.ibg }};color:{{ a.ifg }};display:grid;place-items:center"><i class="{{ a.icon }}" style="font-size:16px"></i></div>
+              <div style="flex:1;display:flex;flex-direction:column;gap:1px"><span style="font-size:13.5px;font-weight:600">{{ a.title }}</span><span style="font-size:12px;color:#6b7585">{{ a.sub }}</span></div>
+              <span style="font-size:16px;font-weight:700;color:{{ a.ifg }}">{{ a.count }}</span>
+              <i class="icon-chevron-right" style="font-size:14px;color:#9aa3b2"></i>
+            </button>
+          </sc-for>
+        </div>
+        <div style="background:#fff;border:1px solid #e1e5eb;border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:8px">
+          <span style="font-size:14px;font-weight:600">Quick navigation</span>
+          <sc-for list="{{ quickNav }}" as="q" hint-placeholder-count="4">
+            <button onClick="{{ q.go }}" style="display:flex;align-items:center;gap:10px;height:38px;padding:0 10px;border-radius:8px;border:1px solid #e1e5eb;background:#fff;font-size:13px;font-weight:600;cursor:pointer;text-align:left"><i class="{{ q.icon }}" style="font-size:16px;color:#3d4a5e"></i>{{ q.label }}<i class="icon-arrow-right" style="font-size:13px;margin-left:auto;color:#9aa3b2"></i></button>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isList }}" hint-placeholder-val="{{ false }}">
+    <div style="display:flex;height:100%">
+    <div style="flex:1;min-width:0;display:flex;flex-direction:column;padding:16px 18px;gap:12px;overflow:auto">
+      <div style="display:flex;align-items:baseline;gap:10px">
+        <span style="font-size:19px;font-weight:700">Products</span>
+        <sc-if value="{{ readOnly }}" hint-placeholder-val="{{ false }}"><span style="display:inline-flex;align-items:center;gap:5px;height:22px;padding:0 8px;border-radius:999px;background:#eef1f5;color:#3d4a5e;font-size:11.5px;font-weight:600"><i class="icon-lock" style="font-size:12px"></i>Read-only</span></sc-if>
+        <div style="margin-left:auto;display:flex;gap:8px">
+          <button disabled="{{ readOnly }}" style="height:34px;padding:0 12px;border-radius:8px;border:1px solid #cfd5de;background:#fff;font-size:12.5px;font-weight:600;cursor:pointer;color:{{ readOnly?'#9aa3b2':'#0f1a2b' }}">Bulk Actions</button>
+          <button onClick="{{ goImport }}" disabled="{{ readOnly }}" style="height:34px;padding:0 12px;border-radius:8px;border:1px solid #cfd5de;background:#fff;font-size:12.5px;font-weight:600;cursor:pointer">Import</button>
+          <button style="height:34px;padding:0 12px;border-radius:8px;border:1px solid #cfd5de;background:#fff;font-size:12.5px;font-weight:600;cursor:pointer">Export</button>
+          <button onClick="{{ goNew }}" disabled="{{ readOnly }}" title="{{ readOnly?'Not permitted with your current role':'' }}" style="height:34px;padding:0 14px;border-radius:8px;border:0;background:{{ readOnly?'#9aa3b2':'#1b5fd1' }};color:#fff;font-size:12.5px;font-weight:600;cursor:{{ readOnly?'not-allowed':'pointer' }};display:inline-flex;align-items:center;gap:6px"><i class="icon-plus" style="font-size:14px"></i>New Product</button>
+        </div>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+        <div style="display:flex;align-items:center;gap:8px;height:36px;padding:0 12px;flex:1;min-width:220px;max-width:360px;background:#fff;border:1px solid #cfd5de;border-radius:8px"><i class="icon-search" style="font-size:15px;color:#6b7585"></i><input value="{{ q }}" onChange="{{ onQ }}" placeholder="Barcode, item code or description" style="flex:1;min-width:0;border:0;outline:none;background:transparent;font-size:13px"></div>
+        <sc-for list="{{ filters }}" as="f" hint-placeholder-count="6">
+          <button onClick="{{ f.pick }}" aria-pressed="{{ f.on }}" style="height:36px;padding:0 11px;border-radius:8px;border:1px solid {{ f.bd }};background:{{ f.bg }};color:{{ f.fg }};font-size:12.5px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px"><i class="{{ f.icon }}" style="font-size:13px"></i>{{ f.label }}</button>
+        </sc-for>
+        <span style="margin-left:auto;font-size:12px;color:#6b7585">{{ resultLabel }}</span>
+      </div>
+      <div style="flex:1;min-height:0;background:#fff;border:1px solid #e1e5eb;border-radius:11px;overflow:auto;display:flex;flex-direction:column">
+        <div style="position:sticky;top:0;display:grid;grid-template-columns:34px minmax(220px,1.6fr) 110px 120px 100px 90px 84px 88px 76px 76px 90px;min-width:1108px;gap:10px;padding:8px 14px;background:#f7f9fb;border-bottom:1px solid #e1e5eb;font-size:10.5px;font-weight:600;letter-spacing:.04em;color:#6b7585"><span></span><span>PRODUCT</span><span>ITEM CODE</span><span>BARCODE</span><span>CATEGORY</span><span>BASE</span><span>SALES</span><span>PRICE</span><span>SELL.</span><span>PURCH.</span><span>STATUS</span></div>
+        <sc-if value="{{ listLoading }}" hint-placeholder-val="{{ false }}">
+          <sc-for list="{{ skel }}" as="s" hint-placeholder-count="8"><div style="display:flex;align-items:center;gap:12px;padding:0 14px;height:44px;border-top:1px solid #eef1f5"><div style="width:22px;height:22px;border-radius:4px;background:#eef1f5"></div><div style="height:12px;width:220px;border-radius:4px;background:#eef1f5"></div><div style="height:12px;width:70px;border-radius:4px;background:#f2f4f7;margin-left:auto"></div></div></sc-for>
+        </sc-if>
+        <sc-if value="{{ listEmptyFirstRun }}" hint-placeholder-val="{{ false }}">
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:50px;text-align:center"><div style="width:44px;height:44px;border-radius:11px;background:#f2f4f7;color:#6b7585;display:grid;place-items:center"><i class="icon-package" style="font-size:22px"></i></div><span style="font-size:14.5px;font-weight:600">No products yet</span><span style="font-size:12.5px;color:#6b7585;max-width:320px">Create your first product, or import a catalog from a spreadsheet.</span><div style="display:flex;gap:8px;margin-top:6px"><button style="height:34px;padding:0 12px;border-radius:8px;border:1px solid #cfd5de;background:#fff;font-size:12.5px;font-weight:600;cursor:pointer">Import</button><button onClick="{{ goNew }}" style="height:34px;padding:0 12px;border-radius:8px;border:0;background:#1b5fd1;color:#fff;font-size:12.5px;font-weight:600;cursor:pointer">New Product</button></div></div>
+        </sc-if>
+        <sc-if value="{{ listNoResults }}" hint-placeholder-val="{{ false }}">
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:50px;text-align:center"><div style="width:44px;height:44px;border-radius:11px;background:#fdf3e1;color:#8a5100;display:grid;place-items:center"><i class="icon-search" style="font-size:22px"></i></div><span style="font-size:14.5px;font-weight:600">No products match these filters</span><span style="font-size:12.5px;color:#6b7585">Try a different search term, or clear filters.</span><button onClick="{{ clearFilters }}" style="margin-top:6px;height:34px;padding:0 12px;border-radius:8px;border:1px solid #cfd5de;background:#fff;font-size:12.5px;font-weight:600;cursor:pointer">Clear filters</button></div>
+        </sc-if>
+        <sc-if value="{{ listPopulated }}" hint-placeholder-val="{{ true }}">
+          <sc-for list="{{ rows }}" as="p" hint-placeholder-count="8">
+            <div onClick="{{ p.open }}" style="display:grid;grid-template-columns:34px minmax(220px,1.6fr) 110px 120px 100px 90px 84px 88px 76px 76px 90px;min-width:1108px;align-items:center;gap:10px;padding:0 14px;height:48px;border-top:1px solid #eef1f5;background:{{ p.bg }};box-shadow:{{ p.ring }};cursor:pointer" style-hover="background:#f7f9fb">
+              <div style="width:22px;height:22px;border-radius:5px;background:#f7f8fa;border:1px dashed #d5dae2;display:grid;place-items:center"><i class="icon-image" style="font-size:11px;color:#b7bfcb"></i></div>
+              <div style="min-width:0;display:flex;flex-direction:column;gap:1px"><span style="font-weight:600;font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ p.n }}</span><span style="font-size:11px;color:#6b7585">{{ p.sub }}</span></div>
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#4a5567">{{ p.code }}</span>
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#4a5567">{{ p.barcode }}</span>
+              <span style="font-size:12px;color:#4a5567;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ p.cat }}</span>
+              <span style="font-size:12px;color:#4a5567">{{ p.base }}</span>
+              <span style="font-size:12px;color:#4a5567">{{ p.sales }}</span>
+              <span style="font-size:12.5px;font-weight:{{ p.priceFw }};color:{{ p.priceFg }}">{{ p.price }}</span>
+              <i class="{{ p.sellIcon }}" style="font-size:14px;color:{{ p.sellFg }}"></i>
+              <i class="{{ p.purchIcon }}" style="font-size:14px;color:{{ p.purchFg }}"></i>
+              <span style="display:inline-flex;align-items:center;gap:5px;justify-self:start;height:22px;padding:0 8px;border-radius:999px;background:{{ p.stBg }};color:{{ p.stFg }};font-size:11px;font-weight:600;white-space:nowrap"><i class="{{ p.stIcon }}" style="font-size:12px"></i>{{ p.st }}</span>
+            </div>
+          </sc-for>
+        </sc-if>
+      </div>
+    </div>
+
+    <sc-if value="{{ drawer }}" hint-placeholder-val="{{ false }}">
+      <aside aria-label="Product quick detail" style="width:360px;flex:none;background:#fff;border-left:1px solid #e1e5eb;display:flex;flex-direction:column">
+        <div style="flex:none;display:flex;align-items:center;gap:10px;padding:12px 10px 12px 16px;border-bottom:1px solid #e1e5eb">
+          <span style="font-size:14px;font-weight:600;flex:1">Quick detail</span>
+          <button onClick="{{ closeDrawer }}" aria-label="Close" style="width:30px;height:30px;border-radius:7px;border:0;background:transparent;display:grid;place-items:center;cursor:pointer;color:#4a5567"><i class="icon-x" style="font-size:16px"></i></button>
+        </div>
+        <div style="flex:1;overflow:auto;padding:16px;display:flex;flex-direction:column;gap:14px">
+          <div style="display:flex;gap:12px;align-items:flex-start">
+            <div style="width:64px;height:64px;flex:none;border-radius:8px;background:#f7f8fa;border:1px dashed #d5dae2;display:grid;place-items:center"><i class="icon-image" style="font-size:22px;color:#b7bfcb"></i></div>
+            <div style="display:flex;flex-direction:column;gap:3px"><span style="font-size:14.5px;font-weight:600;line-height:1.3">{{ d.n }}</span><span style="font-size:12px;color:#6b7585">{{ d.code }} · {{ d.barcode }}</span><span style="display:inline-flex;align-items:center;gap:5px;height:20px;padding:0 7px;border-radius:999px;background:{{ d.stBg }};color:{{ d.stFg }};font-size:11px;font-weight:600;width:fit-content"><i class="{{ d.stIcon }}" style="font-size:11px"></i>{{ d.st }}</span></div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px 14px;font-size:12.5px">
+            <div style="display:flex;flex-direction:column;gap:2px"><span style="color:#6b7585;font-size:11px">Category</span><span style="font-weight:500">{{ d.cat }}</span></div>
+            <div style="display:flex;flex-direction:column;gap:2px"><span style="color:#6b7585;font-size:11px">Brand</span><span style="font-weight:500">{{ d.brand }}</span></div>
+            <div style="display:flex;flex-direction:column;gap:2px"><span style="color:#6b7585;font-size:11px">Base UoM</span><span style="font-weight:500">{{ d.base }}</span></div>
+            <div style="display:flex;flex-direction:column;gap:2px"><span style="color:#6b7585;font-size:11px">Sales UoM</span><span style="font-weight:500">{{ d.sales }}</span></div>
+            <div style="display:flex;flex-direction:column;gap:2px"><span style="color:#6b7585;font-size:11px">Sellable</span><span style="font-weight:500">{{ d.sellable }}</span></div>
+            <div style="display:flex;flex-direction:column;gap:2px"><span style="color:#6b7585;font-size:11px">Purchasable</span><span style="font-weight:500">{{ d.purchasable }}</span></div>
+            <div style="display:flex;flex-direction:column;gap:2px"><span style="color:#6b7585;font-size:11px">Tracking</span><span style="font-weight:500">{{ d.tracking }}</span></div>
+            <div style="display:flex;flex-direction:column;gap:2px"><span style="color:#6b7585;font-size:11px">Price status</span><span style="font-weight:600;color:{{ d.priceFg }}">{{ d.priceStatus }}</span></div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:3px;padding:10px 12px;border-radius:9px;background:#f7f9fb;border:1px solid #e1e5eb"><span style="font-size:11px;color:#6b7585">Preferred supplier</span><span style="font-size:12.5px;font-weight:600">{{ d.supplier }}</span></div>
+          <div style="display:flex;flex-direction:column;gap:3px;padding:10px 12px;border-radius:9px;background:#f7f9fb;border:1px solid #e1e5eb"><span style="font-size:11px;color:#6b7585">Store availability</span><span style="font-size:12.5px;font-weight:600">{{ d.avail }}</span></div>
+        </div>
+        <div style="flex:none;display:flex;gap:8px;padding:12px 16px;border-top:1px solid #e1e5eb">
+          <button onClick="{{ closeDrawer }}" style="flex:1;height:38px;border-radius:8px;border:1px solid #cfd5de;background:#fff;font-size:12.5px;font-weight:600;cursor:pointer">View Product</button>
+          <button onClick="{{ closeDrawer }}" disabled="{{ readOnly }}" style="flex:1;height:38px;border-radius:8px;border:0;background:{{ readOnly?'#9aa3b2':'#1b5fd1' }};color:#fff;font-size:12.5px;font-weight:600;cursor:pointer">Edit Product</button>
+        </div>
+      </aside>
+    </sc-if>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isDetail }}" hint-placeholder-val="{{ false }}">
+    <div style="padding:16px 22px;display:flex;flex-direction:column;gap:14px;height:100%;overflow:auto">
+      <div style="display:flex;align-items:center;gap:14px;padding-bottom:2px">
+        <div style="width:52px;height:52px;flex:none;border-radius:9px;background:#f7f8fa;border:1px dashed #d5dae2;display:grid;place-items:center"><i class="icon-image" style="font-size:20px;color:#b7bfcb"></i></div>
+        <div style="display:flex;flex-direction:column;gap:2px;flex:1;min-width:0"><span style="font-size:18px;font-weight:700">{{ item.n }}</span><span style="font-size:12.5px;color:#6b7585;font-family:'IBM Plex Mono',monospace">{{ item.code }} · {{ item.barcode }}</span></div>
+        <span style="display:inline-flex;align-items:center;gap:5px;height:24px;padding:0 9px;border-radius:999px;background:{{ item.stBg }};color:{{ item.stFg }};font-size:12px;font-weight:600"><i class="{{ item.stIcon }}" style="font-size:13px"></i>{{ item.st }}</span>
+        <div style="display:flex;gap:8px">
+          <button onClick="{{ openDeactivate }}" style="height:36px;padding:0 12px;border-radius:8px;border:1px solid #cfd5de;background:#fff;font-size:12.5px;font-weight:600;cursor:pointer;color:#b3261e">{{ item.lifecycleAction }}</button>
+          <button onClick="{{ goEdit }}" style="height:36px;padding:0 14px;border-radius:8px;border:0;background:#1b5fd1;color:#fff;font-size:12.5px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px"><i class="icon-pencil" style="font-size:14px"></i>Edit Product</button>
+        </div>
+      </div>
+      <sc-if value="{{ item.incomplete }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:10px;background:#fdf3e1;border:1px solid #f0d4a0;color:#6b4000;font-size:12.5px"><i class="icon-triangle-alert" style="font-size:16px"></i><div style="flex:1"><strong style="font-weight:600">Incomplete / skeleton item.</strong> Created during receiving on 24 Sep 2026. Missing: Category, Sales UoM, Selling price. Exact required-field policy and eligible transactions are authority-dependent.</div><button onClick="{{ goComplete }}" style="height:30px;padding:0 10px;border-radius:7px;border:1px solid #e3bd78;background:#fff;font-size:12px;font-weight:600;cursor:pointer;color:#6b4000">Complete item</button></div>
+      </sc-if>
+      <div style="display:flex;gap:4px;border-bottom:1px solid #e1e5eb">
+        <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="7">
+          <button onClick="{{ t.go }}" style="padding:9px 13px;border:0;background:transparent;font-size:12.5px;font-weight:{{ t.fw }};color:{{ t.fg }};box-shadow:{{ t.ring }};cursor:pointer">{{ t.label }}</button>
+        </sc-for>
+      </div>
+      <div style="flex:1;overflow:auto">{{ tabContent }}</div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isForm }}" hint-placeholder-val="{{ false }}">
+    <div style="padding:16px 22px;display:flex;flex-direction:column;gap:14px;height:100%;overflow:auto">
+      <div style="display:flex;align-items:baseline;gap:10px">
+        <span style="font-size:18px;font-weight:700">{{ formTitle }}</span>
+        <sc-if value="{{ item.n }}" hint-placeholder-val="{{ false }}"><span style="font-size:12.5px;color:#6b7585">{{ item.n }} · {{ item.code }}</span></sc-if>
+      </div>
+      <div style="display:flex;gap:4px;border-bottom:1px solid #e1e5eb">
+        <sc-for list="{{ formTabs }}" as="t" hint-placeholder-count="5">
+          <button onClick="{{ t.go }}" style="padding:9px 13px;border:0;background:transparent;font-size:12.5px;font-weight:{{ t.fw }};color:{{ t.fg }};box-shadow:{{ t.ring }};cursor:pointer;display:inline-flex;align-items:center;gap:6px">{{ t.label }}<sc-if value="{{ t.err }}" hint-placeholder-val="{{ false }}"><span style="width:7px;height:7px;border-radius:50%;background:#b3261e"></span></sc-if></button>
+        </sc-for>
+      </div>
+      <div style="flex:1;overflow:auto;max-width:820px">{{ formContent }}</div>
+      <div style="flex:none;display:flex;justify-content:flex-end;gap:8px;padding-top:10px;border-top:1px solid #e1e5eb">
+        <button style="height:40px;padding:0 16px;border-radius:8px;border:1px solid #cfd5de;background:#fff;font-size:13.5px;font-weight:600;cursor:pointer">Cancel</button>
+        <button style="height:40px;padding:0 18px;border-radius:8px;border:0;background:#1b5fd1;color:#fff;font-size:13.5px;font-weight:600;cursor:pointer">Save Product</button>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isTax }}" hint-placeholder-val="{{ false }}">
+    <div style="padding:16px 22px;display:flex;flex-direction:column;gap:14px">
+      <span style="font-size:19px;font-weight:700">{{ taxTitle }}</span>
+      <div style="background:#fff;border:1px solid #e1e5eb;border-radius:11px;overflow:hidden;max-width:900px">
+        <div style="padding:9px 16px;font-size:12.5px;color:#6b7585;border-bottom:1px solid #e1e5eb">{{ taxSummary }}</div>
+        <sc-for list="{{ taxRows }}" as="r" hint-placeholder-count="6">
+          <div style="display:flex;align-items:center;gap:14px;padding:0 16px;height:44px;border-top:1px solid #eef1f5;font-size:13px"><span style="flex:1;font-weight:600">{{ r.n }}</span><span style="font-size:12px;color:#6b7585">{{ r.sub }}</span><button style="height:30px;padding:0 10px;border-radius:7px;border:1px solid #cfd5de;background:#fff;font-size:12px;font-weight:600;cursor:pointer">{{ r.action }}</button></div>
+        </sc-for>
+        <div style="padding:12px 16px;border-top:1px solid #eef1f5"><button style="height:34px;padding:0 12px;border-radius:8px;border:0;background:#1b5fd1;color:#fff;font-size:12.5px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px"><i class="icon-plus" style="font-size:14px"></i>{{ taxAction }}</button></div>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isImport }}" hint-placeholder-val="{{ false }}">
+    <div style="padding:16px 22px;display:flex;flex-direction:column;gap:14px;max-width:980px">
+      <span style="font-size:19px;font-weight:700">{{ importTitle }} import</span>
+      <div style="display:flex;align-items:center;gap:6px">
+        <sc-for list="{{ importSteps }}" as="s" hint-placeholder-count="4">
+          <span style="display:inline-flex;align-items:center;gap:5px;height:26px;padding:0 10px;border-radius:999px;border:1px solid {{ s.bd }};background:{{ s.bg }};color:{{ s.fg }};font-size:12px;font-weight:600">{{ s.label }}</span>
+          <i class="icon-chevron-right" style="font-size:13px;color:#9aa3b2;opacity:{{ s.arrowOp }}"></i>
+        </sc-for>
+      </div>
+      <sc-if value="{{ imp.upload }}" hint-placeholder-val="{{ false }}">
+        <div style="background:#fff;border:1.5px dashed #cfd5de;border-radius:12px;padding:40px;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center">
+          <i class="icon-upload" style="font-size:28px;color:#6b7585"></i><span style="font-size:14.5px;font-weight:600">Drop a CSV or spreadsheet</span><span style="font-size:12.5px;color:#6b7585">Or choose a file. A template is available for download.</span>
+          <div style="display:flex;gap:8px;margin-top:6px"><button style="height:36px;padding:0 12px;border-radius:8px;border:1px solid #cfd5de;background:#fff;font-size:12.5px;font-weight:600;cursor:pointer">Download template</button><button style="height:36px;padding:0 14px;border-radius:8px;border:0;background:#1b5fd1;color:#fff;font-size:12.5px;font-weight:600;cursor:pointer">Choose file</button></div>
+        </div>
+      </sc-if>
+      <sc-if value="{{ imp.validate }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;gap:10px"><span style="font-size:12.5px;color:#4a5567">Validating <strong>catalog-update-sep26.csv</strong> · 214 rows</span></div>
+        <div style="height:8px;border-radius:4px;background:#eef1f5;overflow:hidden"><div style="width:64%;height:100%;background:#1b5fd1"></div></div>
+      </sc-if>
+      <sc-if value="{{ imp.review }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;gap:10px">
+          <div style="flex:1;background:#fff;border:1px solid #e1e5eb;border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;gap:2px"><span style="font-size:11.5px;color:#6b7585">TOTAL ROWS</span><span style="font-size:22px;font-weight:700">214</span></div>
+          <div style="flex:1;background:#fff;border:1px solid #e1e5eb;border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;gap:2px"><span style="font-size:11.5px;color:#146c43">VALID</span><span style="font-size:22px;font-weight:700;color:#146c43">198</span></div>
+          <div style="flex:1;background:#fff;border:1px solid #e1e5eb;border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;gap:2px"><span style="font-size:11.5px;color:#b3261e">INVALID</span><span style="font-size:22px;font-weight:700;color:#b3261e">11</span></div>
+          <div style="flex:1;background:#fff;border:1px solid #e1e5eb;border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;gap:2px"><span style="font-size:11.5px;color:#8a5100">WARNINGS</span><span style="font-size:22px;font-weight:700;color:#8a5100">5</span></div>
+        </div>
+        <div style="background:#fff;border:1px solid #e1e5eb;border-radius:11px;overflow:hidden">
+          <div style="display:grid;grid-template-columns:60px minmax(0,1fr) 120px 200px;gap:10px;padding:8px 14px;background:#f7f9fb;border-bottom:1px solid #e1e5eb;font-size:10.5px;font-weight:600;color:#6b7585">ROW,DESCRIPTION,BARCODE,ISSUE</div>
+          <sc-for list="{{ importRows }}" as="r" hint-placeholder-count="5">
+            <div style="display:grid;grid-template-columns:60px minmax(0,1fr) 120px 200px;gap:10px;align-items:center;padding:0 14px;height:40px;border-top:1px solid #eef1f5;font-size:12.5px"><span style="color:#4a5567">{{ r.row }}</span><span>{{ r.n }}</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px">{{ r.bc }}</span><span style="display:inline-flex;align-items:center;gap:5px;color:{{ r.fg }};font-weight:600"><i class="{{ r.icon }}" style="font-size:13px"></i>{{ r.issue }}</span></div>
+          </sc-for>
+        </div>
+        <span style="font-size:12px;color:#6b7585">Invalid rows are never silently dropped — resolve or exclude them explicitly before committing. Whether a partial commit is allowed is authority-dependent.</span>
+      </sc-if>
+      <sc-if value="{{ imp.result }}" hint-placeholder-val="{{ false }}">
+        <div style="background:#fff;border:1px solid #e1e5eb;border-radius:12px;padding:20px;display:flex;gap:14px;align-items:flex-start">
+          <div style="width:44px;height:44px;flex:none;border-radius:11px;background:#e5f4ec;color:#146c43;display:grid;place-items:center"><i class="icon-circle-check" style="font-size:22px"></i></div>
+          <div style="display:flex;flex-direction:column;gap:6px"><span style="font-size:16px;font-weight:600">Import complete</span><span style="font-size:13px;color:#4a5567">198 rows applied. 11 rows were excluded and need correction before re-import; 5 warnings were accepted.</span></div>
+        </div>
+      </sc-if>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isPricing }}" hint-placeholder-val="{{ false }}">
+    <div style="padding:16px 22px;display:flex;flex-direction:column;gap:12px;height:100%;overflow:auto">
+      <div style="display:flex;align-items:baseline;gap:10px">
+        <span style="font-size:19px;font-weight:700">Pricing</span>
+        <span style="font-size:12.5px;color:#6b7585">Price Context: MiniMart Central</span>
+        <div style="margin-left:auto;display:flex;gap:8px">
+          <button onClick="{{ goPriceImport }}" style="height:34px;padding:0 12px;border-radius:8px;border:1px solid #cfd5de;background:#fff;font-size:12.5px;font-weight:600;cursor:pointer">Price Import</button>
+          <button onClick="{{ goBulk }}" style="height:34px;padding:0 12px;border-radius:8px;border:0;background:#1b5fd1;color:#fff;font-size:12.5px;font-weight:600;cursor:pointer">Bulk Price Change</button>
+        </div>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <div style="display:flex;align-items:center;gap:8px;height:36px;padding:0 12px;flex:1;min-width:220px;max-width:340px;background:#fff;border:1px solid #cfd5de;border-radius:8px"><i class="icon-search" style="font-size:15px;color:#6b7585"></i><span style="font-size:13px;color:#9aa3b2">Item, code or barcode</span></div>
+        <sc-for list="{{ priceFilters }}" as="f" hint-placeholder-count="3">
+          <button onClick="{{ f.pick }}" aria-pressed="{{ f.on }}" style="height:36px;padding:0 11px;border-radius:8px;border:1px solid {{ f.bd }};background:{{ f.bg }};color:{{ f.fg }};font-size:12.5px;font-weight:600;cursor:pointer">{{ f.label }}</button>
+        </sc-for>
+      </div>
+      <div style="flex:1;min-height:0;background:#fff;border:1px solid #e1e5eb;border-radius:11px;overflow:auto">
+        <div style="position:sticky;top:0;display:grid;grid-template-columns:minmax(0,1.6fr) 110px 100px 110px 130px 100px;gap:10px;padding:8px 14px;background:#f7f9fb;border-bottom:1px solid #e1e5eb;font-size:10.5px;font-weight:600;letter-spacing:.04em;color:#6b7585"><span>PRODUCT</span><span>ITEM CODE</span><span style="text-align:right">CURRENT PRICE</span><span>STATUS</span><span>EFFECTIVE</span><span>LABEL</span></div>
+        <sc-for list="{{ priceRows }}" as="p" hint-placeholder-count="8">
+          <div onClick="{{ p.open }}" style="display:grid;grid-template-columns:minmax(0,1.6fr) 110px 100px 110px 130px 100px;align-items:center;gap:10px;padding:0 14px;height:46px;border-top:1px solid #eef1f5;cursor:pointer" style-hover="background:#f7f9fb">
+            <span style="font-size:13px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ p.n }}</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#4a5567">{{ p.code }}</span>
+            <span style="text-align:right;font-weight:{{ p.priceFw }};color:{{ p.priceFg }};font-size:13px">{{ p.price }}</span>
+            <span style="display:inline-flex;align-items:center;gap:5px;justify-self:start;height:22px;padding:0 8px;border-radius:999px;background:{{ p.stBg }};color:{{ p.stFg }};font-size:11px;font-weight:600"><i class="{{ p.stIcon }}" style="font-size:12px"></i>{{ p.st }}</span>
+            <span style="font-size:12px;color:#4a5567">{{ p.eff }}</span>
+            <span style="font-size:11.5px;font-weight:600;color:{{ p.labelFg }}">{{ p.label }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isPriceDetail }}" hint-placeholder-val="{{ false }}">
+    <div style="padding:16px 22px;display:flex;flex-direction:column;gap:14px;max-width:920px;height:100%;overflow:auto">
+      <div style="display:flex;align-items:baseline;gap:10px"><span style="font-size:18px;font-weight:700">{{ pd.n }}</span><span style="font-size:12.5px;color:#6b7585;font-family:'IBM Plex Mono',monospace">{{ pd.code }} · Company Item Identity</span></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
+        <div style="background:#fff;border:1px solid #e1e5eb;border-radius:11px;padding:14px 16px;display:flex;flex-direction:column;gap:4px"><span style="font-size:11px;font-weight:600;color:#6b7585">CURRENT PRICE · MiniMart Central</span><span style="font-size:26px;font-weight:700;color:{{ pd.curFg }}">{{ pd.cur }}</span><span style="font-size:11.5px;color:#6b7585">{{ pd.curSince }}</span></div>
+        <div style="background:#fff;border:1px solid #e1e5eb;border-radius:11px;padding:14px 16px;display:flex;flex-direction:column;gap:4px"><span style="font-size:11px;font-weight:600;color:#174fb0">SCHEDULED / FUTURE</span><span style="font-size:22px;font-weight:700">{{ pd.future }}</span><span style="font-size:11.5px;color:#6b7585">{{ pd.futureEff }}</span></div>
+        <div style="background:#fff;border:1px solid #e1e5eb;border-radius:11px;padding:14px 16px;display:flex;flex-direction:column;gap:4px"><span style="font-size:11px;font-weight:600;color:#6b7585">MARGIN <span style="font-weight:400">(authorized view)</span></span><span style="font-size:22px;font-weight:700">{{ pd.margin }}</span><span style="font-size:11.5px;color:#6b7585">Cost reference {{ pd.cost }} · decision support only</span></div>
+      </div>
+      <div style="display:flex;gap:8px"><button onClick="{{ goSchedule }}" style="height:38px;padding:0 14px;border-radius:8px;border:0;background:#1b5fd1;color:#fff;font-size:12.5px;font-weight:600;cursor:pointer">Schedule new price</button><button style="height:38px;padding:0 12px;border-radius:8px;border:1px solid #cfd5de;background:#fff;font-size:12.5px;font-weight:600;cursor:pointer">View label queue</button></div>
+      <div style="background:#fff;border:1px solid #e1e5eb;border-radius:11px;overflow:hidden">
+        <div style="padding:10px 16px;font-size:13.5px;font-weight:600;border-bottom:1px solid #e1e5eb">Price history <span style="font-weight:400;color:#6b7585;font-size:12px">— read-only</span></div>
+        <div style="display:grid;grid-template-columns:100px 130px 130px 130px 1fr;gap:10px;padding:8px 16px;background:#f7f9fb;border-bottom:1px solid #e1e5eb;font-size:10.5px;font-weight:600;color:#6b7585">PRICE,EFFECTIVE FROM,EFFECTIVE UNTIL,CHANGED BY,REASON</div>
+        <sc-for list="{{ priceHist }}" as="h" hint-placeholder-count="4">
+          <div style="display:grid;grid-template-columns:100px 130px 130px 130px 1fr;gap:10px;align-items:center;padding:0 16px;height:42px;border-top:1px solid #eef1f5;font-size:12.5px"><span style="font-weight:600">{{ h.price }}</span><span style="color:#4a5567">{{ h.from }}</span><span style="color:#4a5567">{{ h.until }}</span><span>{{ h.by }}</span><span style="color:#6b7585">{{ h.reason }}</span></div>
+        </sc-for>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isBulk }}" hint-placeholder-val="{{ false }}">
+    <div style="padding:16px 22px;display:flex;flex-direction:column;gap:14px;max-width:1000px">
+      <span style="font-size:19px;font-weight:700">Bulk Price Change</span>
+      <div style="display:flex;align-items:center;gap:6px">
+        <sc-for list="{{ bulkSteps }}" as="s" hint-placeholder-count="5">
+          <span style="display:inline-flex;align-items:center;gap:5px;height:26px;padding:0 10px;border-radius:999px;border:1px solid {{ s.bd }};background:{{ s.bg }};color:{{ s.fg }};font-size:12px;font-weight:600">{{ s.label }}</span>
+          <i class="icon-chevron-right" style="font-size:13px;color:#9aa3b2;opacity:{{ s.arrowOp }}"></i>
+        </sc-for>
+      </div>
+      <sc-if value="{{ bulk.select }}" hint-placeholder-val="{{ false }}">
+        <div style="background:#fff;border:1px solid #e1e5eb;border-radius:11px;overflow:hidden">
+          <div style="display:grid;grid-template-columns:32px minmax(0,1fr) 110px;gap:10px;padding:8px 14px;background:#f7f9fb;border-bottom:1px solid #e1e5eb;font-size:10.5px;font-weight:600;color:#6b7585">SEL,PRODUCT,CURRENT PRICE</div>
+          <sc-for list="{{ bulkRows }}" as="r" hint-placeholder-count="6">
+            <div style="display:grid;grid-template-columns:32px minmax(0,1fr) 110px;gap:10px;align-items:center;padding:0 14px;height:42px;border-top:1px solid #eef1f5"><span style="width:18px;height:18px;border-radius:4px;border:1.5px solid {{ r.cbd }};background:{{ r.cbg }};display:grid;place-items:center"><i class="icon-check" style="font-size:12px;color:#fff;opacity:{{ r.checkOp }}"></i></span><span style="font-size:13px">{{ r.n }}</span><span style="text-align:right;font-weight:600">{{ r.price }}</span></div>
+          </sc-for>
+        </div>
+      </sc-if>
+      <sc-if value="{{ bulk.edit }}" hint-placeholder-val="{{ false }}">
+        <div style="background:#fff;border:1px solid #e1e5eb;border-radius:11px;overflow:hidden">
+          <div style="display:grid;grid-template-columns:minmax(0,1fr) 110px 130px 130px;gap:10px;padding:8px 14px;background:#f7f9fb;border-bottom:1px solid #e1e5eb;font-size:10.5px;font-weight:600;color:#6b7585">PRODUCT,CURRENT,PROPOSED,EFFECTIVE</div>
+          <sc-for list="{{ bulkEditRows }}" as="r" hint-placeholder-count="4">
+            <div style="display:grid;grid-template-columns:minmax(0,1fr) 110px 130px 130px;gap:10px;align-items:center;padding:0 14px;height:44px;border-top:1px solid #eef1f5"><span style="font-size:13px">{{ r.n }}</span><span style="color:#6b7585">{{ r.cur }}</span><span style="height:32px;border:1.5px solid #1b5fd1;box-shadow:0 0 0 3px #dbe7fb;border-radius:7px;display:flex;align-items:center;padding:0 8px;font-weight:600">{{ r.proposed }}</span><span style="color:#4a5567">{{ r.eff }}</span></div>
+          </sc-for>
+        </div>
+      </sc-if>
+      <sc-if value="{{ bulk.validate }}" hint-placeholder-val="{{ false }}">
+        <div style="background:#fff;border:1px solid #e1e5eb;border-radius:11px;overflow:hidden">
+          <div style="display:grid;grid-template-columns:minmax(0,1fr) 100px 100px 130px;gap:10px;padding:8px 14px;background:#f7f9fb;border-bottom:1px solid #e1e5eb;font-size:10.5px;font-weight:600;color:#6b7585">PRODUCT,CURRENT,PROPOSED,VALIDATION</div>
+          <sc-for list="{{ bulkValRows }}" as="r" hint-placeholder-count="4">
+            <div style="display:grid;grid-template-columns:minmax(0,1fr) 100px 100px 130px;gap:10px;align-items:center;padding:0 14px;height:44px;border-top:1px solid #eef1f5"><span style="font-size:13px">{{ r.n }}</span><span style="color:#6b7585">{{ r.cur }}</span><span style="font-weight:600">{{ r.proposed }}</span><span style="display:inline-flex;align-items:center;gap:5px;color:{{ r.fg }};font-weight:600;font-size:12.5px"><i class="{{ r.icon }}" style="font-size:14px"></i>{{ r.msg }}</span></div>
+          </sc-for>
+        </div>
+        <span style="font-size:12px;color:#6b7585">Rows needing correction stay visible and block Apply until resolved or removed from the batch. Maker-checker approval is not assumed unless authority requires it.</span>
+      </sc-if>
+      <sc-if value="{{ bulk.result }}" hint-placeholder-val="{{ false }}">
+        <div style="background:#fff;border:1px solid #e1e5eb;border-radius:12px;padding:20px;display:flex;gap:14px;align-items:flex-start"><div style="width:44px;height:44px;flex:none;border-radius:11px;background:#e5f4ec;color:#146c43;display:grid;place-items:center"><i class="icon-circle-check" style="font-size:22px"></i></div><div style="display:flex;flex-direction:column;gap:6px"><span style="font-size:16px;font-weight:600">Bulk price change applied</span><span style="font-size:13px;color:#4a5567">5 of 6 prices applied and scheduled. 1 row was rejected and needs correction before re-submission.</span></div></div>
+      </sc-if>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isDenied }}" hint-placeholder-val="{{ false }}">
+    <div style="padding:40px;display:flex;justify-content:center">
+      <div style="max-width:480px;background:#fff;border:1px solid #e1e5eb;border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:12px">
+        <div style="width:40px;height:40px;border-radius:10px;background:#eef1f5;color:#0e1b33;display:grid;place-items:center"><i class="icon-lock" style="font-size:20px"></i></div>
+        <span style="font-size:16px;font-weight:600">{{ deniedTitle }}</span>
+        <span style="font-size:13.5px;color:#4a5567">{{ deniedBody }}</span>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isDSTable }}" hint-placeholder-val="{{ false }}">
+    <div style="padding:20px 24px;display:flex;flex-direction:column;gap:16px">
+      <span style="font-size:19px;font-weight:700">DataTable · design system</span>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <span style="font-size:13px;font-weight:600">States</span>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
+          <sc-for list="{{ dtStates }}" as="s" hint-placeholder-count="6">
+            <div style="background:#fff;border:1px solid #e1e5eb;border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:6px;min-height:90px"><span style="font:600 10.5px 'IBM Plex Mono',monospace;color:#6b7585">{{ s.name }}</span><span style="font-size:12.5px;color:#4a5567">{{ s.desc }}</span></div>
+          </sc-for>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <span style="font-size:13px;font-weight:600">Row states</span>
+        <div style="background:#fff;border:1px solid #e1e5eb;border-radius:10px;overflow:hidden;max-width:640px">
+          <div style="display:grid;grid-template-columns:minmax(0,1fr) 100px;padding:0 14px;height:40px;align-items:center;border-bottom:1px solid #eef1f5"><span style="font-size:12.5px">Default row</span><span style="font-size:11px;color:#6b7585">hover to see</span></div>
+          <div style="display:grid;grid-template-columns:minmax(0,1fr) 100px;padding:0 14px;height:40px;align-items:center;border-bottom:1px solid #eef1f5;background:#eef4fd;box-shadow:inset 0 0 0 2px #1b5fd1"><span style="font-size:12.5px;font-weight:600">Focused / selected row</span><span style="font-size:11px;color:#1b5fd1">keyboard-focused</span></div>
+          <div style="display:grid;grid-template-columns:minmax(0,1fr) 100px;padding:0 14px;height:40px;align-items:center;opacity:.5"><span style="font-size:12.5px">Disabled row</span><span style="font-size:11px;color:#6b7585">permission-restricted</span></div>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isDSForm }}" hint-placeholder-val="{{ false }}">
+    <div style="padding:20px 24px;display:flex;flex-direction:column;gap:16px;max-width:900px">
+      <span style="font-size:19px;font-weight:700">Form components · design system</span>
+      <div style="background:#fff;border:1px solid #e1e5eb;border-radius:11px;padding:16px 18px;display:grid;grid-template-columns:1fr 1fr;gap:14px">
+        <sc-for list="{{ dsFields }}" as="f" hint-placeholder-count="8">
+          <div style="display:flex;flex-direction:column;gap:5px"><span style="font-size:12.5px;font-weight:600">{{ f.label }}</span><div style="height:38px;border-radius:8px;border:{{ f.bd }};box-shadow:{{ f.ring }};background:#fff;padding:0 11px;display:flex;align-items:center;justify-content:space-between;font-size:13px"><span>{{ f.val }}</span><i class="{{ f.icon }}" style="font-size:14px;color:#6b7585"></i></div><span style="font-size:11px;color:{{ f.hc }}">{{ f.help }}</span></div>
+        </sc-for>
+      </div>
+      <div style="background:#fff;border:1px solid #e1e5eb;border-radius:11px;padding:14px 16px;display:flex;align-items:center;gap:12px">
+        <i class="icon-triangle-alert" style="font-size:16px;color:#8a5100"></i><span style="font-size:12.5px;color:#4a5567;flex:1">Unsaved changes dialog: shown whenever navigating away from a dirty form.</span>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isDSStatus }}" hint-placeholder-val="{{ false }}">
+    <div style="padding:20px 24px;display:flex;flex-direction:column;gap:16px">
+      <span style="font-size:19px;font-weight:700">Status · validation · permission — design system</span>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px">
+        <sc-for list="{{ dsStatusGroups }}" as="g" hint-placeholder-count="4">
+          <div style="background:#fff;border:1px solid #e1e5eb;border-radius:11px;padding:14px 16px;display:flex;flex-direction:column;gap:8px"><span style="font-size:12.5px;font-weight:600">{{ g.title }}</span><sc-for list="{{ g.items }}" as="b" hint-placeholder-count="3"><span style="display:inline-flex;align-items:center;gap:5px;height:24px;padding:0 9px;border-radius:999px;background:{{ b.bg }};color:{{ b.fg }};font-size:11.5px;font-weight:600;width:fit-content"><i class="{{ b.icon }}" style="font-size:12px"></i>{{ b.label }}</span></sc-for></div>
+        </sc-for>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isDSInventory }}" hint-placeholder-val="{{ false }}">
+    <div style="padding:20px 24px;display:flex;flex-direction:column;gap:14px">
+      <span style="font-size:19px;font-weight:700">Product / Pricing component inventory</span>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
+        <sc-for list="{{ inventoryGroups }}" as="g" hint-placeholder-count="6">
+          <div style="background:#fff;border:1px solid #e1e5eb;border-radius:11px;padding:14px 16px;display:flex;flex-direction:column;gap:6px"><span style="font-size:12.5px;font-weight:700;color:#0e1b33">{{ g.title }}</span><sc-for list="{{ g.items }}" as="i" hint-placeholder-count="4"><span style="font-size:12.5px;color:#4a5567;font-family:'IBM Plex Mono',monospace">{{ i }}</span></sc-for></div>
+        </sc-for>
+      </div>
+    </div>
+  </sc-if>
+  </div>
+</div>
+
+<sc-if value="{{ hasDialog }}" hint-placeholder-val="{{ false }}">
+  <div style="position:absolute;inset:0;background:rgba(14,27,51,0.46);display:flex;align-items:center;justify-content:center;z-index:10;padding:24px">
+    <div role="dialog" aria-modal="true" style="width:{{ dlg.w }};max-width:100%;background:#fff;border-radius:14px;box-shadow:0 24px 60px rgba(14,27,51,.3);display:flex;flex-direction:column">
+      <div style="display:flex;align-items:center;gap:12px;padding:14px 14px 14px 18px;border-bottom:1px solid #e1e5eb">
+        <div style="width:32px;height:32px;border-radius:9px;background:{{ dlg.ibg }};color:{{ dlg.ifg }};display:grid;place-items:center"><i class="{{ dlg.icon }}" style="font-size:17px"></i></div>
+        <span style="font-size:15.5px;font-weight:600;flex:1">{{ dlg.title }}</span>
+        <button onClick="{{ closeDlg }}" aria-label="Close" style="width:32px;height:32px;border-radius:8px;border:0;background:transparent;display:grid;place-items:center;cursor:pointer;color:#4a5567"><i class="icon-x" style="font-size:17px"></i></button>
+      </div>
+      <div style="padding:14px 18px;display:flex;flex-direction:column;gap:10px">
+        <span style="font-size:13.5px;color:#4a5567;line-height:1.45">{{ dlg.body }}</span>
+        <sc-if value="{{ dlg.fields }}" hint-placeholder-val="{{ false }}">
+          <sc-for list="{{ dlg.fields }}" as="f" hint-placeholder-count="3">
+            <div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:12px;font-weight:600">{{ f.label }}</span><div style="height:36px;border-radius:8px;border:1px solid #cfd5de;background:#fff;padding:0 10px;display:flex;align-items:center;font-size:13px">{{ f.val }}</div></div>
+          </sc-for>
+        </sc-if>
+      </div>
+      <div style="display:flex;justify-content:flex-end;gap:8px;padding:12px 18px;border-top:1px solid #e1e5eb;background:#f7f9fb">
+        <button onClick="{{ closeDlg }}" style="height:38px;padding:0 14px;border-radius:8px;border:1px solid #cfd5de;background:#fff;font-size:13px;font-weight:600;cursor:pointer">{{ dlg.sec }}</button>
+        <button onClick="{{ closeDlg }}" style="height:38px;padding:0 14px;border-radius:8px;border:0;background:{{ dlg.pbg }};color:#fff;font-size:13px;font-weight:600;cursor:pointer">{{ dlg.pri }}</button>
+      </div>
+    </div>
+  </div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;screen&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;01&quot;,&quot;02&quot;,&quot;03&quot;,&quot;04&quot;,&quot;05&quot;,&quot;06&quot;,&quot;07&quot;,&quot;08&quot;,&quot;09&quot;,&quot;10&quot;,&quot;11&quot;,&quot;12&quot;,&quot;13&quot;,&quot;14&quot;,&quot;15&quot;,&quot;16&quot;,&quot;17&quot;,&quot;18&quot;,&quot;19&quot;,&quot;20&quot;,&quot;21&quot;,&quot;22&quot;,&quot;23&quot;,&quot;24&quot;,&quot;25&quot;,&quot;26&quot;,&quot;27&quot;,&quot;28&quot;,&quot;29&quot;,&quot;30&quot;,&quot;31&quot;,&quot;32&quot;,&quot;33&quot;,&quot;34&quot;,&quot;35&quot;,&quot;36&quot;,&quot;37&quot;,&quot;38&quot;,&quot;39&quot;,&quot;40&quot;,&quot;41&quot;,&quot;42&quot;,&quot;43&quot;,&quot;44&quot;,&quot;45&quot;,&quot;46&quot;,&quot;47&quot;,&quot;48&quot;,&quot;49&quot;,&quot;50&quot;,&quot;51&quot;,&quot;52&quot;,&quot;53&quot;,&quot;54&quot;,&quot;55&quot;,&quot;56&quot;,&quot;57&quot;,&quot;58&quot;,&quot;59&quot;,&quot;60&quot;],&quot;default&quot;:&quot;06&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;embedded&quot;:{&quot;editor&quot;:null,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;}}">
+const RM=(c)=>(c<0?'−RM ':'RM ')+(Math.abs(c)/100).toLocaleString('en-MY',{minimumFractionDigits:2,maximumFractionDigits:2});
+const pill=(bg,fg,icon,label)=>({bg,fg,icon,label});
+const ITEMS=[
+{n:'Fresh Milk 1 L',code:'MM-00124',barcode:'9556012345101',cat:'Dairy',brand:'Farmhouse',base:'EACH',sales:'EACH',price:720,st:'active',sell:true,purch:true,track:'—',supplier:'Kluang Dairy Sdn Bhd'},
+{n:'White Bread 600 g',code:'MM-00131',barcode:'9556012345118',cat:'Bakery',brand:'Sunrise',base:'EACH',sales:'EACH',price:390,st:'active',sell:true,purch:true,track:'Expiry',supplier:'Sunrise Bakers'},
+{n:'Jasmine Rice 5 kg',code:'MM-00118',barcode:'9556012345125',cat:'Grocery',brand:'Golden Fields',base:'EACH',sales:'EACH',price:1850,st:'active',sell:true,purch:true,track:'—',supplier:'Golden Fields Trading'},
+{n:'Cola 1.5 L',code:'MM-00142',barcode:'9556012345132',cat:'Beverages',brand:'Fizzo',base:'EACH',sales:'PACK',price:420,st:'active',sell:true,purch:true,track:'—',supplier:'Fizzo Distribution'},
+{n:'Cream Crackers 400 g',code:'MM-00156',barcode:'9556012345149',cat:'Snacks',brand:'Captain',price:560,base:'EACH',sales:'EACH',st:'active',sell:true,purch:true,track:'Expiry',supplier:'Captain Biscuits'},
+{n:'3-in-1 White Coffee',code:'MM-00163',barcode:'9556012345156',cat:'Beverages',brand:'Nescafé-style',price:1290,base:'EACH',sales:'PACK',st:'active',sell:true,purch:true,track:'Batch',supplier:'Highland Coffee Sdn Bhd'},
+{n:'Laundry Detergent 2.5 kg',code:'MM-00171',barcode:'9556012345163',cat:'Household',brand:'Clenz',price:2190,base:'EACH',sales:'EACH',st:'inactive',sell:false,purch:false,track:'—',supplier:'Clenz Manufacturing'},
+{n:'Bath Soap 3×90 g',code:'MM-00188',barcode:'9556012345170',cat:'Personal Care',brand:'Pure',price:640,base:'EACH',sales:'PACK',st:'active',sell:true,purch:true,track:'—',supplier:'Pure Care Sdn Bhd'},
+{n:'Instant Noodles Curry',code:'MM-00195',barcode:'',cat:'',brand:'',price:null,base:'',sales:'',st:'incomplete',sell:false,purch:false,track:'—',supplier:'—'},
+{n:'Teh Tarik Mix 15×30 g',code:'MM-00202',barcode:'9556012345194',cat:'Beverages',brand:'Old Klang',price:1050,base:'EACH',sales:'PACK',st:'active',sell:true,purch:true,track:'—',supplier:'Old Klang Trading'}];
+function stCfg(st){return {active:pill('#e5f4ec','#146c43','icon-circle-check','Active'),inactive:pill('#eef1f5','#3d4a5e','icon-circle-slash','Inactive'),incomplete:pill('#fdf3e1','#8a5100','icon-triangle-alert','Incomplete')}[st];}
+function priceOf(it){if(it.price==null)return {label:'Missing',fw:600,fg:'#b3261e'};return {label:RM(it.price),fw:600,fg:'#0f1a2b'};}
+const NAV=[['Dashboard',[['Dashboard','icon-layout-dashboard',false]]],
+['MASTERS',[['Products','icon-package',false],['Categories','icon-shapes',false],['Brands','icon-tag',false],['Suppliers','icon-truck',true],['Customers','icon-users',true]]],
+['OPERATIONS',[['Purchases','icon-shopping-bag',true],['Inventory','icon-boxes',true],['Sales','icon-receipt',true],['Returns','icon-undo-2',true],['Cash & Shifts','icon-clock',true]]],
+['FINANCE',[['Accounting','icon-calculator',true],['Reconciliation','icon-scale',true]]],
+['MANAGEMENT',[['Reports','icon-bar-chart-3',true]]],
+['ADMINISTRATION',[['Users & Access','icon-shield',true],['Organization','icon-building-2',true],['Devices','icon-monitor',true],['Sync & Diagnostics','icon-refresh-cw',true],['Settings','icon-settings',true]]]];
+const NAMES={'01':'Dashboard — normal','02':'Dashboard — attention states','03':'Back Office — Store Node unavailable','04':'Back Office — cloud sync unavailable','05':'Back Office — permission-limited / read-only',
+'06':'Products — populated','07':'Products — loading','08':'Products — empty (first run)','09':'Products — no search results','10':'Products — filtered',
+'11':'Product quick-detail drawer','12':'Product Detail — Overview','13':'Product Detail — Identifiers','14':'Product Detail — Units','15':'Product Detail — Tracking','16':'Product Detail — Suppliers','17':'Product Detail — Store Availability','18':'Product Detail — History / Audit',
+'19':'New Product — Basic','20':'New Product — Identifiers','21':'New Product — Units','22':'New Product — Tracking','23':'New Product — Supplier Associations','24':'Edit Product','25':'Product validation errors','26':'Duplicate identifier conflict','27':'Potential duplicate warning','28':'Deactivate Product','29':'Reactivate Product',
+'30':'Quick Create Skeleton Item','31':'Incomplete Item Detail','32':'Skeleton Completion Queue','33':'Complete Item',
+'34':'Categories','35':'Category edit','36':'Brands',
+'37':'Product Import — upload','38':'Product Import — validation','39':'Product Import — duplicate/error review','40':'Product Import — confirmation/result',
+'41':'Pricing — master list','42':'Pricing — missing-price filter','43':'Item Pricing Detail','44':'Price History','45':'Schedule Future Price','46':'Price Change confirmation','47':'Price Validation warning','48':'Bulk Price Change — selection','49':'Bulk Price Change — edit','50':'Bulk Price Change — validation/preview','51':'Bulk Price Change — result','52':'Price Import','53':'Price Label Queue','54':'Unauthorized Price Edit',
+'55':'Product list — 1280×720','56':'Product form — 1280×720','57':'DataTable design system','58':'Form design system','59':'Status/Validation/Permission design system','60':'Product/Pricing component inventory'};
+function cfg(s){
+  const b={scr:s,view:'list',q:'',cat:'all',node:'on',sync:'ok',role:'admin',drawer:false,drawerIdx:8,detailIdx:0,editing:false,tab:'overview',formTab:'basic',dialog:null,importState:'upload',bulkState:'select',listState:'populated'};
+  const m={
+    '01':{view:'dashboard'},'02':{view:'dashboard',attn:true},'03':{node:'off'},'04':{sync:'down'},'05':{role:'viewer'},
+    '06':{},'07':{listState:'loading'},'08':{listState:'emptyFirst'},'09':{listState:'noResults',q:'zzz-none'},'10':{cat:'Beverages'},
+    '11':{drawer:true},'12':{view:'detail',detailIdx:0,tab:'overview'},'13':{view:'detail',detailIdx:0,tab:'identifiers'},'14':{view:'detail',detailIdx:3,tab:'units'},'15':{view:'detail',detailIdx:1,tab:'tracking'},'16':{view:'detail',detailIdx:0,tab:'suppliers'},'17':{view:'detail',detailIdx:0,tab:'availability'},'18':{view:'detail',detailIdx:0,tab:'history'},
+    '19':{view:'form',formTab:'basic'},'20':{view:'form',formTab:'identifiers'},'21':{view:'form',formTab:'units'},'22':{view:'form',formTab:'tracking'},'23':{view:'form',formTab:'suppliers'},'24':{view:'form',editing:true,detailIdx:0,formTab:'basic'},'25':{view:'form',formTab:'basic',errs:true},'26':{view:'form',formTab:'identifiers',dialog:'conflict'},'27':{view:'form',formTab:'basic',dialog:'dupe'},'28':{view:'detail',detailIdx:0,dialog:'deactivate'},'29':{view:'detail',detailIdx:6,dialog:'reactivate'},
+    '30':{view:'list',dialog:'skeleton'},'31':{view:'detail',detailIdx:8,tab:'overview'},'32':{view:'list',listState:'incompleteQueue'},'33':{view:'form',editing:true,detailIdx:8,formTab:'basic'},
+    '34':{view:'tax',taxKind:'category'},'35':{view:'tax',taxKind:'category',dialog:'catedit'},'36':{view:'tax',taxKind:'brand'},
+    '37':{view:'import',importState:'upload'},'38':{view:'import',importState:'validate'},'39':{view:'import',importState:'review'},'40':{view:'import',importState:'result'},
+    '41':{view:'pricing'},'42':{view:'pricing',priceFilter:'missing'},'43':{view:'priceDetail',detailIdx:0},'44':{view:'priceDetail',detailIdx:0},'45':{view:'priceDetail',detailIdx:0,dialog:'schedule'},'46':{view:'priceDetail',detailIdx:0,dialog:'priceConfirm'},'47':{view:'priceDetail',detailIdx:0,dialog:'priceWarn'},
+    '48':{view:'bulk',bulkState:'select'},'49':{view:'bulk',bulkState:'edit'},'50':{view:'bulk',bulkState:'validate'},'51':{view:'bulk',bulkState:'result'},
+    '52':{view:'import',importTitle:'Price',importState:'upload'},'53':{view:'pricing',priceFilter:'label'},'54':{view:'denied',deniedKind:'price'},
+    '55':{},'56':{view:'form',formTab:'basic'},'57':{view:'dsTable'},'58':{view:'dsForm'},'59':{view:'dsStatus'},'60':{view:'dsInventory'}};
+  return {...b,...(m[s]||{})};
+}
+class Component extends DCLogic {
+  state = cfg((this.props&&this.props.screen)||'06');
+  componentDidUpdate(pp){ if(pp.screen!==this.props.screen) this.setState(cfg(this.props.screen||'06')); }
+  renderVals(){
+    const s=this.state, set=(o)=>this.setState(o);
+    const node=s.node==='on', cloudOk=s.sync==='ok', readOnly=s.role==='viewer';
+    const nodeP=node?pill('#e5f4ec','#146c43','icon-server','Store Node online'):pill('#fcebea','#b3261e','icon-server-off','Store Node unavailable');
+    const syncP=cloudOk?pill('#f2f4f7','#4a5567','icon-cloud','Sync healthy'):pill('#fdf3e1','#8a5100','icon-cloud-off','Cloud sync unavailable · 22 queued');
+    const roleLabel=readOnly?'Read-only role':'Catalog Manager';
+    const nav=NAV.map(([label,items])=>({label,items:items.map(([lbl,icon,stub])=>{
+      const active=(lbl==='Dashboard'&&s.view==='dashboard')||(lbl==='Products'&&['list','detail','form'].includes(s.view))||(lbl==='Categories'&&s.view==='tax'&&s.taxKind==='category')||(lbl==='Brands'&&s.view==='tax'&&s.taxKind==='brand');
+      return {label:lbl,icon,stub,bg:active?'#1f3a6b':'transparent',fg:stub?'#5d6a82':active?'#fff':'#c3cbd9',fw:active?600:500,cursor:stub?'not-allowed':'pointer',
+        go:lbl==='Dashboard'?()=>set({view:'dashboard'}):lbl==='Products'?()=>set({view:'list',listState:'populated'}):lbl==='Categories'?()=>set({view:'tax',taxKind:'category'}):lbl==='Brands'?()=>set({view:'tax',taxKind:'brand'}):()=>{}};
+    })}));
+    const items=ITEMS.map((it,i)=>({...it,i}));
+    const filtered=items.filter(it=>s.cat==='all'||it.cat===s.cat).filter(it=>!s.q||s.q==='zzz-none'?s.q!=='zzz-none':true).filter(it=>s.q!=='zzz-none');
+    const listState=s.listState;
+    const rowsSrc=listState==='incompleteQueue'?items.filter(it=>it.st==='incomplete'):filtered;
+    const rows=rowsSrc.map((it,i)=>{const stp=stCfg(it.st),pr=priceOf(it);return {n:it.n,sub:it.brand?it.brand+' · '+(it.cat||'—'):'Missing classification',code:it.code,barcode:it.barcode||'—',cat:it.cat||'—',base:it.base||'—',sales:it.sales||'—',price:pr.label,priceFw:pr.fw,priceFg:pr.fg,
+      sellIcon:it.sell?'icon-check':'icon-x',sellFg:it.sell?'#146c43':'#b3261e',purchIcon:it.purch?'icon-check':'icon-x',purchFg:it.purch?'#146c43':'#b3261e',
+      stBg:stp.bg,stFg:stp.fg,stIcon:stp.icon,st:stp.label,bg:it.i===s.drawerIdx&&s.drawer?'#eef4fd':'#fff',ring:it.i===s.drawerIdx&&s.drawer?'inset 0 0 0 2px #1b5fd1':'none',
+      open:()=>set({drawer:true,drawerIdx:it.i})};});
+    const filters=[['Active',true,'icon-circle-check'],['Inactive',false,'icon-circle-slash'],['Incomplete',false,'icon-triangle-alert'],['Sellable',false,'icon-check'],['Batch tracked',false,'icon-boxes'],['Expiry tracked',false,'icon-calendar']].map(([label,on,icon])=>({label,icon,on,bg:on?'#0e1b33':'#fff',fg:on?'#fff':'#3d4a5e',bd:on?'#0e1b33':'#cfd5de',pick:()=>{}}));
+    const d0=items[s.drawerIdx]||items[0]; const dstp=stCfg(d0.st);
+    const d={n:d0.n,code:d0.code,barcode:d0.barcode||'—',stBg:dstp.bg,stFg:dstp.fg,stIcon:dstp.icon,st:dstp.label,cat:d0.cat||'—',brand:d0.brand||'—',base:d0.base||'—',sales:d0.sales||'—',sellable:d0.sell?'Yes':'No',purchasable:d0.purch?'Yes':'No',tracking:d0.track,priceStatus:d0.price==null?'Missing':'Valid',priceFg:d0.price==null?'#b3261e':'#146c43',supplier:d0.supplier,avail:'MiniMart Central · assigned'};
+    const item0=items[s.detailIdx]||items[0]; const istp=stCfg(item0.st);
+    const item={n:item0.n,code:item0.code,barcode:item0.barcode||'—',stBg:istp.bg,stFg:istp.fg,stIcon:istp.icon,st:istp.label,incomplete:item0.st==='incomplete',lifecycleAction:item0.st==='inactive'?'Reactivate':'Deactivate'};
+    const TABS=[['overview','Overview'],['identifiers','Identifiers'],['units','Units'],['tracking','Tracking'],['suppliers','Suppliers'],['availability','Store Availability'],['history','History / Audit']];
+    const tabs=TABS.map(([k,label])=>({label,fw:s.tab===k?600:500,fg:s.tab===k?'#0f1a2b':'#4a5567',ring:s.tab===k?'inset 0 -2px 0 #1b5fd1':'none',go:()=>set({tab:k})}));
+    const money=(v)=>v==null?'RM —':RM(v);
+    const secRow=(label,val)=>({label,val});
+    const overviewC=React.createElement('div',{style:{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'14px'}},
+      React.createElement('div',{style:{background:'#fff',border:'1px solid #e1e5eb',borderRadius:'11px',padding:'16px',display:'flex',flexDirection:'column',gap:'10px'}},
+        React.createElement('span',{style:{fontSize:'12.5px',fontWeight:600}},'Identity'),
+        ...[['Description',item0.n],['Category',item0.cat||'Missing — required'],['Brand',item0.brand||'—'],['Active',item0.st!=='inactive'?'Yes':'No'],['Sellable',item0.sell?'Yes':'No'],['Purchasable',item0.purch?'Yes':'No']].map(([l,v])=>
+          React.createElement('div',{style:{display:'flex',justifyContent:'space-between',fontSize:'13px'}},React.createElement('span',{style:{color:'#6b7585'}},l),React.createElement('span',{style:{fontWeight:500,color:(v==='Missing — required')?'#b3261e':'#0f1a2b'}},v)))),
+      React.createElement('div',{style:{background:'#fff',border:'1px solid #e1e5eb',borderRadius:'11px',padding:'16px',display:'flex',flexDirection:'column',gap:'10px'}},
+        React.createElement('span',{style:{fontSize:'12.5px',fontWeight:600}},'Pricing snapshot · Catalog does not own price'),
+        React.createElement('div',{style:{display:'flex',justifyContent:'space-between',fontSize:'13px'}},React.createElement('span',{style:{color:'#6b7585'}},'Current price · Central'),React.createElement('span',{style:{fontWeight:700,color:item0.price==null?'#b3261e':'#0f1a2b'}},item0.price==null?'Missing':money(item0.price))),
+        React.createElement('div',{style:{fontSize:'11.5px',color:'#6b7585'}},'Full history lives in Pricing → Item Pricing Detail.')));
+    const identifiersC=React.createElement('div',{style:{background:'#fff',border:'1px solid #e1e5eb',borderRadius:'11px',overflow:'hidden'}},
+      React.createElement('div',{style:{display:'grid',gridTemplateColumns:'1fr 140px 90px 90px 110px',gap:'10px',padding:'8px 14px',background:'#f7f9fb',borderBottom:'1px solid #e1e5eb',fontSize:'10.5px',fontWeight:600,color:'#6b7585'}},'BARCODE','TYPE','PRIMARY','STATUS','ACTIONS'),
+      ...[[item0.barcode||'9556012345101','Manufacturer',true,'Active'],['ALT-'+((item0.code||'MM').slice(-3))+'-01','Alternate',false,'Active'],['PLU '+ (100+s.detailIdx),'PLU',false,'Active']].map(([bc,type,primary,st])=>
+        React.createElement('div',{style:{display:'grid',gridTemplateColumns:'1fr 140px 90px 90px 110px',gap:'10px',alignItems:'center',padding:'0 14px',height:'42px',borderTop:'1px solid #eef1f5',fontSize:'12.5px'}},
+          React.createElement('span',{style:{fontFamily:"'IBM Plex Mono',monospace"}},bc),React.createElement('span',null,type),React.createElement('span',null,primary?'Primary':''),React.createElement('span',null,st),
+          React.createElement('button',{style:{height:'28px',padding:'0 10px',borderRadius:'7px',border:'1px solid #cfd5de',background:'#fff',fontSize:'11.5px',fontWeight:600,cursor:'pointer'}},'Reassign'))));
+    const unitsC=React.createElement('div',{style:{display:'flex',flexDirection:'column',gap:'14px',maxWidth:'560px'}},
+      React.createElement('div',{style:{display:'grid',gridTemplateColumns:'1fr 1fr 1fr',gap:'12px'}},
+        ...[['Base Unit',item0.base||'EACH'],['Sales Unit',item0.sales||'EACH'],['Purchase Unit','CASE']].map(([l,v])=>
+          React.createElement('div',{style:{background:'#fff',border:'1px solid #e1e5eb',borderRadius:'10px',padding:'12px 14px',display:'flex',flexDirection:'column',gap:'4px'}},React.createElement('span',{style:{fontSize:'11px',color:'#6b7585'}},l),React.createElement('span',{style:{fontSize:'17px',fontWeight:700}},v)))),
+      React.createElement('div',{style:{background:'#fff',border:'1px solid #e1e5eb',borderRadius:'10px',padding:'12px 14px',display:'flex',flexDirection:'column',gap:'6px',fontSize:'13px'}},
+        React.createElement('span',{style:{fontWeight:600,fontSize:'12.5px'}},'Conversion'),
+        React.createElement('span',null,'1 '+(item0.sales||'EACH')+' = 6 '+(item0.base||'EACH')),React.createElement('span',null,'1 CASE = 12 '+(item0.sales||'EACH')),
+        React.createElement('span',{style:{fontSize:'11.5px',color:'#6b7585'}},'Multi-level conversion is shown as entered; conversion policy beyond this is authority-dependent.')),
+      React.createElement('div',{style:{display:'flex',gap:'10px'}},...[['Fractional Quantity',false],['Weighed Item',false]].map(([l,v])=>
+        React.createElement('div',{style:{flex:1,background:'#fff',border:'1px solid #e1e5eb',borderRadius:'10px',padding:'10px 12px',display:'flex',alignItems:'center',justifyContent:'space-between'}},React.createElement('span',{style:{fontSize:'12.5px',fontWeight:600}},l),React.createElement('span',{style:{width:'34px',height:'20px',borderRadius:'999px',background:v?'#1b5fd1':'#e1e5eb',position:'relative'}},React.createElement('span',{style:{position:'absolute',top:'2px',left:v?'16px':'2px',width:'16px',height:'16px',borderRadius:'50%',background:'#fff',boxShadow:'0 1px 2px rgba(0,0,0,.2)'}}))))));
+    const trackingC=React.createElement('div',{style:{display:'flex',flexDirection:'column',gap:'12px',maxWidth:'520px'}},
+      ...[['Batch Tracked',item0.track==='Batch'],['Expiry Tracked',item0.track==='Expiry']].map(([l,v])=>
+        React.createElement('div',{style:{background:'#fff',border:'1px solid #e1e5eb',borderRadius:'10px',padding:'12px 14px',display:'flex',alignItems:'center',justifyContent:'space-between'}},
+          React.createElement('div',{style:{display:'flex',flexDirection:'column',gap:'2px'}},React.createElement('span',{style:{fontSize:'13px',fontWeight:600}},l),React.createElement('span',{style:{fontSize:'11.5px',color:'#6b7585'}},'Changing this once transactions/stock exist is a controlled operation.')),
+          React.createElement('span',{style:{width:'34px',height:'20px',borderRadius:'999px',background:v?'#1b5fd1':'#e1e5eb',position:'relative',flex:'none'}},React.createElement('span',{style:{position:'absolute',top:'2px',left:v?'16px':'2px',width:'16px',height:'16px',borderRadius:'50%',background:'#fff',boxShadow:'0 1px 2px rgba(0,0,0,.2)'}})))),
+      React.createElement('div',{style:{display:'flex',alignItems:'center',gap:'8px',padding:'10px 12px',borderRadius:'9px',background:'#fdf3e1',border:'1px solid #f0d4a0',color:'#6b4000',fontSize:'12px'}},React.createElement('i',{className:'icon-triangle-alert',style:{fontSize:'15px'}}),'Turning tracking off after stock/transactions exist shows a confirmation — acceptance rule is authority-dependent.'));
+    const suppliersC=React.createElement('div',{style:{background:'#fff',border:'1px solid #e1e5eb',borderRadius:'11px',overflow:'hidden'}},
+      React.createElement('div',{style:{display:'grid',gridTemplateColumns:'1fr 140px 90px 90px',gap:'10px',padding:'8px 14px',background:'#f7f9fb',borderBottom:'1px solid #e1e5eb',fontSize:'10.5px',fontWeight:600,color:'#6b7585'}},'SUPPLIER','SUPPLIER REFERENCE','PREFERRED','STATUS'),
+      React.createElement('div',{style:{display:'grid',gridTemplateColumns:'1fr 140px 90px 90px',gap:'10px',alignItems:'center',padding:'0 14px',height:'42px',borderTop:'1px solid #eef1f5',fontSize:'12.5px'}},item0.supplier,'SUP-REF-0'+(s.detailIdx+1),'Preferred','Active'),
+      React.createElement('div',{style:{padding:'10px 14px',fontSize:'11.5px',color:'#6b7585',borderTop:'1px solid #eef1f5'}},'Preferred does not mean exclusive — additional suppliers may still be associated.'));
+    const availC=React.createElement('div',{style:{background:'#fff',border:'1px solid #e1e5eb',borderRadius:'11px',padding:'14px 16px',display:'flex',flexDirection:'column',gap:'8px',maxWidth:'520px'}},
+      React.createElement('div',{style:{display:'flex',justifyContent:'space-between',fontSize:'13px'}},React.createElement('span',null,'MiniMart Central'),React.createElement('span',{style:{color:'#146c43',fontWeight:600}},'Assigned · Sellable')),
+      React.createElement('div',{style:{fontSize:'11.5px',color:'#6b7585'}},'Same company-wide Item identity — store context describes assignment and pricing, not a separate product.'));
+    const historyC=React.createElement('div',{style:{background:'#fff',border:'1px solid #e1e5eb',borderRadius:'11px',overflow:'hidden'}},
+      React.createElement('div',{style:{display:'grid',gridTemplateColumns:'110px 140px 1fr',gap:'10px',padding:'8px 14px',background:'#f7f9fb',borderBottom:'1px solid #e1e5eb',fontSize:'10.5px',fontWeight:600,color:'#6b7585'}},'AT','ACTOR','CHANGE'),
+      ...[['24 Sep 09:12','Siti M.','Category set to '+(item0.cat||'—')],['20 Sep 14:03','Import','Item created via catalog import']].map(([t,a,c])=>
+        React.createElement('div',{style:{display:'grid',gridTemplateColumns:'110px 140px 1fr',gap:'10px',alignItems:'center',padding:'0 14px',height:'40px',borderTop:'1px solid #eef1f5',fontSize:'12.5px'}},React.createElement('span',{style:{color:'#4a5567'}},t),React.createElement('span',null,a),React.createElement('span',null,c))),
+      React.createElement('div',{style:{padding:'10px 14px',fontSize:'11.5px',color:'#6b7585',borderTop:'1px solid #eef1f5'}},'Read-only. Historical posted documents keep their original snapshot regardless of later master changes.'));
+    const tabContent={overview:overviewC,identifiers:identifiersC,units:unitsC,tracking:trackingC,suppliers:suppliersC,availability:availC,history:historyC}[s.tab];
+    const FTABS=[['basic','Basic'],['identifiers','Identifiers'],['units','Units'],['tracking','Tracking'],['suppliers','Suppliers']];
+    const formTabs=FTABS.map(([k,label])=>({label,fw:s.formTab===k?600:500,fg:s.formTab===k?'#0f1a2b':'#4a5567',ring:s.formTab===k?'inset 0 -2px 0 #1b5fd1':'none',err:s.errs&&k==='basic',go:()=>set({formTab:k})}));
+    const fld=(label,val,err,help)=>React.createElement('div',{style:{display:'flex',flexDirection:'column',gap:'5px'}},
+      React.createElement('span',{style:{fontSize:'12.5px',fontWeight:600}},label),
+      React.createElement('div',{style:{height:'38px',borderRadius:'8px',border:err?'2px solid #b3261e':'1px solid #cfd5de',boxShadow:err?'0 0 0 4px #fbdedb':'none',background:'#fff',padding:'0 11px',display:'flex',alignItems:'center',fontSize:'13px'}},val),
+      help?React.createElement('span',{style:{fontSize:'11px',color:err?'#b3261e':'#6b7585'}},help):null);
+    const basicC=React.createElement('div',{style:{display:'flex',flexDirection:'column',gap:'12px'}},
+      React.createElement('div',{style:{display:'flex',gap:'14px'}},
+        React.createElement('div',{style:{width:'88px',height:'88px',flex:'none',borderRadius:'9px',overflow:'hidden',background:'#fafbfc',border:'1px solid #e1e5eb'}},React.createElement('image-slot',{id:'boform-'+s.scr,shape:'rect',fit:'contain',placeholder:'Drop packshot'})),
+        React.createElement('div',{style:{flex:1,display:'flex',flexDirection:'column',gap:'10px'}},
+          fld('Description',s.editing?item0.n:'',s.errs,s.errs?'Description is required':null),
+          fld('Short / receipt description',s.editing?item0.n.split(' ').slice(0,2).join(' '):'',false,null))),
+      React.createElement('div',{style:{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'12px'}},
+        fld('Internal item code / SKU',s.editing?item0.code:'Auto-assigned or manual — policy authority-dependent',false,null),
+        fld('Category',s.editing?(item0.cat||''):'',s.errs&&!item0.cat,s.errs&&!item0.cat?'Category is required to complete this item':null),
+        fld('Brand',s.editing?(item0.brand||'—'):'—',false,null),
+        fld('Active','Active',false,null)),
+      React.createElement('div',{style:{display:'flex',gap:'10px'}},...['Sellable','Purchasable'].map(l=>React.createElement('div',{style:{flex:1,background:'#fff',border:'1px solid #e1e5eb',borderRadius:'9px',padding:'10px 12px',display:'flex',alignItems:'center',justifyContent:'space-between'}},React.createElement('span',{style:{fontSize:'12.5px',fontWeight:600}},l),React.createElement('span',{style:{width:'34px',height:'20px',borderRadius:'999px',background:'#1b5fd1',position:'relative'}},React.createElement('span',{style:{position:'absolute',top:'2px',left:'16px',width:'16px',height:'16px',borderRadius:'50%',background:'#fff'}}))))));
+    const formContent={basic:basicC,identifiers:identifiersC,units:unitsC,tracking:trackingC,suppliers:suppliersC}[s.formTab];
+    const formTitle=s.scr==='30'?'Quick Create Skeleton Item':s.editing?'Edit Product':'New Product';
+    const dashTiles=[['icon-package','Active products','1,842','+6 this week','#146c43'],['icon-triangle-alert','Incomplete items','1','Needs classification & price','#8a5100'],['icon-tag','Missing price','1','Blocks selling until resolved','#b3261e'],['icon-file-warning','Import warnings','5','From last catalog import','#8a5100']].map(([icon,label,value,sub,tc])=>({icon,label,value,sub,tc}));
+    const attention=[['icon-triangle-alert','Incomplete catalog items','#fdf3e1','#8a5100',1,()=>set({view:'list',listState:'incompleteQueue'})],['icon-tag','Items missing price','#fcebea','#b3261e',1,()=>set({view:'pricing',priceFilter:'missing'})],['icon-file-warning','Catalog import warnings','#fdf3e1','#8a5100',5,()=>set({view:'import',importState:'review'})],['icon-refresh-cw','Sync queue depth','#eef1f5','#3d4a5e',22,()=>{}]].map(([icon,title,ibg,ifg,count,go])=>({icon,title,sub:'Review before it reaches the counter',ibg,ifg,count,go}));
+    const quickNav=[['icon-package','Products',()=>set({view:'list'})],['icon-tag','Pricing',()=>set({view:'pricing'})],['icon-boxes','Inventory',()=>{}],['icon-shopping-bag','Purchases',()=>{}]].map(([icon,label,go])=>({icon,label,go}));
+    const priceRows=items.map((it,i)=>{const status=it.price==null?pill('#fcebea','#b3261e','icon-triangle-alert','Missing'):pill('#e5f4ec','#146c43','icon-circle-check','Valid');const missingOnly=s.priceFilter==='missing'&&it.price!=null;return {n:it.n,code:it.code,price:it.price==null?'—':RM(it.price),priceFw:it.price==null?500:700,priceFg:it.price==null?'#9aa3b2':'#0f1a2b',stBg:status.bg,stFg:status.fg,stIcon:status.icon,st:status.label,eff:it.price==null?'—':'Since 12 Aug 2026',label:it.i%3===0?'Requires Label':'Printed',labelFg:it.i%3===0?'#8a5100':'#146c43',hide:missingOnly,open:()=>set({view:'priceDetail',detailIdx:i})};}).filter(r=>!r.hide);
+    const pd0=items[s.detailIdx]||items[0];
+    const pd={n:pd0.n,code:pd0.code,cur:pd0.price==null?'Missing':RM(pd0.price),curFg:pd0.price==null?'#b3261e':'#0f1a2b',curSince:pd0.price==null?'No valid price for MiniMart Central':'Since 12 Aug 2026 · Siti M.',future:'RM 7.50',futureEff:'Effective 1 Oct 2026 00:00',margin:'34.2%',cost:'RM 4.74'};
+    const priceHist=[['RM 7.20','12 Aug 2026','—','Siti M.','Cost increase'],['RM 6.90','01 Mar 2026','12 Aug 2026','Siti M.','Promotion ended'],['RM 6.50','01 Jan 2026','01 Mar 2026','Import','Initial catalog load']].map(([price,from,until,by,reason])=>({price,from,until,by,reason}));
+    const bulkRows=items.slice(0,6).map((it,i)=>({n:it.n,price:it.price==null?'—':RM(it.price),cbd:i<3?'#1b5fd1':'#cfd5de',cbg:i<3?'#1b5fd1':'#fff',checkOp:i<3?1:0}));
+    const bulkEditRows=items.slice(0,3).map(it=>({n:it.n,cur:it.price==null?'—':RM(it.price),proposed:RM((it.price||500)+50),eff:'1 Oct 2026'}));
+    const bulkValRows=[[items[0].n,RM(720),RM(770),'ok','Ready to apply'],[items[1].n,RM(390),RM(440),'ok','Ready to apply'],[items[2].n,RM(1850),'RM 0.00','bad','New price cannot be zero without authorization']].map(([n,cur,proposed,k,msg])=>({n,cur,proposed,fg:k==='ok'?'#146c43':'#b3261e',icon:k==='ok'?'icon-circle-check':'icon-circle-x',msg}));
+    const importRows=[['12',items[6].n,'—','icon-circle-x','#b3261e','Missing barcode'],['47','Frozen Peas 500 g','9556012399901','icon-circle-x','#b3261e','Duplicate barcode with MM-00099'],['88','Chili Sauce 340 g','9556012311102','icon-triangle-alert','#8a5100','Category not recognised — will import as Incomplete']].map(([row,n,bc,icon,fg,issue])=>({row,n,bc,icon,fg,issue}));
+    const dlgMap={
+      deactivate:{icon:'icon-circle-slash',ibg:'#fcebea',ifg:'#b3261e',title:'Deactivate '+item0.n+'?',body:'The item can no longer be sold or purchased going forward. Historical transactions referencing it remain fully visible and unchanged.',sec:'Cancel',pri:'Deactivate',pbg:'#b3261e',w:'480px'},
+      reactivate:{icon:'icon-circle-check',ibg:'#e5f4ec',ifg:'#146c43',title:'Reactivate '+item0.n+'?',body:'The item becomes eligible for selling and purchasing again, subject to a valid price and complete classification.',sec:'Cancel',pri:'Reactivate',pbg:'#1b5fd1',w:'480px'},
+      skeleton:{icon:'icon-zap',ibg:'#eef1f5',ifg:'#0e1b33',title:'Quick Create Skeleton Item',body:'Creates a minimally defined item for receiving/purchasing right now. It is visibly marked Incomplete until completed. Exact required fields are authority-dependent.',sec:'Cancel',pri:'Create skeleton item',pbg:'#1b5fd1',w:'480px',fields:[{label:'Description',val:'New item from GRN'},{label:'Barcode (if known)',val:'9556012399988'}]},
+      conflict:{icon:'icon-triangle-alert',ibg:'#fcebea',ifg:'#b3261e',title:'Barcode already in use',body:'Barcode 9556012345101 is already the primary barcode of Fresh Milk 1 L (MM-00124). Reassigning it here is a controlled operation and will remove it from the other item.',sec:'Cancel',pri:'Review conflict',pbg:'#b3261e',w:'480px'},
+      dupe:{icon:'icon-copy',ibg:'#fdf3e1',ifg:'#8a5100',title:'Potential duplicate product',body:'“White Bread 600g Sliced” looks similar to an existing item, White Bread 600 g (MM-00131). Review before creating a duplicate master.',sec:'Review existing item',pri:'Continue anyway',pbg:'#1b5fd1',w:'480px'},
+      catedit:{icon:'icon-pencil',ibg:'#e8f0fc',ifg:'#1b5fd1',title:'Rename category',body:'Renaming a category updates its label only. Products keep their classification; historical documents keep their original snapshot.',sec:'Cancel',pri:'Save',pbg:'#1b5fd1',w:'440px',fields:[{label:'Category name',val:'Beverages'}]},
+      schedule:{icon:'icon-calendar-clock',ibg:'#e8f0fc',ifg:'#1b5fd1',title:'Schedule new price',body:'The new price takes effect only from the chosen point in time. The current price stays current until then.',sec:'Cancel',pri:'Schedule price',pbg:'#1b5fd1',w:'440px',fields:[{label:'New price',val:'RM 7.50'},{label:'Effective from',val:'1 Oct 2026 00:00'}]},
+      priceConfirm:{icon:'icon-circle-check',ibg:'#e5f4ec',ifg:'#146c43',title:'Price change scheduled',body:'RM 7.50 is scheduled for MiniMart Central from 1 Oct 2026 00:00. Prior posted sales keep their original price snapshot.',sec:'Close',pri:'View history',pbg:'#1b5fd1',w:'440px'},
+      priceWarn:{icon:'icon-triangle-alert',ibg:'#fdf3e1',ifg:'#8a5100',title:'Large price change',body:'This is a 42% increase over the current price. Confirm this is intentional before scheduling — validation thresholds are authority-dependent.',sec:'Back',pri:'Confirm anyway',pbg:'#1b5fd1',w:'440px'}
+    };
+    const dlg=s.dialog?dlgMap[s.dialog]:null;
+    const taxKind=s.taxKind||'category';
+    const CATS=['Grocery','Beverages','Snacks','Dairy','Bakery','Household','Personal Care'];
+    const BRANDS=['Farmhouse','Sunrise','Golden Fields','Fizzo','Captain','Highland Coffee','Clenz','Pure','Old Klang'];
+    const taxRows=(taxKind==='category'?CATS:BRANDS).map(n=>({n,sub:items.filter(it=>taxKind==='category'?it.cat===n:it.brand===n).length+' items',action:'Rename'}));
+    const dtStates=[['Loading','Skeleton rows, no layout shift'],['Populated','Standard density rows'],['Empty','No records exist yet'],['No results','Search/filter returned nothing'],['Error','Store Node did not respond'],['Permission denied','Role cannot view this data']].map(([name,desc])=>({name,desc}));
+    const dsFields=[['TextField','MiniMart Central','1px solid #cfd5de','none','#6b7585','Helper text','icon-type'],['MoneyField','RM 7.20','2px solid #1b5fd1','0 0 0 4px #dbe7fb','#6b7585','Exact decimal, right-aligned','icon-banknote'],['QuantityField','12','1px solid #cfd5de','none','#6b7585','Precision per authority','icon-hash'],['Select','Beverages','1px solid #cfd5de','none','#6b7585','','icon-chevron-down'],['EntityPicker','Golden Fields Trading','1px solid #cfd5de','none','#6b7585','Search to change','icon-search'],['Date/Time','1 Oct 2026 · 00:00','1px solid #cfd5de','none','#6b7585','','icon-calendar'],['Toggle — invalid','9556012345101','2px solid #b3261e','0 0 0 4px #fbdedb','#b3261e','Barcode already assigned','icon-circle-alert'],['Read-only value','MM-00124','1px solid #e1e5eb','none','#9aa3b2','Cannot be changed here','icon-lock']].map(([label,val,bd,ring,hc,help,icon])=>({label,val,bd,ring,hc,help,icon}));
+    const dsStatusGroups=[{title:'Product lifecycle',items:[pill('#e5f4ec','#146c43','icon-circle-check','Active / Complete'),pill('#eef1f5','#3d4a5e','icon-circle-slash','Inactive'),pill('#fdf3e1','#8a5100','icon-triangle-alert','Incomplete / Skeleton')]},
+      {title:'Price',items:[pill('#e5f4ec','#146c43','icon-circle-check','Valid price'),pill('#fcebea','#b3261e','icon-triangle-alert','Missing price'),pill('#eef1f5','#3d4a5e','icon-badge-check','Explicit zero (authorized)')]},
+      {title:'Validation',items:[pill('#e5f4ec','#146c43','icon-circle-check','Valid'),pill('#fcebea','#b3261e','icon-circle-x','Invalid — blocks'),pill('#fdf3e1','#8a5100','icon-triangle-alert','Warning — proceeds')]},
+      {title:'Permission',items:[pill('#e5f4ec','#146c43','icon-circle-check','Allowed'),pill('#eef1f5','#3d4a5e','icon-lock','Read-only'),pill('#fcebea','#b3261e','icon-shield-x','Permission denied')]}];
+    const inventoryGroups=[{title:'Shell / Navigation',items:['BackOfficeShell','SidebarNavigation','TopOperationalBar','StoreContext','StoreNodeStatus','SyncStatus']},
+      {title:'List',items:['PageHeader','SearchBar','FilterBar','FilterChip','DataTable','DataTableToolbar','Pagination','ResultCount']},
+      {title:'Product',items:['ProductThumbnail','ProductStatus','IncompleteStatus','BarcodeList','IdentifierRow','UoMRoleCard','ConversionRow','TrackingStatus','SupplierAssociationTable']},
+      {title:'Pricing',items:['PriceStatus','MoneyValue','PriceHistoryTable','ScheduledPriceCard','PriceChangePreview','PriceValidationState','PriceLabelStatus']},
+      {title:'Forms',items:['DetailDrawer','Tabs','FormSection','FormFooter','TextField','MoneyField','QuantityField','EntityPicker']},
+      {title:'Feedback',items:['ConfirmationDialog','DangerDialog','ConflictDialog','ImportStepper','LoadingState','EmptyState','PermissionState','Toast']}];
+    return {
+      rootH:this.props.embedded?'100%':'100vh', scrLabel:s.scr+' '+(NAMES[s.scr]||''), showBizDate:true,
+      nav, nodeP, syncP, roleLabel, nodeDown:!node,
+      isDash:s.view==='dashboard', cloudDown:!cloudOk, dashTiles, attention, quickNav,
+      isList:s.view==='list', readOnly,
+      q:s.q, onQ:(e)=>set({q:e.target.value}), filters,
+      resultLabel:listState==='incompleteQueue'?'1 incomplete item':rows.length+' of '+items.length+' products',
+      listLoading:listState==='loading', listEmptyFirstRun:listState==='emptyFirst', listNoResults:listState==='noResults', listPopulated:!['loading','emptyFirst','noResults'].includes(listState),
+      skel:Array.from({length:8},(_,i)=>i), rows, clearFilters:()=>set({q:'',cat:'all',listState:'populated'}),
+      goNew:()=>set({view:'form',formTab:'basic',editing:false}), goImport:()=>set({view:'import',importState:'upload'}),
+      drawer:s.drawer, closeDrawer:()=>set({drawer:false}), d,
+      isDetail:s.view==='detail', item, tabs, tabContent, openDeactivate:()=>set({dialog:item0.st==='inactive'?'reactivate':'deactivate'}), goEdit:()=>set({view:'form',editing:true,formTab:'basic'}), goComplete:()=>set({view:'form',editing:true,formTab:'basic'}),
+      isForm:s.view==='form', formTitle, formTabs, formContent,
+      isTax:s.view==='tax', taxTitle:taxKind==='category'?'Categories':'Brands', taxSummary:taxRows.length+' '+(taxKind==='category'?'categories':'brands')+' · historical items keep their classification snapshot on rename', taxRows, taxAction:taxKind==='category'?'New category':'New brand',
+      isImport:s.view==='import', importTitle:s.importTitle||'Product',
+      importSteps:['Upload','Validate','Review','Result'].map((label,i)=>{const idx={upload:0,validate:1,review:2,result:3}[s.importState];return {label,bd:i<=idx?'#1b5fd1':'#cfd5de',bg:i===idx?'#1b5fd1':'#fff',fg:i===idx?'#fff':i<idx?'#1b5fd1':'#6b7585',arrowOp:i<3?1:0};}),
+      imp:{upload:s.importState==='upload',validate:s.importState==='validate',review:s.importState==='review',result:s.importState==='result'}, importRows,
+      isPricing:s.view==='pricing', priceFilters:['Missing price','Requires label','Scheduled'].map((label,i)=>({label,on:(s.priceFilter==='missing'&&i===0)||(s.priceFilter==='label'&&i===1),bg:'#fff',fg:'#3d4a5e',bd:'#cfd5de',pick:()=>{}})), priceRows,
+      goPriceImport:()=>set({view:'import',importTitle:'Price',importState:'upload'}), goBulk:()=>set({view:'bulk',bulkState:'select'}),
+      isPriceDetail:s.view==='priceDetail', pd, priceHist, goSchedule:()=>set({dialog:'schedule'}),
+      isBulk:s.view==='bulk', bulkSteps:['Select','Edit','Validate','Preview','Apply'].map((label,i)=>{const idx={select:0,edit:1,validate:2,result:4}[s.bulkState];return {label,bd:i<=idx?'#1b5fd1':'#cfd5de',bg:i===idx?'#1b5fd1':'#fff',fg:i===idx?'#fff':i<idx?'#1b5fd1':'#6b7585',arrowOp:i<4?1:0};}),
+      bulk:{select:s.bulkState==='select',edit:s.bulkState==='edit',validate:s.bulkState==='validate',result:s.bulkState==='result'}, bulkRows, bulkEditRows, bulkValRows,
+      isDenied:s.view==='denied', deniedTitle:'Pricing change requires the Pricing permission', deniedBody:'Your role (Catalog Viewer) can view prices but not change them. Ask a manager with Pricing access, or request approval if your organisation uses one.',
+      isDSTable:s.view==='dsTable', dtStates, isDSForm:s.view==='dsForm', dsFields, isDSStatus:s.view==='dsStatus', dsStatusGroups, isDSInventory:s.view==='dsInventory', inventoryGroups,
+      hasDialog:!!dlg, dlg:dlg||{}, closeDlg:()=>set({dialog:null})
+    };
+  }
+}
+</script>
+</body>
+</html>
