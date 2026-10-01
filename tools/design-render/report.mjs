@@ -103,6 +103,39 @@ export function buildReportMarkdown() {
       " policy-dependent/not decided by the design, matching the requirement that no unresolved policy be" +
       " silently selected.",
     "",
+    "## Customers + Credit review notes",
+    "",
+    "Status: `approved-visual-reference` (2026-10-01). Source is the corrected v2 export, SHA-256" +
+      " `593adaec60d84d384fdc2947a1ba7d169f8ec8eb21d34373fb814ee662259d7c` (replaces v1 `b7fb8c01…5819ff`)." +
+      " The v2-fixed archive was verified 10/10 against its manifest; `support.js` is unchanged and identical to" +
+      " Procurement's real runtime.",
+    "",
+    "- v2 change: exactly two source lines (274 and 279 of 331). Screen 60 (Customer Statement) drops" +
+      " `maxWidth:640` from its wrapper and screen 61 (Customer Aging) drops `maxWidth:560`. No text, logic," +
+      " screen ID, title, group or shared component changed, and all 74 screens render the same text as v1.",
+    "- Original defect fixed: Date / Reference / Description / Debit / Credit / Running on screen 60 and every" +
+      " aging bucket on screen 61 are visible at 1280x720, 1366x768, 1368x800 and 1920x1080, with no body-level" +
+      " horizontal scroll and no clipped text. At 1280x720 the table keeps a 4px overflow contained inside its own" +
+      " scroll box, the same as every other table screen in the package. The aging view has no totals row in the" +
+      " source.",
+    "- Render: 74/74 RUNTIME-COMPLETE on the real runtime, 0 BLOCKED, 0 KNOWN-DIFFERENCE, 0 page errors. Rendered" +
+      " with Chromium 1194 in the cloud workspace because the pinned 1243 headless shell cannot be downloaded on" +
+      " the local machine.",
+    "- Four-viewport PASS: all 74 at 1280x720; screens 01, 13, 16, 21, 27, 28, 31, 46, 49, 51, 52, 60, 61 and 74" +
+      " at the other three sizes. Minor, unchanged from v1: at 1280x720 the top bar wraps its labels onto two" +
+      " lines without overlap.",
+    "- Open decisions preserved: DEC-CRD-001 stays OPEN (screen 31 shows BLOCK / WARN / REQUIRE OVERRIDE, each" +
+      " AUTHORITY-DEPENDENT, none selected). DEC-CRD-002 stays OPEN (screen 46 states FIFO, oldest-first," +
+      " proportional or manual is not decided; its sample amounts are illustrative, not a rule). Held-sale" +
+      " exposure (39) and over-collection handling (48) also stay open.",
+    "- Semantics seen in render: exposure is a result of immutable ledger events with no editable balance (27, 37);" +
+      " an unconfigured limit is not RM 0.00 (29); draft collection has no exposure effect (56); posted" +
+      " collection is read-only (51); safe retry reuses one operation reference (52); Store Node outage and Cloud" +
+      " Sync outage are separate states (05, 06, 59); the statement is operational, not a general ledger (60)." +
+      " Forbidden terms appear only inside disclaimers. No screen has an editable input.",
+    "- Documentation: the 43 numbered confirmations live in the grouped page `MiniMart CUS - Design System &" +
+      " Docs.dc.html` from the same export, not in the registered source (screen 74 is the component inventory).",
+    "",
     "## Procurement viewport verification",
     "",
     "`primaryViewport` (1366x768) is verified as part of the normal `pnpm design:render --package procurement`" +

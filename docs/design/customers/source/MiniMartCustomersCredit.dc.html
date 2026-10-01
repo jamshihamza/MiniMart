@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/lucide-static@0.469.0/font/lucide.css">
+<style>
+html,body{margin:0;height:100%;background:#f2f4f7}
+button,input,select,textarea{font-family:inherit;color:inherit}
+[class^="icon-"]{font-family:lucide!important;font-style:normal;line-height:1;display:inline-block;speak:never}
+*:focus-visible{outline:2px solid #1b5fd1;outline-offset:2px}
+a{color:#1b5fd1}a:hover{color:#174fb0}
+</style>
+</helmet>
+<div data-screen-label="{{ scrLabel }}" style="position:relative;display:flex;width:100%;height:{{ rootH }};min-width:1160px;background:#f2f4f7;font-family:'IBM Plex Sans',system-ui,sans-serif;color:#0f1a2b;overflow:hidden;font-variant-numeric:tabular-nums;font-size:13.5px;line-height:1.35">
+<aside style="width:190px;flex:none;background:#0e1b33;color:#c3cbd9;display:flex;flex-direction:column;padding:14px 10px 12px;gap:6px;overflow:auto">
+  <div style="display:flex;align-items:center;gap:9px;padding:2px 6px 10px">
+    <div style="width:30px;height:30px;border-radius:8px;background:#1b5fd1;display:grid;place-items:center;color:#fff"><i class="icon-store" style="font-size:16px"></i></div>
+    <div style="display:flex;flex-direction:column;gap:1px"><span style="color:#fff;font-weight:700;font-size:13px;letter-spacing:.08em">MINIMART</span><span style="font-size:10.5px;color:#8c98ad">Back Office</span></div>
+  </div>
+  <sc-for list="{{ nav }}" as="grp" hint-placeholder-count="6">
+    <div style="display:flex;flex-direction:column;gap:1px;margin-top:6px">
+      <span style="font-size:10px;font-weight:600;letter-spacing:.09em;color:#6f7c93;padding:4px 10px">{{ grp.label }}</span>
+      <sc-for list="{{ grp.items }}" as="it" hint-placeholder-count="3">
+        <button onClick="{{ it.go }}" disabled="{{ it.stub }}" style="display:flex;align-items:center;gap:9px;height:34px;padding:0 10px;border-radius:7px;border:0;background:{{ it.bg }};color:{{ it.fg }};font-size:12.5px;font-weight:{{ it.fw }};cursor:{{ it.cursor }};text-align:left">
+          <i class="{{ it.icon }}" style="font-size:15px"></i><span style="flex:1">{{ it.label }}</span>
+          <sc-if value="{{ it.stub }}" hint-placeholder-val="{{ false }}"><i class="icon-corner-down-right" style="font-size:11px;color:#4d5a72"></i></sc-if>
+        </button>
+      </sc-for>
+    </div>
+  </sc-for>
+  <div style="margin-top:auto;padding-top:10px"><span style="font-size:10px;color:#5d6a82;padding:0 10px">Structural navigation only outside this package</span></div>
+</aside>
+<div style="flex:1;min-width:0;display:flex;flex-direction:column">
+  <header style="height:50px;flex:none;background:#fff;border-bottom:1px solid #e1e5eb;display:flex;align-items:center;padding:0 16px;gap:16px">
+    <div style="display:flex;align-items:center;gap:6px;font-weight:600;font-size:13px"><i class="icon-building-2" style="font-size:15px;color:#4a5567"></i>MiniMart Sdn Bhd</div>
+    <div style="display:flex;align-items:center;gap:6px;font-size:12.5px;color:#4a5567"><i class="icon-store" style="font-size:14px"></i>Store <span style="font-weight:600;color:#0f1a2b">MiniMart Central</span></div>
+    <div style="display:flex;align-items:center;gap:6px;font-size:12.5px;color:#4a5567"><i class="icon-calendar" style="font-size:14px"></i>Business date <span style="color:#0f1a2b;font-weight:500">Sat, 26 Sep 2026</span></div>
+    <div style="margin-left:auto;display:flex;align-items:center;gap:8px">
+      <div title="Store Node connection" style="display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 10px;border-radius:999px;border:1px solid {{ nodeP.bd }};background:{{ nodeP.bg }};color:{{ nodeP.fg }};font-size:12px;font-weight:600"><i class="{{ nodeP.icon }}" style="font-size:13px"></i>{{ nodeP.label }}</div>
+      <div title="Cloud synchronisation" style="display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 10px;border-radius:999px;border:1px solid {{ syncP.bd }};background:{{ syncP.bg }};color:{{ syncP.fg }};font-size:12px;font-weight:600"><i class="{{ syncP.icon }}" style="font-size:13px"></i>{{ syncP.label }}</div>
+      <button style="display:flex;align-items:center;gap:7px;height:32px;padding:0 8px 0 4px;border-radius:7px;border:1px solid #e1e5eb;background:#fff;cursor:pointer;font-size:12.5px;font-weight:500"><span style="width:24px;height:24px;border-radius:50%;background:#e8f0fc;color:#1b5fd1;display:grid;place-items:center;font-size:10.5px;font-weight:700">SM</span>Siti M. <span style="color:#6b7585">· {{ roleLabel }}</span></button>
+    </div>
+  </header>
+  <div style="position:relative;flex:1;min-height:0;overflow:auto">
+  <sc-if value="{{ nodeDown }}" hint-placeholder-val="{{ false }}">
+    <div style="padding:40px;display:flex;justify-content:center">
+      <div style="max-width:560px;width:100%;background:#fff;border:1px solid #e1e5eb;border-radius:14px;padding:24px;display:flex;flex-direction:column;gap:14px">
+        <div style="display:flex;gap:14px;align-items:flex-start">
+          <div style="width:44px;height:44px;flex:none;border-radius:11px;background:#fcebea;color:#b3261e;display:grid;place-items:center"><i class="icon-server-off" style="font-size:22px"></i></div>
+          <div style="display:flex;flex-direction:column;gap:6px"><span style="font-size:17px;font-weight:600">Store Node unavailable</span><span style="font-size:13.5px;color:#4a5567">Store Node-backed Customer and Credit operations are unavailable — creating/editing Customers, posting Collections, and live credit exposure cannot continue until the connection returns. Existing data is not shown as current while this state persists. This is separate from Cloud Sync status.</span></div>
+        </div>
+        <div style="display:flex;gap:8px"><button style="height:40px;padding:0 16px;border-radius:8px;border:0;background:#1b5fd1;color:#fff;font-size:14px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:8px"><i class="icon-refresh-cw" style="font-size:15px"></i>Retry connection</button><button style="height:40px;padding:0 16px;border-radius:8px;border:1px solid #cfd5de;background:#fff;color:#3d4a5e;font-size:14px;font-weight:600;cursor:pointer">Diagnostics</button></div>
+      </div>
+    </div>
+  </sc-if>
+  <sc-if value="{{ nodeUp }}" hint-placeholder-val="{{ true }}">
+  <sc-if value="{{ cloudDown }}" hint-placeholder-val="{{ false }}">
+    <div style="display:flex;align-items:center;gap:10px;padding:10px 22px;background:#fdf3e1;border-bottom:1px solid #f0d4a0;color:#6b4000;font-size:12.5px"><i class="icon-cloud-off" style="font-size:16px"></i><div style="flex:1"><strong style="font-weight:600">Cloud sync unavailable.</strong> Local customer and credit activity remains available. Changes will sync when cloud connectivity returns. Global multi-branch exposure is not shown as current while this state persists.</div></div>
+  </sc-if>
+  <div style="padding:16px 22px 40px;max-width:1180px">{{ body }}</div>
+  </sc-if>
+  </div>
+</div>
+<sc-if value="{{ drawerOpen }}" hint-placeholder-val="{{ false }}">
+  <aside style="position:absolute;top:0;right:0;bottom:0;width:400px;background:#fff;border-left:1px solid #e1e5eb;box-shadow:-8px 0 24px rgba(14,27,51,.14);z-index:5;display:flex;flex-direction:column">
+    <div style="flex:none;display:flex;align-items:center;gap:10px;padding:12px 10px 12px 16px;border-bottom:1px solid #e1e5eb"><span style="font-size:14px;font-weight:600;flex:1">{{ drawerTitle }}</span><button onClick="{{ closeDrawer }}" aria-label="Close" style="width:30px;height:30px;border-radius:7px;border:0;background:transparent;display:grid;place-items:center;cursor:pointer;color:#4a5567"><i class="icon-x" style="font-size:16px"></i></button></div>
+    <div style="flex:1;overflow:auto;padding:16px">{{ drawerContent }}</div>
+  </aside>
+</sc-if>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1366,&quot;height&quot;:768},&quot;screen&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;01&quot;,&quot;02&quot;,&quot;03&quot;,&quot;04&quot;,&quot;05&quot;,&quot;06&quot;,&quot;07&quot;,&quot;08&quot;,&quot;09&quot;,&quot;10&quot;,&quot;11&quot;,&quot;12&quot;,&quot;13&quot;,&quot;14&quot;,&quot;15&quot;,&quot;16&quot;,&quot;17&quot;,&quot;18&quot;,&quot;19&quot;,&quot;20&quot;,&quot;21&quot;,&quot;22&quot;,&quot;23&quot;,&quot;24&quot;,&quot;25&quot;,&quot;26&quot;,&quot;27&quot;,&quot;28&quot;,&quot;29&quot;,&quot;30&quot;,&quot;31&quot;,&quot;32&quot;,&quot;33&quot;,&quot;34&quot;,&quot;35&quot;,&quot;36&quot;,&quot;37&quot;,&quot;38&quot;,&quot;39&quot;,&quot;40&quot;,&quot;41&quot;,&quot;42&quot;,&quot;43&quot;,&quot;44&quot;,&quot;45&quot;,&quot;46&quot;,&quot;47&quot;,&quot;48&quot;,&quot;49&quot;,&quot;50&quot;,&quot;51&quot;,&quot;52&quot;,&quot;53&quot;,&quot;54&quot;,&quot;55&quot;,&quot;56&quot;,&quot;57&quot;,&quot;58&quot;,&quot;59&quot;,&quot;60&quot;,&quot;61&quot;,&quot;62&quot;,&quot;63&quot;,&quot;64&quot;,&quot;65&quot;,&quot;66&quot;,&quot;67&quot;,&quot;68&quot;,&quot;69&quot;,&quot;70&quot;,&quot;71&quot;,&quot;72&quot;,&quot;73&quot;,&quot;74&quot;],&quot;default&quot;:&quot;01&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;embedded&quot;:{&quot;editor&quot;:null,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;}}">
+const E=React.createElement;
+const RM=(c)=>c==null?'—':(c<0?'−RM ':'RM ')+(Math.abs(c)/100).toLocaleString('en-MY',{minimumFractionDigits:2,maximumFractionDigits:2});
+const pill=(bg,fg,icon,label)=>({bg,fg,icon,label});
+const card=(children,style)=>E('div',{style:Object.assign({background:'#fff',border:'1px solid #e1e5eb',borderRadius:'11px',padding:'16px',display:'flex',flexDirection:'column',gap:'10px'},style||{})},...[].concat(children));
+const kv=(l,v,vc)=>E('div',{style:{display:'flex',justifyContent:'space-between',gap:'12px',fontSize:'13px'}},E('span',{style:{color:'#6b7585'}},l),E('span',{style:{fontWeight:600,color:vc||'#0f1a2b',textAlign:'right'}},v));
+const noteBox=(text,tone)=>{const c={amber:['#fdf3e1','#6b4000','#f0d4a0'],blue:['#e8f0fc','#174fb0','#b9cff2'],red:['#fcebea','#8a1f14','#f2b8b0'],green:['#e5f4ec','#0f3d24','#bfe2cd']}[tone||'amber'];return E('div',{style:{display:'flex',gap:'8px',alignItems:'flex-start',padding:'10px 12px',borderRadius:'9px',background:c[0],border:'1px solid '+c[2],color:c[1],fontSize:'12px'}},E('i',{className:'icon-info',style:{fontSize:'14px',marginTop:'1px'}}),E('span',null,text));};
+const stepper=(labels,idx)=>E('div',{style:{display:'flex',alignItems:'center',gap:'6px'}},...labels.map((label,i)=>[E('span',{key:'s'+i,style:{display:'inline-flex',alignItems:'center',gap:'5px',height:'26px',padding:'0 10px',borderRadius:'999px',border:'1px solid '+(i<=idx?'#1b5fd1':'#cfd5de'),background:i===idx?'#1b5fd1':'#fff',color:i===idx?'#fff':i<idx?'#1b5fd1':'#6b7585',fontSize:'12px',fontWeight:600}},label),i<labels.length-1?E('i',{key:'a'+i,className:'icon-chevron-right',style:{fontSize:'13px',color:'#9aa3b2',opacity:i<idx?1:0.35}}):null]).flat());
+const tbl=(cols,widths,rows,onRow)=>E('div',{style:{background:'#fff',border:'1px solid #e1e5eb',borderRadius:'11px',overflow:'auto'}},
+  E('div',{style:{display:'grid',gridTemplateColumns:widths,minWidth:'1000px',gap:'10px',padding:'8px 14px',background:'#f7f9fb',borderBottom:'1px solid #e1e5eb',fontSize:'10.5px',fontWeight:600,color:'#6b7585'}},...cols.map(c=>E('span',{key:c},c))),
+  ...rows.map((r,i)=>E('div',{key:i,onClick:onRow?()=>onRow(r):undefined,style:{display:'grid',gridTemplateColumns:widths,minWidth:'1000px',gap:'10px',alignItems:'center',padding:'0 14px',height:'44px',borderTop:'1px solid #eef1f5',fontSize:'12.5px',cursor:onRow?'pointer':'default'}},...r)));
+const CUSTOMERS=[
+  {n:'Aisyah Rahman',code:'CUS-00124',phone:'012-345 6789',email:'aisyah.r@gmail.com',status:'Active',credit:true,outstanding:92000,overdue:24000,lastCollect:30000,lastSale:'25 Sep 2026'},
+  {n:'Daniel Tan',code:'CUS-00131',phone:'016-778 2210',email:'daniel.tan@gmail.com',status:'Active',credit:true,outstanding:0,overdue:0,lastCollect:0,lastSale:'20 Sep 2026'},
+  {n:'Nurul Huda',code:'CUS-00142',phone:'013-990 4471',email:'nurul.huda@gmail.com',status:'Active',credit:false,outstanding:0,overdue:0,lastCollect:0,lastSale:'18 Sep 2026'},
+  {n:'Ravi Kumar',code:'CUS-00156',phone:'019-223 8810',email:'ravi.kumar@gmail.com',status:'Active',credit:true,outstanding:55000,overdue:0,lastCollect:20000,lastSale:'26 Sep 2026'},
+  {n:'Lim Wei Jian',code:'CUS-00163',phone:'011-565 3392',email:'weijian.lim@gmail.com',status:'Inactive',credit:false,outstanding:0,overdue:0,lastCollect:0,lastSale:'02 Jun 2026'},
+  {n:'Siti Aminah',code:'CUS-00171',phone:'014-887 1290',email:'siti.aminah@gmail.com',status:'Active',credit:true,outstanding:12000,overdue:0,lastCollect:5000,lastSale:'24 Sep 2026'}];
+const CREDIT_LEDGER=[
+  {date:'02 Sep 2026',ref:'POS01-000108',type:'Credit Sale',debit:38000,credit:0,run:38000,due:'02 Oct 2026',store:'MiniMart Central',status:'Open'},
+  {date:'10 Sep 2026',ref:'POS01-000122',type:'Credit Sale',debit:54000,credit:0,run:92000,due:'10 Oct 2026',store:'MiniMart Central',status:'Overdue'},
+  {date:'18 Sep 2026',ref:'COL-2026-00031',type:'Collection',debit:0,credit:30000,run:62000,due:'—',store:'MiniMart Central',status:'Posted'},
+  {date:'25 Sep 2026',ref:'POS01-000140',type:'Credit Sale',debit:30000,credit:0,run:92000,due:'25 Oct 2026',store:'MiniMart Central',status:'Open'}];
+const CREDIT_SALES=[
+  {ref:'POS01-000108',date:'02 Sep 2026',store:'MiniMart Central',orig:38000,creditAmt:38000,due:'02 Oct 2026',outstanding:0,status:'Settled'},
+  {ref:'POS01-000122',date:'10 Sep 2026',store:'MiniMart Central',orig:54000,creditAmt:54000,due:'10 Oct 2026',outstanding:24000,status:'Overdue'},
+  {ref:'POS01-000140',date:'25 Sep 2026',store:'MiniMart Central',orig:30000,creditAmt:30000,due:'25 Oct 2026',outstanding:30000,status:'Open'}];
+const COLLECTIONS=[
+  {ref:'COL-2026-00031',customer:'Aisyah Rahman',date:'18 Sep 2026',amount:30000,status:'Posted'},
+  {ref:'COL-2026-00038',customer:'Ravi Kumar',date:'26 Sep 2026',amount:20000,status:'Posted'},
+  {ref:'COL-2026-00039',customer:'Siti Aminah',date:'26 Sep 2026',amount:5000,status:'Draft'}];
+const NAV=[['Dashboard',[['Dashboard','icon-layout-dashboard',false]]],
+['MASTERS',[['Products','icon-package',true],['Categories','icon-shapes',true],['Brands','icon-tag',true],['Suppliers','icon-truck',true],['Customers','icon-users',false]]],
+['OPERATIONS',[['Purchases','icon-shopping-bag',true],['Inventory','icon-boxes',true],['Sales','icon-receipt',true],['Returns','icon-undo-2',true],['Cash & Shifts','icon-clock',true]]],
+['FINANCE',[['Accounting','icon-calculator',true],['Reconciliation','icon-scale',true]]],
+['MANAGEMENT',[['Reports','icon-bar-chart-3',true]]],
+['ADMINISTRATION',[['Users & Access','icon-shield',true],['Organization','icon-building-2',true],['Devices','icon-monitor',true],['Sync & Diagnostics','icon-refresh-cw',true],['Settings','icon-settings',true]]]];
+const NAMES={
+'01':'Customer List — populated','02':'Customer List — filtered Credit Enabled','03':'Customer List — With Overdue','04':'Customer List — empty / no results','05':'Customer List — Store Node unavailable','06':'Customer List — Cloud Sync unavailable','07':'Customer List — read-only / permission-limited','08':'Customer Search at POS (cross-module example)','09':'Walk-in vs Identified Customer','10':'Customer Summary cards','11':'Customer Import — upload/validate/review (if included)','12':'Potential Duplicate Customer',
+'13':'Create Customer — Basic Info','14':'Create Customer — Contact / Address','15':'Create Customer — Identifiers','16':'Customer Detail — Overview','17':'Customer Detail — Contact / Address','18':'Customer Detail — Identifiers','19':'Customer Detail — Sales History','20':'Customer Detail — Returns','21':'Customer Detail — Credit','22':'Customer Detail — Collections','23':'Customer Detail — Statement','24':'Customer Detail — History / Audit','25':'Customer Deactivate / Reactivate confirmation',
+'26':'Credit Enablement — enable credit','27':'Credit Account Overview — cards','28':'Credit Ledger / Exposure History','29':'Credit Limit — No Fixed Limit / Policy-defined','30':'Credit Limit — Configured Limit','31':'Credit Limit Violation — authority-dependent','32':'Credit Eligibility at Checkout — states gallery','33':'Overdue Credit view','34':'Due-Date Basis — documentation note','35':'Customer Credit Sales list','36':'Credit Ledger Entry detail drawer','37':'Credit Ledger immutability note','38':'Credit Sale connection — cross-module map','39':'Held-Sale Pending Credit Exposure — open decision','40':'Credit Correction / Reversal','41':'Credit Restricted state','42':'Credit Not Enabled state','43':'Concurrent Credit-Limit Check — conflict',
+'44':'New Customer Collection — entry','45':'Collection — Select Customer','46':'Collection Allocation — table','47':'Partial Collection example','48':'Collection exceeds outstanding — validation','49':'Collection Review','50':'Collection Posted','51':'Posted Collection — read-only','52':'Collection Safe Retry / uncertain','53':'Collection posting envelope note','54':'Collection validation — missing fields','55':'Collection — payment/financial context link','56':'Draft Collection — no exposure effect','57':'Collections list — populated','58':'Collections list — filtered Draft','59':'Collection Store Node unavailable',
+'60':'Customer Statement','61':'Customer Aging — restrained read-only view','62':'Credit Dashboard / Work Queue','63':'Accounting-Lite Receivables link','64':'Statement Print / Export','65':'POS Credit Sale flow (cross-module example)','66':'Sale Detail → View Customer (cross-module example)','67':'Sales Return → resulting credit effect (cross-module example)','68':'Aging bucket note — configured/reporting policy',
+'69':'Cross-module Map','70':'Design System — Table / Status components','71':'Design System — Form / Ledger components','72':'Permission / Audit components','73':'Empty & Validation states gallery','74':'Component inventory + documentation'};
+function cfg(s){
+  const b={scr:s,view:'custList',node:'on',sync:'ok',role:'admin',listMode:'all',detailTab:'overview',ds:'crossmap',custIdx:0};
+  const m={
+    '01':{view:'custList',listMode:'all'},'02':{view:'custList',listMode:'credit'},'03':{view:'custList',listMode:'overdue'},'04':{view:'custList',listMode:'empty'},'05':{node:'off'},'06':{sync:'down'},'07':{role:'viewer'},'08':{view:'posSearch'},'09':{view:'walkinVsId'},'10':{view:'custSummary'},'11':{view:'custImport'},'12':{view:'custDialog',dialog:'dup'},
+    '13':{view:'custCreate',createTab:'basic'},'14':{view:'custCreate',createTab:'contact'},'15':{view:'custCreate',createTab:'identifiers'},'16':{view:'custDetail',detailTab:'overview'},'17':{view:'custDetail',detailTab:'contacts'},'18':{view:'custDetail',detailTab:'identifiers'},'19':{view:'custDetail',detailTab:'sales'},'20':{view:'custDetail',detailTab:'returns'},'21':{view:'custDetail',detailTab:'credit'},'22':{view:'custDetail',detailTab:'collections'},'23':{view:'custDetail',detailTab:'statement'},'24':{view:'custDetail',detailTab:'audit'},'25':{view:'custDialog',dialog:'deactivate'},
+    '26':{view:'credit',creditState:'enable'},'27':{view:'credit',creditState:'overview'},'28':{view:'credit',creditState:'ledger'},'29':{view:'credit',creditState:'noLimit'},'30':{view:'credit',creditState:'configuredLimit'},'31':{view:'credit',creditState:'violation'},'32':{view:'credit',creditState:'eligibilityGallery'},'33':{view:'credit',creditState:'overdueView'},'34':{view:'credit',creditState:'dueDateNote'},'35':{view:'credit',creditState:'creditSalesList'},'36':{view:'credit',creditState:'ledgerDrawer'},'37':{view:'credit',creditState:'immutabilityNote'},'38':{view:'credit',creditState:'crossmapCredit'},'39':{view:'credit',creditState:'heldSale'},'40':{view:'credit',creditState:'correction'},'41':{view:'credit',creditState:'restricted'},'42':{view:'credit',creditState:'notEnabled'},'43':{view:'credit',creditState:'concurrentCheck'},
+    '44':{view:'collection',colState:'entry'},'45':{view:'collection',colState:'selectCustomer'},'46':{view:'collection',colState:'allocation'},'47':{view:'collection',colState:'partial'},'48':{view:'collection',colState:'exceedsOutstanding'},'49':{view:'collection',colState:'review'},'50':{view:'collection',colState:'posted'},'51':{view:'collection',colState:'postedReadonly'},'52':{view:'collection',colState:'retry'},'53':{view:'collection',colState:'envelope'},'54':{view:'collection',colState:'validation'},'55':{view:'collection',colState:'paymentContext'},'56':{view:'collection',colState:'draft'},'57':{view:'collection',colState:'list'},'58':{view:'collection',colState:'listDraft'},'59':{view:'collection',colState:'nodeDown'},
+    '60':{view:'statement',stState:'statement'},'61':{view:'statement',stState:'aging'},'62':{view:'statement',stState:'dashboard'},'63':{view:'statement',stState:'arLink'},'64':{view:'statement',stState:'printExport'},'65':{view:'statement',stState:'posCreditFlow'},'66':{view:'statement',stState:'saleViewCustomer'},'67':{view:'statement',stState:'returnCreditEffect'},'68':{view:'statement',stState:'agingNote'},
+    '69':{view:'dsGallery',ds:'crossmap'},'70':{view:'dsGallery',ds:'table'},'71':{view:'dsGallery',ds:'form'},'72':{view:'dsGallery',ds:'permission'},'73':{view:'dsGallery',ds:'empty'},'74':{view:'dsGallery',ds:'inventory'}};
+  return {...b,...(m[s]||{})};
+}
+class Component extends DCLogic {
+  state = cfg((this.props&&this.props.screen)||'01');
+  componentDidUpdate(pp){ if(pp.screen!==this.props.screen) this.setState(cfg(this.props.screen||'01')); }
+  renderVals(){
+    const s=this.state, set=(o)=>this.setState(o);
+    const node=s.node==='on', cloudOk=s.sync==='ok', readOnly=s.role==='viewer';
+    const nodeP=node?pill('#e5f4ec','#146c43','icon-server','Store Node online'):pill('#fcebea','#b3261e','icon-server-off','Store Node unavailable');
+    const syncP=cloudOk?pill('#f2f4f7','#4a5567','icon-cloud','Sync healthy'):pill('#fdf3e1','#8a5100','icon-cloud-off','Cloud sync unavailable · 9 queued');
+    const roleLabel=readOnly?'Read-only role':'Customer & Credit Manager';
+    const isCustomerView=['custList','custDetail','custCreate','custDialog','posSearch','walkinVsId','custSummary','custImport','credit','collection','statement'].includes(s.view);
+    const nav=NAV.map(([label,items])=>({label,items:items.map(([lbl,icon,stub])=>{
+      const active=lbl==='Customers'&&isCustomerView;
+      return {label:lbl,icon,stub,bg:active?'#1f3a6b':'transparent',fg:stub?'#5d6a82':active?'#fff':'#c3cbd9',fw:active?600:500,cursor:stub?'not-allowed':'pointer',
+        go:lbl==='Customers'?()=>set({view:'custList',listMode:'all'}):()=>{}};
+    })}));
+    const goCustList=()=>set({view:'custList',listMode:'all'});
+    const custIdx=s.custIdx??0, cust=CUSTOMERS[custIdx];
+    const custRows=CUSTOMERS.map((c,i)=>{const st=c.status==='Active'?pill('#e5f4ec','#146c43','icon-circle-check','Active'):pill('#eef1f5','#3d4a5e','icon-circle-slash','Inactive');
+      const cst=!c.credit?pill('#eef1f5','#4a5567',null,'Not Enabled'):c.overdue>0?pill('#fcebea','#b3261e',null,'Overdue'):pill('#e5f4ec','#146c43',null,'Enabled');
+      return [E('span',{key:'n',style:{fontWeight:600,cursor:'pointer'},onClick:()=>set({view:'custDetail',detailTab:'overview',custIdx:i})},c.n),E('span',{key:'c',style:{fontFamily:"'IBM Plex Mono',monospace",fontSize:11.5}},c.code),E('span',{key:'p',style:{fontSize:12}},c.phone),E('span',{key:'cs',style:{display:'inline-flex',alignItems:'center',height:22,padding:'0 8px',borderRadius:999,background:cst.bg,color:cst.fg,fontSize:11,fontWeight:600}},cst.label),E('span',{key:'o',style:{fontWeight:600}},c.credit?RM(c.outstanding):'—'),E('span',{key:'ov',style:{fontWeight:600,color:c.overdue>0?'#b3261e':'#0f1a2b'}},c.credit?RM(c.overdue):'—'),E('span',{key:'ls',style:{fontSize:11.5}},c.lastSale),E('span',{key:'st',style:{display:'inline-flex',alignItems:'center',gap:5,height:22,padding:'0 8px',borderRadius:999,background:st.bg,color:st.fg,fontSize:11,fontWeight:600}},E('i',{className:st.icon,style:{fontSize:12}}),st.label)];});
+    const custListBody=()=>{
+      let rows=custRows;
+      if(s.listMode==='credit') rows=custRows.filter((r,i)=>CUSTOMERS[i].credit);
+      else if(s.listMode==='overdue') rows=custRows.filter((r,i)=>CUSTOMERS[i].overdue>0);
+      else if(s.listMode==='empty') rows=[];
+      return E('div',{style:{display:'flex',flexDirection:'column',gap:12}},
+        E('div',{style:{display:'flex',alignItems:'baseline',gap:10}},E('span',{style:{fontSize:19,fontWeight:700}},'Customers'),readOnly?E('span',{style:{display:'inline-flex',alignItems:'center',gap:5,height:22,padding:'0 8px',borderRadius:999,background:'#eef1f5',color:'#3d4a5e',fontSize:11.5,fontWeight:600}},E('i',{className:'icon-lock',style:{fontSize:12}}),'Read-only'):null,
+          E('button',{disabled:readOnly,onClick:()=>set({view:'custCreate',createTab:'basic'}),style:{marginLeft:'auto',height:34,padding:'0 14px',borderRadius:8,border:0,background:readOnly?'#9aa3b2':'#1b5fd1',color:'#fff',fontSize:12.5,fontWeight:600,cursor:'pointer'}},'New Customer')),
+        E('div',{style:{display:'flex',gap:8,flexWrap:'wrap',alignItems:'center'}},
+          E('div',{style:{display:'flex',alignItems:'center',gap:8,height:36,padding:'0 12px',flex:1,minWidth:220,maxWidth:340,background:'#fff',border:'1px solid #cfd5de',borderRadius:8}},E('i',{className:'icon-search',style:{fontSize:15,color:'#6b7585'}}),E('span',{style:{fontSize:13,color:'#9aa3b2'}},s.listMode==='empty'?'"Farah Izzati"':'Search name, code, phone or email')),
+          ...['Active','Inactive','Credit Enabled','Credit Not Enabled','With Outstanding Credit','Overdue'].map((l,i)=>E('button',{key:l,style:{height:36,padding:'0 11px',borderRadius:8,border:'1px solid '+((s.listMode==='credit'&&i===2)||(s.listMode==='overdue'&&i===5)?'#1b5fd1':'#cfd5de'),background:(s.listMode==='credit'&&i===2)||(s.listMode==='overdue'&&i===5)?'#eef4fd':'#fff',color:(s.listMode==='credit'&&i===2)||(s.listMode==='overdue'&&i===5)?'#1b5fd1':'#3d4a5e',fontSize:12,fontWeight:600,cursor:'pointer'}},l))),
+        rows.length?tbl(['CUSTOMER','CODE','PHONE','CREDIT STATUS','OUTSTANDING','OVERDUE','LAST SALE','STATUS'],'minmax(160px,1.4fr) 100px 120px 120px 100px 100px 100px 100px',rows):
+          E('div',{style:{background:'#fff',border:'1px solid #e1e5eb',borderRadius:11,padding:'48px 20px',textAlign:'center',display:'flex',flexDirection:'column',gap:8,alignItems:'center'}},E('i',{className:'icon-search-x',style:{fontSize:28,color:'#b7bfcb'}}),E('span',{style:{fontSize:13.5,fontWeight:600}},'No customers match "Farah Izzati"'),E('span',{style:{fontSize:12.5,color:'#6b7585'}},'This does not indicate a failure — try a different search term.')));
+    };
+    const posSearchBody=()=>card([E('span',{style:{fontSize:13,fontWeight:600}},'POS Customer Lookup (cross-module example — not a redesign of POS)'),E('div',{style:{display:'flex',alignItems:'center',gap:8,height:38,padding:'0 12px',border:'1.5px solid #1b5fd1',boxShadow:'0 0 0 3px #dbe7fb',borderRadius:8,maxWidth:360}},E('i',{className:'icon-search',style:{fontSize:15,color:'#1b5fd1'}}),E('span',{style:{fontSize:13,color:'#9aa3b2'}},'Name, phone or customer code')),kv('Match','Aisyah Rahman · CUS-00124'),noteBox('This is the same company-wide Customer identity shown in Back Office — not a second POS-only database.','blue')],{maxWidth:460});
+    const walkinVsIdBody=()=>E('div',{style:{display:'grid',gridTemplateColumns:'1fr 1fr',gap:14,maxWidth:700}},
+      card([E('i',{className:'icon-user-round',style:{fontSize:22,color:'#4a5567'}}),E('span',{style:{fontSize:14,fontWeight:600}},'Walk-in Customer'),E('span',{style:{fontSize:12,color:'#6b7585'}},'No Customer master record is created. Not eligible for Credit.')]),
+      card([E('i',{className:'icon-user-check',style:{fontSize:22,color:'#1b5fd1'}}),E('span',{style:{fontSize:14,fontWeight:600}},'Identified Customer'),E('span',{style:{fontSize:12,color:'#6b7585'}},'Linked to a real Customer master record — the same identity shown throughout this package.')]));
+    const custSummaryBody=()=>E('div',{style:{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:12}},...[['icon-users','Active Customers',CUSTOMERS.filter(c=>c.status==='Active').length,'#146c43'],['icon-credit-card','Credit-enabled Customers',CUSTOMERS.filter(c=>c.credit).length,'#1b5fd1'],['icon-wallet','With Outstanding Credit',CUSTOMERS.filter(c=>c.outstanding>0).length,'#8a5100'],['icon-alert-triangle','With Overdue Credit',CUSTOMERS.filter(c=>c.overdue>0).length,'#b3261e']].map(([icon,label,value,c])=>card([E('span',{style:{display:'inline-flex',alignItems:'center',gap:6,fontSize:11.5,fontWeight:600,color:'#6b7585'}},E('i',{className:icon,style:{fontSize:13}}),label),E('span',{style:{fontSize:24,fontWeight:700,color:c}},value)])));
+    const custImportBody=()=>E('div',{style:{display:'flex',flexDirection:'column',gap:12,maxWidth:600}},
+      stepper(['Upload','Validate','Review','Commit','Result'],1),
+      card([kv('File','customers_sep2026.csv'),kv('Rows','48')]),
+      noteBox('Invalid rows are never silently discarded. Partial-commit semantics are not invented here — if Customer import is not required by current authority, this screen stays out of the active package.','blue'));
+    const custDialogBody=()=>{
+      if(s.dialog==='dup') return card([E('span',{style:{fontSize:15,fontWeight:600,color:'#b3261e'}},'Potential Duplicate Customer'),kv('Customer A','Aisyah Rahman · CUS-00124'),kv('Customer B','Aisyah R. · CUS-00198'),kv('Shared','Phone 012-345 6789'),noteBox('MiniMart does not silently merge customers. Final merge workflow remains authority-dependent.','red'),E('div',{style:{display:'flex',gap:8,justifyContent:'flex-end'}},E('button',{style:{height:38,padding:'0 14px',borderRadius:8,border:'1px solid #cfd5de',background:'#fff',fontWeight:600,cursor:'pointer'}},'Review'))],{maxWidth:480});
+      return card([E('span',{style:{fontSize:16,fontWeight:600}},'Deactivate '+cust.n+'?'),E('span',{style:{fontSize:13,color:'#4a5567'}},'This customer is removed from normal new-selection where appropriate. Historical Sales, Returns and Credit facts remain fully visible and unchanged. Reactivation does not automatically imply credit eligibility.'),E('div',{style:{display:'flex',gap:8,justifyContent:'flex-end'}},E('button',{onClick:goCustList,style:{height:38,padding:'0 14px',borderRadius:8,border:'1px solid #cfd5de',background:'#fff',fontWeight:600,cursor:'pointer'}},'Cancel'),E('button',{style:{height:38,padding:'0 14px',borderRadius:8,border:0,background:'#b3261e',color:'#fff',fontWeight:600,cursor:'pointer'}},'Deactivate'))],{maxWidth:480});
+    };
+    const custCreateBody=()=>{
+      const tab=s.createTab;
+      return E('div',{style:{display:'flex',flexDirection:'column',gap:14,maxWidth:640}},
+        E('span',{style:{fontSize:19,fontWeight:700}},'New Customer'),
+        E('div',{style:{display:'flex',gap:4,borderBottom:'1px solid #e1e5eb'}},...[['basic','Basic Information'],['contact','Contact / Address'],['identifiers','Identifiers']].map(([k,l])=>E('button',{key:k,onClick:()=>set({createTab:k}),style:{padding:'9px 12px',border:0,background:'transparent',fontSize:12.5,fontWeight:tab===k?600:500,color:tab===k?'#0f1a2b':'#6b7585',boxShadow:tab===k?'inset 0 -2px 0 #1b5fd1':'none',cursor:'pointer'}},l))),
+        tab==='basic'?card([kv('Customer Name','—'),kv('Display Name','—'),kv('Customer Code','CUS-00184 (auto)'),kv('Status','Active')]):
+        tab==='contact'?card([kv('Mobile','—'),kv('Alternate Contact','—'),kv('Email','—'),E('span',{style:{fontSize:12,fontWeight:600,marginTop:6}},'Address'),kv('Address','—'),noteBox('Address fields follow the active country pack — not hard-coded here.','blue')]):
+          card([kv('Identifier Type','—'),kv('Identifier Value','—'),kv('Country / Context','Malaysia'),noteBox('Identifiers support multiple structured entries — not one universal government ID.','blue')]));
+    };
+    const custDetailBody=()=>{
+      const st=cust.status==='Active'?pill('#e5f4ec','#146c43','icon-circle-check','Active'):pill('#eef1f5','#3d4a5e','icon-circle-slash','Inactive');
+      const tabs=[['overview','Overview'],['contacts','Contact / Address'],['identifiers','Identifiers'],['sales','Sales History'],['returns','Returns'],['credit','Credit'],['collections','Collections'],['statement','Statement'],['audit','History / Audit']];
+      const content={
+        overview:card([kv('Customer',cust.n),kv('Code',cust.code),kv('Status',cust.status,cust.status==='Active'?'#146c43':'#4a5567'),kv('Phone',cust.phone),kv('Email',cust.email),kv('Recent Sale',cust.lastSale),cust.credit?kv('Credit Status','Enabled','#146c43'):kv('Credit Status','Not Enabled'),cust.credit?kv('Current Exposure',RM(cust.outstanding),cust.overdue>0?'#b3261e':undefined):null].filter(Boolean)),
+        contacts:card([kv('Mobile',cust.phone),kv('Email',cust.email),kv('Address','88 Jalan Meranti, 81300 Skudai, Johor')]),
+        identifiers:tbl(['TYPE','VALUE','COUNTRY / CONTEXT','STATUS'],'140px 1fr 160px 110px',[[E('span',{key:1},'NRIC'),E('span',{key:2,style:{fontFamily:"'IBM Plex Mono',monospace"}},'••••••-••-••••'),E('span',{key:3},'Malaysia'),E('span',{key:4,style:{color:'#146c43',fontWeight:600}},'Verified')]]),
+        sales:tbl(['SALE','DATE','STORE','AMOUNT','TYPE'],'150px 120px 150px 110px 100px',[[E('span',{key:1,style:{fontFamily:"'IBM Plex Mono',monospace",color:'#1b5fd1'}},'POS01-000140'),E('span',{key:2},'25 Sep 2026'),E('span',{key:3},'MiniMart Central'),E('span',{key:4,style:{fontWeight:600}},RM(30000)),E('span',{key:5},'Credit')]]),
+        returns:E('div',{style:{fontSize:12.5,color:'#6b7585'}},'No returns for this customer. Returns remain Returns-owned — view-only from here.'),
+        credit:cust.credit?E('div',{style:{display:'flex',flexDirection:'column',gap:12}},E('div',{style:{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:12}},...[['Credit Status','Enabled','#146c43'],['Outstanding Exposure',RM(cust.outstanding),undefined],['Overdue Amount',RM(cust.overdue),cust.overdue>0?'#b3261e':undefined],['Last Collection',RM(cust.lastCollect),undefined]].map(([l,v,c])=>card([E('span',{style:{fontSize:11,fontWeight:600,color:'#6b7585'}},l),E('span',{style:{fontSize:18,fontWeight:700,color:c||'#0f1a2b'}},v)]))),tbl(['DATE','REFERENCE','TYPE','DEBIT','CREDIT','RUNNING','DUE'],'100px 140px 110px 90px 90px 100px 100px',CREDIT_LEDGER.map(l=>[E('span',{key:1,style:{color:'#4a5567'}},l.date),E('span',{key:2,style:{fontFamily:"'IBM Plex Mono',monospace",color:'#1b5fd1'}},l.ref),E('span',{key:3},l.type),E('span',{key:4,style:{color:'#b3261e'}},l.debit?RM(l.debit):'—'),E('span',{key:5,style:{color:'#146c43'}},l.credit?RM(l.credit):'—'),E('span',{key:6,style:{fontWeight:600}},RM(l.run)),E('span',{key:7,style:{fontSize:11.5}},l.due)])),E('button',{onClick:()=>set({view:'credit',creditState:'overview'}),style:{alignSelf:'flex-start',height:34,padding:'0 12px',borderRadius:8,border:'1px solid #cfd5de',background:'#fff',fontSize:12.5,fontWeight:600,cursor:'pointer'}},'Open Credit Account')):card([noteBox('This customer does not have Credit enabled.','blue'),E('button',{onClick:()=>set({view:'credit',creditState:'enable'}),style:{alignSelf:'flex-start',height:34,padding:'0 12px',borderRadius:8,border:0,background:'#1b5fd1',color:'#fff',fontSize:12.5,fontWeight:600,cursor:'pointer'}},'Enable Credit')]),
+        collections:tbl(['COLLECTION','DATE','AMOUNT','STATUS'],'150px 120px 110px 110px',COLLECTIONS.filter(c=>c.customer===cust.n).map(c=>[E('span',{key:1,style:{fontFamily:"'IBM Plex Mono',monospace",color:'#1b5fd1'}},c.ref),E('span',{key:2},c.date),E('span',{key:3,style:{fontWeight:600}},RM(c.amount)),E('span',{key:4},c.status)])),
+        statement:card([kv('Period','September 2026'),kv('Opening Exposure',RM(0)),kv('Credit Sales',RM(92000)),kv('Collections',RM(30000)),kv('Closing Exposure',RM(62000)),E('button',{onClick:()=>set({view:'statement',stState:'statement'}),style:{alignSelf:'flex-start',height:32,padding:'0 12px',borderRadius:8,border:'1px solid #cfd5de',background:'#fff',fontSize:12.5,fontWeight:600,cursor:'pointer'}},'Open Full Statement')]),
+        audit:tbl(['AT','ACTOR','EVENT'],'110px 130px 1fr',[[E('span',{key:1,style:{color:'#4a5567'}},'26 Sep 09:10'),E('span',{key:2},'Siti M.'),E('span',{key:3},'Customer record viewed')],[E('span',{key:1,style:{color:'#4a5567'}},'18 Sep 15:00'),E('span',{key:2},'Ravi K.'),E('span',{key:3},'Collection COL-2026-00031 posted')]])
+      }[s.detailTab];
+      return E('div',{style:{display:'flex',flexDirection:'column',gap:14}},
+        E('div',{style:{display:'flex',alignItems:'center',gap:14}},E('div',{style:{width:48,height:48,flex:'none',borderRadius:9,background:'#f7f8fa',border:'1px dashed #d5dae2',display:'grid',placeItems:'center'}},E('i',{className:'icon-user-round',style:{fontSize:20,color:'#b7bfcb'}})),E('div',{style:{display:'flex',flexDirection:'column',gap:2,flex:1}},E('span',{style:{fontSize:18,fontWeight:700}},cust.n),E('span',{style:{fontSize:12.5,color:'#6b7585'}},cust.code+' · '+cust.phone)),E('span',{style:{display:'inline-flex',alignItems:'center',gap:5,height:24,padding:'0 9px',borderRadius:999,background:st.bg,color:st.fg,fontSize:12,fontWeight:600}},E('i',{className:st.icon,style:{fontSize:13}}),st.label),
+          E('button',{onClick:()=>set({view:'custDialog',dialog:'deactivate'}),style:{height:34,padding:'0 12px',borderRadius:8,border:'1px solid #cfd5de',background:'#fff',fontSize:12.5,fontWeight:600,cursor:'pointer',color:cust.status==='Active'?'#b3261e':'#1b5fd1'}},cust.status==='Active'?'Deactivate':'Reactivate')),
+        E('div',{style:{display:'flex',gap:4,borderBottom:'1px solid #e1e5eb',flexWrap:'wrap'}},...tabs.map(([k,l])=>E('button',{key:k,onClick:()=>set({detailTab:k}),style:{padding:'9px 12px',border:0,background:'transparent',fontSize:12.5,fontWeight:s.detailTab===k?600:500,color:s.detailTab===k?'#0f1a2b':'#6b7585',boxShadow:s.detailTab===k?'inset 0 -2px 0 #1b5fd1':'none',cursor:'pointer'}},l))),
+        content);
+    };
+    const creditBody=()=>{
+      const g=s.creditState;
+      if(g==='enable') return E('div',{style:{display:'flex',flexDirection:'column',gap:12,maxWidth:520}},
+        card([kv('Customer',cust.n),kv('Credit Status','Not Enabled → Enabled'),kv('Terms / Policy Value','Configured by policy'),kv('Effective Context','MiniMart Central'),kv('Reason / Note','Regular monthly purchaser'),kv('Authorized By','Siti M.')]),
+        noteBox('No mandatory fixed credit limit, default limit or approval threshold is assumed. Credit may be enabled without a fixed numeric limit where authority permits.','blue'),
+        E('button',{style:{alignSelf:'flex-end',height:38,padding:'0 16px',borderRadius:8,border:0,background:'#1b5fd1',color:'#fff',fontWeight:600,cursor:'pointer'}},'Enable Credit'));
+      if(g==='overview') return E('div',{style:{display:'flex',flexDirection:'column',gap:14}},
+        E('div',{style:{display:'grid',gridTemplateColumns:'repeat(5,1fr)',gap:12}},...[['Credit Status','Enabled','#146c43'],['Outstanding Exposure',RM(cust.outstanding),undefined],['Available Credit','Policy-defined',undefined],['Overdue Amount',RM(cust.overdue),cust.overdue>0?'#b3261e':undefined],['Oldest Due Date','10 Oct 2026',undefined]].map(([l,v,c])=>card([E('span',{style:{fontSize:11,fontWeight:600,color:'#6b7585'}},l),E('span',{style:{fontSize:17,fontWeight:700,color:c||'#0f1a2b'}},v)]))),
+        E('span',{style:{fontSize:12.5,fontWeight:600}},'Credit Ledger / Exposure History'),
+        tbl(['DATE','REFERENCE','TYPE','DEBIT','CREDIT','RUNNING','DUE DATE','STORE','STATUS'],'100px 140px 110px 90px 90px 100px 110px 130px 90px',CREDIT_LEDGER.map(l=>[E('span',{key:1,style:{color:'#4a5567'}},l.date),E('span',{key:2,onClick:()=>set({creditState:'ledgerDrawer'}),style:{fontFamily:"'IBM Plex Mono',monospace",color:'#1b5fd1',cursor:'pointer'}},l.ref),E('span',{key:3},l.type),E('span',{key:4,style:{color:'#b3261e'}},l.debit?RM(l.debit):'—'),E('span',{key:5,style:{color:'#146c43'}},l.credit?RM(l.credit):'—'),E('span',{key:6,style:{fontWeight:600}},RM(l.run)),E('span',{key:7,style:{fontSize:11.5}},l.due),E('span',{key:8,style:{fontSize:11.5}},l.store),E('span',{key:9,style:{fontSize:11.5,fontWeight:600,color:l.status==='Overdue'?'#b3261e':'#4a5567'}},l.status)])),
+        noteBox('CURRENT CREDIT EXPOSURE = EXPLAINABLE RESULT OF IMMUTABLE CREDIT EVENTS. There is no editable balance field.','blue'));
+      if(g==='ledger') return tbl(['DATE','REFERENCE','TYPE','DEBIT','CREDIT','RUNNING'],'100px 140px 110px 90px 90px 100px',CREDIT_LEDGER.map(l=>[E('span',{key:1},l.date),E('span',{key:2,style:{fontFamily:"'IBM Plex Mono',monospace",color:'#1b5fd1'}},l.ref),E('span',{key:3},l.type),E('span',{key:4},l.debit?RM(l.debit):'—'),E('span',{key:5},l.credit?RM(l.credit):'—'),E('span',{key:6,style:{fontWeight:600}},RM(l.run))]));
+      if(g==='noLimit') return card([kv('Customer',cust.n),kv('Credit Limit','No Fixed Limit / Policy-defined'),kv('Current Exposure',RM(cust.outstanding)),noteBox('A blank/unconfigured limit is never represented as RM 0.00 available credit.','blue')],{maxWidth:460});
+      if(g==='configuredLimit') return card([kv('Credit Limit',RM(100000)),kv('Current Exposure',RM(92000)),kv('Potential New Exposure',RM(110000),'#8a5100'),kv('Remaining Capacity',RM(8000))],{maxWidth:420});
+      if(g==='violation') return E('div',{style:{display:'flex',flexDirection:'column',gap:12,maxWidth:480}},
+        card([kv('Proposed Credit Sale',RM(18000)),kv('Current Exposure',RM(92000)),kv('Configured Limit',RM(100000)),kv('Potential Exposure',RM(110000),'#b3261e')]),
+        E('div',{style:{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:8}},...[['BLOCK','Sale is prevented until resolved.'],['WARN','Warning shown; cashier may continue.'],['REQUIRE OVERRIDE','Held for authorized override.']].map(([l,d])=>card([E('span',{style:{fontSize:11,fontWeight:700,color:'#8a5100'}},'AUTHORITY-DEPENDENT'),E('span',{style:{fontSize:12,fontWeight:600}},l),E('span',{style:{fontSize:11,color:'#6b7585'}},d)],{padding:'12px'}))));
+      if(g==='eligibilityGallery') return E('div',{style:{display:'flex',gap:8,flexWrap:'wrap'}},...['Credit Available','Credit Not Enabled','Credit Restricted','Overdue','Limit/Policy Attention','Authority Required'].map(l=>E('span',{key:l,style:{height:28,padding:'0 11px',borderRadius:999,background:'#eef1f5',color:'#3d4a5e',fontSize:12,fontWeight:600,display:'flex',alignItems:'center'}},l)));
+      if(g==='overdueView') return card([kv('Outstanding',RM(92000)),kv('Overdue',RM(24000),'#b3261e'),kv('Due Date','10 Oct 2026'),kv('Oldest Outstanding','10 Sep 2026'),noteBox('No automatic interest, late fee, penalty, blacklist or sale block is invented here.','blue')],{maxWidth:420});
+      if(g==='dueDateNote') return card([kv('Credit Terms','Net 30 (example)'),kv('Due Date','10 Oct 2026'),noteBox('Due-date basis (Sale Date, Business Date, Invoice Date, Statement Date, Month End, or another basis) is a governed policy — not hard-coded in this design.','blue')],{maxWidth:460});
+      if(g==='creditSalesList') return tbl(['SALE','DATE','STORE','ORIGINAL','CREDIT','DUE','OUTSTANDING','STATUS'],'140px 100px 130px 90px 90px 100px 100px 110px',CREDIT_SALES.map(cs=>[E('span',{key:1,style:{fontFamily:"'IBM Plex Mono',monospace",color:'#1b5fd1'}},cs.ref),E('span',{key:2},cs.date),E('span',{key:3},cs.store),E('span',{key:4},RM(cs.orig)),E('span',{key:5},RM(cs.creditAmt)),E('span',{key:6,style:{fontSize:11.5}},cs.due),E('span',{key:7,style:{fontWeight:600,color:cs.status==='Overdue'?'#b3261e':undefined}},RM(cs.outstanding)),E('span',{key:8,style:{fontSize:11.5,fontWeight:600}},cs.status)]));
+      if(g==='ledgerDrawer') return card([kv('Reference','POS01-000122'),kv('Source Type','Credit Sale'),kv('Amount',RM(54000)),kv('Exposure Effect','+RM 540.00'),kv('Date','10 Sep 2026'),kv('Due Date','10 Oct 2026'),kv('Store','MiniMart Central'),E('a',{href:'#',style:{fontSize:12.5,fontWeight:600}},'View Source Sale →')],{maxWidth:420});
+      if(g==='immutabilityNote') return noteBox('CreditLedgerEntry is immutable. No ordinary Edit, Delete or Change Amount action exists. Correction uses an explicit compensating/reversal process.','blue');
+      if(g==='crossmapCredit') return card([E('span',{style:{fontWeight:600,fontSize:13}},'POS → Identified Customer → Credit Sale → Sale Posting → Credit Exposure Entry'),E('span',{style:{fontSize:12,color:'#6b7585'}},'Sale posting itself is not redesigned here — Customer & Credit only owns the resulting eligibility/exposure effect.')],{maxWidth:560});
+      if(g==='heldSale') return card([E('span',{style:{fontSize:14,fontWeight:600,color:'#8a5100'}},'HELD-SALE PENDING CREDIT EXPOSURE'),E('span',{style:{fontSize:12,fontWeight:700,color:'#8a5100'}},'OPEN / AUTHORITY-DEPENDENT'),E('span',{style:{fontSize:12.5,color:'#4a5567'}},'Whether a Held Sale reserves pending credit exposure is not decided by this design.')],{maxWidth:460});
+      if(g==='correction') return card([kv('Original Entry','CRE-2026-00108 · +RM 380.00'),kv('Correction Type','Reversal'),kv('Reason','Sale line voided after posting'),kv('Source','Sales'),kv('Authorization','Siti M.'),noteBox('Correction is explicit and traceable — never a direct edit of the original entry.','blue')],{maxWidth:460});
+      if(g==='restricted') return card([E('span',{style:{fontSize:14,fontWeight:600,color:'#b3261e'}},'Credit Restricted'),E('span',{style:{fontSize:12.5,color:'#4a5567'}},'This account requires attention before further credit sales. Final restriction/override behavior is policy-dependent.')],{maxWidth:420});
+      if(g==='notEnabled') return noteBox('Credit is not enabled for this customer.','blue');
+      if(g==='concurrentCheck') return card([E('span',{style:{fontSize:14,fontWeight:600,color:'#8a5100'}},'Concurrent credit-limit check'),E('span',{style:{fontSize:12.5,color:'#4a5567'}},'Two counters attempted a credit sale for this customer near the limit at the same time. Authoritative posting revalidation enforces the configured limit/override policy.')],{maxWidth:480});
+      return null;
+    };
+    const collectionBody=()=>{
+      const g=s.colState;
+      if(g==='list'||g==='listDraft') { let rows=COLLECTIONS; if(g==='listDraft') rows=rows.filter(c=>c.status==='Draft');
+        return E('div',{style:{display:'flex',flexDirection:'column',gap:12}},
+          E('div',{style:{display:'flex',alignItems:'baseline',gap:10}},E('span',{style:{fontSize:19,fontWeight:700}},'Customer Collections'),E('button',{onClick:()=>set({colState:'selectCustomer'}),style:{marginLeft:'auto',height:34,padding:'0 14px',borderRadius:8,border:0,background:'#1b5fd1',color:'#fff',fontSize:12.5,fontWeight:600,cursor:'pointer'}},'New Customer Collection')),
+          tbl(['COLLECTION','CUSTOMER','DATE','AMOUNT','STATUS'],'150px minmax(140px,1.2fr) 110px 100px 110px',rows.map(c=>[E('span',{key:1,style:{fontFamily:"'IBM Plex Mono',monospace",color:'#1b5fd1'}},c.ref),E('span',{key:2,style:{fontWeight:600}},c.customer),E('span',{key:3},c.date),E('span',{key:4,style:{fontWeight:600}},RM(c.amount)),E('span',{key:5},c.status)]))); }
+      if(g==='selectCustomer') return card([kv('Customer','Aisyah Rahman · CUS-00124'),kv('Store','MiniMart Central'),E('button',{onClick:()=>set({colState:'entry'}),style:{alignSelf:'flex-end',height:38,padding:'0 16px',borderRadius:8,border:0,background:'#1b5fd1',color:'#fff',fontWeight:600,cursor:'pointer'}},'Continue')],{maxWidth:420});
+      if(g==='entry') return E('div',{style:{display:'flex',flexDirection:'column',gap:12,maxWidth:520}},
+        stepper(['Enter','Review','Allocate','Post'],0),
+        card([kv('Customer','Aisyah Rahman'),kv('Store','MiniMart Central'),kv('Collection Reference','COL-2026-00040 (auto)'),kv('Amount',RM(30000)),kv('Payment Method','Cash'),kv('Note','—')]),
+        E('button',{onClick:()=>set({colState:'allocation'}),style:{alignSelf:'flex-end',height:38,padding:'0 16px',borderRadius:8,border:0,background:'#1b5fd1',color:'#fff',fontWeight:600,cursor:'pointer'}},'Continue'));
+      if(g==='allocation') return E('div',{style:{display:'flex',flexDirection:'column',gap:12,maxWidth:600}},
+        tbl(['CREDIT SALE','DUE DATE','OUTSTANDING','ALLOCATE'],'150px 120px 110px 110px',[[E('span',{key:1,style:{fontFamily:"'IBM Plex Mono',monospace"}},'POS01-000122'),E('span',{key:2},'10 Oct 2026'),E('span',{key:3},RM(24000)),E('span',{key:4,style:{fontWeight:600}},RM(24000))],[E('span',{key:1,style:{fontFamily:"'IBM Plex Mono',monospace"}},'POS01-000140'),E('span',{key:2},'25 Oct 2026'),E('span',{key:3},RM(30000)),E('span',{key:4,style:{fontWeight:600}},RM(6000))]]),
+        noteBox('Allocation policy (FIFO, oldest-first, proportional, or manual) is not decided here — the UI shows policy-driven allocation without selecting the rule.','blue'),
+        E('button',{onClick:()=>set({colState:'review'}),style:{alignSelf:'flex-end',height:38,padding:'0 16px',borderRadius:8,border:0,background:'#1b5fd1',color:'#fff',fontWeight:600,cursor:'pointer'}},'Continue'));
+      if(g==='partial') return card([kv('Outstanding',RM(85000)),kv('Collection',RM(30000)),kv('Remaining',RM(55000),'#8a5100'),noteBox('Which invoices receive the RM 300.00 is not fabricated unless allocation policy or user selection provides it.','blue')],{maxWidth:420});
+      if(g==='exceedsOutstanding') return card([E('span',{style:{fontSize:15,fontWeight:600,color:'#b3261e'}},'Collection amount exceeds selected eligible outstanding exposure.'),kv('Selected Outstanding',RM(24000)),kv('Collection Amount',RM(30000),'#b3261e'),noteBox('Final handling (customer advance, unapplied credit, or rejection) is authority-dependent — not invented here.','red')],{maxWidth:460});
+      if(g==='review') return E('div',{style:{display:'flex',flexDirection:'column',gap:12,maxWidth:560}},
+        card([kv('Customer','Aisyah Rahman'),kv('Collection Reference','COL-2026-00040'),kv('Date','26 Sep 2026'),kv('Amount',RM(30000)),kv('Outstanding Before',RM(92000)),kv('Applied Amount',RM(30000)),kv('Expected Outstanding After',RM(62000)),kv('Payment Method','Cash')]),
+        E('button',{onClick:()=>set({colState:'posted'}),style:{alignSelf:'flex-end',height:40,padding:'0 18px',borderRadius:8,border:0,background:'#1b5fd1',color:'#fff',fontWeight:600,cursor:'pointer'}},'Post Collection'));
+      if(g==='posted') return card([E('div',{style:{display:'flex',gap:12,alignItems:'flex-start'}},E('div',{style:{width:40,height:40,borderRadius:10,background:'#e5f4ec',color:'#146c43',display:'grid',placeItems:'center',flex:'none'}},E('i',{className:'icon-circle-check',style:{fontSize:20}})),E('div',{style:{display:'flex',flexDirection:'column',gap:4}},E('span',{style:{fontSize:16,fontWeight:700}},'Collection Posted'),E('span',{style:{fontSize:13,color:'#4a5567'}},'Credit Ledger Updated · Audit Recorded · Sync Queued'))),kv('Reference','COL-2026-00040')],{maxWidth:480});
+      if(g==='postedReadonly') return E('div',{style:{display:'flex',flexDirection:'column',gap:12,maxWidth:480}},noteBox('POSTED — read-only. No Edit Amount, Delete or Reopen action exists.','blue'),card([kv('Collection','COL-2026-00031'),kv('Customer','Aisyah Rahman'),kv('Amount',RM(30000)),kv('Status','Posted','#146c43')]));
+      if(g==='retry') return card([E('span',{style:{fontSize:15,fontWeight:600}},'Posting Outcome Unknown'),E('span',{style:{fontSize:13,color:'#4a5567'}},'Retry cannot create duplicate credit reduction.'),kv('Operation Reference','COL-OP-77410'),E('div',{style:{display:'flex',gap:8}},E('button',{style:{height:38,padding:'0 14px',borderRadius:8,border:'1px solid #cfd5de',background:'#fff',fontWeight:600,cursor:'pointer'}},'Check Status'),E('button',{style:{height:38,padding:'0 14px',borderRadius:8,border:0,background:'#1b5fd1',color:'#fff',fontWeight:600,cursor:'pointer'}},'Retry Safely'))],{maxWidth:460});
+      if(g==='envelope') return noteBox('Collection Posted is only shown once the required CreditAccount / ledger consequences are actually present. Audit and outbox mechanics stay internal — never exposed to the user.','blue');
+      if(g==='validation') return card([E('span',{style:{fontSize:15,fontWeight:600,color:'#b3261e'}},'This collection cannot be posted'),kv('Missing','Amount'),kv('Missing','Payment Method'),noteBox('Field-level and summary validation both shown — no partial hidden success.','red')],{maxWidth:440});
+      if(g==='paymentContext') return card([kv('Payment Method','Bank Transfer'),kv('Reference','BT-88231'),noteBox('Payment/financial account context is a controlled selector reference only — no bank/cash master is created or edited here.','blue')],{maxWidth:420});
+      if(g==='draft') return E('div',{style:{display:'flex',flexDirection:'column',gap:10,maxWidth:460}},noteBox('DRAFT — NO EXPOSURE EFFECT.','blue'),card([kv('Reference','COL-2026-00039'),kv('Amount',RM(5000)),kv('Status','Draft')]));
+      if(g==='nodeDown') return noteBox('Store Node unavailable — Post Collection cannot proceed until the connection returns.','red');
+      return null;
+    };
+    const stBody=()=>{
+      const g=s.stState;
+      if(g==='statement') return E('div',{style:{display:'flex',flexDirection:'column',gap:12}},
+        E('div',{style:{display:'flex',alignItems:'baseline',gap:10}},E('span',{style:{fontSize:19,fontWeight:700}},'Customer Statement'),E('span',{style:{fontSize:12.5,color:'#6b7585'}},'Aisyah Rahman · September 2026'),E('div',{style:{marginLeft:'auto',display:'flex',gap:8}},E('button',{style:{height:32,padding:'0 12px',borderRadius:8,border:'1px solid #cfd5de',background:'#fff',fontSize:12,fontWeight:600,cursor:'pointer'}},'Print'),E('button',{style:{height:32,padding:'0 12px',borderRadius:8,border:'1px solid #cfd5de',background:'#fff',fontSize:12,fontWeight:600,cursor:'pointer'}},'Export'))),
+        card([kv('Opening Exposure',RM(0)),kv('Credit Sales / Charges',RM(122000)),kv('Collections / Credits',RM(30000)),kv('Closing Exposure',RM(92000))]),
+        tbl(['DATE','REFERENCE','DESCRIPTION','DEBIT','CREDIT','RUNNING'],'100px 140px minmax(140px,1.2fr) 90px 90px 100px',CREDIT_LEDGER.map(l=>[E('span',{key:1},l.date),E('span',{key:2,style:{fontFamily:"'IBM Plex Mono',monospace",color:'#1b5fd1'}},l.ref),E('span',{key:3},l.type),E('span',{key:4},l.debit?RM(l.debit):'—'),E('span',{key:5},l.credit?RM(l.credit):'—'),E('span',{key:6,style:{fontWeight:600}},RM(l.run))])),
+        noteBox('This is an operational statement, not a full general-ledger statement.','blue'));
+      if(g==='aging') return E('div',{style:{display:'flex',flexDirection:'column',gap:10}},
+        noteBox('Bucket definitions are illustrative — CONFIGURED / REPORTING POLICY, not mandatory MiniMart definitions.','amber'),
+        tbl(['CUSTOMER','0–30','31–60','61–90','90+'],'minmax(140px,1.3fr) 90px 90px 90px 90px',[[E('span',{key:1,style:{fontWeight:600}},'Aisyah Rahman'),E('span',{key:2},RM(30000)),E('span',{key:3},RM(24000)),E('span',{key:4},'—'),E('span',{key:5},'—')]]));
+      if(g==='dashboard') return E('div',{style:{display:'flex',flexDirection:'column',gap:14}},
+        E('span',{style:{fontSize:19,fontWeight:700}},'Credit Work Queue'),
+        E('div',{style:{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:12}},...[['Outstanding Credit',RM(159000)],['Overdue',RM(24000)],['Collections Today',RM(20000)],['Accounts Requiring Attention',1]].map(([l,v])=>card([E('span',{style:{fontSize:11,fontWeight:600,color:'#6b7585'}},l),E('span',{style:{fontSize:20,fontWeight:700}},typeof v==='number'&&v>1000?RM(v):v)]))),
+        tbl(['CUSTOMER','OUTSTANDING','OVERDUE','OLDEST DUE','LAST COLLECTION','CREDIT STATUS'],'minmax(140px,1.3fr) 100px 100px 110px 110px 110px',CUSTOMERS.filter(c=>c.credit).map(c=>[E('span',{key:1,style:{fontWeight:600}},c.n),E('span',{key:2},RM(c.outstanding)),E('span',{key:3,style:{color:c.overdue>0?'#b3261e':undefined,fontWeight:600}},RM(c.overdue)),E('span',{key:4,style:{fontSize:11.5}},c.overdue>0?'10 Oct 2026':'—'),E('span',{key:5},RM(c.lastCollect)),E('span',{key:6,style:{fontSize:11.5}},c.overdue>0?'Overdue':'Enabled')])));
+      if(g==='arLink') return card([noteBox('Broader receivables/reporting views are owned by Accounting-Lite — not duplicated here.','blue'),E('a',{href:'#',style:{fontSize:12.5,fontWeight:600}},'View Receivables Report →')],{maxWidth:420});
+      if(g==='printExport') return card([kv('Format','PDF'),kv('Scope','September 2026 statement'),E('button',{style:{alignSelf:'flex-start',height:36,padding:'0 14px',borderRadius:8,border:0,background:'#1b5fd1',color:'#fff',fontWeight:600,cursor:'pointer'}},'Export')],{maxWidth:360});
+      if(g==='posCreditFlow') return card([kv('Customer','Aisyah Rahman'),kv('Credit Status','Enabled'),kv('Outstanding',RM(92000)),kv('Due / Overdue','RM 240.00 overdue'),kv('Potential New Exposure',RM(110000),'#8a5100'),kv('Policy Result','Authority-dependent'),noteBox('CreditAccount remains the source of eligibility/exposure decision — Payments does not decide this alone.','blue')],{maxWidth:460});
+      if(g==='saleViewCustomer') return card([kv('Sale','POS01-000140'),kv('Customer','Aisyah Rahman · CUS-00124'),E('a',{href:'#',onClick:e=>{e.preventDefault();set({view:'custDetail',detailTab:'overview'});},style:{fontSize:12.5,fontWeight:600}},'View Customer →')],{maxWidth:380});
+      if(g==='returnCreditEffect') return card([kv('Sales Return','SR-2026-00021'),kv('Resulting Credit Effect','+RM 60.00 (illustrative)'),noteBox('Returns owns SalesReturn/RefundObligation; Payments owns refund execution. Refund-to-credit behavior is not invented here.','blue')],{maxWidth:460});
+      if(g==='agingNote') return noteBox('Aging bucket boundaries shown elsewhere in this package are reporting-policy examples, not frozen MiniMart definitions.','amber');
+      return null;
+    };
+    const dsBody=()=>{
+      if(s.ds==='crossmap') return E('div',{style:{display:'flex',flexDirection:'column',gap:10}},...[
+        ['Customer List → Customer Detail → Edit Customer','click a customer row'],
+        ['Customer Detail → Sales History → Sale Detail','view-only link, Sales-owned'],
+        ['Customer Detail → Returns → Return Detail','view-only link, Returns-owned'],
+        ['Customer Detail → Credit Account','Credit tab opens the account overview'],
+        ['Credit Account → Credit Ledger Entry → Source Sale','ledger row links back to its source'],
+        ['Credit Account → New Collection → Review → Post → Posted Collection','full collection workflow'],
+        ['Posted Collection → Credit Ledger effect','posting updates the same ledger shown on Credit tab'],
+        ['Customer Statement → Source Sale / Collection','statement rows trace back to source'],
+        ['POS Customer Selection → Customer Detail reference','same company-wide identity, not a second database'],
+        ['Accounting-Lite → Receivables context','read-only link, never duplicated here']
+      ].map(([a,b])=>card([E('span',{style:{fontSize:12.5,fontWeight:600}},a),E('span',{style:{fontSize:11.5,color:'#6b7585'}},b)])));
+      if(s.ds==='table') return E('div',{style:{display:'grid',gridTemplateColumns:'repeat(2,1fr)',gap:12}},...['Customer Table','Credit Ledger Table','Credit Sales Table','Collection Table','Statement Table'].map(n=>card([E('span',{style:{fontWeight:600,fontSize:12.5}},n),E('span',{style:{fontSize:12,color:'#6b7585'}},'Sticky header, dense rows, horizontal scroll only where needed.')])));
+      if(s.ds==='form') return E('div',{style:{display:'flex',gap:8,flexWrap:'wrap'}},...['Customer Create Form','Credit Enablement Form','Collection Entry Form','Allocation Table','Statement Header'].map(n=>E('span',{key:n,style:{height:28,padding:'0 10px',borderRadius:8,background:'#eef1f5',color:'#3d4a5e',fontSize:12,fontWeight:600,display:'flex',alignItems:'center'}},n)));
+      if(s.ds==='permission') return E('div',{style:{display:'flex',gap:8,flexWrap:'wrap'}},...['View Customers','Create Customer','Edit Customer','Deactivate Customer','View Credit','Enable/Change Credit','View Exposure','View Credit Ledger','Create Collection','Post Collection','View Statement','Export Statement','Credit Override','View Sensitive Identifiers'].map(n=>E('span',{key:n,style:{height:28,padding:'0 10px',borderRadius:8,background:'#eef1f5',color:'#3d4a5e',fontSize:12,fontWeight:600,display:'flex',alignItems:'center'}},n)));
+      if(s.ds==='empty') return E('div',{style:{display:'flex',gap:8,flexWrap:'wrap'}},...['No Customers','No Credit Accounts','No Outstanding Credit','No Collections','No Search Results','Missing Customer Name','Duplicate Identifier','Invalid Contact','Collection Amount Invalid','Allocation Exceeds Outstanding','Policy Override Required','Store Node Unavailable'].map(n=>E('span',{key:n,style:{height:28,padding:'0 10px',borderRadius:8,background:'#eef1f5',color:'#3d4a5e',fontSize:12,fontWeight:600,display:'flex',alignItems:'center'}},n)));
+      return E('div',{style:{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:12}},...[
+        {title:'Shell',items:['BackOfficeShell','SidebarNavigation','TopOperationalBar','StoreNodeStatus','SyncStatus','PageHeader']},
+        {title:'Customer',items:['CustomerHeader','CustomerStatus','EntityPicker','SearchBar','FilterBar']},
+        {title:'Credit',items:['CreditStatus','ExposureSummary','CreditLedgerTable','MoneyValue']},
+        {title:'Collections',items:['CollectionTable','AllocationTable']},
+        {title:'Statement / Audit',items:['StatementTable','AuditTimeline']},
+        {title:'Shared',items:['PermissionState','OfflineState','ValidationSummary','ConfirmationDialog','SafeRetryState','ReadOnlyPostedBanner','DataTable','Tabs','FormSection','FormFooter']}
+      ].map(g=>card([E('span',{style:{fontWeight:700,fontSize:12.5}},g.title),...g.items.map(i=>E('span',{key:i,style:{fontSize:12,color:'#4a5567',fontFamily:"'IBM Plex Mono',monospace"}},i))])));
+    };
+    const body={custList:custListBody,custCreate:custCreateBody,custDetail:custDetailBody,custDialog:custDialogBody,posSearch:posSearchBody,walkinVsId:walkinVsIdBody,custSummary:custSummaryBody,custImport:custImportBody,credit:creditBody,collection:collectionBody,statement:stBody,dsGallery:dsBody}[s.view]();
+    return {
+      rootH:this.props.embedded?'100%':'100vh', scrLabel:s.scr+' '+(NAMES[s.scr]||''),
+      nav, nodeP, syncP, roleLabel, nodeDown:!node, nodeUp:node, cloudDown:!cloudOk,
+      body, drawerOpen:false, drawerTitle:'', drawerContent:null, closeDrawer:()=>{}
+    };
+  }
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,465 @@
+{
+  "package": "MiniMart Customers + Credit",
+  "slug": "customers",
+  "status": "approved-visual-reference",
+  "sourceFile": "source/MiniMartCustomersCredit.dc.html",
+  "sourceOfTruth": "Claude Design export committed at docs/design/customers/source/MiniMartCustomersCredit.dc.html",
+  "screenCount": 74,
+  "primaryViewport": "1366x768",
+  "supportedViewports": ["1280x720", "1368x800", "1920x1080"],
+  "screenGroups": [
+    "Customer Foundation",
+    "Customer Detail / Create / Edit / Audit",
+    "Credit Accounts",
+    "Collections",
+    "Statements & States",
+    "Design System / Documentation / Cross-module Map"
+  ],
+  "screens": [
+    {
+      "number": "01",
+      "name": "Customer List — populated",
+      "group": "Customer Foundation",
+      "renderFile": "01-customer-list-populated.png"
+    },
+    {
+      "number": "02",
+      "name": "Customer List — filtered Credit Enabled",
+      "group": "Customer Foundation",
+      "renderFile": "02-customer-list-filtered-credit-enabled.png"
+    },
+    {
+      "number": "03",
+      "name": "Customer List — With Overdue",
+      "group": "Customer Foundation",
+      "renderFile": "03-customer-list-with-overdue.png"
+    },
+    {
+      "number": "04",
+      "name": "Customer List — empty / no results",
+      "group": "Customer Foundation",
+      "renderFile": "04-customer-list-empty-no-results.png"
+    },
+    {
+      "number": "05",
+      "name": "Customer List — Store Node unavailable",
+      "group": "Customer Foundation",
+      "renderFile": "05-customer-list-store-node-unavailable.png"
+    },
+    {
+      "number": "06",
+      "name": "Customer List — Cloud Sync unavailable",
+      "group": "Customer Foundation",
+      "renderFile": "06-customer-list-cloud-sync-unavailable.png"
+    },
+    {
+      "number": "07",
+      "name": "Customer List — read-only / permission-limited",
+      "group": "Customer Foundation",
+      "renderFile": "07-customer-list-read-only-permission-limited.png"
+    },
+    {
+      "number": "08",
+      "name": "Customer Search at POS (cross-module example)",
+      "group": "Customer Foundation",
+      "renderFile": "08-customer-search-at-pos-cross-module-example.png"
+    },
+    {
+      "number": "09",
+      "name": "Walk-in vs Identified Customer",
+      "group": "Customer Foundation",
+      "renderFile": "09-walk-in-vs-identified-customer.png"
+    },
+    {
+      "number": "10",
+      "name": "Customer Summary cards",
+      "group": "Customer Foundation",
+      "renderFile": "10-customer-summary-cards.png"
+    },
+    {
+      "number": "11",
+      "name": "Customer Import — upload/validate/review (if included)",
+      "group": "Customer Foundation",
+      "renderFile": "11-customer-import-upload-validate-review-if-included.png"
+    },
+    {
+      "number": "12",
+      "name": "Potential Duplicate Customer",
+      "group": "Customer Foundation",
+      "renderFile": "12-potential-duplicate-customer.png"
+    },
+    {
+      "number": "13",
+      "name": "Create Customer — Basic Info",
+      "group": "Customer Detail / Create / Edit / Audit",
+      "renderFile": "13-create-customer-basic-info.png"
+    },
+    {
+      "number": "14",
+      "name": "Create Customer — Contact / Address",
+      "group": "Customer Detail / Create / Edit / Audit",
+      "renderFile": "14-create-customer-contact-address.png"
+    },
+    {
+      "number": "15",
+      "name": "Create Customer — Identifiers",
+      "group": "Customer Detail / Create / Edit / Audit",
+      "renderFile": "15-create-customer-identifiers.png"
+    },
+    {
+      "number": "16",
+      "name": "Customer Detail — Overview",
+      "group": "Customer Detail / Create / Edit / Audit",
+      "renderFile": "16-customer-detail-overview.png"
+    },
+    {
+      "number": "17",
+      "name": "Customer Detail — Contact / Address",
+      "group": "Customer Detail / Create / Edit / Audit",
+      "renderFile": "17-customer-detail-contact-address.png"
+    },
+    {
+      "number": "18",
+      "name": "Customer Detail — Identifiers",
+      "group": "Customer Detail / Create / Edit / Audit",
+      "renderFile": "18-customer-detail-identifiers.png"
+    },
+    {
+      "number": "19",
+      "name": "Customer Detail — Sales History",
+      "group": "Customer Detail / Create / Edit / Audit",
+      "renderFile": "19-customer-detail-sales-history.png"
+    },
+    {
+      "number": "20",
+      "name": "Customer Detail — Returns",
+      "group": "Customer Detail / Create / Edit / Audit",
+      "renderFile": "20-customer-detail-returns.png"
+    },
+    {
+      "number": "21",
+      "name": "Customer Detail — Credit",
+      "group": "Customer Detail / Create / Edit / Audit",
+      "renderFile": "21-customer-detail-credit.png"
+    },
+    {
+      "number": "22",
+      "name": "Customer Detail — Collections",
+      "group": "Customer Detail / Create / Edit / Audit",
+      "renderFile": "22-customer-detail-collections.png"
+    },
+    {
+      "number": "23",
+      "name": "Customer Detail — Statement",
+      "group": "Customer Detail / Create / Edit / Audit",
+      "renderFile": "23-customer-detail-statement.png"
+    },
+    {
+      "number": "24",
+      "name": "Customer Detail — History / Audit",
+      "group": "Customer Detail / Create / Edit / Audit",
+      "renderFile": "24-customer-detail-history-audit.png"
+    },
+    {
+      "number": "25",
+      "name": "Customer Deactivate / Reactivate confirmation",
+      "group": "Customer Detail / Create / Edit / Audit",
+      "renderFile": "25-customer-deactivate-reactivate-confirmation.png"
+    },
+    {
+      "number": "26",
+      "name": "Credit Enablement — enable credit",
+      "group": "Credit Accounts",
+      "renderFile": "26-credit-enablement-enable-credit.png"
+    },
+    {
+      "number": "27",
+      "name": "Credit Account Overview — cards",
+      "group": "Credit Accounts",
+      "renderFile": "27-credit-account-overview-cards.png"
+    },
+    {
+      "number": "28",
+      "name": "Credit Ledger / Exposure History",
+      "group": "Credit Accounts",
+      "renderFile": "28-credit-ledger-exposure-history.png"
+    },
+    {
+      "number": "29",
+      "name": "Credit Limit — No Fixed Limit / Policy-defined",
+      "group": "Credit Accounts",
+      "renderFile": "29-credit-limit-no-fixed-limit-policy-defined.png"
+    },
+    {
+      "number": "30",
+      "name": "Credit Limit — Configured Limit",
+      "group": "Credit Accounts",
+      "renderFile": "30-credit-limit-configured-limit.png"
+    },
+    {
+      "number": "31",
+      "name": "Credit Limit Violation — authority-dependent",
+      "group": "Credit Accounts",
+      "renderFile": "31-credit-limit-violation-authority-dependent.png"
+    },
+    {
+      "number": "32",
+      "name": "Credit Eligibility at Checkout — states gallery",
+      "group": "Credit Accounts",
+      "renderFile": "32-credit-eligibility-at-checkout-states-gallery.png"
+    },
+    {
+      "number": "33",
+      "name": "Overdue Credit view",
+      "group": "Credit Accounts",
+      "renderFile": "33-overdue-credit-view.png"
+    },
+    {
+      "number": "34",
+      "name": "Due-Date Basis — documentation note",
+      "group": "Credit Accounts",
+      "renderFile": "34-due-date-basis-documentation-note.png"
+    },
+    {
+      "number": "35",
+      "name": "Customer Credit Sales list",
+      "group": "Credit Accounts",
+      "renderFile": "35-customer-credit-sales-list.png"
+    },
+    {
+      "number": "36",
+      "name": "Credit Ledger Entry detail drawer",
+      "group": "Credit Accounts",
+      "renderFile": "36-credit-ledger-entry-detail-drawer.png"
+    },
+    {
+      "number": "37",
+      "name": "Credit Ledger immutability note",
+      "group": "Credit Accounts",
+      "renderFile": "37-credit-ledger-immutability-note.png"
+    },
+    {
+      "number": "38",
+      "name": "Credit Sale connection — cross-module map",
+      "group": "Credit Accounts",
+      "renderFile": "38-credit-sale-connection-cross-module-map.png"
+    },
+    {
+      "number": "39",
+      "name": "Held-Sale Pending Credit Exposure — open decision",
+      "group": "Credit Accounts",
+      "renderFile": "39-held-sale-pending-credit-exposure-open-decision.png"
+    },
+    {
+      "number": "40",
+      "name": "Credit Correction / Reversal",
+      "group": "Credit Accounts",
+      "renderFile": "40-credit-correction-reversal.png"
+    },
+    {
+      "number": "41",
+      "name": "Credit Restricted state",
+      "group": "Credit Accounts",
+      "renderFile": "41-credit-restricted-state.png"
+    },
+    {
+      "number": "42",
+      "name": "Credit Not Enabled state",
+      "group": "Credit Accounts",
+      "renderFile": "42-credit-not-enabled-state.png"
+    },
+    {
+      "number": "43",
+      "name": "Concurrent Credit-Limit Check — conflict",
+      "group": "Credit Accounts",
+      "renderFile": "43-concurrent-credit-limit-check-conflict.png"
+    },
+    {
+      "number": "44",
+      "name": "New Customer Collection — entry",
+      "group": "Collections",
+      "renderFile": "44-new-customer-collection-entry.png"
+    },
+    {
+      "number": "45",
+      "name": "Collection — Select Customer",
+      "group": "Collections",
+      "renderFile": "45-collection-select-customer.png"
+    },
+    {
+      "number": "46",
+      "name": "Collection Allocation — table",
+      "group": "Collections",
+      "renderFile": "46-collection-allocation-table.png"
+    },
+    {
+      "number": "47",
+      "name": "Partial Collection example",
+      "group": "Collections",
+      "renderFile": "47-partial-collection-example.png"
+    },
+    {
+      "number": "48",
+      "name": "Collection exceeds outstanding — validation",
+      "group": "Collections",
+      "renderFile": "48-collection-exceeds-outstanding-validation.png"
+    },
+    {
+      "number": "49",
+      "name": "Collection Review",
+      "group": "Collections",
+      "renderFile": "49-collection-review.png"
+    },
+    {
+      "number": "50",
+      "name": "Collection Posted",
+      "group": "Collections",
+      "renderFile": "50-collection-posted.png"
+    },
+    {
+      "number": "51",
+      "name": "Posted Collection — read-only",
+      "group": "Collections",
+      "renderFile": "51-posted-collection-read-only.png"
+    },
+    {
+      "number": "52",
+      "name": "Collection Safe Retry / uncertain",
+      "group": "Collections",
+      "renderFile": "52-collection-safe-retry-uncertain.png"
+    },
+    {
+      "number": "53",
+      "name": "Collection posting envelope note",
+      "group": "Collections",
+      "renderFile": "53-collection-posting-envelope-note.png"
+    },
+    {
+      "number": "54",
+      "name": "Collection validation — missing fields",
+      "group": "Collections",
+      "renderFile": "54-collection-validation-missing-fields.png"
+    },
+    {
+      "number": "55",
+      "name": "Collection — payment/financial context link",
+      "group": "Collections",
+      "renderFile": "55-collection-payment-financial-context-link.png"
+    },
+    {
+      "number": "56",
+      "name": "Draft Collection — no exposure effect",
+      "group": "Collections",
+      "renderFile": "56-draft-collection-no-exposure-effect.png"
+    },
+    {
+      "number": "57",
+      "name": "Collections list — populated",
+      "group": "Collections",
+      "renderFile": "57-collections-list-populated.png"
+    },
+    {
+      "number": "58",
+      "name": "Collections list — filtered Draft",
+      "group": "Collections",
+      "renderFile": "58-collections-list-filtered-draft.png"
+    },
+    {
+      "number": "59",
+      "name": "Collection Store Node unavailable",
+      "group": "Collections",
+      "renderFile": "59-collection-store-node-unavailable.png"
+    },
+    {
+      "number": "60",
+      "name": "Customer Statement",
+      "group": "Statements & States",
+      "renderFile": "60-customer-statement.png"
+    },
+    {
+      "number": "61",
+      "name": "Customer Aging — restrained read-only view",
+      "group": "Statements & States",
+      "renderFile": "61-customer-aging-restrained-read-only-view.png"
+    },
+    {
+      "number": "62",
+      "name": "Credit Dashboard / Work Queue",
+      "group": "Statements & States",
+      "renderFile": "62-credit-dashboard-work-queue.png"
+    },
+    {
+      "number": "63",
+      "name": "Accounting-Lite Receivables link",
+      "group": "Statements & States",
+      "renderFile": "63-accounting-lite-receivables-link.png"
+    },
+    {
+      "number": "64",
+      "name": "Statement Print / Export",
+      "group": "Statements & States",
+      "renderFile": "64-statement-print-export.png"
+    },
+    {
+      "number": "65",
+      "name": "POS Credit Sale flow (cross-module example)",
+      "group": "Statements & States",
+      "renderFile": "65-pos-credit-sale-flow-cross-module-example.png"
+    },
+    {
+      "number": "66",
+      "name": "Sale Detail → View Customer (cross-module example)",
+      "group": "Statements & States",
+      "renderFile": "66-sale-detail-view-customer-cross-module-example.png"
+    },
+    {
+      "number": "67",
+      "name": "Sales Return → resulting credit effect (cross-module example)",
+      "group": "Statements & States",
+      "renderFile": "67-sales-return-resulting-credit-effect-cross-module-example.png"
+    },
+    {
+      "number": "68",
+      "name": "Aging bucket note — configured/reporting policy",
+      "group": "Statements & States",
+      "renderFile": "68-aging-bucket-note-configured-reporting-policy.png"
+    },
+    {
+      "number": "69",
+      "name": "Cross-module Map",
+      "group": "Design System / Documentation / Cross-module Map",
+      "renderFile": "69-cross-module-map.png"
+    },
+    {
+      "number": "70",
+      "name": "Design System — Table / Status components",
+      "group": "Design System / Documentation / Cross-module Map",
+      "renderFile": "70-design-system-table-status-components.png"
+    },
+    {
+      "number": "71",
+      "name": "Design System — Form / Ledger components",
+      "group": "Design System / Documentation / Cross-module Map",
+      "renderFile": "71-design-system-form-ledger-components.png"
+    },
+    {
+      "number": "72",
+      "name": "Permission / Audit components",
+      "group": "Design System / Documentation / Cross-module Map",
+      "renderFile": "72-permission-audit-components.png"
+    },
+    {
+      "number": "73",
+      "name": "Empty & Validation states gallery",
+      "group": "Design System / Documentation / Cross-module Map",
+      "renderFile": "73-empty-validation-states-gallery.png"
+    },
+    {
+      "number": "74",
+      "name": "Component inventory + documentation",
+      "group": "Design System / Documentation / Cross-module Map",
+      "renderFile": "74-component-inventory-documentation.png"
+    }
+  ],
+  "notes": "All 74 screen names were verified by instantiating the inline component script for screen prop values 01-74. Groups follow the six grouped wrapper pages exported with the source. routeOrState and phaseLabel remain unset because the source does not assign them per screen. This package ships a real support.js (the genuine Claude Design dc-runtime); the renderer uses it directly."
+}
