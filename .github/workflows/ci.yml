@@ -61,11 +61,15 @@ jobs:
         run: cargo fmt --all --check
       - name: Root hardware-port locked check
         run: cargo check --workspace --locked
+      - name: Receipt-printer hardware-free tests
+        run: cargo test --package minimart-hw-printer --locked
       - name: Root hardware-port Clippy
         run: cargo clippy --workspace --all-targets --locked -- -D warnings
       - name: POS Tauri formatting
         run: cargo fmt --manifest-path apps/pos-terminal/src-tauri/Cargo.toml --check
       - name: POS Tauri locked check
         run: cargo check --manifest-path apps/pos-terminal/src-tauri/Cargo.toml --locked
+      - name: POS Tauri native tests
+        run: cargo test --manifest-path apps/pos-terminal/src-tauri/Cargo.toml --locked
       - name: POS Tauri Clippy
         run: cargo clippy --manifest-path apps/pos-terminal/src-tauri/Cargo.toml --all-targets --locked -- -D warnings
