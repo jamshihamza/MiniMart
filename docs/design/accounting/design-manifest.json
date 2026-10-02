@@ -1,0 +1,550 @@
+{
+  "package": "MiniMart Accounting-Lite",
+  "slug": "accounting",
+  "status": "approved-visual-reference",
+  "sourceFile": "source/MiniMartAccountingLite.dc.html",
+  "sourceOfTruth": "Claude Design export committed at docs/design/accounting/source/MiniMartAccountingLite.dc.html",
+  "screenCount": 88,
+  "primaryViewport": "1366x768",
+  "supportedViewports": ["1280x720", "1368x800", "1920x1080"],
+  "screenGroups": [
+    "Foundation & Summary",
+    "Supplier Payables & Payments",
+    "Financial Accounts & Transactions",
+    "Expenses",
+    "Reconciliation & Opening Balances",
+    "Export & Operational States",
+    "Design System & Docs"
+  ],
+  "screens": [
+    {
+      "number": "01",
+      "name": "Accounting Dashboard — overview",
+      "group": "Foundation & Summary",
+      "renderFile": "01-accounting-dashboard-overview.png"
+    },
+    {
+      "number": "02",
+      "name": "Dashboard — Supplier Outstanding card",
+      "group": "Foundation & Summary",
+      "renderFile": "02-dashboard-supplier-outstanding-card.png"
+    },
+    {
+      "number": "03",
+      "name": "Dashboard — Customer Outstanding card (read-only)",
+      "group": "Foundation & Summary",
+      "renderFile": "03-dashboard-customer-outstanding-card-read-only.png"
+    },
+    {
+      "number": "04",
+      "name": "Dashboard — Cash Accounts card",
+      "group": "Foundation & Summary",
+      "renderFile": "04-dashboard-cash-accounts-card.png"
+    },
+    {
+      "number": "05",
+      "name": "Dashboard — Bank Accounts card",
+      "group": "Foundation & Summary",
+      "renderFile": "05-dashboard-bank-accounts-card.png"
+    },
+    {
+      "number": "06",
+      "name": "Dashboard — Expenses card",
+      "group": "Foundation & Summary",
+      "renderFile": "06-dashboard-expenses-card.png"
+    },
+    {
+      "number": "07",
+      "name": "Dashboard — Unreconciled Bank Movements card",
+      "group": "Foundation & Summary",
+      "renderFile": "07-dashboard-unreconciled-bank-movements-card.png"
+    },
+    {
+      "number": "08",
+      "name": "Operational Financial Summary (period)",
+      "group": "Foundation & Summary",
+      "renderFile": "08-operational-financial-summary-period.png"
+    },
+    {
+      "number": "09",
+      "name": "Period Filtering panel",
+      "group": "Foundation & Summary",
+      "renderFile": "09-period-filtering-panel.png"
+    },
+    {
+      "number": "10",
+      "name": "Source Reconciliation Checks — overview",
+      "group": "Foundation & Summary",
+      "renderFile": "10-source-reconciliation-checks-overview.png"
+    },
+    {
+      "number": "11",
+      "name": "Mismatch state — detail",
+      "group": "Foundation & Summary",
+      "renderFile": "11-mismatch-state-detail.png"
+    },
+    {
+      "number": "12",
+      "name": "Connectivity — Online + Sync Healthy",
+      "group": "Foundation & Summary",
+      "renderFile": "12-connectivity-online-sync-healthy.png"
+    },
+    {
+      "number": "13",
+      "name": "Supplier Payables — list",
+      "group": "Supplier Payables & Payments",
+      "renderFile": "13-supplier-payables-list.png"
+    },
+    {
+      "number": "14",
+      "name": "Supplier Payables — list filtered",
+      "group": "Supplier Payables & Payments",
+      "renderFile": "14-supplier-payables-list-filtered.png"
+    },
+    {
+      "number": "15",
+      "name": "Supplier Payable — detail",
+      "group": "Supplier Payables & Payments",
+      "renderFile": "15-supplier-payable-detail.png"
+    },
+    {
+      "number": "16",
+      "name": "Payable source trace — Goods Receipt",
+      "group": "Supplier Payables & Payments",
+      "renderFile": "16-payable-source-trace-goods-receipt.png"
+    },
+    {
+      "number": "17",
+      "name": "Payable source trace — Purchase Return / Supplier Credit",
+      "group": "Supplier Payables & Payments",
+      "renderFile": "17-payable-source-trace-purchase-return-supplier-credit.png"
+    },
+    {
+      "number": "18",
+      "name": "Supplier Payment — entry form",
+      "group": "Supplier Payables & Payments",
+      "renderFile": "18-supplier-payment-entry-form.png"
+    },
+    {
+      "number": "19",
+      "name": "Supplier Payment — account / method",
+      "group": "Supplier Payables & Payments",
+      "renderFile": "19-supplier-payment-account-method.png"
+    },
+    {
+      "number": "20",
+      "name": "Supplier Payment — allocation table",
+      "group": "Supplier Payables & Payments",
+      "renderFile": "20-supplier-payment-allocation-table.png"
+    },
+    {
+      "number": "21",
+      "name": "Supplier Payment — unallocated (policy-controlled)",
+      "group": "Supplier Payables & Payments",
+      "renderFile": "21-supplier-payment-unallocated-policy-controlled.png"
+    },
+    {
+      "number": "22",
+      "name": "Supplier Payment — part payment",
+      "group": "Supplier Payables & Payments",
+      "renderFile": "22-supplier-payment-part-payment.png"
+    },
+    {
+      "number": "23",
+      "name": "Supplier Payment — Review",
+      "group": "Supplier Payables & Payments",
+      "renderFile": "23-supplier-payment-review.png"
+    },
+    {
+      "number": "24",
+      "name": "Supplier Payment — Posted",
+      "group": "Supplier Payables & Payments",
+      "renderFile": "24-supplier-payment-posted.png"
+    },
+    {
+      "number": "25",
+      "name": "Supplier Payment — Reversal / Correction",
+      "group": "Supplier Payables & Payments",
+      "renderFile": "25-supplier-payment-reversal-correction.png"
+    },
+    {
+      "number": "26",
+      "name": "Supplier Payment — Posting / Safe Retry",
+      "group": "Supplier Payables & Payments",
+      "renderFile": "26-supplier-payment-posting-safe-retry.png"
+    },
+    {
+      "number": "27",
+      "name": "Supplier Statement",
+      "group": "Supplier Payables & Payments",
+      "renderFile": "27-supplier-statement.png"
+    },
+    {
+      "number": "28",
+      "name": "Supplier Aging (illustrative buckets)",
+      "group": "Supplier Payables & Payments",
+      "renderFile": "28-supplier-aging-illustrative-buckets.png"
+    },
+    {
+      "number": "29",
+      "name": "Customer Outstanding — read-only Accounting view",
+      "group": "Financial Accounts & Transactions",
+      "renderFile": "29-customer-outstanding-read-only-accounting-view.png"
+    },
+    {
+      "number": "30",
+      "name": "Customer Collection — linkage (read-only trace)",
+      "group": "Financial Accounts & Transactions",
+      "renderFile": "30-customer-collection-linkage-read-only-trace.png"
+    },
+    {
+      "number": "31",
+      "name": "Customer Return / Credit — linkage (read-only trace)",
+      "group": "Financial Accounts & Transactions",
+      "renderFile": "31-customer-return-credit-linkage-read-only-trace.png"
+    },
+    {
+      "number": "32",
+      "name": "Financial Accounts — workspace intro",
+      "group": "Financial Accounts & Transactions",
+      "renderFile": "32-financial-accounts-workspace-intro.png"
+    },
+    {
+      "number": "33",
+      "name": "Financial Accounts — list",
+      "group": "Financial Accounts & Transactions",
+      "renderFile": "33-financial-accounts-list.png"
+    },
+    {
+      "number": "34",
+      "name": "Cash Account — detail",
+      "group": "Financial Accounts & Transactions",
+      "renderFile": "34-cash-account-detail.png"
+    },
+    {
+      "number": "35",
+      "name": "Bank Account — detail (no credentials stored)",
+      "group": "Financial Accounts & Transactions",
+      "renderFile": "35-bank-account-detail-no-credentials-stored.png"
+    },
+    {
+      "number": "36",
+      "name": "Account Activation — Active / Inactive",
+      "group": "Financial Accounts & Transactions",
+      "renderFile": "36-account-activation-active-inactive.png"
+    },
+    {
+      "number": "37",
+      "name": "Account Balance — derived, no edit",
+      "group": "Financial Accounts & Transactions",
+      "renderFile": "37-account-balance-derived-no-edit.png"
+    },
+    {
+      "number": "38",
+      "name": "Financial Movement — history",
+      "group": "Financial Accounts & Transactions",
+      "renderFile": "38-financial-movement-history.png"
+    },
+    {
+      "number": "39",
+      "name": "Financial Movement — detail",
+      "group": "Financial Accounts & Transactions",
+      "renderFile": "39-financial-movement-detail.png"
+    },
+    {
+      "number": "40",
+      "name": "Non-Sale Receipt — entry form",
+      "group": "Financial Accounts & Transactions",
+      "renderFile": "40-non-sale-receipt-entry-form.png"
+    },
+    {
+      "number": "41",
+      "name": "Non-Purchase Payment — entry form",
+      "group": "Financial Accounts & Transactions",
+      "renderFile": "41-non-purchase-payment-entry-form.png"
+    },
+    {
+      "number": "42",
+      "name": "Financial Transaction — Draft / Review",
+      "group": "Financial Accounts & Transactions",
+      "renderFile": "42-financial-transaction-draft-review.png"
+    },
+    {
+      "number": "43",
+      "name": "Financial Transaction — Posted",
+      "group": "Financial Accounts & Transactions",
+      "renderFile": "43-financial-transaction-posted.png"
+    },
+    {
+      "number": "44",
+      "name": "Financial Transaction — Posting / Safe Retry",
+      "group": "Financial Accounts & Transactions",
+      "renderFile": "44-financial-transaction-posting-safe-retry.png"
+    },
+    {
+      "number": "45",
+      "name": "Account Transfer — entry form",
+      "group": "Financial Accounts & Transactions",
+      "renderFile": "45-account-transfer-entry-form.png"
+    },
+    {
+      "number": "46",
+      "name": "Account Transfer — value rule validation",
+      "group": "Financial Accounts & Transactions",
+      "renderFile": "46-account-transfer-value-rule-validation.png"
+    },
+    {
+      "number": "47",
+      "name": "Account Transfer — Posted (linked pair)",
+      "group": "Financial Accounts & Transactions",
+      "renderFile": "47-account-transfer-posted-linked-pair.png"
+    },
+    {
+      "number": "48",
+      "name": "Account Transfer — Posting / Safe Retry",
+      "group": "Financial Accounts & Transactions",
+      "renderFile": "48-account-transfer-posting-safe-retry.png"
+    },
+    {
+      "number": "49",
+      "name": "Transfer — linked movement detail",
+      "group": "Financial Accounts & Transactions",
+      "renderFile": "49-transfer-linked-movement-detail.png"
+    },
+    {
+      "number": "50",
+      "name": "Financial Transaction & Transfer — audit trail",
+      "group": "Financial Accounts & Transactions",
+      "renderFile": "50-financial-transaction-transfer-audit-trail.png"
+    },
+    {
+      "number": "51",
+      "name": "Expense Category — workspace",
+      "group": "Expenses",
+      "renderFile": "51-expense-category-workspace.png"
+    },
+    {
+      "number": "52",
+      "name": "Expense — list",
+      "group": "Expenses",
+      "renderFile": "52-expense-list.png"
+    },
+    {
+      "number": "53",
+      "name": "New Expense — entry form",
+      "group": "Expenses",
+      "renderFile": "53-new-expense-entry-form.png"
+    },
+    {
+      "number": "54",
+      "name": "Expense — tax treatment boundary",
+      "group": "Expenses",
+      "renderFile": "54-expense-tax-treatment-boundary.png"
+    },
+    {
+      "number": "55",
+      "name": "Expense — Posting / Safe Retry",
+      "group": "Expenses",
+      "renderFile": "55-expense-posting-safe-retry.png"
+    },
+    {
+      "number": "56",
+      "name": "Expense Approval (policy-controlled)",
+      "group": "Expenses",
+      "renderFile": "56-expense-approval-policy-controlled.png"
+    },
+    {
+      "number": "57",
+      "name": "Expense — Review",
+      "group": "Expenses",
+      "renderFile": "57-expense-review.png"
+    },
+    {
+      "number": "58",
+      "name": "Posted Expense",
+      "group": "Expenses",
+      "renderFile": "58-posted-expense.png"
+    },
+    {
+      "number": "59",
+      "name": "Expense — Reversal / Correction",
+      "group": "Expenses",
+      "renderFile": "59-expense-reversal-correction.png"
+    },
+    {
+      "number": "60",
+      "name": "Drawer-Funded Expense — linked to CashierShift",
+      "group": "Expenses",
+      "renderFile": "60-drawer-funded-expense-linked-to-cashiershift.png"
+    },
+    {
+      "number": "61",
+      "name": "Cash Drawer boundary — documentation note",
+      "group": "Expenses",
+      "renderFile": "61-cash-drawer-boundary-documentation-note.png"
+    },
+    {
+      "number": "62",
+      "name": "Expense — audit timeline",
+      "group": "Expenses",
+      "renderFile": "62-expense-audit-timeline.png"
+    },
+    {
+      "number": "63",
+      "name": "Reconciliation — sessions list",
+      "group": "Reconciliation & Opening Balances",
+      "renderFile": "63-reconciliation-sessions-list.png"
+    },
+    {
+      "number": "64",
+      "name": "Reconciliation Session — detail",
+      "group": "Reconciliation & Opening Balances",
+      "renderFile": "64-reconciliation-session-detail.png"
+    },
+    {
+      "number": "65",
+      "name": "Reconciliation — Match / Unmatch",
+      "group": "Reconciliation & Opening Balances",
+      "renderFile": "65-reconciliation-match-unmatch.png"
+    },
+    {
+      "number": "66",
+      "name": "Opening Balance — Mechanism Pending Contract",
+      "group": "Reconciliation & Opening Balances",
+      "renderFile": "66-opening-balance-mechanism-pending-contract.png"
+    },
+    {
+      "number": "67",
+      "name": "Reconciliation Difference — explicit",
+      "group": "Reconciliation & Opening Balances",
+      "renderFile": "67-reconciliation-difference-explicit.png"
+    },
+    {
+      "number": "68",
+      "name": "Reconciliation Adjustment — traceable correction",
+      "group": "Reconciliation & Opening Balances",
+      "renderFile": "68-reconciliation-adjustment-traceable-correction.png"
+    },
+    {
+      "number": "69",
+      "name": "Reconciliation — Complete",
+      "group": "Reconciliation & Opening Balances",
+      "renderFile": "69-reconciliation-complete.png"
+    },
+    {
+      "number": "70",
+      "name": "Opening Balance — Required Scope (Controlled Migration)",
+      "group": "Reconciliation & Opening Balances",
+      "renderFile": "70-opening-balance-required-scope-controlled-migration.png"
+    },
+    {
+      "number": "71",
+      "name": "Opening Balance — Effective Date & Evidence (illustrative)",
+      "group": "Reconciliation & Opening Balances",
+      "renderFile": "71-opening-balance-effective-date-evidence-illustrative.png"
+    },
+    {
+      "number": "72",
+      "name": "Opening Balance — No Arbitrary Balance Edit (boundary)",
+      "group": "Reconciliation & Opening Balances",
+      "renderFile": "72-opening-balance-no-arbitrary-balance-edit-boundary.png"
+    },
+    {
+      "number": "73",
+      "name": "Source Reconciliation Checks — mismatch drilldown",
+      "group": "Export & Operational States",
+      "renderFile": "73-source-reconciliation-checks-mismatch-drilldown.png"
+    },
+    {
+      "number": "74",
+      "name": "Operational Financial Summary — drilldown",
+      "group": "Export & Operational States",
+      "renderFile": "74-operational-financial-summary-drilldown.png"
+    },
+    {
+      "number": "75",
+      "name": "Accounting Export — choose period / datasets (context for Export Center)",
+      "group": "Export & Operational States",
+      "renderFile": "75-accounting-export-choose-period-datasets-context-for-export-center.png"
+    },
+    {
+      "number": "76",
+      "name": "Accounting Export — review totals (context for Export Center)",
+      "group": "Export & Operational States",
+      "renderFile": "76-accounting-export-review-totals-context-for-export-center.png"
+    },
+    {
+      "number": "77",
+      "name": "Accounting Export — handoff to Export Center",
+      "group": "Export & Operational States",
+      "renderFile": "77-accounting-export-handoff-to-export-center.png"
+    },
+    {
+      "number": "78",
+      "name": "Export traceability — row-level detail",
+      "group": "Export & Operational States",
+      "renderFile": "78-export-traceability-row-level-detail.png"
+    },
+    {
+      "number": "79",
+      "name": "Connectivity — Cloud Sync unavailable (local posting continues)",
+      "group": "Export & Operational States",
+      "renderFile": "79-connectivity-cloud-sync-unavailable-local-posting-continues.png"
+    },
+    {
+      "number": "80",
+      "name": "Connectivity — Store Node unavailable (posting blocked)",
+      "group": "Export & Operational States",
+      "renderFile": "80-connectivity-store-node-unavailable-posting-blocked.png"
+    },
+    {
+      "number": "81",
+      "name": "Permission-aware UI states",
+      "group": "Design System & Docs",
+      "renderFile": "81-permission-aware-ui-states.png"
+    },
+    {
+      "number": "82",
+      "name": "Audit timeline — global pattern",
+      "group": "Design System & Docs",
+      "renderFile": "82-audit-timeline-global-pattern.png"
+    },
+    {
+      "number": "83",
+      "name": "Historical master change — non-destructive",
+      "group": "Design System & Docs",
+      "renderFile": "83-historical-master-change-non-destructive.png"
+    },
+    {
+      "number": "84",
+      "name": "Cross-module ownership map",
+      "group": "Design System & Docs",
+      "renderFile": "84-cross-module-ownership-map.png"
+    },
+    {
+      "number": "85",
+      "name": "Design System — table / status / stepper components",
+      "group": "Design System & Docs",
+      "renderFile": "85-design-system-table-status-stepper-components.png"
+    },
+    {
+      "number": "86",
+      "name": "Design System — form / allocation components",
+      "group": "Design System & Docs",
+      "renderFile": "86-design-system-form-allocation-components.png"
+    },
+    {
+      "number": "87",
+      "name": "Boundary documentation — forbidden inventions",
+      "group": "Design System & Docs",
+      "renderFile": "87-boundary-documentation-forbidden-inventions.png"
+    },
+    {
+      "number": "88",
+      "name": "Documentation confirmations + screen index",
+      "group": "Design System & Docs",
+      "renderFile": "88-documentation-confirmations-screen-index.png"
+    }
+  ],
+  "notes": "All 88 screen names come from the source's NAMES map and its 88 screen-state mappings (01-88, no gaps), verified by instantiating the inline component script for every screen. Groups follow the seven grouped wrapper pages exported with the source. Source is the v2-fixed export (SHA-256 ebe8ca7f...12e): Opening Balance screens 66 and 70-72 show required scope and a pending-contract boundary, screens 75-77 are Export Center handoff context, and the Supplier Payment allocation grid (20) lists only eligible outstanding payables. routeOrState and phaseLabel remain unset because the source does not assign them per screen. This package ships the real support.js (the genuine Claude Design dc-runtime, byte-identical to the Procurement, Customers and Cash copies); the renderer uses it directly."
+}

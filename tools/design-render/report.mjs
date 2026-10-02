@@ -176,6 +176,76 @@ export function buildReportMarkdown() {
       " later edited copy of the full interactive Back Office source (about 96 KB, 42 changed lines against the" +
       " approved source) and was not applied; the approved Back Office source is unchanged.",
     "",
+    "## Accounting-Lite review notes",
+    "",
+    "Status: `approved-visual-reference`. Source `MiniMartAccountingLite.dc.html`, SHA-256" +
+      " `ebe8ca7f38b9b9d5cd9c16fed421bfe5f5863653ec9478a081d368d2bb9df12e`, from" +
+      " `Minimart_Accounting_Lite_ClaudeDesign_Source_v2-fixed.zip` (all 10 hashes in" +
+      " `ACCOUNTING-LITE-EXPORT-MANIFEST-v2-fixed.txt` match the packaged bytes). `support.js` (SHA-256" +
+      " `8fe7df74...cbe`) is byte-identical to the other real-runtime packages. Two earlier exports were rejected and" +
+      " are no longer registered: the first export (SHA-256 `c5ae24c4...6ae0`) and v2 (SHA-256 `63fb4491...01a1`).",
+    "",
+    "- Structure: 88 screens, IDs 01-88 contiguous, 88 unique titles and state mappings; the inline script parses and all" +
+      " 88 states instantiate with no errors. The seven grouped pages import the source and cover 01-12, 13-28, 29-50," +
+      " 51-62, 63-72, 73-80 and 81-88, each screen exactly once. The package index is an Accounting-Lite links page.",
+    "- Render: 88/88 RUNTIME-COMPLETE on the real runtime, 0 BLOCKED, 0 KNOWN-DIFFERENCE, 0 page errors.",
+    "- Review history: the first export was rejected for a ten-times-wrong dashboard bank total, an allocation summary" +
+      " that contradicted its rows, and an Opening Balance and Accountant Export workflow that presented unfrozen" +
+      " behaviour as established. v2 fixed those and was rejected only because the Supplier Payment allocation grid" +
+      " (20) still listed a fully paid payable as a candidate row. v2-fixed changes only that grid's eligibility" +
+      " filter (supplier match and outstanding above zero) and adds the note that only eligible outstanding" +
+      " payables are available for allocation. The grouped pages and `support.js` are byte-identical to v2.",
+    "- Numeric corrections: the Bank Accounts card (01) shows RM 236,500.00 (184,200.00 + 52,300.00, matching" +
+      " screens 05 and 33). The supplier payment (20, 23, 86) is RM 950.00 allocated in full to" +
+      " SUP-PAY-2026-00142 (outstanding RM 950.00, remaining RM 0.00): Payment 950.00 = Allocated 950.00 +" +
+      " Unallocated 0.00. SUP-PAY-2026-00104 (Paid, outstanding RM 0.00) appears only in the payable list" +
+      " screens (13, 14) as a historical record, never in the allocation grid. No allocation order is introduced:" +
+      " the note that order is not assumed is unchanged.",
+    "- Payable creation basis: screen 13 and confirmation 22 state that the basis follows the configured" +
+      " purchasing and payables workflow (posted purchase or receipt, or approved supplier invoice) and that the" +
+      " Goods Receipt examples are illustrative, not a universal trigger.",
+    "- Opening Balance authority correction: frozen authority (FR-ACC-044, FR-ACC-045) requires controlled" +
+      " opening balances with an effective date and audit evidence and forbids direct balance overwrite, but does" +
+      " not define an OpeningBalance aggregate, document, API, posting lifecycle or status contract. Screens 66, 70," +
+      " 71 and 72 therefore show the required scope, an illustrative inputs example and a no-arbitrary-edit" +
+      " boundary, and state the mechanism is pending an approved contract. Screen 66 has no Check Status or Retry" +
+      " Safely action, and no Entry-Validate-Review-Post flow, post control or set-balance control exists.",
+    '- Export ownership correction: screens 75-77 are Accounting-Lite dataset context and a handoff ("Continue in' +
+      ' Export Center"). File generation, retention, delivery and any accounting-software integration are stated to' +
+      " belong to Export Center and Reporting. No export job, artifact, queue, format policy or approval workflow" +
+      " is shown. Screen 78 traces Accounting-Lite's own source rows.",
+    "- Safe retry is a real operational state (outcome unknown, may already have committed, check status first, Check" +
+      " Status and Retry Safely, no duplicate effect) on screens 26 (Supplier Payment), 44 (Financial Receipt and" +
+      " Payment, one shared state), 48 (Account Transfer) and 55 (Expense; checks authoritative local status and" +
+      " cannot duplicate the Expense, its Financial Movement or the CashierShift cash effect). They elaborate the" +
+      " frozen idempotency and recovery contract and offer no Force Post, delete, roll back or balance editing." +
+      " Reconciliation completion (69) records no financial movement.",
+    "- Boundaries seen in render: Customer outstanding is a read-only view of Customer & Credit (29, 03); no balance" +
+      " edit control exists (37, 67, 72); a drawer-funded expense links to the CashierShift effect and adds no" +
+      " second Cash Out workflow (60); allocation order, unallocated payment, expense approval threshold, tax" +
+      " treatment and reconciliation matching are labelled policy-controlled or not assumed (65 names no matching" +
+      " rule); full-GL terms appear only in disclaimers (01, 08, 87, 88). Store Node and Cloud Sync outages are" +
+      " separate states (79, 80). The receipt (FT-2026-00061, screens 40, 42, 43) and payment (FT-2026-00062," +
+      " screen 41) are distinct transactions. Screen 88 numbers confirmations 1-52, all present once.",
+    "- Viewports: all 88 screens were rendered through the real runtime at 1280x720, 1366x768, 1368x800 and" +
+      " 1920x1080 (every one RUNTIME-COMPLETE) and scanned in-page for page-level scroll and for any text or button" +
+      " that is clipped by its container. This is a live render result, not a width calculation. No page-level" +
+      " scroll and no console error at any size. Outside the sidebar, only screen 88's documentation body is" +
+      " flagged: it is an internal scroll container, so confirmations beyond the first screenful are reachable by" +
+      " scrolling (the static render shows the first ones). Screen 20 was inspected at all four sizes (REMAINING header" +
+      " readable, one eligible row, summary arithmetic and both notes visible), and the Posted pill on screens 38" +
+      " and 52 is fully visible at 1280x720. The sidebar is also an internal scroll container (its lowest" +
+      " Administration entries sit below the fold at the smaller heights).",
+    "- Non-blocking observations: the Allocated and Unallocated figures on 20 and 23 are fixed values that agree with" +
+      " the single eligible row; screen 71 lists no audit-evidence field although titled Effective Date & Evidence;" +
+      " screen 77 shows an illustrative dataset-context reference and hand-off time that no frozen contract defines;" +
+      " screens 64 and 67 show Recorded Movements RM 18,420.00, a period figure that is not the RM 184,200.00 account" +
+      " balance.",
+    "- Authority note: only UI-ACC-001 to 009 are frozen Accounting screens. The other screens in this package are" +
+      " visual elaboration. Opening-balance mechanics, export contracts, payable creation basis, allocation order," +
+      " matching policy, approval thresholds and expense tax remain open or policy-controlled and are not defined by" +
+      " this design.",
+    "",
     "## Procurement viewport verification",
     "",
     "`primaryViewport` (1366x768) is verified as part of the normal `pnpm design:render --package procurement`" +

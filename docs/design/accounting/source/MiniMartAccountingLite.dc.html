@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/lucide-static@0.469.0/font/lucide.css">
+<style>
+html,body{margin:0;height:100%;background:#f2f4f7}
+button,input,select,textarea{font-family:inherit;color:inherit}
+[class^="icon-"]{font-family:lucide!important;font-style:normal;line-height:1;display:inline-block;speak:never}
+*:focus-visible{outline:2px solid #1b5fd1;outline-offset:2px}
+a{color:#1b5fd1}a:hover{color:#174fb0}
+</style>
+</helmet>
+<div data-screen-label="{{ scrLabel }}" style="position:relative;display:flex;width:100%;height:{{ rootH }};min-width:1160px;background:#f2f4f7;font-family:'IBM Plex Sans',system-ui,sans-serif;color:#0f1a2b;overflow:hidden;font-variant-numeric:tabular-nums;font-size:13.5px;line-height:1.35">
+<aside style="width:190px;flex:none;background:#0e1b33;color:#c3cbd9;display:flex;flex-direction:column;padding:14px 10px 12px;gap:6px;overflow:auto">
+  <div style="display:flex;align-items:center;gap:9px;padding:2px 6px 10px">
+    <div style="width:30px;height:30px;border-radius:8px;background:#1b5fd1;display:grid;place-items:center;color:#fff"><i class="icon-store" style="font-size:16px"></i></div>
+    <div style="display:flex;flex-direction:column;gap:1px"><span style="color:#fff;font-weight:700;font-size:13px;letter-spacing:.08em">MINIMART</span><span style="font-size:10.5px;color:#8c98ad">Back Office</span></div>
+  </div>
+  <sc-for list="{{ nav }}" as="grp" hint-placeholder-count="6">
+    <div style="display:flex;flex-direction:column;gap:1px;margin-top:6px">
+      <span style="font-size:10px;font-weight:600;letter-spacing:.09em;color:#6f7c93;padding:4px 10px">{{ grp.label }}</span>
+      <sc-for list="{{ grp.items }}" as="it" hint-placeholder-count="3">
+        <button disabled="{{ it.stub }}" style="display:flex;align-items:center;gap:9px;height:34px;padding:0 10px;border-radius:7px;border:0;background:{{ it.bg }};color:{{ it.fg }};font-size:12.5px;font-weight:{{ it.fw }};cursor:{{ it.cursor }};text-align:left">
+          <i class="{{ it.icon }}" style="font-size:15px"></i><span style="flex:1">{{ it.label }}</span>
+          <sc-if value="{{ it.stub }}" hint-placeholder-val="{{ false }}"><i class="icon-corner-down-right" style="font-size:11px;color:#4d5a72"></i></sc-if>
+        </button>
+      </sc-for>
+    </div>
+  </sc-for>
+  <div style="margin-top:auto;padding-top:10px"><span style="font-size:10px;color:#5d6a82;padding:0 10px">Structural navigation only outside this package</span></div>
+</aside>
+<div style="flex:1;min-width:0;display:flex;flex-direction:column">
+  <header style="height:50px;flex:none;background:#fff;border-bottom:1px solid #e1e5eb;display:flex;align-items:center;padding:0 16px;gap:16px">
+    <div style="display:flex;align-items:center;gap:6px;font-weight:600;font-size:13px"><i class="icon-building-2" style="font-size:15px;color:#4a5567"></i>MiniMart Sdn Bhd</div>
+    <div style="display:flex;align-items:center;gap:6px;font-size:12.5px;color:#4a5567"><i class="icon-store" style="font-size:14px"></i>Store <span style="font-weight:600;color:#0f1a2b">MiniMart Central</span></div>
+    <div style="display:flex;align-items:center;gap:6px;font-size:12.5px;color:#4a5567"><i class="icon-calendar" style="font-size:14px"></i>Business date <span style="color:#0f1a2b;font-weight:500">Sat, 26 Sep 2026</span></div>
+    <div style="margin-left:auto;display:flex;align-items:center;gap:8px">
+      <div title="Store Node connection" style="display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 10px;border-radius:999px;border:1px solid {{ nodeP.bd }};background:{{ nodeP.bg }};color:{{ nodeP.fg }};font-size:12px;font-weight:600"><i class="{{ nodeP.icon }}" style="font-size:13px"></i>{{ nodeP.label }}</div>
+      <div title="Cloud synchronisation" style="display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 10px;border-radius:999px;border:1px solid {{ syncP.bd }};background:{{ syncP.bg }};color:{{ syncP.fg }};font-size:12px;font-weight:600"><i class="{{ syncP.icon }}" style="font-size:13px"></i>{{ syncP.label }}</div>
+      <button style="display:flex;align-items:center;gap:7px;height:32px;padding:0 8px 0 4px;border-radius:7px;border:1px solid #e1e5eb;background:#fff;cursor:pointer;font-size:12.5px;font-weight:500"><span style="width:24px;height:24px;border-radius:50%;background:#e8f0fc;color:#1b5fd1;display:grid;place-items:center;font-size:10.5px;font-weight:700">SM</span>Siti M. <span style="color:#6b7585">· {{ roleLabel }}</span></button>
+    </div>
+  </header>
+  <div style="position:relative;flex:1;min-height:0;overflow:auto">
+  <sc-if value="{{ nodeDown }}" hint-placeholder-val="{{ false }}">
+    <div style="padding:40px;display:flex;justify-content:center">
+      <div style="max-width:560px;width:100%;background:#fff;border:1px solid #e1e5eb;border-radius:14px;padding:24px;display:flex;flex-direction:column;gap:14px">
+        <div style="display:flex;gap:14px;align-items:flex-start">
+          <div style="width:44px;height:44px;flex:none;border-radius:11px;background:#fcebea;color:#b3261e;display:grid;place-items:center"><i class="icon-server-off" style="font-size:22px"></i></div>
+          <div style="display:flex;flex-direction:column;gap:6px"><span style="font-size:17px;font-weight:600">Store Node unavailable</span><span style="font-size:13.5px;color:#4a5567">Store Node-backed Accounting-Lite operations are unavailable — supplier payments, financial transactions, transfers and expense posting cannot continue until the connection returns. Current account balances are not shown as current while this persists. This is separate from Cloud Sync status.</span></div>
+        </div>
+        <div style="display:flex;gap:8px"><button style="height:40px;padding:0 16px;border-radius:8px;border:0;background:#1b5fd1;color:#fff;font-size:14px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:8px"><i class="icon-refresh-cw" style="font-size:15px"></i>Retry connection</button><button style="height:40px;padding:0 16px;border-radius:8px;border:1px solid #cfd5de;background:#fff;color:#3d4a5e;font-size:14px;font-weight:600;cursor:pointer">Diagnostics</button></div>
+      </div>
+    </div>
+  </sc-if>
+  <sc-if value="{{ nodeUp }}" hint-placeholder-val="{{ true }}">
+  <sc-if value="{{ cloudDown }}" hint-placeholder-val="{{ false }}">
+    <div style="display:flex;align-items:center;gap:10px;padding:10px 22px;background:#fdf3e1;border-bottom:1px solid #f0d4a0;color:#6b4000;font-size:12.5px"><i class="icon-cloud-off" style="font-size:16px"></i><div style="flex:1"><strong style="font-weight:600">Cloud sync unavailable.</strong> Local Accounting-Lite posting continues — Supplier Payment, Expense, Transfer and other locally authoritative actions are not blocked. Changes will sync when cloud connectivity returns.</div></div>
+  </sc-if>
+  <div style="padding:16px 22px 40px;max-width:1180px">{{ body }}</div>
+  </sc-if>
+  </div>
+</div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1366,&quot;height&quot;:768},&quot;screen&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;01&quot;,&quot;02&quot;,&quot;03&quot;,&quot;04&quot;,&quot;05&quot;,&quot;06&quot;,&quot;07&quot;,&quot;08&quot;,&quot;09&quot;,&quot;10&quot;,&quot;11&quot;,&quot;12&quot;,&quot;13&quot;,&quot;14&quot;,&quot;15&quot;,&quot;16&quot;,&quot;17&quot;,&quot;18&quot;,&quot;19&quot;,&quot;20&quot;,&quot;21&quot;,&quot;22&quot;,&quot;23&quot;,&quot;24&quot;,&quot;25&quot;,&quot;26&quot;,&quot;27&quot;,&quot;28&quot;,&quot;29&quot;,&quot;30&quot;,&quot;31&quot;,&quot;32&quot;,&quot;33&quot;,&quot;34&quot;,&quot;35&quot;,&quot;36&quot;,&quot;37&quot;,&quot;38&quot;,&quot;39&quot;,&quot;40&quot;,&quot;41&quot;,&quot;42&quot;,&quot;43&quot;,&quot;44&quot;,&quot;45&quot;,&quot;46&quot;,&quot;47&quot;,&quot;48&quot;,&quot;49&quot;,&quot;50&quot;,&quot;51&quot;,&quot;52&quot;,&quot;53&quot;,&quot;54&quot;,&quot;55&quot;,&quot;56&quot;,&quot;57&quot;,&quot;58&quot;,&quot;59&quot;,&quot;60&quot;,&quot;61&quot;,&quot;62&quot;,&quot;63&quot;,&quot;64&quot;,&quot;65&quot;,&quot;66&quot;,&quot;67&quot;,&quot;68&quot;,&quot;69&quot;,&quot;70&quot;,&quot;71&quot;,&quot;72&quot;,&quot;73&quot;,&quot;74&quot;,&quot;75&quot;,&quot;76&quot;,&quot;77&quot;,&quot;78&quot;,&quot;79&quot;,&quot;80&quot;,&quot;81&quot;,&quot;82&quot;,&quot;83&quot;,&quot;84&quot;,&quot;85&quot;,&quot;86&quot;,&quot;87&quot;,&quot;88&quot;],&quot;default&quot;:&quot;01&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;embedded&quot;:{&quot;editor&quot;:null,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;}}">
+
+const E=React.createElement;
+const RM=(c)=>c==null?'—':(c<0?'−RM ':'RM ')+(Math.abs(c)/100).toLocaleString('en-MY',{minimumFractionDigits:2,maximumFractionDigits:2});
+const pill=(bg,fg,icon,label)=>({bg,fg,icon,label});
+const card=(children,style)=>E('div',{style:Object.assign({background:'#fff',border:'1px solid #e1e5eb',borderRadius:'11px',padding:'16px',display:'flex',flexDirection:'column',gap:'10px'},style||{})},...[].concat(children));
+const kv=(l,v,vc)=>E('div',{style:{display:'flex',justifyContent:'space-between',gap:'12px',fontSize:'13px'}},E('span',{style:{color:'#6b7585'}},l),E('span',{style:{fontWeight:600,color:vc||'#0f1a2b',textAlign:'right'}},v));
+const noteBox=(text,tone)=>{const c={amber:['#fdf3e1','#6b4000','#f0d4a0'],blue:['#e8f0fc','#174fb0','#b9cff2'],red:['#fcebea','#8a1f14','#f2b8b0'],green:['#e5f4ec','#0f3d24','#bfe2cd']}[tone||'amber'];return E('div',{style:{display:'flex',gap:'8px',alignItems:'flex-start',padding:'10px 12px',borderRadius:'9px',background:c[0],border:'1px solid '+c[2],color:c[1],fontSize:'12px'}},E('i',{className:'icon-info',style:{fontSize:'14px',marginTop:'1px'}}),E('span',null,text));};
+const stepper=(labels,idx)=>E('div',{style:{display:'flex',alignItems:'center',gap:'6px'}},...labels.map((label,i)=>[E('span',{key:'s'+i,style:{display:'inline-flex',alignItems:'center',gap:'5px',height:'26px',padding:'0 10px',borderRadius:'999px',border:'1px solid '+(i<=idx?'#1b5fd1':'#cfd5de'),background:i===idx?'#1b5fd1':'#fff',color:i===idx?'#fff':i<idx?'#1b5fd1':'#6b7585',fontSize:'12px',fontWeight:600}},label),i<labels.length-1?E('i',{key:'a'+i,className:'icon-chevron-right',style:{fontSize:'13px',color:'#9aa3b2',opacity:i<idx?1:0.35}}):null]).flat());
+const tbl=(cols,widths,rows,onRow)=>E('div',{style:{background:'#fff',border:'1px solid #e1e5eb',borderRadius:'11px',overflow:'auto'}},
+  E('div',{style:{display:'grid',gridTemplateColumns:widths,minWidth:'1000px',gap:'10px',padding:'8px 14px',background:'#f7f9fb',borderBottom:'1px solid #e1e5eb',fontSize:'10.5px',fontWeight:600,color:'#6b7585'}},...cols.map(c=>E('span',{key:c},c))),
+  ...rows.map((r,i)=>E('div',{key:i,onClick:onRow?()=>onRow(r):undefined,style:{display:'grid',gridTemplateColumns:widths,minWidth:'1000px',gap:'10px',alignItems:'center',padding:'0 14px',height:'44px',borderTop:'1px solid #eef1f5',fontSize:'12.5px',cursor:onRow?'pointer':'default'}},...r)));
+const statusTag=(label,tone)=>{const c={green:['#e5f4ec','#146c43'],amber:['#fdf3e1','#8a5100'],gray:['#eef1f5','#4a5567'],red:['#fcebea','#b3261e'],blue:['#e8f0fc','#174fb0']}[tone];return E('span',{style:{height:22,padding:'0 9px',borderRadius:999,background:c[0],color:c[1],fontSize:11,fontWeight:600,display:'inline-flex',alignItems:'center'}},label);};
+
+const PAYABLES=[
+  {ref:'SUP-PAY-2026-00142',supplier:'Kluang Dairy Sdn Bhd',source:'GRN-2026-00381',docDate:'18 Sep 2026',bizDate:'18 Sep 2026',original:245000,credits:0,paid:150000,outstanding:95000,due:'2 Oct 2026',status:'Partially Paid'},
+  {ref:'SUP-PAY-2026-00139',supplier:'Segamat Poultry Supplies',source:'GRN-2026-00374',docDate:'12 Sep 2026',bizDate:'12 Sep 2026',original:138000,credits:12000,paid:126000,outstanding:0,due:'27 Sep 2026',status:'Paid'},
+  {ref:'SUP-PAY-2026-00151',supplier:'Johor Beverage Distribution',source:'GRN-2026-00392',docDate:'24 Sep 2026',bizDate:'24 Sep 2026',original:412000,credits:0,paid:0,outstanding:412000,due:'9 Oct 2026',status:'Outstanding'},
+  {ref:'SUP-PAY-2026-00104',supplier:'Kluang Dairy Sdn Bhd',source:'GRN-2026-00301',docDate:'4 Aug 2026',bizDate:'4 Aug 2026',original:198000,credits:0,paid:198000,outstanding:0,due:'19 Aug 2026',status:'Paid'}];
+const PAYABLE=PAYABLES[0];
+const PAYMENT={ref:'SP-2026-00038',supplier:'Kluang Dairy Sdn Bhd',amount:95000,account:'Maybank Operating Account',date:'26 Sep 2026',bizDate:'26 Sep 2026',reference:'FPX-883321'};
+const ACCOUNTS=[
+  {name:'Store Cash — MiniMart Central',type:'Cash',scope:'MiniMart Central',status:'Active',balance:682000,last:'26 Sep 2026 · 14:40'},
+  {name:'Maybank Operating Account',type:'Bank',scope:'Organization',status:'Active',balance:18420000,last:'25 Sep 2026 · 17:02'},
+  {name:'CIMB Settlement Account',type:'Bank',scope:'Organization',status:'Active',balance:5230000,last:'24 Sep 2026 · 09:15'},
+  {name:'Petty Cash — MiniMart Central',type:'Cash',scope:'MiniMart Central',status:'Inactive',balance:0,last:'2 Jun 2026 · 10:05'}];
+const EXPENSE={ref:'EXP-2026-00027',date:'26 Sep 2026',bizDate:'26 Sep 2026',category:'Utilities',payee:'Tenaga Nasional Berhad',account:'Maybank Operating Account',amount:38000,status:'Posted'};
+const EXPENSES=[
+  {ref:'EXP-2026-00027',date:'26 Sep 2026',category:'Utilities',payee:'Tenaga Nasional Berhad',account:'Maybank Operating Account',amount:38000,status:'Posted'},
+  {ref:'EXP-2026-00026',date:'25 Sep 2026',category:'Maintenance',payee:'Ah Hock Repairs',account:'Store Cash — MiniMart Central',amount:15000,status:'Posted'},
+  {ref:'EXP-2026-00025',date:'23 Sep 2026',category:'Delivery',payee:'City Link Couriers',account:'Maybank Operating Account',amount:6200,status:'Pending Approval'},
+  {ref:'EXP-2026-00024',date:'20 Sep 2026',category:'Utilities',payee:'Air Selangor',account:'Maybank Operating Account',amount:21400,status:'Posted'}];
+const MOVEMENTS=[
+  {time:'26 Sep · 14:40',account:'Maybank Operating Account',type:'Supplier Payment',source:'SP-2026-00038',counterparty:'Kluang Dairy Sdn Bhd',amtIn:null,amtOut:95000,bal:18420000,status:'Posted'},
+  {time:'26 Sep · 09:10',account:'Maybank Operating Account',type:'Expense',source:'EXP-2026-00027',counterparty:'Tenaga Nasional Berhad',amtIn:null,amtOut:38000,bal:18520000,status:'Posted'},
+  {time:'25 Sep · 20:05',account:'Store Cash — MiniMart Central',type:'Shift Close Cash Effect',source:'SH-POS01-0267',counterparty:'—',amtIn:71300,amtOut:null,bal:682000,status:'Posted'},
+  {time:'24 Sep · 11:00',account:'CIMB Settlement Account',type:'Account Transfer',source:'XFR-2026-00011',counterparty:'Maybank Operating Account',amtIn:200000,amtOut:null,bal:5230000,status:'Posted'}];
+const RECON={account:'Maybank Operating Account',period:'1–30 Sep 2026',status:'In Progress',recorded:1842000,statement:1840500,difference:-1500,matched:46,unmatched:3};
+const NAV=[['Dashboard',[['Dashboard','icon-layout-dashboard',false]]],
+['MASTERS',[['Products','icon-package',true],['Categories','icon-shapes',true],['Brands','icon-tag',true],['Suppliers','icon-truck',true],['Customers','icon-users',true]]],
+['OPERATIONS',[['Purchases','icon-shopping-bag',true],['Inventory','icon-boxes',true],['Sales','icon-receipt',true],['Returns','icon-undo-2',true],['Cash & Shifts','icon-clock',true]]],
+['FINANCE',[['Accounting','icon-calculator',false],['Reconciliation','icon-scale',false]]],
+['MANAGEMENT',[['Reports','icon-bar-chart-3',true]]],
+['ADMINISTRATION',[['Users & Access','icon-shield',true],['Organization','icon-building-2',true],['Devices','icon-monitor',true],['Sync & Diagnostics','icon-refresh-cw',true],['Settings','icon-settings',true]]]];
+
+const NAMES={
+'01':'Accounting Dashboard — overview','02':'Dashboard — Supplier Outstanding card','03':'Dashboard — Customer Outstanding card (read-only)','04':'Dashboard — Cash Accounts card','05':'Dashboard — Bank Accounts card','06':'Dashboard — Expenses card','07':'Dashboard — Unreconciled Bank Movements card','08':'Operational Financial Summary (period)','09':'Period Filtering panel','10':'Source Reconciliation Checks — overview','11':'Mismatch state — detail','12':'Connectivity — Online + Sync Healthy',
+'13':'Supplier Payables — list','14':'Supplier Payables — list filtered','15':'Supplier Payable — detail','16':'Payable source trace — Goods Receipt','17':'Payable source trace — Purchase Return / Supplier Credit','18':'Supplier Payment — entry form','19':'Supplier Payment — account / method','20':'Supplier Payment — allocation table','21':'Supplier Payment — unallocated (policy-controlled)','22':'Supplier Payment — part payment','23':'Supplier Payment — Review','24':'Supplier Payment — Posted','25':'Supplier Payment — Reversal / Correction','26':'Supplier Payment — Posting / Safe Retry','27':'Supplier Statement','28':'Supplier Aging (illustrative buckets)',
+'29':'Customer Outstanding — read-only Accounting view','30':'Customer Collection — linkage (read-only trace)','31':'Customer Return / Credit — linkage (read-only trace)','32':'Financial Accounts — workspace intro','33':'Financial Accounts — list','34':'Cash Account — detail','35':'Bank Account — detail (no credentials stored)','36':'Account Activation — Active / Inactive','37':'Account Balance — derived, no edit','38':'Financial Movement — history',
+'39':'Financial Movement — detail','40':'Non-Sale Receipt — entry form','41':'Non-Purchase Payment — entry form','42':'Financial Transaction — Draft / Review','43':'Financial Transaction — Posted','44':'Financial Transaction — Posting / Safe Retry','45':'Account Transfer — entry form','46':'Account Transfer — value rule validation','47':'Account Transfer — Posted (linked pair)','48':'Account Transfer — Posting / Safe Retry','49':'Transfer — linked movement detail','50':'Financial Transaction & Transfer — audit trail',
+'51':'Expense Category — workspace','52':'Expense — list','53':'New Expense — entry form','54':'Expense — tax treatment boundary','55':'Expense — Posting / Safe Retry','56':'Expense Approval (policy-controlled)','57':'Expense — Review','58':'Posted Expense','59':'Expense — Reversal / Correction','60':'Drawer-Funded Expense — linked to CashierShift','61':'Cash Drawer boundary — documentation note','62':'Expense — audit timeline',
+'63':'Reconciliation — sessions list','64':'Reconciliation Session — detail','65':'Reconciliation — Match / Unmatch','66':'Opening Balance — Mechanism Pending Contract','67':'Reconciliation Difference — explicit','68':'Reconciliation Adjustment — traceable correction','69':'Reconciliation — Complete','70':'Opening Balance — Required Scope (Controlled Migration)','71':'Opening Balance — Effective Date & Evidence (illustrative)','72':'Opening Balance — No Arbitrary Balance Edit (boundary)',
+'73':'Source Reconciliation Checks — mismatch drilldown','74':'Operational Financial Summary — drilldown','75':'Accounting Export — choose period / datasets (context for Export Center)','76':'Accounting Export — review totals (context for Export Center)','77':'Accounting Export — handoff to Export Center','78':'Export traceability — row-level detail','79':'Connectivity — Cloud Sync unavailable (local posting continues)','80':'Connectivity — Store Node unavailable (posting blocked)',
+'81':'Permission-aware UI states','82':'Audit timeline — global pattern','83':'Historical master change — non-destructive','84':'Cross-module ownership map','85':'Design System — table / status / stepper components','86':'Design System — form / allocation components','87':'Boundary documentation — forbidden inventions','88':'Documentation confirmations + screen index'};
+
+function cfg(s){
+  const b={scr:s,view:'dash',node:'on',sync:'ok',role:'admin',dashState:'overview',payState:'list',acctState:'acctList',txnState:'movementDetail',expState:'list',reconState:'reconList',expoState:'exportChoose',dsState:'dsTable'};
+  const map={
+    '01':{dashState:'overview'},'02':{dashState:'supplierCard'},'03':{dashState:'customerCard'},'04':{dashState:'cashCard'},'05':{dashState:'bankCard'},'06':{dashState:'expenseCard'},'07':{dashState:'unreconciledCard'},'08':{dashState:'summary'},'09':{dashState:'periodFilter'},'10':{dashState:'checks'},'11':{dashState:'mismatch'},'12':{dashState:'connHealthy'},
+    '13':{view:'payables',payState:'list'},'14':{view:'payables',payState:'listFiltered'},'15':{view:'payables',payState:'detail'},'16':{view:'payables',payState:'traceGRN'},'17':{view:'payables',payState:'traceReturn'},'18':{view:'payables',payState:'payEntry'},'19':{view:'payables',payState:'payAccount'},'20':{view:'payables',payState:'payAllocation'},'21':{view:'payables',payState:'payUnallocated'},'22':{view:'payables',payState:'payPart'},'23':{view:'payables',payState:'payReview'},'24':{view:'payables',payState:'payPosted'},'25':{view:'payables',payState:'payReversal'},'26':{view:'payables',payState:'payRetry'},'27':{view:'payables',payState:'statement'},'28':{view:'payables',payState:'aging'},
+    '29':{view:'accounts',acctState:'custOutstanding'},'30':{view:'accounts',acctState:'collectionLink'},'31':{view:'accounts',acctState:'returnCreditLink'},'32':{view:'accounts',acctState:'acctIntro'},'33':{view:'accounts',acctState:'acctList'},'34':{view:'accounts',acctState:'cashAcctDetail'},'35':{view:'accounts',acctState:'bankAcctDetail'},'36':{view:'accounts',acctState:'acctActivation'},'37':{view:'accounts',acctState:'acctBalance'},'38':{view:'accounts',acctState:'movementHistory'},
+    '39':{view:'txn',txnState:'movementDetail'},'40':{view:'txn',txnState:'nonSaleReceipt'},'41':{view:'txn',txnState:'nonPurchasePayment'},'42':{view:'txn',txnState:'txnReview'},'43':{view:'txn',txnState:'txnPosted'},'44':{view:'txn',txnState:'txnRetry'},'45':{view:'txn',txnState:'transferEntry'},'46':{view:'txn',txnState:'transferValueRule'},'47':{view:'txn',txnState:'transferPosted'},'48':{view:'txn',txnState:'transferRetry'},'49':{view:'txn',txnState:'transferMovementDetail'},'50':{view:'txn',txnState:'txnAudit'},
+    '51':{view:'expenses',expState:'category'},'52':{view:'expenses',expState:'list'},'53':{view:'expenses',expState:'newExpense'},'54':{view:'expenses',expState:'taxBoundary'},'55':{view:'expenses',expState:'expRetry'},'56':{view:'expenses',expState:'approval'},'57':{view:'expenses',expState:'review'},'58':{view:'expenses',expState:'posted'},'59':{view:'expenses',expState:'reversal'},'60':{view:'expenses',expState:'drawerFunded'},'61':{view:'expenses',expState:'drawerBoundary'},'62':{view:'expenses',expState:'auditTimeline'},
+    '63':{view:'recon',reconState:'reconList'},'64':{view:'recon',reconState:'reconSession'},'65':{view:'recon',reconState:'reconMatch'},'66':{view:'recon',reconState:'openingPending'},'67':{view:'recon',reconState:'reconDifference'},'68':{view:'recon',reconState:'reconAdjustment'},'69':{view:'recon',reconState:'reconComplete'},'70':{view:'recon',reconState:'openingReq'},'71':{view:'recon',reconState:'openingEvidence'},'72':{view:'recon',reconState:'openingBoundary'},
+    '73':{view:'expo',expoState:'mismatchDrilldown'},'74':{view:'expo',expoState:'summaryDrilldown'},'75':{view:'expo',expoState:'exportChoose'},'76':{view:'expo',expoState:'exportReview'},'77':{view:'expo',expoState:'exportComplete'},'78':{view:'expo',expoState:'exportTraceability'},'79':{view:'expo',expoState:'connCloud'},'80':{view:'expo',expoState:'connStoreNode'},
+    '81':{view:'ds',dsState:'permissions'},'82':{view:'ds',dsState:'auditGlobal'},'83':{view:'ds',dsState:'historicalChange'},'84':{view:'ds',dsState:'ownershipMap'},'85':{view:'ds',dsState:'dsTable'},'86':{view:'ds',dsState:'dsForm'},'87':{view:'ds',dsState:'forbiddenGallery'},'88':{view:'ds',dsState:'docsConfirm'}
+  };
+  return Object.assign({},b,map[s]||{},{node:s==='80'?'off':'on',sync:s==='79'?'off':'ok'});
+}
+
+class Component extends DCLogic {
+  state = cfg((this.props&&this.props.screen)||'01');
+  componentDidUpdate(pp){ if(pp.screen!==this.props.screen) this.setState(cfg(this.props.screen||'01')); }
+
+  dashBody(){
+    const s=this.state, g=s.dashState;
+    const cards=[['Supplier Outstanding',507000,'icon-truck','#1b5fd1'],['Customer Outstanding',214500,'icon-users','#1b5fd1'],['Cash Accounts',682000,'icon-wallet','#146c43'],['Bank Accounts',23650000,'icon-landmark','#146c43'],['Expenses (this period)',80600,'icon-receipt','#8a5100'],['Unreconciled Bank Movements',3,'icon-scale','#b3261e',true]];
+    if(g==='overview') return E('div',{style:{display:'flex',flexDirection:'column',gap:14}},
+      E('span',{style:{fontSize:19,fontWeight:700}},'Accounting'),
+      noteBox('Operational financial layer. Not a general ledger, journal-entry system, or statutory statement engine.','blue'),
+      E('div',{style:{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:12}},...cards.map(([label,val,icon,color,isCount])=>card([
+        E('div',{style:{display:'flex',alignItems:'center',gap:8}},E('i',{className:icon,style:{fontSize:15,color}}),E('span',{style:{fontSize:12.5,color:'#4a5567'}},label)),
+        E('span',{style:{fontSize:21,fontWeight:700}},isCount?val:RM(val)),
+        E('a',{href:'#',style:{fontSize:12}},'View detail →')]))),
+      noteBox('Every summary number traces to posted operational entries — View Source / View Movements / View Supplier or Customer is available from each card.','blue'));
+    if(g==='supplierCard') return E('div',{style:{display:'flex',flexDirection:'column',gap:12}},
+      E('span',{style:{fontSize:19,fontWeight:700}},'Supplier Outstanding — drilldown'),
+      tbl(['SUPPLIER','OUTSTANDING','OLDEST DUE'],'260px 160px 160px',PAYABLES.filter(p=>p.outstanding>0).map(p=>[E('span',{key:1,style:{fontWeight:600}},p.supplier),E('span',{key:2},RM(p.outstanding)),E('span',{key:3},p.due)])),
+      E('a',{href:'#13',style:{fontSize:12.5}},'View all Supplier Payables →'));
+    if(g==='customerCard') return E('div',{style:{display:'flex',flexDirection:'column',gap:12}},
+      E('span',{style:{fontSize:19,fontWeight:700}},'Customer Outstanding — drilldown'),
+      card([kv('Source','Customer Credit — CreditAccount / CreditLedgerEntry'),kv('Total Exposure',RM(214500))]),
+      noteBox('Accounting-Lite consumes this figure from Customer Credit. It is not a second receivable ledger and cannot be edited here.','amber'),
+      E('a',{href:'#29',style:{fontSize:12.5}},'Open Customer Outstanding view →'));
+    if(g==='cashCard'||g==='bankCard') return E('div',{style:{display:'flex',flexDirection:'column',gap:12}},
+      E('span',{style:{fontSize:19,fontWeight:700}},g==='cashCard'?'Cash Accounts — drilldown':'Bank Accounts — drilldown'),
+      tbl(['ACCOUNT','STATUS','BALANCE','LAST MOVEMENT'],'220px 100px 140px 180px',ACCOUNTS.filter(a=>a.type===(g==='cashCard'?'Cash':'Bank')).map(a=>[E('span',{key:1,style:{fontWeight:600}},a.name),statusTag(a.status,a.status==='Active'?'green':'gray'),E('span',{key:3},RM(a.balance)),E('span',{key:4,style:{fontSize:11.5}},a.last)])));
+    if(g==='expenseCard') return E('div',{style:{display:'flex',flexDirection:'column',gap:12}},
+      E('span',{style:{fontSize:19,fontWeight:700}},'Expenses — this period'),
+      tbl(['REF','CATEGORY','PAYEE','AMOUNT','STATUS'],'140px 120px 220px 110px 140px',EXPENSES.map(e=>[E('span',{key:1,style:{fontFamily:"'IBM Plex Mono',monospace",color:'#1b5fd1',fontSize:12}},e.ref),E('span',{key:2},e.category),E('span',{key:3},e.payee),E('span',{key:4,style:{fontWeight:600}},RM(e.amount)),statusTag(e.status,e.status==='Posted'?'green':'amber')])));
+    if(g==='unreconciledCard') return E('div',{style:{display:'flex',flexDirection:'column',gap:12}},
+      E('span',{style:{fontSize:19,fontWeight:700}},'Unreconciled Bank Movements'),
+      card([kv('Account',RECON.account),kv('Period',RECON.period),kv('Unmatched Movements',String(RECON.unmatched)),kv('Difference',RM(RECON.difference),'#b3261e')]),
+      E('a',{href:'#63',style:{fontSize:12.5}},'Open Reconciliation →'));
+    if(g==='summary') return E('div',{style:{display:'flex',flexDirection:'column',gap:12}},
+      E('span',{style:{fontSize:19,fontWeight:700}},'Operational Financial Summary'),
+      card([kv('Period','1–30 Sep 2026'),kv('Supplier Outstanding',RM(507000)),kv('Customer Outstanding',RM(214500)),kv('Cash / Bank Movement (net)',RM(1842000)),kv('Expenses',RM(80600))]),
+      noteBox('This is a management summary of operational entries, not a statutory Profit & Loss or Balance Sheet.','amber'));
+    if(g==='periodFilter') return E('div',{style:{display:'flex',flexDirection:'column',gap:12,maxWidth:460}},
+      E('span',{style:{fontSize:19,fontWeight:700}},'Period Filtering'),
+      E('div',{style:{display:'flex',gap:8,flexWrap:'wrap'}},...['Date','Business Date','Store','Financial Account','Supplier','Customer','Expense Category'].map(l=>E('button',{key:l,style:{height:34,padding:'0 12px',borderRadius:8,border:'1px solid #cfd5de',background:'#fff',fontSize:12.5,cursor:'pointer'}},l))),
+      card([kv('Current filter','1–30 Sep 2026 · MiniMart Central')]));
+    if(g==='checks') return E('div',{style:{display:'flex',flexDirection:'column',gap:12}},
+      E('span',{style:{fontSize:19,fontWeight:700}},'Source Reconciliation Checks'),
+      tbl(['CHECK','STATUS'],'420px 160px',[
+        ['Supplier Payables ↔ Procurement source','OK'],['Customer Outstanding ↔ Customer Credit','OK'],['Cash Account ↔ Cash / Shift','OK'],['Financial Movement ↔ owned source entry','1 mismatch']
+      ].map(([c,st])=>[E('span',{key:1},c),statusTag(st,st==='OK'?'green':'red')])),
+      noteBox('A mismatch is surfaced for investigation — never silently repaired.','amber'));
+    if(g==='mismatch') return E('div',{style:{display:'flex',flexDirection:'column',gap:12,maxWidth:520}},
+      E('div',{style:{display:'flex',alignItems:'center',gap:8}},E('i',{className:'icon-alert-triangle',style:{color:'#b3261e'}}),E('span',{style:{fontSize:19,fontWeight:700}},'Source mismatch detected')),
+      card([kv('Expected source value (Procurement)',RM(245000)),kv('Accounting operational value',RM(244000)),kv('Affected reference',PAYABLE.ref)]),
+      E('div',{style:{display:'flex',gap:8}},E('button',{style:{height:38,padding:'0 16px',borderRadius:8,border:0,background:'#1b5fd1',color:'#fff',fontWeight:600,cursor:'pointer'}},'Investigate'),E('button',{style:{height:38,padding:'0 16px',borderRadius:8,border:'1px solid #cfd5de',background:'#fff',cursor:'pointer'}},'View Source')),
+      noteBox('No automatic "Sync Balance" action exists. Correction requires an authorized, traceable entry.','red'));
+    if(g==='connHealthy') return E('div',{style:{display:'flex',flexDirection:'column',gap:12,maxWidth:420}},
+      card([kv('Store Node','Online',( '#146c43')),kv('Cloud Sync','Healthy','#146c43')]),
+      noteBox('Both connectivity layers are healthy. Posting and sync proceed normally.','green'));
+    return null;
+  }
+
+  payablesBody(){
+    const s=this.state, g=s.payState;
+    if(g==='list'||g==='listFiltered') return E('div',{style:{display:'flex',flexDirection:'column',gap:12}},
+      E('div',{style:{display:'flex',alignItems:'baseline',gap:10}},E('span',{style:{fontSize:19,fontWeight:700}},'Supplier Payables'),E('button',{style:{marginLeft:'auto',height:34,padding:'0 14px',borderRadius:8,border:0,background:'#1b5fd1',color:'#fff',fontWeight:600,cursor:'pointer'}},'Record Supplier Payment')),
+      noteBox('A Payable\'s creation basis follows the configured purchasing/payables workflow — a posted purchase/receipt basis or an approved supplier-invoice basis, depending on configuration. GRN-linked examples below are illustrative, not a universal trigger.','blue'),
+      g==='listFiltered'?E('div',{style:{display:'flex',gap:8,flexWrap:'wrap'}},...['Supplier','Status','Due Date'].map(l=>E('button',{key:l,style:{height:30,padding:'0 10px',borderRadius:999,border:'1px solid #1b5fd1',background:'#e8f0fc',color:'#174fb0',fontSize:11.5,fontWeight:600}},l))):null,
+      tbl(['PAYABLE REF','SUPPLIER','SOURCE','ORIGINAL','OUTSTANDING','DUE DATE','STATUS'],'130px 190px 110px 100px 100px 100px 110px',
+        PAYABLES.map(p=>[E('span',{key:1,style:{fontFamily:"'IBM Plex Mono',monospace",color:'#1b5fd1',fontSize:12}},p.ref),E('span',{key:2},p.supplier),E('span',{key:3,style:{fontSize:11.5,color:'#4a5567'}},p.source),E('span',{key:4},RM(p.original)),E('span',{key:5,style:{fontWeight:600}},RM(p.outstanding)),E('span',{key:6,style:{fontSize:11.5}},p.due),statusTag(p.status,p.status==='Paid'?'gray':p.status==='Outstanding'?'amber':'blue')])));
+    if(g==='detail') return E('div',{style:{display:'flex',flexDirection:'column',gap:12,maxWidth:600}},
+      E('span',{style:{fontSize:19,fontWeight:700}},'Supplier Payable — '+PAYABLE.ref),
+      card([kv('Supplier',PAYABLE.supplier),kv('Source document',PAYABLE.source),kv('Document Date',PAYABLE.docDate),kv('Original Amount',RM(PAYABLE.original)),kv('Credits / Returns',RM(PAYABLE.credits)),kv('Paid',RM(PAYABLE.paid)),kv('Outstanding',RM(PAYABLE.outstanding),'#1b5fd1'),kv('Due Date',PAYABLE.due)]),
+      E('div',{style:{display:'flex',gap:10}},E('a',{href:'#16'},'View Goods Receipt'),E('a',{href:'#17'},'View Purchase Return'),E('a',{href:'#'},'View Supplier')),
+      noteBox('Outstanding is derived, not an editable field.','blue'));
+    if(g==='traceGRN') return E('div',{style:{display:'flex',flexDirection:'column',gap:12,maxWidth:520}},
+      E('span',{style:{fontSize:19,fontWeight:700}},'Source trace — Goods Receipt'),
+      card([kv('Payable',PAYABLE.ref),kv('Goods Receipt',PAYABLE.source),kv('Receipt Date',PAYABLE.docDate),kv('Supplier',PAYABLE.supplier)]),
+      noteBox('Read-only trace summary — Procurement owns the Goods Receipt implementation.','blue'));
+    if(g==='traceReturn') return E('div',{style:{display:'flex',flexDirection:'column',gap:12,maxWidth:520}},
+      E('span',{style:{fontSize:19,fontWeight:700}},'Source trace — Purchase Return / Supplier Credit'),
+      card([kv('Original Payable',PAYABLES[1].ref),kv('Credit / Return',RM(12000)),kv('Adjusted Outstanding',RM(PAYABLES[1].outstanding)),kv('Source Purchase Return','PR-2026-00019')]),
+      noteBox('The credit adjusts outstanding — it never rewrites the original payable.','blue'));
+    if(g==='payEntry'||g==='payAccount'||g==='payUnallocated'||g==='payPart') return E('div',{style:{display:'flex',flexDirection:'column',gap:12,maxWidth:480}},
+      stepper(['Entry','Allocate','Review','Posted'],0),
+      card([kv('Supplier',PAYMENT.supplier),kv('Payment Date',PAYMENT.date),kv('Payment Amount',RM(PAYMENT.amount)),g!=='payEntry'?kv('Payment Account',PAYMENT.account):null,kv('Reference',PAYMENT.reference)]),
+      g==='payAccount'?noteBox('Supplier Payment must identify the cash/bank account or method the value was paid from. Posting is not allowed without it where authority requires one.','amber'):null,
+      g==='payUnallocated'?noteBox('An unallocated / advance amount is only valid if policy permits — shown here as policy-controlled, not a universal default.','amber'):null,
+      g==='payPart'?noteBox('A part payment is supported. The Payable remains partially outstanding until posted facts bring it to zero.','blue'):null,
+      E('button',{style:{alignSelf:'flex-end',height:38,padding:'0 16px',borderRadius:8,border:0,background:'#1b5fd1',color:'#fff',fontWeight:600,cursor:'pointer'}},'Continue to Allocation'));
+    if(g==='payAllocation') return E('div',{style:{display:'flex',flexDirection:'column',gap:12}},
+      stepper(['Entry','Allocate','Review','Posted'],1),
+      tbl(['PAYABLE','DOCUMENT DATE','OUTSTANDING','ALLOCATE','REMAINING'],'140px 130px 120px 120px 120px',
+        PAYABLES.filter(p=>p.supplier===PAYMENT.supplier&&p.outstanding>0).map(p=>[E('span',{key:1,style:{fontFamily:"'IBM Plex Mono',monospace",fontSize:12,color:'#1b5fd1'}},p.ref),E('span',{key:2,style:{fontSize:11.5}},p.docDate),E('span',{key:3},RM(p.outstanding)),E('span',{key:4,style:{fontWeight:600}},RM(Math.min(PAYMENT.amount,p.outstanding))),E('span',{key:5},RM(Math.max(0,p.outstanding-PAYMENT.amount)))])),
+      noteBox('Only eligible outstanding payables are available for allocation.','blue'),
+      card([kv('Payment Amount',RM(PAYMENT.amount)),kv('Allocated',RM(PAYMENT.amount)),kv('Unallocated',RM(0))]),
+      noteBox('Allocation order (FIFO, oldest-first, due-date-first, proportional) is not assumed — allocation shown here is an explicit user interaction, not an auto-applied rule.','amber'),
+      E('button',{style:{alignSelf:'flex-end',height:38,padding:'0 16px',borderRadius:8,border:0,background:'#1b5fd1',color:'#fff',fontWeight:600,cursor:'pointer'}},'Continue to Review'));
+    if(g==='payReview') return E('div',{style:{display:'flex',flexDirection:'column',gap:12,maxWidth:480}},
+      stepper(['Entry','Allocate','Review','Posted'],2),
+      card([kv('Supplier',PAYMENT.supplier),kv('Amount',RM(PAYMENT.amount)),kv('Account',PAYMENT.account),kv('Reference',PAYMENT.reference),kv('Allocated',RM(PAYMENT.amount)),kv('Unallocated',RM(0)),kv('Business Date',PAYMENT.bizDate)]),
+      E('button',{style:{alignSelf:'flex-end',height:38,padding:'0 16px',borderRadius:8,border:0,background:'#1b5fd1',color:'#fff',fontWeight:600,cursor:'pointer'}},'Post Supplier Payment'));
+    if(g==='payPosted') return E('div',{style:{display:'flex',flexDirection:'column',gap:12,maxWidth:480}},
+      stepper(['Entry','Allocate','Review','Posted'],3),
+      card([kv('Payment',PAYMENT.ref),kv('Supplier',PAYMENT.supplier),kv('Amount',RM(PAYMENT.amount)),kv('Account',PAYMENT.account),kv('Allocations','1 payable'),kv('Actor','Siti M.'),kv('Time','26 Sep 2026 · 14:40')]),
+      noteBox('Posted — read-only. No edit or delete; correction requires an explicit reversal.','green'));
+    if(g==='payReversal') return E('div',{style:{display:'flex',flexDirection:'column',gap:12,maxWidth:480}},
+      E('span',{style:{fontSize:19,fontWeight:700}},'Supplier Payment — Reversal / Correction'),
+      card([kv('Original Payment',PAYMENT.ref,'#4a5567'),kv('Reversal','SP-REV-2026-00003'),kv('Reason','Incorrect account selected'),kv('Linked',PAYMENT.ref+' ↔ SP-REV-2026-00003')]),
+      noteBox('The original payment is never deleted or edited in place — both remain visible and linked.','blue'));
+    if(g==='payRetry') return E('div',{style:{display:'flex',flexDirection:'column',gap:12,maxWidth:480}},
+      E('div',{style:{display:'flex',alignItems:'center',gap:8}},E('i',{className:'icon-loader',style:{color:'#8a5100'}}),E('span',{style:{fontSize:19,fontWeight:700}},'Supplier Payment — outcome unknown')),
+      noteBox('The payment may already have posted. Do not resubmit blindly — check status first. Retry is safe and cannot allocate the same amount twice.','amber'),
+      card([kv('Operation Reference','SP-ATT-2026-00091')]),
+      E('div',{style:{display:'flex',gap:8}},E('button',{style:{height:38,padding:'0 16px',borderRadius:8,border:0,background:'#1b5fd1',color:'#fff',fontWeight:600,cursor:'pointer'}},'Check Status'),E('button',{style:{height:38,padding:'0 16px',borderRadius:8,border:'1px solid #cfd5de',background:'#fff',cursor:'pointer'}},'Retry Safely')));
+    if(g==='statement') return E('div',{style:{display:'flex',flexDirection:'column',gap:12}},
+      E('span',{style:{fontSize:19,fontWeight:700}},'Supplier Statement — '+PAYABLE.supplier),
+      card([kv('Period','1–30 Sep 2026'),kv('Opening',RM(198000)),kv('Purchases / Payables',RM(245000)),kv('Returns / Credits',RM(0)),kv('Payments',RM(150000)),kv('Closing Outstanding',RM(95000),'#1b5fd1')]),
+      noteBox('An operational statement — every line traces to source. Not a GL account.','blue'));
+    if(g==='aging') return E('div',{style:{display:'flex',flexDirection:'column',gap:12}},
+      E('span',{style:{fontSize:19,fontWeight:700}},'Supplier Aging'),
+      tbl(['SUPPLIER','CURRENT','1–30 DAYS','31–60 DAYS','60+ DAYS'],'220px 110px 110px 110px 110px',[
+        ['Kluang Dairy Sdn Bhd',RM(0),RM(95000),RM(0),RM(0)],['Johor Beverage Distribution',RM(412000),RM(0),RM(0),RM(0)]
+      ].map(([n,...v])=>[E('span',{key:1,style:{fontWeight:600}},n),...v.map((x,i)=>E('span',{key:i+2},x))])),
+      noteBox('Bucket boundaries shown are illustrative/configured, not a universal MiniMart rule. Aging derives from source due dates.','amber'));
+    return null;
+  }
+
+  accountsBody(){
+    const s=this.state, g=s.acctState;
+    if(g==='custOutstanding') return E('div',{style:{display:'flex',flexDirection:'column',gap:12}},
+      E('span',{style:{fontSize:19,fontWeight:700}},'Customer Outstanding'),
+      tbl(['CUSTOMER','OUTSTANDING','SOURCE'],'220px 140px 180px',[
+        ['Hamid Trading','RM 1,200.00','Customer Credit'],['Nur Aisyah','RM 945.00','Customer Credit']
+      ].map(([c,o,src])=>[E('span',{key:1,style:{fontWeight:600}},c),E('span',{key:2},o),E('a',{key:3,href:'#'},src)])),
+      E('div',{style:{display:'flex',gap:10}},E('a',{href:'#'},'View Credit Account'),E('a',{href:'#'},'View Customer Statement')),
+      noteBox('Read-only. Customer & Credit remains the authoritative receivable ledger; this is a consuming view, not a second ledger.','amber'));
+    if(g==='collectionLink'||g==='returnCreditLink') return E('div',{style:{display:'flex',flexDirection:'column',gap:12,maxWidth:520}},
+      E('span',{style:{fontSize:19,fontWeight:700}},g==='collectionLink'?'Customer Collection — linkage':'Customer Return / Credit — linkage'),
+      card([kv('Reference',g==='collectionLink'?'COL-2026-00056':'CR-2026-00022'),kv('Customer','Hamid Trading'),kv('Amount',RM(60000)),kv(g==='collectionLink'?'Financial Account effect':'Credit effect reference',g==='collectionLink'?'Store Cash — MiniMart Central':'Customer Credit ledger')]),
+      noteBox('Read-only trace. Customer & Credit owns this workflow; no duplicate is created here.','blue'));
+    if(g==='acctIntro') return E('div',{style:{display:'flex',flexDirection:'column',gap:12,maxWidth:480}},
+      E('span',{style:{fontSize:19,fontWeight:700}},'Financial Accounts'),
+      noteBox('A controlled list of operational Cash and Bank accounts, used to classify money movement. This is not a Chart of Accounts.','blue'),
+      E('button',{style:{alignSelf:'flex-start',height:38,padding:'0 16px',borderRadius:8,border:0,background:'#1b5fd1',color:'#fff',fontWeight:600,cursor:'pointer'}},'Open Financial Accounts'));
+    if(g==='acctList') return E('div',{style:{display:'flex',flexDirection:'column',gap:12}},
+      E('div',{style:{display:'flex',alignItems:'baseline',gap:10}},E('span',{style:{fontSize:19,fontWeight:700}},'Financial Accounts'),E('button',{style:{marginLeft:'auto',height:34,padding:'0 14px',borderRadius:8,border:0,background:'#1b5fd1',color:'#fff',fontWeight:600,cursor:'pointer'}},'New Account')),
+      tbl(['ACCOUNT','TYPE','SCOPE','STATUS','BALANCE','LAST MOVEMENT'],'220px 90px 150px 90px 120px 170px',
+        ACCOUNTS.map(a=>[E('span',{key:1,style:{fontWeight:600}},a.name),E('span',{key:2},a.type),E('span',{key:3,style:{fontSize:11.5}},a.scope),statusTag(a.status,a.status==='Active'?'green':'gray'),E('span',{key:5},RM(a.balance)),E('span',{key:6,style:{fontSize:11.5}},a.last)])));
+    if(g==='cashAcctDetail'||g==='bankAcctDetail'){
+      const a=ACCOUNTS[g==='cashAcctDetail'?0:1];
+      return E('div',{style:{display:'flex',flexDirection:'column',gap:12,maxWidth:480}},
+        E('span',{style:{fontSize:19,fontWeight:700}},a.name),
+        card([kv('Type',a.type),kv('Scope',a.scope),kv('Status',a.status),kv('Balance',RM(a.balance),'#1b5fd1')]),
+        g==='cashAcctDetail'?noteBox('Maps to store cash settlement, but CashierShift remains authoritative for drawer accountability and Expected Cash. This is not a second drawer system.','amber'):noteBox('Operational identity only. No online-banking password, OTP, or API key is stored or shown here.','red'));
+    }
+    if(g==='acctActivation') return E('div',{style:{display:'flex',flexDirection:'column',gap:12,maxWidth:460}},
+      E('span',{style:{fontSize:19,fontWeight:700}},'Account Activation'),
+      card([kv('Account',ACCOUNTS[3].name),kv('Status',ACCOUNTS[3].status)]),
+      noteBox('Inactive accounts referenced by history are never deleted — historical movements remain explainable.','blue'));
+    if(g==='acctBalance') return E('div',{style:{display:'flex',flexDirection:'column',gap:12,maxWidth:460}},
+      E('span',{style:{fontSize:19,fontWeight:700}},'Account Balance'),
+      card([kv('Account',ACCOUNTS[1].name),kv('Balance',RM(ACCOUNTS[1].balance),'#1b5fd1')]),
+      noteBox('Derived from posted Financial Movement facts. No Edit Balance / Set Current Balance control exists.','red'));
+    if(g==='movementHistory') return E('div',{style:{display:'flex',flexDirection:'column',gap:12}},
+      E('span',{style:{fontSize:19,fontWeight:700}},'Financial Movement History'),
+      tbl(['TIME','ACCOUNT','TYPE','SOURCE','COUNTERPARTY','IN','OUT','STATUS'],'95px 170px 130px 100px 130px 85px 85px 95px',
+        MOVEMENTS.map(m=>[E('span',{key:1,style:{fontSize:11.5}},m.time),E('span',{key:2,style:{fontSize:12}},m.account),E('span',{key:3},m.type),E('span',{key:4,style:{fontFamily:"'IBM Plex Mono',monospace",fontSize:11.5,color:'#1b5fd1'}},m.source),E('span',{key:5,style:{fontSize:11.5}},m.counterparty),E('span',{key:6,style:{color:'#146c43'}},m.amtIn?RM(m.amtIn):'—'),E('span',{key:7,style:{color:'#b3261e'}},m.amtOut?RM(m.amtOut):'—'),statusTag(m.status,'gray')])));
+    return null;
+  }
+
+  txnBody(){
+    const s=this.state, g=s.txnState;
+    if(g==='movementDetail') return E('div',{style:{display:'flex',flexDirection:'column',gap:12,maxWidth:480}},
+      E('span',{style:{fontSize:19,fontWeight:700}},'Financial Movement — detail'),
+      card([kv('Movement ID','FM-2026-008821'),kv('Account',MOVEMENTS[0].account),kv('Amount',RM(MOVEMENTS[0].amtOut)),kv('Direction','Out'),kv('Source Process','Supplier Payment'),kv('Source Document',MOVEMENTS[0].source),kv('Actor','Siti M.'),kv('Timestamp',MOVEMENTS[0].time),kv('Reconciliation','Unmatched')]),
+      noteBox('Read-only. Posted movements are immutable.','blue'));
+    if(g==='nonSaleReceipt'||g==='nonPurchasePayment') return E('div',{style:{display:'flex',flexDirection:'column',gap:12,maxWidth:460}},
+      stepper(['Draft','Review','Posted'],0),
+      E('span',{style:{fontSize:16,fontWeight:700}},g==='nonSaleReceipt'?'Non-Sale Receipt':'Non-Purchase Payment'),
+      card([kv('Financial Account','Maybank Operating Account'),kv('Amount',RM(g==='nonSaleReceipt'?50000:12000)),kv('Category / Source',g==='nonSaleReceipt'?'Equipment deposit refund':'Office supplies'),kv('Counterparty',g==='nonSaleReceipt'?'Landlord — Unit 4B':'Popular Bookstore'),kv('Reference',g==='nonSaleReceipt'?'FT-2026-00061':'FT-2026-00062')]),
+      noteBox(g==='nonSaleReceipt'?'Posting increases the selected account exactly once.':'Posting reduces the selected account exactly once. Specialized workflows (Supplier Payment, Expense) are used where they apply, not duplicated here.','blue'));
+    if(g==='txnReview') return E('div',{style:{display:'flex',flexDirection:'column',gap:12,maxWidth:460}},
+      stepper(['Draft','Review','Posted'],1),
+      card([kv('Type','Non-Sale Receipt'),kv('Account','Maybank Operating Account'),kv('Amount',RM(50000)),kv('Reference','FT-2026-00061')]),
+      noteBox('Draft has no final balance effect. Posting creates an immutable Financial Movement.','amber'),
+      E('button',{style:{alignSelf:'flex-end',height:38,padding:'0 16px',borderRadius:8,border:0,background:'#1b5fd1',color:'#fff',fontWeight:600,cursor:'pointer'}},'Post'));
+    if(g==='txnPosted') return E('div',{style:{display:'flex',flexDirection:'column',gap:12,maxWidth:460}},
+      stepper(['Draft','Review','Posted'],2),
+      card([kv('Transaction','FT-2026-00061'),kv('Movement','FM-2026-008830'),kv('Amount',RM(50000)),kv('Account','Maybank Operating Account')]),
+      noteBox('Posted — read-only.','green'));
+    if(g==='txnRetry'||g==='transferRetry') return E('div',{style:{display:'flex',flexDirection:'column',gap:12,maxWidth:480}},
+      E('div',{style:{display:'flex',alignItems:'center',gap:8}},E('i',{className:'icon-loader',style:{color:'#8a5100'}}),E('span',{style:{fontSize:19,fontWeight:700}},(g==='transferRetry'?'Account Transfer':'Financial Transaction')+' — outcome unknown')),
+      noteBox('This operation may have already committed. Check status before resubmitting. Retry is safe and cannot duplicate the Financial Movement'+(g==='transferRetry'?' on either side.':'.'),'amber'),
+      card([kv('Operation Reference',g==='transferRetry'?'XFR-ATT-2026-00014':'FT-ATT-2026-00072')]),
+      E('div',{style:{display:'flex',gap:8}},E('button',{style:{height:38,padding:'0 16px',borderRadius:8,border:0,background:'#1b5fd1',color:'#fff',fontWeight:600,cursor:'pointer'}},'Check Status'),E('button',{style:{height:38,padding:'0 16px',borderRadius:8,border:'1px solid #cfd5de',background:'#fff',cursor:'pointer'}},'Retry Safely')));
+    if(g==='transferEntry'||g==='transferValueRule') return E('div',{style:{display:'flex',flexDirection:'column',gap:12,maxWidth:460}},
+      stepper(['Entry','Review','Posted'],0),
+      card([kv('Source Account','CIMB Settlement Account'),kv('Destination Account','Maybank Operating Account'),kv('Transfer Amount',RM(200000)),kv('Reference','XFR-2026-00012')]),
+      g==='transferValueRule'?noteBox('Source value must equal destination value before any separately represented fee/adjustment. Money is never silently created or destroyed.','amber'):null,
+      E('button',{style:{alignSelf:'flex-end',height:38,padding:'0 16px',borderRadius:8,border:0,background:'#1b5fd1',color:'#fff',fontWeight:600,cursor:'pointer'}},'Review Transfer'));
+    if(g==='transferPosted') return E('div',{style:{display:'flex',flexDirection:'column',gap:12,maxWidth:460}},
+      stepper(['Entry','Review','Posted'],2),
+      card([kv('Transfer','XFR-2026-00012'),kv('Source Movement','FM-2026-008831 (out)'),kv('Destination Movement','FM-2026-008832 (in)'),kv('Amount',RM(200000))]),
+      noteBox('Both movements link to the same Transfer identity — not presented as unrelated manual entries.','green'));
+    if(g==='transferMovementDetail') return E('div',{style:{display:'flex',flexDirection:'column',gap:12,maxWidth:460}},
+      E('span',{style:{fontSize:19,fontWeight:700}},'Transfer — linked movement detail'),
+      card([kv('Transfer','XFR-2026-00011')]),
+      E('div',{style:{display:'grid',gridTemplateColumns:'1fr 1fr',gap:10}},
+        card([kv('Movement','Out'),kv('Account','CIMB Settlement Account'),kv('Amount',RM(200000))]),
+        card([kv('Movement','In'),kv('Account','Maybank Operating Account'),kv('Amount',RM(200000))])));
+    if(g==='txnAudit') return E('div',{style:{display:'flex',flexDirection:'column',gap:12}},
+      E('span',{style:{fontSize:19,fontWeight:700}},'Financial Transaction & Transfer — audit trail'),
+      tbl(['TIME','EVENT','ACTOR','REFERENCE'],'130px 180px 150px 160px',[
+        ['26 Sep 09:10','Posted','Siti M.','FT-2026-00061'],['24 Sep 11:00','Posted','System','XFR-2026-00011']
+      ].map(([t,e,a,r])=>[E('span',{key:1,style:{fontSize:11.5}},t),E('span',{key:2},e),E('span',{key:3},a),E('span',{key:4,style:{fontFamily:"'IBM Plex Mono',monospace",fontSize:11.5,color:'#1b5fd1'}},r)])));
+    return null;
+  }
+
+  expensesBody(){
+    const s=this.state, g=s.expState;
+    if(g==='category') return E('div',{style:{display:'flex',flexDirection:'column',gap:12}},
+      E('span',{style:{fontSize:19,fontWeight:700}},'Expense Categories'),
+      tbl(['CATEGORY','STATUS','DESCRIPTION'],'180px 100px 320px',[
+        ['Utilities','Active','Electricity, water, internet'],['Maintenance','Active','Repairs and upkeep'],['Delivery','Active','Courier and logistics'],['Entertainment','Inactive','Discontinued category']
+      ].map(([c,st,d])=>[E('span',{key:1,style:{fontWeight:600}},c),statusTag(st,st==='Active'?'green':'gray'),E('span',{key:3,style:{fontSize:12}},d)])),
+      noteBox('A controlled category list — not a Chart of Accounts.','blue'));
+    if(g==='list') return E('div',{style:{display:'flex',flexDirection:'column',gap:12}},
+      E('div',{style:{display:'flex',alignItems:'baseline',gap:10}},E('span',{style:{fontSize:19,fontWeight:700}},'Expenses'),E('button',{style:{marginLeft:'auto',height:34,padding:'0 14px',borderRadius:8,border:0,background:'#1b5fd1',color:'#fff',fontWeight:600,cursor:'pointer'}},'New Expense')),
+      tbl(['REF','DATE','CATEGORY','PAYEE','ACCOUNT','AMOUNT','STATUS'],'120px 95px 105px 175px 175px 95px 130px',
+        EXPENSES.map(e=>[E('span',{key:1,style:{fontFamily:"'IBM Plex Mono',monospace",color:'#1b5fd1',fontSize:12}},e.ref),E('span',{key:2,style:{fontSize:11.5}},e.date),E('span',{key:3},e.category),E('span',{key:4},e.payee),E('span',{key:5,style:{fontSize:11.5}},e.account),E('span',{key:6,style:{fontWeight:600}},RM(e.amount)),statusTag(e.status,e.status==='Posted'?'green':'amber')])));
+    if(g==='newExpense'||g==='taxBoundary') return E('div',{style:{display:'flex',flexDirection:'column',gap:12,maxWidth:460}},
+      stepper(['Entry','Review','Posted'],0),
+      card([kv('Date',EXPENSE.date),kv('Amount',RM(EXPENSE.amount)),kv('Category',EXPENSE.category),kv('Payment Account',EXPENSE.account),kv('Payee',EXPENSE.payee),kv('Reference',EXPENSE.ref),kv('Attachment','utility-bill-sep2026.pdf')]),
+      g==='taxBoundary'?noteBox('Tax treatment (SST recoverability, deductibility) is country-rule controlled. No rate or eligibility is invented here.','amber'):noteBox('Evidence/attachment is supported but not visually mandatory for every expense unless policy requires it.','blue'),
+      E('button',{style:{alignSelf:'flex-end',height:38,padding:'0 16px',borderRadius:8,border:0,background:'#1b5fd1',color:'#fff',fontWeight:600,cursor:'pointer'}},'Continue'));
+    if(g==='expRetry') return E('div',{style:{display:'flex',flexDirection:'column',gap:12,maxWidth:480}},
+      E('div',{style:{display:'flex',alignItems:'center',gap:8}},E('i',{className:'icon-loader',style:{color:'#8a5100'}}),E('span',{style:{fontSize:19,fontWeight:700}},'Expense — outcome unknown')),
+      noteBox('Check authoritative local status before retrying — this expense may already have posted. Retry cannot duplicate the Expense or its Financial Movement, and cannot duplicate the CashierShift cash effect if drawer-funded.','amber'),
+      card([kv('Operation Reference','EXP-ATT-2026-00061')]),
+      E('div',{style:{display:'flex',gap:8}},E('button',{style:{height:38,padding:'0 16px',borderRadius:8,border:0,background:'#1b5fd1',color:'#fff',fontWeight:600,cursor:'pointer'}},'Check Status'),E('button',{style:{height:38,padding:'0 16px',borderRadius:8,border:'1px solid #cfd5de',background:'#fff',cursor:'pointer'}},'Retry Safely')));
+    if(g==='approval') return E('div',{style:{display:'flex',flexDirection:'column',gap:12,maxWidth:460}},
+      card([kv('Expense',EXPENSES[2].ref),kv('Amount',RM(EXPENSES[2].amount)),kv('Status','Pending Approval')]),
+      noteBox('Approval threshold is policy-driven — no fixed RM amount is assumed as a universal rule.','amber'));
+    if(g==='review') return E('div',{style:{display:'flex',flexDirection:'column',gap:12,maxWidth:460}},
+      stepper(['Entry','Review','Posted'],1),
+      card([kv('Amount',RM(EXPENSE.amount)),kv('Category',EXPENSE.category),kv('Account',EXPENSE.account),kv('Payee',EXPENSE.payee),kv('Reference',EXPENSE.ref),kv('Approval','Not required')]),
+      E('button',{style:{alignSelf:'flex-end',height:38,padding:'0 16px',borderRadius:8,border:0,background:'#1b5fd1',color:'#fff',fontWeight:600,cursor:'pointer'}},'Post Expense'));
+    if(g==='posted') return E('div',{style:{display:'flex',flexDirection:'column',gap:12,maxWidth:460}},
+      stepper(['Entry','Review','Posted'],2),
+      card([kv('Expense',EXPENSE.ref),kv('Movement','FM-2026-008829'),kv('Payee',EXPENSE.payee),kv('Category',EXPENSE.category),kv('Account',EXPENSE.account),kv('Actor','Siti M.')]),
+      noteBox('Posted — read-only.','green'));
+    if(g==='reversal') return E('div',{style:{display:'flex',flexDirection:'column',gap:12,maxWidth:460}},
+      E('span',{style:{fontSize:19,fontWeight:700}},'Expense — Reversal / Correction'),
+      card([kv('Original Expense',EXPENSE.ref),kv('Reversal','EXP-REV-2026-00004'),kv('Reason','Wrong category selected')]),
+      noteBox('No edit or destructive delete on a posted Expense — correction uses a linked reversal.','blue'));
+    if(g==='drawerFunded') return E('div',{style:{display:'flex',flexDirection:'column',gap:12,maxWidth:460}},
+      E('span',{style:{fontSize:19,fontWeight:700}},'Drawer-Funded Expense'),
+      card([kv('Expense','EXP-2026-00026'),kv('Shift / Cash Movement Ref','CO-2026-00091'),kv('Expected Cash impact','−RM 150.00')]),
+      noteBox('Accounting-Lite owns the Expense; CashierShift owns the drawer effect it links to. No second Cash Out workflow is created here.','amber'));
+    if(g==='drawerBoundary') return E('div',{style:{display:'flex',flexDirection:'column',gap:12,maxWidth:480}},
+      E('span',{style:{fontSize:19,fontWeight:700}},'Cash Drawer boundary'),
+      noteBox('Open Drawer, Cash In, Cash Out, Set Expected Cash and Close Shift all remain Cash & Shift-owned. Accounting consumes posted facts and links to them — it never reimplements them.','blue'));
+    if(g==='auditTimeline') return E('div',{style:{display:'flex',flexDirection:'column',gap:12}},
+      E('span',{style:{fontSize:19,fontWeight:700}},'Expense — audit timeline'),
+      tbl(['TIME','EVENT','ACTOR'],'150px 200px 150px',[
+        ['25 Sep 18:02','Created','Siti M.'],['25 Sep 18:05','Reviewed','Siti M.'],['25 Sep 18:06','Posted','Siti M.']
+      ].map(([t,e,a])=>[E('span',{key:1,style:{fontSize:11.5}},t),E('span',{key:2},e),E('span',{key:3},a)])));
+    return null;
+  }
+
+  reconBody(){
+    const s=this.state, g=s.reconState;
+    if(g==='reconList') return E('div',{style:{display:'flex',flexDirection:'column',gap:12}},
+      E('div',{style:{display:'flex',alignItems:'baseline',gap:10}},E('span',{style:{fontSize:19,fontWeight:700}},'Reconciliation'),E('button',{style:{marginLeft:'auto',height:34,padding:'0 14px',borderRadius:8,border:0,background:'#1b5fd1',color:'#fff',fontWeight:600,cursor:'pointer'}},'New Session')),
+      tbl(['ACCOUNT','PERIOD','STATUS','RECORDED','STATEMENT','DIFFERENCE'],'220px 150px 110px 110px 110px 110px',
+        [[RECON.account,RECON.period,RECON.status,RM(RECON.recorded),RM(RECON.statement),RM(RECON.difference)]].map(([a,p,st,r,sm,d])=>[E('span',{key:1,style:{fontWeight:600}},a),E('span',{key:2,style:{fontSize:11.5}},p),statusTag(st,'amber'),E('span',{key:4},r),E('span',{key:5},sm),E('span',{key:6,style:{color:'#b3261e',fontWeight:600}},d)])));
+    if(g==='reconSession') return E('div',{style:{display:'flex',flexDirection:'column',gap:12,maxWidth:520}},
+      E('span',{style:{fontSize:19,fontWeight:700}},'Reconciliation Session — '+RECON.account),
+      card([kv('Period',RECON.period),kv('External Statement Total',RM(RECON.statement)),kv('Recorded Movements',RM(RECON.recorded)),kv('Matched',String(RECON.matched)),kv('Unmatched',String(RECON.unmatched)),kv('Difference',RM(RECON.difference),'#b3261e')]));
+    if(g==='reconMatch') return E('div',{style:{display:'flex',flexDirection:'column',gap:12}},
+      E('span',{style:{fontSize:19,fontWeight:700}},'Reconciliation — Match / Unmatch'),
+      tbl(['MOVEMENT','AMOUNT','STATEMENT LINE','STATUS'],'180px 110px 180px 110px',[
+        ['FM-2026-008821','RM 950.00','MYB-0926-0881','Matched'],['FM-2026-008822','RM 380.00','—','Unmatched']
+      ].map(([m,a,sl,st])=>[E('span',{key:1,style:{fontFamily:"'IBM Plex Mono',monospace",fontSize:11.5,color:'#1b5fd1'}},m),E('span',{key:2},a),E('span',{key:3,style:{fontSize:11.5}},sl),statusTag(st,st==='Matched'?'green':'amber')])),
+      noteBox('The original Financial Movement is unchanged by match/unmatch interaction.','blue'),
+      noteBox('Assisted matching suggestions are candidates, not an automatic frozen algorithm. No exact-date, amount-only, reference-only, or fuzzy matching rule is assumed as authoritative.','amber'));
+    if(g==='reconDifference') return E('div',{style:{display:'flex',flexDirection:'column',gap:12,maxWidth:460}},
+      card([kv('Recorded',RM(RECON.recorded)),kv('Statement',RM(RECON.statement)),kv('Difference',RM(RECON.difference),'#b3261e')]),
+      noteBox('Difference remains visible. There is no Force Balance or Set Account Balance to Statement control.','red'));
+    if(g==='reconAdjustment') return E('div',{style:{display:'flex',flexDirection:'column',gap:12,maxWidth:460}},
+      E('span',{style:{fontSize:19,fontWeight:700}},'Reconciliation Adjustment'),
+      card([kv('Difference',RM(RECON.difference)),kv('Adjustment Entry','FT-2026-00064 (bank fee)'),kv('Linked Session',RECON.account+' · '+RECON.period)]),
+      noteBox('An explicit traceable entry is created via its owned workflow — the original Financial Movement is never rewritten.','blue'));
+    if(g==='reconComplete') return E('div',{style:{display:'flex',flexDirection:'column',gap:12,maxWidth:460}},
+      card([kv('Matched',String(RECON.matched)),kv('Unmatched','0'),kv('Difference',RM(0)),kv('Actor','Siti M.'),kv('Completed At','30 Sep 2026 · 18:00')]),
+      noteBox('Completed reconciliation is historical / read-only except through an explicit authorized correction workflow.','green'));
+    if(g==='openingReq') return E('div',{style:{display:'flex',flexDirection:'column',gap:12,maxWidth:480}},
+      E('span',{style:{fontSize:19,fontWeight:700}},'Opening Balance — Required Scope'),
+      card([kv('Scope','Supplier · Customer · Financial Account'),kv('Effective Date','Required'),kv('Audit Evidence','Required'),kv('Direct Balance Edit','Prohibited')]),
+      noteBox('Supplier, Customer, and Financial Account opening positions require a controlled migration entry — never a hidden master-data balance field.','blue'),
+      noteBox('The detailed posting mechanism (aggregate, API, lifecycle) is pending an approved contract and is not yet frozen MiniMart authority.','amber'));
+    if(g==='openingEvidence') return E('div',{style:{display:'flex',flexDirection:'column',gap:12,maxWidth:480}},
+      E('span',{style:{fontSize:19,fontWeight:700}},'Opening Balance — Effective Date & Evidence'),
+      card([kv('Entity','Kluang Dairy Sdn Bhd (Supplier)'),kv('Effective Date','1 Sep 2026'),kv('Amount',RM(198000)),kv('Reference','illustrative'),kv('Migration Note','Illustrative — carried over from legacy system')]),
+      noteBox('Shown as an illustrative example of required inputs, not a frozen form or posting contract.','amber'));
+    if(g==='openingBoundary') return E('div',{style:{display:'flex',flexDirection:'column',gap:12,maxWidth:480}},
+      E('span',{style:{fontSize:19,fontWeight:700}},'Opening Balance — No Arbitrary Balance Edit'),
+      card([kv('Direct "Set Balance" control','Does not exist'),kv('Correction mechanism','Pending approved contract')]),
+      noteBox('Once an opening position is established, it cannot be arbitrarily overwritten. The specific correction/reversal document is pending contract.','red'));
+    if(g==='openingPending') return E('div',{style:{display:'flex',flexDirection:'column',gap:12,maxWidth:480}},
+      E('div',{style:{display:'flex',alignItems:'center',gap:8}},E('i',{className:'icon-clock',style:{color:'#8a5100'}}),E('span',{style:{fontSize:19,fontWeight:700}},'Opening Balance — Mechanism Pending Contract')),
+      noteBox('The opening-balance requirement is established MiniMart scope. The posting lifecycle, dedicated aggregate, and any retry/status contract are not yet frozen — this area intentionally stops short of presenting them as established behaviour.','amber'));
+    return null;
+  }
+
+  expoBody(){
+    const s=this.state, g=s.expoState;
+    if(g==='mismatchDrilldown') return E('div',{style:{display:'flex',flexDirection:'column',gap:12,maxWidth:520}},
+      card([kv('Check','Financial Movement ↔ owned source entry'),kv('Affected Reference',PAYABLE.ref),kv('Diagnostic','1 movement references a payable amount that no longer matches its Procurement source')]),
+      E('a',{href:'#'},'View Source'));
+    if(g==='summaryDrilldown') return E('div',{style:{display:'flex',flexDirection:'column',gap:12}},
+      E('span',{style:{fontSize:19,fontWeight:700}},'Operational Financial Summary — drilldown'),
+      tbl(['LINE','AMOUNT','SOURCE COUNT'],'260px 140px 140px',[
+        ['Supplier Outstanding','RM 5,070.00','4 payables'],['Expenses','RM 806.00','4 expenses']
+      ].map(([l,a,c])=>[E('span',{key:1,style:{fontWeight:600}},l),E('span',{key:2},a),E('span',{key:3,style:{fontSize:11.5}},c)])));
+    if(g==='exportChoose') return E('div',{style:{display:'flex',flexDirection:'column',gap:12,maxWidth:460}},
+      stepper(['Choose','Review','Export Center'],0),
+      card([kv('Period','1–30 Sep 2026')]),
+      E('div',{style:{display:'flex',gap:8,flexWrap:'wrap'}},...['Supplier Payables','Supplier Payments','Customer Outstanding refs','Financial Movements','Expenses','Reconciliation context'].map(l=>E('button',{key:l,style:{height:32,padding:'0 12px',borderRadius:999,border:'1px solid #1b5fd1',background:'#e8f0fc',color:'#174fb0',fontSize:11.5,fontWeight:600}},l))),
+      noteBox('Accounting-Lite supplies this dataset context. File generation, retention and delivery are owned by Export Center.','blue'),
+      E('button',{style:{alignSelf:'flex-end',height:38,padding:'0 16px',borderRadius:8,border:0,background:'#1b5fd1',color:'#fff',fontWeight:600,cursor:'pointer'}},'Review Totals'));
+    if(g==='exportReview') return E('div',{style:{display:'flex',flexDirection:'column',gap:12,maxWidth:460}},
+      stepper(['Choose','Review','Export Center'],1),
+      card([kv('Datasets','6 selected'),kv('Rows','312'),kv('Period','1–30 Sep 2026')]),
+      noteBox('This context does not mutate any transaction. Generating the file itself happens in Export Center.','blue'),
+      E('button',{style:{alignSelf:'flex-end',height:38,padding:'0 16px',borderRadius:8,border:0,background:'#1b5fd1',color:'#fff',fontWeight:600,cursor:'pointer'}},'Continue in Export Center'));
+    if(g==='exportComplete') return E('div',{style:{display:'flex',flexDirection:'column',gap:12,maxWidth:460}},
+      stepper(['Choose','Review','Export Center'],2),
+      card([kv('Dataset Context','ACC-CTX-2026-09'),kv('Rows','312'),kv('Handed Off At','30 Sep 2026 · 18:30')]),
+      noteBox('Handed off to Export Center. File generation, retention and delivery (including any Tally/Xero/QuickBooks integration) are owned there, not by Accounting-Lite.','blue'));
+    if(g==='exportTraceability') return E('div',{style:{display:'flex',flexDirection:'column',gap:12}},
+      E('span',{style:{fontSize:19,fontWeight:700}},'Export traceability — row detail'),
+      tbl(['SOURCE ID','DATE','CLASSIFICATION','COUNTERPARTY','VALUE','ACCOUNT'],'150px 100px 150px 180px 110px 180px',
+        [['SP-2026-00038','26 Sep 2026','Supplier Payment','Kluang Dairy Sdn Bhd','RM 950.00','Maybank Operating Account']].map(r=>r.map((v,i)=>E('span',{key:i,style:{fontSize:12}},v)))));
+    if(g==='connCloud') return E('div',{style:{display:'flex',flexDirection:'column',gap:12,maxWidth:460}},
+      noteBox('Cloud Sync is unavailable. Permitted store-local Accounting-Lite posting continues — no "Waiting for Cloud Approval" is shown for locally authoritative actions.','amber'));
+    if(g==='connStoreNode') return E('div',{style:{display:'flex',flexDirection:'column',gap:12,maxWidth:460}},
+      noteBox('Store Node is unavailable. Posting is unavailable and current balances are not shown as current. This is distinct from a Cloud Sync outage.','red'));
+    return null;
+  }
+
+  dsBody(){
+    const s=this.state, g=s.dsState;
+    if(g==='permissions') return E('div',{style:{display:'flex',flexDirection:'column',gap:12}},
+      E('span',{style:{fontSize:19,fontWeight:700}},'Permission-aware UI states'),
+      tbl(['ACTION','VIEWER','ACCOUNTANT','MANAGER'],'220px 100px 110px 110px',[
+        ['View Financial Data','✓','✓','✓'],['Post Supplier Payment','—','✓','✓'],['Reverse Payment','—','—','✓'],['Manage Financial Accounts','—','—','✓'],['Reconcile','—','✓','✓'],['Export','—','✓','✓']
+      ].map(([a,...r])=>[E('span',{key:1,style:{fontWeight:600}},a),...r.map((v,i)=>E('span',{key:i+2},v))])),
+      noteBox('Illustrative role split, not an invented exact role matrix. Cashier access does not imply Accounting access.','amber'));
+    if(g==='auditGlobal') return E('div',{style:{display:'flex',flexDirection:'column',gap:12}},
+      E('span',{style:{fontSize:19,fontWeight:700}},'Audit timeline — global pattern'),
+      tbl(['STAGE','ACTOR','TIME'],'160px 150px 150px',[
+        ['Created','Siti M.','26 Sep 09:00'],['Reviewed','Siti M.','26 Sep 09:04'],['Posted','Siti M.','26 Sep 09:05'],['Reconciled','System','30 Sep 18:00']
+      ].map(([a,b,c])=>[E('span',{key:1,style:{fontWeight:600}},a),E('span',{key:2},b),E('span',{key:3,style:{fontSize:11.5}},c)])));
+    if(g==='historicalChange') return E('div',{style:{display:'flex',flexDirection:'column',gap:12,maxWidth:480}},
+      noteBox('Later edits to a Supplier, Customer, Financial Account, or Expense Category never silently change the historical meaning of a posted entry. Posted history remains understandable as originally recorded.','blue'));
+    if(g==='ownershipMap') return E('div',{style:{display:'flex',flexDirection:'column',gap:12}},
+      E('span',{style:{fontSize:19,fontWeight:700}},'Cross-module ownership map'),
+      E('div',{style:{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:12}},...[
+        ['Procurement','Supplier, PurchaseOrder, GoodsReceipt, PurchaseReturn'],['Customer & Credit','CreditAccount, CreditLedgerEntry, CustomerCollection'],['Cash & Business Day','CashierShift, CashMovement, BusinessDay, Expected Cash'],
+        ['Sales','Sales Ledger (source, not duplicated)'],['Payments','PaymentAttempt, PostedTender, RefundExecution'],['Accounting-Lite','SupplierPayable, SupplierPayment, FinancialAccount, FinancialMovement, AccountTransfer, Expense, ReconciliationSession']
+      ].map(([t,d])=>card([E('span',{style:{fontWeight:700,fontSize:13}},t),E('span',{style:{fontSize:12,color:'#4a5567'}},d)]))));
+    if(g==='dsTable') return E('div',{style:{display:'flex',flexDirection:'column',gap:12}},
+      E('span',{style:{fontSize:19,fontWeight:700}},'Design System — table / status / stepper'),
+      card([statusTag('Posted','green'),statusTag('Pending Approval','amber'),statusTag('Outstanding','amber'),statusTag('Inactive','gray'),statusTag('Difference','red')]),
+      card([stepper(['Entry','Review','Posted'],1)]));
+    if(g==='dsForm') return E('div',{style:{display:'flex',flexDirection:'column',gap:12}},
+      E('span',{style:{fontSize:19,fontWeight:700}},'Design System — form / allocation components'),
+      card([kv('Financial Account','Maybank Operating Account'),kv('Amount',RM(95000))]),
+      tbl(['PAYABLE','OUTSTANDING','ALLOCATE'],'160px 120px 120px',[['SUP-PAY-2026-00142','RM 950.00','RM 950.00']].map(r=>r.map((v,i)=>E('span',{key:i},v)))));
+    if(g==='forbiddenGallery') return E('div',{style:{display:'flex',flexDirection:'column',gap:12}},
+      E('span',{style:{fontSize:19,fontWeight:700}},'Boundary documentation — forbidden inventions'),
+      E('div',{style:{display:'flex',gap:8,flexWrap:'wrap'}},...['Chart of Accounts','Journal Entry','Trial Balance','Balance Sheet','Statutory P&L','Period Close','Retained Earnings','Depreciation','Fixed Assets','Payroll Accounting','FX Revaluation'].map(l=>E('span',{key:l,style:{height:28,padding:'0 12px',borderRadius:999,border:'1px solid #f2b8b0',background:'#fcebea',color:'#8a1f14',fontSize:11.5,fontWeight:600,display:'inline-flex',alignItems:'center'}},l))),
+      noteBox('None of these exist in current Accounting-Lite UI.','red'));
+    if(g==='docsConfirm'){
+      const docs=[
+        {h:'1. Screen index',lines:['88 artboards: Foundation/Dashboard (01–12), Supplier Payables/Payments/Statements/Aging (13–28), Customer Receivable Linkage/Financial Accounts (29–38), Financial Transactions/Transfers/Movements (39–50), Expenses (51–62), Reconciliation/Opening Balances (63–72), Export/Connectivity (73–80), Design System/Documentation (81–88).']},
+        {h:'2. Confirmations',lines:['1. Operational, not full GL.','2. SupplierPayable — Accounting-Lite owned.','3. SupplierPayment — Accounting-Lite owned.','4. FinancialAccount — controlled operational master, not Chart of Accounts.','5. FinancialMovement — immutable.','6. FinancialTransaction — non-sale receipt/payment.','7. AccountTransfer — one linked source/destination operation.','8. ExpenseCategory — controlled, not Chart of Accounts.','9. Expense — Accounting-Lite owned.','10. ReconciliationSession — Accounting-Lite owned.','11. Supplier — Procurement-owned.','12. Customer Credit — Customer & Credit-owned.','13. CashierShift/CashMovement — Cash & Business Day-owned.','14. Sales — Sales-owned.','15. Payments — tender/provider ownership retained.','16. Returns — Return/RefundObligation ownership retained.','17. Posted financial facts cannot be edited.','18. Corrections use reversal/correction.','19–21. No arbitrary supplier/customer/cash-bank balance edit.','22. Payable source remains traceable; creation basis follows the configured purchasing/payables workflow (posted purchase/receipt or approved supplier-invoice basis) — no single universal trigger is selected.','23. Payment account/method is explicit.','24. Allocation rule not invented.','25. Unallocated payment is policy-controlled.','26. Customer receivable consumed, not duplicated.','27. Store drawer workflow not duplicated.','28. No online-banking credentials stored.','29–30. Non-sale receipt / non-purchase payment post exactly once.','31–32. Transfer retry cannot duplicate; cannot silently create/destroy value.','33. Expense tax treatment is country-rule controlled.','34. Expense approval threshold not invented.','35. Drawer-funded Expense links to CashierShift effect.','36. Reconciliation never rewrites original movements.','37. Matching algorithm not invented.','38. Reconciliation difference remains explicit.','39. Opening balances are required scope using a controlled-migration concept; the detailed posting mechanism and aggregate are pending an approved contract, not yet frozen.','40. Accounting-Lite does not own the export-job/artifact workflow — it supplies traceable dataset context; file generation, retention and delivery belong to Export Center / Reporting.','41. Export rows remain source-traceable.','42–43. Store Node outage differs from Cloud Sync outage; cloud outage alone does not block permitted local posting.','44. Safe retry does not duplicate FinancialMovement (Supplier Payment, Financial Transaction, Account Transfer, Expense). Opening Balance has no safe-retry/status-query contract — none is presented.','45. Historical meaning survives later master changes.','46. Exact-money presentation used.','47–50. No Chart of Accounts, journal-entry UI, Trial Balance, or statutory P&L/Balance Sheet exists.','51. No country tax/accounting treatment invented.','52. All required viewports remain usable.']}
+      ];
+      return E('div',{style:{display:'flex',flexDirection:'column',gap:16}},
+        E('span',{style:{fontSize:19,fontWeight:700}},'Documentation'),
+        ...docs.map(d=>E('div',{key:d.h,style:{display:'flex',flexDirection:'column',gap:6}},E('span',{style:{fontSize:14,fontWeight:600}},d.h),...d.lines.map((l,i)=>E('span',{key:i,style:{fontSize:12.5,color:'#4a5567',lineHeight:1.5}},l)))));
+    }
+    return null;
+  }
+
+  renderVals(){
+    const s=this.state;
+    const node=s.node==='on', cloudOk=s.sync==='ok', readOnly=s.role==='viewer';
+    const nodeP=node?pill('#e5f4ec','#146c43','icon-server','Store Node online'):pill('#fcebea','#b3261e','icon-server-off','Store Node unavailable');
+    const syncP=cloudOk?pill('#f2f4f7','#4a5567','icon-cloud','Sync healthy'):pill('#fdf3e1','#8a5100','icon-cloud-off','Cloud sync unavailable · 2 queued');
+    const roleLabel=readOnly?'Read-only role':'Accounting Manager';
+    const body={dash:this.dashBody,payables:this.payablesBody,accounts:this.accountsBody,txn:this.txnBody,expenses:this.expensesBody,recon:this.reconBody,expo:this.expoBody,ds:this.dsBody}[s.view].call(this);
+    const nav=NAV.map(([label,items])=>({label,items:items.map(([lab,icon,stub])=>({label:lab,icon,stub,bg:lab==='Accounting'?'#1b5fd1':'transparent',fg:lab==='Accounting'?'#fff':'#c3cbd9',fw:lab==='Accounting'?600:500,cursor:stub?'default':'pointer'}))}));
+    return {scrLabel:(s.scr||'01')+' '+(NAMES[s.scr]||''),rootH:this.props&&this.props.embedded?'100%':'100vh',nav,nodeP,syncP,roleLabel,nodeDown:!node,nodeUp:node,cloudDown:!cloudOk,body};
+  }
+}
+
+</script>
+</body>
+</html>

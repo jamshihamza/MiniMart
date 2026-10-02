@@ -1,6 +1,6 @@
 # Design render fidelity report
 
-Generated 2026-10-02T07:29:41.888Z. This report reflects the most recent local run of `pnpm design:render` for each package below; it is not evidence of a check that has not actually been run.
+Generated 2026-10-02T09:11:36.495Z. This report reflects the most recent local run of `pnpm design:render` for each package below; it is not evidence of a check that has not actually been run.
 
 Statuses:
 
@@ -49,6 +49,23 @@ Status: `approved-visual-reference`. v2 export verified by content: source `Mini
 - Cosmetic: at 1280x720 the top bar wraps its labels onto two lines because of the longer role label; nothing overlaps.
 - Delivery note: the archive file `MiniMart Back Office Mockups.dc.html` is not a links-only index. It is a later edited copy of the full interactive Back Office source (about 96 KB, 42 changed lines against the approved source) and was not applied; the approved Back Office source is unchanged.
 
+## Accounting-Lite review notes
+
+Status: `approved-visual-reference`. Source `MiniMartAccountingLite.dc.html`, SHA-256 `ebe8ca7f38b9b9d5cd9c16fed421bfe5f5863653ec9478a081d368d2bb9df12e`, from `Minimart_Accounting_Lite_ClaudeDesign_Source_v2-fixed.zip` (all 10 hashes in `ACCOUNTING-LITE-EXPORT-MANIFEST-v2-fixed.txt` match the packaged bytes). `support.js` (SHA-256 `8fe7df74...cbe`) is byte-identical to the other real-runtime packages. Two earlier exports were rejected and are no longer registered: the first export (SHA-256 `c5ae24c4...6ae0`) and v2 (SHA-256 `63fb4491...01a1`).
+
+- Structure: 88 screens, IDs 01-88 contiguous, 88 unique titles and state mappings; the inline script parses and all 88 states instantiate with no errors. The seven grouped pages import the source and cover 01-12, 13-28, 29-50, 51-62, 63-72, 73-80 and 81-88, each screen exactly once. The package index is an Accounting-Lite links page.
+- Render: 88/88 RUNTIME-COMPLETE on the real runtime, 0 BLOCKED, 0 KNOWN-DIFFERENCE, 0 page errors.
+- Review history: the first export was rejected for a ten-times-wrong dashboard bank total, an allocation summary that contradicted its rows, and an Opening Balance and Accountant Export workflow that presented unfrozen behaviour as established. v2 fixed those and was rejected only because the Supplier Payment allocation grid (20) still listed a fully paid payable as a candidate row. v2-fixed changes only that grid's eligibility filter (supplier match and outstanding above zero) and adds the note that only eligible outstanding payables are available for allocation. The grouped pages and `support.js` are byte-identical to v2.
+- Numeric corrections: the Bank Accounts card (01) shows RM 236,500.00 (184,200.00 + 52,300.00, matching screens 05 and 33). The supplier payment (20, 23, 86) is RM 950.00 allocated in full to SUP-PAY-2026-00142 (outstanding RM 950.00, remaining RM 0.00): Payment 950.00 = Allocated 950.00 + Unallocated 0.00. SUP-PAY-2026-00104 (Paid, outstanding RM 0.00) appears only in the payable list screens (13, 14) as a historical record, never in the allocation grid. No allocation order is introduced: the note that order is not assumed is unchanged.
+- Payable creation basis: screen 13 and confirmation 22 state that the basis follows the configured purchasing and payables workflow (posted purchase or receipt, or approved supplier invoice) and that the Goods Receipt examples are illustrative, not a universal trigger.
+- Opening Balance authority correction: frozen authority (FR-ACC-044, FR-ACC-045) requires controlled opening balances with an effective date and audit evidence and forbids direct balance overwrite, but does not define an OpeningBalance aggregate, document, API, posting lifecycle or status contract. Screens 66, 70, 71 and 72 therefore show the required scope, an illustrative inputs example and a no-arbitrary-edit boundary, and state the mechanism is pending an approved contract. Screen 66 has no Check Status or Retry Safely action, and no Entry-Validate-Review-Post flow, post control or set-balance control exists.
+- Export ownership correction: screens 75-77 are Accounting-Lite dataset context and a handoff ("Continue in Export Center"). File generation, retention, delivery and any accounting-software integration are stated to belong to Export Center and Reporting. No export job, artifact, queue, format policy or approval workflow is shown. Screen 78 traces Accounting-Lite's own source rows.
+- Safe retry is a real operational state (outcome unknown, may already have committed, check status first, Check Status and Retry Safely, no duplicate effect) on screens 26 (Supplier Payment), 44 (Financial Receipt and Payment, one shared state), 48 (Account Transfer) and 55 (Expense; checks authoritative local status and cannot duplicate the Expense, its Financial Movement or the CashierShift cash effect). They elaborate the frozen idempotency and recovery contract and offer no Force Post, delete, roll back or balance editing. Reconciliation completion (69) records no financial movement.
+- Boundaries seen in render: Customer outstanding is a read-only view of Customer & Credit (29, 03); no balance edit control exists (37, 67, 72); a drawer-funded expense links to the CashierShift effect and adds no second Cash Out workflow (60); allocation order, unallocated payment, expense approval threshold, tax treatment and reconciliation matching are labelled policy-controlled or not assumed (65 names no matching rule); full-GL terms appear only in disclaimers (01, 08, 87, 88). Store Node and Cloud Sync outages are separate states (79, 80). The receipt (FT-2026-00061, screens 40, 42, 43) and payment (FT-2026-00062, screen 41) are distinct transactions. Screen 88 numbers confirmations 1-52, all present once.
+- Viewports: all 88 screens were rendered through the real runtime at 1280x720, 1366x768, 1368x800 and 1920x1080 (every one RUNTIME-COMPLETE) and scanned in-page for page-level scroll and for any text or button that is clipped by its container. This is a live render result, not a width calculation. No page-level scroll and no console error at any size. Outside the sidebar, only screen 88's documentation body is flagged: it is an internal scroll container, so confirmations beyond the first screenful are reachable by scrolling (the static render shows the first ones). Screen 20 was inspected at all four sizes (REMAINING header readable, one eligible row, summary arithmetic and both notes visible), and the Posted pill on screens 38 and 52 is fully visible at 1280x720. The sidebar is also an internal scroll container (its lowest Administration entries sit below the fold at the smaller heights).
+- Non-blocking observations: the Allocated and Unallocated figures on 20 and 23 are fixed values that agree with the single eligible row; screen 71 lists no audit-evidence field although titled Effective Date & Evidence; screen 77 shows an illustrative dataset-context reference and hand-off time that no frozen contract defines; screens 64 and 67 show Recorded Movements RM 18,420.00, a period figure that is not the RM 184,200.00 account balance.
+- Authority note: only UI-ACC-001 to 009 are frozen Accounting screens. The other screens in this package are visual elaboration. Opening-balance mechanics, export contracts, payable creation basis, allocation order, matching policy, approval thresholds and expense tax remain open or policy-controlled and are not defined by this design.
+
 ## Procurement viewport verification
 
 `primaryViewport` (1366x768) is verified as part of the normal `pnpm design:render --package procurement` run (see the table below). The package's declared `supportedViewports` were additionally verified with a one-off, non-authoritative render pass (`renderPackage()` called directly with `viewportOverride`/`outputRoot`, screenshots kept outside the tracked tree) using the same strict renderer -- every check (unsupported primitive, pageerror, unresolved asset) still applied:
@@ -60,7 +77,98 @@ Status: `approved-visual-reference`. v2 export verified by content: source `Mini
 
 ## accounting
 
-Status: **UNVERIFIED** — not rendered in this workspace.
+Package: MiniMart Accounting-Lite. Rendered 88 screen(s) at 2026-10-02T09:11:36.009Z. All screens RUNTIME-COMPLETE.
+
+| Screen | Name                                                                     | Status           | Notes                                                                               |
+| ------ | ------------------------------------------------------------------------ | ---------------- | ----------------------------------------------------------------------------------- |
+| 01     | Accounting Dashboard — overview                                          | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 02     | Dashboard — Supplier Outstanding card                                    | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 03     | Dashboard — Customer Outstanding card (read-only)                        | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 04     | Dashboard — Cash Accounts card                                           | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 05     | Dashboard — Bank Accounts card                                           | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 06     | Dashboard — Expenses card                                                | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 07     | Dashboard — Unreconciled Bank Movements card                             | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 08     | Operational Financial Summary (period)                                   | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 09     | Period Filtering panel                                                   | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 10     | Source Reconciliation Checks — overview                                  | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 11     | Mismatch state — detail                                                  | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 12     | Connectivity — Online + Sync Healthy                                     | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 13     | Supplier Payables — list                                                 | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 14     | Supplier Payables — list filtered                                        | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 15     | Supplier Payable — detail                                                | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 16     | Payable source trace — Goods Receipt                                     | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 17     | Payable source trace — Purchase Return / Supplier Credit                 | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 18     | Supplier Payment — entry form                                            | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 19     | Supplier Payment — account / method                                      | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 20     | Supplier Payment — allocation table                                      | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 21     | Supplier Payment — unallocated (policy-controlled)                       | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 22     | Supplier Payment — part payment                                          | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 23     | Supplier Payment — Review                                                | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 24     | Supplier Payment — Posted                                                | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 25     | Supplier Payment — Reversal / Correction                                 | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 26     | Supplier Payment — Posting / Safe Retry                                  | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 27     | Supplier Statement                                                       | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 28     | Supplier Aging (illustrative buckets)                                    | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 29     | Customer Outstanding — read-only Accounting view                         | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 30     | Customer Collection — linkage (read-only trace)                          | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 31     | Customer Return / Credit — linkage (read-only trace)                     | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 32     | Financial Accounts — workspace intro                                     | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 33     | Financial Accounts — list                                                | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 34     | Cash Account — detail                                                    | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 35     | Bank Account — detail (no credentials stored)                            | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 36     | Account Activation — Active / Inactive                                   | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 37     | Account Balance — derived, no edit                                       | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 38     | Financial Movement — history                                             | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 39     | Financial Movement — detail                                              | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 40     | Non-Sale Receipt — entry form                                            | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 41     | Non-Purchase Payment — entry form                                        | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 42     | Financial Transaction — Draft / Review                                   | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 43     | Financial Transaction — Posted                                           | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 44     | Financial Transaction — Posting / Safe Retry                             | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 45     | Account Transfer — entry form                                            | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 46     | Account Transfer — value rule validation                                 | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 47     | Account Transfer — Posted (linked pair)                                  | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 48     | Account Transfer — Posting / Safe Retry                                  | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 49     | Transfer — linked movement detail                                        | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 50     | Financial Transaction & Transfer — audit trail                           | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 51     | Expense Category — workspace                                             | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 52     | Expense — list                                                           | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 53     | New Expense — entry form                                                 | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 54     | Expense — tax treatment boundary                                         | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 55     | Expense — Posting / Safe Retry                                           | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 56     | Expense Approval (policy-controlled)                                     | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 57     | Expense — Review                                                         | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 58     | Posted Expense                                                           | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 59     | Expense — Reversal / Correction                                          | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 60     | Drawer-Funded Expense — linked to CashierShift                           | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 61     | Cash Drawer boundary — documentation note                                | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 62     | Expense — audit timeline                                                 | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 63     | Reconciliation — sessions list                                           | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 64     | Reconciliation Session — detail                                          | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 65     | Reconciliation — Match / Unmatch                                         | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 66     | Opening Balance — Mechanism Pending Contract                             | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 67     | Reconciliation Difference — explicit                                     | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 68     | Reconciliation Adjustment — traceable correction                         | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 69     | Reconciliation — Complete                                                | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 70     | Opening Balance — Required Scope (Controlled Migration)                  | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 71     | Opening Balance — Effective Date & Evidence (illustrative)               | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 72     | Opening Balance — No Arbitrary Balance Edit (boundary)                   | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 73     | Source Reconciliation Checks — mismatch drilldown                        | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 74     | Operational Financial Summary — drilldown                                | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 75     | Accounting Export — choose period / datasets (context for Export Center) | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 76     | Accounting Export — review totals (context for Export Center)            | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 77     | Accounting Export — handoff to Export Center                             | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 78     | Export traceability — row-level detail                                   | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 79     | Connectivity — Cloud Sync unavailable (local posting continues)          | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 80     | Connectivity — Store Node unavailable (posting blocked)                  | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 81     | Permission-aware UI states                                               | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 82     | Audit timeline — global pattern                                          | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 83     | Historical master change — non-destructive                               | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 84     | Cross-module ownership map                                               | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 85     | Design System — table / status / stepper components                      | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 86     | Design System — form / allocation components                             | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 87     | Boundary documentation — forbidden inventions                            | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 88     | Documentation confirmations + screen index                               | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
 
 ## administration
 
