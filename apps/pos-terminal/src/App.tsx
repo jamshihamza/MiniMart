@@ -1,4 +1,35 @@
 import { useEffect, useRef, useState } from "react";
+import {
+  Banknote,
+  Bell,
+  BookText,
+  ChartNoAxesColumn,
+  Check,
+  ChevronDown,
+  CircleEllipsis,
+  CreditCard,
+  Eraser,
+  History,
+  LayoutDashboard,
+  NotebookPen,
+  Package,
+  Pause,
+  RotateCcw,
+  ScanBarcode,
+  Search,
+  Settings,
+  ShoppingBasket,
+  ShoppingCart,
+  Smartphone,
+  Store,
+  Trash2,
+  Truck,
+  Undo2,
+  UserRound,
+  Users,
+  Wallet,
+  type LucideIcon,
+} from "lucide-react";
 
 import { KeyHint, ShellButton, StatusBadge } from "./components/ShellControls.js";
 import {
@@ -23,19 +54,19 @@ type ShellPage =
   | "accounting"
   | "settings";
 
-const pages: readonly { id: ShellPage; label: string; icon: string }[] = [
-  { id: "sale", label: "POS", icon: "▣" },
-  { id: "dashboard", label: "Dashboard", icon: "⌂" },
-  { id: "history", label: "History", icon: "◷" },
-  { id: "returns", label: "Returns", icon: "↩" },
-  { id: "inventory", label: "Inventory", icon: "▤" },
-  { id: "purchases", label: "Purchases", icon: "▱" },
-  { id: "suppliers", label: "Suppliers", icon: "♙" },
-  { id: "customers", label: "Customers", icon: "♧" },
-  { id: "shift", label: "Cash & Shift", icon: "◉" },
-  { id: "reports", label: "Reports", icon: "▥" },
-  { id: "accounting", label: "Accounting", icon: "▧" },
-  { id: "settings", label: "Settings", icon: "⚙" },
+const pages: readonly { id: ShellPage; label: string; icon: LucideIcon }[] = [
+  { id: "sale", label: "POS", icon: Store },
+  { id: "dashboard", label: "Dashboard", icon: LayoutDashboard },
+  { id: "history", label: "History", icon: History },
+  { id: "returns", label: "Returns", icon: Undo2 },
+  { id: "inventory", label: "Inventory", icon: Package },
+  { id: "purchases", label: "Purchases", icon: ShoppingCart },
+  { id: "suppliers", label: "Suppliers", icon: Truck },
+  { id: "customers", label: "Customers", icon: Users },
+  { id: "shift", label: "Cash & Shift", icon: Wallet },
+  { id: "reports", label: "Reports", icon: ChartNoAxesColumn },
+  { id: "accounting", label: "Accounting", icon: BookText },
+  { id: "settings", label: "Settings", icon: Settings },
 ];
 
 const deferredPageCopy: Record<Exclude<ShellPage, "sale">, string> = {
@@ -51,27 +82,6 @@ const deferredPageCopy: Record<Exclude<ShellPage, "sale">, string> = {
   accounting: "Accounting is not available in this POS shell preview.",
   settings: "Settings are not available in this POS shell preview.",
 };
-
-function Icon({ name }: { name: "cart" | "bell" | "search" | "check" }) {
-  const paths = {
-    cart: "M2 3h2l2.2 11h11.3l2-8H5M8 19h.01M17 19h.01",
-    bell: "M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4",
-    search: "m20 20-4.5-4.5M18 10.5a7.5 7.5 0 1 1-15 0 7.5 7.5 0 0 1 15 0",
-    check: "m4 12 5 5L20 6",
-  } as const;
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-      <path
-        d={paths[name]}
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.9"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
 
 export function PosApp() {
   const [page, setPage] = useState<ShellPage>("sale");
@@ -132,7 +142,7 @@ export function PosApp() {
       <aside className="sidebar">
         <div className="brand-block" aria-label="MiniMart POS">
           <span className="brand-mark">
-            <Icon name="cart" />
+            <ShoppingCart aria-hidden="true" />
           </span>
           <div>
             <strong>MiniMart</strong>
@@ -140,7 +150,7 @@ export function PosApp() {
           </div>
         </div>
         <nav className="primary-nav" aria-label="POS sections">
-          {pages.map(({ id, label, icon }) => (
+          {pages.map(({ id, label, icon: NavIcon }) => (
             <button
               key={id}
               type="button"
@@ -156,7 +166,7 @@ export function PosApp() {
               }}
             >
               <span className="nav-icon" aria-hidden="true">
-                {icon}
+                <NavIcon size={16} strokeWidth={1.8} />
               </span>
               {label}
             </button>
@@ -181,7 +191,7 @@ export function PosApp() {
             className="store-selector"
             title="Store switching is not available in this shell"
           >
-            Store: {SHELL_PREVIEW.store} <span aria-hidden="true">⌄</span>
+            Store: {SHELL_PREVIEW.store} <ChevronDown size={13} aria-hidden="true" />
           </button>
           <StatusBadge
             tone={storeNodeStatus === "online" ? "neutral" : "attention"}
@@ -201,7 +211,7 @@ export function PosApp() {
             aria-label="Notifications unavailable"
             title="Notifications are not available in this shell"
           >
-            <Icon name="bell" />
+            <Bell aria-hidden="true" />
           </button>
           <span className="header-avatar" aria-label={SHELL_PREVIEW.cashier}>
             DC
@@ -233,7 +243,7 @@ export function PosApp() {
                     <label htmlFor="item-search">Scan barcode or search item</label>
                     <div className="scan-form__row">
                       <span className="barcode-mark" aria-hidden="true">
-                        ▥
+                        <ScanBarcode size={22} strokeWidth={1.8} />
                       </span>
                       <input
                         ref={searchRef}
@@ -249,7 +259,7 @@ export function PosApp() {
                         autoComplete="off"
                       />
                       <button className="search-submit" type="submit" aria-label="Search">
-                        <Icon name="search" />
+                        <Search size={16} aria-hidden="true" />
                       </button>
                     </div>
                     <span id="search-help" className="sr-only">
@@ -258,16 +268,17 @@ export function PosApp() {
                   </form>
                   <div className="quick-actions" aria-label="Sale actions">
                     <ShellButton disabled title="Available in a later milestone">
-                      Price Check <kbd>F3</kbd>
+                      <Search size={13} aria-hidden="true" /> Price Check <kbd>F3</kbd>
                     </ShellButton>
                     <ShellButton disabled title="Available in a later milestone">
-                      Hold sale <kbd>F6</kbd>
+                      <Pause size={13} aria-hidden="true" /> Hold
+                      <span className="sr-only"> sale</span> <kbd>F6</kbd>
                     </ShellButton>
                     <ShellButton disabled title="Available in a later milestone">
-                      Recall sale
+                      <RotateCcw size={13} aria-hidden="true" /> Recall
                     </ShellButton>
                     <ShellButton disabled title="Available in a later milestone">
-                      Clear Cart
+                      <Eraser size={13} aria-hidden="true" /> Clear Cart
                     </ShellButton>
                   </div>
                 </div>
@@ -278,7 +289,7 @@ export function PosApp() {
                     <span>Demo catalog · selection unavailable</span>
                   </div>
                   <div className="product-grid">
-                    {previewProducts.map((product) => (
+                    {previewProducts.map((product, index) => (
                       <button
                         type="button"
                         className="product-tile"
@@ -286,12 +297,7 @@ export function PosApp() {
                         disabled
                         title="Item lookup is not available in this shell"
                       >
-                        <span
-                          className={`product-art product-art--${product.color}`}
-                          aria-hidden="true"
-                        >
-                          <span>{product.mark}</span>
-                        </span>
+                        <span className={`product-art product-art--${index}`} aria-hidden="true" />
                         <strong>{product.name}</strong>
                         <span>{product.price}</span>
                       </button>
@@ -304,6 +310,15 @@ export function PosApp() {
                     <h2 id="cart-heading">Cart</h2>
                     <span>0 items</span>
                     <span className="cart-toolbar__hint">No active sale</span>
+                    <button
+                      className="cart-remove"
+                      type="button"
+                      disabled
+                      aria-label="Remove item unavailable"
+                      title="No item to remove"
+                    >
+                      <Trash2 size={13} aria-hidden="true" />
+                    </button>
                   </div>
                   <div className="cart-table" role="table" aria-label="Sale lines">
                     <div className="cart-table__head" role="row">
@@ -315,7 +330,10 @@ export function PosApp() {
                       <span role="columnheader">Total</span>
                     </div>
                     <div className="cart-empty" role="row">
-                      <span>No items added. Scan or search when item lookup is available.</span>
+                      <span>
+                        <ShoppingBasket size={19} strokeWidth={1.7} aria-hidden="true" />
+                        No items added. Scan or search when item lookup is available.
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -326,7 +344,7 @@ export function PosApp() {
                       Customer <span aria-hidden="true">(F4)</span>
                     </h2>
                     <ShellButton disabled title="Available in a later milestone">
-                      Walk-in Customer
+                      <UserRound size={14} aria-hidden="true" /> Walk-in Customer
                     </ShellButton>
                     <span className="customer-attach">
                       <ShellButton variant="quiet" disabled title="Available in a later milestone">
@@ -335,7 +353,9 @@ export function PosApp() {
                     </span>
                   </div>
                   <div className="notes-field">
-                    <label htmlFor="sale-notes">Notes</label>
+                    <label htmlFor="sale-notes">
+                      <NotebookPen size={12} aria-hidden="true" /> Notes
+                    </label>
                     <textarea
                       id="sale-notes"
                       placeholder="Notes become available with an active sale"
@@ -370,9 +390,17 @@ export function PosApp() {
                 </div>
                 <p className="total-footnote">Preview amount · No prices or taxes are calculated</p>
                 <div className="payment-methods" aria-label="Payment methods">
-                  {["Cash", "Card", "DuitNow", "Other", "Credit"].map((method) => (
+                  {(
+                    [
+                      ["Cash", Banknote],
+                      ["Card", CreditCard],
+                      ["DuitNow", Smartphone],
+                      ["Other", CircleEllipsis],
+                      ["Credit", UserRound],
+                    ] as const
+                  ).map(([method, MethodIcon]) => (
                     <ShellButton key={method} disabled title="Payment requires an active sale">
-                      {method}
+                      <MethodIcon size={15} strokeWidth={1.8} aria-hidden="true" /> {method}
                     </ShellButton>
                   ))}
                 </div>
@@ -400,7 +428,7 @@ export function PosApp() {
                     disabled
                     title="Payment requires a live sale workflow"
                   >
-                    <Icon name="check" /> Complete Sale <kbd>F8</kbd>
+                    <Check size={16} aria-hidden="true" /> Complete Sale <kbd>F8</kbd>
                   </ShellButton>
                   <span>Payment requires a live sale.</span>
                 </div>

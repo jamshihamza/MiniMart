@@ -12,6 +12,7 @@ allowBuilds:
 
 catalog:
   "@tauri-apps/api": ^2.11.1
+  lucide-react: 1.48.0
 
 catalogMode: strict
 

@@ -112,11 +112,18 @@ svg {
   border-bottom: 1px solid #ffffff1a;
 }
 .brand-mark {
-  color: #3b90ff;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  flex: 0 0 32px;
+  border-radius: 7px;
+  background: #1c3860;
+  color: #6fb1ff;
 }
 .brand-mark svg {
-  width: 26px;
-  height: 26px;
+  width: 19px;
+  height: 19px;
 }
 .brand-block strong {
   display: block;
@@ -168,8 +175,11 @@ svg {
   place-items: center;
   width: 17px;
   flex: 0 0 17px;
-  font-size: 16px;
   line-height: 1;
+}
+.nav-icon svg {
+  width: 16px;
+  height: 16px;
 }
 .sidebar-operator {
   display: flex;
@@ -227,6 +237,9 @@ svg {
   min-width: 0;
 }
 .store-selector {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
   min-height: 30px;
   padding: 0 9px;
   border: 1px solid var(--line);
@@ -237,8 +250,9 @@ svg {
   font-weight: 650;
   white-space: nowrap;
 }
-.store-selector span {
-  margin-left: 10px;
+.store-selector svg {
+  width: 13px;
+  height: 13px;
 }
 .status-badge {
   display: inline-flex;
@@ -354,7 +368,7 @@ svg {
 }
 .sale-left {
   display: grid;
-  grid-template-rows: 20px 58px 176px minmax(0, 1fr) 65px;
+  grid-template-rows: 20px 58px 200px minmax(0, 1fr) 65px;
   overflow: hidden;
 }
 .sale-section-title {
@@ -397,10 +411,14 @@ svg {
   outline-offset: 1px;
 }
 .barcode-mark {
+  display: grid;
+  place-items: center;
   padding: 0 8px;
   color: #1c4f99;
-  font-size: 24px;
-  line-height: 1;
+}
+.barcode-mark svg {
+  width: 22px;
+  height: 22px;
 }
 .scan-form input {
   width: 100%;
@@ -440,6 +458,11 @@ svg {
   height: 36px;
   min-height: 36px;
   padding: 0 8px;
+}
+.quick-actions .shell-button svg {
+  width: 13px;
+  height: 13px;
+  flex: 0 0 13px;
 }
 .quick-actions kbd {
   color: #74839a;
@@ -501,57 +524,46 @@ svg {
   font-weight: 650;
 }
 .product-art {
-  width: 27px;
-  height: 36px;
-  display: grid;
-  place-items: center;
-  border: 1px solid #00000016;
-  border-radius: 5px 5px 4px 4px;
-  box-shadow:
-    inset 3px 0 #ffffff53,
-    1px 2px 2px #15253d22;
-  color: #fff;
+  width: 47px;
+  height: 43px;
+  flex: 0 0 43px;
+  background-image: url("/demo-product-packshots.png");
+  background-size: 500% 200%;
+  background-repeat: no-repeat;
 }
-.product-art span {
-  font-size: 7px;
-  font-weight: 900;
-  letter-spacing: -0.03em;
+.product-art--0,
+.product-art--5 {
+  background-position-x: 0;
 }
-.product-art--red {
-  background: linear-gradient(120deg, #da172e, #9d1425);
+.product-art--1,
+.product-art--6 {
+  background-position-x: 25%;
 }
-.product-art--silver {
-  background: linear-gradient(120deg, #b6beca, #fcfcfc 45%, #8995a8);
-  color: #e02939;
+.product-art--2,
+.product-art--7 {
+  background-position-x: 50%;
 }
-.product-art--green {
-  background: linear-gradient(120deg, #08734e, #36a15b);
+.product-art--3,
+.product-art--8 {
+  background-position-x: 75%;
 }
-.product-art--yellow {
-  background: linear-gradient(120deg, #ffe640, #eeaf0d);
-  color: #b52f1c;
+.product-art--4,
+.product-art--9 {
+  background-position-x: 100%;
 }
-.product-art--orange {
-  background: linear-gradient(120deg, #ffcf74, #e98f38);
-  color: #8e3c23;
+.product-art--0,
+.product-art--1,
+.product-art--2,
+.product-art--3,
+.product-art--4 {
+  background-position-y: 0;
 }
-.product-art--blue {
-  background: linear-gradient(120deg, #80c4ec, #e9f8ff);
-  color: #2070a8;
-}
-.product-art--sky {
-  background: linear-gradient(120deg, #a5d7ef, #337ebe);
-}
-.product-art--gold {
-  background: linear-gradient(120deg, #f8cb21, #ef9f21);
-  color: #c22c22;
-}
-.product-art--crimson {
-  background: linear-gradient(120deg, #e83943, #a21932);
-}
-.product-art--mint {
-  background: linear-gradient(120deg, #7bc95c, #e7f4ae);
-  color: #25673d;
+.product-art--5,
+.product-art--6,
+.product-art--7,
+.product-art--8,
+.product-art--9 {
+  background-position-y: 100%;
 }
 
 .cart-region {
@@ -574,6 +586,20 @@ svg {
 }
 .cart-toolbar__hint {
   margin-left: auto;
+}
+.cart-remove {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #a6b2c3;
+}
+.cart-remove svg {
+  width: 13px;
+  height: 13px;
 }
 .cart-table {
   min-height: 0;
@@ -602,6 +628,15 @@ svg {
   color: #8b97a9;
   font-size: 11px;
   text-align: center;
+}
+.cart-empty > span {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.cart-empty svg {
+  color: #aab9ca;
 }
 .sale-bottom {
   display: grid;
@@ -640,15 +675,27 @@ svg {
   justify-content: flex-start;
   overflow: hidden;
 }
+.customer-field > .shell-button svg {
+  width: 14px;
+  height: 14px;
+  color: #1766d2;
+  flex: 0 0 14px;
+}
 .customer-attach .shell-button {
   display: none;
 }
 .notes-field label {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 4px;
   margin-bottom: 2px;
   color: #344665;
   font-size: 10px;
   font-weight: 650;
+}
+.notes-field label svg {
+  width: 12px;
+  height: 12px;
 }
 .notes-field textarea {
   width: 100%;
@@ -730,10 +777,21 @@ svg {
   gap: 5px;
 }
 .payment-methods .shell-button {
+  flex-direction: column;
+  gap: 2px;
   min-width: 0;
-  min-height: 36px;
+  min-height: 40px;
   padding: 0 3px;
   font-size: 10px;
+}
+.payment-methods .shell-button svg {
+  width: 15px;
+  height: 15px;
+}
+.payment-methods .shell-button:nth-child(n + 4) {
+  flex-direction: row;
+  gap: 5px;
+  min-height: 30px;
 }
 .payment-methods .shell-button:first-child {
   background: #eaf2ff;
