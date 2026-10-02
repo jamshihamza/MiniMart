@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/lucide-static@0.469.0/font/lucide.css">
+<style>
+html,body{margin:0;height:100%;background:#f2f4f7}
+button,input,select,textarea{font-family:inherit;color:inherit}
+[class^="icon-"]{font-family:lucide!important;font-style:normal;line-height:1;display:inline-block;speak:never}
+*:focus-visible{outline:2px solid #1b5fd1;outline-offset:2px}
+a{color:#1b5fd1}a:hover{color:#174fb0}
+</style>
+</helmet>
+<div data-screen-label="{{ scrLabel }}" style="position:relative;display:flex;width:100%;height:{{ rootH }};min-width:1160px;background:#f2f4f7;font-family:'IBM Plex Sans',system-ui,sans-serif;color:#0f1a2b;overflow:hidden;font-variant-numeric:tabular-nums;font-size:13.5px;line-height:1.35">
+<aside style="width:190px;flex:none;background:#0e1b33;color:#c3cbd9;display:flex;flex-direction:column;padding:14px 10px 12px;gap:6px;overflow:auto">
+  <div style="display:flex;align-items:center;gap:9px;padding:2px 6px 10px">
+    <div style="width:30px;height:30px;border-radius:8px;background:#1b5fd1;display:grid;place-items:center;color:#fff"><i class="icon-store" style="font-size:16px"></i></div>
+    <div style="display:flex;flex-direction:column;gap:1px"><span style="color:#fff;font-weight:700;font-size:13px;letter-spacing:.08em">MINIMART</span><span style="font-size:10.5px;color:#8c98ad">Back Office</span></div>
+  </div>
+  <sc-for list="{{ nav }}" as="grp" hint-placeholder-count="6">
+    <div style="display:flex;flex-direction:column;gap:1px;margin-top:6px">
+      <span style="font-size:10px;font-weight:600;letter-spacing:.09em;color:#6f7c93;padding:4px 10px">{{ grp.label }}</span>
+      <sc-for list="{{ grp.items }}" as="it" hint-placeholder-count="3">
+        <button disabled="{{ it.stub }}" style="display:flex;align-items:center;gap:9px;height:34px;padding:0 10px;border-radius:7px;border:0;background:{{ it.bg }};color:{{ it.fg }};font-size:12.5px;font-weight:{{ it.fw }};cursor:{{ it.cursor }};text-align:left">
+          <i class="{{ it.icon }}" style="font-size:15px"></i><span style="flex:1">{{ it.label }}</span>
+          <sc-if value="{{ it.stub }}" hint-placeholder-val="{{ false }}"><i class="icon-corner-down-right" style="font-size:11px;color:#4d5a72"></i></sc-if>
+        </button>
+      </sc-for>
+    </div>
+  </sc-for>
+  <div style="margin-top:auto;padding-top:10px"><span style="font-size:10px;color:#5d6a82;padding:0 10px">Structural navigation only outside this package</span></div>
+</aside>
+<div style="flex:1;min-width:0;display:flex;flex-direction:column">
+  <header style="height:50px;flex:none;background:#fff;border-bottom:1px solid #e1e5eb;display:flex;align-items:center;padding:0 16px;gap:16px">
+    <div style="display:flex;align-items:center;gap:6px;font-weight:600;font-size:13px"><i class="icon-building-2" style="font-size:15px;color:#4a5567"></i>MiniMart Sdn Bhd</div>
+    <div style="display:flex;align-items:center;gap:6px;font-size:12.5px;color:#4a5567"><i class="icon-store" style="font-size:14px"></i>Store <span style="font-weight:600;color:#0f1a2b">MiniMart Central</span></div>
+    <div style="display:flex;align-items:center;gap:6px;font-size:12.5px;color:#4a5567"><i class="icon-calendar" style="font-size:14px"></i>Business date <span style="color:#0f1a2b;font-weight:500">Sat, 26 Sep 2026</span></div>
+    <div style="margin-left:auto;display:flex;align-items:center;gap:8px">
+      <div title="Store Node connection" style="display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 10px;border-radius:999px;border:1px solid {{ nodeP.bd }};background:{{ nodeP.bg }};color:{{ nodeP.fg }};font-size:12px;font-weight:600"><i class="{{ nodeP.icon }}" style="font-size:13px"></i>{{ nodeP.label }}</div>
+      <div title="Cloud synchronisation" style="display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 10px;border-radius:999px;border:1px solid {{ syncP.bd }};background:{{ syncP.bg }};color:{{ syncP.fg }};font-size:12px;font-weight:600"><i class="{{ syncP.icon }}" style="font-size:13px"></i>{{ syncP.label }}</div>
+      <button style="display:flex;align-items:center;gap:7px;height:32px;padding:0 8px 0 4px;border-radius:7px;border:1px solid #e1e5eb;background:#fff;cursor:pointer;font-size:12.5px;font-weight:500"><span style="width:24px;height:24px;border-radius:50%;background:#e8f0fc;color:#1b5fd1;display:grid;place-items:center;font-size:10.5px;font-weight:700">SM</span>Siti M. <span style="color:#6b7585">· {{ roleLabel }}</span></button>
+    </div>
+  </header>
+  <div style="position:relative;flex:1;min-height:0;overflow:auto">
+  <sc-if value="{{ nodeDown }}" hint-placeholder-val="{{ false }}">
+    <div style="padding:40px;display:flex;justify-content:center">
+      <div style="max-width:560px;width:100%;background:#fff;border:1px solid #e1e5eb;border-radius:14px;padding:24px;display:flex;flex-direction:column;gap:14px">
+        <div style="display:flex;gap:14px;align-items:flex-start">
+          <div style="width:44px;height:44px;flex:none;border-radius:11px;background:#fcebea;color:#b3261e;display:grid;place-items:center"><i class="icon-server-off" style="font-size:22px"></i></div>
+          <div style="display:flex;flex-direction:column;gap:6px"><span style="font-size:17px;font-weight:600">Store Node unavailable</span><span style="font-size:13.5px;color:#4a5567">Store Node-backed Shift and Business Day operations are unavailable — opening/closing Shifts, posting Cash In/Out, and closing the Business Day cannot continue until the connection returns. Current authoritative cash state is not shown as current while this persists. This is separate from Cloud Sync status.</span></div>
+        </div>
+        <div style="display:flex;gap:8px"><button style="height:40px;padding:0 16px;border-radius:8px;border:0;background:#1b5fd1;color:#fff;font-size:14px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:8px"><i class="icon-refresh-cw" style="font-size:15px"></i>Retry connection</button><button style="height:40px;padding:0 16px;border-radius:8px;border:1px solid #cfd5de;background:#fff;color:#3d4a5e;font-size:14px;font-weight:600;cursor:pointer">Diagnostics</button></div>
+      </div>
+    </div>
+  </sc-if>
+  <sc-if value="{{ nodeUp }}" hint-placeholder-val="{{ true }}">
+  <sc-if value="{{ cloudDown }}" hint-placeholder-val="{{ false }}">
+    <div style="display:flex;align-items:center;gap:10px;padding:10px 22px;background:#fdf3e1;border-bottom:1px solid #f0d4a0;color:#6b4000;font-size:12.5px"><i class="icon-cloud-off" style="font-size:16px"></i><div style="flex:1"><strong style="font-weight:600">Cloud sync unavailable.</strong> Local Shift and Business Day operations continue — they are locally authoritative. Changes will sync when cloud connectivity returns.</div></div>
+  </sc-if>
+  <div style="padding:16px 22px 40px;max-width:1180px">{{ body }}</div>
+  </sc-if>
+  </div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1366,&quot;height&quot;:768},&quot;screen&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;01&quot;,&quot;02&quot;,&quot;03&quot;,&quot;04&quot;,&quot;05&quot;,&quot;06&quot;,&quot;07&quot;,&quot;08&quot;,&quot;09&quot;,&quot;10&quot;,&quot;11&quot;,&quot;12&quot;,&quot;13&quot;,&quot;14&quot;,&quot;15&quot;,&quot;16&quot;,&quot;17&quot;,&quot;18&quot;,&quot;19&quot;,&quot;20&quot;,&quot;21&quot;,&quot;22&quot;,&quot;23&quot;,&quot;24&quot;,&quot;25&quot;,&quot;26&quot;,&quot;27&quot;,&quot;28&quot;,&quot;29&quot;,&quot;30&quot;,&quot;31&quot;,&quot;32&quot;,&quot;33&quot;,&quot;34&quot;,&quot;35&quot;,&quot;36&quot;,&quot;37&quot;,&quot;38&quot;,&quot;39&quot;,&quot;40&quot;,&quot;41&quot;,&quot;42&quot;,&quot;43&quot;,&quot;44&quot;,&quot;45&quot;,&quot;46&quot;,&quot;47&quot;,&quot;48&quot;,&quot;49&quot;,&quot;50&quot;,&quot;51&quot;,&quot;52&quot;,&quot;53&quot;,&quot;54&quot;,&quot;55&quot;,&quot;56&quot;,&quot;57&quot;,&quot;58&quot;,&quot;59&quot;,&quot;60&quot;,&quot;61&quot;,&quot;62&quot;,&quot;63&quot;,&quot;64&quot;,&quot;65&quot;,&quot;66&quot;,&quot;67&quot;,&quot;68&quot;,&quot;69&quot;,&quot;70&quot;,&quot;71&quot;,&quot;72&quot;,&quot;73&quot;,&quot;74&quot;,&quot;75&quot;,&quot;76&quot;,&quot;77&quot;],&quot;default&quot;:&quot;01&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;embedded&quot;:{&quot;editor&quot;:null,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;}}">
+const E=React.createElement;
+const RM=(c)=>c==null?'—':(c<0?'−RM ':'RM ')+(Math.abs(c)/100).toLocaleString('en-MY',{minimumFractionDigits:2,maximumFractionDigits:2});
+const pill=(bg,fg,icon,label)=>({bg,fg,icon,label});
+const card=(children,style)=>E('div',{style:Object.assign({background:'#fff',border:'1px solid #e1e5eb',borderRadius:'11px',padding:'16px',display:'flex',flexDirection:'column',gap:'10px'},style||{})},...[].concat(children));
+const kv=(l,v,vc)=>E('div',{style:{display:'flex',justifyContent:'space-between',gap:'12px',fontSize:'13px'}},E('span',{style:{color:'#6b7585'}},l),E('span',{style:{fontWeight:600,color:vc||'#0f1a2b',textAlign:'right'}},v));
+const noteBox=(text,tone)=>{const c={amber:['#fdf3e1','#6b4000','#f0d4a0'],blue:['#e8f0fc','#174fb0','#b9cff2'],red:['#fcebea','#8a1f14','#f2b8b0'],green:['#e5f4ec','#0f3d24','#bfe2cd']}[tone||'amber'];return E('div',{style:{display:'flex',gap:'8px',alignItems:'flex-start',padding:'10px 12px',borderRadius:'9px',background:c[0],border:'1px solid '+c[2],color:c[1],fontSize:'12px'}},E('i',{className:'icon-info',style:{fontSize:'14px',marginTop:'1px'}}),E('span',null,text));};
+const stepper=(labels,idx)=>E('div',{style:{display:'flex',alignItems:'center',gap:'6px'}},...labels.map((label,i)=>[E('span',{key:'s'+i,style:{display:'inline-flex',alignItems:'center',gap:'5px',height:'26px',padding:'0 10px',borderRadius:'999px',border:'1px solid '+(i<=idx?'#1b5fd1':'#cfd5de'),background:i===idx?'#1b5fd1':'#fff',color:i===idx?'#fff':i<idx?'#1b5fd1':'#6b7585',fontSize:'12px',fontWeight:600}},label),i<labels.length-1?E('i',{key:'a'+i,className:'icon-chevron-right',style:{fontSize:'13px',color:'#9aa3b2',opacity:i<idx?1:0.35}}):null]).flat());
+const tbl=(cols,widths,rows,onRow)=>E('div',{style:{background:'#fff',border:'1px solid #e1e5eb',borderRadius:'11px',overflow:'auto'}},
+  E('div',{style:{display:'grid',gridTemplateColumns:widths,minWidth:'1000px',gap:'10px',padding:'8px 14px',background:'#f7f9fb',borderBottom:'1px solid #e1e5eb',fontSize:'10.5px',fontWeight:600,color:'#6b7585'}},...cols.map(c=>E('span',{key:c},c))),
+  ...rows.map((r,i)=>E('div',{key:i,onClick:onRow?()=>onRow(r):undefined,style:{display:'grid',gridTemplateColumns:widths,minWidth:'1000px',gap:'10px',alignItems:'center',padding:'0 14px',height:'44px',borderTop:'1px solid #eef1f5',fontSize:'12.5px',cursor:onRow?'pointer':'default'}},...r)));
+const statusTag=(label,tone)=>{const c={green:['#e5f4ec','#146c43'],amber:['#fdf3e1','#8a5100'],gray:['#eef1f5','#4a5567'],red:['#fcebea','#b3261e'],blue:['#e8f0fc','#174fb0']}[tone];return E('span',{style:{height:22,padding:'0 9px',borderRadius:999,background:c[0],color:c[1],fontSize:11,fontWeight:600,display:'inline-flex',alignItems:'center'}},label);};
+
+const SHIFT={ref:'SH-POS01-0268',store:'MiniMart Central',register:'POS-01',cashier:'Demo Cashier',bizDate:'Sat, 26 Sep 2026',openedAt:'26 Sep 2026 · 08:02',opening:20000,cashSales:61240,cashIn:0,cashOut:5000,cashRefunds:0};
+const EXPECTED=SHIFT.opening+SHIFT.cashSales+SHIFT.cashIn-SHIFT.cashOut-SHIFT.cashRefunds;
+const COUNTED=76040, VARIANCE=COUNTED-EXPECTED;
+const TENDER=[{t:'Cash',n:24,amt:61240},{t:'Card',n:9,amt:38820},{t:'DuitNow QR',n:8,amt:28370}];
+const MOVEMENTS=[
+  {time:'08:02',type:'Opening Cash',amount:20000,reason:'—',ref:'OPEN-SH-0268',actor:'Demo Cashier',approval:'—',status:'Posted'},
+  {time:'11:15',type:'Cash Sale Effect',amount:61240,reason:'Aggregated cash sales (posted)',ref:'POS01 cash sales',actor:'System',approval:'—',status:'Posted'},
+  {time:'14:40',type:'Cash Out',amount:-5000,reason:'Ice delivery',ref:'CO-2026-00091',actor:'Demo Cashier',approval:'Siti M.',status:'Posted'}];
+const SHIFTS=[
+  {ref:'SH-POS01-0268',bizDate:'26 Sep 2026',register:'POS-01',cashier:'Demo Cashier',opened:'08:02',closed:'—',status:'Open',opening:20000,expected:76240,counted:null,variance:null},
+  {ref:'SH-POS02-0191',bizDate:'26 Sep 2026',register:'POS-02',cashier:'Ravi K.',opened:'08:05',closed:'—',status:'Open',opening:20000,expected:54800,counted:null,variance:null},
+  {ref:'SH-POS01-0267',bizDate:'25 Sep 2026',register:'POS-01',cashier:'Demo Cashier',opened:'25 Sep 08:00',closed:'25 Sep 20:05',status:'Closed',opening:20000,expected:71500,counted:71300,variance:-200},
+  {ref:'SH-POS03-0054',bizDate:'25 Sep 2026',register:'POS-03',cashier:'Nurul H.',opened:'25 Sep 09:00',closed:'25 Sep 19:50',status:'Closed',opening:15000,expected:48900,counted:49400,variance:500}];
+const BIZDAYS=[
+  {date:'26 Sep 2026',store:'MiniMart Central',openedAt:'26 Sep 2026 06:00',status:'Open',openShifts:2,closedShifts:0,attention:1,closedAt:'—'},
+  {date:'25 Sep 2026',store:'MiniMart Central',openedAt:'25 Sep 2026 06:00',status:'Closed',openShifts:0,closedShifts:3,attention:0,closedAt:'25 Sep 2026 23:10'}];
+const NAV=[['Dashboard',[['Dashboard','icon-layout-dashboard',false]]],
+['MASTERS',[['Products','icon-package',true],['Categories','icon-shapes',true],['Brands','icon-tag',true],['Suppliers','icon-truck',true],['Customers','icon-users',true]]],
+['OPERATIONS',[['Purchases','icon-shopping-bag',true],['Inventory','icon-boxes',true],['Sales','icon-receipt',true],['Returns','icon-undo-2',true],['Cash & Shifts','icon-clock',false]]],
+['FINANCE',[['Accounting','icon-calculator',true],['Reconciliation','icon-scale',true]]],
+['MANAGEMENT',[['Reports','icon-bar-chart-3',true]]],
+['ADMINISTRATION',[['Users & Access','icon-shield',true],['Organization','icon-building-2',true],['Devices','icon-monitor',true],['Sync & Diagnostics','icon-refresh-cw',true],['Settings','icon-settings',true]]]];
+
+const NAMES={
+'01':'Current Shift Workspace — Open','02':'Current Shift Workspace — Closing','03':'Current Shift Workspace — No Open Shift','04':'Shift List — populated','05':'Shift List — filtered by Business Date','06':'Shift List — filtered Closed','07':'Shift List — empty','08':'Shift List — Store Node unavailable','09':'Shift Monitor (manager)','10':'Cash Movement Monitor (store-level)','11':'Multi-Counter Store view','12':'Business Date vs Calendar Timestamp strip',
+'13':'Open Shift — entry form','14':'Open Shift — Opening Cash (not fixed default)','15':'Open Shift — Note field','16':'Open Shift — eligibility conflict: cashier already open','17':'Open Shift — eligibility conflict: register already open','18':'Open Shift Confirmation / Review','19':'Open Shift — Posted / Shift Open','20':'Cash In — entry form','21':'Cash In — Reason / Reference / Note','22':'Cash In — Authorization required','23':'Cash In — Draft (no effect yet)','24':'Cash In — Posted','25':'Cash Out — entry form','26':'Cash Out — example (Ice delivery, ownership preserved)','27':'Cash Out — Posted','28':'Shift → Cash Movements tab',
+'29':'Shift Close — Review Shift','30':'Shift Close — Count Cash','31':'Shift Close — Blind Count policy (open)','32':'Shift Close — Review Variance','33':'Variance — Over','34':'Variance — Short','35':'Variance — Exact','36':'Variance Note — policy-driven','37':'Shift Close — Confirm Close','38':'Shift Close — Posting / Safe Retry','39':'Shift Close — Conflict (changed since loaded)','40':'Closed Shift — read-only detail','41':'Closed Shift — Tender summary','42':'Closed Shift — Cash Movement history','43':'Closed Shift — Audit timeline','44':'Shift Reopen — not invented',
+'45':'Business Day List — populated','46':'Business Day List — filtered','47':'Business Day List — empty','48':'Business Day Detail — Open','49':'Business Day Detail — Closing','50':'Cross-Midnight Operations illustration','51':'Business Date Rollover — OPEN decision','52':'Business Day Open — state','53':'Business Day Close — Readiness workspace','54':'Business Day Close — Open Shifts blocking (authority-dependent)','55':'Exceptional Day Close — OPEN decision','56':'Business Day Close Review','57':'Business Day — Safe Retry','58':'Closed Business Day — read-only','59':'Closed Business Day — Audit','60':'Business Day Reopen — not invented',
+'61':'Cross-module: Shift → Source Sale trace','62':'Cross-module: Cash Refund trace (Returns)','63':'Cross-module: Customer Collection cash source','64':'Cross-module: Supplier/Expense cash-out source','65':'Variance Review / work queue','66':'Cash Difference Reporting (Over/Short/Exact)','67':'Store Node unavailable (Cash & Business Day)','68':'Cloud Sync unavailable (local-first posting continues)',
+'69':'Cross-module Map','70':'Design System — Table / Status components','71':'Design System — Form / Movement components','72':'Permission / Audit components','73':'Empty & Validation states gallery','74':'Component inventory + documentation',
+'75':'Open Shift — Posting / Safe Retry','76':'Cash In — Posting / Safe Retry','77':'Cash Out — Posting / Safe Retry'};
+
+function cfg(s){
+  const b={scr:s,view:'home',node:'on',sync:'ok',role:'admin',homeState:'workspace',opState:'openEntry',closeState:'reviewShift',bdState:'bdList',crossState:'traceSale',ds:'crossmap'};
+  const m={
+    '01':{homeState:'workspace'},'02':{homeState:'workspaceClosing'},'03':{homeState:'workspaceEmpty'},'04':{homeState:'shiftList'},'05':{homeState:'shiftListDate'},'06':{homeState:'shiftListClosed'},'07':{homeState:'shiftListEmpty'},'08':{homeState:'shiftList',node:'off'},'09':{homeState:'monitor'},'10':{homeState:'cashMoveMonitor'},'11':{homeState:'multiCounter'},'12':{homeState:'bizDateStrip'},
+    '13':{view:'shiftOps',opState:'openEntry'},'14':{view:'shiftOps',opState:'openEntryCash'},'15':{view:'shiftOps',opState:'openEntryNote'},'16':{view:'shiftOps',opState:'openConflictCashier'},'17':{view:'shiftOps',opState:'openConflictRegister'},'18':{view:'shiftOps',opState:'openReview'},'19':{view:'shiftOps',opState:'openPosted'},'20':{view:'shiftOps',opState:'cashInEntry'},'21':{view:'shiftOps',opState:'cashInDetails'},'22':{view:'shiftOps',opState:'cashInAuth'},'23':{view:'shiftOps',opState:'cashInDraft'},'24':{view:'shiftOps',opState:'cashInPosted'},'25':{view:'shiftOps',opState:'cashOutEntry'},'26':{view:'shiftOps',opState:'cashOutExample'},'27':{view:'shiftOps',opState:'cashOutPosted'},'28':{view:'shiftOps',opState:'movementsTab'},
+    '29':{view:'closeOps',closeState:'reviewShift'},'30':{view:'closeOps',closeState:'countCash'},'31':{view:'closeOps',closeState:'countBlind'},'32':{view:'closeOps',closeState:'reviewVariance'},'33':{view:'closeOps',closeState:'varianceOver'},'34':{view:'closeOps',closeState:'varianceShort'},'35':{view:'closeOps',closeState:'varianceExact'},'36':{view:'closeOps',closeState:'varianceNote'},'37':{view:'closeOps',closeState:'confirmClose'},'38':{view:'closeOps',closeState:'closeRetry'},'39':{view:'closeOps',closeState:'closeConflict'},'40':{view:'closeOps',closeState:'closedDetail'},'41':{view:'closeOps',closeState:'closedTender'},'42':{view:'closeOps',closeState:'closedMovements'},'43':{view:'closeOps',closeState:'closedAudit'},'44':{view:'closeOps',closeState:'reopenNote'},
+    '45':{view:'bizday',bdState:'bdList'},'46':{view:'bizday',bdState:'bdListFiltered'},'47':{view:'bizday',bdState:'bdListEmpty'},'48':{view:'bizday',bdState:'bdDetailOpen'},'49':{view:'bizday',bdState:'bdDetailClosing'},'50':{view:'bizday',bdState:'crossMidnight'},'51':{view:'bizday',bdState:'rolloverOpen'},'52':{view:'bizday',bdState:'bdOpenState'},'53':{view:'bizday',bdState:'bdCloseReadiness'},'54':{view:'bizday',bdState:'bdCloseBlocking'},'55':{view:'bizday',bdState:'exceptionalClose'},'56':{view:'bizday',bdState:'bdCloseReview'},'57':{view:'bizday',bdState:'bdRetry'},'58':{view:'bizday',bdState:'bdClosed'},'59':{view:'bizday',bdState:'bdClosedAudit'},'60':{view:'bizday',bdState:'bdReopenNote'},
+    '61':{view:'cross',crossState:'traceSale'},'62':{view:'cross',crossState:'traceRefund'},'63':{view:'cross',crossState:'traceCollection'},'64':{view:'cross',crossState:'traceSupplier'},'65':{view:'cross',crossState:'varianceReview'},'66':{view:'cross',crossState:'diffReport'},'67':{view:'cross',crossState:'nodeDown',node:'off'},'68':{view:'cross',crossState:'syncDown',sync:'down'},
+    '69':{view:'dsGallery',ds:'crossmap'},'70':{view:'dsGallery',ds:'table'},'71':{view:'dsGallery',ds:'form'},'72':{view:'dsGallery',ds:'permission'},'73':{view:'dsGallery',ds:'empty'},'74':{view:'dsGallery',ds:'inventory'},
+    '75':{view:'shiftOps',opState:'openRetry'},'76':{view:'shiftOps',opState:'cashInRetry'},'77':{view:'shiftOps',opState:'cashOutRetry'}};
+  return {...b,...(m[s]||{})};
+}
+
+class Component extends DCLogic {
+  state = cfg((this.props&&this.props.screen)||'01');
+  componentDidUpdate(pp){ if(pp.screen!==this.props.screen) this.setState(cfg(this.props.screen||'01')); }
+
+  homeBody(){
+    const s=this.state;
+    const g=s.homeState;
+    const shiftHeader=card([
+      E('div',{style:{display:'flex',alignItems:'baseline',gap:10}},E('span',{style:{fontSize:19,fontWeight:700}},'Cash & Shifts'),E('span',{style:{fontSize:12.5,color:'#6b7585'}},SHIFT.store+' · '+SHIFT.register)),
+      E('div',{style:{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:12}},
+        kv('Cashier',SHIFT.cashier),kv('Business Date',SHIFT.bizDate),kv('Shift Reference',SHIFT.ref),kv('Opened At',SHIFT.openedAt))
+    ]);
+    if(g==='workspace'||g==='workspaceClosing') return E('div',{style:{display:'flex',flexDirection:'column',gap:12}},
+      E('div',{style:{display:'flex',alignItems:'baseline',gap:10}},E('span',{style:{fontSize:19,fontWeight:700}},'Current Shift'),statusTag(g==='workspaceClosing'?'Closing':'Open',g==='workspaceClosing'?'amber':'green')),
+      card([kv('Store',SHIFT.store),kv('Register',SHIFT.register),kv('Cashier',SHIFT.cashier),kv('Business Date',SHIFT.bizDate),kv('Shift Reference',SHIFT.ref),kv('Opened At',SHIFT.openedAt)]),
+      E('div',{style:{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:12}},
+        card([kv('Opening Cash',RM(SHIFT.opening)),kv('Cash Sales',RM(SHIFT.cashSales)),kv('Cash In',RM(SHIFT.cashIn)),kv('Cash Out',RM(-SHIFT.cashOut),'#b3261e'),kv('Expected Cash',RM(EXPECTED),'#1b5fd1')]),
+        card([...TENDER.map(t=>kv(t.t+' · '+t.n,RM(t.amt))),noteBox('Non-cash tender amounts are not physically in the drawer.','blue')]),
+        card([kv('Sales Count','41'),kv('Gross Sales',RM(128430)),E('button',{style:{height:36,padding:'0 14px',borderRadius:8,border:0,background:'#1b5fd1',color:'#fff',fontWeight:600,cursor:'pointer',alignSelf:'flex-start'}},'Close Shift')])));
+    if(g==='workspaceEmpty') return E('div',{style:{display:'flex',flexDirection:'column',gap:12,maxWidth:460}},
+      noteBox('No open shift for this register.','blue'),
+      card([kv('Register',SHIFT.register),kv('Business Date',SHIFT.bizDate),E('button',{style:{height:38,padding:'0 16px',borderRadius:8,border:0,background:'#1b5fd1',color:'#fff',fontWeight:600,cursor:'pointer',alignSelf:'flex-start'}},'Open Shift')]));
+    if(g==='shiftList'||g==='shiftListDate'||g==='shiftListClosed'||g==='shiftListEmpty'){
+      let rows=SHIFTS;
+      if(g==='shiftListDate') rows=rows.filter(r=>r.bizDate==='26 Sep 2026');
+      if(g==='shiftListClosed') rows=rows.filter(r=>r.status==='Closed');
+      if(g==='shiftListEmpty') rows=[];
+      return E('div',{style:{display:'flex',flexDirection:'column',gap:12}},
+        E('div',{style:{display:'flex',alignItems:'baseline',gap:10}},E('span',{style:{fontSize:19,fontWeight:700}},'Shift List'),E('button',{style:{marginLeft:'auto',height:34,padding:'0 14px',borderRadius:8,border:0,background:'#1b5fd1',color:'#fff',fontSize:12.5,fontWeight:600,cursor:'pointer'}},'Open Shift')),
+        E('div',{style:{display:'flex',gap:8,flexWrap:'wrap'}},...['Business Date','Store','Register','Cashier','Status','Variance status'].map(l=>E('button',{key:l,style:{height:34,padding:'0 12px',borderRadius:8,border:'1px solid #cfd5de',background:'#fff',fontSize:12,fontWeight:600,cursor:'pointer'}},l))),
+        rows.length?tbl(['SHIFT','REGISTER','CASHIER','OPENED / CLOSED','STATUS','EXPECTED','COUNTED','VARIANCE'],'130px 90px 120px 110px 80px 95px 95px 95px',
+          rows.map(r=>[
+            E('div',{key:1,style:{display:'flex',flexDirection:'column',gap:1}},E('span',{style:{fontFamily:"'IBM Plex Mono',monospace",color:'#1b5fd1',fontSize:12.5}},r.ref),E('span',{style:{fontSize:10.5,color:'#9aa3b2'}},r.bizDate)),
+            E('span',{key:2},r.register),
+            E('span',{key:3},r.cashier),
+            E('div',{key:4,style:{display:'flex',flexDirection:'column',gap:1,fontSize:11}},E('span',null,'Opened '+r.opened),E('span',{style:{color:'#9aa3b2'}},'Closed '+r.closed)),
+            statusTag(r.status,r.status==='Open'?'green':'gray'),
+            E('span',{key:6},RM(r.expected)),
+            E('span',{key:7},r.counted!=null?RM(r.counted):'—'),
+            E('span',{key:8,style:{fontWeight:600,color:r.variance==null?undefined:r.variance<0?'#b3261e':r.variance>0?'#146c43':undefined}},r.variance!=null?RM(r.variance):'—')
+          ]))
+        :noteBox('No shifts match the current filters.','blue'),
+        noteBox('Opening Cash remains fully visible in Shift Detail / Close Review — simplified here to keep Expected, Counted and Variance visible without scrolling.','blue'));
+    }
+    if(g==='monitor') return E('div',{style:{display:'flex',flexDirection:'column',gap:12}},
+      E('span',{style:{fontSize:19,fontWeight:700}},'Shift Monitor'),
+      tbl(['REGISTER','CASHIER','SHIFT REF','BUSINESS DATE','OPENED AT','EXPECTED CASH','STATUS','ATTENTION'],'90px 130px 130px 110px 100px 110px 90px 120px',
+        SHIFTS.map(r=>[E('span',{key:1,style:{fontWeight:600}},r.register),E('span',{key:2},r.cashier),E('span',{key:3,style:{fontFamily:"'IBM Plex Mono',monospace",color:'#1b5fd1'}},r.ref),E('span',{key:4},r.bizDate),E('span',{key:5,style:{fontSize:11.5}},r.opened),E('span',{key:6},RM(r.expected)),statusTag(r.status,r.status==='Open'?'green':'gray'),E('span',{key:8,style:{fontSize:11.5,color:r.status==='Open'?'#8a5100':'#6b7585'}},r.status==='Open'?'Shift open':'—')])));
+    if(g==='cashMoveMonitor') return E('div',{style:{display:'flex',flexDirection:'column',gap:12}},
+      E('span',{style:{fontSize:19,fontWeight:700}},'Cash Movement Monitor'),
+      E('div',{style:{display:'flex',gap:8,flexWrap:'wrap'}},...['Business Date','Register','Cashier','Movement Type','Amount','Actor'].map(l=>E('button',{key:l,style:{height:34,padding:'0 12px',borderRadius:8,border:'1px solid #cfd5de',background:'#fff',fontSize:12,fontWeight:600,cursor:'pointer'}},l))),
+      tbl(['TIME','TYPE','AMOUNT','REASON','REFERENCE','ACTOR','APPROVAL','STATUS'],'70px 140px 100px 170px 140px 120px 90px 90px',
+        MOVEMENTS.map(m=>[E('span',{key:1,style:{fontSize:11.5}},m.time),E('span',{key:2},m.type),E('span',{key:3,style:{fontWeight:600,color:m.amount<0?'#b3261e':undefined}},RM(m.amount)),E('span',{key:4,style:{fontSize:11.5}},m.reason),E('span',{key:5,style:{fontFamily:"'IBM Plex Mono',monospace",fontSize:11.5,color:'#1b5fd1'}},m.ref),E('span',{key:6},m.actor),E('span',{key:7,style:{fontSize:11.5}},m.approval),statusTag(m.status,'gray')])),
+      noteBox('Store-level operational trace — not an Accounting-Lite ledger.','blue'));
+    if(g==='multiCounter') return E('div',{style:{display:'flex',flexDirection:'column',gap:12}},
+      E('span',{style:{fontSize:19,fontWeight:700}},'Registers'),
+      E('div',{style:{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:12}},
+        ...[['POS-01','Demo Cashier','Open',76240],['POS-02','Ravi K.','Open',54800],['POS-03','—','No Open Shift',null]].map(([reg,cash,status,exp])=>card([E('span',{style:{fontWeight:700,fontSize:14}},reg),statusTag(status,status==='Open'?'green':'gray'),kv('Cashier',cash),exp!=null?kv('Expected Cash',RM(exp)):null]))),
+      noteBox('Each register tracks its own Shift. No consolidated physical-drawer semantics are implied.','blue'));
+    if(g==='bizDateStrip') return E('div',{style:{display:'flex',flexDirection:'column',gap:12,maxWidth:520}},
+      card([kv('Timestamp','27 Sep 2026 · 00:20'),kv('Business Date','26 Sep 2026')]),
+      noteBox('Calendar timestamp and Business Date are kept visually distinct throughout this package. Business-date rollover policy is OPEN — see screen 51.','amber'));
+    return null;
+  }
+
+  shiftOpsBody(){
+    const s=this.state, g=s.opState;
+    if(g==='openEntry'||g==='openEntryCash'||g==='openEntryNote') return E('div',{style:{display:'flex',flexDirection:'column',gap:12,maxWidth:460}},
+      stepper(['Enter','Review','Open'],0),
+      card([kv('Store',SHIFT.store),kv('Register',SHIFT.register),kv('Cashier',SHIFT.cashier),kv('Business Date',SHIFT.bizDate),kv('Opening Cash',RM(20000)),g==='openEntryNote'?kv('Note','Till recount after previous shortage'):null]),
+      g==='openEntryCash'?noteBox('Opening Cash is entered per shift, not silently defaulted. RM 200.00 shown elsewhere in this package is sample data, not a universal float rule.','amber'):null,
+      E('button',{style:{alignSelf:'flex-end',height:38,padding:'0 16px',borderRadius:8,border:0,background:'#1b5fd1',color:'#fff',fontWeight:600,cursor:'pointer'}},'Continue'));
+    if(g==='openConflictCashier') return card([E('span',{style:{fontSize:15,fontWeight:600,color:'#b3261e'}},'This cashier already has an open shift'),kv('Existing Shift','SH-POS03-0054'),noteBox('Whether one cashier may hold multiple open shifts is authority-dependent — not decided here.','red')],{maxWidth:460});
+    if(g==='openConflictRegister') return card([E('span',{style:{fontSize:15,fontWeight:600,color:'#b3261e'}},'This register already has an open shift'),kv('Existing Shift','SH-POS01-0268'),noteBox('Whether a register may have concurrent open shifts is authority-dependent — not decided here.','red')],{maxWidth:460});
+    if(g==='openReview') return E('div',{style:{display:'flex',flexDirection:'column',gap:12,maxWidth:460}},
+      stepper(['Enter','Review','Open'],1),
+      card([kv('Cashier',SHIFT.cashier),kv('Register',SHIFT.register),kv('Business Date',SHIFT.bizDate),kv('Opening Cash',RM(20000)),kv('Note','—'),kv('Authorization','Not required')]),
+      E('button',{style:{alignSelf:'flex-end',height:40,padding:'0 18px',borderRadius:8,border:0,background:'#1b5fd1',color:'#fff',fontWeight:600,cursor:'pointer'}},'Open Shift'));
+    if(g==='openPosted') return card([E('div',{style:{display:'flex',gap:12,alignItems:'flex-start'}},E('div',{style:{width:40,height:40,borderRadius:10,background:'#e5f4ec',color:'#146c43',display:'grid',placeItems:'center',flex:'none'}},E('i',{className:'icon-circle-check',style:{fontSize:20}})),E('div',{style:{display:'flex',flexDirection:'column',gap:4}},E('span',{style:{fontSize:16,fontWeight:700}},'Shift Open'),E('span',{style:{fontSize:13,color:'#4a5567'}},'Opening Cash recorded as the first CashMovement.'))),kv('Shift Reference',SHIFT.ref)],{maxWidth:460});
+    if(g==='cashInEntry') return E('div',{style:{display:'flex',flexDirection:'column',gap:12,maxWidth:460}},
+      E('span',{style:{fontSize:19,fontWeight:700}},'Cash In'),
+      card([kv('Shift',SHIFT.ref),kv('Amount',RM(10000)),kv('Reason','Float top-up'),kv('Reference','—'),kv('Note','—')]),
+      noteBox('Reason codes shown are examples — a fixed reason list was not invented unless authority defines one.','amber'),
+      E('button',{style:{alignSelf:'flex-end',height:38,padding:'0 16px',borderRadius:8,border:0,background:'#1b5fd1',color:'#fff',fontWeight:600,cursor:'pointer'}},'Continue'));
+    if(g==='cashInDetails') return card([kv('Shift',SHIFT.ref),kv('Amount',RM(10000)),kv('Reason','Float top-up'),kv('Reference','CI-2026-00044'),kv('Note','Requested by shift supervisor')],{maxWidth:440});
+    if(g==='cashInAuth') return card([E('span',{style:{fontSize:14,fontWeight:600,color:'#8a5100'}},'Authorization required'),kv('Amount',RM(10000)),noteBox('Whether cash-in requires manager authorization, and at what threshold, is authority-dependent — not invented here.','amber')],{maxWidth:440});
+    if(g==='cashInDraft') return E('div',{style:{display:'flex',flexDirection:'column',gap:10,maxWidth:440}},noteBox('DRAFT — no cash-accountability effect yet.','blue'),card([kv('Amount',RM(10000)),kv('Status','Draft')]));
+    if(g==='cashInPosted') return card([E('div',{style:{display:'flex',gap:12,alignItems:'flex-start'}},E('div',{style:{width:40,height:40,borderRadius:10,background:'#e5f4ec',color:'#146c43',display:'grid',placeItems:'center',flex:'none'}},E('i',{className:'icon-circle-check',style:{fontSize:20}})),E('div',{style:{display:'flex',flexDirection:'column',gap:4}},E('span',{style:{fontSize:16,fontWeight:700}},'Cash In Posted'),E('span',{style:{fontSize:13,color:'#4a5567'}},'Immutable CashMovement recorded.'))),kv('Reference','CI-2026-00044')],{maxWidth:460});
+    if(g==='cashOutEntry') return E('div',{style:{display:'flex',flexDirection:'column',gap:12,maxWidth:460}},
+      E('span',{style:{fontSize:19,fontWeight:700}},'Cash Out'),
+      card([kv('Shift',SHIFT.ref),kv('Amount',RM(5000)),kv('Reason','—'),kv('Reference','—'),kv('Note','—')]),
+      E('button',{style:{alignSelf:'flex-end',height:38,padding:'0 16px',borderRadius:8,border:0,background:'#1b5fd1',color:'#fff',fontWeight:600,cursor:'pointer'}},'Continue'));
+    if(g==='cashOutExample') return E('div',{style:{display:'flex',flexDirection:'column',gap:10,maxWidth:460}},
+      card([kv('Amount',RM(5000)),kv('Reason','Ice delivery'),kv('Reference','CO-2026-00091')]),
+      noteBox('Shown as an operational cash-movement reference only. Whether supplier payments from the drawer are a universal rule, or belong to Accounting-Lite/Procurement, is not decided here — ownership stays outside CashierShift.','blue'));
+    if(g==='cashOutPosted') return card([E('div',{style:{display:'flex',gap:12,alignItems:'flex-start'}},E('div',{style:{width:40,height:40,borderRadius:10,background:'#e5f4ec',color:'#146c43',display:'grid',placeItems:'center',flex:'none'}},E('i',{className:'icon-circle-check',style:{fontSize:20}})),E('div',{style:{display:'flex',flexDirection:'column',gap:4}},E('span',{style:{fontSize:16,fontWeight:700}},'Cash Out Posted'),E('span',{style:{fontSize:13,color:'#4a5567'}},'Immutable CashMovement recorded.'))),kv('Reference','CO-2026-00091')],{maxWidth:460});
+    if(g==='openRetry') return card([E('span',{style:{fontSize:15,fontWeight:600}},'Open Shift Outcome Unknown'),E('span',{style:{fontSize:13,color:'#4a5567'}},'The connection was interrupted after submitting. This shift may already be open. Do not submit again — the system checks authoritative local status first. Retry is safe and cannot open this shift twice.'),kv('Operation Reference','SH-OP-00291'),E('div',{style:{display:'flex',gap:8}},E('button',{style:{height:38,padding:'0 14px',borderRadius:8,border:'1px solid #cfd5de',background:'#fff',fontWeight:600,cursor:'pointer'}},'Check Status'),E('button',{style:{height:38,padding:'0 14px',borderRadius:8,border:0,background:'#1b5fd1',color:'#fff',fontWeight:600,cursor:'pointer'}},'Retry Safely'))],{maxWidth:460});
+    if(g==='cashInRetry') return card([E('span',{style:{fontSize:15,fontWeight:600}},'Cash In Outcome Unknown'),E('span',{style:{fontSize:13,color:'#4a5567'}},'The connection was interrupted after submitting. This Cash In may already be posted. Do not submit again — the system checks authoritative local status first. Retry is safe and cannot post this CashMovement twice.'),kv('Operation Reference','CI-OP-04417'),E('div',{style:{display:'flex',gap:8}},E('button',{style:{height:38,padding:'0 14px',borderRadius:8,border:'1px solid #cfd5de',background:'#fff',fontWeight:600,cursor:'pointer'}},'Check Status'),E('button',{style:{height:38,padding:'0 14px',borderRadius:8,border:0,background:'#1b5fd1',color:'#fff',fontWeight:600,cursor:'pointer'}},'Retry Safely'),E('button',{style:{height:38,padding:'0 14px',borderRadius:8,border:'1px solid #cfd5de',background:'#fff',fontWeight:600,cursor:'pointer'}},'Return to Shift'))],{maxWidth:460});
+    if(g==='cashOutRetry') return card([E('span',{style:{fontSize:15,fontWeight:600}},'Cash Out Outcome Unknown'),E('span',{style:{fontSize:13,color:'#4a5567'}},'The connection was interrupted after submitting. This Cash Out may already be posted. Do not submit again — the system checks authoritative local status first. Retry is safe and cannot post this CashMovement twice.'),kv('Operation Reference','CO-OP-07703'),E('div',{style:{display:'flex',gap:8}},E('button',{style:{height:38,padding:'0 14px',borderRadius:8,border:'1px solid #cfd5de',background:'#fff',fontWeight:600,cursor:'pointer'}},'Check Status'),E('button',{style:{height:38,padding:'0 14px',borderRadius:8,border:0,background:'#1b5fd1',color:'#fff',fontWeight:600,cursor:'pointer'}},'Retry Safely'),E('button',{style:{height:38,padding:'0 14px',borderRadius:8,border:'1px solid #cfd5de',background:'#fff',fontWeight:600,cursor:'pointer'}},'Return to Shift'))],{maxWidth:460});
+    if(g==='movementsTab') return E('div',{style:{display:'flex',flexDirection:'column',gap:12}},
+      E('span',{style:{fontSize:19,fontWeight:700}},'Cash Movements — '+SHIFT.ref),
+      tbl(['TIME','TYPE','AMOUNT','REASON','REFERENCE','ACTOR','APPROVAL','STATUS'],'70px 150px 100px 180px 140px 120px 90px 90px',
+        MOVEMENTS.map(m=>[E('span',{key:1,style:{fontSize:11.5}},m.time),E('span',{key:2},m.type),E('span',{key:3,style:{fontWeight:600,color:m.amount<0?'#b3261e':undefined}},RM(m.amount)),E('span',{key:4,style:{fontSize:11.5}},m.reason),E('span',{key:5,style:{fontFamily:"'IBM Plex Mono',monospace",fontSize:11.5,color:'#1b5fd1'}},m.ref),E('span',{key:6},m.actor),E('span',{key:7,style:{fontSize:11.5}},m.approval),statusTag(m.status,'gray')])),
+      noteBox('No ordinary edit/delete exists on a posted CashMovement. Correction requires an explicit, traceable reversal.','blue'));
+    return null;
+  }
+
+  closeOpsBody(){
+    const s=this.state, g=s.closeState;
+    if(g==='reviewShift') return E('div',{style:{display:'flex',flexDirection:'column',gap:12,maxWidth:560}},
+      stepper(['Review','Count','Variance','Confirm'],0),
+      card([kv('Shift',SHIFT.ref),kv('Cashier',SHIFT.cashier),kv('Opening Cash',RM(SHIFT.opening)),kv('Cash Sales',RM(SHIFT.cashSales)),kv('Cash In',RM(SHIFT.cashIn)),kv('Cash Out',RM(-SHIFT.cashOut),'#b3261e'),kv('Expected Cash',RM(EXPECTED),'#1b5fd1')]),
+      E('button',{style:{alignSelf:'flex-end',height:38,padding:'0 16px',borderRadius:8,border:0,background:'#1b5fd1',color:'#fff',fontWeight:600,cursor:'pointer'}},'Continue to Count'));
+    if(g==='countCash'||g==='countBlind') return E('div',{style:{display:'flex',flexDirection:'column',gap:12,maxWidth:460}},
+      stepper(['Review','Count','Variance','Confirm'],1),
+      g==='countBlind'?noteBox('Whether Expected Cash is hidden during counting (blind count) or visible is AUTHORITY-DEPENDENT — not selected as a universal rule.','amber'):null,
+      card([...['RM 100','RM 50','RM 20','RM 10','RM 5','RM 1','Coins'].map(d=>kv(d,'× —')),kv('Total Counted Cash',RM(COUNTED),'#1b5fd1')]),
+      noteBox('Denomination entry is a supported presentation, not a mandatory MiniMart rule. Denomination sets are Country Policy — an India pack remains possible without redesign.','blue'),
+      E('button',{style:{alignSelf:'flex-end',height:38,padding:'0 16px',borderRadius:8,border:0,background:'#1b5fd1',color:'#fff',fontWeight:600,cursor:'pointer'}},'Continue to Variance'));
+    if(g==='reviewVariance'||g==='varianceOver'||g==='varianceShort'||g==='varianceExact'){
+      let counted=COUNTED, label='Short', tone='#b3261e';
+      if(g==='varianceOver'){counted=76440;label='Over';tone='#146c43';}
+      if(g==='varianceExact'){counted=EXPECTED;label='Exact';tone='#4a5567';}
+      const variance=counted-EXPECTED;
+      return E('div',{style:{display:'flex',flexDirection:'column',gap:12,maxWidth:460}},
+        stepper(['Review','Count','Variance','Confirm'],2),
+        card([kv('Expected Cash',RM(EXPECTED)),kv('Counted Cash',RM(counted)),kv('Variance',(variance===0?RM(0):RM(variance)),tone),statusTag(variance===0?'Exact':variance>0?'Over':'Short',variance===0?'gray':variance>0?'green':'red')]),
+        noteBox('Variance tolerance and any approval threshold are not invented — classification shown is factual (Over/Short/Exact), not a policy acceptance judgement.','amber'),
+        E('button',{style:{alignSelf:'flex-end',height:38,padding:'0 16px',borderRadius:8,border:0,background:'#1b5fd1',color:'#fff',fontWeight:600,cursor:'pointer'}},'Continue'));
+    }
+    if(g==='varianceNote') return E('div',{style:{display:'flex',flexDirection:'column',gap:10,maxWidth:440}},card([kv('Variance',RM(VARIANCE),'#b3261e'),kv('Note','Till recount pending — till drawer sticky, recount requested')]),noteBox('A note is supported; it is not forced by an invented threshold. If policy requires an explanation, that validation state is policy-driven.','blue'));
+    if(g==='confirmClose') return E('div',{style:{display:'flex',flexDirection:'column',gap:12,maxWidth:560}},
+      stepper(['Review','Count','Variance','Confirm'],3),
+      card([kv('Shift',SHIFT.ref),kv('Cashier',SHIFT.cashier),kv('Register',SHIFT.register),kv('Business Date',SHIFT.bizDate),kv('Opened At',SHIFT.openedAt),kv('Closing At','26 Sep 2026 · 20:10'),kv('Opening Cash',RM(SHIFT.opening)),kv('Expected Cash',RM(EXPECTED)),kv('Counted Cash',RM(COUNTED)),kv('Variance',RM(VARIANCE),'#b3261e'),kv('Tender Summary', TENDER.map(t=>t.t+' '+RM(t.amt)).join(' · '))]),
+      E('button',{style:{alignSelf:'flex-end',height:40,padding:'0 18px',borderRadius:8,border:0,background:'#1b5fd1',color:'#fff',fontWeight:600,cursor:'pointer'}},'Close Shift'));
+    if(g==='closeRetry') return card([E('span',{style:{fontSize:15,fontWeight:600}},'Close Outcome Unknown'),E('span',{style:{fontSize:13,color:'#4a5567'}},'Retry cannot close the shift twice.'),kv('Operation Reference','SH-OP-88120'),E('div',{style:{display:'flex',gap:8}},E('button',{style:{height:38,padding:'0 14px',borderRadius:8,border:'1px solid #cfd5de',background:'#fff',fontWeight:600,cursor:'pointer'}},'Check Status'),E('button',{style:{height:38,padding:'0 14px',borderRadius:8,border:0,background:'#1b5fd1',color:'#fff',fontWeight:600,cursor:'pointer'}},'Retry Safely'))],{maxWidth:460});
+    if(g==='closeConflict') return card([E('span',{style:{fontSize:15,fontWeight:600,color:'#b3261e'}},'Shift changed since loaded'),E('span',{style:{fontSize:13,color:'#4a5567'}},'Another authorized action posted a Cash Out on this shift.'),E('button',{style:{alignSelf:'flex-start',height:38,padding:'0 16px',borderRadius:8,border:0,background:'#1b5fd1',color:'#fff',fontWeight:600,cursor:'pointer'}},'Refresh Shift')],{maxWidth:460});
+    if(g==='closedDetail') return E('div',{style:{display:'flex',flexDirection:'column',gap:12}},
+      E('div',{style:{display:'flex',alignItems:'baseline',gap:10}},statusTag('Closed','gray'),E('span',{style:{fontSize:19,fontWeight:700}},SHIFT.ref)),
+      card([kv('Cashier',SHIFT.cashier),kv('Register',SHIFT.register),kv('Business Date',SHIFT.bizDate),kv('Opened At',SHIFT.openedAt),kv('Closed At','26 Sep 2026 · 20:10'),kv('Opening Cash',RM(SHIFT.opening)),kv('Expected Cash',RM(EXPECTED)),kv('Counted Cash',RM(COUNTED)),kv('Variance',RM(VARIANCE),'#b3261e')]),
+      noteBox('Read-only. No Edit Count, Edit Expected, Edit Opening Cash, Delete or Reopen action exists.','blue'));
+    if(g==='closedTender') return tbl(['TENDER','COUNT','GROSS','NET'],'minmax(140px,1.3fr) 100px 110px 110px',TENDER.map(t=>[E('span',{key:1,style:{fontWeight:600}},t.t),E('span',{key:2},String(t.n)),E('span',{key:3},RM(t.amt)),E('span',{key:4},RM(t.amt))]));
+    if(g==='closedMovements') return tbl(['TIME','TYPE','AMOUNT','REASON','REFERENCE','ACTOR','STATUS'],'70px 150px 100px 180px 140px 120px 90px',
+      MOVEMENTS.map(m=>[E('span',{key:1,style:{fontSize:11.5}},m.time),E('span',{key:2},m.type),E('span',{key:3,style:{fontWeight:600,color:m.amount<0?'#b3261e':undefined}},RM(m.amount)),E('span',{key:4,style:{fontSize:11.5}},m.reason),E('span',{key:5,style:{fontFamily:"'IBM Plex Mono',monospace",fontSize:11.5,color:'#1b5fd1'}},m.ref),E('span',{key:6},m.actor),statusTag(m.status,'gray')]));
+    if(g==='closedAudit') return E('div',{style:{display:'flex',flexDirection:'column',gap:10}},...[
+      ['Shift opened','08:02 · Demo Cashier'],['Cash movement posted','14:40 · Cash Out CO-2026-00091'],['Count started','20:02 · Demo Cashier'],['Count reviewed','20:07 · Siti M.'],['Variance acknowledged','20:08 · note attached'],['Shift closed','20:10 · Demo Cashier']
+    ].map(([a,b])=>card([E('span',{style:{fontSize:12.5,fontWeight:600}},a),E('span',{style:{fontSize:11.5,color:'#6b7585'}},b)])));
+    if(g==='reopenNote') return noteBox('Shift Reopen is not invented. A closed shift remains immutable/read-only unless a future approved rule introduces explicit reopen semantics.','amber');
+    return null;
+  }
+
+  bizdayBody(){
+    const s=this.state, g=s.bdState;
+    if(g==='bdList'||g==='bdListFiltered'||g==='bdListEmpty'){
+      let rows=BIZDAYS; if(g==='bdListFiltered') rows=rows.filter(r=>r.status==='Open'); if(g==='bdListEmpty') rows=[];
+      return E('div',{style:{display:'flex',flexDirection:'column',gap:12}},
+        E('span',{style:{fontSize:19,fontWeight:700}},'Business Day List'),
+        rows.length?tbl(['BUSINESS DATE','STORE','OPENED AT','STATUS','OPEN SHIFTS','CLOSED SHIFTS','ATTENTION','CLOSED AT'],'110px minmax(140px,1.2fr) 150px 90px 100px 100px 100px 150px',
+          rows.map(r=>[E('span',{key:1,style:{fontWeight:600}},r.date),E('span',{key:2},r.store),E('span',{key:3,style:{fontSize:11.5}},r.openedAt),statusTag(r.status,r.status==='Open'?'green':'gray'),E('span',{key:5},String(r.openShifts)),E('span',{key:6},String(r.closedShifts)),E('span',{key:7,style:{color:r.attention?'#8a5100':undefined,fontWeight:r.attention?600:400}},String(r.attention)),E('span',{key:8,style:{fontSize:11.5}},r.closedAt)]))
+        :noteBox('No Business Days match the current filters.','blue'));
+    }
+    if(g==='bdDetailOpen'||g==='bdDetailClosing') return E('div',{style:{display:'flex',flexDirection:'column',gap:12}},
+      E('div',{style:{display:'flex',alignItems:'baseline',gap:10}},E('span',{style:{fontSize:19,fontWeight:700}},'Business Day — 26 Sep 2026'),statusTag(g==='bdDetailClosing'?'Closing':'Open',g==='bdDetailClosing'?'amber':'green')),
+      card([kv('Store','MiniMart Central'),kv('Opened At','26 Sep 2026 · 06:00'),kv('Shift Count','2'),kv('Open Shifts','2'),kv('Closed Shifts','0')]),
+      E('div',{style:{display:'grid',gridTemplateColumns:'repeat(2,1fr)',gap:12}},
+        card([kv('Gross Sales',RM(260000)),kv('Cash Sales',RM(116040)),kv('Non-cash Sales',RM(143960))]),
+        card([kv('Pending Blockers','2 shifts still open'),kv('Attention','1')])),
+      noteBox('Operational summary only — not a full financial P&L.','blue'));
+    if(g==='crossMidnight') return E('div',{style:{display:'flex',flexDirection:'column',gap:10,maxWidth:460}},
+      card([kv('Timestamp','27 Sep 2026 · 00:20'),kv('Business Date','26 Sep 2026')]),
+      noteBox('Calendar date and Business Date can differ when configured policy allows operations past midnight. This illustration does not select when that occurs.','amber'));
+    if(g==='rolloverOpen') return card([E('span',{style:{fontSize:15,fontWeight:700}},'BUSINESS DATE ROLLOVER'),E('span',{style:{fontSize:12.5,fontWeight:700,color:'#8a5100'}},'OPEN / AUTHORITY-DEPENDENT'),E('span',{style:{fontSize:12.5,color:'#4a5567'}},'Midnight, first sale, manual rollover, configured cut-off, and automatic-after-last-shift are all shown as unselected examples. None is the universal MiniMart rule.')],{maxWidth:480});
+    if(g==='bdOpenState') return card([kv('Business Date','26 Sep 2026'),kv('Store','MiniMart Central'),noteBox('Whether Business Day opening is an explicit manual action or automatic/config-driven is not assumed here — shown as a supported state only.','blue')],{maxWidth:460});
+    if(g==='bdCloseReadiness') return E('div',{style:{display:'flex',flexDirection:'column',gap:12,maxWidth:560}},
+      E('span',{style:{fontSize:19,fontWeight:700}},'Business Day Close — Readiness'),
+      card([kv('Open Shifts','2',"#8a5100"),kv('Shifts Still Closing','0'),kv('Unreviewed Variance','1 shift','#8a5100'),kv('Sync State','Healthy'),kv('Store Node','Online')]),
+      statusTag('Attention','amber'),
+      E('button',{disabled:true,style:{alignSelf:'flex-end',height:38,padding:'0 16px',borderRadius:8,border:0,background:'#9aa3b2',color:'#fff',fontWeight:600,cursor:'not-allowed'}},'Close Business Day'));
+    if(g==='bdCloseBlocking') return card([E('span',{style:{fontSize:14,fontWeight:600,color:'#8a5100'}},'2 open shifts on this Business Date'),E('span',{style:{fontSize:12.5,color:'#4a5567'}},'Whether Business Day Close blocks on open shifts, auto-closes them, allows an exceptional close, or rolls them forward is a policy decision.'),noteBox('Final behavior: AUTHORITY-DEPENDENT.','amber')],{maxWidth:480});
+    if(g==='exceptionalClose') return card([E('span',{style:{fontSize:15,fontWeight:700}},'EXCEPTIONAL DAY CLOSE'),E('span',{style:{fontSize:12.5,fontWeight:700,color:'#8a5100'}},'OPEN / AUTHORITY-DEPENDENT'),E('div',{style:{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:8}},...['Manager Override','Force Close','Carry Forward'].map(l=>card([E('span',{key:l,style:{fontSize:12.5,fontWeight:600}},l),E('span',{style:{fontSize:11,color:'#8a5100',fontWeight:600}},'UNRESOLVED')]))),E('span',{style:{fontSize:12,color:'#4a5567'}},'Shown only as documented policy slots — none is approved current behavior.')],{maxWidth:520});
+    if(g==='bdCloseReview') return E('div',{style:{display:'flex',flexDirection:'column',gap:12,maxWidth:560}},
+      E('span',{style:{fontSize:19,fontWeight:700}},'Business Day Close Review'),
+      card([kv('Business Date','25 Sep 2026'),kv('Store','MiniMart Central'),kv('Shift Status','3 closed, 0 open'),kv('Cash Variance Summary','−RM 2.00 / +RM 5.00 across 2 shifts'),kv('Gross Sales',RM(312000)),kv('Unresolved Items','None')]),
+      E('button',{style:{alignSelf:'flex-end',height:40,padding:'0 18px',borderRadius:8,border:0,background:'#1b5fd1',color:'#fff',fontWeight:600,cursor:'pointer'}},'Close Business Day'));
+    if(g==='bdRetry') return card([E('span',{style:{fontSize:15,fontWeight:600}},'Close Outcome Unknown'),E('span',{style:{fontSize:13,color:'#4a5567'}},'Retry cannot close the Business Day twice.'),kv('Operation Reference','BD-OP-11042'),E('div',{style:{display:'flex',gap:8}},E('button',{style:{height:38,padding:'0 14px',borderRadius:8,border:'1px solid #cfd5de',background:'#fff',fontWeight:600,cursor:'pointer'}},'Check Status'),E('button',{style:{height:38,padding:'0 14px',borderRadius:8,border:0,background:'#1b5fd1',color:'#fff',fontWeight:600,cursor:'pointer'}},'Retry Safely'))],{maxWidth:460});
+    if(g==='bdClosed') return E('div',{style:{display:'flex',flexDirection:'column',gap:12}},
+      E('div',{style:{display:'flex',alignItems:'baseline',gap:10}},statusTag('Closed','gray'),E('span',{style:{fontSize:19,fontWeight:700}},'Business Day — 25 Sep 2026')),
+      card([kv('Store','MiniMart Central'),kv('Closed At','25 Sep 2026 · 23:10'),kv('Closed By','Siti M.'),kv('Shift Summary','3 closed'),kv('Operational Totals',RM(312000)),kv('Variance Summary','−RM 2.00 / +RM 5.00')]),
+      noteBox('Historical/read-only. No ordinary edits.','blue'));
+    if(g==='bdClosedAudit') return E('div',{style:{display:'flex',flexDirection:'column',gap:10}},...[
+      ['Opened','25 Sep 2026 · 06:00'],['Operational activity','3 shifts opened/closed across the day'],['Close review','22:55 · Siti M.'],['Closed','23:10 · Siti M.']
+    ].map(([a,b])=>card([E('span',{style:{fontSize:12.5,fontWeight:600}},a),E('span',{style:{fontSize:11.5,color:'#6b7585'}},b)])));
+    if(g==='bdReopenNote') return noteBox('Business Day Reopen is not invented. A closed Business Day remains immutable unless an approved future rule introduces correction/reopen semantics.','amber');
+    return null;
+  }
+
+  crossBody(){
+    const s=this.state, g=s.crossState;
+    if(g==='traceSale') return card([kv('Cash Sale Effect',RM(61240)),kv('Shift',SHIFT.ref),E('a',{href:'#',style:{fontSize:12.5,fontWeight:600}},'View Source Sales →'),noteBox('Sales remains Sales-owned — this is a read-only shift accountability input, not a duplicate sales ledger.','blue')],{maxWidth:460});
+    if(g==='traceRefund') return card([kv('Cash Refund Effect',RM(-6000),'#b3261e'),kv('Source','Sales Return SR-2026-00021'),E('a',{href:'#',style:{fontSize:12.5,fontWeight:600}},'View Return →'),noteBox('Returns remains Returns-owned; Cash & Business Day shows only the operational effect on the drawer.','blue')],{maxWidth:460});
+    if(g==='traceCollection') return card([kv('Cash Collection Effect',RM(30000)),kv('Source','Customer Collection COL-2026-00040'),E('a',{href:'#',style:{fontSize:12.5,fontWeight:600}},'View Collection →'),noteBox('CustomerCollection ownership remains with Customer & Credit — shown here only as a source-linked cash effect.','blue')],{maxWidth:460});
+    if(g==='traceSupplier') return card([kv('Cash Out Effect',RM(-5000)),kv('Source','Purchase Return / Expense reference'),E('a',{href:'#',style:{fontSize:12.5,fontWeight:600}},'View Source →'),noteBox('Supplier/expense financial ownership stays with Accounting-Lite/Procurement — no supplier payment workflow is built inside Shift.','blue')],{maxWidth:460});
+    if(g==='varianceReview') return E('div',{style:{display:'flex',flexDirection:'column',gap:12}},
+      E('span',{style:{fontSize:19,fontWeight:700}},'Variance Review'),
+      tbl(['SHIFT','CASHIER','EXPECTED','COUNTED','VARIANCE','NOTE','ATTENTION'],'130px 130px 100px 100px 100px minmax(140px,1.2fr) 100px',
+        SHIFTS.filter(r=>r.variance!=null).map(r=>[E('span',{key:1,style:{fontFamily:"'IBM Plex Mono',monospace",color:'#1b5fd1'}},r.ref),E('span',{key:2},r.cashier),E('span',{key:3},RM(r.expected)),E('span',{key:4},RM(r.counted)),E('span',{key:5,style:{fontWeight:600,color:r.variance<0?'#b3261e':'#146c43'}},RM(r.variance)),E('span',{key:6,style:{fontSize:11.5}},r.variance<0?'Till recount pending':'—'),E('span',{key:7},r.variance<0?'Attention':'—')])),
+      noteBox('Variance tolerance and approval threshold were not invented.','amber'));
+    if(g==='diffReport') return E('div',{style:{display:'flex',flexDirection:'column',gap:12}},
+      E('span',{style:{fontSize:19,fontWeight:700}},'Cash Difference Reporting'),
+      E('div',{style:{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:12}},
+        card([E('span',{style:{fontSize:11,fontWeight:600,color:'#6b7585'}},'Over'),E('span',{style:{fontSize:20,fontWeight:700,color:'#146c43'}},RM(500))]),
+        card([E('span',{style:{fontSize:11,fontWeight:600,color:'#6b7585'}},'Short'),E('span',{style:{fontSize:20,fontWeight:700,color:'#b3261e'}},RM(-200))]),
+        card([E('span',{style:{fontSize:11,fontWeight:600,color:'#6b7585'}},'Exact'),E('span',{style:{fontSize:20,fontWeight:700}},'0')])),
+      noteBox('Factual difference totals by Shift/Register/Business Date only. No cashier performance score, fraud score, or ranking is produced.','blue'));
+    if(g==='nodeDown') return noteBox('Store Node unavailable — Shift/Business Day posting cannot proceed until the connection returns.','red');
+    if(g==='syncDown') return E('div',{style:{display:'flex',flexDirection:'column',gap:10,maxWidth:460}},noteBox('Cloud Sync unavailable. Store Node is online.','amber'),card([kv('Local Shift Operations','Continue — locally authoritative'),kv('Queued for Sync','4 movements')]));
+    return null;
+  }
+
+  dsBody(){
+    const s=this.state;
+    if(s.ds==='crossmap') return E('div',{style:{display:'flex',flexDirection:'column',gap:10}},...[
+      ['Shift List → Shift Detail → Cash Movements','drill into a shift'],
+      ['Cash Movements → Source Sale / Refund / Collection / Expense','traced, never duplicated'],
+      ['Shift Detail → Close Shift → Closed Shift','full close workflow'],
+      ['Business Day List → Business Day Detail → Shift Monitor','day-level oversight'],
+      ['Business Day Detail → Day Close Review → Closed Business Day','full close workflow'],
+      ['POS Shift → same Shift identity/reference','no duplicated identity']
+    ].map(([a,b])=>card([E('span',{style:{fontSize:12.5,fontWeight:600}},a),E('span',{style:{fontSize:11.5,color:'#6b7585'}},b)])));
+    if(s.ds==='table') return E('div',{style:{display:'grid',gridTemplateColumns:'repeat(2,1fr)',gap:12}},...['Shift Table','Cash Movement Table','Business Day Table','Variance Table','Tender Summary Table'].map(n=>card([E('span',{style:{fontWeight:600,fontSize:12.5}},n),E('span',{style:{fontSize:12,color:'#6b7585'}},'Sticky header, dense rows, horizontal scroll only where needed.')])));
+    if(s.ds==='form') return E('div',{style:{display:'flex',gap:8,flexWrap:'wrap'}},...['Open Shift Form','Cash In Form','Cash Out Form','Count Cash Form','Close Shift Review'].map(n=>E('span',{key:n,style:{height:28,padding:'0 10px',borderRadius:8,background:'#eef1f5',color:'#3d4a5e',fontSize:12,fontWeight:600,display:'flex',alignItems:'center'}},n)));
+    if(s.ds==='permission') return E('div',{style:{display:'flex',gap:8,flexWrap:'wrap'}},...['Open Shift','View Shift','Cash In','Cash Out','Close Shift','View Count','Review Variance','View Business Day','Close Business Day','View Audit'].map(n=>E('span',{key:n,style:{height:28,padding:'0 10px',borderRadius:8,background:'#eef1f5',color:'#3d4a5e',fontSize:12,fontWeight:600,display:'flex',alignItems:'center'}},n)));
+    if(s.ds==='empty') return E('div',{style:{display:'flex',gap:8,flexWrap:'wrap'}},...['No Open Shift','No Cash Movements','No Shifts for Business Date','No Variances','No Open Business Day','No Search Results'].map(n=>E('span',{key:n,style:{height:28,padding:'0 10px',borderRadius:8,background:'#eef1f5',color:'#3d4a5e',fontSize:12,fontWeight:600,display:'flex',alignItems:'center'}},n)));
+    const docs=[
+      {h:'1. Screen index',lines:['77 artboards: Cash & Shift Foundation/Monitor/List (01–12), Open Shift/Cash In/Cash Out/Movement History (13–28), Close Shift/Count/Variance/Closed Shift (29–44), Business Day/Day Close/Rollover/Exceptional States (45–60), Cross-module/Connectivity/Audit/Reports (61–68), Design System/Documentation (69–74), Open Shift/Cash In/Cash Out safe-retry states added after acceptance review (75–77). Reuses the approved MiniMart Back Office shell and POS shift visual language — no redesign of POS, Back Office shell, Sales, Payments, Returns, Customer Credit or Accounting-Lite.']},
+      {h:'2. Confirmations',lines:[
+        '1. CashierShift owns cash accountability.','2. CashMovement facts are immutable.','3. BusinessDay owns operating-day lifecycle/close state.','4. Shift and BusinessDay are distinct aggregates.','5. Expected Cash is derived, never editable.','6. Counted Cash is captured during close, not used to rewrite Expected Cash.','7. Variance is visible and traceable.','8. Variance tolerance was NOT invented.','9. Variance approval threshold was NOT invented.','10. Opening Cash is not universally fixed.','11. Cash In is an explicit movement.','12. Cash Out is an explicit movement.','13. Cash In/Out reason policy was NOT invented.','14. Cash In/Out approval policy was NOT invented.','15. Posted CashMovement cannot be ordinarily edited/deleted.','16. Closed Shift is read-only.','17. Shift reopen was NOT invented.','18. Cash count denomination use is presentation/configuration-driven.','19. Blind-count policy was NOT invented.','20. Non-cash tenders are not represented as physical drawer cash.','21. Sales remain Sales-owned.','22. Payments remain Payments-owned.','23. Returns remain Returns-owned.','24. CustomerCollection remains Customer/Credit-owned.','25. Supplier/expense financial ownership remains outside CashierShift.','26. Accounting-Lite boundary remains intact.','27. Business Date is distinct from calendar timestamp.','28. Business-date rollover policy remains OPEN.','29. No midnight rollover was selected.','30. Exceptional day-close policy remains OPEN.','31. Open-shift behavior during day close was NOT invented.','32. Business Day reopen was NOT invented.','33. Closed Business Day is historical/read-only.','34. Day Close is not Accounting Period Close.','35. Day Close is not Bank Reconciliation.','36. Store Node outage and Cloud Sync outage are distinct.','37. Cloud outage alone does not block local authoritative cash operations.','38. Safe retry cannot duplicate CashMovement.','38a. Open Shift unknown-outcome recovery is visually represented (75), not documentation-only.','38b. Cash In unknown-outcome recovery is visually represented (76), not documentation-only.','38c. Cash Out unknown-outcome recovery is visually represented (77), not documentation-only.','39. Safe retry cannot close Shift twice.','39a. Safe retry cannot create an Open Shift twice (75).','39b. Safe retry cannot post a Cash In CashMovement twice (76).','39c. Safe retry cannot post a Cash Out CashMovement twice (77).','40. Safe retry cannot close Business Day twice.','41. Multi-counter screens do not invent consolidated drawer semantics.','42. No cashier scoring/fraud-ranking system was added.','43. All required viewports (1280×720, 1366×768, 1368×800, 1920×1080) remain usable — dense tables scroll horizontally only within their own container, primary actions stay reachable.']}
+    ];
+    return E('div',{style:{display:'flex',flexDirection:'column',gap:16}},
+      E('div',{style:{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:12}},...[
+        {title:'Shell',items:['BackOfficeShell','SidebarNavigation','TopOperationalBar','StoreNodeStatus','SyncStatus']},
+        {title:'Shift',items:['ShiftHeader','ShiftStatus','ExpectedCash','CountedCash','VarianceTag','MoneyValue']},
+        {title:'Movements',items:['CashMovementTable','TenderSummary']},
+        {title:'Business Day',items:['BusinessDayTable','DayCloseReadiness','RolloverPolicyNote']},
+        {title:'Shared',items:['PermissionState','OfflineState','ValidationSummary','SafeRetryState','ReadOnlyClosedBanner','DataTable','Stepper']}
+      ].map(g=>card([E('span',{style:{fontWeight:700,fontSize:12.5}},g.title),...g.items.map(i=>E('span',{key:i,style:{fontSize:12,color:'#4a5567',fontFamily:"'IBM Plex Mono',monospace"}},i))]))),
+      ...docs.map(d=>E('div',{key:d.h,style:{display:'flex',flexDirection:'column',gap:6}},E('span',{style:{fontSize:14,fontWeight:600}},d.h),...d.lines.map((l,i)=>E('span',{key:i,style:{fontSize:12.5,color:'#4a5567',lineHeight:1.5}},l)))));
+  }
+
+  renderVals(){
+    const s=this.state, set=(o)=>this.setState(o);
+    const node=s.node==='on', cloudOk=s.sync==='ok', readOnly=s.role==='viewer';
+    const nodeP=node?pill('#e5f4ec','#146c43','icon-server','Store Node online'):pill('#fcebea','#b3261e','icon-server-off','Store Node unavailable');
+    const syncP=cloudOk?pill('#f2f4f7','#4a5567','icon-cloud','Sync healthy'):pill('#fdf3e1','#8a5100','icon-cloud-off','Cloud sync unavailable · 4 queued');
+    const roleLabel=readOnly?'Read-only role':'Cash & Business Day Manager';
+    const body={home:this.homeBody,shiftOps:this.shiftOpsBody,closeOps:this.closeOpsBody,bizday:this.bizdayBody,cross:this.crossBody,dsGallery:this.dsBody}[s.view].call(this);
+    const nav=NAV.map(([label,items])=>({label,items:items.map(([lab,icon,stub])=>({label:lab,icon,stub,bg:lab==='Cash & Shifts'?'#1b5fd1':'transparent',fg:lab==='Cash & Shifts'?'#fff':'#c3cbd9',fw:lab==='Cash & Shifts'?600:500,cursor:stub?'default':'pointer'}))}));
+    return {scrLabel:(s.scr||'01')+' '+(NAMES[s.scr]||''),rootH:this.props&&this.props.embedded?'100%':'100vh',nav,nodeP,syncP,roleLabel,nodeDown:!node,nodeUp:node,cloudDown:!cloudOk,body};
+  }
+}
+</script>
+</body>
+</html>

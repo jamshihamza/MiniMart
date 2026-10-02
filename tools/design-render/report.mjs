@@ -136,6 +136,46 @@ export function buildReportMarkdown() {
     "- Documentation: the 43 numbered confirmations live in the grouped page `MiniMart CUS - Design System &" +
       " Docs.dc.html` from the same export, not in the registered source (screen 74 is the component inventory).",
     "",
+    "## Cash / Shift / Business Day review notes",
+    "",
+    "Status: `approved-visual-reference`. v2 export verified by content: source `MiniMartCashBusinessDay.dc.html`," +
+      " SHA-256 `a0d9df668213a9a562bd0fefec9198274c57931b7c6f79da59b87554aee55fee`, from" +
+      " `MiniMart_Cash_Business_Day_ClaudeDesign_Source_v2.zip` (all 10 hashes in `CASH-BUSINESS-DAY-EXPORT-MANIFEST-v2.txt`" +
+      " match the packaged bytes). `support.js` is byte-identical to the Procurement and Customers real runtime." +
+      " The superseded 74-screen v1 source (SHA-256 `81218a8e...`) is no longer registered.",
+    "",
+    "- Structure: 77 screens, IDs 01-77 contiguous, 77 unique titles, 77 unique state mappings. The inline script" +
+      " parses cleanly and all 77 states instantiate with no errors. The six grouped pages cover all 77 screens" +
+      " exactly once (Cash Movements carries 13-28 and 75-77).",
+    "- Render: 77/77 RUNTIME-COMPLETE on the real runtime, 0 BLOCKED, 0 KNOWN-DIFFERENCE.",
+    "- v1 to v2 change set: Shift List screens 04-06 (compact 8-column layout; Business Date stacked under Shift" +
+      " Ref, Opened/Closed stacked, Opening Cash moved to Shift Detail / Close Review, Expected / Counted /" +
+      " Variance visible); new safe-retry screens 75 (Open Shift), 76 (Cash In), 77 (Cash Out); and the enum," +
+      " name, state, screen-index and confirmation wiring for them. No other business semantics changed.",
+    "- Safe retry: screens 75-77 say the outcome is unknown, the operation may already have committed, do not" +
+      " submit again, authoritative local status is checked first, and retry cannot create a duplicate shift or" +
+      " CashMovement. Check Status and Retry Safely are visible at every viewport. No rollback, force-post," +
+      " delete or manual-cleanup action exists. Close Shift (38) and Close Business Day (57) keep their pattern.",
+    "- Open decisions preserved: business-date rollover (51) shows midnight, first sale, manual, configured" +
+      " cut-off and automatic-after-last-shift as unselected examples; exceptional day close (55) shows Manager" +
+      " Override, Force Close and Carry Forward as UNRESOLVED slots. Blind count (31), variance tolerance and" +
+      " approval threshold (32-36, 65) and open shifts during day close (54) stay authority-dependent.",
+    "- Semantics seen in render: Expected Cash is derived with no editable input; non-cash tenders are labelled as" +
+      " not in the drawer (01); posted CashMovements and closed Shifts / Business Days are read-only; reopen is" +
+      " explicitly not invented (44, 60); Store Node outage (67) and Cloud Sync outage (68) are separate states;" +
+      " Sales, Returns, Collections and supplier/expense cash are read-only traces (61-64). Forbidden terms appear" +
+      " only inside disclaimers.",
+    "- Viewports: screens 04-06 and 75-77 were rendered and checked at 1280x720, 1366x768, 1368x800 and" +
+      " 1920x1080; all 77 screens were rendered at 1280x720, and a clipping scan of every screen at 1366x768 and" +
+      " 1280x720 found no hidden table content. No page-level horizontal scroll at any size. The Shift List shows" +
+      " Expected, Counted and Variance in full at every size; at 1280x720 its container overflows by 4px of empty" +
+      " trailing space with no value clipped; at the other three sizes it does not scroll.",
+    "- Cosmetic: at 1280x720 the top bar wraps its labels onto two lines because of the longer role label; nothing" +
+      " overlaps.",
+    "- Delivery note: the archive file `MiniMart Back Office Mockups.dc.html` is not a links-only index. It is a" +
+      " later edited copy of the full interactive Back Office source (about 96 KB, 42 changed lines against the" +
+      " approved source) and was not applied; the approved Back Office source is unchanged.",
+    "",
     "## Procurement viewport verification",
     "",
     "`primaryViewport` (1366x768) is verified as part of the normal `pnpm design:render --package procurement`" +

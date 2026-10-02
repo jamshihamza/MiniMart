@@ -1,0 +1,483 @@
+{
+  "package": "MiniMart Cash / Shift / Business Day",
+  "slug": "cash-shifts",
+  "status": "approved-visual-reference",
+  "sourceFile": "source/MiniMartCashBusinessDay.dc.html",
+  "sourceOfTruth": "Claude Design export committed at docs/design/cash-shifts/source/MiniMartCashBusinessDay.dc.html",
+  "screenCount": 77,
+  "primaryViewport": "1366x768",
+  "supportedViewports": ["1280x720", "1368x800", "1920x1080"],
+  "screenGroups": [
+    "Foundation & Shift Monitor",
+    "Cash Movements",
+    "Shift Close & Variance",
+    "Business Day",
+    "Operational States",
+    "Design System & Docs"
+  ],
+  "screens": [
+    {
+      "number": "01",
+      "name": "Current Shift Workspace — Open",
+      "group": "Foundation & Shift Monitor",
+      "renderFile": "01-current-shift-workspace-open.png"
+    },
+    {
+      "number": "02",
+      "name": "Current Shift Workspace — Closing",
+      "group": "Foundation & Shift Monitor",
+      "renderFile": "02-current-shift-workspace-closing.png"
+    },
+    {
+      "number": "03",
+      "name": "Current Shift Workspace — No Open Shift",
+      "group": "Foundation & Shift Monitor",
+      "renderFile": "03-current-shift-workspace-no-open-shift.png"
+    },
+    {
+      "number": "04",
+      "name": "Shift List — populated",
+      "group": "Foundation & Shift Monitor",
+      "renderFile": "04-shift-list-populated.png"
+    },
+    {
+      "number": "05",
+      "name": "Shift List — filtered by Business Date",
+      "group": "Foundation & Shift Monitor",
+      "renderFile": "05-shift-list-filtered-by-business-date.png"
+    },
+    {
+      "number": "06",
+      "name": "Shift List — filtered Closed",
+      "group": "Foundation & Shift Monitor",
+      "renderFile": "06-shift-list-filtered-closed.png"
+    },
+    {
+      "number": "07",
+      "name": "Shift List — empty",
+      "group": "Foundation & Shift Monitor",
+      "renderFile": "07-shift-list-empty.png"
+    },
+    {
+      "number": "08",
+      "name": "Shift List — Store Node unavailable",
+      "group": "Foundation & Shift Monitor",
+      "renderFile": "08-shift-list-store-node-unavailable.png"
+    },
+    {
+      "number": "09",
+      "name": "Shift Monitor (manager)",
+      "group": "Foundation & Shift Monitor",
+      "renderFile": "09-shift-monitor-manager.png"
+    },
+    {
+      "number": "10",
+      "name": "Cash Movement Monitor (store-level)",
+      "group": "Foundation & Shift Monitor",
+      "renderFile": "10-cash-movement-monitor-store-level.png"
+    },
+    {
+      "number": "11",
+      "name": "Multi-Counter Store view",
+      "group": "Foundation & Shift Monitor",
+      "renderFile": "11-multi-counter-store-view.png"
+    },
+    {
+      "number": "12",
+      "name": "Business Date vs Calendar Timestamp strip",
+      "group": "Foundation & Shift Monitor",
+      "renderFile": "12-business-date-vs-calendar-timestamp-strip.png"
+    },
+    {
+      "number": "13",
+      "name": "Open Shift — entry form",
+      "group": "Cash Movements",
+      "renderFile": "13-open-shift-entry-form.png"
+    },
+    {
+      "number": "14",
+      "name": "Open Shift — Opening Cash (not fixed default)",
+      "group": "Cash Movements",
+      "renderFile": "14-open-shift-opening-cash-not-fixed-default.png"
+    },
+    {
+      "number": "15",
+      "name": "Open Shift — Note field",
+      "group": "Cash Movements",
+      "renderFile": "15-open-shift-note-field.png"
+    },
+    {
+      "number": "16",
+      "name": "Open Shift — eligibility conflict: cashier already open",
+      "group": "Cash Movements",
+      "renderFile": "16-open-shift-eligibility-conflict-cashier-already-open.png"
+    },
+    {
+      "number": "17",
+      "name": "Open Shift — eligibility conflict: register already open",
+      "group": "Cash Movements",
+      "renderFile": "17-open-shift-eligibility-conflict-register-already-open.png"
+    },
+    {
+      "number": "18",
+      "name": "Open Shift Confirmation / Review",
+      "group": "Cash Movements",
+      "renderFile": "18-open-shift-confirmation-review.png"
+    },
+    {
+      "number": "19",
+      "name": "Open Shift — Posted / Shift Open",
+      "group": "Cash Movements",
+      "renderFile": "19-open-shift-posted-shift-open.png"
+    },
+    {
+      "number": "20",
+      "name": "Cash In — entry form",
+      "group": "Cash Movements",
+      "renderFile": "20-cash-in-entry-form.png"
+    },
+    {
+      "number": "21",
+      "name": "Cash In — Reason / Reference / Note",
+      "group": "Cash Movements",
+      "renderFile": "21-cash-in-reason-reference-note.png"
+    },
+    {
+      "number": "22",
+      "name": "Cash In — Authorization required",
+      "group": "Cash Movements",
+      "renderFile": "22-cash-in-authorization-required.png"
+    },
+    {
+      "number": "23",
+      "name": "Cash In — Draft (no effect yet)",
+      "group": "Cash Movements",
+      "renderFile": "23-cash-in-draft-no-effect-yet.png"
+    },
+    {
+      "number": "24",
+      "name": "Cash In — Posted",
+      "group": "Cash Movements",
+      "renderFile": "24-cash-in-posted.png"
+    },
+    {
+      "number": "25",
+      "name": "Cash Out — entry form",
+      "group": "Cash Movements",
+      "renderFile": "25-cash-out-entry-form.png"
+    },
+    {
+      "number": "26",
+      "name": "Cash Out — example (Ice delivery, ownership preserved)",
+      "group": "Cash Movements",
+      "renderFile": "26-cash-out-example-ice-delivery-ownership-preserved.png"
+    },
+    {
+      "number": "27",
+      "name": "Cash Out — Posted",
+      "group": "Cash Movements",
+      "renderFile": "27-cash-out-posted.png"
+    },
+    {
+      "number": "28",
+      "name": "Shift → Cash Movements tab",
+      "group": "Cash Movements",
+      "renderFile": "28-shift-cash-movements-tab.png"
+    },
+    {
+      "number": "29",
+      "name": "Shift Close — Review Shift",
+      "group": "Shift Close & Variance",
+      "renderFile": "29-shift-close-review-shift.png"
+    },
+    {
+      "number": "30",
+      "name": "Shift Close — Count Cash",
+      "group": "Shift Close & Variance",
+      "renderFile": "30-shift-close-count-cash.png"
+    },
+    {
+      "number": "31",
+      "name": "Shift Close — Blind Count policy (open)",
+      "group": "Shift Close & Variance",
+      "renderFile": "31-shift-close-blind-count-policy-open.png"
+    },
+    {
+      "number": "32",
+      "name": "Shift Close — Review Variance",
+      "group": "Shift Close & Variance",
+      "renderFile": "32-shift-close-review-variance.png"
+    },
+    {
+      "number": "33",
+      "name": "Variance — Over",
+      "group": "Shift Close & Variance",
+      "renderFile": "33-variance-over.png"
+    },
+    {
+      "number": "34",
+      "name": "Variance — Short",
+      "group": "Shift Close & Variance",
+      "renderFile": "34-variance-short.png"
+    },
+    {
+      "number": "35",
+      "name": "Variance — Exact",
+      "group": "Shift Close & Variance",
+      "renderFile": "35-variance-exact.png"
+    },
+    {
+      "number": "36",
+      "name": "Variance Note — policy-driven",
+      "group": "Shift Close & Variance",
+      "renderFile": "36-variance-note-policy-driven.png"
+    },
+    {
+      "number": "37",
+      "name": "Shift Close — Confirm Close",
+      "group": "Shift Close & Variance",
+      "renderFile": "37-shift-close-confirm-close.png"
+    },
+    {
+      "number": "38",
+      "name": "Shift Close — Posting / Safe Retry",
+      "group": "Shift Close & Variance",
+      "renderFile": "38-shift-close-posting-safe-retry.png"
+    },
+    {
+      "number": "39",
+      "name": "Shift Close — Conflict (changed since loaded)",
+      "group": "Shift Close & Variance",
+      "renderFile": "39-shift-close-conflict-changed-since-loaded.png"
+    },
+    {
+      "number": "40",
+      "name": "Closed Shift — read-only detail",
+      "group": "Shift Close & Variance",
+      "renderFile": "40-closed-shift-read-only-detail.png"
+    },
+    {
+      "number": "41",
+      "name": "Closed Shift — Tender summary",
+      "group": "Shift Close & Variance",
+      "renderFile": "41-closed-shift-tender-summary.png"
+    },
+    {
+      "number": "42",
+      "name": "Closed Shift — Cash Movement history",
+      "group": "Shift Close & Variance",
+      "renderFile": "42-closed-shift-cash-movement-history.png"
+    },
+    {
+      "number": "43",
+      "name": "Closed Shift — Audit timeline",
+      "group": "Shift Close & Variance",
+      "renderFile": "43-closed-shift-audit-timeline.png"
+    },
+    {
+      "number": "44",
+      "name": "Shift Reopen — not invented",
+      "group": "Shift Close & Variance",
+      "renderFile": "44-shift-reopen-not-invented.png"
+    },
+    {
+      "number": "45",
+      "name": "Business Day List — populated",
+      "group": "Business Day",
+      "renderFile": "45-business-day-list-populated.png"
+    },
+    {
+      "number": "46",
+      "name": "Business Day List — filtered",
+      "group": "Business Day",
+      "renderFile": "46-business-day-list-filtered.png"
+    },
+    {
+      "number": "47",
+      "name": "Business Day List — empty",
+      "group": "Business Day",
+      "renderFile": "47-business-day-list-empty.png"
+    },
+    {
+      "number": "48",
+      "name": "Business Day Detail — Open",
+      "group": "Business Day",
+      "renderFile": "48-business-day-detail-open.png"
+    },
+    {
+      "number": "49",
+      "name": "Business Day Detail — Closing",
+      "group": "Business Day",
+      "renderFile": "49-business-day-detail-closing.png"
+    },
+    {
+      "number": "50",
+      "name": "Cross-Midnight Operations illustration",
+      "group": "Business Day",
+      "renderFile": "50-cross-midnight-operations-illustration.png"
+    },
+    {
+      "number": "51",
+      "name": "Business Date Rollover — OPEN decision",
+      "group": "Business Day",
+      "renderFile": "51-business-date-rollover-open-decision.png"
+    },
+    {
+      "number": "52",
+      "name": "Business Day Open — state",
+      "group": "Business Day",
+      "renderFile": "52-business-day-open-state.png"
+    },
+    {
+      "number": "53",
+      "name": "Business Day Close — Readiness workspace",
+      "group": "Business Day",
+      "renderFile": "53-business-day-close-readiness-workspace.png"
+    },
+    {
+      "number": "54",
+      "name": "Business Day Close — Open Shifts blocking (authority-dependent)",
+      "group": "Business Day",
+      "renderFile": "54-business-day-close-open-shifts-blocking-authority-dependent.png"
+    },
+    {
+      "number": "55",
+      "name": "Exceptional Day Close — OPEN decision",
+      "group": "Business Day",
+      "renderFile": "55-exceptional-day-close-open-decision.png"
+    },
+    {
+      "number": "56",
+      "name": "Business Day Close Review",
+      "group": "Business Day",
+      "renderFile": "56-business-day-close-review.png"
+    },
+    {
+      "number": "57",
+      "name": "Business Day — Safe Retry",
+      "group": "Business Day",
+      "renderFile": "57-business-day-safe-retry.png"
+    },
+    {
+      "number": "58",
+      "name": "Closed Business Day — read-only",
+      "group": "Business Day",
+      "renderFile": "58-closed-business-day-read-only.png"
+    },
+    {
+      "number": "59",
+      "name": "Closed Business Day — Audit",
+      "group": "Business Day",
+      "renderFile": "59-closed-business-day-audit.png"
+    },
+    {
+      "number": "60",
+      "name": "Business Day Reopen — not invented",
+      "group": "Business Day",
+      "renderFile": "60-business-day-reopen-not-invented.png"
+    },
+    {
+      "number": "61",
+      "name": "Cross-module: Shift → Source Sale trace",
+      "group": "Operational States",
+      "renderFile": "61-cross-module-shift-source-sale-trace.png"
+    },
+    {
+      "number": "62",
+      "name": "Cross-module: Cash Refund trace (Returns)",
+      "group": "Operational States",
+      "renderFile": "62-cross-module-cash-refund-trace-returns.png"
+    },
+    {
+      "number": "63",
+      "name": "Cross-module: Customer Collection cash source",
+      "group": "Operational States",
+      "renderFile": "63-cross-module-customer-collection-cash-source.png"
+    },
+    {
+      "number": "64",
+      "name": "Cross-module: Supplier/Expense cash-out source",
+      "group": "Operational States",
+      "renderFile": "64-cross-module-supplier-expense-cash-out-source.png"
+    },
+    {
+      "number": "65",
+      "name": "Variance Review / work queue",
+      "group": "Operational States",
+      "renderFile": "65-variance-review-work-queue.png"
+    },
+    {
+      "number": "66",
+      "name": "Cash Difference Reporting (Over/Short/Exact)",
+      "group": "Operational States",
+      "renderFile": "66-cash-difference-reporting-over-short-exact.png"
+    },
+    {
+      "number": "67",
+      "name": "Store Node unavailable (Cash & Business Day)",
+      "group": "Operational States",
+      "renderFile": "67-store-node-unavailable-cash-business-day.png"
+    },
+    {
+      "number": "68",
+      "name": "Cloud Sync unavailable (local-first posting continues)",
+      "group": "Operational States",
+      "renderFile": "68-cloud-sync-unavailable-local-first-posting-continues.png"
+    },
+    {
+      "number": "69",
+      "name": "Cross-module Map",
+      "group": "Design System & Docs",
+      "renderFile": "69-cross-module-map.png"
+    },
+    {
+      "number": "70",
+      "name": "Design System — Table / Status components",
+      "group": "Design System & Docs",
+      "renderFile": "70-design-system-table-status-components.png"
+    },
+    {
+      "number": "71",
+      "name": "Design System — Form / Movement components",
+      "group": "Design System & Docs",
+      "renderFile": "71-design-system-form-movement-components.png"
+    },
+    {
+      "number": "72",
+      "name": "Permission / Audit components",
+      "group": "Design System & Docs",
+      "renderFile": "72-permission-audit-components.png"
+    },
+    {
+      "number": "73",
+      "name": "Empty & Validation states gallery",
+      "group": "Design System & Docs",
+      "renderFile": "73-empty-validation-states-gallery.png"
+    },
+    {
+      "number": "74",
+      "name": "Component inventory + documentation",
+      "group": "Design System & Docs",
+      "renderFile": "74-component-inventory-documentation.png"
+    },
+    {
+      "number": "75",
+      "name": "Open Shift — Posting / Safe Retry",
+      "group": "Cash Movements",
+      "renderFile": "75-open-shift-posting-safe-retry.png"
+    },
+    {
+      "number": "76",
+      "name": "Cash In — Posting / Safe Retry",
+      "group": "Cash Movements",
+      "renderFile": "76-cash-in-posting-safe-retry.png"
+    },
+    {
+      "number": "77",
+      "name": "Cash Out — Posting / Safe Retry",
+      "group": "Cash Movements",
+      "renderFile": "77-cash-out-posting-safe-retry.png"
+    }
+  ],
+  "notes": "All 77 screen names come from the source's NAMES map and its 77 screen-state mappings (01-77, no gaps), verified by instantiating the inline component script for every screen. Groups follow the six grouped wrapper pages exported with the source (Cash Movements also carries the safe-retry screens 75-77). Source is the v2 export (SHA-256 a0d9df66...5fee): compact 8-column Shift List on screens 04-06 and explicit safe-retry screens 75-77. routeOrState and phaseLabel remain unset because the source does not assign them per screen. This package ships the real support.js (the genuine Claude Design dc-runtime, byte-identical to the Procurement and Customers copies); the renderer uses it directly."
+}

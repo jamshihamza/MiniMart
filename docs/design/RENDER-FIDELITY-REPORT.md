@@ -1,6 +1,6 @@
 # Design render fidelity report
 
-Generated 2026-10-01T07:19:34.559Z. This report reflects the most recent local run of `pnpm design:render` for each package below; it is not evidence of a check that has not actually been run.
+Generated 2026-10-02T07:29:41.888Z. This report reflects the most recent local run of `pnpm design:render` for each package below; it is not evidence of a check that has not actually been run.
 
 Statuses:
 
@@ -34,6 +34,20 @@ Status: `approved-visual-reference` (2026-10-01). Source is the corrected v2 exp
 - Open decisions preserved: DEC-CRD-001 stays OPEN (screen 31 shows BLOCK / WARN / REQUIRE OVERRIDE, each AUTHORITY-DEPENDENT, none selected). DEC-CRD-002 stays OPEN (screen 46 states FIFO, oldest-first, proportional or manual is not decided; its sample amounts are illustrative, not a rule). Held-sale exposure (39) and over-collection handling (48) also stay open.
 - Semantics seen in render: exposure is a result of immutable ledger events with no editable balance (27, 37); an unconfigured limit is not RM 0.00 (29); draft collection has no exposure effect (56); posted collection is read-only (51); safe retry reuses one operation reference (52); Store Node outage and Cloud Sync outage are separate states (05, 06, 59); the statement is operational, not a general ledger (60). Forbidden terms appear only inside disclaimers. No screen has an editable input.
 - Documentation: the 43 numbered confirmations live in the grouped page `MiniMart CUS - Design System & Docs.dc.html` from the same export, not in the registered source (screen 74 is the component inventory).
+
+## Cash / Shift / Business Day review notes
+
+Status: `approved-visual-reference`. v2 export verified by content: source `MiniMartCashBusinessDay.dc.html`, SHA-256 `a0d9df668213a9a562bd0fefec9198274c57931b7c6f79da59b87554aee55fee`, from `MiniMart_Cash_Business_Day_ClaudeDesign_Source_v2.zip` (all 10 hashes in `CASH-BUSINESS-DAY-EXPORT-MANIFEST-v2.txt` match the packaged bytes). `support.js` is byte-identical to the Procurement and Customers real runtime. The superseded 74-screen v1 source (SHA-256 `81218a8e...`) is no longer registered.
+
+- Structure: 77 screens, IDs 01-77 contiguous, 77 unique titles, 77 unique state mappings. The inline script parses cleanly and all 77 states instantiate with no errors. The six grouped pages cover all 77 screens exactly once (Cash Movements carries 13-28 and 75-77).
+- Render: 77/77 RUNTIME-COMPLETE on the real runtime, 0 BLOCKED, 0 KNOWN-DIFFERENCE.
+- v1 to v2 change set: Shift List screens 04-06 (compact 8-column layout; Business Date stacked under Shift Ref, Opened/Closed stacked, Opening Cash moved to Shift Detail / Close Review, Expected / Counted / Variance visible); new safe-retry screens 75 (Open Shift), 76 (Cash In), 77 (Cash Out); and the enum, name, state, screen-index and confirmation wiring for them. No other business semantics changed.
+- Safe retry: screens 75-77 say the outcome is unknown, the operation may already have committed, do not submit again, authoritative local status is checked first, and retry cannot create a duplicate shift or CashMovement. Check Status and Retry Safely are visible at every viewport. No rollback, force-post, delete or manual-cleanup action exists. Close Shift (38) and Close Business Day (57) keep their pattern.
+- Open decisions preserved: business-date rollover (51) shows midnight, first sale, manual, configured cut-off and automatic-after-last-shift as unselected examples; exceptional day close (55) shows Manager Override, Force Close and Carry Forward as UNRESOLVED slots. Blind count (31), variance tolerance and approval threshold (32-36, 65) and open shifts during day close (54) stay authority-dependent.
+- Semantics seen in render: Expected Cash is derived with no editable input; non-cash tenders are labelled as not in the drawer (01); posted CashMovements and closed Shifts / Business Days are read-only; reopen is explicitly not invented (44, 60); Store Node outage (67) and Cloud Sync outage (68) are separate states; Sales, Returns, Collections and supplier/expense cash are read-only traces (61-64). Forbidden terms appear only inside disclaimers.
+- Viewports: screens 04-06 and 75-77 were rendered and checked at 1280x720, 1366x768, 1368x800 and 1920x1080; all 77 screens were rendered at 1280x720, and a clipping scan of every screen at 1366x768 and 1280x720 found no hidden table content. No page-level horizontal scroll at any size. The Shift List shows Expected, Counted and Variance in full at every size; at 1280x720 its container overflows by 4px of empty trailing space with no value clipped; at the other three sizes it does not scroll.
+- Cosmetic: at 1280x720 the top bar wraps its labels onto two lines because of the longer role label; nothing overlaps.
+- Delivery note: the archive file `MiniMart Back Office Mockups.dc.html` is not a links-only index. It is a later edited copy of the full interactive Back Office source (about 96 KB, 42 changed lines against the approved source) and was not applied; the approved Back Office source is unchanged.
 
 ## Procurement viewport verification
 
@@ -121,7 +135,87 @@ Package: MiniMart Back Office + Catalog + Pricing. Rendered 60 screen(s) at 2026
 
 ## cash-shifts
 
-Status: **UNVERIFIED** — not rendered in this workspace.
+Package: MiniMart Cash / Shift / Business Day. Rendered 77 screen(s) at 2026-10-02T07:29:41.441Z. All screens RUNTIME-COMPLETE.
+
+| Screen | Name                                                            | Status           | Notes                                                                               |
+| ------ | --------------------------------------------------------------- | ---------------- | ----------------------------------------------------------------------------------- |
+| 01     | Current Shift Workspace — Open                                  | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 02     | Current Shift Workspace — Closing                               | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 03     | Current Shift Workspace — No Open Shift                         | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 04     | Shift List — populated                                          | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 05     | Shift List — filtered by Business Date                          | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 06     | Shift List — filtered Closed                                    | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 07     | Shift List — empty                                              | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 08     | Shift List — Store Node unavailable                             | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 09     | Shift Monitor (manager)                                         | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 10     | Cash Movement Monitor (store-level)                             | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 11     | Multi-Counter Store view                                        | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 12     | Business Date vs Calendar Timestamp strip                       | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 13     | Open Shift — entry form                                         | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 14     | Open Shift — Opening Cash (not fixed default)                   | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 15     | Open Shift — Note field                                         | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 16     | Open Shift — eligibility conflict: cashier already open         | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 17     | Open Shift — eligibility conflict: register already open        | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 18     | Open Shift Confirmation / Review                                | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 19     | Open Shift — Posted / Shift Open                                | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 20     | Cash In — entry form                                            | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 21     | Cash In — Reason / Reference / Note                             | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 22     | Cash In — Authorization required                                | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 23     | Cash In — Draft (no effect yet)                                 | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 24     | Cash In — Posted                                                | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 25     | Cash Out — entry form                                           | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 26     | Cash Out — example (Ice delivery, ownership preserved)          | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 27     | Cash Out — Posted                                               | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 28     | Shift → Cash Movements tab                                      | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 29     | Shift Close — Review Shift                                      | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 30     | Shift Close — Count Cash                                        | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 31     | Shift Close — Blind Count policy (open)                         | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 32     | Shift Close — Review Variance                                   | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 33     | Variance — Over                                                 | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 34     | Variance — Short                                                | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 35     | Variance — Exact                                                | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 36     | Variance Note — policy-driven                                   | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 37     | Shift Close — Confirm Close                                     | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 38     | Shift Close — Posting / Safe Retry                              | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 39     | Shift Close — Conflict (changed since loaded)                   | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 40     | Closed Shift — read-only detail                                 | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 41     | Closed Shift — Tender summary                                   | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 42     | Closed Shift — Cash Movement history                            | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 43     | Closed Shift — Audit timeline                                   | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 44     | Shift Reopen — not invented                                     | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 45     | Business Day List — populated                                   | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 46     | Business Day List — filtered                                    | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 47     | Business Day List — empty                                       | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 48     | Business Day Detail — Open                                      | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 49     | Business Day Detail — Closing                                   | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 50     | Cross-Midnight Operations illustration                          | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 51     | Business Date Rollover — OPEN decision                          | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 52     | Business Day Open — state                                       | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 53     | Business Day Close — Readiness workspace                        | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 54     | Business Day Close — Open Shifts blocking (authority-dependent) | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 55     | Exceptional Day Close — OPEN decision                           | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 56     | Business Day Close Review                                       | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 57     | Business Day — Safe Retry                                       | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 58     | Closed Business Day — read-only                                 | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 59     | Closed Business Day — Audit                                     | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 60     | Business Day Reopen — not invented                              | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 61     | Cross-module: Shift → Source Sale trace                         | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 62     | Cross-module: Cash Refund trace (Returns)                       | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 63     | Cross-module: Customer Collection cash source                   | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 64     | Cross-module: Supplier/Expense cash-out source                  | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 65     | Variance Review / work queue                                    | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 66     | Cash Difference Reporting (Over/Short/Exact)                    | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 67     | Store Node unavailable (Cash & Business Day)                    | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 68     | Cloud Sync unavailable (local-first posting continues)          | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 69     | Cross-module Map                                                | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 70     | Design System — Table / Status components                       | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 71     | Design System — Form / Movement components                      | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 72     | Permission / Audit components                                   | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 73     | Empty & Validation states gallery                               | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 74     | Component inventory + documentation                             | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 75     | Open Shift — Posting / Safe Retry                               | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 76     | Cash In — Posting / Safe Retry                                  | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 77     | Cash Out — Posting / Safe Retry                                 | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
 
 ## customers
 
