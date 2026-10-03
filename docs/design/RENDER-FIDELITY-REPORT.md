@@ -1,6 +1,6 @@
 # Design render fidelity report
 
-Generated 2026-10-02T09:11:36.495Z. This report reflects the most recent local run of `pnpm design:render` for each package below; it is not evidence of a check that has not actually been run.
+Generated 2026-10-03T19:35:01.431Z. This report reflects the most recent local run of `pnpm design:render` for each package below; it is not evidence of a check that has not actually been run.
 
 Statuses:
 
@@ -66,6 +66,22 @@ Status: `approved-visual-reference`. Source `MiniMartAccountingLite.dc.html`, SH
 - Non-blocking observations: the Allocated and Unallocated figures on 20 and 23 are fixed values that agree with the single eligible row; screen 71 lists no audit-evidence field although titled Effective Date & Evidence; screen 77 shows an illustrative dataset-context reference and hand-off time that no frozen contract defines; screens 64 and 67 show Recorded Movements RM 18,420.00, a period figure that is not the RM 184,200.00 account balance.
 - Authority note: only UI-ACC-001 to 009 are frozen Accounting screens. The other screens in this package are visual elaboration. Opening-balance mechanics, export contracts, payable creation basis, allocation order, matching policy, approval thresholds and expense tax remain open or policy-controlled and are not defined by this design.
 
+## Reporting review notes
+
+Status: `review-ready`, **not** `approved-visual-reference`. Source `MiniMartReports.dc.html` (80 screens) was authored in this repository by Claude Code, not exported from Claude Design, so it carries no export manifest or archive hash. `support.js` (SHA-256 `8fe7df74...cbe`) is the real runtime, byte-identical to the other real-runtime packages. Package files: `source/MiniMartReports.dc.html`, `source/support.js`, `design-manifest.json`, `traceability.json` and `TRACEABILITY.md`.
+
+- Authority used: FR-RPT-001..065 (`14-reporting/reporting.md`), UI-RPT-001..005 and UI-EXP-001, API-RPT-001..003 and `06-READ-QUERY-REPORTING.md`, DEC-RPT-001 (OPEN) and DEC-RPT-002 (PROPOSED), backlog MM-079..083 and MM-097, the read-query architecture and the UI state, money, responsive and accessibility contracts.
+- Coverage: 80 screens in 12 groups. All 65 FR-RPT requirements map to at least one screen (FR-RPT-063 and 065 point to the decisions screen because they need data volumes and tests, not visuals). The five frozen UI-RPT screens map to Reports Home (10), Sales (11), Inventory (8), Purchasing (4) and Credit / Collections (5), plus a shared viewer anatomy, rule and state set (18), cash and day-close reports (4), management summary (3), export and print (9), a later-phase central report (1) and design system and documentation (7).
+- Required states are present for reports: loading, ready, empty, validation error, permission denied, definition conflict, run failed with no partial totals, local scope when cloud sync is unavailable, Store Node unavailable and incompatible client. Export covers the dialog, permission denied, QUEUED / RUNNING, COMPLETED hand-off, FAILED / CANCELLED, outcome unknown (check status, retry safely with the same command identity), personal-data minimisation, print preview and the audit notice.
+- Illustrative versus live: every screen carries an ILLUSTRATIVE DATA ribbon, generated times say illustrative, and design annotations are dashed and labelled not product UI. Money is a decimal string end to end, sums use exact integer arithmetic (BigInt), and display is RM with two decimals in a MYR / MY context. No tax label is shown.
+- Computed, not typed: cash variance (actual minus expected, the frozen domain formula), customer statement closing balance (the frozen AC-B4-020 formula), running stock balance, inventory value, aging row totals and every totals row. Cross-report examples reconcile: cashier and counter totals equal the 26 Sep Daily Sales Summary row, the category total equals the item total, purchases use the Accounting-Lite GRN references and customer outstanding equals RM 2,145.00.
+- Nothing invented: gross, net, discount, return and tax definitions, aging buckets, low-stock thresholds, expiry windows, grouping basis, export contracts, retention, permissions beyond reporting.read and reporting.write, report codes and filter field codes are all marked OPEN, VERIFY, PROPOSED or GAP and listed on the open-decisions screen. Cash and day-close reports, the management summary and central reports have no frozen owner screen and are flagged as gaps. Export artifacts, retention and downloads are handed to Export Center and not owned by Reporting.
+- Render: 80/80 RUNTIME-COMPLETE on the real runtime at the primary viewport, 0 BLOCKED, 0 KNOWN-DIFFERENCE.
+- Actual viewport check: every screen was rendered through the real runtime at 1280x720, 1366x768, 1368x800 and 1920x1080 (all RUNTIME-COMPLETE), and scanned in-page for page-level scroll and for any text or button clipped horizontally by its container. Result: no page-level scroll, no console error, no clipped text or buttons and no inner horizontal scroll container at any size. The scan deliberately skips the sidebar and visually hidden table captions. Key screens were inspected by eye at 1280x720 and 1366x768.
+- Accessibility actually measured: contrast was computed for every text and background pair used (all at least 4.5:1). An in-page audit of all 80 screens found no unlabelled form control, no unnamed button, no table without a caption and column headers, no duplicate id and exactly one h1 per screen (534 focusable controls outside the sidebar).
+- Fidelity gaps: (1) Two tones differ from the approved packages: muted text #6b7585 became #5b6576 and sidebar group labels #6f7c93 became #8c98ad, because the approved values measure 4.07 to 4.41:1 on tinted surfaces; the Cloud-sync pill omits the invented queued count. (2) Keyboard behaviour (tab order, dialog focus trap and restore, Esc) is specified and the structure is audited, but it was not exercised by a scripted keyboard run. (3) The export dialog is drawn inline, not as an overlay. (4) Static renders show only the first screenful of long pages; the rest is reachable by scrolling the page container. (5) The sidebar scrolls internally, so its lowest entries sit below the fold at 1280x720, as in the other packages. (6) The shell navigation is structural: only Reports is live. (7) No grouped canvas pages, PDF export or phase labels were produced. (8) Illustrative data was checked for cross-report consistency on the cross-links listed above, not exhaustively.
+- Authority conflicts: none stopped the work. Two items need an owner decision before implementation: the page-limit mismatch between ReportRunRequest (1 to 500) and PageInfo (at most 200), and which frozen screen owns the cash, day-close and management reports.
+
 ## Procurement viewport verification
 
 `primaryViewport` (1366x768) is verified as part of the normal `pnpm design:render --package procurement` run (see the table below). The package's declared `supportedViewports` were additionally verified with a one-off, non-authoritative render pass (`renderPackage()` called directly with `viewportOverride`/`outputRoot`, screenshots kept outside the tracked tree) using the same strict renderer -- every check (unsupported primitive, pageerror, unresolved asset) still applied:
@@ -77,7 +93,7 @@ Status: `approved-visual-reference`. Source `MiniMartAccountingLite.dc.html`, SH
 
 ## accounting
 
-Package: MiniMart Accounting-Lite. Rendered 88 screen(s) at 2026-10-02T09:11:36.009Z. All screens RUNTIME-COMPLETE.
+Package: MiniMart Accounting-Lite. Rendered 88 screen(s) at 2026-10-03T19:32:20.363Z. All screens RUNTIME-COMPLETE.
 
 | Screen | Name                                                                     | Status           | Notes                                                                               |
 | ------ | ------------------------------------------------------------------------ | ---------------- | ----------------------------------------------------------------------------------- |
@@ -176,7 +192,7 @@ Status: **UNVERIFIED** — not rendered in this workspace.
 
 ## back-office
 
-Package: MiniMart Back Office + Catalog + Pricing. Rendered 60 screen(s) at 2026-09-27T14:26:34.352Z. Contains KNOWN-DIFFERENCE screens (see table).
+Package: MiniMart Back Office + Catalog + Pricing. Rendered 60 screen(s) at 2026-10-03T19:32:46.223Z. Contains KNOWN-DIFFERENCE screens (see table).
 
 | Screen | Name                                         | Status           | Notes                                                                                                                   |
 | ------ | -------------------------------------------- | ---------------- | ----------------------------------------------------------------------------------------------------------------------- |
@@ -243,7 +259,7 @@ Package: MiniMart Back Office + Catalog + Pricing. Rendered 60 screen(s) at 2026
 
 ## cash-shifts
 
-Package: MiniMart Cash / Shift / Business Day. Rendered 77 screen(s) at 2026-10-02T07:29:41.441Z. All screens RUNTIME-COMPLETE.
+Package: MiniMart Cash / Shift / Business Day. Rendered 77 screen(s) at 2026-10-03T19:33:12.986Z. All screens RUNTIME-COMPLETE.
 
 | Screen | Name                                                            | Status           | Notes                                                                               |
 | ------ | --------------------------------------------------------------- | ---------------- | ----------------------------------------------------------------------------------- |
@@ -327,7 +343,7 @@ Package: MiniMart Cash / Shift / Business Day. Rendered 77 screen(s) at 2026-10-
 
 ## customers
 
-Package: MiniMart Customers + Credit. Rendered 74 screen(s) at 2026-10-01T07:17:23.485Z. All screens RUNTIME-COMPLETE.
+Package: MiniMart Customers + Credit. Rendered 74 screen(s) at 2026-10-03T19:33:38.799Z. All screens RUNTIME-COMPLETE.
 
 | Screen | Name                                                          | Status           | Notes                                                                               |
 | ------ | ------------------------------------------------------------- | ---------------- | ----------------------------------------------------------------------------------- |
@@ -412,7 +428,7 @@ Status: **UNVERIFIED** — not rendered in this workspace.
 
 ## pos
 
-Package: MiniMart POS. Rendered 31 screen(s) at 2026-09-27T14:26:08.929Z. All screens RUNTIME-COMPLETE.
+Package: MiniMart POS. Rendered 31 screen(s) at 2026-10-03T19:33:55.062Z. All screens RUNTIME-COMPLETE.
 
 | Screen | Name                       | Status           | Notes                                    |
 | ------ | -------------------------- | ---------------- | ---------------------------------------- |
@@ -450,7 +466,7 @@ Package: MiniMart POS. Rendered 31 screen(s) at 2026-09-27T14:26:08.929Z. All sc
 
 ## procurement
 
-Package: MiniMart Suppliers + Procurement. Rendered 74 screen(s) at 2026-09-27T16:19:03.755Z. All screens RUNTIME-COMPLETE.
+Package: MiniMart Suppliers + Procurement. Rendered 74 screen(s) at 2026-10-03T19:34:20.726Z. All screens RUNTIME-COMPLETE.
 
 | Screen | Name                                               | Status           | Notes                                                                               |
 | ------ | -------------------------------------------------- | ---------------- | ----------------------------------------------------------------------------------- |
@@ -531,4 +547,87 @@ Package: MiniMart Suppliers + Procurement. Rendered 74 screen(s) at 2026-09-27T1
 
 ## reports
 
-Status: **UNVERIFIED** — not rendered in this workspace.
+Package: MiniMart Reporting. Rendered 80 screen(s) at 2026-10-03T19:34:50.544Z. All screens RUNTIME-COMPLETE.
+
+| Screen | Name                                                | Status           | Notes                                                                               |
+| ------ | --------------------------------------------------- | ---------------- | ----------------------------------------------------------------------------------- |
+| 01     | Reports Home — authorized catalog                   | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 02     | Reports Home — search and family filter applied     | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 03     | Report definition — supported filters and grouping  | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 04     | Reports Home — loading                              | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 05     | Reports Home — empty (no authorized reports)        | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 06     | Reports Home — permission denied                    | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 07     | Reports Home — local scope (cloud sync unavailable) | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 08     | Reports Home — Store Node unavailable               | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 09     | Reports Home — incompatible client                  | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 10     | Reports Home — later-phase central reports          | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 11     | Report viewer — anatomy                             | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 12     | Filter bar — filters and applicability              | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 13     | Business date versus timestamp                      | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 14     | Totals definitions — status of each term            | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 15     | Grouping basis — historical or current master       | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 16     | As-of reporting                                     | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 17     | Pagination and bounded results                      | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 18     | Drill-down — source reference (read-only)           | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 19     | Report — loading                                    | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 20     | Report — empty result                               | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 21     | Report — validation error                           | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 22     | Report — permission denied                          | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 23     | Report — definition conflict                        | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 24     | Report — run failed (no partial totals)             | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 25     | Report — local scope (cloud sync unavailable)       | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 26     | Report — Store Node unavailable                     | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 27     | Report — incompatible client                        | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 28     | Read-only guarantee and operational scope           | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 29     | Daily Sales Summary                                 | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 30     | Sales by Item                                       | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 31     | Sales by Category                                   | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 32     | Sales by Cashier                                    | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 33     | Sales by Counter                                    | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 34     | Discount Report                                     | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 35     | Price Override Report                               | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 36     | Returns Report                                      | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 37     | No-Receipt Return Report                            | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 38     | Tender Summary                                      | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 39     | Payment Exception Report                            | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 40     | Cash Movement Report                                | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 41     | Cash Variance Report                                | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 42     | Shift Close Report                                  | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 43     | Day Close Report                                    | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 44     | Current Stock                                       | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 45     | Low Stock Report — threshold ownership undefined    | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 46     | Negative Stock Report — normally empty              | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 47     | Stock Movement Report                               | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 48     | Batch / Expiry Report                               | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 49     | Inventory Valuation Report                          | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 50     | Stock Count Variance Report                         | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 51     | Stock Adjustment Report                             | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 52     | Purchase Summary                                    | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 53     | Purchase by Supplier                                | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 54     | Purchase Return Report                              | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 55     | Purchase Price History — cost-sensitive             | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 56     | Customer Outstanding Report                         | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 57     | Customer Aging Report                               | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 58     | Customer Statement                                  | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 59     | Credit Override Report                              | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 60     | Customer data — masked by default                   | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 61     | Management Daily Summary                            | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 62     | Exception Highlights                                | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 63     | Comparative Periods — optional                      | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 64     | Export dialog — format and scope                    | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 65     | Export — permission required                        | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 66     | Export job — queued and running                     | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 67     | Export job — completed, hand off to Export Center   | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 68     | Export job — failed and cancelled                   | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 69     | Export — outcome unknown (recovery)                 | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 70     | Export — personal data minimised                    | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 71     | Print preview                                       | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 72     | Report access and export audit notice               | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 73     | Central report — incomplete sync warning            | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 74     | Report components                                   | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 75     | Accessibility and keyboard behaviour                | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 76     | Responsive behaviour                                | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 77     | Requirement to screen index                         | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 78     | Open decisions and authority gaps                   | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 79     | Boundaries — what this package does not define      | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 80     | Documentation — confirmations                       | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |

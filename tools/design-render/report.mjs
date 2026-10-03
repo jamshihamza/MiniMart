@@ -246,6 +246,62 @@ export function buildReportMarkdown() {
       " matching policy, approval thresholds and expense tax remain open or policy-controlled and are not defined by" +
       " this design.",
     "",
+    "## Reporting review notes",
+    "",
+    "Status: `review-ready`, **not** `approved-visual-reference`. Source `MiniMartReports.dc.html` (80 screens) was" +
+      " authored in this repository by Claude Code, not exported from Claude Design, so it carries no export manifest or" +
+      " archive hash. `support.js` (SHA-256 `8fe7df74...cbe`) is the real runtime, byte-identical to the other real-runtime" +
+      " packages. Package files: `source/MiniMartReports.dc.html`, `source/support.js`, `design-manifest.json`," +
+      " `traceability.json` and `TRACEABILITY.md`.",
+    "",
+    "- Authority used: FR-RPT-001..065 (`14-reporting/reporting.md`), UI-RPT-001..005 and UI-EXP-001, API-RPT-001..003 and" +
+      " `06-READ-QUERY-REPORTING.md`, DEC-RPT-001 (OPEN) and DEC-RPT-002 (PROPOSED), backlog MM-079..083 and MM-097, the" +
+      " read-query architecture and the UI state, money, responsive and accessibility contracts.",
+    "- Coverage: 80 screens in 12 groups. All 65 FR-RPT requirements map to at least one screen (FR-RPT-063 and 065 point to" +
+      " the decisions screen because they need data volumes and tests, not visuals). The five frozen UI-RPT screens map to" +
+      " Reports Home (10), Sales (11), Inventory (8), Purchasing (4) and Credit / Collections (5), plus a shared viewer anatomy," +
+      " rule and state set (18), cash and day-close reports (4), management summary (3), export and print (9), a later-phase central" +
+      " report (1) and design system and documentation (7).",
+    "- Required states are present for reports: loading, ready, empty, validation error, permission denied, definition" +
+      " conflict, run failed with no partial totals, local scope when cloud sync is unavailable, Store Node unavailable and" +
+      " incompatible client. Export covers the dialog, permission denied, QUEUED / RUNNING, COMPLETED hand-off, FAILED /" +
+      " CANCELLED, outcome unknown (check status, retry safely with the same command identity), personal-data minimisation," +
+      " print preview and the audit notice.",
+    "- Illustrative versus live: every screen carries an ILLUSTRATIVE DATA ribbon, generated times say illustrative, and" +
+      " design annotations are dashed and labelled not product UI. Money is a decimal string end to end, sums use exact" +
+      " integer arithmetic (BigInt), and display is RM with two decimals in a MYR / MY context. No tax label is shown.",
+    "- Computed, not typed: cash variance (actual minus expected, the frozen domain formula), customer statement closing" +
+      " balance (the frozen AC-B4-020 formula), running stock balance, inventory value, aging row totals and every totals" +
+      " row. Cross-report examples reconcile: cashier and counter totals equal the 26 Sep Daily Sales Summary row, the" +
+      " category total equals the item total, purchases use the Accounting-Lite GRN references and customer outstanding" +
+      " equals RM 2,145.00.",
+    "- Nothing invented: gross, net, discount, return and tax definitions, aging buckets, low-stock thresholds, expiry windows," +
+      " grouping basis, export contracts, retention, permissions beyond reporting.read and reporting.write, report codes and" +
+      " filter field codes are all marked OPEN, VERIFY, PROPOSED or GAP and listed on the open-decisions screen. Cash and" +
+      " day-close reports, the management summary and central reports have no frozen owner screen and are flagged as gaps." +
+      " Export artifacts, retention and downloads are handed to Export Center and not owned by Reporting.",
+    "- Render: 80/80 RUNTIME-COMPLETE on the real runtime at the primary viewport, 0 BLOCKED, 0 KNOWN-DIFFERENCE.",
+    "- Actual viewport check: every screen was rendered through the real runtime at 1280x720, 1366x768, 1368x800 and" +
+      " 1920x1080 (all RUNTIME-COMPLETE), and scanned in-page for page-level scroll and for any text or button clipped" +
+      " horizontally by its container. Result: no page-level scroll, no console error, no clipped text or buttons and no" +
+      " inner horizontal scroll container at any size. The scan deliberately skips the sidebar and visually hidden table" +
+      " captions. Key screens were inspected by eye at 1280x720 and 1366x768.",
+    "- Accessibility actually measured: contrast was computed for every text and background pair used (all at least 4.5:1)." +
+      " An in-page audit of all 80 screens found no unlabelled form control, no unnamed button, no table without a caption and" +
+      " column headers, no duplicate id and exactly one h1 per screen (534 focusable controls outside the sidebar).",
+    "- Fidelity gaps: (1) Two tones differ from the approved packages: muted text #6b7585 became #5b6576 and sidebar group" +
+      " labels #6f7c93 became #8c98ad, because the approved values measure 4.07 to 4.41:1 on tinted surfaces; the Cloud-sync pill" +
+      " omits the invented queued count. (2) Keyboard behaviour (tab order, dialog focus trap and restore, Esc) is specified" +
+      " and the structure is audited, but it was not exercised by a scripted keyboard run. (3) The export dialog is drawn" +
+      " inline, not as an overlay. (4) Static renders show only the first screenful of long pages; the rest is reachable by" +
+      " scrolling the page container. (5) The sidebar scrolls internally, so its lowest entries sit below the fold at 1280x720," +
+      " as in the other packages. (6) The shell navigation is structural: only Reports is live. (7) No grouped canvas pages," +
+      " PDF export or phase labels were produced. (8) Illustrative data was checked for cross-report consistency on the" +
+      " cross-links listed above, not exhaustively.",
+    "- Authority conflicts: none stopped the work. Two items need an owner decision before implementation: the page-limit" +
+      " mismatch between ReportRunRequest (1 to 500) and PageInfo (at most 200), and which frozen screen owns the cash," +
+      " day-close and management reports.",
+    "",
     "## Procurement viewport verification",
     "",
     "`primaryViewport` (1366x768) is verified as part of the normal `pnpm design:render --package procurement`" +
