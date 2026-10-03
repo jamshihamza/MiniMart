@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<aside role="note" style="padding:12px 24px;background:#fff4d6;color:#453615;font:14px system-ui">UNAPPROVED SUPPLEMENTARY REFERENCE / PROPOSAL. Frozen specifications and backlog govern behavior. Package/source approval does not approve this document. See ../SUPPLEMENTARY.md for provenance, review and runtime gaps.</aside>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#e6e9ee;font-family:'IBM Plex Sans',system-ui,sans-serif;color:#0f1a2b}a{color:#1b5fd1}a:hover{color:#174fb0}</style>
+</helmet>
+<section style="padding:36px 48px 20px;display:flex;flex-direction:column;gap:8px;max-width:1100px">
+  <a href="MiniMart Procurement Mockups.dc.html" style="font-size:12.5px">← Procurement index</a>
+  <div style="display:flex;gap:6px;flex-wrap:wrap;padding:2px 0 4px"><a href="MiniMart PUR - Suppliers.dc.html" style="height:28px;padding:0 12px;border-radius:999px;font-size:11.5px;font-weight:600;border:1px solid #cfd5de;background:#fff;color:#3d4a5e;text-decoration:none;display:inline-flex;align-items:center">01–20 Suppliers</a><a href="MiniMart PUR - Purchase Orders.dc.html" style="height:28px;padding:0 12px;border-radius:999px;font-size:11.5px;font-weight:600;border:1px solid #cfd5de;background:#fff;color:#3d4a5e;text-decoration:none;display:inline-flex;align-items:center">21–33 Purchase Orders</a><a href="MiniMart PUR - Goods Receipt.dc.html" style="height:28px;padding:0 12px;border-radius:999px;font-size:11.5px;font-weight:600;border:1px solid #cfd5de;background:#fff;color:#3d4a5e;text-decoration:none;display:inline-flex;align-items:center">34–56 Goods Receipt</a><a href="MiniMart PUR - Purchase Returns.dc.html" style="height:28px;padding:0 12px;border-radius:999px;font-size:11.5px;font-weight:600;border:1px solid #0e1b33;background:#0e1b33;color:#fff;text-decoration:none;display:inline-flex;align-items:center">57–69 Purchase Returns</a><a href="MiniMart PUR - Design System & Docs.dc.html" style="height:28px;padding:0 12px;border-radius:999px;font-size:11.5px;font-weight:600;border:1px solid #cfd5de;background:#fff;color:#3d4a5e;text-decoration:none;display:inline-flex;align-items:center">70–74 Design System & Docs</a></div>
+  <span style="font-size:26px;font-weight:700">Procurement — Purchase Returns</span>
+  <span style="font-size:14px;color:#4a5567">Screens 57–69.</span>
+</section>
+<sc-for list="{{ groups }}" as="g" hint-placeholder-count="1">
+  <section id="{{ g.id }}" style="padding:20px 48px 32px;border-top:1px solid #cfd5de">
+    <div style="display:flex;flex-wrap:wrap;gap:28px">
+      <sc-for list="{{ g.items }}" as="s" hint-placeholder-count="13">
+        <div id="s{{ s.n }}" style="display:flex;flex-direction:column;gap:8px">
+          <div style="display:flex;align-items:center;gap:9px"><span style="font:600 11px 'IBM Plex Mono',monospace;padding:3px 6px;border-radius:5px;background:#0e1b33;color:#fff">{{ s.n }}</span><span style="font-size:13.5px;font-weight:600">{{ s.t }}</span></div>
+          <div style="width:1366px;height:768px;border-radius:8px;overflow:hidden;box-shadow:0 1px 3px rgba(14,27,51,.12),0 8px 24px rgba(14,27,51,.08);background:#f2f4f7">
+            <dc-import name="MiniMartProcurement" screen="{{ s.n }}" embedded="{{ true }}" hint-size="1366px,768px" style="width:1366px;height:768px"></dc-import>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+</sc-for>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const G=[['ret','',[['57','Purchase Return List — populated'],['58','New Purchase Return — select Supplier/GRN'],['59','Return Without Original GRN — exceptional'],['60','Purchase Return Line — returnable quantity'],['61','Over Return — blocked'],['62','Current Stock Check — negative stock blocked'],['63','Return Reason'],['64','Purchase Return Commercial Values'],['65','Purchase Return Approval'],['66','Purchase Return Review'],['67','Purchase Return Posted'],['68','Posted Purchase Return — read-only'],['69','Purchase Return Safe Retry']]]];
+class Component extends DCLogic {
+  renderVals(){ return {groups:G.map(([id,title,items])=>({id,title,items:items.map(([n,t])=>({n,t}))}))}; }
+}
+
+</script>
+</body>
+</html>

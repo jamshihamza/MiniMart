@@ -1,0 +1,32 @@
+MINIMART SUPPLIERS + PROCUREMENT — CLAUDE DESIGN SOURCE EXPORT MANIFEST
+Generated: source export only, no regeneration/rewrite/reformatting performed.
+
+EXPORTED FILES (SHA-256):
+MiniMartProcurement.dc.html  SHA256:0bf23d77e0d404c99c146b78eba3141de8bc47cc21e9cc8835ffa6091e21951d
+MiniMart PUR - Suppliers.dc.html  SHA256:9588e496748d5b5dfea12352b9035365c4b4b069d9cce125701bd66ab685c74d
+MiniMart PUR - Purchase Orders.dc.html  SHA256:210cbd16fe481c5769ebc99d1ec450afb49240f6769d9507d4e74100609ec6dd
+MiniMart PUR - Goods Receipt.dc.html  SHA256:e6b213785c764e847be7a3fec35178c8fece5079bbbc0da99837d00f3abd7b1b
+MiniMart PUR - Purchase Returns.dc.html  SHA256:3c4d787bf24c372b404494f730011428b5d0424598bb48a6a9fc4f47323be6ae
+MiniMart PUR - Design System & Docs.dc.html  SHA256:d40bb72260fd5e8c6de69945b71c60ff3f8e84aca8e599d169fe5b722d97c4ad
+MiniMart Procurement Mockups.dc.html  SHA256:7a3f599ab0111feeb66ee4b53f9157faa9ee905bd3bd4c9eb925c58b6c7d5338
+MiniMart Back Office Mockups.dc.html  SHA256:3cbdaf29cdf71094ef3bd15c5aa3806305519e9321b33c956a18086a4606d494
+support.js  SHA256:8fe7df74405f3c55f49b7249c74ea1397e65d07dea2b1bd3b4a489bec2e28cbe
+
+AUTHORITATIVE SOURCE FILE: MiniMartProcurement.dc.html
+SCREEN COUNT: 74 (screen prop values 01–74)
+
+GROUPED PAGES IMPORT FROM MiniMartProcurement.dc.html: YES (all 5 grouped pages use <dc-import name="MiniMartProcurement">, confirmed by direct string check)
+- MiniMart PUR - Suppliers.dc.html: imports MiniMartProcurement — true
+- MiniMart PUR - Purchase Orders.dc.html: imports MiniMartProcurement — true
+- MiniMart PUR - Goods Receipt.dc.html: imports MiniMartProcurement — true
+- MiniMart PUR - Purchase Returns.dc.html: imports MiniMartProcurement — true
+- MiniMart PUR - Design System & Docs.dc.html: imports MiniMartProcurement — true
+
+DIRECT LOCAL DEPENDENCIES:
+- support.js (DC runtime, required by every .dc.html file above to render)
+- No other local file dependencies (no images, no shared JS modules, no design-token files)
+
+CONTAINS MiniMartPOS REFERENCE: NO (verified — MiniMartProcurement.dc.html does not reference MiniMartPOS.dc.html or POS content)
+CONTENT VERIFICATION: MiniMartProcurement.dc.html source text contains "Supplier", "Purchase Order", "GRN", "Purchase Return" and "Procurement" — confirmed present (not a POS-only export).
+
+FILES MODIFIED DURING THIS EXPORT: NONE. All files are byte-for-byte copies of the current workspace source. (MiniMart Back Office Mockups.dc.html included as-is; it was modified in an EARLIER turn of this session to add the Procurement index link, not during this export.)

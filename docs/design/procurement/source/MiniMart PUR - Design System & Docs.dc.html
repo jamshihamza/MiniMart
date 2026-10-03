@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<aside role="note" style="padding:12px 24px;background:#fff4d6;color:#453615;font:14px system-ui">UNAPPROVED SUPPLEMENTARY REFERENCE / PROPOSAL. Frozen specifications and backlog govern behavior. Package/source approval does not approve this document. See ../SUPPLEMENTARY.md for provenance, review and runtime gaps.</aside>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#e6e9ee;font-family:'IBM Plex Sans',system-ui,sans-serif;color:#0f1a2b}a{color:#1b5fd1}a:hover{color:#174fb0}</style>
+</helmet>
+<section style="padding:36px 48px 20px;display:flex;flex-direction:column;gap:8px;max-width:1100px">
+  <a href="MiniMart Procurement Mockups.dc.html" style="font-size:12.5px">← Procurement index</a>
+  <div style="display:flex;gap:6px;flex-wrap:wrap;padding:2px 0 4px"><a href="MiniMart PUR - Suppliers.dc.html" style="height:28px;padding:0 12px;border-radius:999px;font-size:11.5px;font-weight:600;border:1px solid #cfd5de;background:#fff;color:#3d4a5e;text-decoration:none;display:inline-flex;align-items:center">01–20 Suppliers</a><a href="MiniMart PUR - Purchase Orders.dc.html" style="height:28px;padding:0 12px;border-radius:999px;font-size:11.5px;font-weight:600;border:1px solid #cfd5de;background:#fff;color:#3d4a5e;text-decoration:none;display:inline-flex;align-items:center">21–33 Purchase Orders</a><a href="MiniMart PUR - Goods Receipt.dc.html" style="height:28px;padding:0 12px;border-radius:999px;font-size:11.5px;font-weight:600;border:1px solid #cfd5de;background:#fff;color:#3d4a5e;text-decoration:none;display:inline-flex;align-items:center">34–56 Goods Receipt</a><a href="MiniMart PUR - Purchase Returns.dc.html" style="height:28px;padding:0 12px;border-radius:999px;font-size:11.5px;font-weight:600;border:1px solid #cfd5de;background:#fff;color:#3d4a5e;text-decoration:none;display:inline-flex;align-items:center">57–69 Purchase Returns</a><a href="MiniMart PUR - Design System & Docs.dc.html" style="height:28px;padding:0 12px;border-radius:999px;font-size:11.5px;font-weight:600;border:1px solid #0e1b33;background:#0e1b33;color:#fff;text-decoration:none;display:inline-flex;align-items:center">70–74 Design System & Docs</a></div>
+  <span style="font-size:26px;font-weight:700">Procurement — Design System, Cross-module Map & Documentation</span>
+  <span style="font-size:14px;color:#4a5567">Screens 70–74, plus the package's documentation record.</span>
+</section>
+<section style="padding:20px 48px 32px;border-top:1px solid #cfd5de">
+  <div style="display:flex;flex-wrap:wrap;gap:28px">
+    <sc-for list="{{ dsScreens }}" as="s" hint-placeholder-count="5">
+      <div id="s{{ s.n }}" style="display:flex;flex-direction:column;gap:8px">
+        <div style="display:flex;align-items:center;gap:9px"><span style="font:600 11px 'IBM Plex Mono',monospace;padding:3px 6px;border-radius:5px;background:#0e1b33;color:#fff">{{ s.n }}</span><span style="font-size:13.5px;font-weight:600">{{ s.t }}</span></div>
+        <div style="width:1366px;height:768px;border-radius:8px;overflow:hidden;box-shadow:0 1px 3px rgba(14,27,51,.12),0 8px 24px rgba(14,27,51,.08);background:#f2f4f7">
+          <dc-import name="MiniMartProcurement" screen="{{ s.n }}" embedded="{{ true }}" hint-size="1366px,768px" style="width:1366px;height:768px"></dc-import>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+</section>
+<section style="padding:26px 48px 60px;border-top:1px solid #cfd5de;display:flex;flex-direction:column;gap:16px;max-width:900px">
+  <span style="font-size:21px;font-weight:700">Documentation</span>
+  <sc-for list="{{ docs }}" as="d" hint-placeholder-count="8">
+    <div style="display:flex;flex-direction:column;gap:6px">
+      <span style="font-size:14px;font-weight:600">{{ d.h }}</span>
+      <sc-for list="{{ d.lines }}" as="l" hint-placeholder-count="4"><span style="font-size:13px;color:#4a5567;line-height:1.5">{{ l }}</span></sc-for>
+    </div>
+  </sc-for>
+</section>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals(){
+    const dsScreens=[['70','Cross-module Map'],['71','Design System — Table / Status components'],['72','Design System — Form / Approval components'],['73','Permission / Audit components'],['74','Component inventory + documentation']].map(([n,t])=>({n,t}));
+    const docs=[
+      {h:'1. Screen index',lines:['74 artboards covering Supplier Foundation (01–20), Purchase Orders (21–33), Goods Receipt (34–56), Purchase Returns (57–69) and Design System / Cross-module Map / Documentation (70–74). Reuses the reference MiniMart Back Office shell, nav, status language, tables, forms and dialogs — no redesign of the shell, Catalog, Pricing, Inventory or POS.']},
+      {h:'2. Component inventory',lines:['Supplier: SupplierTable, SupplierStatusBadge, SupplierIdentifierList, SupplierDeactivateDialog. Purchase Order: POTable, POStatusBadge, POApprovalState, ReceiptProgress, OverReceiptPolicyPanel. Goods Receipt: GRNEntryChoice, GRNItemEntryTable, DuplicateDocumentWarning, BatchSplitAllocator, ExpiryStatusBadge, GRNReview, GRNPostedState, GRNRetryState. Purchase Return: ReturnTable, ReturnableQuantityPanel, OverReturnBlock, ReturnReasonPicker, ReturnApproval, ReturnPostedState. Shared: MovingWACReadonly, SkeletonItemHandoff, OfflineBanner, StoreNodeUnavailablePanel. Full gallery on screens 71–73.']},
+      {h:'3. Changelog',lines:['New package: MiniMart Suppliers + Procurement. Built on the reference MiniMart Back Office visual system. No changes to the Back Office shell, Catalog, Pricing or Inventory packages.']},
+      {h:'4. Authority-dependent items not invented by Design',lines:['Over-receipt final policy (Block / Warn / Require Approval) · duplicate supplier invoice override policy · near-expiry day threshold · expired-goods final acceptance policy · inactive-item purchasing exception policy · PO/GRN/Return approval thresholds and role names · return reason catalogue · materiality threshold for supplier-total mismatch · country-specific tax/identifier rules. All shown as explicit policy-dependent examples, never chosen.']},
+      {h:'5. Open decisions preserved',lines:['Over-receipt policy (screen 30) shows BLOCK / WARN / REQUIRE APPROVAL side by side, each labeled POLICY-DEPENDENT, with none selected as final. Duplicate supplier document (38), expired goods (48) and inactive item (42) all stop short of choosing block-vs-exception.']},
+      {h:'6. Later-phase / concept items',lines:['No Purchase Requisition, RFQ/tendering, vendor bidding, auto purchase ordering, AI replenishment, supplier scoring, warehouse bins, serial-number receiving, full AP ledger, or interbranch transfer appear as active current workflows.']},
+      {h:'7. Ownership boundaries preserved',lines:['Procurement owns Supplier, PurchaseOrder, GoodsReceipt, PurchaseReturn. Inventory receives stock movements from GRN/Return posting but never owns/edits the source document (screens 45, 53, 59 show "View source" links only). Supplier Payment stays Accounting-Lite-owned — Supplier Detail\u2019s Financial tab (16) is read-only linkage. Moving WAC stays Inventory-owned and read-only everywhere it appears (34, 45).']},
+      {h:'8–43. Confirmations',lines:[
+        '1. Supplier identity is company-wide — one Supplier master, not per-store.',
+        '2. Historical Supplier snapshots remain understandable after master changes (screen 17 audit trail; posted documents never rewrite to current master values).',
+        '3–4. Procurement owns Supplier/PO/GRN/PurchaseReturn; Inventory never edits a GRN or Return, only shows the resulting movement with a safe "View source" link.',
+        '5. Draft PO (25) explicitly states NO STOCK EFFECT.',
+        '6–7. Direct GRN (37) and PO-based GRN (35–36) are visually distinct; Direct GRN shows "No Purchase Order linked" and is framed as policy-controlled availability.',
+        '8–9. Partial receipt (28) and multiple GRNs fulfilling one PO are shown without collapsing history.',
+        '10. Remaining receivable quantity is always explicit (18, 27, 28, 35–36).',
+        '11–12. Over-receipt (30) is never silent and its final policy was not chosen — three labeled POLICY-DEPENDENT examples only.',
+        '13. Receipt Date and Supplier Invoice Date are kept as separate fields (37).',
+        '14. Supplier invoice/reference duplicate detection is represented (38) without choosing the override rule.',
+        '15. Invoiced Qty and Free Qty stay distinct, never merged (44).',
+        '16. Purchase UoM conversion is shown and preserved on posted receipts (43).',
+        '17–18. Batch split (46) and expiry capture (47) are supported without inventing depletion/FEFO policy or exact thresholds.',
+        '19–20. Near-expiry threshold and expired-goods final policy are explicitly left open (47, 48).',
+        '21. Unknown item (40) hands off to the existing Catalog skeleton-item flow (41) rather than a duplicate form.',
+        '22. Inactive/non-purchasable handling (42) stays policy-driven, not silently allowed.',
+        '23. PO quantity and price variance are shown with no hidden arithmetic (49).',
+        '24. Supplier-document total mismatch is visible (50) without inventing a materiality threshold.',
+        '25–26. GRN posting (51, 53) is explicit; posted GRN (54) is immutable.',
+        '27. GRN safe retry (55) reuses one operation reference — cannot double-post.',
+        '28–29. Purchase Return prefers original GRN linkage (58); exceptional no-GRN return (59) is visually distinct and controlled.',
+        '30. Returnable quantity is always explicit (60); over-return (61) is blocked, not silently accepted.',
+        '31. Phase-1 negative stock is blocked for Purchase Returns (62), consistent with Inventory\u2019s Phase-1 rule.',
+        '32. Purchase Return batch/expiry context is preserved (52, 60).',
+        '33–34. Purchase Return approval threshold was not invented (65); posted Purchase Return (68) is immutable.',
+        '35. Purchase Return safe retry (69) cannot double-reduce stock.',
+        '36–37. Moving WAC stays Inventory-owned/read-only; Purchase Return\u2019s inventory cost effect and commercial supplier-credit value are shown separately, never substituted for each other (68).',
+        '38. Supplier Payment stays Accounting-Lite-owned (16, 64).',
+        '39–40. Cloud Sync outage (screen 06, banner) does not block local purchasing while Store Node is up; Store Node outage (04) is a distinct, blocking state.',
+        '41–42. No unresolved policy was silently selected anywhere in the package; no later-phase functionality is presented as active.',
+        '43. Screens remain usable at 1280×720, 1366×768, 1368×800 and 1920×1080 — dense tables scroll horizontally only where needed, forms stay within viewport.']}
+    ];
+    return {dsScreens,docs};
+  }
+}
+
+</script>
+</body>
+</html>
