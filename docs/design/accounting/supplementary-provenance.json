@@ -1,0 +1,123 @@
+{
+  "status": "unapproved-supplementary-reference",
+  "baseCommit": "e1790c49ac6bf8d6a14172c8f550cef8cca6ae34",
+  "packageManifestStatusUnchanged": "approved-visual-reference",
+  "sourceDependency": {
+    "path": "source/MiniMartAccountingLite.dc.html",
+    "sha256": "ebe8ca7f38b9b9d5cd9c16fed421bfe5f5863653ec9478a081d368d2bb9df12e"
+  },
+  "originalArchive": {
+    "path": "Incoming/Minimart_Accounting_Lite_ClaudeDesign_Source_v2-fixed.zip",
+    "sha256": "d91206298390053da7e5275314beab25ef1f0d1e89c6de2fce89c4c8a33e46bf"
+  },
+  "runtimeDependency": {
+    "path": "source/support.js",
+    "sha256": "8fe7df74405f3c55f49b7249c74ea1397e65d07dea2b1bd3b4a489bec2e28cbe",
+    "status": "Existing tracked runtime reused unchanged; not imported"
+  },
+  "files": [
+    {
+      "candidate": "source/MiniMart ACC - Design System & Docs.dc.html",
+      "originalLocation": "Incoming/Minimart_Accounting_Lite_ClaudeDesign_Source_v2-fixed.zip!MiniMart_Accounting_Lite_ClaudeDesign_Source_v2-fixed/MiniMart ACC - Design System & Docs.dc.html",
+      "originalSha256": "8c403a992e2faf86e75ee33a7eb28eeb677400950f85de5bb079ddabccc0e584",
+      "candidateSha256": "746ba294ed70e55d9b1a176cc2d501a8b62e5c1b72f94a97b7647528036a2a87",
+      "adjustments": [
+        "Add explicit unapproved supplementary-reference/proposal boundary.",
+        "Repair cross-package Back Office link without importing archive Back Office files.",
+        "Qualify Back Office reference status; Inventory navigation, where present, points to its existing draft manifest because no Inventory source/index is available. Historical design confirmations are assertions, not current validation evidence.",
+        "Qualify implementation-ready index; distinguish required opening-balance scope from an unfrozen mechanism and export context from Export Center-owned jobs. No source/contract changes."
+      ]
+    },
+    {
+      "candidate": "source/MiniMart ACC - Expenses.dc.html",
+      "originalLocation": "Incoming/Minimart_Accounting_Lite_ClaudeDesign_Source_v2-fixed.zip!MiniMart_Accounting_Lite_ClaudeDesign_Source_v2-fixed/MiniMart ACC - Expenses.dc.html",
+      "originalSha256": "7bf3dee4fe9561e07960d36d6179017b4b6febb4781c2f71bc6e1e12b1e80024",
+      "candidateSha256": "38e06c47c4eea89c788b4eb87c5002892f923a6943a8e9aa2e6aa1f64ee74c9d",
+      "adjustments": [
+        "Add explicit unapproved supplementary-reference/proposal boundary.",
+        "Repair cross-package Back Office link without importing archive Back Office files.",
+        "Qualify Back Office reference status; Inventory navigation, where present, points to its existing draft manifest because no Inventory source/index is available. Historical design confirmations are assertions, not current validation evidence.",
+        "Qualify implementation-ready index; distinguish required opening-balance scope from an unfrozen mechanism and export context from Export Center-owned jobs. No source/contract changes."
+      ]
+    },
+    {
+      "candidate": "source/MiniMart ACC - Export & Operational States.dc.html",
+      "originalLocation": "Incoming/Minimart_Accounting_Lite_ClaudeDesign_Source_v2-fixed.zip!MiniMart_Accounting_Lite_ClaudeDesign_Source_v2-fixed/MiniMart ACC - Export & Operational States.dc.html",
+      "originalSha256": "577060d55f1ab73e09f659e58b846b8a95ddce268482e5da338cdf9bd2afce43",
+      "candidateSha256": "2186e9ce7ccba9b441e9081027bc2dfb56bfb9e168519ccd759dc2b9cb570e22",
+      "adjustments": [
+        "Add explicit unapproved supplementary-reference/proposal boundary.",
+        "Repair cross-package Back Office link without importing archive Back Office files.",
+        "Qualify Back Office reference status; Inventory navigation, where present, points to its existing draft manifest because no Inventory source/index is available. Historical design confirmations are assertions, not current validation evidence.",
+        "Qualify implementation-ready index; distinguish required opening-balance scope from an unfrozen mechanism and export context from Export Center-owned jobs. No source/contract changes."
+      ]
+    },
+    {
+      "candidate": "source/MiniMart ACC - Financial Accounts & Transactions.dc.html",
+      "originalLocation": "Incoming/Minimart_Accounting_Lite_ClaudeDesign_Source_v2-fixed.zip!MiniMart_Accounting_Lite_ClaudeDesign_Source_v2-fixed/MiniMart ACC - Financial Accounts & Transactions.dc.html",
+      "originalSha256": "f9b1c7ee6c48257aa5c01176701d9b5bb4bc70aa924041f78dc65bb25b2b7a8d",
+      "candidateSha256": "a8e7b042b4946e8d8737ec3ec0bdc9118c5ec88774da46a382426bef3caa33d4",
+      "adjustments": [
+        "Add explicit unapproved supplementary-reference/proposal boundary.",
+        "Repair cross-package Back Office link without importing archive Back Office files.",
+        "Qualify Back Office reference status; Inventory navigation, where present, points to its existing draft manifest because no Inventory source/index is available. Historical design confirmations are assertions, not current validation evidence.",
+        "Qualify implementation-ready index; distinguish required opening-balance scope from an unfrozen mechanism and export context from Export Center-owned jobs. No source/contract changes."
+      ]
+    },
+    {
+      "candidate": "source/MiniMart ACC - Foundation & Summary.dc.html",
+      "originalLocation": "Incoming/Minimart_Accounting_Lite_ClaudeDesign_Source_v2-fixed.zip!MiniMart_Accounting_Lite_ClaudeDesign_Source_v2-fixed/MiniMart ACC - Foundation & Summary.dc.html",
+      "originalSha256": "74fe3ac972960610fc28b9b3b7aefa8f992ccf5e68618411cdd3cca0801fb24f",
+      "candidateSha256": "e3c1a8f69e857f166f8b4853404752f667e6344d2d7d04a7506a6171470b51f6",
+      "adjustments": [
+        "Add explicit unapproved supplementary-reference/proposal boundary.",
+        "Repair cross-package Back Office link without importing archive Back Office files.",
+        "Qualify Back Office reference status; Inventory navigation, where present, points to its existing draft manifest because no Inventory source/index is available. Historical design confirmations are assertions, not current validation evidence.",
+        "Qualify implementation-ready index; distinguish required opening-balance scope from an unfrozen mechanism and export context from Export Center-owned jobs. No source/contract changes."
+      ]
+    },
+    {
+      "candidate": "source/MiniMart ACC - Reconciliation & Opening Balances.dc.html",
+      "originalLocation": "Incoming/Minimart_Accounting_Lite_ClaudeDesign_Source_v2-fixed.zip!MiniMart_Accounting_Lite_ClaudeDesign_Source_v2-fixed/MiniMart ACC - Reconciliation & Opening Balances.dc.html",
+      "originalSha256": "c07e9edf2e863f10f1a44930530a6b1565a163e0af06ff4c4eccfdbc804e027f",
+      "candidateSha256": "7e4a00b38c1cf47e71122e7cb2f4a77f1fbb6d7017c097d2907fb93e53b88c6b",
+      "adjustments": [
+        "Add explicit unapproved supplementary-reference/proposal boundary.",
+        "Repair cross-package Back Office link without importing archive Back Office files.",
+        "Qualify Back Office reference status; Inventory navigation, where present, points to its existing draft manifest because no Inventory source/index is available. Historical design confirmations are assertions, not current validation evidence.",
+        "Qualify implementation-ready index; distinguish required opening-balance scope from an unfrozen mechanism and export context from Export Center-owned jobs. No source/contract changes."
+      ]
+    },
+    {
+      "candidate": "source/MiniMart ACC - Supplier Payables & Payments.dc.html",
+      "originalLocation": "Incoming/Minimart_Accounting_Lite_ClaudeDesign_Source_v2-fixed.zip!MiniMart_Accounting_Lite_ClaudeDesign_Source_v2-fixed/MiniMart ACC - Supplier Payables & Payments.dc.html",
+      "originalSha256": "b8102ff72fad97622661540757dc9f575d4f1958fe32bb7248b5722a4032edf8",
+      "candidateSha256": "deb92d93691fbbf112e42ebd2feb1a33b0b449817f8bac5318eae2b96c370a44",
+      "adjustments": [
+        "Add explicit unapproved supplementary-reference/proposal boundary.",
+        "Repair cross-package Back Office link without importing archive Back Office files.",
+        "Qualify Back Office reference status; Inventory navigation, where present, points to its existing draft manifest because no Inventory source/index is available. Historical design confirmations are assertions, not current validation evidence.",
+        "Qualify implementation-ready index; distinguish required opening-balance scope from an unfrozen mechanism and export context from Export Center-owned jobs. No source/contract changes."
+      ]
+    },
+    {
+      "candidate": "source/MiniMart Accounting Lite Mockups.dc.html",
+      "originalLocation": "Incoming/Minimart_Accounting_Lite_ClaudeDesign_Source_v2-fixed.zip!MiniMart_Accounting_Lite_ClaudeDesign_Source_v2-fixed/MiniMart Accounting Lite Mockups.dc.html",
+      "originalSha256": "37ba7caaf1db4693f9470bf118489cdf79576269909484c783f2be6c90f6ba2a",
+      "candidateSha256": "932965a0dd6be2e0df687e68e977443f80a782368bea0029e425992147dd3cee",
+      "adjustments": [
+        "Add explicit unapproved supplementary-reference/proposal boundary.",
+        "Repair cross-package Back Office link without importing archive Back Office files.",
+        "Qualify Back Office reference status; Inventory navigation, where present, points to its existing draft manifest because no Inventory source/index is available. Historical design confirmations are assertions, not current validation evidence.",
+        "Qualify implementation-ready index; distinguish required opening-balance scope from an unfrozen mechanism and export context from Export Center-owned jobs. No source/contract changes."
+      ]
+    },
+    {
+      "candidate": "source/ACCOUNTING-LITE-EXPORT-MANIFEST-v2-fixed.txt",
+      "originalLocation": "Incoming/Minimart_Accounting_Lite_ClaudeDesign_Source_v2-fixed.zip!MiniMart_Accounting_Lite_ClaudeDesign_Source_v2-fixed/ACCOUNTING-LITE-EXPORT-MANIFEST-v2-fixed.txt",
+      "originalSha256": "8e4a12150e0434468d3f3a1fd02b08821c28b5218a6c51aaed5aeec5fa416e3c",
+      "candidateSha256": "8e4a12150e0434468d3f3a1fd02b08821c28b5218a6c51aaed5aeec5fa416e3c",
+      "adjustments": []
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<aside role="note" style="padding:12px 24px;background:#fff4d6;color:#453615;font:14px system-ui">UNAPPROVED SUPPLEMENTARY REFERENCE / PROPOSAL. Frozen specifications and backlog govern behavior. Package/source approval does not approve this document. See ../SUPPLEMENTARY.md for provenance, review and runtime gaps.</aside>
+
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#e6e9ee;font-family:'IBM Plex Sans',system-ui,sans-serif;color:#0f1a2b}a{color:#1b5fd1}a:hover{color:#174fb0}</style>
+</helmet>
+<section style="padding:36px 48px 20px;display:flex;flex-direction:column;gap:8px;max-width:1100px">
+  <a href="MiniMart Accounting Lite Mockups.dc.html" style="font-size:12.5px">← Accounting Lite index</a>
+  <div style="display:flex;gap:6px;flex-wrap:wrap;padding:2px 0 4px"><a href="MiniMart ACC - Foundation &amp; Summary.dc.html" style="height:28px;padding:0 12px;border-radius:999px;font-size:11.5px;font-weight:600;border:1px solid #cfd5de;background:#fff;color:#3d4a5e;text-decoration:none;display:inline-flex;align-items:center">01-12 Foundation</a><a href="MiniMart ACC - Supplier Payables &amp; Payments.dc.html" style="height:28px;padding:0 12px;border-radius:999px;font-size:11.5px;font-weight:600;border:1px solid #cfd5de;background:#fff;color:#3d4a5e;text-decoration:none;display:inline-flex;align-items:center">13-28 Payables & Payments</a><a href="MiniMart ACC - Financial Accounts &amp; Transactions.dc.html" style="height:28px;padding:0 12px;border-radius:999px;font-size:11.5px;font-weight:600;border:1px solid #0e1b33;background:#0e1b33;color:#fff;text-decoration:none;display:inline-flex;align-items:center">29-50 Accounts & Transactions</a><a href="MiniMart ACC - Expenses.dc.html" style="height:28px;padding:0 12px;border-radius:999px;font-size:11.5px;font-weight:600;border:1px solid #cfd5de;background:#fff;color:#3d4a5e;text-decoration:none;display:inline-flex;align-items:center">51-62 Expenses</a><a href="MiniMart ACC - Reconciliation &amp; Opening Balances.dc.html" style="height:28px;padding:0 12px;border-radius:999px;font-size:11.5px;font-weight:600;border:1px solid #cfd5de;background:#fff;color:#3d4a5e;text-decoration:none;display:inline-flex;align-items:center">63-72 Reconciliation</a><a href="MiniMart ACC - Export &amp; Operational States.dc.html" style="height:28px;padding:0 12px;border-radius:999px;font-size:11.5px;font-weight:600;border:1px solid #cfd5de;background:#fff;color:#3d4a5e;text-decoration:none;display:inline-flex;align-items:center">73-80 Export & States</a><a href="MiniMart ACC - Design System &amp; Docs.dc.html" style="height:28px;padding:0 12px;border-radius:999px;font-size:11.5px;font-weight:600;border:1px solid #cfd5de;background:#fff;color:#3d4a5e;text-decoration:none;display:inline-flex;align-items:center">81-88 Design System</a></div>
+  <span style="font-size:26px;font-weight:700">Customer Linkage, Financial Accounts & Transactions</span>
+  <span style="font-size:14px;color:#4a5567">Screens 29–50.</span>
+</section>
+<section style="padding:20px 48px 32px;border-top:1px solid #cfd5de">
+  <div style="display:flex;flex-wrap:wrap;gap:28px">
+    <sc-for list="{{ screens }}" as="s" hint-placeholder-count="12">
+      <div id="s{{ s.n }}" style="display:flex;flex-direction:column;gap:8px">
+        <div style="display:flex;align-items:center;gap:9px"><span style="font:600 11px 'IBM Plex Mono',monospace;padding:3px 6px;border-radius:5px;background:#0e1b33;color:#fff">{{ s.n }}</span><span style="font-size:13.5px;font-weight:600">{{ s.t }}</span></div>
+        <div style="width:1366px;height:768px;border-radius:8px;overflow:hidden;box-shadow:0 1px 3px rgba(14,27,51,.12),0 8px 24px rgba(14,27,51,.08);background:#f2f4f7">
+          <dc-import name="MiniMartAccountingLite" screen="{{ s.n }}" embedded="{{ true }}" hint-size="1366px,768px" style="width:1366px;height:768px"></dc-import>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+
+const SCREENS=[["29","Customer Outstanding — read-only Accounting view"],["30","Customer Collection — linkage (read-only trace)"],["31","Customer Return / Credit — linkage (read-only trace)"],["32","Financial Accounts — workspace intro"],["33","Financial Accounts — list"],["34","Cash Account — detail"],["35","Bank Account — detail (no credentials stored)"],["36","Account Activation — Active / Inactive"],["37","Account Balance — derived, no edit"],["38","Financial Movement — history"],["39","Financial Movement — detail"],["40","Non-Sale Receipt — entry form"],["41","Non-Purchase Payment — entry form"],["42","Financial Transaction — Draft / Review"],["43","Financial Transaction — Posted"],["44","Financial Transaction — Posting / Safe Retry"],["45","Account Transfer — entry form"],["46","Account Transfer — value rule validation"],["47","Account Transfer — Posted (linked pair)"],["48","Account Transfer — Posting / Safe Retry"],["49","Transfer — linked movement detail"],["50","Financial Transaction & Transfer — audit trail"]];
+class Component extends DCLogic {
+  renderVals(){ return {screens:SCREENS.map(([n,t])=>({n,t}))}; }
+}
+
+</script>
+</body>
+</html>

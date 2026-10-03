@@ -1,0 +1,88 @@
+MINIMART ACCOUNTING-LITE — CLAUDE DESIGN SOURCE EXPORT MANIFEST v2-fixed
+Archive: MiniMart_Accounting_Lite_ClaudeDesign_Source_v2-fixed.zip
+Status: V2-FIXED EXPORT READY FOR INDEPENDENT RE-ACCEPTANCE. Not approved. Not registered, committed, or pushed.
+
+Supersedes the rejected V2 (source SHA-256 63fb449157...; not reused as this manifest's source SHA).
+
+AUTHORITATIVE SOURCE: MiniMartAccountingLite.dc.html
+NEW SOURCE SHA-256: ebe8ca7f38b9b9d5cd9c16fed421bfe5f5863653ec9478a081d368d2bb9df12e
+SCREEN COUNT: 88, IDs 01–88 contiguous, no gaps, no duplicates, 88 unique titles, 88 unique state mappings. JS re-parsed with `new Function` — no syntax errors. All screens instantiate.
+
+============================================================
+BLOCKING DEFECT FIXED — SCREEN 20
+============================================================
+Prior defect: the Supplier Payment allocation grid included SUP-PAY-2026-00104 (Kluang Dairy, Outstanding RM 0.00, Status Paid) as an apparent eligible allocation row, violating FR-ACC-014 (allocation must be against eligible outstanding liability).
+
+Fix: the allocation grid's filter now excludes any payable with outstanding ≤ 0, in addition to matching supplier — `PAYABLES.filter(p=>p.supplier===PAYMENT.supplier&&p.outstanding>0)`. The grid now shows only:
+  SUP-PAY-2026-00142 — Outstanding RM 950.00 — Allocate RM 950.00 — Remaining RM 0.00
+A neutral note was added: "Only eligible outstanding payables are available for allocation."
+
+No allocation policy was invented (no FIFO/oldest-first/due-date-first/proportional/automatic allocation, no supplier-advance policy). The payment amount was not changed. No payable was invented to fill the table.
+
+SCREEN 20 ARITHMETIC (re-verified):
+Payment Amount = RM 950.00
+Outstanding (SUP-PAY-2026-00142) = RM 950.00
+Allocate = min(950.00, 950.00) = RM 950.00
+Remaining = max(0, 950.00 − 950.00) = RM 0.00
+Unallocated = 950.00 − 950.00 = RM 0.00
+Payment Amount (950.00) = Allocated (950.00) + Unallocated (0.00). Holds exactly.
+
+SEARCH RESULT FOR SUP-PAY-2026-00104: the literal "00104" occurs exactly once in the source — in the PAYABLES sample-data array definition (ref, supplier Kluang Dairy, outstanding:0, status implied Paid). No other screen references it directly; screens that render the full PAYABLES array (13 Supplier Payables list, 14 filtered list) continue to show it there as a historical, read-only, fully-paid record — which is semantically correct and was not altered. It does not appear in any eligibility/allocation context anywhere in the 88 screens.
+
+CONFIRMATION — PAID PAYABLES REMAIN AVAILABLE IN HISTORICAL VIEWS: confirmed. Screens 13/14 (Supplier Payables list) still list SUP-PAY-2026-00104 with its Paid status, unchanged. It was not globally deleted.
+
+CONFIRMATION — NO ALLOCATION POLICY INVENTED: confirmed. The existing noteBox ("Allocation order ... is not assumed — allocation shown here is an explicit user interaction, not an auto-applied rule") is unchanged; the fix only excludes non-eligible (zero-outstanding) rows from the candidate set, which is an eligibility filter, not an allocation-order policy.
+
+============================================================
+ALL PRIOR V2 AUTHORITY CORRECTIONS CONFIRMED UNCHANGED
+============================================================
+- Screen 01 Bank Accounts = RM 236,500.00 — confirmed unchanged.
+- Payment = RM 950.00, Allocated = RM 950.00, Unallocated = RM 0.00 — confirmed (and now also correctly scoped to one eligible row).
+- Configurable payable-basis clarification (screen 13 note, doc #22) — confirmed unchanged.
+- Screen 20 responsive fix (no forced internal scroll) — confirmed unchanged, still in place alongside this fix.
+- Screens 38/52 Posted-pill fix — confirmed unchanged.
+- Screen 55 "check authoritative local status" wording — confirmed unchanged.
+- Opening Balance authority demotion (screens 66, 70–72) — confirmed unchanged: "Mechanism Pending Contract" (66), "Required Scope" (70), "Effective Date & Evidence (illustrative)" (71), "No Arbitrary Balance Edit (boundary)" (72).
+- Valid safe-retry screens 26 (Supplier Payment), 44 (Financial Transaction), 48 (Account Transfer), 55 (Expense) — confirmed unchanged.
+- Screens 75–77 Export Center / Reporting handoff wording — confirmed unchanged ("Continue in Export Center", "Handed off to Export Center").
+- Reconciliation matching policy neutrality (screen 65) — confirmed unchanged.
+- FT-2026-00061 (Non-Sale Receipt) / FT-2026-00062 (Non-Purchase Payment) distinction — confirmed unchanged.
+- Screen 88 confirmations 1–52 — confirmed still all represented, none missing, none duplicated.
+- No-full-GL boundaries (no Chart of Accounts, Journal Entry, Trial Balance, Balance Sheet, P&L, period close) — confirmed unchanged.
+
+NON-BLOCKING OBSERVATIONS FROM REVIEW: noted, not acted on (none were required fixes; per review instructions they are not permission for redesign). Screen 77's "Dataset Context" / "Handed Off At" labels and Screen 71's field set were left as-is — both already carry adjacent explicit wording (illustrative/Export-Center-owned) that addresses the underlying concern without further edits. Screens 64/67 "Recorded Movements" figure was left unchanged — no source evidence that it is meant to represent the Maybank account balance rather than period movement.
+
+============================================================
+88-SCREEN STRUCTURAL VERIFICATION
+============================================================
+Screen count: 88. IDs 01–88 contiguous, no gaps. No duplicate IDs. 88 unique titles. 88 unique state mappings. Grouped-page coverage: 88 screen references across 7 grouped pages, 88 unique, 0 duplicates, 0 gaps.
+
+GROUPED PAGES AND SCREEN RANGES (unchanged):
+MiniMart ACC - Foundation & Summary.dc.html — 01–12
+MiniMart ACC - Supplier Payables & Payments.dc.html — 13–28
+MiniMart ACC - Financial Accounts & Transactions.dc.html — 29–50
+MiniMart ACC - Expenses.dc.html — 51–62
+MiniMart ACC - Reconciliation & Opening Balances.dc.html — 63–72
+MiniMart ACC - Export & Operational States.dc.html — 73–80
+MiniMart ACC - Design System & Docs.dc.html — 81–88
+
+EXACTLY WHAT CHANGED IN THIS PASS: only MiniMartAccountingLite.dc.html (screen 20 allocation-grid filter + one added note). No grouped page, no package index, and support.js required a byte-level change in this pass — confirmed none of their hashes changed except the authoritative source itself.
+
+PACKAGED FILES AND SHA-256 (computed directly from final packaged bytes):
+MiniMartAccountingLite.dc.html  SHA256:ebe8ca7f38b9b9d5cd9c16fed421bfe5f5863653ec9478a081d368d2bb9df12e  (77473 bytes)  [changed: screen 20 fix]
+MiniMart ACC - Foundation & Summary.dc.html  SHA256:74fe3ac972960610fc28b9b3b7aefa8f992ccf5e68618411cdd3cca0801fb24f  (4724 bytes)  [unchanged]
+MiniMart ACC - Supplier Payables & Payments.dc.html  SHA256:b8102ff72fad97622661540757dc9f575d4f1958fe32bb7248b5722a4032edf8  (4876 bytes)  [unchanged]
+MiniMart ACC - Financial Accounts & Transactions.dc.html  SHA256:f9b1c7ee6c48257aa5c01176701d9b5bb4bc70aa924041f78dc65bb25b2b7a8d  (5238 bytes)  [unchanged]
+MiniMart ACC - Expenses.dc.html  SHA256:7bf3dee4fe9561e07960d36d6179017b4b6febb4781c2f71bc6e1e12b1e80024  (4606 bytes)  [unchanged]
+MiniMart ACC - Reconciliation & Opening Balances.dc.html  SHA256:c07e9edf2e863f10f1a44930530a6b1565a163e0af06ff4c4eccfdbc804e027f  (4688 bytes)  [unchanged]
+MiniMart ACC - Export & Operational States.dc.html  SHA256:577060d55f1ab73e09f659e58b846b8a95ddce268482e5da338cdf9bd2afce43  (4678 bytes)  [unchanged]
+MiniMart ACC - Design System & Docs.dc.html  SHA256:8c403a992e2faf86e75ee33a7eb28eeb677400950f85de5bb079ddabccc0e584  (4547 bytes)  [unchanged]
+MiniMart Accounting Lite Mockups.dc.html  SHA256:37ba7caaf1db4693f9470bf118489cdf79576269909484c783f2be6c90f6ba2a  (6445 bytes)  [unchanged]
+support.js  SHA256:8fe7df74405f3c55f49b7249c74ea1397e65d07dea2b1bd3b4a489bec2e28cbe  (69150 bytes)  [unchanged — not modified, no technical reason required a change]
+
+TOTAL PACKAGED FILES: 10 (9 .dc.html + support.js), plus this manifest = 11 files in the archive.
+MANIFEST HASH VERIFICATION: every hash above was recomputed directly from the exact bytes placed in the archive and matches.
+
+STATUS: V2-FIXED EXPORT READY FOR INDEPENDENT RE-ACCEPTANCE. Not approved. Not registered in any repository. Not committed. Not pushed. Reports was not started.
+
+UNRESOLVED ISSUES: none identified for this specific defect. The three non-blocking observations from review remain open as observations only (not defects) and were intentionally not acted on beyond what is noted above; they remain available for a future reviewer to decide whether wording adjustments are warranted.
