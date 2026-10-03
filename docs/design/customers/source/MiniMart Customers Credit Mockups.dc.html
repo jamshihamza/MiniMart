@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<aside role="note" style="padding:12px 24px;background:#fff4d6;color:#453615;font:14px system-ui">UNAPPROVED SUPPLEMENTARY REFERENCE / PROPOSAL. Frozen specifications and backlog govern behavior. Package/source approval does not approve this document. See ../SUPPLEMENTARY.md for provenance, review and runtime gaps.</aside>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#e6e9ee;font-family:'IBM Plex Sans',system-ui,sans-serif;color:#0f1a2b}a{color:#1b5fd1}a:hover{color:#174fb0}</style>
+</helmet>
+<div style="padding:48px;display:flex;flex-direction:column;gap:20px;max-width:900px">
+  <span style="font:600 12px 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#4a5567">MINIMART BACK OFFICE · CUSTOMERS + CREDIT</span>
+  <span style="font-size:30px;font-weight:700">Visual implementation reference — index</span>
+  <span style="font-size:15px;color:#4a5567;line-height:1.5">Extends the reference <a href="../../back-office/source/MiniMart Back Office Mockups.dc.html">MiniMart Back Office</a> shell — no redesign of the shell, Catalog, Pricing, Procurement, Inventory or POS. Customer identity is company-wide. Customer and CreditAccount are distinct concepts; CreditLedgerEntry is immutable. Full documentation (authority-dependent items, open decisions, confirmations, component inventory) is on the Design System & Docs page.</span>
+  <div style="display:flex;flex-direction:column;gap:10px;margin-top:6px">
+    <sc-for list="{{ pages }}" as="p" hint-placeholder-count="6">
+      <a href="{{ p.href }}" style="display:flex;align-items:center;gap:14px;padding:16px 18px;border-radius:12px;border:1px solid #e1e5eb;background:#fff;text-decoration:none;color:#0f1a2b">
+        <span style="font:600 11.5px 'IBM Plex Mono',monospace;padding:4px 8px;border-radius:6px;background:#0e1b33;color:#fff">{{ p.range }}</span>
+        <div style="display:flex;flex-direction:column;gap:2px;flex:1"><span style="font-size:15px;font-weight:600">{{ p.title }}</span><span style="font-size:12.5px;color:#6b7585">{{ p.sub }}</span></div>
+        <span style="color:#1b5fd1;font-size:13px;font-weight:600">Open →</span>
+      </a>
+    </sc-for>
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const P=[
+['01–12','MiniMart CUS - Customer Foundation.dc.html','Customer Foundation','List, search, states, POS lookup, walk-in vs identified, summary, duplicate detection'],
+['13–25','MiniMart CUS - Customer Detail.dc.html','Customer Detail','Create, detail tabs (overview, contact, identifiers, sales, returns, credit, collections, statement, audit), deactivate/reactivate'],
+['26–43','MiniMart CUS - Credit Accounts.dc.html','Credit Accounts','Enablement, exposure, ledger, limit states, eligibility, overdue, correction, cross-module credit sale flow'],
+['44–59','MiniMart CUS - Collections.dc.html','Collections','Entry, allocation, partial/over-allocation, review, posting, retry, offline states'],
+['60–68','MiniMart CUS - Statements & States.dc.html','Statements & Operational Views','Statement, aging, credit work queue, receivables link, POS credit flow examples'],
+['69–74','MiniMart CUS - Design System & Docs.dc.html','Cross-module Map & Design System','Cross-module connections, component galleries, full documentation & confirmations']];
+class Component extends DCLogic {
+  renderVals(){ return {pages:P.map(([range,href,title,sub])=>({range,href,title,sub}))}; }
+}
+
+</script>
+</body>
+</html>

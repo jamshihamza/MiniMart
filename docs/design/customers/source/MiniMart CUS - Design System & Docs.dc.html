@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<aside role="note" style="padding:12px 24px;background:#fff4d6;color:#453615;font:14px system-ui">UNAPPROVED SUPPLEMENTARY REFERENCE / PROPOSAL. Frozen specifications and backlog govern behavior. Package/source approval does not approve this document. See ../SUPPLEMENTARY.md for provenance, review and runtime gaps.</aside>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#e6e9ee;font-family:'IBM Plex Sans',system-ui,sans-serif;color:#0f1a2b}a{color:#1b5fd1}a:hover{color:#174fb0}</style>
+</helmet>
+<section style="padding:36px 48px 20px;display:flex;flex-direction:column;gap:8px;max-width:1100px">
+  <a href="MiniMart Customers Credit Mockups.dc.html" style="font-size:12.5px">← Customers & Credit index</a>
+  <div style="display:flex;gap:6px;flex-wrap:wrap;padding:2px 0 4px"><a href="MiniMart CUS - Customer Foundation.dc.html" style="height:28px;padding:0 12px;border-radius:999px;font-size:11.5px;font-weight:600;border:1px solid #cfd5de;background:#fff;color:#3d4a5e;text-decoration:none;display:inline-flex;align-items:center">01–12 Foundation</a><a href="MiniMart CUS - Customer Detail.dc.html" style="height:28px;padding:0 12px;border-radius:999px;font-size:11.5px;font-weight:600;border:1px solid #cfd5de;background:#fff;color:#3d4a5e;text-decoration:none;display:inline-flex;align-items:center">13–25 Detail</a><a href="MiniMart CUS - Credit Accounts.dc.html" style="height:28px;padding:0 12px;border-radius:999px;font-size:11.5px;font-weight:600;border:1px solid #cfd5de;background:#fff;color:#3d4a5e;text-decoration:none;display:inline-flex;align-items:center">26–43 Credit</a><a href="MiniMart CUS - Collections.dc.html" style="height:28px;padding:0 12px;border-radius:999px;font-size:11.5px;font-weight:600;border:1px solid #cfd5de;background:#fff;color:#3d4a5e;text-decoration:none;display:inline-flex;align-items:center">44–59 Collections</a><a href="MiniMart CUS - Statements & States.dc.html" style="height:28px;padding:0 12px;border-radius:999px;font-size:11.5px;font-weight:600;border:1px solid #cfd5de;background:#fff;color:#3d4a5e;text-decoration:none;display:inline-flex;align-items:center">60–68 Statements</a><a href="MiniMart CUS - Design System & Docs.dc.html" style="height:28px;padding:0 12px;border-radius:999px;font-size:11.5px;font-weight:600;border:1px solid #0e1b33;background:#0e1b33;color:#fff;text-decoration:none;display:inline-flex;align-items:center">69–74 Design System</a></div>
+  <span style="font-size:26px;font-weight:700">Customers & Credit — Cross-module Map, Design System & Documentation</span>
+  <span style="font-size:14px;color:#4a5567">Screens 69–74, plus the package's documentation record.</span>
+</section>
+<section style="padding:20px 48px 32px;border-top:1px solid #cfd5de">
+  <div style="display:flex;flex-wrap:wrap;gap:28px">
+    <sc-for list="{{ dsScreens }}" as="s" hint-placeholder-count="6">
+      <div id="s{{ s.n }}" style="display:flex;flex-direction:column;gap:8px">
+        <div style="display:flex;align-items:center;gap:9px"><span style="font:600 11px 'IBM Plex Mono',monospace;padding:3px 6px;border-radius:5px;background:#0e1b33;color:#fff">{{ s.n }}</span><span style="font-size:13.5px;font-weight:600">{{ s.t }}</span></div>
+        <div style="width:1366px;height:768px;border-radius:8px;overflow:hidden;box-shadow:0 1px 3px rgba(14,27,51,.12),0 8px 24px rgba(14,27,51,.08);background:#f2f4f7">
+          <dc-import name="MiniMartCustomersCredit" screen="{{ s.n }}" embedded="{{ true }}" hint-size="1366px,768px" style="width:1366px;height:768px"></dc-import>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+</section>
+<section style="padding:26px 48px 60px;border-top:1px solid #cfd5de;display:flex;flex-direction:column;gap:16px;max-width:900px">
+  <span style="font-size:21px;font-weight:700">Documentation</span>
+  <sc-for list="{{ docs }}" as="d" hint-placeholder-count="8">
+    <div style="display:flex;flex-direction:column;gap:6px">
+      <span style="font-size:14px;font-weight:600">{{ d.h }}</span>
+      <sc-for list="{{ d.lines }}" as="l" hint-placeholder-count="4"><span style="font-size:13px;color:#4a5567;line-height:1.5">{{ l }}</span></sc-for>
+    </div>
+  </sc-for>
+</section>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals(){
+    const dsScreens=[['69','Cross-module Map'],['70','Design System — Table / Status'],['71','Design System — Form / Ledger'],['72','Permission / Audit components'],['73','Empty & Validation states'],['74','Component inventory + documentation']].map(([n,t])=>({n,t}));
+    const docs=[
+      {h:'1. Screen index',lines:['74 artboards: Customer Foundation (01–12), Customer Detail (13–25), Credit Accounts (26–43), Collections (44–59), Statements & Operational Views (60–68), Cross-module Map / Design System / Documentation (69–74). Reuses the reference MiniMart Back Office shell, nav, status language, tables, forms and dialogs — no redesign of the shell, Catalog, Pricing, Procurement, Inventory or POS.']},
+      {h:'2. Component inventory',lines:['BackOfficeShell, SidebarNavigation, TopOperationalBar, StoreNodeStatus, SyncStatus, PageHeader, CustomerHeader, CustomerStatus, CreditStatus, MoneyValue, ExposureSummary, CreditLedgerTable, CollectionTable, AllocationTable, StatementTable, AuditTimeline, PermissionState, OfflineState, ValidationSummary, ConfirmationDialog, SafeRetryState, ReadOnlyPostedBanner, EntityPicker, SearchBar, FilterBar, DataTable, Tabs, FormSection, FormFooter. Full gallery on screens 70–72.']},
+      {h:'3. Changelog',lines:['New package: MiniMart Customers + Credit. Built on the reference MiniMart Back Office visual system. No changes to the Back Office shell, Catalog, Pricing, Procurement, Inventory or POS packages.']},
+      {h:'4. Authority-dependent items not invented by Design',lines:['Credit-limit violation mode (DEC-CRD-001, open) · collection allocation order (DEC-CRD-002, open) · credit-limit override thresholds · overdue-blocking rules · due-date basis formula · write-off policy · interest/finance-charge rules · held-sale pending-exposure reservation · customer-merge final workflow · customer import partial-commit semantics · aging bucket day boundaries · role/permission matrix. All shown as explicit policy-dependent examples, never chosen.']},
+      {h:'5. Open decisions preserved',lines:['Credit Limit Violation (31) shows BLOCK / WARN / REQUIRE OVERRIDE side by side, each labeled AUTHORITY-DEPENDENT, none selected as final — matching DEC-CRD-001. Collection Allocation (46) supports policy-driven allocation without choosing FIFO, oldest-first, proportional or manual — matching DEC-CRD-002. Held-Sale Pending Credit Exposure (39) is marked OPEN / AUTHORITY-DEPENDENT.']},
+      {h:'6. Later-phase / concept items',lines:['No loyalty points, rewards, membership tiers, gift cards, campaigns, customer scoring, AI recommendations, interest charges, late fees, automatic blacklisting, or multi-branch real-time global credit appear as active current functionality.']},
+      {h:'7. Ownership boundaries preserved',lines:['Customer & Credit owns Customer, CreditAccount, CustomerCollection. Sales stays Sales-owned (Credit Sales list links "View Sale", never edit). Returns stays Returns-owned (Returns tab is view-only). Payments stays Payments-owned. Accounting-Lite boundary is respected via read-only "View Receivables Report" / "View Financial Context" links, never duplicated into Customer Detail.']},
+      {h:'8–43. Confirmations',lines:[
+        '1. Customer identity is company-wide — one Customer master, not per-store (screen 01, 38 context note).',
+        '2–4. Customer and CreditAccount are kept visually distinct (16, 21); a Customer may exist without Credit enabled (42); historical posted snapshots are preserved and never rewritten with current master values (10 doc note).',
+        '5. Walk-in Customer (09) is explicitly not a fake Customer master record.',
+        '6. Store Node unavailable (05) and Cloud Sync unavailable (06) both apply to Customers/Credit — Store Node down blocks operations; Cloud down does not.',
+        '7–9. CreditAccount owns eligibility/exposure (27); CreditLedgerEntry is immutable (37); current exposure is never an arbitrary editable balance — no Edit Balance / Set Outstanding action exists anywhere.',
+        '10–12. Basic Customer Credit is supported (26); fixed credit limit is not assumed mandatory (29); a blank/unconfigured limit is never shown as RM 0.00 (29).',
+        '13–14. Credit-limit violation outcome (31) and override policy were not invented — three labeled AUTHORITY-DEPENDENT options only.',
+        '15. Due-date basis (34) is explicitly documented as governed policy, not hard-coded.',
+        '16. Overdue (33) does not automatically imply fees or blocking — explicitly noted.',
+        '17–19. CustomerCollection is a first-class owned process (44–59); Draft Collection has no final credit effect (56); Posted Collection is immutable (51).',
+        '20–23. Collection allocation policy was not invented (46); partial collection is supported (47); over-allocation cannot happen silently (48); customer advance/unapplied cash behavior was not invented (48).',
+        '24. Collection safe retry (52) reuses one operation reference — cannot double-reduce exposure.',
+        '25–26. Customer Statement (60) is explicitly operational, not a full GL; aging bucket definitions (61, 68) are labeled CONFIGURED / REPORTING POLICY, not invented MiniMart definitions.',
+        '27–30. Sales, Returns, Payments and Accounting-Lite ownership boundaries remain intact throughout (19, 20, 55, 63).',
+        '31–32. Credit correction (40) is explicit/traceable; no ordinary edit/delete exists on any CreditLedgerEntry.',
+        '33–34. Store context (Operational Context: MiniMart Central) does not duplicate the company-wide Customer; Phase-1 local-store exposure is not presented as guaranteed live multi-branch exposure (38, 39).',
+        '35–36. Cloud Sync outage and Store Node outage are kept as separate, distinctly labeled states (05/06); Cloud outage does not silently convert stale global exposure into "current."',
+        '37. Held-sale pending credit exposure (39) is explicitly OPEN / AUTHORITY-DEPENDENT.',
+        '38. No CRM/loyalty capability is presented as current core anywhere in the package.',
+        '39. No country-specific credit rule is hard-coded into the shared core (14, 15, 34 all reference "country pack" / "policy" rather than a fixed rule).',
+        '40. No arbitrary role/approval threshold was invented — permission gallery (72) lists capability names only, no matrix.',
+        '41. No hidden historical rewrite exists — posted Sales/Collections/Ledger entries remain visible and unchanged after master edits.',
+        '42. All source documents link back to their owning module ("View Sale," "View Source Sale," "View Receivables Report") rather than being edited in place.',
+        '43. Screens remain usable at 1280×720, 1366×768, 1368×800 and 1920×1080 — dense tables scroll horizontally only where needed, primary actions stay reachable.']}
+    ];
+    return {dsScreens,docs};
+  }
+}
+
+</script>
+</body>
+</html>

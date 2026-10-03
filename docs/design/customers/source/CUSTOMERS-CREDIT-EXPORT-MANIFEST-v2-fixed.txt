@@ -1,0 +1,42 @@
+MINIMART CUSTOMERS + CREDIT — CLAUDE DESIGN SOURCE EXPORT MANIFEST v2 (FIXED)
+Manifest-integrity correction only. No .dc.html source file was modified. All hashes below were recomputed directly from the packaged archive bytes (not retyped/reconstructed text) and verified against the packaged files.
+
+EXPORTED FILES (SHA-256):
+MiniMartCustomersCredit.dc.html  SHA256:593adaec60d84d384fdc2947a1ba7d169f8ec8eb21d34373fb814ee662259d7c
+MiniMart CUS - Customer Foundation.dc.html  SHA256:f451b6b88855b647a23d85c2784f7c46840e2eab7ea810edbb3c0b0e2fca5e16
+MiniMart CUS - Customer Detail.dc.html  SHA256:dd42769f175cd6c0af600d04b2e51d327efad756cb4aad48ab11c8a7cfa6e56a
+MiniMart CUS - Credit Accounts.dc.html  SHA256:6fe28fd1b55e57c9250018ab0f7d71d265bab944f66c76d84f56036547a75c5b
+MiniMart CUS - Collections.dc.html  SHA256:fb91b45e8f541c09c7ced87d99f88ab00d393e00ea76038619d8e2daee67185c
+MiniMart CUS - Statements & States.dc.html  SHA256:b5b6d29d9397561892e8290855ac57dc39c0a24480e1689d0022a2f585fa03c5
+MiniMart CUS - Design System & Docs.dc.html  SHA256:3378d7030829a085d7ead1e8a4994682fb8982845e0d1c04ff04aaeecd31c7e0
+MiniMart Customers Credit Mockups.dc.html  SHA256:f6e807b56aa8a583a0105884329a123c4b9cf5840eb0a9c0390cd1963581626f
+MiniMart Back Office Mockups.dc.html  SHA256:a49a0372deebe8a0a6460d901bcb83e5469d818cb70f2a80956b71dcaf4a2130
+support.js  SHA256:8fe7df74405f3c55f49b7249c74ea1397e65d07dea2b1bd3b4a489bec2e28cbe
+
+AUTHORITATIVE SOURCE FILE: MiniMartCustomersCredit.dc.html
+AUTHORITATIVE SOURCE SHA-256: 593adaec60d84d384fdc2947a1ba7d169f8ec8eb21d34373fb814ee662259d7c
+EXPECTED (per v2 fix): 593adaec60d84d384fdc2947a1ba7d169f8ec8eb21d34373fb814ee662259d7c
+MATCH: true
+SOURCE SCREEN COUNT: 74 (unchanged)
+SCREEN IDs: 01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74
+
+DIRECT LOCAL DEPENDENCIES:
+- support.js — REQUIRED (DC runtime, required by every .dc.html file above to render)
+- No other local file dependencies
+
+CORRECTION MADE IN THIS PASS:
+- Previous v2 manifest declared an incorrect SHA-256 for "MiniMart CUS - Design System & Docs.dc.html" (7c5128520725c2b53f51d4bed0d144f4d9e83aee9923fce853c6d9eedf99bf5b), caused by hashing a manually-retyped copy of the file's text rather than the packaged file's actual bytes.
+- This pass re-hashed every one of the 10 files directly from the bytes physically packaged in the v2 archive folder (not retyped), and corrected the Design System & Docs entry to: 3378d7030829a085d7ead1e8a4994682fb8982845e0d1c04ff04aaeecd31c7e0
+- Confirmed this corrected hash is byte-identical to the v1 export's Design System & Docs hash (3378d7030829a085d7ead1e8a4994682fb8982845e0d1c04ff04aaeecd31c7e0) — i.e. that file did not change between v1 and v2, as expected (only MiniMartCustomersCredit.dc.html changed in v2).
+- No .dc.html file, including Design System & Docs and the authoritative source, was altered during this manifest correction. Only the manifest text was regenerated.
+
+STATEMENT/AGING FIX SUMMARY (unchanged from v2, carried forward for record):
+- Screen 60 (Customer Statement) wrapper: removed maxWidth:640.
+- Screen 61 (Customer Aging) wrapper: removed maxWidth:560.
+- No other source/grouped page changed. 2-line diff only, confined to MiniMartCustomersCredit.dc.html's logic class.
+
+OPEN DECISION PRESERVATION:
+- DEC-CRD-001 (Credit-limit violation/override mode): PRESERVED AS OPEN.
+- DEC-CRD-002 (Collection allocation order): PRESERVED AS OPEN.
+
+NO DESIGN/SOURCE FILE CHANGED DURING THIS MANIFEST CORRECTION. Screen count remains 74.

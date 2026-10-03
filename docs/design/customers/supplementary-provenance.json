@@ -1,0 +1,104 @@
+{
+  "status": "unapproved-supplementary-reference",
+  "baseCommit": "e1790c49ac6bf8d6a14172c8f550cef8cca6ae34",
+  "packageManifestStatusUnchanged": "approved-visual-reference",
+  "sourceDependency": {
+    "path": "source/MiniMartCustomersCredit.dc.html",
+    "sha256": "593adaec60d84d384fdc2947a1ba7d169f8ec8eb21d34373fb814ee662259d7c"
+  },
+  "originalArchive": {
+    "path": "Incoming/MiniMart_Customers_Credit_ClaudeDesign_Source_v2-fixed.zip",
+    "sha256": "9210f0a414adbb7832dc79963180435eb28717fa8cb2f83523dab100a391670c"
+  },
+  "runtimeDependency": {
+    "path": "source/support.js",
+    "sha256": "8fe7df74405f3c55f49b7249c74ea1397e65d07dea2b1bd3b4a489bec2e28cbe",
+    "status": "Existing tracked runtime reused unchanged; not imported"
+  },
+  "files": [
+    {
+      "candidate": "source/MiniMart CUS - Collections.dc.html",
+      "originalLocation": "Incoming/MiniMart_Customers_Credit_ClaudeDesign_Source_v2-fixed.zip!MiniMart_Customers_Credit_ClaudeDesign_Source_v2-fixed/MiniMart CUS - Collections.dc.html",
+      "originalSha256": "fb91b45e8f541c09c7ced87d99f88ab00d393e00ea76038619d8e2daee67185c",
+      "candidateSha256": "bb74f94f23b60a91c7417783c971b83b5c8d023f180ce472975f8ad9d0b76b9e",
+      "adjustments": [
+        "Add explicit unapproved supplementary-reference/proposal boundary.",
+        "Repair cross-package Back Office link without importing archive Back Office files.",
+        "Qualify Back Office reference status; Inventory navigation, where present, points to its existing draft manifest because no Inventory source/index is available. Historical design confirmations are assertions, not current validation evidence."
+      ]
+    },
+    {
+      "candidate": "source/MiniMart CUS - Credit Accounts.dc.html",
+      "originalLocation": "Incoming/MiniMart_Customers_Credit_ClaudeDesign_Source_v2-fixed.zip!MiniMart_Customers_Credit_ClaudeDesign_Source_v2-fixed/MiniMart CUS - Credit Accounts.dc.html",
+      "originalSha256": "6fe28fd1b55e57c9250018ab0f7d71d265bab944f66c76d84f56036547a75c5b",
+      "candidateSha256": "d4b5a772872dd47b781e24cec61ee4d79b234677280d9c800d511783cd8ac1bf",
+      "adjustments": [
+        "Add explicit unapproved supplementary-reference/proposal boundary.",
+        "Repair cross-package Back Office link without importing archive Back Office files.",
+        "Qualify Back Office reference status; Inventory navigation, where present, points to its existing draft manifest because no Inventory source/index is available. Historical design confirmations are assertions, not current validation evidence."
+      ]
+    },
+    {
+      "candidate": "source/MiniMart CUS - Customer Detail.dc.html",
+      "originalLocation": "Incoming/MiniMart_Customers_Credit_ClaudeDesign_Source_v2-fixed.zip!MiniMart_Customers_Credit_ClaudeDesign_Source_v2-fixed/MiniMart CUS - Customer Detail.dc.html",
+      "originalSha256": "dd42769f175cd6c0af600d04b2e51d327efad756cb4aad48ab11c8a7cfa6e56a",
+      "candidateSha256": "8ba0685617db23de4054af8b0978894f963488bd19cf7d51b3a5fee5e8020a77",
+      "adjustments": [
+        "Add explicit unapproved supplementary-reference/proposal boundary.",
+        "Repair cross-package Back Office link without importing archive Back Office files.",
+        "Qualify Back Office reference status; Inventory navigation, where present, points to its existing draft manifest because no Inventory source/index is available. Historical design confirmations are assertions, not current validation evidence."
+      ]
+    },
+    {
+      "candidate": "source/MiniMart CUS - Customer Foundation.dc.html",
+      "originalLocation": "Incoming/MiniMart_Customers_Credit_ClaudeDesign_Source_v2-fixed.zip!MiniMart_Customers_Credit_ClaudeDesign_Source_v2-fixed/MiniMart CUS - Customer Foundation.dc.html",
+      "originalSha256": "f451b6b88855b647a23d85c2784f7c46840e2eab7ea810edbb3c0b0e2fca5e16",
+      "candidateSha256": "043dde2bdff6f39fd6e1cb445bbfdbb1e7218bd3397fc7e04c8cc37127165fc8",
+      "adjustments": [
+        "Add explicit unapproved supplementary-reference/proposal boundary.",
+        "Repair cross-package Back Office link without importing archive Back Office files.",
+        "Qualify Back Office reference status; Inventory navigation, where present, points to its existing draft manifest because no Inventory source/index is available. Historical design confirmations are assertions, not current validation evidence."
+      ]
+    },
+    {
+      "candidate": "source/MiniMart CUS - Design System & Docs.dc.html",
+      "originalLocation": "Incoming/MiniMart_Customers_Credit_ClaudeDesign_Source_v2-fixed.zip!MiniMart_Customers_Credit_ClaudeDesign_Source_v2-fixed/MiniMart CUS - Design System & Docs.dc.html",
+      "originalSha256": "3378d7030829a085d7ead1e8a4994682fb8982845e0d1c04ff04aaeecd31c7e0",
+      "candidateSha256": "0c2e2ef0035bc7f4234b4b1e9ab0904b32b5639b8c25255106487de54a053144",
+      "adjustments": [
+        "Add explicit unapproved supplementary-reference/proposal boundary.",
+        "Repair cross-package Back Office link without importing archive Back Office files.",
+        "Qualify Back Office reference status; Inventory navigation, where present, points to its existing draft manifest because no Inventory source/index is available. Historical design confirmations are assertions, not current validation evidence."
+      ]
+    },
+    {
+      "candidate": "source/MiniMart CUS - Statements & States.dc.html",
+      "originalLocation": "Incoming/MiniMart_Customers_Credit_ClaudeDesign_Source_v2-fixed.zip!MiniMart_Customers_Credit_ClaudeDesign_Source_v2-fixed/MiniMart CUS - Statements & States.dc.html",
+      "originalSha256": "b5b6d29d9397561892e8290855ac57dc39c0a24480e1689d0022a2f585fa03c5",
+      "candidateSha256": "278cdc0a9a2cb11c41a0b69221c8f37cf2db2d97bd0187095396324de7ccb8e1",
+      "adjustments": [
+        "Add explicit unapproved supplementary-reference/proposal boundary.",
+        "Repair cross-package Back Office link without importing archive Back Office files.",
+        "Qualify Back Office reference status; Inventory navigation, where present, points to its existing draft manifest because no Inventory source/index is available. Historical design confirmations are assertions, not current validation evidence."
+      ]
+    },
+    {
+      "candidate": "source/MiniMart Customers Credit Mockups.dc.html",
+      "originalLocation": "Incoming/MiniMart_Customers_Credit_ClaudeDesign_Source_v2-fixed.zip!MiniMart_Customers_Credit_ClaudeDesign_Source_v2-fixed/MiniMart Customers Credit Mockups.dc.html",
+      "originalSha256": "f6e807b56aa8a583a0105884329a123c4b9cf5840eb0a9c0390cd1963581626f",
+      "candidateSha256": "1d6b4f0cd0fd88c765654c512325ff7976a4f871c6ffcf041cede305bebe6d80",
+      "adjustments": [
+        "Add explicit unapproved supplementary-reference/proposal boundary.",
+        "Repair cross-package Back Office link without importing archive Back Office files.",
+        "Qualify Back Office reference status; Inventory navigation, where present, points to its existing draft manifest because no Inventory source/index is available. Historical design confirmations are assertions, not current validation evidence."
+      ]
+    },
+    {
+      "candidate": "source/CUSTOMERS-CREDIT-EXPORT-MANIFEST-v2-fixed.txt",
+      "originalLocation": "Incoming/MiniMart_Customers_Credit_ClaudeDesign_Source_v2-fixed.zip!MiniMart_Customers_Credit_ClaudeDesign_Source_v2-fixed/CUSTOMERS-CREDIT-EXPORT-MANIFEST-v2-fixed.txt",
+      "originalSha256": "d004b13f1c8c0e15ce0d79c653c40ac015fb3d16976524c91bb32c97da53cfb0",
+      "candidateSha256": "d004b13f1c8c0e15ce0d79c653c40ac015fb3d16976524c91bb32c97da53cfb0",
+      "adjustments": []
+    }
+  ]
+}

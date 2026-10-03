@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<aside role="note" style="padding:12px 24px;background:#fff4d6;color:#453615;font:14px system-ui">UNAPPROVED SUPPLEMENTARY REFERENCE / PROPOSAL. Frozen specifications and backlog govern behavior. Package/source approval does not approve this document. See ../SUPPLEMENTARY.md for provenance, review and runtime gaps.</aside>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#e6e9ee;font-family:'IBM Plex Sans',system-ui,sans-serif;color:#0f1a2b}a{color:#1b5fd1}a:hover{color:#174fb0}</style>
+</helmet>
+<section style="padding:36px 48px 20px;display:flex;flex-direction:column;gap:8px;max-width:1100px">
+  <a href="MiniMart Customers Credit Mockups.dc.html" style="font-size:12.5px">← Customers & Credit index</a>
+  <div style="display:flex;gap:6px;flex-wrap:wrap;padding:2px 0 4px"><a href="MiniMart CUS - Customer Foundation.dc.html" style="height:28px;padding:0 12px;border-radius:999px;font-size:11.5px;font-weight:600;border:1px solid #cfd5de;background:#fff;color:#3d4a5e;text-decoration:none;display:inline-flex;align-items:center">01–12 Foundation</a><a href="MiniMart CUS - Customer Detail.dc.html" style="height:28px;padding:0 12px;border-radius:999px;font-size:11.5px;font-weight:600;border:1px solid #cfd5de;background:#fff;color:#3d4a5e;text-decoration:none;display:inline-flex;align-items:center">13–25 Detail</a><a href="MiniMart CUS - Credit Accounts.dc.html" style="height:28px;padding:0 12px;border-radius:999px;font-size:11.5px;font-weight:600;border:1px solid #cfd5de;background:#fff;color:#3d4a5e;text-decoration:none;display:inline-flex;align-items:center">26–43 Credit</a><a href="MiniMart CUS - Collections.dc.html" style="height:28px;padding:0 12px;border-radius:999px;font-size:11.5px;font-weight:600;border:1px solid #0e1b33;background:#0e1b33;color:#fff;text-decoration:none;display:inline-flex;align-items:center">44–59 Collections</a><a href="MiniMart CUS - Statements & States.dc.html" style="height:28px;padding:0 12px;border-radius:999px;font-size:11.5px;font-weight:600;border:1px solid #cfd5de;background:#fff;color:#3d4a5e;text-decoration:none;display:inline-flex;align-items:center">60–68 Statements</a><a href="MiniMart CUS - Design System & Docs.dc.html" style="height:28px;padding:0 12px;border-radius:999px;font-size:11.5px;font-weight:600;border:1px solid #cfd5de;background:#fff;color:#3d4a5e;text-decoration:none;display:inline-flex;align-items:center">69–74 Design System</a></div>
+  <span style="font-size:26px;font-weight:700">Customers & Credit — Collections</span>
+  <span style="font-size:14px;color:#4a5567">Screens 44–59.</span>
+</section>
+<sc-for list="{{ groups }}" as="g" hint-placeholder-count="1">
+  <section id="{{ g.id }}" style="padding:20px 48px 32px;border-top:1px solid #cfd5de">
+    <div style="display:flex;flex-wrap:wrap;gap:28px">
+      <sc-for list="{{ g.items }}" as="s" hint-placeholder-count="16">
+        <div id="s{{ s.n }}" style="display:flex;flex-direction:column;gap:8px">
+          <div style="display:flex;align-items:center;gap:9px"><span style="font:600 11px 'IBM Plex Mono',monospace;padding:3px 6px;border-radius:5px;background:#0e1b33;color:#fff">{{ s.n }}</span><span style="font-size:13.5px;font-weight:600">{{ s.t }}</span></div>
+          <div style="width:1366px;height:768px;border-radius:8px;overflow:hidden;box-shadow:0 1px 3px rgba(14,27,51,.12),0 8px 24px rgba(14,27,51,.08);background:#f2f4f7">
+            <dc-import name="MiniMartCustomersCredit" screen="{{ s.n }}" embedded="{{ true }}" hint-size="1366px,768px" style="width:1366px;height:768px"></dc-import>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+</sc-for>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const G=[['col','',[['44','New Customer Collection — entry'],['45','Collection — Select Customer'],['46','Collection Allocation — table'],['47','Partial Collection example'],['48','Collection exceeds outstanding — validation'],['49','Collection Review'],['50','Collection Posted'],['51','Posted Collection — read-only'],['52','Collection Safe Retry / uncertain'],['53','Collection posting envelope note'],['54','Collection validation — missing fields'],['55','Collection — payment/financial context link'],['56','Draft Collection — no exposure effect'],['57','Collections list — populated'],['58','Collections list — filtered Draft'],['59','Collection Store Node unavailable']]]];
+class Component extends DCLogic {
+  renderVals(){ return {groups:G.map(([id,title,items])=>({id,title,items:items.map(([n,t])=>({n,t}))}))}; }
+}
+
+</script>
+</body>
+</html>
