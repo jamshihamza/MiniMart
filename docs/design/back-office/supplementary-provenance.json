@@ -1,0 +1,94 @@
+{
+  "status": "unapproved-supplementary-reference",
+  "baseCommit": "e1790c49ac6bf8d6a14172c8f550cef8cca6ae34",
+  "packageManifestStatusUnchanged": "review-ready",
+  "sourceDependency": {
+    "path": "source/MiniMartBackOffice.dc.html",
+    "sha256": "76b787dcfc0489d3fab11d9f409fe26c241fe8e7abf50f62d3b78dbef7d4fd79"
+  },
+  "originalArchive": null,
+  "runtimeDependency": {
+    "path": "../procurement/source/support.js",
+    "sha256": "8fe7df74405f3c55f49b7249c74ea1397e65d07dea2b1bd3b4a489bec2e28cbe",
+    "status": "Existing tracked runtime reused unchanged; not imported"
+  },
+  "files": [
+    {
+      "candidate": "source/MiniMart Back Office Mockups.dc.html",
+      "originalLocation": "Mockups/MiniMart Back Office Mockups.dc.html",
+      "originalSha256": "4651586c8f4e20a493d1a3d1339e05f19aff1bf5c9bd63a8593560f712848bdc",
+      "candidateSha256": "1eec662e0b331a7259b62f471257faf46ad2240feb44325dc57cd384b0036aa2",
+      "adjustments": [
+        "Add explicit unapproved supplementary-reference/proposal boundary.",
+        "Reuse existing tracked Procurement runtime through a relative URL; no copied runtime.",
+        "Repair cross-package POS link and stale POS approval wording; status remains review-ready."
+      ]
+    },
+    {
+      "candidate": "source/MiniMart BO - CategoryBrand & Import.dc.html",
+      "originalLocation": "Mockups/MiniMart BO - CategoryBrand & Import.dc.html",
+      "originalSha256": "36bb7cdea7aefe9baa9d3fe0456170c600d8efad35e8767c18db544053290e2c",
+      "candidateSha256": "74346f633bb1291b7e677a0ca04af98d70b5a83f8a656db902ba49840fd6f0da",
+      "adjustments": [
+        "Add explicit unapproved supplementary-reference/proposal boundary.",
+        "Reuse existing tracked Procurement runtime through a relative URL; no copied runtime.",
+        "Repair cross-package POS link and stale POS approval wording; status remains review-ready."
+      ]
+    },
+    {
+      "candidate": "source/MiniMart BO - Create & Edit.dc.html",
+      "originalLocation": "Mockups/MiniMart BO - Create & Edit.dc.html",
+      "originalSha256": "36887e3dc3cf4f4d1786110349f7db74112644ff9d9a439bac5fc23d5a251236",
+      "candidateSha256": "aa313c33e4317c13d396612b3a6382c9d8550e9396e5d5e538d9b0ab1e8c9808",
+      "adjustments": [
+        "Add explicit unapproved supplementary-reference/proposal boundary.",
+        "Reuse existing tracked Procurement runtime through a relative URL; no copied runtime.",
+        "Repair cross-package POS link and stale POS approval wording; status remains review-ready."
+      ]
+    },
+    {
+      "candidate": "source/MiniMart BO - Design System & Docs.dc.html",
+      "originalLocation": "Mockups/MiniMart BO - Design System & Docs.dc.html",
+      "originalSha256": "ebb1afe86423c2598860431da204fc29776d2acb376b2916f81b8218b327a43f",
+      "candidateSha256": "cafd3aee6060533dd40d78aaa47041aa0e58388bca31f4bccb295dd459f70d21",
+      "adjustments": [
+        "Add explicit unapproved supplementary-reference/proposal boundary.",
+        "Reuse existing tracked Procurement runtime through a relative URL; no copied runtime.",
+        "Repair cross-package POS link and stale POS approval wording; status remains review-ready."
+      ]
+    },
+    {
+      "candidate": "source/MiniMart BO - Detail & Skeleton.dc.html",
+      "originalLocation": "Mockups/MiniMart BO - Detail & Skeleton.dc.html",
+      "originalSha256": "32a21195648e1e2bbcbe03f7fd92f02025f98bcc48fb574da7050bceecd97487",
+      "candidateSha256": "a7e866f61e39406a3c130d966457dfae9b8d9a32ae0511eb248d1df7a01e7fba",
+      "adjustments": [
+        "Add explicit unapproved supplementary-reference/proposal boundary.",
+        "Reuse existing tracked Procurement runtime through a relative URL; no copied runtime.",
+        "Repair cross-package POS link and stale POS approval wording; status remains review-ready."
+      ]
+    },
+    {
+      "candidate": "source/MiniMart BO - Foundation & Catalog.dc.html",
+      "originalLocation": "Mockups/MiniMart BO - Foundation & Catalog.dc.html",
+      "originalSha256": "1c082e8757b5cb30bc010a58de9a3db7e2af043e0313e2fd8c1f7662ca6ecb55",
+      "candidateSha256": "ae695c2b2407593a4a1b734854b81bd99b237c43deb40d73e54a71fe7acdba40",
+      "adjustments": [
+        "Add explicit unapproved supplementary-reference/proposal boundary.",
+        "Reuse existing tracked Procurement runtime through a relative URL; no copied runtime.",
+        "Repair cross-package POS link and stale POS approval wording; status remains review-ready."
+      ]
+    },
+    {
+      "candidate": "source/MiniMart BO - Pricing & Bulk.dc.html",
+      "originalLocation": "Mockups/MiniMart BO - Pricing & Bulk.dc.html",
+      "originalSha256": "53cdc46c5e3362701a65b49bc0b4320e454c325643610129d844349dbc3cc7e2",
+      "candidateSha256": "fb7ac1dde07b06f93616b13651d77199ba494029303696eb4ccf3af8f8c58b69",
+      "adjustments": [
+        "Add explicit unapproved supplementary-reference/proposal boundary.",
+        "Reuse existing tracked Procurement runtime through a relative URL; no copied runtime.",
+        "Repair cross-package POS link and stale POS approval wording; status remains review-ready."
+      ]
+    }
+  ]
+}

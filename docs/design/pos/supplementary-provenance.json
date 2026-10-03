@@ -1,0 +1,39 @@
+{
+  "status": "unapproved-supplementary-reference",
+  "baseCommit": "e1790c49ac6bf8d6a14172c8f550cef8cca6ae34",
+  "packageManifestStatusUnchanged": "review-ready",
+  "sourceDependency": {
+    "path": "source/MiniMartPOS.dc.html",
+    "sha256": "cdbcd1e0fc5d4d66da6fdac9101c7611fad327709443bbbc6bfec07389ab44e6"
+  },
+  "originalArchive": null,
+  "runtimeDependency": {
+    "path": "../procurement/source/support.js",
+    "sha256": "8fe7df74405f3c55f49b7249c74ea1397e65d07dea2b1bd3b4a489bec2e28cbe",
+    "status": "Existing tracked runtime reused unchanged; not imported"
+  },
+  "files": [
+    {
+      "candidate": "source/MiniMart Design System.dc.html",
+      "originalLocation": "Mockups/MiniMart Design System.dc.html",
+      "originalSha256": "269d7a9746b9b272614a0aab3f1429b5762cbd5c06972cd8982e16dd109b66e5",
+      "candidateSha256": "74851024cd927f8548133c596b68a26a145ac431ef557c8024c91d3a96a3163b",
+      "adjustments": [
+        "Add explicit unapproved supplementary-reference/proposal boundary.",
+        "Reuse existing tracked Procurement runtime through a relative URL; no copied runtime.",
+        "Explicit owner direction (2026-10-03): state void/abandon is only for an unposted active Sale; posted-sale corrections follow authorized return/reversal workflow (FR-POS-046, FR-POS-047, Sale lifecycle, API-POS-010). Replace approval-request label with Review authorized correction; no roles or reversal mechanics invented."
+      ]
+    },
+    {
+      "candidate": "source/MiniMart POS Mockups.dc.html",
+      "originalLocation": "Mockups/MiniMart POS Mockups.dc.html",
+      "originalSha256": "0306f802e49e5220291e1091c2316f36c69eabde90a44c205c26b2a2a2e87a1d",
+      "candidateSha256": "6597172b0507749c91136ddd6b9071bb9db59a5cc4fd739fba00a441f1720073",
+      "adjustments": [
+        "Add explicit unapproved supplementary-reference/proposal boundary.",
+        "Reuse existing tracked Procurement runtime through a relative URL; no copied runtime.",
+        "Correct 30/31 count, qualify historical shortcut claim and mark grid presentation as concept."
+      ]
+    }
+  ]
+}

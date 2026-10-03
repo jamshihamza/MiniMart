@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="../../procurement/source/support.js"></script>
+</head>
+<body>
+<x-dc>
+<aside role="note" style="padding:12px 24px;background:#fff4d6;color:#453615;font:14px system-ui">UNAPPROVED SUPPLEMENTARY REFERENCE / PROPOSAL. Frozen specifications and backlog govern behavior. Package/source approval does not approve this document. See ../SUPPLEMENTARY.md for provenance, review and runtime gaps.</aside>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#e6e9ee;font-family:'IBM Plex Sans',system-ui,sans-serif;color:#0f1a2b}a{color:#1b5fd1}a:hover{color:#174fb0}</style>
+</helmet>
+<section style="padding:36px 48px 20px;display:flex;flex-direction:column;gap:8px;max-width:1100px">
+  <a href="MiniMart Back Office Mockups.dc.html" style="font-size:12.5px">← Back Office index</a>
+  <span style="font-size:26px;font-weight:700">Responsive / Design System & Documentation</span>
+  <span style="font-size:14px;color:#4a5567">Screens 55–60, plus the package's documentation record.</span>
+</section>
+<section style="padding:20px 48px 32px;border-top:1px solid #cfd5de">
+  <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:16px"><span style="font-size:19px;font-weight:700">Responsive — 1280×720</span></div>
+  <div style="display:flex;flex-wrap:wrap;gap:28px">
+    <div id="s55" style="display:flex;flex-direction:column;gap:8px">
+      <div style="display:flex;align-items:center;gap:9px"><span style="font:600 11px 'IBM Plex Mono',monospace;padding:3px 6px;border-radius:5px;background:#0e1b33;color:#fff">55</span><span style="font-size:13.5px;font-weight:600">Product list — 1280×720</span></div>
+      <div style="width:1280px;height:720px;border-radius:8px;overflow:hidden;box-shadow:0 1px 3px rgba(14,27,51,.12),0 8px 24px rgba(14,27,51,.08);background:#f2f4f7">
+        <dc-import name="MiniMartBackOffice" screen="06" embedded="{{ true }}" hint-size="1280px,720px" style="width:1280px;height:720px"></dc-import>
+      </div>
+    </div>
+    <div id="s56" style="display:flex;flex-direction:column;gap:8px">
+      <div style="display:flex;align-items:center;gap:9px"><span style="font:600 11px 'IBM Plex Mono',monospace;padding:3px 6px;border-radius:5px;background:#0e1b33;color:#fff">56</span><span style="font-size:13.5px;font-weight:600">Product form — 1280×720</span></div>
+      <div style="width:1280px;height:720px;border-radius:8px;overflow:hidden;box-shadow:0 1px 3px rgba(14,27,51,.12),0 8px 24px rgba(14,27,51,.08);background:#f2f4f7">
+        <dc-import name="MiniMartBackOffice" screen="19" embedded="{{ true }}" hint-size="1280px,720px" style="width:1280px;height:720px"></dc-import>
+      </div>
+    </div>
+  </div>
+</section>
+<section style="padding:20px 48px 32px;border-top:1px solid #cfd5de">
+  <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:16px"><span style="font-size:19px;font-weight:700">Design system pages</span></div>
+  <div style="display:flex;flex-wrap:wrap;gap:28px">
+    <sc-for list="{{ dsScreens }}" as="s" hint-placeholder-count="4">
+      <div id="s{{ s.n }}" style="display:flex;flex-direction:column;gap:8px">
+        <div style="display:flex;align-items:center;gap:9px"><span style="font:600 11px 'IBM Plex Mono',monospace;padding:3px 6px;border-radius:5px;background:#0e1b33;color:#fff">{{ s.n }}</span><span style="font-size:13.5px;font-weight:600">{{ s.t }}</span></div>
+        <div style="width:1366px;height:768px;border-radius:8px;overflow:hidden;box-shadow:0 1px 3px rgba(14,27,51,.12),0 8px 24px rgba(14,27,51,.08);background:#f2f4f7">
+          <dc-import name="MiniMartBackOffice" screen="{{ s.n }}" embedded="{{ true }}" hint-size="1366px,768px" style="width:1366px;height:768px"></dc-import>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+</section>
+<section style="padding:26px 48px 60px;border-top:1px solid #cfd5de;display:flex;flex-direction:column;gap:16px;max-width:900px">
+  <span style="font-size:21px;font-weight:700">Documentation</span>
+  <sc-for list="{{ docs }}" as="d" hint-placeholder-count="8">
+    <div style="display:flex;flex-direction:column;gap:6px">
+      <span style="font-size:14px;font-weight:600">{{ d.h }}</span>
+      <sc-for list="{{ d.lines }}" as="l" hint-placeholder-count="4"><span style="font-size:13px;color:#4a5567;line-height:1.5">{{ l }}</span></sc-for>
+    </div>
+  </sc-for>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals(){
+    const dsScreens=[['57','DataTable design system'],['58','Form design system'],['59','Status/Validation/Permission design system'],['60','Component inventory']].map(([n,t])=>({n,t}));
+    const docs=[
+      {h:'1. Screen index',lines:['60 artboards across Foundation, Catalog, Create/Edit, Skeleton Items, Category/Brand, Import, Pricing, Bulk Pricing and Design System — numbered 01–60, split across 6 linked pages from the index for a lighter, more responsive canvas.']},
+      {h:'2. Component inventory',lines:['BackOfficeShell, SidebarNavigation, TopOperationalBar, StoreContext, StoreNodeStatus, SyncStatus, PageHeader, SearchBar, FilterBar/Chip, DataTable(+Toolbar/Pagination/ResultCount), ProductThumbnail, ProductStatus, IncompleteStatus, BarcodeList, IdentifierRow, UoMRoleCard, ConversionRow, TrackingStatus, SupplierAssociationTable, PriceStatus, MoneyValue, PriceHistoryTable, ScheduledPriceCard, PriceChangePreview, PriceValidationState, PriceLabelStatus, DetailDrawer, Tabs, FormSection/Footer, TextField/MoneyField/QuantityField/Select/Combobox/EntityPicker, ValidationMessage, ConfirmationDialog/DangerDialog/ConflictDialog, ImportStepper/ValidationTable/ResultSummary, LoadingState/EmptyState/NoResultsState/PermissionState/OfflineState, Toast. Full detail in screens 57–60 above.']},
+      {h:'3. Changelog',lines:['New package. Built on the MiniMart POS reference visual DNA (navy nav, light workspace, restrained blue/teal). No POS screens were changed. Split into 6 pages after the initial single-canvas build proved too heavy to render smoothly.']},
+      {h:'4. Authority-dependent items not invented by Design',lines:['Exact skeleton-item mandatory fields · barcode reassignment acceptance rule · UoM multi-level conversion policy · tracking-change acceptance rule · partial-commit behavior on import · duplicate-matching algorithm · pricing validation thresholds · maker-checker approval for bulk pricing · exact permission/role matrix · country tax/MRP/rounding rules · exact keyboard shortcuts.']},
+      {h:'5. Open decisions preserved',lines:['All of the above are shown as visually supported states (warnings, confirmations, authority-dependent labels) without Design choosing the underlying rule.']},
+      {h:'6. Later-phase / concept items',lines:['Store-specific price activation phasing (Phase-1 vs later) — Price Context is designed so it fits without redesign, per the current store-scoped pricing baseline.']},
+      {h:'7. Catalog vs Pricing ownership',lines:['Catalog owns product/master identity and classification. Pricing owns selling-price scheduling/history. Product Detail only displays a pricing snapshot via a link to Pricing — it is not the source of price data.']},
+      {h:'8–16. Confirmations',lines:[
+        '8. Product identity is company-wide — one Item, referenced by every store.',
+        '9. Store pricing/availability is shown as assignment context, never a duplicate product master.',
+        '10. Base, Sales and Purchase UoM remain three distinct, separately labeled roles.',
+        '11. Skeleton/incomplete items carry a distinct, always-visible Incomplete status, separate from Inactive.',
+        '12. No ordinary "Delete" action is offered for referenced products — lifecycle is Active ⇄ Inactive only.',
+        '13. Missing price is shown as "Missing", never as RM 0.00, unless an explicit authorized zero-price state exists.',
+        '14. Historical product/price changes never rewrite posted document snapshots — history views are explicitly read-only.',
+        '15. Store Node availability and Cloud Sync health are always two separate indicators, never merged.',
+        '16. No Malaysia/India-specific tax, MRP or rounding rule was hard-coded; only generic policy-extension areas are shown.']},
+      {h:'17. Responsive',lines:['Primary viewport 1366×768; screens 55–56 additionally show Products list and the product form at 1280×720. The same fluid shell also holds up at 1368×800 and 1920×1080.']}
+    ];
+    return {dsScreens,docs};
+  }
+}
+</script>
+</body>
+</html>
