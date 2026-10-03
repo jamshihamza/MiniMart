@@ -1,0 +1,111 @@
+{
+  "status": "unapproved-supplementary-reference",
+  "baseCommit": "e1790c49ac6bf8d6a14172c8f550cef8cca6ae34",
+  "packageManifestStatusUnchanged": "approved-visual-reference",
+  "sourceDependency": {
+    "path": "source/MiniMartCashBusinessDay.dc.html",
+    "sha256": "a0d9df668213a9a562bd0fefec9198274c57931b7c6f79da59b87554aee55fee"
+  },
+  "originalArchive": {
+    "path": "Incoming/MiniMart_Cash_Business_Day_ClaudeDesign_Source_v2.zip",
+    "sha256": "0fce9a171c322e10a5ea3a38859f59b87edeea26c10a2a3fb1d78fe3cb23224f"
+  },
+  "runtimeDependency": {
+    "path": "source/support.js",
+    "sha256": "8fe7df74405f3c55f49b7249c74ea1397e65d07dea2b1bd3b4a489bec2e28cbe",
+    "status": "Existing tracked runtime reused unchanged; not imported"
+  },
+  "files": [
+    {
+      "candidate": "source/MiniMart CASH - Business Day.dc.html",
+      "originalLocation": "Incoming/MiniMart_Cash_Business_Day_ClaudeDesign_Source_v2.zip!MiniMart_Cash_Business_Day_ClaudeDesign_Source_v2/MiniMart CASH - Business Day.dc.html",
+      "originalSha256": "d71117e8ace3cdccd7d0bf28a7808fa5b34ce5de438b3ebd9faa6c59942b958d",
+      "candidateSha256": "91abc723814c3ee780aa7995c089425c0fbcd811d88b9c30f66528223b52a51e",
+      "adjustments": [
+        "Add explicit unapproved supplementary-reference/proposal boundary.",
+        "Repair cross-package Back Office link without importing archive Back Office files.",
+        "Qualify Back Office reference status; Inventory navigation, where present, points to its existing draft manifest because no Inventory source/index is available. Historical design confirmations are assertions, not current validation evidence.",
+        "Correct stale 74-screen index to 77 and include 75–77 in Cash Movements navigation; qualify implementation-ready wording. Registered source unchanged."
+      ]
+    },
+    {
+      "candidate": "source/MiniMart CASH - Cash Movements.dc.html",
+      "originalLocation": "Incoming/MiniMart_Cash_Business_Day_ClaudeDesign_Source_v2.zip!MiniMart_Cash_Business_Day_ClaudeDesign_Source_v2/MiniMart CASH - Cash Movements.dc.html",
+      "originalSha256": "41deaf904b5b9116442212ba8983972248552e4b7ecfd1d2835f5859fc2e8aea",
+      "candidateSha256": "177c3b20265561aa0a55a3cce8fa08ad42791c685f718241b80167ba5a50bf82",
+      "adjustments": [
+        "Add explicit unapproved supplementary-reference/proposal boundary.",
+        "Repair cross-package Back Office link without importing archive Back Office files.",
+        "Qualify Back Office reference status; Inventory navigation, where present, points to its existing draft manifest because no Inventory source/index is available. Historical design confirmations are assertions, not current validation evidence.",
+        "Correct stale 74-screen index to 77 and include 75–77 in Cash Movements navigation; qualify implementation-ready wording. Registered source unchanged."
+      ]
+    },
+    {
+      "candidate": "source/MiniMart CASH - Design System & Docs.dc.html",
+      "originalLocation": "Incoming/MiniMart_Cash_Business_Day_ClaudeDesign_Source_v2.zip!MiniMart_Cash_Business_Day_ClaudeDesign_Source_v2/MiniMart CASH - Design System & Docs.dc.html",
+      "originalSha256": "5b9481539648f3ca91bcbbb0f8f3b7ca4ae57ecdf6209abfe735977b1ea565c7",
+      "candidateSha256": "993c44e0f1e4cd0da45ff9904857c05d87e7bd9655faad61215c2c03cfb6282e",
+      "adjustments": [
+        "Add explicit unapproved supplementary-reference/proposal boundary.",
+        "Repair cross-package Back Office link without importing archive Back Office files.",
+        "Qualify Back Office reference status; Inventory navigation, where present, points to its existing draft manifest because no Inventory source/index is available. Historical design confirmations are assertions, not current validation evidence.",
+        "Correct stale 74-screen index to 77 and include 75–77 in Cash Movements navigation; qualify implementation-ready wording. Registered source unchanged."
+      ]
+    },
+    {
+      "candidate": "source/MiniMart CASH - Foundation & Shift Monitor.dc.html",
+      "originalLocation": "Incoming/MiniMart_Cash_Business_Day_ClaudeDesign_Source_v2.zip!MiniMart_Cash_Business_Day_ClaudeDesign_Source_v2/MiniMart CASH - Foundation & Shift Monitor.dc.html",
+      "originalSha256": "8b7ff3188ccdba4f686faa814df62b32f334effdfa0247f7ade8d1169d477bcb",
+      "candidateSha256": "a609f320bd6eada6c8296bdb923e02fecbb0f0136bbeb6aeb8589f300aac8e07",
+      "adjustments": [
+        "Add explicit unapproved supplementary-reference/proposal boundary.",
+        "Repair cross-package Back Office link without importing archive Back Office files.",
+        "Qualify Back Office reference status; Inventory navigation, where present, points to its existing draft manifest because no Inventory source/index is available. Historical design confirmations are assertions, not current validation evidence.",
+        "Correct stale 74-screen index to 77 and include 75–77 in Cash Movements navigation; qualify implementation-ready wording. Registered source unchanged."
+      ]
+    },
+    {
+      "candidate": "source/MiniMart CASH - Operational States.dc.html",
+      "originalLocation": "Incoming/MiniMart_Cash_Business_Day_ClaudeDesign_Source_v2.zip!MiniMart_Cash_Business_Day_ClaudeDesign_Source_v2/MiniMart CASH - Operational States.dc.html",
+      "originalSha256": "c2a9607c0d54f9aef02eee283dccae4c48148f46bfd4d373d62d5d20c40b018b",
+      "candidateSha256": "1f5597468b99f160631f5a1312171daac869c6bb5afb169fbcd18548f5db92e7",
+      "adjustments": [
+        "Add explicit unapproved supplementary-reference/proposal boundary.",
+        "Repair cross-package Back Office link without importing archive Back Office files.",
+        "Qualify Back Office reference status; Inventory navigation, where present, points to its existing draft manifest because no Inventory source/index is available. Historical design confirmations are assertions, not current validation evidence.",
+        "Correct stale 74-screen index to 77 and include 75–77 in Cash Movements navigation; qualify implementation-ready wording. Registered source unchanged."
+      ]
+    },
+    {
+      "candidate": "source/MiniMart CASH - Shift Close & Variance.dc.html",
+      "originalLocation": "Incoming/MiniMart_Cash_Business_Day_ClaudeDesign_Source_v2.zip!MiniMart_Cash_Business_Day_ClaudeDesign_Source_v2/MiniMart CASH - Shift Close & Variance.dc.html",
+      "originalSha256": "0bcfdd64111654f4b7ef855b918b178f6cd46c6054e63b5abf20addd8b6fb948",
+      "candidateSha256": "1d076fb6007964ab7a753d0b1d640fe862791992b447cd6dc31748b4e966c277",
+      "adjustments": [
+        "Add explicit unapproved supplementary-reference/proposal boundary.",
+        "Repair cross-package Back Office link without importing archive Back Office files.",
+        "Qualify Back Office reference status; Inventory navigation, where present, points to its existing draft manifest because no Inventory source/index is available. Historical design confirmations are assertions, not current validation evidence.",
+        "Correct stale 74-screen index to 77 and include 75–77 in Cash Movements navigation; qualify implementation-ready wording. Registered source unchanged."
+      ]
+    },
+    {
+      "candidate": "source/MiniMart Cash Business Day Mockups.dc.html",
+      "originalLocation": "Incoming/MiniMart_Cash_Business_Day_ClaudeDesign_Source_v2.zip!MiniMart_Cash_Business_Day_ClaudeDesign_Source_v2/MiniMart Cash Business Day Mockups.dc.html",
+      "originalSha256": "c6610b28f310131db3749c6aaa660377e10aa858ead53c603de432cfec871dfa",
+      "candidateSha256": "677b7d7091b25b6c2b184cf1efcac0d7f15db4be267c6ed40ab58bca863d788f",
+      "adjustments": [
+        "Add explicit unapproved supplementary-reference/proposal boundary.",
+        "Repair cross-package Back Office link without importing archive Back Office files.",
+        "Qualify Back Office reference status; Inventory navigation, where present, points to its existing draft manifest because no Inventory source/index is available. Historical design confirmations are assertions, not current validation evidence.",
+        "Correct stale 74-screen index to 77 and include 75–77 in Cash Movements navigation; qualify implementation-ready wording. Registered source unchanged."
+      ]
+    },
+    {
+      "candidate": "source/CASH-BUSINESS-DAY-EXPORT-MANIFEST-v2.txt",
+      "originalLocation": "Incoming/MiniMart_Cash_Business_Day_ClaudeDesign_Source_v2.zip!MiniMart_Cash_Business_Day_ClaudeDesign_Source_v2/CASH-BUSINESS-DAY-EXPORT-MANIFEST-v2.txt",
+      "originalSha256": "efbc53f11fe9609f6cc7e6d6b145c6ddec30595074b9bcd508dd35386f49f71f",
+      "candidateSha256": "efbc53f11fe9609f6cc7e6d6b145c6ddec30595074b9bcd508dd35386f49f71f",
+      "adjustments": []
+    }
+  ]
+}

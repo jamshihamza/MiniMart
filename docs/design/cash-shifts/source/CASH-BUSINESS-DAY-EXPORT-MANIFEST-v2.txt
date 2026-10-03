@@ -1,0 +1,48 @@
+MINIMART CASH / SHIFT / BUSINESS DAY — CLAUDE DESIGN SOURCE EXPORT MANIFEST v2
+Re-verified export. No design changes made in this pass. All hashes recomputed directly from packaged bytes.
+
+EXPORTED FILES (SHA-256):
+MiniMartCashBusinessDay.dc.html  SHA256:a0d9df668213a9a562bd0fefec9198274c57931b7c6f79da59b87554aee55fee
+MiniMart CASH - Foundation & Shift Monitor.dc.html  SHA256:8b7ff3188ccdba4f686faa814df62b32f334effdfa0247f7ade8d1169d477bcb
+MiniMart CASH - Cash Movements.dc.html  SHA256:41deaf904b5b9116442212ba8983972248552e4b7ecfd1d2835f5859fc2e8aea
+MiniMart CASH - Shift Close & Variance.dc.html  SHA256:0bcfdd64111654f4b7ef855b918b178f6cd46c6054e63b5abf20addd8b6fb948
+MiniMart CASH - Business Day.dc.html  SHA256:d71117e8ace3cdccd7d0bf28a7808fa5b34ce5de438b3ebd9faa6c59942b958d
+MiniMart CASH - Operational States.dc.html  SHA256:c2a9607c0d54f9aef02eee283dccae4c48148f46bfd4d373d62d5d20c40b018b
+MiniMart CASH - Design System & Docs.dc.html  SHA256:5b9481539648f3ca91bcbbb0f8f3b7ca4ae57ecdf6209abfe735977b1ea565c7
+MiniMart Cash Business Day Mockups.dc.html  SHA256:c6610b28f310131db3749c6aaa660377e10aa858ead53c603de432cfec871dfa
+MiniMart Back Office Mockups.dc.html  SHA256:d9c15a1fb0ce289313aec8bc0316b57edd0c25045e8627f0e40b21dfb16fca27
+support.js  SHA256:8fe7df74405f3c55f49b7249c74ea1397e65d07dea2b1bd3b4a489bec2e28cbe
+
+Note: "MiniMart Back Office Mockups.dc.html" hash differs from the prior v2 export (9f3e3104...) because that shared Back Office index has since been edited in other project work; it is included here only as a navigation dependency, not as Cash/Business Day design content. All 9 other files are byte-identical to the prior v2 export.
+
+AUTHORITATIVE SOURCE FILE: MiniMartCashBusinessDay.dc.html
+SOURCE SHA-256: a0d9df668213a9a562bd0fefec9198274c57931b7c6f79da59b87554aee55fee
+SOURCE SCREEN COUNT: 77
+SCREEN IDs: 01–77, all present, no gaps, no duplicates (verified against the NAMES table).
+
+EXCLUDED: the superseded 74-screen source (SHA-256 81218a8e4787...) is NOT part of this export.
+
+VERIFIED AT PACKAGING TIME:
+- Source screen count = 77; IDs 01–77 all present.
+- Screens 75, 76, 77 present (Open Shift / Cash In / Cash Out — Posting / Safe Retry).
+- Shift List (screens 04–06) uses the compact 8-column layout: SHIFT (Ref + Business Date stacked), REGISTER, CASHIER, OPENED / CLOSED (stacked), STATUS, EXPECTED, COUNTED, VARIANCE — Expected/Counted/Variance visible by default, no scroll.
+- Opening Cash note confirms it was moved off the list and remains visible in Shift Detail / Close Review.
+- Business-date rollover policy (screen 51): confirmed still OPEN.
+- Exceptional day close (screen 55): confirmed still OPEN.
+- Grouped-page coverage: all 77 screens appear exactly once across the 6 grouped pages, no gaps, no duplicates:
+  - Foundation & Shift Monitor: 01–12
+  - Cash Movements: 13–28, 75, 76, 77
+  - Shift Close & Variance: 29–44
+  - Business Day: 45–60
+  - Operational States: 61–68
+  - Design System & Docs: 69–74
+- Every hash above was computed directly from the packaged file bytes at export time (not reconstructed or reused from a prior run).
+
+DIRECT LOCAL DEPENDENCIES:
+- support.js — REQUIRED (DC runtime, required by every .dc.html file above to render).
+- No other local file dependencies.
+
+PACKAGE INDEX: MiniMart Cash Business Day Mockups.dc.html (links-only navigation; no duplicated screen logic).
+
+OPEN DECISIONS (unchanged, still open): business-date rollover policy (screen 51), exceptional day close (screen 55).
+NO BUSINESS SEMANTICS CHANGED IN THIS PASS. Accounting-Lite was not started.
