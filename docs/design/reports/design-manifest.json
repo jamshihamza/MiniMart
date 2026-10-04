@@ -1,0 +1,621 @@
+{
+  "package": "MiniMart Reporting",
+  "slug": "reports",
+  "status": "approved-visual-reference",
+  "sourceFile": "source/MiniMartReports.dc.html",
+  "sourceOfTruth": "Claude Design export MiniMart_Reporting_ClaudeDesign_Source-V2.zip (SHA-256 7fdd150f2eabc74685a151393d6ae9e6eb715c2b903bcfabc0dabf678d58a774), registered, with three authorized repository integration adjustments, at docs/design/reports/source/MiniMartReports.dc.html. It is a Claude Design adaptation of the unapproved Claude Code candidate (SHA-256 ac24dc44a29ce910b050efcbfc86caeacc953925657e751d55a4c0a50665aeb7). See provenance.json.",
+  "screenCount": 80,
+  "primaryViewport": "1366x768",
+  "supportedViewports": ["1280x720", "1368x800", "1920x1080"],
+  "screenGroups": [
+    "Reports Home & Viewer",
+    "Sales Reports",
+    "Cash, Day Close & Inventory",
+    "Purchasing & Credit",
+    "Management, Export & Print",
+    "Central & Design System"
+  ],
+  "screens": [
+    {
+      "number": "01",
+      "name": "Reports Home — authorized catalog",
+      "group": "Reports Home & Viewer",
+      "renderFile": "01-reports-home-authorized-catalog.png",
+      "notes": "Requirements: FR-RPT-001, FR-RPT-002, FR-RPT-014, FR-RPT-047, FR-RPT-048."
+    },
+    {
+      "number": "02",
+      "name": "Reports Home — search and family filter applied",
+      "group": "Reports Home & Viewer",
+      "renderFile": "02-reports-home-search-and-family-filter-applied.png",
+      "notes": "Requirements: FR-RPT-002."
+    },
+    {
+      "number": "03",
+      "name": "Report definition — supported filters and grouping",
+      "group": "Reports Home & Viewer",
+      "renderFile": "03-report-definition-supported-filters-and-grouping.png",
+      "notes": "Requirements: FR-RPT-001, FR-RPT-009, FR-RPT-051."
+    },
+    {
+      "number": "04",
+      "name": "Reports Home — loading",
+      "group": "Reports Home & Viewer",
+      "renderFile": "04-reports-home-loading.png",
+      "notes": "Requirements: FR-RPT-015."
+    },
+    {
+      "number": "05",
+      "name": "Reports Home — empty (no authorized reports)",
+      "group": "Reports Home & Viewer",
+      "renderFile": "05-reports-home-empty-no-authorized-reports.png",
+      "notes": "Requirements: FR-RPT-002."
+    },
+    {
+      "number": "06",
+      "name": "Reports Home — permission denied",
+      "group": "Reports Home & Viewer",
+      "renderFile": "06-reports-home-permission-denied.png",
+      "notes": "Requirements: FR-RPT-002."
+    },
+    {
+      "number": "07",
+      "name": "Reports Home — local scope (cloud sync unavailable)",
+      "group": "Reports Home & Viewer",
+      "renderFile": "07-reports-home-local-scope-cloud-sync-unavailable.png",
+      "notes": "Requirements: FR-RPT-053."
+    },
+    {
+      "number": "08",
+      "name": "Reports Home — Store Node unavailable",
+      "group": "Reports Home & Viewer",
+      "renderFile": "08-reports-home-store-node-unavailable.png",
+      "notes": "Requirements: FR-RPT-062."
+    },
+    {
+      "number": "09",
+      "name": "Reports Home — incompatible client",
+      "group": "Reports Home & Viewer",
+      "renderFile": "09-reports-home-incompatible-client.png",
+      "notes": "Requirements: FR-RPT-062."
+    },
+    {
+      "number": "10",
+      "name": "Reports Home — later-phase central reports",
+      "group": "Reports Home & Viewer",
+      "renderFile": "10-reports-home-later-phase-central-reports.png",
+      "notes": "Requirements: FR-RPT-054, FR-RPT-055."
+    },
+    {
+      "number": "11",
+      "name": "Report viewer — anatomy",
+      "group": "Reports Home & Viewer",
+      "renderFile": "11-report-viewer-anatomy.png",
+      "notes": "Requirements: FR-RPT-001, FR-RPT-003, FR-RPT-014, FR-RPT-015, FR-RPT-050, FR-RPT-053, FR-RPT-056, FR-RPT-057."
+    },
+    {
+      "number": "12",
+      "name": "Filter bar — filters and applicability",
+      "group": "Reports Home & Viewer",
+      "renderFile": "12-filter-bar-filters-and-applicability.png",
+      "notes": "Requirements: FR-RPT-003, FR-RPT-004, FR-RPT-005, FR-RPT-006, FR-RPT-007, FR-RPT-008, FR-RPT-009, FR-RPT-010, FR-RPT-011, FR-RPT-012, FR-RPT-013."
+    },
+    {
+      "number": "13",
+      "name": "Business date versus timestamp",
+      "group": "Reports Home & Viewer",
+      "renderFile": "13-business-date-versus-timestamp.png",
+      "notes": "Requirements: FR-RPT-004, FR-RPT-005."
+    },
+    {
+      "number": "14",
+      "name": "Totals definitions — status of each term",
+      "group": "Reports Home & Viewer",
+      "renderFile": "14-totals-definitions-status-of-each-term.png",
+      "notes": "Requirements: FR-RPT-050, FR-RPT-016, FR-RPT-036, FR-RPT-044."
+    },
+    {
+      "number": "15",
+      "name": "Grouping basis — historical or current master",
+      "group": "Reports Home & Viewer",
+      "renderFile": "15-grouping-basis-historical-or-current-master.png",
+      "notes": "Requirements: FR-RPT-009, FR-RPT-051."
+    },
+    {
+      "number": "16",
+      "name": "As-of reporting",
+      "group": "Reports Home & Viewer",
+      "renderFile": "16-as-of-reporting.png",
+      "notes": "Requirements: FR-RPT-052."
+    },
+    {
+      "number": "17",
+      "name": "Pagination and bounded results",
+      "group": "Reports Home & Viewer",
+      "renderFile": "17-pagination-and-bounded-results.png",
+      "notes": "Requirements: FR-RPT-015."
+    },
+    {
+      "number": "18",
+      "name": "Drill-down — source reference (read-only)",
+      "group": "Reports Home & Viewer",
+      "renderFile": "18-drill-down-source-reference-read-only.png",
+      "notes": "Requirements: FR-RPT-017, FR-RPT-001."
+    },
+    {
+      "number": "19",
+      "name": "Report — loading",
+      "group": "Reports Home & Viewer",
+      "renderFile": "19-report-loading.png",
+      "notes": "Requirements: FR-RPT-015."
+    },
+    {
+      "number": "20",
+      "name": "Report — empty result",
+      "group": "Reports Home & Viewer",
+      "renderFile": "20-report-empty-result.png",
+      "notes": "Requirements: FR-RPT-013."
+    },
+    {
+      "number": "21",
+      "name": "Report — validation error",
+      "group": "Reports Home & Viewer",
+      "renderFile": "21-report-validation-error.png",
+      "notes": "Requirements: FR-RPT-004."
+    },
+    {
+      "number": "22",
+      "name": "Report — permission denied",
+      "group": "Reports Home & Viewer",
+      "renderFile": "22-report-permission-denied.png",
+      "notes": "Requirements: FR-RPT-002."
+    },
+    {
+      "number": "23",
+      "name": "Report — definition conflict",
+      "group": "Reports Home & Viewer",
+      "renderFile": "23-report-definition-conflict.png",
+      "notes": "Requirements: FR-RPT-062."
+    },
+    {
+      "number": "24",
+      "name": "Report — run failed (no partial totals)",
+      "group": "Reports Home & Viewer",
+      "renderFile": "24-report-run-failed-no-partial-totals.png",
+      "notes": "Requirements: FR-RPT-062."
+    },
+    {
+      "number": "25",
+      "name": "Report — local scope (cloud sync unavailable)",
+      "group": "Reports Home & Viewer",
+      "renderFile": "25-report-local-scope-cloud-sync-unavailable.png",
+      "notes": "Requirements: FR-RPT-053."
+    },
+    {
+      "number": "26",
+      "name": "Report — Store Node unavailable",
+      "group": "Reports Home & Viewer",
+      "renderFile": "26-report-store-node-unavailable.png",
+      "notes": "Requirements: FR-RPT-062."
+    },
+    {
+      "number": "27",
+      "name": "Report — incompatible client",
+      "group": "Reports Home & Viewer",
+      "renderFile": "27-report-incompatible-client.png",
+      "notes": "Requirements: FR-RPT-062."
+    },
+    {
+      "number": "28",
+      "name": "Read-only guarantee and operational scope",
+      "group": "Reports Home & Viewer",
+      "renderFile": "28-read-only-guarantee-and-operational-scope.png",
+      "notes": "Requirements: FR-RPT-001, FR-RPT-064."
+    },
+    {
+      "number": "29",
+      "name": "Daily Sales Summary",
+      "group": "Sales Reports",
+      "renderFile": "29-daily-sales-summary.png",
+      "notes": "Requirements: FR-RPT-016, FR-RPT-004, FR-RPT-050. Unresolved dependencies: OPEN FR-RPT-016."
+    },
+    {
+      "number": "30",
+      "name": "Sales by Item",
+      "group": "Sales Reports",
+      "renderFile": "30-sales-by-item.png",
+      "notes": "Requirements: FR-RPT-017, FR-RPT-008."
+    },
+    {
+      "number": "31",
+      "name": "Sales by Category",
+      "group": "Sales Reports",
+      "renderFile": "31-sales-by-category.png",
+      "notes": "Requirements: FR-RPT-018, FR-RPT-009, FR-RPT-051. Unresolved dependencies: OPEN DEC-RPT-001."
+    },
+    {
+      "number": "32",
+      "name": "Sales by Cashier",
+      "group": "Sales Reports",
+      "renderFile": "32-sales-by-cashier.png",
+      "notes": "Requirements: FR-RPT-019, FR-RPT-007."
+    },
+    {
+      "number": "33",
+      "name": "Sales by Counter",
+      "group": "Sales Reports",
+      "renderFile": "33-sales-by-counter.png",
+      "notes": "Requirements: FR-RPT-020, FR-RPT-006. Unresolved dependencies: OPEN DEC-CSH-005."
+    },
+    {
+      "number": "34",
+      "name": "Discount Report",
+      "group": "Sales Reports",
+      "renderFile": "34-discount-report.png",
+      "notes": "Requirements: FR-RPT-021, FR-RPT-007. Unresolved dependencies: OPEN FR-RPT-021."
+    },
+    {
+      "number": "35",
+      "name": "Price Override Report",
+      "group": "Sales Reports",
+      "renderFile": "35-price-override-report.png",
+      "notes": "Requirements: FR-RPT-022. Unresolved dependencies: OPEN FR-RPT-022."
+    },
+    {
+      "number": "36",
+      "name": "Returns Report",
+      "group": "Sales Reports",
+      "renderFile": "36-returns-report.png",
+      "notes": "Requirements: FR-RPT-023."
+    },
+    {
+      "number": "37",
+      "name": "No-Receipt Return Report",
+      "group": "Sales Reports",
+      "renderFile": "37-no-receipt-return-report.png",
+      "notes": "Requirements: FR-RPT-024. Unresolved dependencies: OPEN DEC-RET-001."
+    },
+    {
+      "number": "38",
+      "name": "Tender Summary",
+      "group": "Sales Reports",
+      "renderFile": "38-tender-summary.png",
+      "notes": "Requirements: FR-RPT-025, FR-RPT-012, FR-RPT-013."
+    },
+    {
+      "number": "39",
+      "name": "Payment Exception Report",
+      "group": "Sales Reports",
+      "renderFile": "39-payment-exception-report.png",
+      "notes": "Requirements: FR-RPT-026, FR-RPT-013."
+    },
+    {
+      "number": "40",
+      "name": "Cash Movement Report",
+      "group": "Cash, Day Close & Inventory",
+      "renderFile": "40-cash-movement-report.png",
+      "notes": "Requirements: FR-RPT-027, FR-RPT-006, FR-RPT-007. Unresolved dependencies: OPEN DEC-CSH-002."
+    },
+    {
+      "number": "41",
+      "name": "Cash Variance Report",
+      "group": "Cash, Day Close & Inventory",
+      "renderFile": "41-cash-variance-report.png",
+      "notes": "Requirements: FR-RPT-028, FR-RPT-006, FR-RPT-007. Unresolved dependencies: OPEN DEC-CSH-002."
+    },
+    {
+      "number": "42",
+      "name": "Shift Close Report",
+      "group": "Cash, Day Close & Inventory",
+      "renderFile": "42-shift-close-report.png",
+      "notes": "Requirements: FR-RPT-029. Unresolved dependencies: OPEN DEC-CSH-002."
+    },
+    {
+      "number": "43",
+      "name": "Day Close Report",
+      "group": "Cash, Day Close & Inventory",
+      "renderFile": "43-day-close-report.png",
+      "notes": "Requirements: FR-RPT-030. Unresolved dependencies: OPEN DEC-CSH-003."
+    },
+    {
+      "number": "44",
+      "name": "Current Stock",
+      "group": "Cash, Day Close & Inventory",
+      "renderFile": "44-current-stock.png",
+      "notes": "Requirements: FR-RPT-031, FR-RPT-008. Unresolved dependencies: OPEN DEC-INV-004."
+    },
+    {
+      "number": "45",
+      "name": "Low Stock Report — threshold ownership undefined",
+      "group": "Cash, Day Close & Inventory",
+      "renderFile": "45-low-stock-report-threshold-ownership-undefined.png",
+      "notes": "Requirements: FR-RPT-032. Unresolved dependencies: OPEN DEC-INV-007."
+    },
+    {
+      "number": "46",
+      "name": "Negative Stock Report — normally empty",
+      "group": "Cash, Day Close & Inventory",
+      "renderFile": "46-negative-stock-report-normally-empty.png",
+      "notes": "Requirements: FR-RPT-033."
+    },
+    {
+      "number": "47",
+      "name": "Stock Movement Report",
+      "group": "Cash, Day Close & Inventory",
+      "renderFile": "47-stock-movement-report.png",
+      "notes": "Requirements: FR-RPT-034, FR-RPT-008."
+    },
+    {
+      "number": "48",
+      "name": "Batch / Expiry Report",
+      "group": "Cash, Day Close & Inventory",
+      "renderFile": "48-batch-expiry-report.png",
+      "notes": "Requirements: FR-RPT-035. Unresolved dependencies: OPEN DEC-INV-005."
+    },
+    {
+      "number": "49",
+      "name": "Inventory Valuation Report",
+      "group": "Cash, Day Close & Inventory",
+      "renderFile": "49-inventory-valuation-report.png",
+      "notes": "Requirements: FR-RPT-036, FR-RPT-052."
+    },
+    {
+      "number": "50",
+      "name": "Stock Count Variance Report",
+      "group": "Cash, Day Close & Inventory",
+      "renderFile": "50-stock-count-variance-report.png",
+      "notes": "Requirements: FR-RPT-037. Unresolved dependencies: OPEN DEC-INV-003."
+    },
+    {
+      "number": "51",
+      "name": "Stock Adjustment Report",
+      "group": "Cash, Day Close & Inventory",
+      "renderFile": "51-stock-adjustment-report.png",
+      "notes": "Requirements: FR-RPT-038."
+    },
+    {
+      "number": "52",
+      "name": "Purchase Summary",
+      "group": "Purchasing & Credit",
+      "renderFile": "52-purchase-summary.png",
+      "notes": "Requirements: FR-RPT-039, FR-RPT-010."
+    },
+    {
+      "number": "53",
+      "name": "Purchase by Supplier",
+      "group": "Purchasing & Credit",
+      "renderFile": "53-purchase-by-supplier.png",
+      "notes": "Requirements: FR-RPT-040, FR-RPT-010."
+    },
+    {
+      "number": "54",
+      "name": "Purchase Return Report",
+      "group": "Purchasing & Credit",
+      "renderFile": "54-purchase-return-report.png",
+      "notes": "Requirements: FR-RPT-041."
+    },
+    {
+      "number": "55",
+      "name": "Purchase Price History — cost-sensitive",
+      "group": "Purchasing & Credit",
+      "renderFile": "55-purchase-price-history-cost-sensitive.png",
+      "notes": "Requirements: FR-RPT-042. Unresolved dependencies: GAP FR-RPT-042."
+    },
+    {
+      "number": "56",
+      "name": "Customer Outstanding Report",
+      "group": "Purchasing & Credit",
+      "renderFile": "56-customer-outstanding-report.png",
+      "notes": "Requirements: FR-RPT-043, FR-RPT-011."
+    },
+    {
+      "number": "57",
+      "name": "Customer Aging Report",
+      "group": "Purchasing & Credit",
+      "renderFile": "57-customer-aging-report.png",
+      "notes": "Requirements: FR-RPT-044, FR-RPT-052. Unresolved dependencies: OPEN FR-RPT-044."
+    },
+    {
+      "number": "58",
+      "name": "Customer Statement",
+      "group": "Purchasing & Credit",
+      "renderFile": "58-customer-statement.png",
+      "notes": "Requirements: FR-RPT-045, FR-RPT-011. Unresolved dependencies: OPEN DEC-CRD-003."
+    },
+    {
+      "number": "59",
+      "name": "Credit Override Report",
+      "group": "Purchasing & Credit",
+      "renderFile": "59-credit-override-report.png",
+      "notes": "Requirements: FR-RPT-046. Unresolved dependencies: OPEN DEC-CRD-001; OPEN DEC-CRD-004."
+    },
+    {
+      "number": "60",
+      "name": "Customer data — masked by default",
+      "group": "Purchasing & Credit",
+      "renderFile": "60-customer-data-masked-by-default.png",
+      "notes": "Requirements: FR-RPT-011, FR-RPT-060."
+    },
+    {
+      "number": "61",
+      "name": "Management Daily Summary",
+      "group": "Management, Export & Print",
+      "renderFile": "61-management-daily-summary.png",
+      "notes": "Requirements: FR-RPT-047, FR-RPT-014."
+    },
+    {
+      "number": "62",
+      "name": "Exception Highlights",
+      "group": "Management, Export & Print",
+      "renderFile": "62-exception-highlights.png",
+      "notes": "Requirements: FR-RPT-048, FR-RPT-026, FR-RPT-028."
+    },
+    {
+      "number": "63",
+      "name": "Comparative Periods — optional",
+      "group": "Management, Export & Print",
+      "renderFile": "63-comparative-periods-optional.png",
+      "notes": "Requirements: FR-RPT-049."
+    },
+    {
+      "number": "64",
+      "name": "Export dialog — format and scope",
+      "group": "Management, Export & Print",
+      "renderFile": "64-export-dialog-format-and-scope.png",
+      "notes": "Requirements: FR-RPT-057, FR-RPT-058."
+    },
+    {
+      "number": "65",
+      "name": "Export — permission required",
+      "group": "Management, Export & Print",
+      "renderFile": "65-export-permission-required.png",
+      "notes": "Requirements: FR-RPT-059."
+    },
+    {
+      "number": "66",
+      "name": "Export job — queued and running",
+      "group": "Management, Export & Print",
+      "renderFile": "66-export-job-queued-and-running.png",
+      "notes": "Requirements: FR-RPT-057."
+    },
+    {
+      "number": "67",
+      "name": "Export job — completed, hand off to Export Center",
+      "group": "Management, Export & Print",
+      "renderFile": "67-export-job-completed-hand-off-to-export-center.png",
+      "notes": "Requirements: FR-RPT-057, FR-RPT-058."
+    },
+    {
+      "number": "68",
+      "name": "Export job — failed and cancelled",
+      "group": "Management, Export & Print",
+      "renderFile": "68-export-job-failed-and-cancelled.png",
+      "notes": "Requirements: FR-RPT-062."
+    },
+    {
+      "number": "69",
+      "name": "Export — outcome unknown (recovery)",
+      "group": "Management, Export & Print",
+      "renderFile": "69-export-outcome-unknown-recovery.png",
+      "notes": "Requirements: FR-RPT-057, FR-RPT-062."
+    },
+    {
+      "number": "70",
+      "name": "Export — personal data minimised",
+      "group": "Management, Export & Print",
+      "renderFile": "70-export-personal-data-minimised.png",
+      "notes": "Requirements: FR-RPT-060, FR-RPT-059."
+    },
+    {
+      "number": "71",
+      "name": "Print preview",
+      "group": "Management, Export & Print",
+      "renderFile": "71-print-preview.png",
+      "notes": "Requirements: FR-RPT-056."
+    },
+    {
+      "number": "72",
+      "name": "Report access and export audit notice",
+      "group": "Management, Export & Print",
+      "renderFile": "72-report-access-and-export-audit-notice.png",
+      "notes": "Requirements: FR-RPT-061."
+    },
+    {
+      "number": "73",
+      "name": "Central report — incomplete sync warning",
+      "group": "Central & Design System",
+      "renderFile": "73-central-report-incomplete-sync-warning.png",
+      "notes": "Requirements: FR-RPT-054, FR-RPT-055."
+    },
+    {
+      "number": "74",
+      "name": "Report components",
+      "group": "Central & Design System",
+      "renderFile": "74-report-components.png",
+      "notes": "Requirements: FR-RPT-050."
+    },
+    {
+      "number": "75",
+      "name": "Accessibility and keyboard behaviour",
+      "group": "Central & Design System",
+      "renderFile": "75-accessibility-and-keyboard-behaviour.png",
+      "notes": "Requirements: FR-RPT-001."
+    },
+    {
+      "number": "76",
+      "name": "Responsive behaviour",
+      "group": "Central & Design System",
+      "renderFile": "76-responsive-behaviour.png",
+      "notes": "Requirements: FR-RPT-015."
+    },
+    {
+      "number": "77",
+      "name": "Requirement to screen index",
+      "group": "Central & Design System",
+      "renderFile": "77-requirement-to-screen-index.png",
+      "notes": "Requirements: FR-RPT-001."
+    },
+    {
+      "number": "78",
+      "name": "Open decisions and authority gaps",
+      "group": "Central & Design System",
+      "renderFile": "78-open-decisions-and-authority-gaps.png",
+      "notes": "Requirements: FR-RPT-063, FR-RPT-065."
+    },
+    {
+      "number": "79",
+      "name": "Boundaries — what this package does not define",
+      "group": "Central & Design System",
+      "renderFile": "79-boundaries-what-this-package-does-not-define.png",
+      "notes": "Requirements: FR-RPT-064, FR-RPT-001."
+    },
+    {
+      "number": "80",
+      "name": "Documentation — confirmations",
+      "group": "Central & Design System",
+      "renderFile": "80-documentation-confirmations.png",
+      "notes": "Requirements: FR-RPT-001, FR-RPT-064."
+    }
+  ],
+  "authorityDependent": true,
+  "openDecisions": [
+    "OPEN DEC-RPT-001: Historical versus current master grouping, decided per report.",
+    "PROPOSED DEC-RPT-002: The Phase-2 baseline report list is the one in the Reporting FRS. The design follows that list; it is not frozen.",
+    "OPEN FR-RPT-050 / 016: Definitions of gross sales, discounts, returns, net sales and tax for reports. FR-RPT-016 requires \"approved\" definitions that no document states.",
+    "OPEN FR-RPT-044: Approved aging buckets and the due-date basis (with DEC-CRD-002).",
+    "OPEN DEC-INV-007: Who owns the reorder or low-stock threshold.",
+    "OPEN DEC-INV-004 / 005: Batch selection and expiry/FEFO policy; DEC-POS-003 expiry-sale policy is VERIFY.",
+    "OPEN DEC-INV-003: Stock-count concurrency policy.",
+    "OPEN DEC-RET-001: Whether no-receipt returns exist and under what eligibility.",
+    "OPEN DEC-CRD-001 / 002 / 003 / 004: Credit limit, collection allocation, customer advance and suspended-credit override policies.",
+    "OPEN DEC-CSH-001..005, DEC-COM-001: Business-date rollover, day close, late transactions, reopen and active-shift policies.",
+    "PROPOSED DEC-PAY-001: Card and QR adapter baseline behaviour.",
+    "VERIFY DEC-CUS-002: Customer retention and anonymisation period.",
+    "PROPOSED DEC-PUR-001 / 002 / 006: Purchase-order and direct-GRN policy. Tax recoverability is VERIFY.",
+    "GAP: Report codes, name keys, filter field codes and operators are not frozen",
+    "GAP: No frozen screen owns Cash/Shift/Day-close reports or the Management Daily Summary",
+    "GAP: Permissions beyond reporting.read and reporting.write are not defined",
+    "GAP: Hand-off from a report to Export Center is not described",
+    "GAP: Page limits differ between contracts",
+    "GAP: No central or multi-branch report screen exists (Phase 3)",
+    "GAP: Print channel, page size and orientation are undefined",
+    "GAP: Audit policy for report access and export is undefined",
+    "GAP: Export artifact retention is a policy seam",
+    "GAP: Performance targets and the acceptance suite are not visual"
+  ],
+  "changelog": [
+    {
+      "date": "2026-10-04",
+      "summary": "Integrated the Claude Design adaptation of the Claude Code candidate, revision V2 (MiniMart_Reporting_ClaudeDesign_Source-V2.zip; V1 archive retained as upstream history): registered the exact exported source, six grouped pages, the index, support.js and the export manifest. Status review-ready. Repository integration adjustments: index and Sales Reports badge/pill nowrap, Back Office link repointed to the repository target, V1-only diff statement replaced by the verified V2 comparison."
+    },
+    {
+      "date": "2026-10-04",
+      "summary": "Owner approved Reporting V2 as an approved-visual-reference (visual authority only), bound to the integrated source hashes recorded in provenance.json (source SHA-256 8a9219669a1b5fda95f90df1705e9836ff1a460aa972c2a61ceb2e0e652db662). Accepted limitations: static export dialogs and 1366 px grouped canvases. Design-intent coverage and unresolved authority are retained. No implementation, business, API or security decision is approved or resolved."
+    },
+    {
+      "date": "2026-10-04",
+      "summary": "Owner-authorized status-text correction: stale review-time status wording replaced by the approved-visual-reference wording in the index badge and footer, the source script comment and documentation screen 80. No layout, behaviour or requirement change; approval binding recomputed to source SHA-256 8a9219669a1b5fda95f90df1705e9836ff1a460aa972c2a61ceb2e0e652db662."
+    }
+  ],
+  "notes": "Reviewable Reporting visual design (UI-RPT-001..005 and the report, state, export and print behaviour required by FR-RPT-001..065). Every figure is illustrative and flagged on screen. No report calculation, financial definition, export contract, permission or access rule is invented; unresolved items are marked OPEN, VERIFY, PROPOSED or GAP and listed in screen 78. Groups follow the six grouped pages exported with the source. routeOrState and phaseLabel remain unset because the source does not assign them. The package ships the real support.js (byte-identical to the accepted Accounting-Lite copy). Owner visual approval was recorded on 2026-10-04 as approved-visual-reference, visual authority only. Retained limitations: the export dialogs are static illustrations, the grouped pages are 1366 px canvases, 30 of 146 requirement claims are mapped by design intent only, and unresolved decisions (DEC-RPT-001 OPEN, DEC-RPT-002 PROPOSED, the items on screen 78) are not resolved. This approval does not approve implementation or any business, API or security decision; frozen authority wins on any conflict."
+}

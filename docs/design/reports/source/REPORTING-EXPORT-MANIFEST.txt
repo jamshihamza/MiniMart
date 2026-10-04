@@ -1,0 +1,89 @@
+MINIMART REPORTING — CLAUDE DESIGN SOURCE EXPORT MANIFEST (revised)
+Archive: MiniMart_Reporting_ClaudeDesign_Source.zip
+Status: review-ready. NOT an approved visual reference. Owner has not visually approved this package.
+
+This revision applies fixes from an independent integration review of the prior export. It does not claim the package is approved.
+
+============================================================
+PROVENANCE (corrected)
+============================================================
+This Claude Design deliverable ADAPTS the Claude Code candidate. It is not authored from scratch, and it is NOT a wholesale "repackaging" — that word overstated the prior export and is retracted here.
+
+Candidate (unapproved input, unchanged):
+  File: candidate-INPUT-ONLY/MiniMartReports.dc.html
+  SHA-256: ac24dc44a29ce910b050efcbfc86caeacc953925657e751d55a4c0a50665aeb7
+  Size: 127024 bytes
+
+Independent integration review of the PRIOR export found: 79 of the 80 screens unchanged from the candidate, with a 15-line source difference (a provenance header comment, two documentation-screen lines, and the file's packaging into the Claude Design template/logic authoring format rather than one static HTML file). This revision's changes (below) are additional, small, targeted edits on top of that prior diff — not a new rewrite.
+
+============================================================
+CHANGES MADE IN THIS REVISION
+============================================================
+1. Decision markers corrected to match the canonical Decision Register status (screen 78's DECISIONS table was already correct; four inline report-screen notes were not):
+   - DEC-RET-002 (Returns Report note): OPEN → PROPOSED
+   - DEC-PAY-001 (Tender Summary note, Payment Exception Report note — two occurrences): OPEN → PROPOSED
+   - DEC-PUR-001 (Purchase Summary note): OPEN → PROPOSED
+   - DEC-CUS-002 (Customer data masked-by-default note): OPEN → VERIFY (the note's own sentence already said "are VERIFY"; the marker chip was wrong)
+2. lang="en" restored on the <html> element of all 8 top-level files (source, 6 grouped pages, index) — it was missing after the prior packaging pass.
+3. Sidebar footer note ("Structural navigation only outside this package") color changed from #5d6a82 to #8c98ad on the #0e1b33 sidebar background. #8c98ad is the same tone already used for the sidebar brand subtitle and group labels in this package and the approved Accounting-Lite reference; it was not independently remeasured for exact contrast ratio in this pass (see "not verified" below), but is the established already-accepted tone for this exact background.
+4. Back Office index link: verified MiniMart Back Office Mockups.dc.html exists in this project at time of writing, so the link target is real — not removed. Added an explanatory line clarifying it is a cross-package link and is not bundled inside this Reporting archive (consistent with how other sibling packages reference each other).
+5. Compact screen-range badge pills (the "01-28", "29-39" … navigation strip at the top of each grouped page) given white-space:nowrap and flex-shrink:0 so a badge's label no longer wraps internally; the row itself still wraps normally between whole badges at narrow widths.
+6. Export dialog screens (64 "format and scope", 65 "permission required"): added an explicit noteBox stating these are static illustrations of the dialog's visual state — role="dialog"/aria-modal are present as markup only; keyboard focus entry on open, focus trapping, Escape-to-dismiss and focus return to the trigger are NOT implemented or interactively validated in this mockup. No interactive validation is claimed.
+7. Added one documentation-screen (80) line distinguishing a visually demonstrated state (a screen carrying sample rows/values) from a design-intent annotation (a dashed box or an OPEN/VERIFY/PROPOSED/GAP/LATER marker) — neither is behavioural or interactive validation of the underlying requirement.
+8. Updated the provenance text on the index page, the source's logic-class header comment, and documentation screen 80 to state the 79-screens/15-line-diff finding and retract "repackaged" as an overstatement.
+
+ReportRunRequest.limit (1–500) versus PageInfo.limit (max 200) remains flagged as unresolved on screen 17 — not changed, not resolved, per instruction.
+
+============================================================
+CHECKS ACTUALLY PERFORMED IN THIS REVISION
+============================================================
+1. Source JS re-parsed with `new Function` after all edits — PASS, no syntax error.
+2. SCR(...) registration count re-counted — still 80.
+3. String-matched all four corrected decision markers present with their new status and absent with the old status — PASS (verified via source-text search, not a rendered screenshot).
+4. `<html lang="en">` presence verified by string search in all 8 top-level files — PASS on all 8 (one file required a second pass after an unrelated path error rolled back its first edit; re-applied and reverified).
+5. Grouped-page coverage re-extracted from all 6 grouped pages' SCREENS arrays — 80 references, 80 unique, 0 duplicates, 0 gaps against 01–80 — PASS.
+6. All hashes below computed directly from the final packaged bytes.
+
+============================================================
+WHAT WAS NOT VERIFIED (unchanged from the prior manifest, still honest)
+============================================================
+- Live pixel-level rendering of all 80 screens at the four required viewports was not performed screen-by-screen in this revision either.
+- The sidebar footer note's new color (#8c98ad on #0e1b33) was matched to an already-used tone in this package rather than independently recomputed against the WCAG contrast formula in this pass.
+- No automated accessibility tooling was run.
+- Export dialog focus-trap/Escape/focus-return behavior is explicitly NOT implemented — this is now stated on-screen, not silently assumed.
+- Individual manual review of each of the 80 screens' rendered content against its cited requirement ID was not re-performed beyond the structural/registry and targeted string checks above.
+
+============================================================
+GROUPED PAGES AND SCREEN RANGES (unchanged)
+============================================================
+MiniMart RPT - Reports Home & Viewer.dc.html — 01–28
+MiniMart RPT - Sales Reports.dc.html — 29–39
+MiniMart RPT - Cash, Day Close & Inventory.dc.html — 40–51
+MiniMart RPT - Purchasing & Credit.dc.html — 52–60
+MiniMart RPT - Management, Export & Print.dc.html — 61–72
+MiniMart RPT - Central & Design System.dc.html — 73–80
+Package index: MiniMart Reporting Mockups.dc.html
+
+============================================================
+PACKAGED FILES AND SHA-256 (computed directly from final packaged bytes)
+============================================================
+MiniMartReports.dc.html  SHA256:1137692660511791c11a7d96efc94bebd57023dd9165eaf89189875ff98676db  (129510 bytes)
+MiniMart RPT - Reports Home & Viewer.dc.html  SHA256:39e7f84226b5b7315e428b193a012513afef1980333ea6a44cbf7b1acb86653f  (5476 bytes)
+MiniMart RPT - Sales Reports.dc.html  SHA256:a8f1bbe503e0b34de9581747f3d3c1ee256617a8fb12e27c7046ba53e94db913  (4225 bytes)
+MiniMart RPT - Cash, Day Close & Inventory.dc.html  SHA256:1f31d6ee327968ef7be77598dc250eacf2ebfb729a1ea2bafd8aac510f607965  (4566 bytes)
+MiniMart RPT - Purchasing & Credit.dc.html  SHA256:8e1bb95b705ee1481e8480fd89eec27b14a8e826e711c947689e4a82df4edce7  (4448 bytes)
+MiniMart RPT - Management, Export & Print.dc.html  SHA256:2735d79a94f0175ccaaebfd29d26fe357f4490b98c2642e132fa62bcd2d9bc8e  (4638 bytes)
+MiniMart RPT - Central & Design System.dc.html  SHA256:d9c8e7a1814e499237cb7d565449c018484c6532d645f137bdf76cb2be18a44d  (4541 bytes)
+MiniMart Reporting Mockups.dc.html  SHA256:8b433e7c76945e8a2343ae2459325f1f7a718e9ef1e6ed03e03a5e71d2373891  (7145 bytes)
+support.js  SHA256:8fe7df74405f3c55f49b7249c74ea1397e65d07dea2b1bd3b4a489bec2e28cbe  (69150 bytes) — unmodified, byte-identical to the Accounting-Lite package's support.js.
+traceability.json  SHA256:3baee6c658ac3840a1b4c02e10893f8aa6314fd8dc93489f5da64bd120c4fb01  (31201 bytes) — unmodified copy of the candidate's traceability file.
+TRACEABILITY.md  SHA256:4e59e4cb11e89baf3b411fec1224198ee18a65cf27c1cb251c7701bcc87f26ec  (24019 bytes) — unmodified copy of the candidate's traceability doc.
+
+TOTAL PACKAGED FILES: 11, plus this manifest = 12 files in the archive.
+All hashes above differ from the prior export's hashes for every file that was edited (MiniMartReports.dc.html and all 6 grouped pages and the index); support.js, traceability.json and TRACEABILITY.md are unchanged and keep their prior hashes.
+
+============================================================
+STATUS
+============================================================
+REPORTING DESIGN: REVIEW-READY, REVISED PER INDEPENDENT INTEGRATION FINDINGS. NOT APPROVED.
+Not registered in any repository. Not committed. Not pushed.

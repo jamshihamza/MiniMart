@@ -1,0 +1,264 @@
+{
+  "status": "approved-visual-reference (owner visual approval recorded 2026-10-04); visual reference only",
+  "kind": "Claude Design adaptation of a Claude Code candidate",
+  "upstreamArchive": {
+    "name": "MiniMart_Reporting_ClaudeDesign_Source-V2.zip",
+    "localLocation": "Incoming/ (untracked in the original checkout; not committed)",
+    "sha256": "7fdd150f2eabc74685a151393d6ae9e6eb715c2b903bcfabc0dabf678d58a774",
+    "bytes": 90367,
+    "integrity": "unzip -t: no errors; 12 files",
+    "preserved": "Archive and its extraction are unmodified; all upstream bytes are recoverable from the archive."
+  },
+  "exportManifest": {
+    "path": "source/REPORTING-EXPORT-MANIFEST.txt",
+    "sha256": "5989282f1a96a9bcd9e962b31eae040f8fd3e64f6123b40574b7acbd156e2b29",
+    "verification": "All 11 hashes it declares match the actual packaged bytes; no undeclared or missing files.",
+    "note": "Kept byte-identical to the upstream V2 manifest. Every hash it declares is the upstream V2 hash and stays valid for the upstream archive; for the three adjusted files it intentionally differs from the integrated hash recorded in files[].integratedSha256."
+  },
+  "supersedes": {
+    "name": "MiniMart_Reporting_ClaudeDesign_Source.zip (V1)",
+    "sha256": "0a9b9610e8d6c6acb6c0fbd54fb3489fa77798795d35de2023801e5a87217ad1",
+    "bytes": 89911,
+    "note": "Previous upstream export, retained untracked in Incoming/ and as history. V1 evidence stays in the fidelity report only where content is unchanged."
+  },
+  "adaptedFrom": {
+    "candidate": {
+      "sha256": "ac24dc44a29ce910b050efcbfc86caeacc953925657e751d55a4c0a50665aeb7",
+      "bytes": 127024,
+      "origin": "Claude Code candidate, committed on branch reports-visual-design (commit 8e842678dd3482509aafd48106488408087daaf0). Authored in the repository, not a Claude Design export, never approved. Retained as history; not overwritten or merged."
+    },
+    "handoffBundle": {
+      "name": "mm-claude-design-handoff.zip",
+      "sha256": "9ba2f1ed6197ce59f8ac5519e79361d804b5e65849b929aa11d01d12a3de4251",
+      "note": "Input bundle prepared for Claude Design; kept outside the repository."
+    }
+  },
+  "authoritativeSource": {
+    "path": "source/MiniMartReports.dc.html",
+    "sha256": "8a9219669a1b5fda95f90df1705e9836ff1a460aa972c2a61ceb2e0e652db662",
+    "bytes": 129658,
+    "upstreamV2Sha256": "1137692660511791c11a7d96efc94bebd57023dd9165eaf89189875ff98676db",
+    "note": "sha256 is the integrated (adjusted) file. upstreamV2Sha256 is the byte-exact upstream V2 export, which is also the hash declared in REPORTING-EXPORT-MANIFEST.txt."
+  },
+  "runtime": {
+    "path": "source/support.js",
+    "sha256": "8fe7df74405f3c55f49b7249c74ea1397e65d07dea2b1bd3b4a489bec2e28cbe",
+    "comparison": "byte-identical to the accepted Accounting-Lite docs/design/accounting/source/support.js"
+  },
+  "files": [
+    {
+      "path": "source/MiniMart RPT - Cash, Day Close & Inventory.dc.html",
+      "origin": "Claude Design export",
+      "integratedSha256": "1f31d6ee327968ef7be77598dc250eacf2ebfb729a1ea2bafd8aac510f607965",
+      "integratedBytes": 4566,
+      "upstreamV2Sha256": "1f31d6ee327968ef7be77598dc250eacf2ebfb729a1ea2bafd8aac510f607965",
+      "upstreamV2Bytes": 4566,
+      "integrationAdjusted": false
+    },
+    {
+      "path": "source/MiniMart RPT - Central & Design System.dc.html",
+      "origin": "Claude Design export",
+      "integratedSha256": "d9c8e7a1814e499237cb7d565449c018484c6532d645f137bdf76cb2be18a44d",
+      "integratedBytes": 4541,
+      "upstreamV2Sha256": "d9c8e7a1814e499237cb7d565449c018484c6532d645f137bdf76cb2be18a44d",
+      "upstreamV2Bytes": 4541,
+      "integrationAdjusted": false
+    },
+    {
+      "path": "source/MiniMart RPT - Management, Export & Print.dc.html",
+      "origin": "Claude Design export",
+      "integratedSha256": "2735d79a94f0175ccaaebfd29d26fe357f4490b98c2642e132fa62bcd2d9bc8e",
+      "integratedBytes": 4638,
+      "upstreamV2Sha256": "2735d79a94f0175ccaaebfd29d26fe357f4490b98c2642e132fa62bcd2d9bc8e",
+      "upstreamV2Bytes": 4638,
+      "integrationAdjusted": false
+    },
+    {
+      "path": "source/MiniMart RPT - Purchasing & Credit.dc.html",
+      "origin": "Claude Design export",
+      "integratedSha256": "8e1bb95b705ee1481e8480fd89eec27b14a8e826e711c947689e4a82df4edce7",
+      "integratedBytes": 4448,
+      "upstreamV2Sha256": "8e1bb95b705ee1481e8480fd89eec27b14a8e826e711c947689e4a82df4edce7",
+      "upstreamV2Bytes": 4448,
+      "integrationAdjusted": false
+    },
+    {
+      "path": "source/MiniMart RPT - Reports Home & Viewer.dc.html",
+      "origin": "Claude Design export",
+      "integratedSha256": "39e7f84226b5b7315e428b193a012513afef1980333ea6a44cbf7b1acb86653f",
+      "integratedBytes": 5476,
+      "upstreamV2Sha256": "39e7f84226b5b7315e428b193a012513afef1980333ea6a44cbf7b1acb86653f",
+      "upstreamV2Bytes": 5476,
+      "integrationAdjusted": false
+    },
+    {
+      "path": "source/MiniMart RPT - Sales Reports.dc.html",
+      "origin": "Claude Design V2 export, adjusted in this repository",
+      "integratedSha256": "ac55d0718f23a59e889a5de6e438837d70bfefb95e0e21755491c160b5f89dde",
+      "integratedBytes": 4423,
+      "upstreamV2Sha256": "a8f1bbe503e0b34de9581747f3d3c1ee256617a8fb12e27c7046ba53e94db913",
+      "upstreamV2Bytes": 4225,
+      "integrationAdjusted": true,
+      "adjustment": "Integration adjustment: the six navigation pills given white-space:nowrap and flex-shrink:0, matching the other five grouped pages."
+    },
+    {
+      "path": "source/MiniMart Reporting Mockups.dc.html",
+      "origin": "Claude Design V2 export, adjusted in this repository",
+      "integratedSha256": "d94713518423116256958ff518ed28ff963ac4da07fcdbe8e38de6c4f416e658",
+      "integratedBytes": 7655,
+      "upstreamV2Sha256": "8b433e7c76945e8a2343ae2459325f1f7a718e9ef1e6ed03e03a5e71d2373891",
+      "upstreamV2Bytes": 7145,
+      "integrationAdjusted": true,
+      "adjustment": "Integration adjustment: index range badges given white-space:nowrap and flex-shrink:0; Back Office link repointed to ../../back-office/source/MiniMart Back Office Mockups.dc.html and its note reworded; the V1-only provenance statement replaced by the verified V2 comparison. Status badge and footer then updated from the review-time labels to the approved-visual-reference wording (badge uses min-height and padding so the longer text fits)."
+    },
+    {
+      "path": "source/MiniMartReports.dc.html",
+      "origin": "Claude Design V2 export, adjusted in this repository",
+      "integratedSha256": "8a9219669a1b5fda95f90df1705e9836ff1a460aa972c2a61ceb2e0e652db662",
+      "integratedBytes": 129658,
+      "upstreamV2Sha256": "1137692660511791c11a7d96efc94bebd57023dd9165eaf89189875ff98676db",
+      "upstreamV2Bytes": 129510,
+      "integrationAdjusted": true,
+      "adjustment": "Integration adjustment: the V1-only '79 of 80 unchanged, 15-line diff' statement (logic-script comment and documentation screen 80) replaced by the verified V2 comparison. Status wording then updated from the review-time labels to the approved-visual-reference wording (script comment and documentation screen 80)."
+    },
+    {
+      "path": "source/REPORTING-EXPORT-MANIFEST.txt",
+      "origin": "Claude Design export manifest",
+      "integratedSha256": "5989282f1a96a9bcd9e962b31eae040f8fd3e64f6123b40574b7acbd156e2b29",
+      "integratedBytes": 9104,
+      "upstreamV2Sha256": "5989282f1a96a9bcd9e962b31eae040f8fd3e64f6123b40574b7acbd156e2b29",
+      "upstreamV2Bytes": 9104,
+      "integrationAdjusted": false
+    },
+    {
+      "path": "TRACEABILITY.md",
+      "origin": "carried unchanged from the Claude Code candidate (byte-identical)",
+      "integratedSha256": "4e59e4cb11e89baf3b411fec1224198ee18a65cf27c1cb251c7701bcc87f26ec",
+      "integratedBytes": 24019,
+      "upstreamV2Sha256": "4e59e4cb11e89baf3b411fec1224198ee18a65cf27c1cb251c7701bcc87f26ec",
+      "upstreamV2Bytes": 24019,
+      "integrationAdjusted": false
+    },
+    {
+      "path": "source/support.js",
+      "origin": "Claude Design export; byte-identical to the accepted Accounting-Lite support.js",
+      "integratedSha256": "8fe7df74405f3c55f49b7249c74ea1397e65d07dea2b1bd3b4a489bec2e28cbe",
+      "integratedBytes": 69150,
+      "upstreamV2Sha256": "8fe7df74405f3c55f49b7249c74ea1397e65d07dea2b1bd3b4a489bec2e28cbe",
+      "upstreamV2Bytes": 69150,
+      "integrationAdjusted": false
+    },
+    {
+      "path": "traceability.json",
+      "origin": "carried unchanged from the Claude Code candidate (byte-identical)",
+      "integratedSha256": "3baee6c658ac3840a1b4c02e10893f8aa6314fd8dc93489f5da64bd120c4fb01",
+      "integratedBytes": 31201,
+      "upstreamV2Sha256": "3baee6c658ac3840a1b4c02e10893f8aa6314fd8dc93489f5da64bd120c4fb01",
+      "upstreamV2Bytes": 31201,
+      "integrationAdjusted": false
+    }
+  ],
+  "adaptationDelta": {
+    "note": "Recalculated for V2 against the Claude Code candidate (ac24dc44...) with a line diff of the sources and a per-screen comparison of rendered text in the real runtime. The V1 statement '79 of 80 screens identical, 15 changed lines' describes the V1 export versus the candidate only and does not apply to V2 or to the integrated copy.",
+    "v2VersusCandidate": {
+      "changedSourceLines": 31,
+      "screensWithDifferentRenderedText": ["36", "38", "39", "52", "60", "64", "65", "80"],
+      "otherScreens": "72 screens have identical rendered text; the shell sidebar footer note colour (#5d6a82 to #8c98ad) differs on every screen but is not text content.",
+      "changes": [
+        "Sidebar footer note colour #5d6a82 became #8c98ad (all screens).",
+        "Four inline decision chips corrected: DEC-RET-002 (OPEN to PROPOSED), DEC-PAY-001 twice (OPEN to PROPOSED), DEC-PUR-001 (OPEN to PROPOSED), DEC-CUS-002 (OPEN to VERIFY).",
+        "Static-dialog limitation note added on the export dialog screens 64 and 65.",
+        "Provenance comment block added inside the logic script; the unused mkCols helper was removed.",
+        "Documentation screen 80 text changed: confirmation 3 (adapted, not authored by Claude Code), a new visually-demonstrated versus design-intent confirmation, and the viewport confirmation reworded."
+      ],
+      "scope": "Upstream V2 export versus candidate, as exported (before repository integration adjustments)."
+    },
+    "v2VersusV1": {
+      "changedSourceLines": 22,
+      "screensWithDifferentRenderedText": ["36", "38", "39", "52", "60", "64", "65", "80"],
+      "sixGroupedPagesAndIndex": "lang attribute restored and nowrap badge styling; index also gains a cross-package note under the Back Office link"
+    },
+    "v1VersusCandidate": {
+      "changedSourceLines": 15,
+      "note": "Historical V1 result, kept for reference only."
+    },
+    "integratedVersusCandidate": {
+      "changedSourceLines": 31,
+      "screensWithDifferentRenderedText": ["36", "38", "39", "52", "60", "64", "65", "80"],
+      "note": "Recomputed after the repository integration adjustments. The adjusted lines replace lines that already differed, so the totals are unchanged."
+    },
+    "integratedVersusUpstreamV2": {
+      "changedSourceLines": {
+        "MiniMartReports.dc.html": 8,
+        "MiniMart Reporting Mockups.dc.html": 18,
+        "MiniMart RPT - Sales Reports.dc.html": 2
+      },
+      "screensWithDifferentRenderedText": ["80"],
+      "note": "Rendered text differs only on documentation screen 80; the index and Sales Reports changes are navigation, link and nowrap styling."
+    }
+  },
+  "manifestClaimsChecked": [
+    "The V2 manifest still contains the V1 narrative '79 of 80 screens unchanged, 15-line diff' and embeds it in the index and screen 80. That statement describes V1 versus the candidate; V2 versus the candidate was recalculated above (8 screens differ in rendered text, 31 changed source lines).",
+    "The V2 manifest says the sidebar note colour was not recomputed. This integration recomputed it: #8c98ad on #0e1b33 is 5.89:1 (previous #5d6a82 was 3.15:1); rendered contrast is in the fidelity report.",
+    "The V2 manifest says the Back Office link target is real because it exists in the Claude Design project. It did not resolve inside the integrated package. The repository target docs/design/back-office/source/MiniMart Back Office Mockups.dc.html exists and the link now points to it (see integrationAdjustments); navigation from the index was verified.",
+    "The V2 manifest says no live rendering at four viewports was performed in the export. That is accurate; this integration performed it (see the fidelity report)."
+  ],
+  "integrationAdjustments": [
+    "Upstream V2 archive, its extraction and REPORTING-EXPORT-MANIFEST.txt are preserved unmodified. 9 of the 12 registered files are byte-identical to upstream V2.",
+    "Three files were adjusted locally (authorized): MiniMartReports.dc.html, MiniMart Reporting Mockups.dc.html and MiniMart RPT - Sales Reports.dc.html. Their upstream and integrated hashes are both recorded in files[].",
+    "Index range badges (01-28 ... 73-80) now use white-space:nowrap and flex-shrink:0; the Sales Reports navigation pills use the same rules as the other grouped pages.",
+    "The index Back Office link now points to ../../back-office/source/MiniMart Back Office Mockups.dc.html (verified to exist and to load from the index).",
+    "The V1-only statement '79 of 80 unchanged, 15-line diff' in the logic-script comment, documentation screen 80 and the index was replaced by the verified V2 comparison; the V1 figure is marked as V1-only.",
+    "Export dialogs (screens 64 and 65) remain documented static illustrations; no interaction behaviour was added and no frozen decision was resolved.",
+    "The placeholder source/.gitkeep stays removed; design-manifest.json and provenance.json were generated from the registered bytes; the Reporting section of docs/design/RENDER-FIDELITY-REPORT.md was refreshed.",
+    "Approval metadata added on 2026-10-04 (manifest status, changelog, notes, this approval block and the fidelity report). No source file bytes changed by the approval.",
+    "Status-text correction (owner-authorized 2026-10-04): approved-visual-reference wording replaces the review-time labels in the index badge and footer, the source script comment and documentation screen 80; integrated hashes and approval bindings recomputed from the actual bytes."
+  ],
+  "approval": {
+    "date": "2026-10-04",
+    "status": "approved-visual-reference",
+    "scope": "Visual reference only. Does not approve implementation and does not resolve any business, API, data or security decision. Frozen specifications and the Decision Register remain the authority.",
+    "approvedBy": "Project owner (explicit instruction in the working session)",
+    "boundTo": {
+      "note": "Approval is bound to the integrated bytes listed here (files[].integratedSha256 in this record). The upstream V2 export manifest is preserved unmodified and declares the upstream hashes, which differ for the three adjusted files.",
+      "integratedSourceSha256": "8a9219669a1b5fda95f90df1705e9836ff1a460aa972c2a61ceb2e0e652db662",
+      "integratedFiles": {
+        "source/MiniMart RPT - Cash, Day Close & Inventory.dc.html": "1f31d6ee327968ef7be77598dc250eacf2ebfb729a1ea2bafd8aac510f607965",
+        "source/MiniMart RPT - Central & Design System.dc.html": "d9c8e7a1814e499237cb7d565449c018484c6532d645f137bdf76cb2be18a44d",
+        "source/MiniMart RPT - Management, Export & Print.dc.html": "2735d79a94f0175ccaaebfd29d26fe357f4490b98c2642e132fa62bcd2d9bc8e",
+        "source/MiniMart RPT - Purchasing & Credit.dc.html": "8e1bb95b705ee1481e8480fd89eec27b14a8e826e711c947689e4a82df4edce7",
+        "source/MiniMart RPT - Reports Home & Viewer.dc.html": "39e7f84226b5b7315e428b193a012513afef1980333ea6a44cbf7b1acb86653f",
+        "source/MiniMart RPT - Sales Reports.dc.html": "ac55d0718f23a59e889a5de6e438837d70bfefb95e0e21755491c160b5f89dde",
+        "source/MiniMart Reporting Mockups.dc.html": "d94713518423116256958ff518ed28ff963ac4da07fcdbe8e38de6c4f416e658",
+        "source/MiniMartReports.dc.html": "8a9219669a1b5fda95f90df1705e9836ff1a460aa972c2a61ceb2e0e652db662",
+        "source/REPORTING-EXPORT-MANIFEST.txt": "5989282f1a96a9bcd9e962b31eae040f8fd3e64f6123b40574b7acbd156e2b29",
+        "TRACEABILITY.md": "4e59e4cb11e89baf3b411fec1224198ee18a65cf27c1cb251c7701bcc87f26ec",
+        "source/support.js": "8fe7df74405f3c55f49b7249c74ea1397e65d07dea2b1bd3b4a489bec2e28cbe",
+        "traceability.json": "3baee6c658ac3840a1b4c02e10893f8aa6314fd8dc93489f5da64bd120c4fb01"
+      },
+      "upstreamV2ArchiveSha256": "7fdd150f2eabc74685a151393d6ae9e6eb715c2b903bcfabc0dabf678d58a774",
+      "upstreamExportManifestSha256": "5989282f1a96a9bcd9e962b31eae040f8fd3e64f6123b40574b7acbd156e2b29"
+    },
+    "acceptedLimitations": [
+      "Export dialogs (screens 64 and 65) are static illustrations: focus entry, focus trap, Escape dismissal and focus return are not implemented or demonstrated. Implementation must meet the specified keyboard behaviour.",
+      "Grouped pages are 1366 px canvases and scroll horizontally in narrow windows; the index scrolls horizontally at 390 px."
+    ],
+    "retainedLimitations": [
+      "Export dialogs (screens 64 and 65) are static illustrations: focus entry, focus trap, Escape dismissal and focus return are not implemented or demonstrated. Implementation must meet the specified keyboard behaviour.",
+      "Grouped pages are 1366 px canvases and scroll horizontally in narrow windows; the index scrolls horizontally at 390 px.",
+      "Design-intent coverage: of 146 requirement-to-screen claims, 116 show the requirement ID on the screen and 30 rest on design intent only. A demonstrated state or annotation is not behavioural validation.",
+      "Unresolved authority is not resolved by this approval: DEC-RPT-001 (OPEN), DEC-RPT-002 (PROPOSED), the other OPEN, PROPOSED and VERIFY decisions listed on screen 78, the ReportRunRequest.limit (1-500) versus PageInfo.limit (max 200) mismatch, the undefined permission for unmasked customer data and the missing owner screen for cash, day-close and management reports.",
+      "All figures are illustrative. No report calculation, financial definition, export contract, permission or access rule is defined by the design."
+    ],
+    "unchanged": ["MM-007 physical validation remains PENDING", "DEC-HW-001 remains OPEN"],
+    "renderEvidence": "Reused unchanged: approval metadata does not alter any rendered screen. See docs/design/RENDER-FIDELITY-REPORT.md.",
+    "statusTextCorrection": {
+      "date": "2026-10-04",
+      "note": "The owner authorized correcting stale review-time status wording ('review-ready - NOT an approved visual reference') in the index badge and footer, the source script comment and documentation screen 80, extending the existing visual approval to these text corrections only. Layout, behaviour and requirements are unchanged; screen 80 is the only screen whose rendered text changed. The V1/V2 review statements and the statements that the Claude Code candidate is an unapproved input are dated or labelled and were kept. The approval binding above uses the hashes recomputed after the correction.",
+      "supersededIntegratedHashes": {
+        "source/MiniMartReports.dc.html": "70fc10bc756d5aefc669f29c54546abb3a0e6631731d37383bae222977d0bd05",
+        "source/MiniMart Reporting Mockups.dc.html": "a62ada6ac17c41166dcb458d7bef9c8220ef350d040d1bcd3fb7119cf898efbc"
+      }
+    }
+  }
+}

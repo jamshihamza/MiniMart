@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/lucide-static@0.469.0/font/lucide.css">
+<style>
+html,body{margin:0;height:100%;background:#f2f4f7}
+button,input,select,textarea{font-family:inherit;color:inherit}
+[class^="icon-"]{font-family:lucide!important;font-style:normal;line-height:1;display:inline-block;speak:never}
+*:focus-visible{outline:2px solid #1b5fd1;outline-offset:2px}
+a{color:#1b5fd1}a:hover{color:#174fb0}
+table{border-collapse:collapse}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+</style>
+</helmet>
+<div data-screen-label="{{ scrLabel }}" style="position:relative;display:flex;width:100%;height:{{ rootH }};min-width:1160px;background:#f2f4f7;font-family:'IBM Plex Sans',system-ui,sans-serif;color:#0f1a2b;overflow:hidden;font-variant-numeric:tabular-nums;font-size:13.5px;line-height:1.35">
+<aside aria-label="Primary navigation" style="width:190px;flex:none;background:#0e1b33;color:#c3cbd9;display:flex;flex-direction:column;padding:14px 10px 12px;gap:6px;overflow:auto">
+  <div style="display:flex;align-items:center;gap:9px;padding:2px 6px 10px">
+    <div style="width:30px;height:30px;border-radius:8px;background:#1b5fd1;display:grid;place-items:center;color:#fff"><i class="icon-store" style="font-size:16px"></i></div>
+    <div style="display:flex;flex-direction:column;gap:1px"><span style="color:#fff;font-weight:700;font-size:13px;letter-spacing:.08em">MINIMART</span><span style="font-size:10.5px;color:#8c98ad">Back Office</span></div>
+  </div>
+  <sc-for list="{{ nav }}" as="grp" hint-placeholder-count="6">
+    <div style="display:flex;flex-direction:column;gap:1px;margin-top:6px">
+      <span style="font-size:10px;font-weight:600;letter-spacing:.09em;color:#8c98ad;padding:4px 10px">{{ grp.label }}</span>
+      <sc-for list="{{ grp.items }}" as="it" hint-placeholder-count="3">
+        <button disabled="{{ it.stub }}" style="display:flex;align-items:center;gap:9px;height:34px;padding:0 10px;border-radius:7px;border:0;background:{{ it.bg }};color:{{ it.fg }};font-size:12.5px;font-weight:{{ it.fw }};cursor:{{ it.cursor }};text-align:left">
+          <i class="{{ it.icon }}" style="font-size:15px"></i><span style="flex:1">{{ it.label }}</span>
+          <sc-if value="{{ it.stub }}" hint-placeholder-val="{{ false }}"><i class="icon-corner-down-right" style="font-size:11px;color:#4d5a72"></i></sc-if>
+        </button>
+      </sc-for>
+    </div>
+  </sc-for>
+  <div style="margin-top:auto;padding-top:10px"><span style="font-size:10px;color:#8c98ad;padding:0 10px">Structural navigation only outside this package</span></div>
+</aside>
+<div style="flex:1;min-width:0;display:flex;flex-direction:column">
+  <header style="height:50px;flex:none;background:#fff;border-bottom:1px solid #e1e5eb;display:flex;align-items:center;padding:0 16px;gap:12px;white-space:nowrap">
+    <div style="display:flex;align-items:center;gap:6px;font-weight:600;font-size:13px"><i class="icon-building-2" style="font-size:15px;color:#4a5567"></i>MiniMart Sdn Bhd</div>
+    <div style="display:flex;align-items:center;gap:6px;font-size:12.5px;color:#4a5567"><i class="icon-store" style="font-size:14px"></i>Store <span style="font-weight:600;color:#0f1a2b">MiniMart Central</span></div>
+    <div style="display:flex;align-items:center;gap:6px;font-size:12.5px;color:#4a5567"><i class="icon-calendar" style="font-size:14px"></i>Business date <span style="color:#0f1a2b;font-weight:500">Sat, 26 Sep 2026</span></div>
+    <div style="margin-left:auto;display:flex;align-items:center;gap:8px">
+      <div title="Store Node connection" style="display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 10px;border-radius:999px;border:1px solid {{ nodeP.bd }};background:{{ nodeP.bg }};color:{{ nodeP.fg }};font-size:12px;font-weight:600"><i class="{{ nodeP.icon }}" style="font-size:13px"></i>{{ nodeP.label }}</div>
+      <div title="Cloud synchronisation" style="display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 10px;border-radius:999px;border:1px solid {{ syncP.bd }};background:{{ syncP.bg }};color:{{ syncP.fg }};font-size:12px;font-weight:600"><i class="{{ syncP.icon }}" style="font-size:13px"></i>{{ syncP.label }}</div>
+      <button style="display:flex;align-items:center;gap:7px;height:32px;padding:0 8px 0 4px;border-radius:7px;border:1px solid #e1e5eb;background:#fff;cursor:pointer;font-size:12.5px;font-weight:500"><span style="width:24px;height:24px;border-radius:50%;background:#e8f0fc;color:#1b5fd1;display:grid;place-items:center;font-size:10.5px;font-weight:700">SM</span>Siti M. <span style="color:#6b7585">· {{ roleLabel }}</span></button>
+    </div>
+  </header>
+  <div style="position:relative;flex:1;min-height:0;overflow:auto">
+  <sc-if value="{{ nodeDown }}" hint-placeholder-val="{{ false }}">
+    <div style="padding:40px;display:flex;justify-content:center">
+      <div role="alert" style="max-width:560px;width:100%;background:#fff;border:1px solid #e1e5eb;border-radius:14px;padding:24px;display:flex;flex-direction:column;gap:14px">
+        <div style="display:flex;gap:14px;align-items:flex-start">
+          <div style="width:44px;height:44px;flex:none;border-radius:11px;background:#fcebea;color:#b3261e;display:grid;place-items:center"><i class="icon-server-off" style="font-size:22px"></i></div>
+          <div style="display:flex;flex-direction:column;gap:6px"><h1 style="margin:0;font-size:17px;font-weight:600">Store Node unavailable</h1><span style="font-size:13.5px;color:#4a5567">Reports are served by Store Node query ports, so they cannot run until the connection returns. Totals shown earlier are not presented as current, and no report or export can be started. This is different from a cloud-sync outage, where local reports continue.</span></div>
+        </div>
+        <div style="display:flex;gap:8px"><button style="height:40px;padding:0 16px;border-radius:8px;border:0;background:#1b5fd1;color:#fff;font-size:14px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:8px"><i class="icon-refresh-cw" style="font-size:15px"></i>Retry connection</button><button style="height:40px;padding:0 16px;border-radius:8px;border:1px solid #cfd5de;background:#fff;color:#0f1a2b;font-size:14px;font-weight:600;cursor:pointer">Back to Reports Home</button></div>
+        <span style="font-size:11.5px;color:#6b7585">Design note: illustrative state. Source contract: UI state STORE_NODE_UNREACHABLE (UI spec 17-SCREEN-STATE-CONTRACT).</span>
+      </div>
+    </div>
+  </sc-if>
+  <sc-if value="{{ nodeUp }}" hint-placeholder-val="{{ true }}">
+  <sc-if value="{{ cloudDown }}" hint-placeholder-val="{{ false }}">
+    <div role="status" style="display:flex;align-items:center;gap:10px;padding:10px 22px;background:#fdf3e1;border-bottom:1px solid #f0d4a0;color:#6b4000;font-size:12.5px"><i class="icon-cloud-off" style="font-size:16px"></i><div style="flex:1"><strong style="font-weight:600">Cloud sync unavailable.</strong> Reports over authoritative local store data remain available and state their local/store scope. Central or multi-branch reports (later phase) are not available. Cloud-dependent information may be stale.</div></div>
+  </sc-if>
+  <div style="padding:16px 22px 40px;max-width:1180px">{{ body }}</div>
+  </sc-if>
+  </div>
+</div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1366,&quot;height&quot;:768},&quot;screen&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;01&quot;,&quot;02&quot;,&quot;03&quot;,&quot;04&quot;,&quot;05&quot;,&quot;06&quot;,&quot;07&quot;,&quot;08&quot;,&quot;09&quot;,&quot;10&quot;,&quot;11&quot;,&quot;12&quot;,&quot;13&quot;,&quot;14&quot;,&quot;15&quot;,&quot;16&quot;,&quot;17&quot;,&quot;18&quot;,&quot;19&quot;,&quot;20&quot;,&quot;21&quot;,&quot;22&quot;,&quot;23&quot;,&quot;24&quot;,&quot;25&quot;,&quot;26&quot;,&quot;27&quot;,&quot;28&quot;,&quot;29&quot;,&quot;30&quot;,&quot;31&quot;,&quot;32&quot;,&quot;33&quot;,&quot;34&quot;,&quot;35&quot;,&quot;36&quot;,&quot;37&quot;,&quot;38&quot;,&quot;39&quot;,&quot;40&quot;,&quot;41&quot;,&quot;42&quot;,&quot;43&quot;,&quot;44&quot;,&quot;45&quot;,&quot;46&quot;,&quot;47&quot;,&quot;48&quot;,&quot;49&quot;,&quot;50&quot;,&quot;51&quot;,&quot;52&quot;,&quot;53&quot;,&quot;54&quot;,&quot;55&quot;,&quot;56&quot;,&quot;57&quot;,&quot;58&quot;,&quot;59&quot;,&quot;60&quot;,&quot;61&quot;,&quot;62&quot;,&quot;63&quot;,&quot;64&quot;,&quot;65&quot;,&quot;66&quot;,&quot;67&quot;,&quot;68&quot;,&quot;69&quot;,&quot;70&quot;,&quot;71&quot;,&quot;72&quot;,&quot;73&quot;,&quot;74&quot;,&quot;75&quot;,&quot;76&quot;,&quot;77&quot;,&quot;78&quot;,&quot;79&quot;,&quot;80&quot;],&quot;default&quot;:&quot;01&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;embedded&quot;:{&quot;editor&quot;:null,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;}}">
+
+/* ADAPTED FROM CLAUDE-CODE CANDIDATE (input only, not approved):
+   candidate-INPUT-ONLY/MiniMartReports.dc.html, SHA-256 ac24dc44a29ce910b050efcbfc86caeacc953925657e751d55a4c0a50665aeb7 (127024 bytes).
+   This Claude Design source adapts that candidate's screen registry and components; it is not authored from scratch.
+   Verified comparison of the upstream V2 export against the candidate: 31 changed source lines, and 8 screens
+   (36, 38, 39, 52, 60, 64, 65, 80) render different text; the sidebar footer note colour differs on every screen.
+   The earlier figure of 79 of 80 screens unchanged with a 15-line diff describes the V1 export only.
+   Visual tokens matched to the approved MiniMartAccountingLite.dc.html reference. Contrast-adjusted tones
+   (muted text #6b7585->#5b6576; sidebar group label #6f7c93->#8c98ad) carried over from the candidate's own fix.
+   Status: Approved visual reference — visual scope only; documented limitations and unresolved product decisions remain. No design-only content is product behaviour until
+   frozen authority and a backlog item (MM-079..083, MM-097) support it. */
+const E=React.createElement;
+
+/* ---------- exact decimal helpers (no binary floating point is ever used for money or quantity) ---------- */
+const _split=(s)=>{s=String(s);let neg=false;if(s[0]==='-'||s[0]==='−'){neg=true;s=s.slice(1);}const p=s.split('.');return{neg,i:p[0]||'0',f:p[1]||''};};
+const _grp=(i)=>i.replace(/\B(?=(\d{3})+(?!\d))/g,',');
+const toBig=(s,scale)=>{const{neg,i,f}=_split(s);const ff=(f+'0'.repeat(scale)).slice(0,scale);const b=BigInt(i+ff);return neg?-b:b;};
+const fromBig=(b,scale)=>{const neg=b<0n;let a=(neg?-b:b).toString();while(a.length<=scale)a='0'+a;const i=a.slice(0,a.length-scale),f=a.slice(a.length-scale);return (neg?'-':'')+i+(scale?'.'+f:'');};
+const sumDec=(vals,scale)=>fromBig(vals.reduce((t,v)=>t+toBig(v,scale),0n),scale);
+const subDec=(a,b,scale)=>fromBig(toBig(a,scale)-toBig(b,scale),scale);
+const mulInt=(dec,n,scale)=>fromBig(toBig(dec,scale)*BigInt(n),scale);
+const fmtMoney=(s)=>{if(s==null||s==='')return '—';const{neg,i,f}=_split(s);return (neg?'−RM ':'RM ')+_grp(i)+'.'+(f+'00').slice(0,2);};
+const fmtDec=(s,scale)=>{if(s==null||s==='')return '—';const{neg,i,f}=_split(s);const sc=scale||0;return (neg?'−':'')+_grp(i)+(sc?'.'+(f+'0'.repeat(sc)).slice(0,sc):'');};
+const fmtInt=(s)=>fmtDec(s,0);
+const fmtCell=(t,v,scale)=>{if(v==null)return '—';if(t==='MONEY')return fmtMoney(v);if(t==='INTEGER')return fmtInt(v);if(t==='DECIMAL')return fmtDec(v,scale||0);return String(v);};
+const isNum=(t)=>t==='MONEY'||t==='INTEGER'||t==='DECIMAL';
+
+/* ---------- tokens ---------- */
+const INK='#0f1a2b',MUT='#5b6576',MUT2='#4a5567',LINE='#e1e5eb',LINE2='#eef1f5',BLUE='#1b5fd1';
+const TONES={amber:['#fdf3e1','#6b4000','#f0d4a0'],blue:['#e8f0fc','#174fb0','#b9cff2'],red:['#fcebea','#8a1f14','#f2b8b0'],green:['#e5f4ec','#0f3d24','#bfe2cd'],gray:['#eef1f5','#3d4a5e','#cfd5de'],violet:['#efeaff','#3f2a99','#cbbdf5']};
+
+/* ---------- components ---------- */
+const card=(children,style)=>E('div',{style:Object.assign({background:'#fff',border:'1px solid '+LINE,borderRadius:'11px',padding:'16px',display:'flex',flexDirection:'column',gap:'10px'},style||{})},...[].concat(children));
+const kv=(l,v,vc)=>E('div',{style:{display:'flex',justifyContent:'space-between',gap:'12px',fontSize:'13px'}},E('span',{style:{color:MUT}},l),E('span',{style:{fontWeight:600,color:vc||INK,textAlign:'right'}},v));
+const noteBox=(text,tone,icon)=>{const c=TONES[tone||'amber'];return E('div',{style:{display:'flex',gap:'8px',alignItems:'flex-start',padding:'10px 12px',borderRadius:'9px',background:c[0],border:'1px solid '+c[2],color:c[1],fontSize:'12px'}},E('i',{className:'icon-'+(icon||'info'),'aria-hidden':'true',style:{fontSize:'14px',marginTop:'1px'}}),E('span',null,text));};
+const tag=(label,tone)=>{const c=TONES[tone||'gray'];return E('span',{style:{height:'22px',padding:'0 9px',borderRadius:'999px',background:c[0],color:c[1],border:'1px solid '+c[2],fontSize:'11px',fontWeight:600,display:'inline-flex',alignItems:'center',whiteSpace:'nowrap'}},label);};
+const MARK={OPEN:'red',VERIFY:'amber',PROPOSED:'blue',DEFERRED:'gray',RESOLVED:'green',GAP:'violet',LATER:'gray'};
+const marker=(kind,id)=>tag(kind+(id?' · '+id:''),MARK[kind]||'gray');
+const mono=(t,extra)=>E('span',{style:Object.assign({fontFamily:"'IBM Plex Mono',monospace",fontSize:'11.5px',color:MUT2},extra||{})},t);
+const chipRow=(items)=>E('div',{style:{display:'flex',gap:'6px',flexWrap:'wrap',alignItems:'center'}},...items.map((t,i)=>E('span',{key:i,style:{fontFamily:"'IBM Plex Mono',monospace",fontSize:'11px',color:MUT2,background:'#fff',border:'1px solid '+LINE,borderRadius:'6px',padding:'2px 6px'}},t)));
+const btn=(label,o)=>{o=o||{};const k=o.kind||'secondary';const st={primary:{background:BLUE,color:'#fff',border:'0'},secondary:{background:'#fff',color:INK,border:'1px solid #cfd5de'},ghost:{background:'transparent',color:BLUE,border:'0'},danger:{background:'#fff',color:'#b3261e',border:'1px solid #f2b8b0'}}[k];return E('button',{type:'button',disabled:!!o.disabled,title:o.title,'aria-label':o.aria,style:Object.assign({height:o.h||'34px',padding:'0 14px',borderRadius:'8px',fontSize:'13px',fontWeight:600,cursor:o.disabled?'not-allowed':'pointer',display:'inline-flex',alignItems:'center',gap:'7px',opacity:o.disabled?0.55:1,whiteSpace:'nowrap'},st)},o.icon?E('i',{className:'icon-'+o.icon,'aria-hidden':'true',style:{fontSize:'14px'}}):null,label);};
+const annot=(title,children)=>E('div',{style:{border:'1.5px dashed #9aa3b2',borderRadius:'10px',background:'#fafbfc',padding:'12px 14px',display:'flex',flexDirection:'column',gap:'8px'}},E('div',{style:{display:'flex',gap:'8px',alignItems:'center',flexWrap:'wrap'}},E('span',{style:{fontSize:'10px',fontWeight:700,letterSpacing:'.08em',color:MUT}},'DESIGN ANNOTATION · NOT PRODUCT UI'),E('span',{style:{fontSize:'12.5px',fontWeight:600,color:INK}},title)),...[].concat(children));
+const ribbon=()=>E('div',{role:'note',style:{display:'flex',alignItems:'center',gap:'8px',padding:'7px 12px',borderRadius:'8px',background:TONES.violet[0],border:'1px solid '+TONES.violet[2],color:TONES.violet[1],fontSize:'12px'}},E('i',{className:'icon-info','aria-hidden':'true',style:{fontSize:'14px'}}),E('strong',{style:{fontWeight:700,letterSpacing:'.04em'}},'ILLUSTRATIVE DATA'),E('span',null,'Design package only. Values are examples, not live MiniMart data, and no calculation or definition is asserted unless a source is cited.'));
+const sectionTitle=(t,sub)=>E('div',{style:{display:'flex',flexDirection:'column',gap:'2px'}},E('h2',{style:{margin:0,fontSize:'14px',fontWeight:700}},t),sub?E('span',{style:{fontSize:'12px',color:MUT}},sub):null);
+const bullets=(items,style)=>E('ul',{style:Object.assign({margin:0,paddingLeft:'18px',display:'flex',flexDirection:'column',gap:'4px',fontSize:'12.5px',color:MUT2},style||{})},...items.map((t,i)=>E('li',{key:i},t)));
+
+/* ---------- page chrome ---------- */
+const head=(o)=>E('div',{style:{display:'flex',flexDirection:'column',gap:'8px'}},
+  E('nav',{'aria-label':'Breadcrumb',style:{fontSize:'12px',color:MUT,display:'flex',gap:'6px',alignItems:'center'}},...(o.crumbs||['Reports']).map((c,i,a)=>[E('span',{key:'c'+i,style:{color:i===a.length-1?INK:MUT,fontWeight:i===a.length-1?600:400}},c),i<a.length-1?E('i',{key:'a'+i,className:'icon-chevron-right','aria-hidden':'true',style:{fontSize:'11px'}}):null]).flat()),
+  E('div',{style:{display:'flex',alignItems:'flex-start',gap:'12px',flexWrap:'wrap'}},
+    E('div',{style:{display:'flex',flexDirection:'column',gap:'6px',flex:1,minWidth:'320px'}},E('h1',{style:{margin:0,fontSize:'21px',fontWeight:700}},o.title),o.refs?chipRow(o.refs):null,o.sub?E('span',{style:{fontSize:'12.5px',color:MUT2}},o.sub):null),
+    o.actions?E('div',{style:{display:'flex',gap:'8px',alignItems:'center',flexWrap:'wrap'}},...o.actions):null));
+const page=(o,...children)=>E('div',{style:{display:'flex',flexDirection:'column',gap:'12px'}},ribbon(),head(o),...children);
+
+/* ---------- tables (semantic <table>, numeric columns right-aligned) ---------- */
+const dtable=(cols,rows,o)=>{o=o||{};
+  const sums=cols.map((c,ci)=>c.sum?sumDec(rows.map(r=>r[ci]),c.scale||(c.t==='MONEY'?2:0)):null);
+  const th=(c,i)=>E('th',{key:i,scope:'col',style:{textAlign:isNum(c.t)?'right':'left',padding:'8px 12px',fontSize:'10.5px',fontWeight:600,color:MUT,background:'#f7f9fb',borderBottom:'1px solid '+LINE,whiteSpace:'normal',width:c.w?c.w+'%':undefined}},c.l);
+  const td=(c,v,i)=>E('td',{key:i,style:{textAlign:isNum(c.t)?'right':'left',padding:'9px 12px',fontSize:'12.5px',borderTop:'1px solid '+LINE2,verticalAlign:'top',fontWeight:c.b?600:400,color:c.tone||INK,overflowWrap:'anywhere'}},typeof v==='object'&&v!==null?v:fmtCell(c.t,v,c.scale));
+  return E('div',{style:{background:'#fff',border:'1px solid '+LINE,borderRadius:'11px',overflow:'hidden'}},
+    E('table',{style:{width:'100%',tableLayout:o.fixed===false?'auto':'fixed'}},
+      E('caption',{className:'sr-only'},o.caption||'Report results'),
+      E('thead',null,E('tr',null,...cols.map(th))),
+      E('tbody',null,...rows.map((r,ri)=>E('tr',{key:ri},...cols.map((c,ci)=>td(c,r[ci],ci))))),
+      o.totals?E('tfoot',null,E('tr',null,...cols.map((c,ci)=>E('td',{key:ci,style:{textAlign:isNum(c.t)?'right':'left',padding:'9px 12px',fontSize:'12.5px',fontWeight:700,background:'#f7f9fb',borderTop:'1px solid #cfd5de'}},ci===0?(o.totalLabel||'Total (all rows in scope)'):(sums[ci]!=null?fmtCell(c.t,sums[ci],c.scale):'')))) ):null));
+};
+
+/* ---------- filter bar (real labelled controls, keyboard operable) ---------- */
+let _fid=0;
+const filterBar=(filters,o)=>{o=o||{};
+  const field=(f)=>{const id='f'+(++_fid);const bad=o.invalid&&o.invalid===f[0];return E('div',{key:id,style:{display:'flex',flexDirection:'column',gap:'3px'}},
+    E('label',{htmlFor:id,style:{fontSize:'10.5px',fontWeight:600,color:MUT}},f[0]),
+    E('select',{id,defaultValue:f[1],'aria-invalid':bad?'true':undefined,'aria-describedby':bad?'ferr':undefined,style:{height:'32px',minWidth:'118px',borderRadius:'7px',border:'1px solid '+(bad?'#b3261e':'#cfd5de'),background:'#fff',padding:'0 8px',fontSize:'12.5px'}},E('option',{value:f[1]},f[1])));};
+  return E('form',{'aria-label':'Report filters',onSubmit:(e)=>e.preventDefault(),style:{background:'#fff',border:'1px solid '+LINE,borderRadius:'11px',padding:'12px 14px',display:'flex',flexDirection:'column',gap:'10px'}},
+    E('div',{style:{display:'flex',gap:'12px',flexWrap:'wrap',alignItems:'flex-end'}},...filters.map(field),
+      E('div',{style:{display:'flex',gap:'8px',marginLeft:'auto'}},btn('Reset filters',{kind:'ghost'}),btn('Apply filters',{kind:'primary',icon:'list-filter'}))),
+    o.invalid?E('div',{id:'ferr',role:'alert',style:{color:'#b3261e',fontSize:'12px',display:'flex',gap:'6px',alignItems:'center'}},E('i',{className:'icon-circle-alert','aria-hidden':'true',style:{fontSize:'14px'}}),o.invalidMsg):null,
+    E('span',{style:{fontSize:'11.5px',color:MUT}},'Running or changing a report never edits business records. Reports are read-only views of posted data (FR-RPT-001).'));
+};
+
+/* ---------- report context strip (scope, period, generated, data basis, currency) ---------- */
+const ctxStrip=(sp)=>card([E('div',{style:{display:'flex',gap:'22px',flexWrap:'wrap',fontSize:'12px'}},
+  ...[['Store scope',sp.scope||'MiniMart Central · 1 store'],[sp.asOf?'As-of':'Period',sp.asOf||sp.period],['Generated',(sp.generated||'26 Sep 2026 · 18:42')+' (illustrative)'],['Data basis','Authoritative local Store Node data'],['Currency','MYR · store country context: MY']].map((p,i)=>E('div',{key:i,style:{display:'flex',flexDirection:'column',gap:'1px'}},E('span',{style:{color:MUT,fontSize:'10.5px',fontWeight:600}},p[0]),E('span',{style:{fontWeight:600}},p[1]))))],{padding:'10px 14px',gap:'0'});
+
+const defsPanel=(defs)=>{if(!defs||!defs.length)return null;if(defs.length>3)return card([E('div',{style:{display:'flex',alignItems:'center',gap:'12px',flexWrap:'wrap'}},E('strong',{style:{fontSize:'12.5px'}},'Totals definitions (FR-RPT-050):'),...defs.map((d,k)=>E('span',{key:k,style:{display:'inline-flex',gap:'6px',alignItems:'center',fontSize:'12px'}},d[0],marker(d[1])))),E('span',{style:{fontSize:'11.5px',color:MUT}},'Definition text per term is on the Totals definitions screen. No formula is asserted here.')],{padding:'10px 14px',gap:'4px'});return card([sectionTitle('Totals definitions (FR-RPT-050)','Every financial figure must use a documented definition. Status shown per term.'),E('div',{style:{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(250px,1fr))',gap:'8px 18px'}},...defs.map((d,k)=>E('div',{key:k,style:{display:'flex',gap:'8px',alignItems:'flex-start',fontSize:'12.5px'}},marker(d[1],d[2]),E('span',null,E('strong',null,d[0]),' — ',d[3]))))],{gap:'8px'});};
+
+const notesBlock=(notes)=>notes&&notes.length?annot('Authority dependencies for this screen',E('div',{style:{display:'flex',flexDirection:'column',gap:'6px'}},...notes.map((n,i)=>E('div',{key:i,style:{display:'flex',gap:'8px',alignItems:'flex-start',fontSize:'12.5px'}},marker(n[0],n[1]),E('span',null,n[2]))))):null;
+
+const pager=(n,lim)=>E('div',{style:{display:'flex',alignItems:'center',gap:'10px',fontSize:'12px',color:MUT2,flexWrap:'wrap'}},E('span',null,'Showing '+n+' of '+n+' rows in scope · bounded page (limit '+(lim||200)+') · nextCursor: none'),E('span',{style:{marginLeft:'auto',display:'inline-flex',gap:'6px'}},btn('Previous page',{disabled:true,icon:'chevron-left'}),btn('Next page',{disabled:true})));
+
+/* ---------- state bodies shared by every report screen ---------- */
+const skeleton=()=>E('div',{role:'status','aria-busy':'true','aria-live':'polite',style:{background:'#fff',border:'1px solid '+LINE,borderRadius:'11px',padding:'14px',display:'flex',flexDirection:'column',gap:'10px'}},E('span',{style:{fontSize:'12.5px',color:MUT2,display:'flex',gap:'8px',alignItems:'center'}},E('i',{className:'icon-loader','aria-hidden':'true',style:{fontSize:'14px'}}),'Running report on the Store Node… totals are shown only when the run completes.'),...[0,1,2,3,4,5].map(i=>E('div',{key:i,style:{height:'16px',borderRadius:'6px',background:'#eef1f5',width:(96-i*7)+'%'}})));
+const stateCard=(icon,tone,title,text,actions,extra)=>{const c=TONES[tone];return E('div',{role:tone==='red'||tone==='amber'?'alert':'status',style:{background:'#fff',border:'1px solid '+LINE,borderRadius:'11px',padding:'22px',display:'flex',gap:'14px',alignItems:'flex-start'}},E('div',{style:{width:'42px',height:'42px',flex:'none',borderRadius:'10px',background:c[0],color:c[1],display:'grid',placeItems:'center'}},E('i',{className:'icon-'+icon,'aria-hidden':'true',style:{fontSize:'21px'}})),E('div',{style:{display:'flex',flexDirection:'column',gap:'8px',flex:1}},E('span',{style:{fontSize:'16px',fontWeight:600}},title),E('span',{style:{fontSize:'13px',color:MUT2}},text),extra||null,actions?E('div',{style:{display:'flex',gap:'8px',flexWrap:'wrap'}},...actions):null));};
+
+/* ---------- the report viewer (every UI-RPT-002..005 report and every state uses it) ---------- */
+const viewer=(sp,st)=>{st=st||'ready';
+  const acts=[btn('Export',{icon:'download',disabled:st!=='ready'&&st!=='offline',title:'Creates an export job (API-RPT-003). Requires reporting.write.'}),btn('Print',{icon:'printer',disabled:st!=='ready'&&st!=='offline'})];
+  const body={
+    ready:()=>[defsPanel(sp.defs),sp.before?sp.before():null,dtable(sp.cols,sp.rows,{totals:sp.totals!==false,caption:sp.name,totalLabel:sp.totalLabel}),pager(sp.rows.length,sp.limit),sp.after?sp.after():null],
+    offline:()=>[noteBox('Local store scope: this output covers authoritative data on this Store Node only (FR-RPT-053). Cloud-held or other-branch data is not included.','blue','info'),dtable(sp.cols,sp.rows,{totals:sp.totals!==false,caption:sp.name,totalLabel:sp.totalLabel}),pager(sp.rows.length,sp.limit)],
+    loading:()=>[skeleton()],
+    empty:()=>[stateCard('search','gray','No posted data matches these filters','The run completed successfully and returned zero rows. This is not an error and nothing is hidden. Widen the business-date range, store scope or status filter, or reset the filters.',[btn('Reset filters',{kind:'primary'}),btn('Widen date range')])],
+    invalid:()=>[stateCard('circle-alert','red','Report not run','Fix the highlighted filter and run again. No results, totals or export are available for an invalid request, and nothing was changed.',[btn('Fix filter',{kind:'primary'})])],
+    denied:()=>[stateCard('lock','amber','You do not have permission to view this report','Viewing reports needs reporting.read, and restricted financial or customer data needs the matching scope. Hiding the control in the UI is not the authority: the server decides. Ask an authorised manager if you need access.',[btn('Back to Reports Home',{kind:'primary'}),btn('Request access from a manager')])],
+    conflict:()=>[stateCard('refresh-cw','amber','The report definition changed','The Store Node updated this report definition (supported filters or grouping) after this page loaded, so your last filter set may no longer apply. Refresh the definition and reapply your filters. Nothing has been shown for the stale request.',[btn('Refresh definition',{kind:'primary',icon:'refresh-cw'}),btn('Keep my filters and review')])],
+    failed:()=>[stateCard('circle-x','red','Report could not be completed','The run failed before it finished, so no totals are displayed: a partial total could be mistaken for a complete one (FR-RPT-062). Retry the run, or contact support with the reference below.',[btn('Retry run',{kind:'primary',icon:'refresh-cw'}),btn('Copy support reference')],E('span',{style:{fontSize:'12px',color:MUT2}},'Reference ',mono('RPT-RUN-ILLUSTRATIVE-0001'),' · scope: MiniMart Central · '+(sp.period||''))) ],
+    incompat:()=>[stateCard('shield-alert','red','Update this client to run reports','This client version is not compatible with the Store Node report contract. Report runs and exports are blocked until a compatible client is installed. Your filters are preserved.',[btn('Show update instructions',{kind:'primary'})])]
+  }[st]();
+  return page({crumbs:['Reports',sp.family,sp.name],title:sp.name,refs:sp.refs,sub:sp.sub,actions:acts},
+    filterBar(sp.filters,{invalid:st==='invalid'?sp.invalidField||'Business date':null,invalidMsg:'Business date range is invalid: the end date is before the start date.'}),
+    st==='ready'||st==='offline'?ctxStrip(sp):null,
+    ...body,
+    st==='ready'?notesBlock(sp.notes):null);
+};
+
+/* ---------- navigation model (structural; only Reports is live in this package) ---------- */
+const NAV=[['Dashboard',[['Dashboard','icon-layout-dashboard',true]]],
+['MASTERS',[['Products','icon-package',true],['Categories','icon-shapes',true],['Brands','icon-tag',true],['Suppliers','icon-truck',true],['Customers','icon-users',true]]],
+['OPERATIONS',[['Purchases','icon-shopping-bag',true],['Inventory','icon-boxes',true],['Sales','icon-receipt',true],['Returns','icon-undo-2',true],['Cash & Shifts','icon-clock',true]]],
+['FINANCE',[['Accounting','icon-calculator',true]]],
+['MANAGEMENT',[['Reports','icon-chart-no-axes-column',false]]],
+['TOOLS',[['Import Center','icon-file-down',true],['Export Center','icon-download',true]]],
+['ADMINISTRATION',[['Users & Access','icon-shield',true],['Organization','icon-building-2',true],['Settings','icon-settings',true]]]];
+const pillOf=(bg,fg,bd,icon,label)=>({bg,fg,bd,icon,label});
+
+/* ---------- illustrative report specifications ----------
+   Every figure below is an example. Money is a decimal string; sums are exact (BigInt based).
+   Definitions that frozen authority leaves open are flagged and never asserted. */
+const API_RUN='API-RPT-001/002';
+const DEF_NET=[['Gross sales','OPEN','FR-RPT-050','definition not yet approved'],['Discounts','OPEN','FR-RPT-050','definition not yet approved'],['Returns','OPEN','FR-RPT-050','definition not yet approved'],['Net sales','OPEN','FR-RPT-016','"approved net-sales definition" is required but not stated; this illustration asserts no formula'],['Tax','VERIFY','FR-RPT-050','shown only from verified country rule metadata; none shown here']];
+const FILT={
+  sales:[['Store','MiniMart Central'],['Business date','20–26 Sep 2026'],['Counter','All counters'],['Cashier','All cashiers'],['Status','Posted / completed']],
+  salesItem:[['Store','MiniMart Central'],['Business date','26 Sep 2026'],['Product','All products'],['Category / brand','All'],['Counter','All counters']],
+  tender:[['Store','MiniMart Central'],['Business date','26 Sep 2026'],['Counter','All counters'],['Tender type','All tenders'],['Status','Confirmed only']],
+  cash:[['Store','MiniMart Central'],['Business date','25–26 Sep 2026'],['Counter','All counters'],['Cashier','All cashiers']],
+  inv:[['Store','MiniMart Central'],['As-of','26 Sep 2026'],['Product','All products'],['Category / brand','All']],
+  invMove:[['Store','MiniMart Central'],['Business date','20–26 Sep 2026'],['Product','Milo 200ml'],['Status','Posted']],
+  purch:[['Store','MiniMart Central'],['Business date','1–30 Sep 2026'],['Supplier','All suppliers'],['Product','All products'],['Status','Posted']],
+  credit:[['Store','MiniMart Central'],['As-of','26 Sep 2026'],['Customer','All customers'],['Status','Active credit accounts']]
+};
+
+const SP={};
+SP.daily={name:'Daily Sales Summary',family:'Sales',refs:['FR-RPT-016','FR-RPT-004','FR-RPT-050','UI-RPT-002',API_RUN],sub:'Totals by business date for the selected store and counters.',period:'Business date 20–26 Sep 2026',filters:FILT.sales,defs:DEF_NET,
+ cols:[{l:'Business date',t:'DATE',w:22},{l:'Transactions',t:'INTEGER',sum:true,w:14},{l:'Gross sales',t:'MONEY',sum:true,w:16},{l:'Discounts',t:'MONEY',sum:true,w:16},{l:'Returns',t:'MONEY',sum:true,w:16},{l:'Net sales',t:'MONEY',sum:true,b:true,w:16}],
+ rows:[['Sun 20 Sep 2026','412','18420.50','312.40','205.00','17903.10'],['Mon 21 Sep 2026','398','17110.20','280.10','150.70','16679.40'],['Tue 22 Sep 2026','405','17655.80','295.00','98.30','17262.50'],['Wed 23 Sep 2026','380','16240.00','240.60','120.00','15879.40'],['Thu 24 Sep 2026','441','19890.90','355.20','310.00','19225.70'],['Fri 25 Sep 2026','520','24310.40','410.50','232.20','23667.70'],['Sat 26 Sep 2026','466','21045.30','388.00','175.80','20481.50']],
+ notes:[['OPEN','FR-RPT-016','Gross, discount, return and net definitions must be approved before this report is built; no formula is implied by these example rows.'],['VERIFY','FR-RPT-004','After-midnight transactions follow their assigned business date; business-date rollover policy is OPEN (DEC-COM-001, DEC-CSH-001).']]};
+SP.item={name:'Sales by Item',family:'Sales',refs:['FR-RPT-017','FR-RPT-008','UI-RPT-002',API_RUN],sub:'Sold and returned quantity and value per item. Rows trace to source where permitted. Illustrative scope: ten items.',period:'Business date 26 Sep 2026',filters:FILT.salesItem,defs:DEF_NET.slice(0,3),
+ cols:[{l:'Item',t:'STRING',w:28},{l:'Qty sold',t:'INTEGER',sum:true,w:12},{l:'Qty returned',t:'INTEGER',sum:true,w:12},{l:'Sales value',t:'MONEY',sum:true,w:16},{l:'Returned value',t:'MONEY',sum:true,w:16},{l:'Source',t:'STRING',w:16}],
+ rows:[['Cola 320ml','186','2','465.00','5.00',E('span',{style:{color:BLUE,fontWeight:600}},'View source ↗')],['100 Plus 325ml','142','0','355.00','0.00',E('span',{style:{color:BLUE,fontWeight:600}},'View source ↗')],['Milo 200ml','171','3','376.20','6.60',E('span',{style:{color:BLUE,fontWeight:600}},'View source ↗')],['Maggie Mee','233','4','1048.50','18.00',E('span',{style:{color:BLUE,fontWeight:600}},'View source ↗')],['Gardenia Bread','120','1','336.00','2.80',E('span',{style:{color:BLUE,fontWeight:600}},'View source ↗')],['Nestle Water 600ml','301','0','361.20','0.00',E('span',{style:{color:BLUE,fontWeight:600}},'View source ↗')],['Dutch Lady Milk 1L','94','2','611.00','13.00',E('span',{style:{color:BLUE,fontWeight:600}},'View source ↗')],["Lay's Classic 52g",'88','0','369.60','0.00',E('span',{style:{color:BLUE,fontWeight:600}},'View source ↗')],['KitKat 4F','67','1','234.50','3.50',E('span',{style:{color:BLUE,fontWeight:600}},'View source ↗')],['Dettol 250ml','19','1','245.10','12.90',E('span',{style:{color:BLUE,fontWeight:600}},'View source ↗')]],
+ notes:[['VERIFY','FR-RPT-017','Source drill-down appears only where the viewer is permitted; the permission scope for drill-down is not separately defined.'],['VERIFY','FR-RPT-009','Quantity precision follows each Item-UoM (UI spec 20-MONEY-QUANTITY-CONTRACT); these example items are whole pieces.']]};
+SP.cat={name:'Sales by Category',family:'Sales',refs:['FR-RPT-018','FR-RPT-009','FR-RPT-051','UI-RPT-002',API_RUN],sub:'Total reconciles to the selected sales scope (here the same ten illustrative items as Sales by Item). Grouping basis is always labelled.',period:'Business date 26 Sep 2026',filters:FILT.salesItem.concat([['Grouping basis','Posted category at time of sale']]),defs:null,
+ cols:[{l:'Category',t:'STRING',w:36},{l:'Qty sold',t:'INTEGER',sum:true,w:20},{l:'Sales value',t:'MONEY',sum:true,w:22},{l:'Grouping basis',t:'STRING',w:22}],
+ rows:[['Beverages','800','1557.40','Posted at time of sale'],['Noodles & instant food','233','1048.50','Posted at time of sale'],['Bakery','120','336.00','Posted at time of sale'],['Dairy','94','611.00','Posted at time of sale'],['Snacks & confectionery','155','604.10','Posted at time of sale'],['Household','19','245.10','Posted at time of sale']],
+ notes:[['OPEN','DEC-RPT-001','Whether this report groups by historical posted attributes or current master attributes is undecided per report. The report definition advertises its supported grouping modes (API-RPT-001); the UI must not guess.']]};
+SP.cashier={name:'Sales by Cashier',family:'Sales',refs:['FR-RPT-019','FR-RPT-007','UI-RPT-002',API_RUN],sub:'Sales, returns and discounts by cashier. Totals reconcile to the Daily Sales Summary row for the same date.',period:'Business date 26 Sep 2026',filters:FILT.sales,defs:DEF_NET.slice(0,3),
+ cols:[{l:'Cashier',t:'STRING',w:26},{l:'Transactions',t:'INTEGER',sum:true,w:16},{l:'Gross sales',t:'MONEY',sum:true,w:20},{l:'Discounts',t:'MONEY',sum:true,w:19},{l:'Returns',t:'MONEY',sum:true,w:19}],
+ rows:[['Aiman R.','190','8760.10','160.20','70.00'],['Priya K.','168','7520.00','140.30','65.80'],['Wei Jie L.','108','4765.20','87.50','40.00']],
+ notes:[['VERIFY','FR-RPT-007','Cashier filtering is subject to permissions; the exact permission that limits per-cashier visibility is not defined in the frozen contracts.']]};
+SP.counter={name:'Sales by Counter',family:'Sales',refs:['FR-RPT-020','FR-RPT-006','UI-RPT-002',API_RUN],sub:'Store total reconciles to the included counters.',period:'Business date 26 Sep 2026',filters:FILT.sales,defs:DEF_NET.slice(0,3),
+ cols:[{l:'Counter',t:'STRING',w:26},{l:'Transactions',t:'INTEGER',sum:true,w:16},{l:'Gross sales',t:'MONEY',sum:true,w:20},{l:'Discounts',t:'MONEY',sum:true,w:19},{l:'Returns',t:'MONEY',sum:true,w:19}],
+ rows:[['POS-01','262','11860.20','215.40','100.00'],['POS-02','204','9185.10','172.60','75.80']],
+ notes:[['OPEN','DEC-CSH-005','Whether a store runs one or several active shifts per counter or drawer is undecided; counter totals here only group posted sales.']]};
+SP.discount={name:'Discount Report',family:'Sales',refs:['FR-RPT-021','FR-RPT-007','UI-RPT-002',API_RUN],sub:'Discounts with type, reason and override context where permitted.',period:'Business date 26 Sep 2026',filters:FILT.sales.concat([['Discount view','Overrides only']]),defs:null,
+ cols:[{l:'Receipt',t:'STRING',w:14},{l:'Time',t:'STRING',w:9},{l:'Cashier',t:'STRING',w:13},{l:'Type',t:'STRING',w:14},{l:'Reason',t:'STRING',w:18},{l:'Amount',t:'MONEY',sum:true,w:12},{l:'Override context',t:'STRING',w:20}],
+ rows:[['RC-0268-0412','10:12','Aiman R.','Line discount','Damaged packaging','5.00','Approved by Manager'],['RC-0268-0431','11:40','Priya K.','Bill discount','Loyal customer','12.00','Approved by Manager'],['RC-0268-0455','13:05','Aiman R.','Line discount','Near expiry','3.40','No override'],['RC-0268-0487','15:22','Wei Jie L.','Bill discount','Price match','20.00','Approved by Manager'],['RC-0268-0502','17:48','Priya K.','Line discount','Customer complaint','8.50','Approved by Manager']],totalLabel:'Total (rows listed)',
+ notes:[['OPEN','FR-RPT-021','Discount types and reasons are configured values, not defined by this design. Override context is shown only where the viewer is permitted.']]};
+SP.override={name:'Price Override Report',family:'Sales',refs:['FR-RPT-022','UI-RPT-002',API_RUN],sub:'Manual price overrides with original and overridden values and approver context.',period:'Business date 26 Sep 2026',filters:FILT.sales,defs:null,
+ cols:[{l:'Receipt',t:'STRING',w:14},{l:'Cashier',t:'STRING',w:12},{l:'Item',t:'STRING',w:20},{l:'Original price',t:'MONEY',w:12},{l:'Overridden price',t:'MONEY',w:13},{l:'Approver',t:'STRING',w:12},{l:'Reason',t:'STRING',w:17}],
+ rows:[['RC-0268-0419','Aiman R.','Dettol 250ml','12.90','10.90','Manager','Shelf label mismatch'],['RC-0268-0466','Priya K.','Dutch Lady Milk 1L','6.50','5.90','Manager','Damaged carton'],['RC-0268-0498','Wei Jie L.','Lay\'s Classic 52g','4.20','3.50','Manager','Price match']],totals:false,
+ notes:[['OPEN','FR-RPT-022','Minimum-price and maker-checker pricing rules are undecided legacy policy seams; this report only lists recorded overrides.']]};
+SP.returns={name:'Returns Report',family:'Sales',refs:['FR-RPT-023','UI-RPT-002',API_RUN],sub:'Sales returns by reason, item, cashier and value. Totals reconcile to posted return documents.',period:'Business date 26 Sep 2026',filters:FILT.sales,defs:DEF_NET.slice(2,3),
+ cols:[{l:'Return',t:'STRING',w:12},{l:'Cashier',t:'STRING',w:12},{l:'Item',t:'STRING',w:22},{l:'Qty',t:'INTEGER',sum:true,w:8},{l:'Value',t:'MONEY',sum:true,w:12},{l:'Reason',t:'STRING',w:18},{l:'Original receipt',t:'STRING',w:16}],
+ rows:[['RET-0071','Priya K.','Milo 200ml','3','6.60','Wrong item','RC-0261-0302'],['RET-0072','Aiman R.','Dutch Lady Milk 1L','2','13.00','Damaged','RC-0259-0118'],['RET-0073','Wei Jie L.','Dettol 250ml','1','12.90','Customer changed mind','RC-0262-0044'],['RET-0074','Priya K.','Maggie Mee','4','18.00','Wrong item','RC-0266-0201'],['RET-0075','Aiman R.','Cola 320ml','2','5.00','Damaged','RC-0267-0390'],['RET-0076','Wei Jie L.','KitKat 4F','1','3.50','Customer changed mind','RC-0268-0120'],['RET-0077','Aiman R.','Cooking Oil 2L','2','116.80','Defective','RC-0264-0075']],
+ notes:[['PROPOSED','DEC-RET-002','Stock disposition vocabulary beyond sellable and non-sellable buckets is not frozen; return reasons here are examples.']]};
+SP.noreceipt={name:'No-Receipt Return Report',family:'Sales',refs:['FR-RPT-024','UI-RPT-002',API_RUN],sub:'Exceptional returns without an original sale, identified separately as high-risk activity.',period:'Business date 20–26 Sep 2026',filters:FILT.sales,defs:null,
+ cols:[{l:'Return',t:'STRING',w:14},{l:'Date',t:'STRING',w:14},{l:'Cashier',t:'STRING',w:14},{l:'Item',t:'STRING',w:22},{l:'Value',t:'MONEY',sum:true,w:14},{l:'Approver',t:'STRING',w:12},{l:'Reason',t:'STRING',w:10}],
+ rows:[['RET-0063','22 Sep 2026','Aiman R.','Milo 200ml','2.20','Manager','Lost receipt'],['RET-0069','24 Sep 2026','Priya K.','Maggie Mee','4.50','Manager','Lost receipt']],
+ notes:[['OPEN','DEC-RET-001','Whether and when no-receipt returns are allowed is undecided. This report appears only if the feature is enabled (FR-RPT-024: "if the feature is enabled").']]};
+SP.tender={name:'Tender Summary',family:'Sales',refs:['FR-RPT-025','FR-RPT-012','FR-RPT-013','UI-RPT-002',API_RUN],sub:'Confirmed tenders and refunds by type. Pending, uncertain and failed items are not included in confirmed totals.',period:'Business date 26 Sep 2026',filters:FILT.tender,defs:null,
+ cols:[{l:'Tender type',t:'STRING',w:30},{l:'Confirmed tenders',t:'MONEY',sum:true,w:24},{l:'Confirmed refunds',t:'MONEY',sum:true,w:24},{l:'Payments',t:'INTEGER',sum:true,w:22}],
+ rows:[['Cash','7966.00','140.00','233'],['Card','7320.60','35.80','148'],['QR','4210.30','0.00','61'],['Customer credit','1016.00','0.00','6']],
+ before:()=>noteBox('2 payments are PENDING or UNCERTAIN and are excluded from the confirmed totals above. See Payment Exception Report.','amber','triangle-alert'),
+ notes:[['PROPOSED','DEC-PAY-001','Card and QR provider behaviour is a proposed adapter baseline; tender labels come from configured capabilities, not from this design.']]};
+SP.payex={name:'Payment Exception Report',family:'Sales',refs:['FR-RPT-026','FR-RPT-013','UI-RPT-002',API_RUN],sub:'Pending, uncertain and failed electronic payment and refund cases that need operational follow-up.',period:'Business date 25–26 Sep 2026',filters:FILT.tender.slice(0,3).concat([['State','PENDING / UNCERTAIN / FAILED']]),defs:null,
+ cols:[{l:'Reference',t:'STRING',w:15},{l:'Time',t:'STRING',w:11},{l:'Counter',t:'STRING',w:9},{l:'Tender',t:'STRING',w:9},{l:'Type',t:'STRING',w:9},{l:'State',t:'STRING',w:13},{l:'Amount',t:'MONEY',w:12},{l:'Follow-up',t:'STRING',w:22}],
+ rows:[['PAY-0268-0091','26 Sep 14:05','POS-01','Card','Payment',tag('UNCERTAIN','amber'),'86.40','Reconcile with provider reference'],['PAY-0268-0122','26 Sep 16:31','POS-02','QR','Payment',tag('PENDING','blue'),'24.90','Awaiting confirmation'],['PAY-0267-0210','25 Sep 19:12','POS-01','Card','Refund',tag('FAILED','red'),'35.80','Refund not executed; repeat required'],['PAY-0267-0233','25 Sep 20:41','POS-02','Card','Payment',tag('UNCERTAIN','amber'),'59.00','Reconcile with provider reference']],totals:false,
+ notes:[['PROPOSED','DEC-PAY-001','PENDING and UNCERTAIN states must stay explicit and never be shown as success. Provider-specific recovery steps are not defined here.']]};
+
+SP.cashmove={name:'Cash Movement Report',family:'Cash & day close',refs:['FR-RPT-027','FR-RPT-006','FR-RPT-007',API_RUN],sub:'Opening floats, cash in and out, cash refunds and collections, and closing declarations as permitted.',period:'Business date 26 Sep 2026',filters:FILT.cash,defs:[['Expected cash','RESOLVED','Domain model 06','OpeningFloat + CashSales + CashCollections + ApprovedCashIn − CashRefunds − ApprovedCashOut']],
+ cols:[{l:'Time',t:'STRING',w:11},{l:'Shift',t:'STRING',w:16},{l:'Counter',t:'STRING',w:10},{l:'Movement',t:'STRING',w:22},{l:'Direction',t:'STRING',w:10},{l:'Amount',t:'MONEY',w:12},{l:'Reference',t:'STRING',w:19}],
+ rows:[['08:00','SH-POS01-0268','POS-01','Opening float','In','300.00','CM-2026-09-26-001'],['10:40','SH-POS01-0268','POS-01','Cash in','In','200.00','CM-2026-09-26-004'],['12:15','SH-POS01-0268','POS-01','Cash refund','Out','35.00','RET-0072'],['13:30','SH-POS01-0268','POS-01','Customer collection','In','120.00','COL-2026-00031'],['15:05','SH-POS01-0268','POS-01','Cash out (expense)','Out','150.00','EXP-2026-00026']],totals:false,
+ notes:[['OPEN','DEC-CSH-002','Which screen owns shift and day-close reporting is not stated in the frozen UI inventory (UI-RPT-002 is "Sales/tender/date/store views"). Cash and shift controls live in UI-CSH-001..003.']]};
+SP.cashvar={name:'Cash Variance Report',family:'Cash & day close',refs:['FR-RPT-028','FR-RPT-006','FR-RPT-007',API_RUN],sub:'Expected, actual and shortage or overage by shift, counter and cashier. No silent balancing.',period:'Business date 25–26 Sep 2026',filters:FILT.cash,defs:[['Variance','RESOLVED','Domain model 06','Variance = ActualCash − ExpectedCash; source transactions are never rewritten to force zero'],['Shortage / overage','RESOLVED','FR-RPT-028','negative variance is a shortage, positive is an overage']],
+ cols:[{l:'Shift',t:'STRING',w:18},{l:'Counter',t:'STRING',w:10},{l:'Cashier',t:'STRING',w:14},{l:'Expected cash',t:'MONEY',sum:true,w:15},{l:'Actual (declared)',t:'MONEY',sum:true,w:15},{l:'Variance',t:'MONEY',sum:true,b:true,w:14},{l:'Result',t:'STRING',w:14}],
+ rows:(()=>{const d=[['SH-POS01-0267','POS-01','Aiman R.','2685.50','2680.50'],['SH-POS02-0147','POS-02','Priya K.','2210.00','2210.00'],['SH-POS01-0268','POS-01','Aiman R.','1635.00','1641.20']];return d.map(r=>{const v=subDec(r[4],r[3],2);return [r[0],r[1],r[2],r[3],r[4],v,v==='0.00'?'No variance':(v[0]==='-'?'Shortage':'Overage')];});})(),
+ notes:[['OPEN','DEC-CSH-002','Variance tolerance and approval thresholds are undecided; this report shows the recorded difference only.']]};
+SP.shiftclose={name:'Shift Close Report',family:'Cash & day close',refs:['FR-RPT-029','UI-RPT-002',API_RUN],sub:'Reproduces the posted shift-close summary. It must match the close record.',period:'Shift SH-POS01-0267 · closed 25 Sep 2026',filters:[['Store','MiniMart Central'],['Shift','SH-POS01-0267'],['Counter','POS-01']],defs:[['Expected cash','RESOLVED','Domain model 06','OpeningFloat + CashSales + CashCollections + ApprovedCashIn − CashRefunds − ApprovedCashOut']],
+ cols:[{l:'Close-record line',t:'STRING',w:60},{l:'Amount',t:'MONEY',w:40}],
+ rows:[['Opening float','300.00'],['Cash sales','2450.50'],['Cash collections','120.00'],['Approved cash in','0.00'],['Cash refunds','35.00'],['Approved cash out','150.00'],['Expected cash','2685.50'],['Declared (actual) cash','2680.50'],['Variance (actual − expected)','-5.00']],totals:false,
+ notes:[['OPEN','DEC-CSH-002','Whether a business day can close with open shifts, and reopen rules, are undecided; this report only reproduces a posted close record.']]};
+SP.dayclose={name:'Day Close Report',family:'Cash & day close',refs:['FR-RPT-030','UI-RPT-002',API_RUN],sub:'Reproduces the posted store day-close summary and the shifts it included.',period:'Business date 25 Sep 2026 · closed 25 Sep 2026 · 21:10',filters:[['Store','MiniMart Central'],['Business date','25 Sep 2026']],defs:null,
+ cols:[{l:'Included shift',t:'STRING',w:20},{l:'Counter',t:'STRING',w:12},{l:'Cashier',t:'STRING',w:16},{l:'Expected cash',t:'MONEY',sum:true,w:17},{l:'Actual (declared)',t:'MONEY',sum:true,w:17},{l:'Variance',t:'MONEY',sum:true,w:18}],
+ rows:[['SH-POS01-0267','POS-01','Aiman R.','2685.50','2680.50','-5.00'],['SH-POS02-0146','POS-02','Priya K.','2210.00','2210.00','0.00']],totalLabel:'Store total (2 included shifts)',
+ notes:[['OPEN','DEC-CSH-003','Posting into a closed business day is undecided (LateTransactionPolicy); this report shows only what the close record contains.']]};
+
+const mv=(()=>{let bal='145';const d=[['20 Sep','Opening balance','In','400',null],['20 Sep','GRN-2026-00381','In','48',null],['21 Sep','Sale POS-01','Out','-31',null],['22 Sep','Sale POS-02','Out','-44',null],['23 Sep','Return RET-0071','In','3',null],['24 Sep','Stock adjustment ADJ-0044','Out','-2',null],['25 Sep','Sale POS-01','Out','-52',null],['26 Sep','Sale POS-01/02','Out','-171',null]];return d;})();
+SP.stock={name:'Current Stock',family:'Inventory',refs:['FR-RPT-031','FR-RPT-008','UI-RPT-003',API_RUN],sub:'Current stock by item and store, with batch where configured. Quantity reconciles to inventory balance and movements.',asOf:'26 Sep 2026 · 18:42',filters:FILT.inv,defs:null,
+ cols:[{l:'Item',t:'STRING',w:30},{l:'Store',t:'STRING',w:20},{l:'Batch',t:'STRING',w:16},{l:'On hand',t:'DECIMAL',scale:0,sum:true,w:14},{l:'UoM',t:'STRING',w:10}],
+ rows:[['Cola 320ml','MiniMart Central','—','214','pcs'],['Milo 200ml','MiniMart Central','—','151','pcs'],['Maggie Mee','MiniMart Central','—','340','pcs'],['Gardenia Bread','MiniMart Central','BR-0925-A','36','pcs'],['Dutch Lady Milk 1L','MiniMart Central','DL-1001','72','pcs'],['Dettol 250ml','MiniMart Central','—','8','pcs']],totals:false,
+ notes:[['OPEN','DEC-INV-004','Batch selection and depletion rules are undecided; batch shows only where tracking is enabled for the item.']]};
+SP.lowstock={name:'Low Stock Report',family:'Inventory',refs:['FR-RPT-032','UI-RPT-003',API_RUN],sub:'Items below an approved reorder or low-stock threshold, once threshold ownership is defined.',asOf:'26 Sep 2026 · 18:42',filters:FILT.inv,defs:[['Threshold','OPEN','DEC-INV-007','ownership of reorder / low-stock thresholds is not assigned']],
+ cols:[{l:'Item',t:'STRING',w:30},{l:'On hand',t:'DECIMAL',scale:0,w:16},{l:'Threshold',t:'STRING',w:22},{l:'Threshold basis',t:'STRING',w:32}],
+ rows:[['Dettol 250ml','8','not defined','Threshold source not defined'],['Gardenia Bread','36','not defined','Threshold source not defined']],totals:false,
+ notes:[['OPEN','DEC-INV-007','ReorderPolicy ownership is an open domain extension. FR-RPT-032 requires the threshold basis to be visible, so the live report cannot be built until ownership is decided.']]};
+SP.negstock={name:'Negative Stock Report',family:'Inventory',refs:['FR-RPT-033','UI-RPT-003',API_RUN],sub:'Negative stock quantities, where policy permits them.',asOf:'26 Sep 2026 · 18:42',filters:FILT.inv,defs:[['Negative-stock policy','RESOLVED','DEC-INV-010','Phase-1 default is BLOCK, so this report is normally empty']],
+ cols:[{l:'Item',t:'STRING',w:34},{l:'Store',t:'STRING',w:24},{l:'On hand',t:'DECIMAL',scale:0,w:16},{l:'Since',t:'STRING',w:26}],
+ rows:[],totals:false,notes:[['RESOLVED','DEC-INV-010','Phase-1 default negative-stock behaviour is BLOCK under the initial WAC baseline. Other policies are not frozen.']]};
+SP.move={name:'Stock Movement Report',family:'Inventory',refs:['FR-RPT-034','FR-RPT-008','UI-RPT-003',API_RUN],sub:'Inventory movements with source document, direction, quantity and running balance where supported. Drill-down opens the stock movement explorer.',period:'Business date 20–26 Sep 2026',filters:FILT.invMove,defs:null,
+ cols:[{l:'Date',t:'STRING',w:12},{l:'Source document',t:'STRING',w:28},{l:'Direction',t:'STRING',w:12},{l:'Quantity',t:'DECIMAL',scale:0,w:14},{l:'Running balance',t:'DECIMAL',scale:0,b:true,w:16},{l:'Source',t:'STRING',w:18}],
+ rows:(()=>{let run='0';return mv.map(r=>{run=sumDec([run,r[3]],0);return [r[0],r[1],r[2],r[3],run,E('span',{style:{color:BLUE,fontWeight:600}},'UI-INV-003 ↗')];});})(),totals:false,
+ notes:[['VERIFY','FR-RPT-034','Running balance is shown only "where supported". The contract does not say which movement sources support it.']]};
+SP.expiry={name:'Batch / Expiry Report',family:'Inventory',refs:['FR-RPT-035','UI-RPT-003',API_RUN],sub:'Batch quantities and expiry information where batch tracking is enabled.',asOf:'26 Sep 2026',filters:FILT.inv,defs:[['Expiring-soon window','OPEN','DEC-INV-005','no window is defined; days to expiry is shown instead of a status label']],
+ cols:[{l:'Item',t:'STRING',w:26},{l:'Batch',t:'STRING',w:16},{l:'Quantity',t:'DECIMAL',scale:0,w:14},{l:'Expiry date',t:'STRING',w:18},{l:'Days to expiry (from as-of)',t:'INTEGER',w:26}],
+ rows:[['Dutch Lady Milk 1L','DL-0912','12','30 Sep 2026','4'],['Gardenia Bread','BR-0925-A','36','29 Sep 2026','3'],['Dutch Lady Milk 1L','DL-1001','60','14 Oct 2026','18'],['Milo 200ml','ML-0812','24','12 Sep 2026','-14']],totals:false,
+ notes:[['OPEN','DEC-INV-005','Expiry and FEFO policy are undecided; the report states days to expiry and never labels items as expiring or expired.'],['VERIFY','DEC-POS-003','Whether expired stock may be sold is VERIFY/OPEN; this report only shows batch data.']]};
+SP.valuation={name:'Inventory Valuation Report',family:'Inventory',refs:['FR-RPT-036','FR-RPT-052','UI-RPT-003',API_RUN],sub:'Valuation as of a stated date using the approved costing method.',asOf:'26 Sep 2026 · end of business date',filters:FILT.inv,defs:[['Costing method','RESOLVED','DEC-INV-001','moving weighted-average cost per Item per Store'],['Unit-cost display precision','VERIFY','DB numeric budget','precision and rounding follow the frozen numeric precision budget; not defined by this design']],
+ cols:[{l:'Item',t:'STRING',w:30},{l:'On hand',t:'DECIMAL',scale:0,w:14},{l:'Weighted-average cost',t:'MONEY',w:20},{l:'Value',t:'MONEY',sum:true,b:true,w:20}],
+ rows:[['Cola 320ml','214','1.85',null],['Milo 200ml','151','1.60',null],['Maggie Mee','340','3.10',null],['Gardenia Bread','36','2.20',null],['Dutch Lady Milk 1L','72','5.40',null],['Dettol 250ml','8','9.90',null]].map(r=>[r[0],r[1],r[2],mulInt(r[2],r[1],2)]),
+ notes:[['RESOLVED','DEC-INV-001','The WAC formula is frozen; recoverable or non-recoverable tax treatment is VERIFY (DEC-PUR-006) and is not shown.']]};
+SP.countvar={name:'Stock Count Variance Report',family:'Inventory',refs:['FR-RPT-037','UI-RPT-003',API_RUN],sub:'Expected, counted, variance, reason and approval for posted stock counts. Variance traces to the adjustment.',period:'Business date 20–26 Sep 2026',filters:FILT.inv,defs:null,
+ cols:[{l:'Count',t:'STRING',w:14},{l:'Item',t:'STRING',w:22},{l:'Expected',t:'DECIMAL',scale:0,w:11},{l:'Counted',t:'DECIMAL',scale:0,w:11},{l:'Variance',t:'DECIMAL',scale:0,b:true,w:11},{l:'Reason / approval',t:'STRING',w:19},{l:'Adjustment',t:'STRING',w:12}],
+ rows:[['CNT-2026-009','Cola 320ml','216','214','','Breakage · Manager','ADJ-0043'],['CNT-2026-009','Milo 200ml','376','374','','Unknown · Manager','ADJ-0044'],['CNT-2026-009','Dettol 250ml','8','8','','—','—']].map(r=>{r[4]=subDec(r[3],r[2],0);return r;}),totals:false,
+ notes:[['OPEN','DEC-INV-003','Stock-count concurrency (lock versus snapshot) is undecided; the report shows only posted counts.']]};
+SP.adjust={name:'Stock Adjustment Report',family:'Inventory',refs:['FR-RPT-038','UI-RPT-003',API_RUN],sub:'Manual adjustments by item, reason, user and value where permitted. High-risk adjustments stay reviewable.',period:'Business date 20–26 Sep 2026',filters:FILT.inv,defs:null,
+ cols:[{l:'Adjustment',t:'STRING',w:13},{l:'Date',t:'STRING',w:11},{l:'Item',t:'STRING',w:20},{l:'Quantity',t:'DECIMAL',scale:0,w:10},{l:'Value',t:'MONEY',w:12},{l:'Reason',t:'STRING',w:14},{l:'User / approver',t:'STRING',w:20}],
+ rows:[['ADJ-0043','24 Sep','Cola 320ml','-2','-3.70','Breakage','Storekeeper / Manager'],['ADJ-0044','24 Sep','Milo 200ml','-2','-3.20','Count variance','Storekeeper / Manager']],totals:false,
+ notes:[['VERIFY','FR-RPT-038','Value of an adjustment uses the approved costing method; the permission that gates adjustment value visibility is not separately defined.']]};
+
+SP.purchsum={name:'Purchase Summary',family:'Purchasing',refs:['FR-RPT-039','FR-RPT-010','UI-RPT-004',API_RUN],sub:'Posted purchases and goods receipts by period, store and supplier. Totals reconcile to source documents.',period:'Business date 1–30 Sep 2026',filters:FILT.purch,defs:[['Purchase value','VERIFY','FR-RPT-050','valued from posted GRN lines; tax recoverability is not shown (DEC-PUR-006)']],
+ cols:[{l:'GRN',t:'STRING',w:18},{l:'Date',t:'STRING',w:14},{l:'Supplier',t:'STRING',w:30},{l:'Purchase value',t:'MONEY',sum:true,b:true,w:20},{l:'Source',t:'STRING',w:18}],
+ rows:[['GRN-2026-00374','12 Sep 2026','Segamat Poultry Supplies','1380.00',E('span',{style:{color:BLUE,fontWeight:600}},'View GRN ↗')],['GRN-2026-00381','18 Sep 2026','Kluang Dairy Sdn Bhd','2450.00',E('span',{style:{color:BLUE,fontWeight:600}},'View GRN ↗')],['GRN-2026-00392','24 Sep 2026','Johor Beverage Distribution','4120.00',E('span',{style:{color:BLUE,fontWeight:600}},'View GRN ↗')]],
+ notes:[['PROPOSED','DEC-PUR-001','Whether purchase orders are mandatory or direct GRN is allowed is a proposed policy (DEC-PUR-001/002); this report counts posted receipts either way.'],['VERIFY','FR-ACC-011','Payables are reported by Accounting-Lite and follow a configured workflow; this report does not infer payable creation.']]};
+SP.purchsup={name:'Purchase by Supplier',family:'Purchasing',refs:['FR-RPT-040','FR-RPT-010','UI-RPT-004',API_RUN],sub:'Quantities and values purchased from selected suppliers; supplier purchasing history.',period:'Business date 1–30 Sep 2026',filters:FILT.purch,defs:null,
+ cols:[{l:'Supplier',t:'STRING',w:34},{l:'GRNs',t:'INTEGER',sum:true,w:12},{l:'Items received',t:'INTEGER',sum:true,w:18},{l:'Purchase value',t:'MONEY',sum:true,b:true,w:22},{l:'Supplier scope',t:'STRING',w:14}],
+ rows:[['Johor Beverage Distribution','1','480','4120.00','Selected'],['Kluang Dairy Sdn Bhd','1','260','2450.00','Selected'],['Segamat Poultry Supplies','1','140','1380.00','Selected']],
+ notes:[['VERIFY','FR-RPT-040','Supplier identity is owned by Procurement; the report shows supplier names as posted.']]};
+SP.purchret={name:'Purchase Return Report',family:'Purchasing',refs:['FR-RPT-041','UI-RPT-004',API_RUN],sub:'Posted purchase returns. Totals reconcile to source returns.',period:'Business date 1–30 Sep 2026',filters:FILT.purch,defs:null,
+ cols:[{l:'Return',t:'STRING',w:16},{l:'Date',t:'STRING',w:14},{l:'Supplier',t:'STRING',w:30},{l:'Source GRN',t:'STRING',w:18},{l:'Return value',t:'MONEY',sum:true,w:22}],
+ rows:[['PR-2026-00019','19 Sep 2026','Segamat Poultry Supplies','GRN-2026-00374','120.00']],
+ notes:[['VERIFY','FR-RPT-041','Supplier credit and payable adjustment belong to Accounting-Lite (FR-ACC-013); this report lists the return only.']]};
+SP.pricehist={name:'Purchase Price History',family:'Purchasing',refs:['FR-RPT-042','UI-RPT-004',API_RUN],sub:'Historical purchase prices by item and supplier. Cost-sensitive: access is controlled.',period:'Business date 1 Jul–30 Sep 2026',filters:FILT.purch,defs:null,
+ cols:[{l:'Item',t:'STRING',w:26},{l:'Supplier',t:'STRING',w:28},{l:'Date',t:'STRING',w:14},{l:'Unit cost',t:'MONEY',w:14},{l:'GRN',t:'STRING',w:18}],
+ rows:[['Milo 200ml','Kluang Dairy Sdn Bhd','4 Aug 2026','1.55','GRN-2026-00301'],['Milo 200ml','Kluang Dairy Sdn Bhd','18 Sep 2026','1.60','GRN-2026-00381'],['Cola 320ml','Johor Beverage Distribution','24 Sep 2026','1.85','GRN-2026-00392']],totals:false,
+ notes:[['GAP','FR-RPT-042','"Cost-sensitive access is controlled", but no dedicated permission code is frozen; API-RPT-002 uses reporting.read. A permission for cost visibility needs an owner decision.']]};
+
+SP.custout={name:'Customer Outstanding Report',family:'Credit & collections',refs:['FR-RPT-043','FR-RPT-011','UI-RPT-005',API_RUN],sub:'Customer outstanding balances as of a stated date and scope. Total reconciles to the credit ledger.',asOf:'26 Sep 2026 · 18:42',filters:FILT.credit,defs:[['Outstanding','RESOLVED','Domain model 06','Charges − EffectiveCredits − EffectiveCollections + ApprovedDebitAdjustments, from the Customer & Credit ledger']],
+ cols:[{l:'Customer',t:'STRING',w:14},{l:'Name (masked)',t:'STRING',w:24},{l:'Credit account',t:'STRING',w:18},{l:'Outstanding',t:'MONEY',sum:true,b:true,w:20},{l:'Last activity',t:'STRING',w:24}],
+ rows:[['CUS-00041','A. R****','CRA-00041','1200.00','Collection 24 Sep 2026'],['CUS-00057','L. T****','CRA-00057','645.00','Credit sale 25 Sep 2026'],['CUS-00063','S. K****','CRA-00063','300.00','Credit sale 3 Aug 2026']],
+ notes:[['VERIFY','FR-RPT-060','Names are masked by default; unmasking needs a permission that is not defined in the frozen contracts.'],['VERIFY','FR-ACC-021','Customer outstanding is consumed from Customer & Credit; this report adds no second balance.']]};
+SP.aging={name:'Customer Aging Report',family:'Credit & collections',refs:['FR-RPT-044','FR-RPT-052','UI-RPT-005',API_RUN],sub:'Due and overdue customer amounts by aging bucket as of a stated date.',asOf:'26 Sep 2026 · 18:42',filters:FILT.credit.concat([['Aging buckets','Illustrative: Current, 1–30, 31–60, 61–90, 90+']]),defs:[['Aging buckets','OPEN','FR-RPT-044','"approved aging buckets" are not defined; bucket boundaries here are illustrative'],['Due-date basis','OPEN','DEC-CRD-002','due-date and allocation rules are undecided']],
+ cols:[{l:'Customer',t:'STRING',w:18},{l:'Current',t:'MONEY',sum:true,w:14},{l:'1–30 days',t:'MONEY',sum:true,w:14},{l:'31–60 days',t:'MONEY',sum:true,w:14},{l:'61–90 days',t:'MONEY',sum:true,w:14},{l:'90+ days',t:'MONEY',sum:true,w:12},{l:'Total',t:'MONEY',sum:true,b:true,w:14}],
+ rows:[['CUS-00041','400.00','500.00','300.00','0.00','0.00',null],['CUS-00057','645.00','0.00','0.00','0.00','0.00',null],['CUS-00063','0.00','0.00','0.00','300.00','0.00',null]].map(r=>{r[6]=sumDec(r.slice(1,6),2);return r;}),
+ notes:[['OPEN','FR-RPT-044','As-of date and bucket definitions must be visible, and must come from approved definitions before this report is built.']]};
+const STM=(()=>{const open='800.00',ch='700.00',cr='50.00',co='250.00',adj='0.00';const close=sumDec([open,ch,subDec('0.00',cr,2),subDec('0.00',co,2),adj],2);return{open,ch,cr,co,adj,close};})();
+SP.statement={name:'Customer Statement',family:'Credit & collections',refs:['FR-RPT-045','FR-RPT-011','UI-RPT-005',API_RUN],sub:'Opening balance, transactions, collections and adjustments, and closing balance for the selected period. Reconciles mathematically.',period:'1–30 Sep 2026 · customer CUS-00041',filters:[['Store','MiniMart Central'],['Customer','CUS-00041 · A. R****'],['Period','1–30 Sep 2026']],defs:[['Closing balance','RESOLVED','AC-B4-020','opening balance + charges − credits − collections + approved adjustments = closing balance']],
+ cols:[{l:'Line',t:'STRING',w:46},{l:'Amount',t:'MONEY',w:22},{l:'Basis',t:'STRING',w:32}],
+ rows:[['Opening balance (1 Sep 2026)',STM.open,'Credit ledger'],['Charges (credit sales)',STM.ch,'Posted sales on credit'],['Credits (returns against credit sales)','-'+STM.cr,'Posted returns'],['Collections','-'+STM.co,'Posted customer collections'],['Approved adjustments',STM.adj,'Approved debit adjustments'],['Closing balance (30 Sep 2026)',STM.close,'Equals the Customer Outstanding Report row for CUS-00041']],totals:false,
+ after:()=>noteBox('Reconciliation check (computed from the rows above): '+fmtMoney(STM.open)+' + '+fmtMoney(STM.ch)+' − '+fmtMoney(STM.cr)+' − '+fmtMoney(STM.co)+' + '+fmtMoney(STM.adj)+' = '+fmtMoney(STM.close)+'.','green','circle-check'),
+ notes:[['OPEN','DEC-CRD-003','Customer advance and overpayment handling is undecided; no advance line is shown.']]};
+SP.creditov={name:'Credit Override Report',family:'Credit & collections',refs:['FR-RPT-046','UI-RPT-005',API_RUN],sub:'Over-limit and credit-status overrides where enabled. Approver and reason are reviewable.',period:'Business date 1–30 Sep 2026',filters:FILT.credit,defs:null,
+ cols:[{l:'Date',t:'STRING',w:12},{l:'Customer',t:'STRING',w:16},{l:'Document',t:'STRING',w:16},{l:'Amount',t:'MONEY',w:12},{l:'Override',t:'STRING',w:16},{l:'Approver',t:'STRING',w:12},{l:'Reason',t:'STRING',w:16}],
+ rows:[['22 Sep 2026','CUS-00057','RC-0262-0188','180.00','Over limit','Manager','Regular supplier customer']],totals:false,
+ notes:[['OPEN','DEC-CRD-001','Whether an over-limit sale is blocked or needs manager approval is undecided (CreditLimitPolicy). This report appears only where overrides are enabled.'],['OPEN','DEC-CRD-004','Suspended-credit override behaviour is undecided.']]};
+
+/* ---------- screen registry: ids are assigned by order (01, 02, ...) ---------- */
+const LIST=[];
+const SCR=(g,t,fr,f,sh)=>{LIST.push({g,t,fr:fr||[],f,sh:sh||{}});};
+const R=(key,st)=>()=>viewer(SP[key],st);
+const frOf=(sp)=>sp.refs.filter(x=>x.indexOf('FR-RPT-')===0);
+
+/* ---------- Reports Home (UI-RPT-001) ---------- */
+const CATALOG=[
+ {fam:'Sales',ui:'UI-RPT-002',items:[['Daily Sales Summary','FR-RPT-016'],['Sales by Item','FR-RPT-017'],['Sales by Category','FR-RPT-018'],['Sales by Cashier','FR-RPT-019'],['Sales by Counter','FR-RPT-020'],['Discount Report','FR-RPT-021'],['Price Override Report','FR-RPT-022'],['Returns Report','FR-RPT-023'],['No-Receipt Return Report','FR-RPT-024','If enabled'],['Tender Summary','FR-RPT-025'],['Payment Exception Report','FR-RPT-026']]},
+ {fam:'Cash & day close',ui:'Owner screen unresolved',items:[['Cash Movement Report','FR-RPT-027'],['Cash Variance Report','FR-RPT-028'],['Shift Close Report','FR-RPT-029'],['Day Close Report','FR-RPT-030']]},
+ {fam:'Inventory',ui:'UI-RPT-003',items:[['Current Stock','FR-RPT-031'],['Low Stock Report','FR-RPT-032','Threshold undefined'],['Negative Stock Report','FR-RPT-033'],['Stock Movement Report','FR-RPT-034'],['Batch / Expiry Report','FR-RPT-035','If tracking enabled'],['Inventory Valuation Report','FR-RPT-036'],['Stock Count Variance Report','FR-RPT-037'],['Stock Adjustment Report','FR-RPT-038']]},
+ {fam:'Purchasing',ui:'UI-RPT-004',items:[['Purchase Summary','FR-RPT-039'],['Purchase by Supplier','FR-RPT-040'],['Purchase Return Report','FR-RPT-041'],['Purchase Price History','FR-RPT-042','Cost-sensitive']]},
+ {fam:'Credit & collections',ui:'UI-RPT-005',items:[['Customer Outstanding Report','FR-RPT-043'],['Customer Aging Report','FR-RPT-044','Buckets undefined'],['Customer Statement','FR-RPT-045'],['Credit Override Report','FR-RPT-046','If enabled']]},
+ {fam:'Management',ui:'Owner screen unresolved',items:[['Management Daily Summary','FR-RPT-047'],['Exception Highlights','FR-RPT-048'],['Comparative Periods','FR-RPT-049','Optional (COULD)']]},
+ {fam:'Central (later phase)',ui:'Not in frozen UI',items:[['Central multi-branch reports','FR-RPT-054','Phase 3'],['Incomplete sync warning','FR-RPT-055','Phase 3']]}
+];
+const CAT_TOTAL=CATALOG.reduce((n,f)=>n+f.items.length,0);
+
+const searchBar=(q,fam)=>E('form',{role:'search','aria-label':'Search the report catalog',onSubmit:(e)=>e.preventDefault(),style:{display:'flex',gap:'10px',alignItems:'flex-end',flexWrap:'wrap',background:'#fff',border:'1px solid '+LINE,borderRadius:'11px',padding:'12px 14px'}},
+  E('div',{style:{display:'flex',flexDirection:'column',gap:'3px',flex:1,minWidth:'260px'}},E('label',{htmlFor:'rq',style:{fontSize:'10.5px',fontWeight:600,color:MUT}},'Search reports'),E('input',{id:'rq',type:'search',defaultValue:q||'',placeholder:'Report name or requirement',style:{height:'32px',borderRadius:'7px',border:'1px solid #cfd5de',padding:'0 10px',fontSize:'12.5px'}})),
+  E('div',{style:{display:'flex',flexDirection:'column',gap:'3px'}},E('label',{htmlFor:'rf',style:{fontSize:'10.5px',fontWeight:600,color:MUT}},'Family'),E('select',{id:'rf',defaultValue:fam||'All families',style:{height:'32px',minWidth:'180px',borderRadius:'7px',border:'1px solid #cfd5de',padding:'0 8px',fontSize:'12.5px'}},E('option',null,fam||'All families'))),
+  btn('Search',{kind:'primary',icon:'search'}),btn('Clear',{kind:'ghost'}));
+const entryRow=(it,i,hi)=>E('li',{key:i,style:{listStyle:'none'}},E('button',{type:'button','aria-label':'Open '+it[0],style:{width:'100%',display:'flex',alignItems:'center',gap:'10px',minHeight:'38px',padding:'6px 10px',borderRadius:'8px',border:'1px solid transparent',background:hi?'#fff8e1':'transparent',cursor:'pointer',textAlign:'left',fontSize:'13px',color:INK}},E('span',{style:{flex:1,fontWeight:hi?700:500}},it[0]),it[2]?tag(it[2],'gray'):null,mono(it[1]),E('i',{className:'icon-chevron-right','aria-hidden':'true',style:{fontSize:'13px',color:'#9aa3b2'}})));
+const famCard=(f,filterFn,hi)=>{const items=f.items.filter(filterFn||(()=>true));if(!items.length)return null;return card([E('div',{style:{display:'flex',alignItems:'center',gap:'8px'}},E('h2',{style:{margin:0,fontSize:'14px',fontWeight:700,flex:1}},f.fam),mono(f.ui)),E('ul',{style:{margin:0,padding:0,display:'flex',flexDirection:'column',gap:'2px'}},...items.map((it,i)=>entryRow(it,i,hi&&hi(it))))],{gap:'8px'});};
+const catalogGrid=(filterFn,hi,famFilter)=>E('div',{style:{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(330px,1fr))',gap:'12px'}},...CATALOG.filter(f=>!famFilter||f.fam===famFilter).map((f,i)=>E('div',{key:i},famCard(f,filterFn,hi))));
+const homeHead={crumbs:['Reports','Reports Home'],title:'Reports Home',refs:['UI-RPT-001','MM-079','API-RPT-001','FR-RPT-002'],sub:'Authorized report catalog. Only reports the signed-in role may run are listed.'};
+
+SCR('Reports Home','Reports Home — authorized catalog',['FR-RPT-001','FR-RPT-002','FR-RPT-014','FR-RPT-047','FR-RPT-048'],()=>page(homeHead,searchBar(),
+  E('div',{style:{display:'flex',alignItems:'center',gap:'10px',fontSize:'12.5px',color:MUT2,flexWrap:'wrap'}},E('span',null,'Showing '+CAT_TOTAL+' of '+CAT_TOTAL+' authorized report entries (example role: Manager)'),marker('GAP','API-RPT-001'),E('span',{style:{fontSize:'11.5px'}},'Report codes and name keys are not frozen; entries are named from the FRS.')),
+  catalogGrid(),
+  noteBox('Opening a report runs a bounded, read-only query (API-RPT-002). Nothing on this page can edit a source transaction. Reports are operational and are not statutory accounting statements (FR-RPT-064).','blue')));
+SCR('Reports Home','Reports Home — search and family filter applied',['FR-RPT-002'],()=>page(homeHead,searchBar('return','All families'),
+  E('div',{role:'status',style:{fontSize:'12.5px',color:MUT2}},'2 of '+CAT_TOTAL+' authorized report entries match “return”'),
+  catalogGrid(it=>/return/i.test(it[0]),it=>true,null)));
+SCR('Reports Home','Report definition — supported filters and grouping',['FR-RPT-001','FR-RPT-009','FR-RPT-051'],()=>page({crumbs:['Reports','Sales','Sales by Category','Definition'],title:'Report definition: Sales by Category',refs:['API-RPT-001','ReportDefinition','DEC-RPT-001'],sub:'What a report definition advertises. The UI shows these values; it never guesses a grouping mode.'},
+  card([kv('code','Not frozen (server-assigned)'),kv('nameKey','Not frozen (localisation key)'),sectionTitle('supportedFilters','Advertised by the Store Node for this report. Field codes are not frozen; labels below come from the FRS.'),E('div',{style:{display:'flex',gap:'6px',flexWrap:'wrap'}},...['Store scope','Business date','Product','Category / brand','Counter','Cashier','Status'].map((t,i)=>tag(t,'blue'))),sectionTitle('supportedGroupingModes','Which modes a report supports is decided per report.'),E('div',{style:{display:'flex',gap:'6px',flexWrap:'wrap'}},tag('Historical posted attributes','blue'),tag('Current master attributes','blue'),marker('OPEN','DEC-RPT-001'))]),
+  annot('Why this screen exists',bullets(['FR-RPT-051: reports must define whether grouping uses historical posted attributes or current master attributes.','API contract (06-READ-QUERY-REPORTING): definitions advertise supported filters and grouping modes; the API does not guess.','ReportDefinition has only code, nameKey, supportedFilters and supportedGroupingModes. Anything beyond that is not frozen.']))));
+SCR('Reports Home','Reports Home — loading',['FR-RPT-015'],()=>page(homeHead,searchBar(),skeleton()));
+SCR('Reports Home','Reports Home — empty (no authorized reports)',['FR-RPT-002'],()=>page(homeHead,searchBar(),stateCard('file-text','gray','No reports are available to this role','The catalog loaded successfully but no report definitions are authorized for this role, or none are defined yet. This is not an error.',[btn('Contact a manager',{kind:'primary'})])));
+SCR('Reports Home','Reports Home — permission denied',['FR-RPT-002'],()=>page(homeHead,stateCard('lock','amber','Reports are not available for your role','Viewing the report catalog needs reporting.read. Role labels guide navigation only; the server decides. Restricted financial and customer data stay hidden.',[btn('Back to Dashboard',{kind:'primary'})])),{role:'Cashier'});
+SCR('Reports Home','Reports Home — local scope (cloud sync unavailable)',['FR-RPT-053'],()=>page(homeHead,searchBar(),noteBox('Local store scope: reports run over authoritative data on this Store Node. Central or multi-branch reports (later phase) are not available.','blue'),catalogGrid(it=>it[2]!=='Phase 3')),{sync:'off'});
+SCR('Reports Home','Reports Home — Store Node unavailable',['FR-RPT-062'],()=>page(homeHead),{node:'off'});
+SCR('Reports Home','Reports Home — incompatible client',['FR-RPT-062'],()=>page(homeHead,stateCard('shield-alert','red','Update this client to open reports','This client is not compatible with the Store Node report contract, so reports and exports are blocked until a compatible client is installed.',[btn('Show update instructions',{kind:'primary'})])));
+SCR('Reports Home','Reports Home — later-phase central reports',['FR-RPT-054','FR-RPT-055'],()=>page({crumbs:['Reports','Central reports (later phase)'],title:'Central reports',refs:['FR-RPT-054','FR-RPT-055','Phase 3'],sub:'Not available in Phase 2. Shown so the catalog does not imply central completeness.'},
+  stateCard('git-branch','gray','Central and multi-branch reports arrive with cloud synchronization','They require synchronized centralization (Phase 3). Until then, every report is scoped to one store and states its local scope. When central reports exist, they must show synchronization freshness and never imply completeness.',[btn('Back to Reports Home',{kind:'primary'})],E('div',{style:{display:'flex',gap:'8px'}},marker('LATER','Phase 3'),marker('GAP','no frozen central-report screen')))));
+
+/* ---------- Report viewer anatomy, rules and states (shared by UI-RPT-002..005) ---------- */
+const FILTER_MATRIX=[['Store scope','All reports','FR-RPT-003'],['Business date','Operational reports where relevant','FR-RPT-004'],['Timestamp / calendar date','Where investigation requires it (SHOULD)','FR-RPT-005'],['Counter','Sales, tender and shift reports','FR-RPT-006'],['Cashier','Sales, discount, return and shift reports (subject to permissions)','FR-RPT-007'],['Product','Sales, inventory and purchase reports','FR-RPT-008'],['Category / brand','Applicable reports (SHOULD)','FR-RPT-009'],['Supplier','Purchase reports','FR-RPT-010'],['Customer','Customer and credit reports (privacy permissions)','FR-RPT-011'],['Tender type','Payment reports','FR-RPT-012'],['Status','Posted / completed vs cancelled, failed, pending, uncertain','FR-RPT-013']];
+SCR('Report viewer','Report viewer — anatomy',['FR-RPT-001','FR-RPT-003','FR-RPT-014','FR-RPT-015','FR-RPT-050','FR-RPT-053','FR-RPT-056','FR-RPT-057'],()=>{const box=(n,t,s,st)=>E('div',{style:Object.assign({display:'flex',gap:'8px',alignItems:'center',border:'1.5px solid #9aa3b2',borderRadius:'8px',background:'#fff',padding:'8px 10px',fontSize:'12.5px'},st||{})},E('span',{style:{width:'20px',height:'20px',borderRadius:'50%',background:BLUE,color:'#fff',display:'grid',placeItems:'center',fontSize:'11px',fontWeight:700,flex:'none'}},n),E('span',null,E('strong',null,t),s?' — '+s:''));
+  return page({crumbs:['Reports','Report viewer','Anatomy'],title:'Report viewer anatomy',refs:['UI-RPT-002..005','API-RPT-002'],sub:'Every report in UI-RPT-002 to UI-RPT-005 uses the same regions in the same order.'},
+   E('div',{style:{display:'grid',gridTemplateColumns:'minmax(0,1.1fr) minmax(0,1fr)',gap:'14px',alignItems:'start'}},
+    E('div',{style:{display:'flex',flexDirection:'column',gap:'8px'}},box(1,'Breadcrumb and title','report name, requirement and API references'),box(2,'Illustrative-data ribbon','present only in this design package; live screens show a generated timestamp instead'),box(3,'Filter bar','labelled controls: store, date, counter, cashier, product, supplier, customer, tender, status'),box(4,'Report context','store scope, period or as-of, generated time, data basis, currency (FR-RPT-003, 014, 052, 053)'),box(5,'Totals definitions','status of each defined term (FR-RPT-050)'),box(6,'Results table','money right-aligned in exact decimals; totals row states its scope'),box(7,'Pagination','bounded pages with cursor (FR-RPT-015)'),box(8,'Actions','Export (reporting.write) and Print; both disabled while a run is incomplete'),box(9,'Authority dependencies','design annotation, dashed; never part of the product UI',{borderStyle:'dashed'})),
+    card([sectionTitle('Region to requirement'),dtable([{l:'#',t:'STRING',w:8},{l:'Region',t:'STRING',w:40},{l:'Source',t:'STRING',w:52}],[['1','Breadcrumb / title','UI-RPT-001 navigation; Reports nav registry'],['3','Filter bar','FR-RPT-003..013'],['4','Context','FR-RPT-003, 014, 052, 053'],['5','Definitions','FR-RPT-050'],['6','Table','FR-RPT-015, 016..046; ReportResult (columns, rows)'],['7','Pagination','FR-RPT-015; ReportRunRequest.cursor/limit'],['8','Actions','FR-RPT-056, 057, 059; API-RPT-003']],{totals:false,caption:'Anatomy mapping'})])),
+   annot('Contract facts used',bullets(['ReportResult = columns (key, labelKey, type) + rows (cells as strings) + nextCursor. Money cells are decimal strings.','ReportRunRequest = filters {field, operator, value}[], groupingMode, cursor, limit (1–500). Field codes are not frozen.','Reports use public query composition; no reporting projection exists unless a Database Model change is approved (04-architecture 20-READ-QUERY-ARCHITECTURE).'])));});
+SCR('Report viewer','Filter bar — filters and applicability',['FR-RPT-003','FR-RPT-004','FR-RPT-005','FR-RPT-006','FR-RPT-007','FR-RPT-008','FR-RPT-009','FR-RPT-010','FR-RPT-011','FR-RPT-012','FR-RPT-013'],()=>page({crumbs:['Reports','Report viewer','Filters'],title:'Filters and where they apply',refs:['FR-RPT-003..013','ReportRunRequest.filters'],sub:'Applicability is taken from the FRS wording. Which filters a given report advertises comes from its definition.'},
+  dtable([{l:'Filter',t:'STRING',w:24},{l:'Applies to',t:'STRING',w:56},{l:'Requirement',t:'STRING',w:20}],FILTER_MATRIX,{totals:false,caption:'Filter applicability'}),
+  noteBox('FR-RPT-013: unresolved states (pending, uncertain, failed) must never be silently counted as success. The Status filter makes them distinguishable.','amber','triangle-alert'),
+  notesBlock([['GAP','ReportRunRequest','Filter field codes and operators are not frozen. The design shows human labels only.']])));
+SCR('Report viewer','Business date versus timestamp',['FR-RPT-004','FR-RPT-005'],()=>page({crumbs:['Reports','Report viewer','Date filters'],title:'Business date and timestamp are different filters',refs:['FR-RPT-004','FR-RPT-005','DEC-COM-001'],sub:'Business date is the operational date assigned at posting. Timestamp is the actual moment.'},
+  E('div',{style:{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'12px'}},card([sectionTitle('Business-date filter','Default for operational reports'),kv('Filter','Business date = 26 Sep 2026'),kv('Includes','Sale at 00:20 on 27 Sep that was assigned to 26 Sep'),noteBox('After-midnight transactions follow their assigned business date (FR-RPT-004).','blue')]),card([sectionTitle('Timestamp filter','Investigation only (SHOULD)'),kv('Filter','Timestamp 27 Sep 2026 00:00–00:59'),kv('Includes','The same sale, because its actual time is 00:20'),noteBox('Business date and timestamp are never conflated (FR-RPT-005).','blue')])),
+  notesBlock([['OPEN','DEC-COM-001','Business-date rollover (midnight, first sale, manual, configured cut-off) is undecided; the report only uses the date stored on each posted document.']])));
+SCR('Report viewer','Totals definitions — status of each term',['FR-RPT-050','FR-RPT-016','FR-RPT-036','FR-RPT-044'],()=>page({crumbs:['Reports','Report viewer','Definitions'],title:'Totals definitions',refs:['FR-RPT-050','FR-RPT-016'],sub:'Every financial report must use documented definitions. This page lists what authority defines and what it leaves open.'},
+  dtable([{l:'Term',t:'STRING',w:18},{l:'Status',t:'STRING',w:14},{l:'What authority says',t:'STRING',w:46},{l:'Source',t:'STRING',w:22}],[['Gross sales',marker('OPEN'),'"approved definitions" required; none stated','FR-RPT-016, 050'],['Discounts',marker('OPEN'),'Not defined as a total','FR-RPT-050'],['Returns',marker('OPEN'),'Not defined as a total','FR-RPT-050'],['Net sales',marker('OPEN'),'"approved net-sales definition" required; none stated','FR-RPT-016'],['Tax',marker('VERIFY'),'Only from verified country rule metadata','FR-RPT-050; UI spec 21'],['Expected cash',marker('RESOLVED'),'OpeningFloat + CashSales + CashCollections + ApprovedCashIn − CashRefunds − ApprovedCashOut','Domain model 06'],['Cash variance',marker('RESOLVED'),'ActualCash − ExpectedCash','Domain model 06'],['Customer outstanding',marker('RESOLVED'),'Charges − EffectiveCredits − EffectiveCollections + ApprovedDebitAdjustments','Domain model 06'],['Inventory valuation',marker('RESOLVED'),'Moving weighted-average cost per Item per Store','DEC-INV-001'],['Aging buckets',marker('OPEN'),'"approved aging buckets" required; none stated','FR-RPT-044']],{totals:false,caption:'Definition status'}),
+  noteBox('Where a term is OPEN, the live report cannot be built until the owner approves a definition. Illustrative figures never assert a formula.','amber','triangle-alert')));
+SCR('Report viewer','Grouping basis — historical or current master',['FR-RPT-009','FR-RPT-051'],()=>page({crumbs:['Reports','Report viewer','Grouping'],title:'Grouping basis is always labelled',refs:['FR-RPT-009','FR-RPT-051','DEC-RPT-001'],sub:'A category or brand can change after a sale. The same sale can appear under different groups depending on the basis.'},
+  E('div',{style:{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'12px'}},card([sectionTitle('Basis A — posted at time of sale'),kv('Maggie Mee, sold 23 Sep','Noodles & instant food'),kv('Reclassified 24 Sep','Instant food'),kv('Appears under','Noodles & instant food'),tag('Historical totals stay explainable','green')]),card([sectionTitle('Basis B — current master data'),kv('Maggie Mee, sold 23 Sep','Noodles & instant food'),kv('Reclassified 24 Sep','Instant food'),kv('Appears under','Instant food'),tag('Past totals change when master data changes','amber')])),
+  notesBlock([['OPEN','DEC-RPT-001','Which basis each report uses is undecided (OPEN by report). The design shows both so a reviewer can see why the label matters; it does not choose one.']])));
+SCR('Report viewer','As-of reporting',['FR-RPT-052'],()=>page({crumbs:['Reports','Report viewer','As-of'],title:'As-of reports state their date and time',refs:['FR-RPT-052','FR-RPT-036','FR-RPT-043'],sub:'Balance and valuation reports state an as-of point and use only data effective at that point.'},
+  card([E('div',{style:{display:'flex',gap:'12px',flexWrap:'wrap',alignItems:'flex-end'}},E('div',{style:{display:'flex',flexDirection:'column',gap:'3px'}},E('label',{htmlFor:'asof',style:{fontSize:'10.5px',fontWeight:600,color:MUT}},'As-of date'),E('select',{id:'asof',defaultValue:'26 Sep 2026',style:{height:'32px',minWidth:'160px',borderRadius:'7px',border:'1px solid #cfd5de',padding:'0 8px'}},E('option',null,'26 Sep 2026'))),btn('Run as-of report',{kind:'primary'})),kv('Result header','As-of 26 Sep 2026 · end of business date'),kv('Data used','Only entries effective on or before the as-of point'),noteBox('A sale posted on 27 Sep does not appear in an as-of 26 Sep result, even if the report is generated later.','blue')]),
+  notesBlock([['VERIFY','FR-RPT-052','"End of business date" as the as-of cut-off follows business-date rules that are still OPEN (DEC-COM-001).']])));
+SCR('Report viewer','Pagination and bounded results',['FR-RPT-015'],()=>page({crumbs:['Reports','Report viewer','Pagination'],title:'Large reports are paged and bounded',refs:['FR-RPT-015','ReportRunRequest.limit','PageInfo'],sub:'A report run never loads an unbounded result set.'},
+  card([kv('Rows per run request','limit 1–500 (ReportRunRequest)'),kv('Page metadata','hasMore, limit (max 200), nextCursor (PageInfo)'),kv('Example','Showing rows 1–200; more available'),E('div',{style:{display:'flex',alignItems:'center',gap:'10px',fontSize:'12px',color:MUT2,flexWrap:'wrap'}},E('span',null,'Showing rows 1–200 of 1,240 in scope · more available · nextCursor present'),E('span',{style:{marginLeft:'auto',display:'inline-flex',gap:'6px'}},btn('Previous page',{disabled:true,icon:'chevron-left'}),btn('Next page'))),noteBox('When a result is larger than the page limit the screen says so and offers paging and export within defined limits. A page total is never presented as the whole.','blue')]),
+  notesBlock([['VERIFY','FR-RPT-015','The limits differ between ReportRunRequest (1–500) and PageInfo (max 200); which applies to report pages should be confirmed in the API contract.'],['OPEN','FR-RPT-063','Performance benchmark targets are set against representative data volumes before release sign-off; no target is stated.']])));
+SCR('Report viewer','Drill-down — source reference (read-only)',['FR-RPT-017','FR-RPT-001'],()=>page({crumbs:['Reports','Sales','Sales by Item','Source'],title:'Source reference for Milo 200ml',refs:['FR-RPT-017','FR-RPT-001','UI-INV-003'],sub:'A drill-down shows where a figure came from. It is read-only.'},
+  card([kv('Row','Milo 200ml · qty sold 171 · sales value RM 376.20'),kv('Source documents','171 sale lines across 112 receipts (illustrative)'),kv('Opens','Posted documents in their owning screens, where the viewer is permitted'),noteBox('There is no edit, delete or repost control here. Reports present posted and approved data and give no route to change source transactions (FR-RPT-001).','blue')]),
+  dtable([{l:'Receipt',t:'STRING',w:30},{l:'Time',t:'STRING',w:20},{l:'Qty',t:'INTEGER',sum:true,w:20},{l:'Value',t:'MONEY',sum:true,w:30}],[['RC-0268-0412','10:12','2','4.40'],['RC-0268-0431','11:40','1','2.20'],['RC-0268-0488','15:30','4','8.80']],{totals:true,totalLabel:'Rows listed',caption:'Source documents'}),
+  notesBlock([['VERIFY','FR-RPT-017','Which roles may open source documents is "where permitted"; a distinct permission for drill-down is not frozen.']])));
+SCR('Report states','Report — loading',['FR-RPT-015'],()=>viewer(SP.daily,'loading'));
+SCR('Report states','Report — empty result',['FR-RPT-013'],()=>viewer(SP.daily,'empty'));
+SCR('Report states','Report — validation error',['FR-RPT-004'],()=>viewer(SP.daily,'invalid'));
+SCR('Report states','Report — permission denied',['FR-RPT-002'],()=>viewer(SP.daily,'denied'),{role:'Cashier'});
+SCR('Report states','Report — definition conflict',['FR-RPT-062'],()=>viewer(SP.daily,'conflict'));
+SCR('Report states','Report — run failed (no partial totals)',['FR-RPT-062'],()=>viewer(SP.daily,'failed'));
+SCR('Report states','Report — local scope (cloud sync unavailable)',['FR-RPT-053'],()=>viewer(SP.daily,'offline'),{sync:'off'});
+SCR('Report states','Report — Store Node unavailable',['FR-RPT-062'],()=>page({crumbs:['Reports','Sales','Daily Sales Summary'],title:'Daily Sales Summary'}),{node:'off'});
+SCR('Report states','Report — incompatible client',['FR-RPT-062'],()=>viewer(SP.daily,'incompat'));
+SCR('Report states','Read-only guarantee and operational scope',['FR-RPT-001','FR-RPT-064'],()=>page({crumbs:['Reports','Report viewer','Boundaries'],title:'Reports are read-only and operational',refs:['FR-RPT-001','FR-RPT-064'],sub:'Two guarantees that apply to every report.'},
+  E('div',{style:{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'12px'}},card([sectionTitle('Read-only (FR-RPT-001)'),bullets(['Changing a filter or running a report never changes a business record.','No report offers a hidden route to edit, delete, repost or reverse a source transaction.','Drill-down links open documents in their owning screens; corrections happen there, by their own reversal or correction rules.']),tag('No write controls on any report screen','green')]),card([sectionTitle('Operational, not statutory (FR-RPT-064)'),bullets(['Reports are operational. They are not labelled as statutory accounting statements.','No Chart of Accounts, journal, trial balance, balance sheet, statutory P&L or period close appears in this package.','Tax and compliance fields appear only from verified country rule metadata.']),tag('Operational reports only','blue')]))));
+
+/* ---------- report screens ---------- */
+SCR('Sales reports','Daily Sales Summary',frOf(SP.daily),R('daily'));
+SCR('Sales reports','Sales by Item',frOf(SP.item),R('item'));
+SCR('Sales reports','Sales by Category',frOf(SP.cat),R('cat'));
+SCR('Sales reports','Sales by Cashier',frOf(SP.cashier),R('cashier'));
+SCR('Sales reports','Sales by Counter',frOf(SP.counter),R('counter'));
+SCR('Sales reports','Discount Report',frOf(SP.discount),R('discount'));
+SCR('Sales reports','Price Override Report',frOf(SP.override),R('override'));
+SCR('Sales reports','Returns Report',frOf(SP.returns),R('returns'));
+SCR('Sales reports','No-Receipt Return Report',frOf(SP.noreceipt),R('noreceipt'));
+SCR('Sales reports','Tender Summary',frOf(SP.tender),R('tender'));
+SCR('Sales reports','Payment Exception Report',frOf(SP.payex),R('payex'));
+SCR('Cash and day close reports','Cash Movement Report',frOf(SP.cashmove),R('cashmove'));
+SCR('Cash and day close reports','Cash Variance Report',frOf(SP.cashvar),R('cashvar'));
+SCR('Cash and day close reports','Shift Close Report',frOf(SP.shiftclose),R('shiftclose'));
+SCR('Cash and day close reports','Day Close Report',frOf(SP.dayclose),R('dayclose'));
+SCR('Inventory reports','Current Stock',frOf(SP.stock),R('stock'));
+SCR('Inventory reports','Low Stock Report — threshold ownership undefined',frOf(SP.lowstock),()=>viewer(SP.lowstock,'ready'));
+SCR('Inventory reports','Negative Stock Report — normally empty',frOf(SP.negstock),()=>page({crumbs:['Reports','Inventory','Negative Stock Report'],title:SP.negstock.name,refs:SP.negstock.refs,sub:SP.negstock.sub,actions:[btn('Export',{icon:'download',disabled:true}),btn('Print',{icon:'printer',disabled:true})]},filterBar(SP.negstock.filters),ctxStrip(SP.negstock),defsPanel(SP.negstock.defs),stateCard('circle-check','green','No negative stock','The run completed and found no negative quantities. The Phase-1 default policy blocks negative stock, so this report is normally empty. It lists negative quantities only where a policy permits them.',null),notesBlock(SP.negstock.notes)));
+SCR('Inventory reports','Stock Movement Report',frOf(SP.move),R('move'));
+SCR('Inventory reports','Batch / Expiry Report',frOf(SP.expiry),R('expiry'));
+SCR('Inventory reports','Inventory Valuation Report',frOf(SP.valuation),R('valuation'));
+SCR('Inventory reports','Stock Count Variance Report',frOf(SP.countvar),R('countvar'));
+SCR('Inventory reports','Stock Adjustment Report',frOf(SP.adjust),R('adjust'));
+SCR('Purchasing reports','Purchase Summary',frOf(SP.purchsum),R('purchsum'));
+SCR('Purchasing reports','Purchase by Supplier',frOf(SP.purchsup),R('purchsup'));
+SCR('Purchasing reports','Purchase Return Report',frOf(SP.purchret),R('purchret'));
+SCR('Purchasing reports','Purchase Price History — cost-sensitive',frOf(SP.pricehist),R('pricehist'));
+SCR('Credit and collection reports','Customer Outstanding Report',frOf(SP.custout),R('custout'));
+SCR('Credit and collection reports','Customer Aging Report',frOf(SP.aging),R('aging'));
+SCR('Credit and collection reports','Customer Statement',frOf(SP.statement),R('statement'));
+SCR('Credit and collection reports','Credit Override Report',frOf(SP.creditov),R('creditov'));
+SCR('Credit and collection reports','Customer data — masked by default',['FR-RPT-011','FR-RPT-060'],()=>page({crumbs:['Reports','Credit & collections','Customer data'],title:'Customer data is masked by default',refs:['FR-RPT-011','FR-RPT-060','FR-RPT-059'],sub:'Customer-containing reports and exports minimise personal data according to permission and purpose.'},
+  E('div',{style:{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'12px'}},card([sectionTitle('Default view (masked)'),kv('Customer','CUS-00041'),kv('Name','A. R****'),kv('Phone','01*-***-**21'),kv('Outstanding',fmtMoney('1200.00')),tag('Financial figures stay visible','green')]),card([sectionTitle('Expanded view (needs permission)'),kv('Customer','CUS-00041'),kv('Name','Shown only with permission'),kv('Phone','Shown only with permission'),kv('Outstanding',fmtMoney('1200.00')),marker('GAP','permission code not frozen')])),
+  noteBox('Financial reporting does not need unnecessary personal data (FR-RPT-060). The masked view is the default for on-screen reports and for exports.','blue'),
+  notesBlock([['GAP','FR-RPT-060','The permission that allows unmasked customer data is not defined in the frozen permission matrix (API-RPT-001..003 use only reporting.read and reporting.write). It needs an owner decision.'],['VERIFY','DEC-CUS-002','Customer retention and anonymisation periods are VERIFY; none is shown.']])));
+
+/* ---------- management summary (owner screen unresolved) ---------- */
+const g26=SP.daily.rows[6];
+const tile=(label,value,link,mk)=>E('div',{style:{background:'#fff',border:'1px solid '+LINE,borderRadius:'11px',padding:'14px',display:'flex',flexDirection:'column',gap:'6px'}},E('span',{style:{fontSize:'11.5px',color:MUT,fontWeight:600}},label),E('span',{style:{fontSize:'21px',fontWeight:700}},value),E('span',{style:{display:'flex',gap:'8px',alignItems:'center',fontSize:'12px',flexWrap:'wrap'}},E('a',{href:'#',onClick:(e)=>e.preventDefault(),style:{color:BLUE,fontWeight:600,whiteSpace:'nowrap'}},link+' →'),mk||null));
+const mgmtRefs={crumbs:['Reports','Management','Daily Summary'],title:'Management Daily Summary',refs:['FR-RPT-047','FR-RPT-048','UI-SYS-003'],sub:'A concise summary for Saturday 26 Sep 2026. Each figure links to the detailed report it reconciles to.'};
+SCR('Management summary','Management Daily Summary',['FR-RPT-047','FR-RPT-014'],()=>page(mgmtRefs,
+  E('div',{style:{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(230px,1fr))',gap:'12px'}},tile('Gross sales',fmtMoney(g26[2]),'Daily Sales Summary',marker('OPEN','definition')),tile('Returns',fmtMoney(g26[4]),'Returns Report'),tile('Discounts',fmtMoney(g26[3]),'Discount Report'),tile('Cash variance (SH-POS01-0268)',fmtMoney(SP.cashvar.rows[2][5]),'Cash Variance Report',tag('Overage','amber'))),
+  card([sectionTitle('Tender mix (confirmed)','From Tender Summary, business date 26 Sep 2026'),dtable([{l:'Tender',t:'STRING',w:50},{l:'Confirmed tenders',t:'MONEY',sum:true,w:50}],SP.tender.rows.map(r=>[r[0],r[1]]),{caption:'Tender mix',totalLabel:'Confirmed total'})]),
+  card([sectionTitle('Key exceptions'),E('div',{style:{display:'flex',gap:'8px',flexWrap:'wrap'}},tag(SP.payex.rows.length+' payment exceptions','amber'),tag('0 negative-stock items','green'),tag(SP.cashvar.rows.filter(r=>r[5]!=='0.00').length+' shifts with cash variance','amber'),tag(SP.override.rows.length+' price overrides','gray'))]),
+  notesBlock([['GAP','FR-RPT-047','The frozen UI inventory has no screen for the management summary. UI-SYS-003 is a role dashboard with alerts and shortcuts. Which screen hosts this summary needs an owner decision.'],['OPEN','FR-RPT-050','Gross, net, discount and return figures use definitions that are not yet approved.']])));
+SCR('Management summary','Exception Highlights',['FR-RPT-048','FR-RPT-026','FR-RPT-028'],()=>page({crumbs:['Reports','Management','Exceptions'],title:'Exception Highlights',refs:['FR-RPT-048','UI-SYS-003'],sub:'Material exceptions are actionable, not buried. Each row opens the report that explains it.'},
+  dtable([{l:'Exception',t:'STRING',w:30},{l:'Count',t:'INTEGER',w:10},{l:'Why it matters',t:'STRING',w:36},{l:'Open',t:'STRING',w:24}],[['Uncertain or pending payments',String(SP.payex.rows.length),'Not counted as confirmed tenders','Payment Exception Report'],['Negative stock items',String(SP.negstock.rows.length),'Normally blocked under the Phase-1 default','Negative Stock Report'],['Shifts with cash variance',String(SP.cashvar.rows.filter(r=>r[5]!=='0.00').length),'Difference between expected and declared cash','Cash Variance Report'],['Manual price overrides',String(SP.override.rows.length),'High-risk, approver recorded','Price Override Report']],{totals:false,caption:'Exceptions'}),
+  notesBlock([['OPEN','FR-RPT-048','What counts as "material" or "unusual" (thresholds) is not defined, so no severity ranking is shown.']])));
+SCR('Management summary','Comparative Periods — optional',['FR-RPT-049'],()=>page({crumbs:['Reports','Management','Comparison'],title:'Comparative Periods',refs:['FR-RPT-049','Priority: COULD'],sub:'Optional. Two periods are labelled clearly and the source calculations do not change.'},
+  dtable([{l:'Measure',t:'STRING',w:28},{l:'Period A · Sat 26 Sep 2026',t:'MONEY',w:24},{l:'Period B · Sat 19 Sep 2026',t:'MONEY',w:24},{l:'A − B',t:'MONEY',w:24}],[['Gross sales',g26[2],'19876.40',subDec(g26[2],'19876.40',2)],['Discounts',g26[3],'341.20',subDec(g26[3],'341.20',2)],['Returns',g26[4],'160.40',subDec(g26[4],'160.40',2)]],{totals:false,caption:'Period comparison'}),
+  notesBlock([['OPEN','FR-RPT-049','"Approved periods" are not defined; no percentage change is shown because no calculation rule is frozen.']])));
+
+/* ---------- export and print (API-RPT-003; artifacts belong to Import / Export) ---------- */
+const expHead=(t,sub)=>({crumbs:['Reports','Sales','Daily Sales Summary','Export'],title:t,refs:['FR-RPT-057','API-RPT-003','ReportExportRequest','UI-EXP-001'],sub});
+const scopeEcho=()=>card([sectionTitle('Export scope (read-only echo)','The export preserves the report scope and exact values (FR-RPT-057).'),kv('Report','Daily Sales Summary'),kv('Store scope','MiniMart Central · 1 store'),kv('Period','Business date 20–26 Sep 2026'),kv('Filters','Counter: all · Cashier: all · Status: posted / completed'),kv('Rows in scope',fmtInt('7')),kv('Totals','Same definitions and values as on screen')],{gap:'8px'});
+const fmtChoice=(dis)=>E('fieldset',{disabled:!!dis,style:{border:'1px solid '+LINE,borderRadius:'9px',padding:'10px 12px',margin:0,display:'flex',gap:'18px',flexWrap:'wrap'}},E('legend',{style:{fontSize:'11px',fontWeight:600,color:MUT,padding:'0 4px'}},'Format (ReportExportRequest.format)'),E('label',{style:{display:'flex',gap:'6px',alignItems:'center',fontSize:'13px'}},E('input',{type:'radio',name:'fmt',defaultChecked:true}),'CSV'),E('label',{style:{display:'flex',gap:'6px',alignItems:'center',fontSize:'13px'}},E('input',{type:'radio',name:'fmt'}),'XLSX (spreadsheet)'));
+SCR('Export and print','Export dialog — format and scope',['FR-RPT-057','FR-RPT-058'],()=>page(expHead('Export report','Creates an export job. The file itself is produced, retained and downloaded through Export Center.'),
+  E('div',{role:'dialog','aria-modal':'true','aria-labelledby':'dlgt',style:{maxWidth:'620px',background:'#fff',border:'1px solid '+LINE,borderRadius:'14px',padding:'20px',display:'flex',flexDirection:'column',gap:'14px',boxShadow:'0 8px 30px rgba(14,27,51,.12)'}},E('h2',{id:'dlgt',style:{margin:0,fontSize:'17px'}},'Export Daily Sales Summary'),fmtChoice(false),scopeEcho(),noteBox('Needs reporting.write, separate from viewing. One Idempotency-Key is used per request and the button is disabled while the request is pending (API-RPT-003; UI spec 18).','blue'),E('div',{style:{display:'flex',gap:'8px',justifyContent:'flex-end'}},btn('Cancel'),btn('Create export job',{kind:'primary',icon:'download'}))),
+  noteBox('Design-time limitation: this is a static illustration of the dialog\u2019s visual state. role="dialog" and aria-modal are present as markup, but keyboard focus entry on open, focus trapping, Escape-to-dismiss and focus return to the trigger are not implemented or interactively validated in this mockup.','amber','info'),
+  notesBlock([['VERIFY','FR-RPT-058','XLSX is a SHOULD handled through the Import/Export specification. ReportExportRequest.format allows CSV and XLSX.'],['GAP','ReportExportRequest','filters is a list of strings with no defined syntax; the dialog echoes human labels only.']])));
+SCR('Export and print','Export — permission required',['FR-RPT-059'],()=>page(expHead('Export not permitted','Viewing a report does not grant the right to extract its data.'),
+  E('div',{role:'dialog','aria-modal':'true','aria-labelledby':'dlgp',style:{maxWidth:'620px',background:'#fff',border:'1px solid '+LINE,borderRadius:'14px',padding:'20px',display:'flex',flexDirection:'column',gap:'14px'}},E('h2',{id:'dlgp',style:{margin:0,fontSize:'17px'}},'Export Daily Sales Summary'),fmtChoice(true),noteBox('You can view this report but your role does not include reporting.write, which is required to export. Unauthorized bulk data extraction is blocked (FR-RPT-059). Ask an authorised manager.','amber','lock'),E('div',{style:{display:'flex',gap:'8px',justifyContent:'flex-end'}},btn('Close'),btn('Create export job',{kind:'primary',icon:'download',disabled:true}))),
+  noteBox('Design-time limitation: this is a static illustration of the dialog\u2019s visual state, not an interactively validated modal (no implemented focus trap, Escape dismissal or focus return).','amber','info'),
+  notesBlock([['GAP','FR-RPT-059','"Sensitive report export" needs an explicit permission independent of viewing. API-RPT-003 uses reporting.write; which reports count as sensitive, and whether finer export permissions exist, is not defined.']])),{role:'Viewer (reporting.read only)'});
+SCR('Export and print','Export job — queued and running',['FR-RPT-057'],()=>page(expHead('Export job status','ExportJob.status moves QUEUED, RUNNING, COMPLETED, FAILED or CANCELLED. Status is read from the export job (API-IMP-005).'),
+  E('div',{style:{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'12px'}},card([E('div',{style:{display:'flex',gap:'8px',alignItems:'center'}},tag('QUEUED','gray'),E('strong',null,'Daily Sales Summary · CSV')),kv('Job','Illustrative job id'),kv('Requested','26 Sep 2026 · 18:44'),E('span',{role:'status',style:{fontSize:'12.5px',color:MUT2}},'Waiting to start. You can leave this page; the job continues.')]),card([E('div',{style:{display:'flex',gap:'8px',alignItems:'center'}},tag('RUNNING','blue'),E('strong',null,'Stock Movement Report · XLSX')),kv('Job','Illustrative job id'),kv('Requested','26 Sep 2026 · 18:44'),E('span',{role:'status','aria-live':'polite',style:{fontSize:'12.5px',color:MUT2,display:'flex',gap:'6px',alignItems:'center'}},E('i',{className:'icon-loader','aria-hidden':'true',style:{fontSize:'14px'}}),'Preparing file…'),E('div',null,btn('Cancel job',{disabled:true,title:'Cancel is offered only where the job supports cancellation'}))])),
+  notesBlock([['VERIFY','API-SYS-007','Cancellation is honoured only where cancelSupported is true; whether report export jobs support it is not stated.']])));
+SCR('Export and print','Export job — completed, hand off to Export Center',['FR-RPT-057','FR-RPT-058'],()=>page(expHead('Export ready','The artifact is created by the export job. Download, retention and delivery belong to Export Center (Import / Export).'),
+  card([E('div',{style:{display:'flex',gap:'8px',alignItems:'center'}},tag('COMPLETED','green'),E('strong',null,'Daily Sales Summary · CSV')),kv('fileName','Illustrative file name (not frozen)'),kv('mediaType','text/csv'),kv('sizeBytes','Illustrative size'),kv('sha256','Shown from the artifact descriptor'),kv('expiresAt','Short-lived local download handle'),noteBox('Reporting created this job. Opening, downloading and retaining the file is done in Export Center (UI-EXP-001, API-IMP-005/010). Reporting does not own an artifact lifecycle.','blue'),E('div',{style:{display:'flex',gap:'8px'}},btn('Continue in Export Center',{kind:'primary',icon:'external-link'}),btn('Back to report'))]),
+  notesBlock([['OPEN','API 16-IMPORT-EXPORT-JOB-ARTIFACT','Artifact retention remains a policy seam; no retention period is shown.'],['GAP','UI-EXP-001','The frozen Export Center screen lists import and export operations but does not describe a hand-off from a report; the link shown is a design proposal.']])));
+SCR('Export and print','Export job — failed and cancelled',['FR-RPT-062'],()=>page(expHead('Export did not complete','A failed or cancelled export never produces a partial file that looks complete.'),
+  E('div',{style:{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'12px'}},card([E('div',{style:{display:'flex',gap:'8px',alignItems:'center'}},tag('FAILED','red'),E('strong',null,'Daily Sales Summary · XLSX')),E('span',{role:'alert',style:{fontSize:'12.5px',color:MUT2}},'The job failed before a file was produced. No artifact exists and the report is unchanged.'),btn('Create a new export job',{kind:'primary'})]),card([E('div',{style:{display:'flex',gap:'8px',alignItems:'center'}},tag('CANCELLED','gray'),E('strong',null,'Stock Movement Report · CSV')),E('span',{style:{fontSize:'12.5px',color:MUT2}},'The job was cancelled before it completed. No artifact exists.'),btn('Create a new export job')])),
+  notesBlock([['VERIFY','FR-RPT-062','Whether creating a new job after a failure reuses or replaces the earlier command identity is not stated; the design assumes a new job.']])));
+SCR('Export and print','Export — outcome unknown (recovery)',['FR-RPT-057','FR-RPT-062'],()=>page(expHead('Export request — outcome unknown','The response was lost. The job may already exist. Do not create a second one blindly.'),
+  card([E('div',{style:{display:'flex',gap:'8px',alignItems:'center'}},E('i',{className:'icon-loader','aria-hidden':'true',style:{fontSize:'18px',color:'#8a5100'}}),E('strong',{style:{fontSize:'16px'}},'Export — outcome unknown')),noteBox('Check the authoritative status of this export before retrying. Retry reuses the same command identity (Idempotency-Key), so it cannot create a duplicate job.','amber'),kv('Operation reference','Illustrative reference'),E('div',{style:{display:'flex',gap:'8px'}},btn('Check status',{kind:'primary'}),btn('Retry safely'))],{maxWidth:'560px'}),
+  notesBlock([['RESOLVED','UI spec 18','Lost-response retry preserves the same logical command identity. The status query is the export job read (API-IMP-005).']])));
+SCR('Export and print','Export — personal data minimised',['FR-RPT-060','FR-RPT-059'],()=>page(expHead('Export contains customer data','Personal data is masked or minimised according to permission and purpose.'),
+  card([noteBox('This export includes customer fields. Name and phone are masked unless your permission allows more. Financial figures are exported in full and unchanged.','blue','shield-alert'),dtable([{l:'Column',t:'STRING',w:30},{l:'Included as',t:'STRING',w:40},{l:'Reason',t:'STRING',w:30}],[['Customer','CUS-00041 (code)','Identifier only'],['Name','A. R**** (masked)','Default masking'],['Phone','Excluded','Not needed for this report'],['Outstanding','Exact decimal value','Report figure']],{totals:false,caption:'Export columns'})]),
+  notesBlock([['GAP','FR-RPT-060','Masking rules and the permission that relaxes them are not defined.']])));
+SCR('Export and print','Print preview',['FR-RPT-056'],()=>page({crumbs:['Reports','Sales','Daily Sales Summary','Print'],title:'Print preview',refs:['FR-RPT-056','FR-RPT-014'],sub:'Printed scope and totals match the screen and the export.',actions:[btn('Print',{kind:'primary',icon:'printer'}),btn('Close')]},
+  E('div',{style:{background:'#fff',border:'1px solid #cfd5de',borderRadius:'6px',padding:'22px 26px',maxWidth:'820px',display:'flex',flexDirection:'column',gap:'10px',boxShadow:'0 2px 10px rgba(14,27,51,.08)'}},E('div',{style:{display:'flex',justifyContent:'space-between',gap:'12px'}},E('strong',{style:{fontSize:'16px'}},'MiniMart Sdn Bhd — Daily Sales Summary'),E('span',{style:{fontSize:'11.5px',color:MUT2}},'Page 1 of 1')),E('span',{style:{fontSize:'11.5px',color:MUT2}},'Store scope: MiniMart Central · Business date 20–26 Sep 2026 · Generated 26 Sep 2026 18:42 (illustrative) · Currency MYR · Local store data'),dtable(SP.daily.cols,SP.daily.rows,{totals:true,caption:'Printable report'}),E('span',{style:{fontSize:'11px',color:MUT}},'Operational report. Not a statutory accounting statement.')),
+  notesBlock([['OPEN','FR-RPT-056','Page size, orientation and the print channel are not defined. This preview assumes a standard page and no receipt-printer integration; MM-007 hardware work is separate.']])));
+SCR('Export and print','Report access and export audit notice',['FR-RPT-061'],()=>page({crumbs:['Reports','Sales','Daily Sales Summary','Audit'],title:'Access and export may be audited',refs:['FR-RPT-061','FR-RPT-059'],sub:'Selected sensitive reports are recorded according to policy so extraction can be investigated.'},
+  card([noteBox('Exporting this report will be recorded in the audit log with who, what scope and when. The audit entry cannot be edited from Reports.','blue','shield'),kv('Recorded','Actor, report, scope, format, time'),kv('Where to review','Audit Explorer (UI-AUD-001), by authorized users')]),
+  notesBlock([['OPEN','FR-RPT-061','FR-RPT-061 is a SHOULD "according to policy". Which reports are sensitive and which events are audited are not defined, so this notice is conditional in a live product.']])));
+
+/* ---------- central (later phase) ---------- */
+SCR('Central and later phase','Central report — incomplete sync warning',['FR-RPT-054','FR-RPT-055'],()=>page({crumbs:['Reports','Central reports','Sales by Branch'],title:'Central sales by branch (later phase)',refs:['FR-RPT-054','FR-RPT-055','Phase 3'],sub:'Never implies completeness when branch synchronization is stale or incomplete.',actions:[marker('LATER','Phase 3')]},
+  noteBox('Totals may be incomplete. Branch Johor Bahru last synchronized 26 Sep 2026 06:10 and Penang has not synchronized today. Treat totals as provisional until all branches are current.','amber','triangle-alert'),
+  dtable([{l:'Branch',t:'STRING',w:30},{l:'Last synchronized',t:'STRING',w:26},{l:'Freshness',t:'STRING',w:20},{l:'Included in totals',t:'STRING',w:24}],[['MiniMart Central','26 Sep 2026 18:40',tag('Current','green'),'Yes'],['MiniMart Johor Bahru','26 Sep 2026 06:10',tag('Stale','amber'),'Yes, partial day'],['MiniMart Penang','25 Sep 2026 22:05',tag('Stale','amber'),'Yes, previous day only']],{totals:false,caption:'Branch freshness'}),
+  notesBlock([['LATER','FR-RPT-054','Central and multi-branch reports belong to Phase 3 (Cloud and full sync).'],['GAP','UI spec','The frozen UI has Cloud screens (UI-CLD-001..003) but no central report screen. This layout is only a placeholder to show the freshness rule.']])));
+
+/* ---------- design system, traceability, decisions, documentation ---------- */
+const FR_TITLES=['Reporting read-only principle','Report authorization','Store scope','Business date filter','Timestamp/date filter','Counter filter','Cashier filter','Product filter','Category/brand filter','Supplier filter','Customer filter','Tender filter','Status filter','Report generated timestamp','Pagination/large result handling','Daily sales summary','Sales by item','Sales by category','Sales by cashier','Sales by counter','Discount report','Price override report','Returns report','No-receipt return report','Tender summary','Payment exception report','Cash movement report','Cash variance report','Shift close report','Day close report','Current stock report','Low stock report','Negative stock report','Stock movement report','Batch/expiry report','Inventory valuation report','Stock count variance report','Stock adjustment report','Purchase summary','Purchase by supplier','Purchase return report','Purchase price history','Customer outstanding report','Customer aging report','Customer statement','Credit override report','Management daily summary','Exception-oriented reporting','Comparative periods','Report totals definition','Historical master-data semantics','As-of reporting','Offline local reports','Central multi-branch report scope','Incomplete sync warning','Print report','Export CSV','Export spreadsheet boundary','Export permission','PII-aware export','Report audit','Report failure behavior','Report performance target','No accounting claim beyond scope','Reporting acceptance suite'];
+const DECISIONS=[
+ ['DEC-RPT-001','OPEN','Historical versus current master grouping, decided per report.','Sales by Category; grouping screens'],
+ ['DEC-RPT-002','PROPOSED','The Phase-2 baseline report list is the one in the Reporting FRS. The design follows that list; it is not frozen.','Reports Home'],
+ ['FR-RPT-050 / 016','OPEN','Definitions of gross sales, discounts, returns, net sales and tax for reports. FR-RPT-016 requires "approved" definitions that no document states.','Every sales report; definitions screen'],
+ ['FR-RPT-044','OPEN','Approved aging buckets and the due-date basis (with DEC-CRD-002).','Customer Aging Report'],
+ ['DEC-INV-007','OPEN','Who owns the reorder or low-stock threshold.','Low Stock Report'],
+ ['DEC-INV-004 / 005','OPEN','Batch selection and expiry/FEFO policy; DEC-POS-003 expiry-sale policy is VERIFY.','Batch / Expiry Report'],
+ ['DEC-INV-003','OPEN','Stock-count concurrency policy.','Stock Count Variance Report'],
+ ['DEC-RET-001','OPEN','Whether no-receipt returns exist and under what eligibility.','No-Receipt Return Report'],
+ ['DEC-CRD-001 / 002 / 003 / 004','OPEN','Credit limit, collection allocation, customer advance and suspended-credit override policies.','Credit reports'],
+ ['DEC-CSH-001..005, DEC-COM-001','OPEN','Business-date rollover, day close, late transactions, reopen and active-shift policies.','Cash and day close reports; date filters'],
+ ['DEC-PAY-001','PROPOSED','Card and QR adapter baseline behaviour.','Tender and Payment Exception reports'],
+ ['DEC-CUS-002','VERIFY','Customer retention and anonymisation period.','Customer data screens'],
+ ['DEC-PUR-001 / 002 / 006','PROPOSED','Purchase-order and direct-GRN policy. Tax recoverability is VERIFY.','Purchasing reports'],
+ ['DEC-INV-001','RESOLVED','Moving weighted-average cost per Item per Store. Used for inventory valuation.','Inventory Valuation Report'],
+ ['DEC-INV-010','RESOLVED','Phase-1 negative-stock default is BLOCK.','Negative Stock Report']
+];
+const GAPS=[
+ ['Report codes, name keys, filter field codes and operators are not frozen','ReportDefinition and ReportRunRequest define only the shapes. The design uses human labels.'],
+ ['No frozen screen owns Cash/Shift/Day-close reports or the Management Daily Summary','UI-RPT-001..005 cover sales/tender, inventory, purchasing/payables and credit/collections. The cash and management reports in FR-RPT-027..030 and 047..049 have no named screen.'],
+ ['Permissions beyond reporting.read and reporting.write are not defined','Needed for cost-sensitive access, source drill-down, unmasking customer data, sensitive export and per-cashier visibility.'],
+ ['Hand-off from a report to Export Center is not described','UI-EXP-001 lists import and export operations only. The "Continue in Export Center" link is a design proposal.'],
+ ['Page limits differ between contracts','ReportRunRequest.limit allows 1–500 while PageInfo.limit allows at most 200.'],
+ ['No central or multi-branch report screen exists (Phase 3)','UI-CLD-001..003 are cloud screens; FR-RPT-054/055 have no frozen screen.'],
+ ['Print channel, page size and orientation are undefined','FR-RPT-056 says "readable form" only.'],
+ ['Audit policy for report access and export is undefined','FR-RPT-061 is a SHOULD "according to policy".'],
+ ['Export artifact retention is a policy seam','API 16-IMPORT-EXPORT-JOB-ARTIFACT.'],
+ ['Performance targets and the acceptance suite are not visual','FR-RPT-063 and FR-RPT-065 need data volumes and tests, not screens.']
+];
+SCR('Design system and documentation','Report components',['FR-RPT-050'],()=>page({crumbs:['Reports','Design system','Components'],title:'Report components',refs:['Back Office design system','Accounting-Lite reference'],sub:'Components reuse the approved Back Office tokens and the Accounting-Lite shell: IBM Plex Sans, tabular numerals, 190px sidebar, 50px header.'},
+  card([sectionTitle('Money and quantity'),dtable([{l:'Example',t:'STRING',w:40},{l:'Value',t:'MONEY',w:30},{l:'Quantity',t:'DECIMAL',scale:3,w:30}],[['Positive amount','12345.60','12.500'],['Zero','0.00','0.000'],['Negative (shown with a minus sign)','-5.00','-1.250']],{totals:false,caption:'Money and quantity alignment'}),noteBox('Money is a decimal string end to end. Sums use exact integer arithmetic; no binary floating point. Display uses RM with two decimals; rounding and precision come from country rules, not from this design.','blue')]),
+  card([sectionTitle('Status, markers and annotations'),E('div',{style:{display:'flex',gap:'8px',flexWrap:'wrap'}},tag('Posted','green'),tag('PENDING','blue'),tag('UNCERTAIN','amber'),tag('FAILED','red'),tag('Stale','amber')),E('div',{style:{display:'flex',gap:'8px',flexWrap:'wrap'}},marker('OPEN','DEC-RPT-001'),marker('VERIFY','FR-RPT-015'),marker('PROPOSED','DEC-RPT-002'),marker('RESOLVED','DEC-INV-001'),marker('GAP','not frozen'),marker('LATER','Phase 3')),annot('A design annotation',E('span',{style:{fontSize:'12.5px'}},'Dashed boxes explain authority. They are not part of the product UI.')),ribbon()]),
+  card([sectionTitle('Actions'),E('div',{style:{display:'flex',gap:'8px',flexWrap:'wrap'}},btn('Primary',{kind:'primary'}),btn('Secondary'),btn('Ghost',{kind:'ghost'}),btn('Disabled',{disabled:true}),btn('Export',{icon:'download'}))])));
+SCR('Design system and documentation','Accessibility and keyboard behaviour',['FR-RPT-001'],()=>page({crumbs:['Reports','Design system','Accessibility'],title:'Accessibility and keyboard behaviour',refs:['UI spec 07','UI spec 24'],sub:'Rules taken from the UI specification. Report screens are not in the critical-workflow list, but the general rules apply.'},
+  dtable([{l:'Element',t:'STRING',w:22},{l:'Accessible name / role',t:'STRING',w:32},{l:'Keyboard',t:'STRING',w:26},{l:'Rule',t:'STRING',w:20}],[['Filter controls','Visible <label> for every control; form named "Report filters"','Tab and Shift+Tab in task order; Enter applies','Logical order'],['Report table','<table> with caption and column headers (scope=col); numeric columns right-aligned','Scrolls with the page; no keyboard trap','Screen-reader names'],['Export dialog','role=dialog, aria-modal, labelled by its title','Focus trapped inside; Esc closes; focus returns to Export','Dialogs trap and restore focus'],['Status tags','Text label, never colour alone','Not focusable unless actionable','Status not by colour alone'],['Icon-only controls','aria-label where there is no text','Enter or Space activates','Names for icon-only controls'],['Errors','Message names the field and the fix; role=alert','Focus moves to the first invalid control','Errors identify field and action'],['Loading','aria-busy and a status message','—','Visible status']],{totals:false,caption:'Accessibility map'}),
+  noteBox('No keyboard shortcut is defined for Back Office reports. The only candidate shortcuts in the UI specification are POS shortcuts and are provisional (UI spec 23). Every action here has a visible, clickable control.','blue'),
+  noteBox('Contrast was computed with the WCAG formula for every text and background pair used here; all are at least 4.5:1. Two tones were darkened from the approved package values (muted text #6b7585 to #5b6576, sidebar group labels #6f7c93 to #8c98ad) because the approved values measure 4.07 to 4.41:1 on tinted surfaces. Disabled controls are exempt.','blue')));
+SCR('Design system and documentation','Responsive behaviour',['FR-RPT-015'],()=>page({crumbs:['Reports','Design system','Responsive'],title:'Responsive behaviour',refs:['UI spec 11','Back Office target 1366×768 and above'],sub:'Desktop-first. These are the sizes the package is rendered and checked at.'},
+  dtable([{l:'Viewport',t:'STRING',w:16},{l:'Role',t:'STRING',w:30},{l:'Behaviour',t:'STRING',w:54}],[['1366 × 768','Primary','Reference layout.'],['1280 × 720','Smallest supported','Filter bar wraps to a second row; tables use fixed columns that wrap text; no page-level horizontal scroll.'],['1368 × 800','Supported','Same as the primary layout with more height.'],['1920 × 1080','Supported','Content keeps its maximum width and stays left-aligned; no stretching.']],{totals:false,caption:'Viewports'}),
+  noteBox('Sidebar and long pages scroll inside their own containers. Primary actions and totals stay reachable. Below the smallest supported width the layout is not defined.','blue')));
+SCR('Design system and documentation','Requirement to screen index',['FR-RPT-001'],()=>{const map={};LIST.forEach((s,i)=>s.fr.forEach(f=>{(map[f]=map[f]||[]).push(String(i+1).padStart(2,'0'));}));const rows=FR_TITLES.map((t,i)=>{const id='FR-RPT-'+String(i+1).padStart(3,'0');return [id,t,(map[id]||[]).slice(0,10).join(', ')+((map[id]||[]).length>10?' …':'')||'—'];});
+  return page({crumbs:['Reports','Design system','Traceability'],title:'Requirement to screen index',refs:['FR-RPT-001..065'],sub:'Every Reporting requirement and the screens that represent it. Built from this package’s own screen registry.'},
+   dtable([{l:'Requirement',t:'STRING',w:14},{l:'Title',t:'STRING',w:40},{l:'Screens',t:'STRING',w:46}],rows,{totals:false,caption:'Requirement coverage'}),
+   noteBox('FR-RPT-063 (performance targets) and FR-RPT-065 (acceptance suite) need data volumes and tests, not screens; they point to the decisions register.','amber'));});
+SCR('Design system and documentation','Open decisions and authority gaps',['FR-RPT-063','FR-RPT-065'],()=>page({crumbs:['Reports','Design system','Open decisions'],title:'Open decisions and authority gaps',refs:['Decision Register','13-DECISION-SEAM-MATRIX'],sub:'Kept explicit. This package does not resolve any of them.'},
+  dtable([{l:'Decision',t:'STRING',w:20},{l:'Status',t:'STRING',w:11},{l:'What is undecided',t:'STRING',w:46},{l:'Affects',t:'STRING',w:23}],DECISIONS.map(d=>[d[0],marker(d[1]),d[2],d[3]]),{totals:false,caption:'Decisions'}),
+  card([sectionTitle('Authority gaps (no decision ID)'),dtable([{l:'Gap',t:'STRING',w:42},{l:'Detail',t:'STRING',w:58}],GAPS,{totals:false,caption:'Authority gaps'})])));
+SCR('Design system and documentation','Boundaries — what this package does not define',['FR-RPT-064','FR-RPT-001'],()=>page({crumbs:['Reports','Design system','Boundaries'],title:'What this package does not define',refs:['AGENTS.md','docs/design/README.md'],sub:'Visual design never overrides frozen authority.'},
+  E('div',{style:{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'12px'}},card([sectionTitle('Not invented here'),bullets(['Report calculations, totals definitions, aging buckets, thresholds and tolerances','Financial semantics, tax treatment, rounding or statutory statements','Export file formats, retention periods and artifact lifecycle','Permission codes beyond reporting.read and reporting.write','Report codes, filter field codes and operators','Any new API, table, projection or architecture change'])]),card([sectionTitle('Active functionality'),bullets(['Run a bounded read-only report query (API-RPT-002)','Create an export job (API-RPT-003); download is in Export Center','Print an on-screen report','No editing of source records, no journal or ledger, no Chart of Accounts','No direct accounting-software integration'])])),
+  noteBox('Design-only content is not product behaviour until frozen authority and a backlog item (MM-079 to MM-083, MM-097) support it.','amber')));
+SCR('Design system and documentation','Documentation — confirmations',['FR-RPT-001','FR-RPT-064'],()=>{const L=[
+ 'Illustrative design package. Every figure is an example; the ribbon says so on every content screen (the two Store Node unavailable states replace the whole page).',
+ 'Approved visual reference — visual scope only; documented limitations and unresolved product decisions remain.',
+ 'This Claude Design source adapts the Claude Code candidate (candidate-INPUT-ONLY/MiniMartReports.dc.html, SHA-256 ac24dc44…665aeb7) rather than being authored from scratch. Verified comparison of the upstream V2 export against the candidate: 31 changed source lines, and 8 screens (36, 38, 39, 52, 60, 64, 65, 80) render different text; the sidebar footer note colour differs on every screen. The earlier figure of 79 of 80 screens unchanged with a 15-line diff describes the V1 export only. The candidate remains the recorded unapproved input.',
+ 'Visually demonstrated versus design-intent: a screen renders an illustrative state (data, a table, a status) when it carries sample rows/values; a dashed design annotation or a notesBlock marker (OPEN/VERIFY/PROPOSED/GAP/LATER) is design-intent commentary, not validated product behaviour. Neither kind constitutes behavioural or interactive validation of the underlying requirement.',
+ 'Frozen specifications, the Decision Register and the frozen backlog are unchanged.',
+ 'Screens map to UI-RPT-001..005 and to FR-RPT-001..065. Cash, day-close and management screens have no frozen owner screen and are marked as gaps.',
+ 'Reports are read-only; no screen can edit a source transaction (FR-RPT-001).',
+ 'Reports are operational and are not statutory accounting statements (FR-RPT-064).',
+ 'Every report states store scope, period or as-of, generated time and data basis (FR-RPT-003, 014, 052).',
+ 'Local reports run without cloud and say so (FR-RPT-053). Central reports are Phase 3.',
+ 'Report failure shows a status and never a partial total (FR-RPT-062).',
+ 'Unresolved payment states are never counted as confirmed (FR-RPT-013, 026).',
+ 'Money is a decimal string; sums are exact; display is RM with two decimals.',
+ 'Tax labels are not shown; they appear only from verified country rule metadata.',
+ 'Gross, net, discount and return definitions are open; no formula is asserted.',
+ 'Grouping basis (historical or current master) is open per report (DEC-RPT-001) and is always labelled.',
+ 'Aging buckets, low-stock thresholds and expiry windows are open and not invented.',
+ 'Cash variance and customer outstanding use the frozen domain formulas (Domain model 06).',
+ 'Inventory valuation uses moving weighted-average cost (DEC-INV-001).',
+ 'Negative stock is blocked by the Phase-1 default (DEC-INV-010), so that report is normally empty.',
+ 'Purchase figures use the same GRN references as the approved Accounting-Lite package.',
+ 'Customer outstanding of RM 2,145.00 matches the Accounting-Lite customer view.',
+ 'Customer data is masked by default; the unmask permission is not defined.',
+ 'Export creates an ExportJob (API-RPT-003). Files are produced and downloaded in Export Center.',
+ 'Export needs reporting.write; viewing needs reporting.read (FR-RPT-059).',
+ 'Lost-response export recovery reuses the same command identity and checks the export job.',
+ 'Print preview matches on-screen scope and totals (FR-RPT-056); the print channel is undefined.',
+ 'Export audit is conditional on an undefined policy (FR-RPT-061).',
+ 'All state screens required by the UI state contract are present for reports.',
+ 'Page limits differ between ReportRunRequest and PageInfo; this is flagged, not resolved.',
+ 'Filters are real labelled controls; tables are semantic with captions and column headers.',
+ 'No shortcut keys are defined for Back Office reports.',
+ 'No Chart of Accounts, journal, trial balance, balance sheet, statutory P&L or period close exists here.',
+ 'No new API, table, projection, permission or architecture is proposed.',
+ 'MM-007 physical validation remains pending and DEC-HW-001 remains open; printing here does not involve receipt hardware.',
+ 'Desktop sizes 1280×720, 1366×768, 1368×800 and 1920×1080 are the package\'s stated supported sizes; live rendering checks at those sizes are reported in the export manifest, not claimed here.'];
+ return page({crumbs:['Reports','Design system','Documentation'],title:'Documentation',refs:['Reporting design package'],sub:'Confirmations a reviewer can check against the screens.'},E('ol',{style:{margin:0,paddingLeft:'22px',display:'flex',flexDirection:'column',gap:'4px',fontSize:'13px'}},...L.map((t,i)=>E('li',{key:i},t))));});
+
+/* ---------- component ---------- */
+const NAMES={};
+LIST.forEach((s,i)=>{NAMES[String(i+1).padStart(2,'0')]=s.t;});
+
+class Component extends DCLogic {
+  state={scr:(this.props&&this.props.screen)||'01'};
+  componentDidUpdate(pp){ if(pp.screen!==this.props.screen) this.setState({scr:this.props.screen||'01'}); }
+  renderVals(){
+    const id=this.state.scr||'01';
+    const idx=Math.max(0,Math.min(LIST.length-1,(parseInt(id,10)||1)-1));
+    const s=LIST[idx];
+    const sh=s.sh||{};
+    const node=sh.node!=='off', cloudOk=sh.sync!=='off';
+    const nodeP=node?pillOf('#e5f4ec','#146c43','#bfe2cd','icon-server','Store Node online'):pillOf('#fcebea','#b3261e','#f2b8b0','icon-server-off','Store Node unavailable');
+    const syncP=cloudOk?pillOf('#f2f4f7','#4a5567','#cfd5de','icon-cloud','Sync healthy'):pillOf('#fdf3e1','#8a5100','#f0d4a0','icon-cloud-off','Cloud sync unavailable');
+    _fid=0;
+    const body=s.f();
+    const nav=NAV.map(([label,items])=>({label,items:items.map(([lab,icon,stub])=>({label:lab,icon,stub,bg:lab==='Reports'?'#1b5fd1':'transparent',fg:lab==='Reports'?'#fff':'#c3cbd9',fw:lab==='Reports'?600:500,cursor:stub?'default':'pointer'}))}));
+    return {scrLabel:String(idx+1).padStart(2,'0')+' '+s.t,rootH:this.props&&this.props.embedded?'100%':'100vh',nav,nodeP,syncP,roleLabel:sh.role||'Manager',nodeDown:!node,nodeUp:node,cloudDown:!cloudOk,body};
+  }
+}
+
+</script>
+</body>
+</html>
