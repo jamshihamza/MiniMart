@@ -38,6 +38,7 @@ import {
   type StoreNodeStatus,
 } from "./connectivity.js";
 import { SHELL_PREVIEW, previewProducts } from "./fixtures.js";
+import { ScanCapture, type ScanRejection } from "./scanner-input.js";
 import { probeStoreNode } from "./system-status-transport.js";
 
 type ShellPage =
@@ -83,6 +84,38 @@ const deferredPageCopy: Record<Exclude<ShellPage, "sale">, string> = {
   settings: "Settings are not available in this POS shell preview.",
 };
 
+const NON_TEXT_INPUT_TYPES = new Set([
+  "button",
+  "checkbox",
+  "color",
+  "file",
+  "image",
+  "radio",
+  "range",
+  "reset",
+  "submit",
+]);
+
+/** True for controls where the person types text, which a scan must never take over. */
+function isTextEditingElement(element: HTMLElement): boolean {
+  if (element.closest('[contenteditable=""], [contenteditable="true"]') !== null) return true;
+  if (element.tagName === "TEXTAREA" || element.tagName === "SELECT") return true;
+  if (element.tagName === "INPUT") {
+    return !NON_TEXT_INPUT_TYPES.has((element as HTMLInputElement).type);
+  }
+  return element.getAttribute("role") === "textbox";
+}
+
+function describeScanRejection(rejection: ScanRejection): string {
+  const reasons: Record<ScanRejection["reason"], string> = {
+    TOO_LONG: "was too long",
+    CONTAMINATED: "contained a shortcut or control key",
+    PREFIX_MISMATCH: "did not start with the configured prefix",
+    SUFFIX_MISMATCH: "did not end with the configured suffix",
+  };
+  return `Scan rejected: input ${reasons[rejection.reason]} (${String(rejection.length)} characters). Scan again or search manually. Nothing was added to a sale.`;
+}
+
 export function PosApp() {
   const [page, setPage] = useState<ShellPage>("sale");
   const [query, setQuery] = useState("");
@@ -90,6 +123,11 @@ export function PosApp() {
   const [storeNodeStatus, setStoreNodeStatus] = useState<StoreNodeStatus>("checking");
   const [now, setNow] = useState(() => new Date());
   const searchRef = useRef<HTMLInputElement>(null);
+  const scannerRef = useRef<ScanCapture | null>(null);
+  const suppressedShortcutRef = useRef(new WeakSet<KeyboardEvent>());
+  const textBeforeScanRef = useRef("");
+  const spaceGuardRef = useRef(false);
+  const [scanCount, setScanCount] = useState(0);
 
   useEffect(() => {
     const timer = setInterval(() => setNow(new Date()), 60_000);
@@ -116,7 +154,89 @@ export function PosApp() {
   }, []);
 
   useEffect(() => {
+    if (page !== "sale") return undefined;
+    scannerRef.current ??= new ScanCapture();
+    const scanner = scannerRef.current;
+    const suppressed = suppressedShortcutRef.current;
+    function ownsKeyboardScan(event: KeyboardEvent): boolean {
+      const target = event.target;
+      if (!(target instanceof HTMLElement)) return true;
+      if (target === searchRef.current) return true;
+      return !isTextEditingElement(target);
+    }
+    function handleScannerKey(event: KeyboardEvent) {
+      if (!ownsKeyboardScan(event)) {
+        // Another editable control owns this keyboard input; never claim or reinterpret it.
+        scanner.reset();
+        return;
+      }
+      const inSearch = event.target === searchRef.current;
+      const spaceAfterBurstKey =
+        event.key === " " && !inSearch && scanner.bufferedLength(event.timeStamp) >= 1;
+      if (spaceAfterBurstKey) {
+        // A scanned space must not press a focused button: the click fires on key release.
+        event.preventDefault();
+        spaceGuardRef.current = true;
+      }
+      if (
+        inSearch &&
+        event.key.length === 1 &&
+        scanner.bufferedLength(event.timeStamp) === 0 &&
+        searchRef.current !== null
+      ) {
+        // Remember the text that was in the field before this possible scan began.
+        textBeforeScanRef.current = searchRef.current.value;
+      }
+      const result = scanner.handleKey({
+        key: event.key,
+        timeStamp: event.timeStamp,
+        ctrlKey: event.ctrlKey,
+        altKey: event.altKey,
+        metaKey: event.metaKey,
+        shiftKey: event.shiftKey,
+        repeat: event.repeat,
+        isComposing: event.isComposing,
+      });
+      if (result.suppressShortcuts) suppressed.add(event);
+      if (result.preventDefault) event.preventDefault();
+      if (result.scan !== undefined) {
+        // Scanner characters reached the field before the scan was recognized; put back what
+        // the person had typed. Text elsewhere is never touched.
+        if (inSearch) setQuery(textBeforeScanRef.current);
+        setScanCount((count) => count + 1);
+        setMessage(
+          `Scan captured (${String(result.scan.length)} characters, untrusted keyboard text). Item lookup is unavailable in this shell preview. Nothing was added to a sale.`,
+        );
+      } else if (result.rejection !== undefined) {
+        setMessage(describeScanRejection(result.rejection));
+      }
+    }
+    function handleScannerKeyUp(event: KeyboardEvent) {
+      if (event.key === " " && spaceGuardRef.current) {
+        event.preventDefault();
+        spaceGuardRef.current = false;
+      }
+    }
+    function abandonScan() {
+      scanner.reset();
+      spaceGuardRef.current = false;
+    }
+    window.addEventListener("keydown", handleScannerKey, true);
+    window.addEventListener("keyup", handleScannerKeyUp, true);
+    window.addEventListener("blur", abandonScan);
+    document.addEventListener("visibilitychange", abandonScan);
+    return () => {
+      window.removeEventListener("keydown", handleScannerKey, true);
+      window.removeEventListener("keyup", handleScannerKeyUp, true);
+      window.removeEventListener("blur", abandonScan);
+      document.removeEventListener("visibilitychange", abandonScan);
+      scanner.reset();
+    };
+  }, [page]);
+
+  useEffect(() => {
     function handleShellShortcut(event: KeyboardEvent) {
+      if (suppressedShortcutRef.current.has(event)) return;
       if (event.key !== "F2" || event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) {
         return;
       }
@@ -263,7 +383,8 @@ export function PosApp() {
                       </button>
                     </div>
                     <span id="search-help" className="sr-only">
-                      Preview input only. Item lookup and scanner handling are not available.
+                      Preview input only. Item lookup is not available. Scanner input is captured as
+                      untrusted text and never triggers shortcuts.
                     </span>
                   </form>
                   <div className="quick-actions" aria-label="Sale actions">
@@ -454,6 +575,7 @@ export function PosApp() {
         </div>
         <p className="footer-message" role="status" aria-live="polite">
           {message}
+          {scanCount > 0 ? ` Scans captured this session: ${String(scanCount)}.` : ""}
         </p>
       </footer>
     </div>
