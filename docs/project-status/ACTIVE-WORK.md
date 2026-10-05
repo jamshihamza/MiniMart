@@ -12,10 +12,10 @@ Task: MM-008 barcode scanner keyboard-wedge spike (Phase 0). INCOMPLETE software
   checkpoint candidate for owner review. MM-008 acceptance is NOT complete: native WebView2
   and physical-scanner acceptance are pending.
 Started From Commit: 1eb8e82e45c99bbac4cb01dd70ef6c57b71e8f67
-Updated At HEAD: 1eb8e82e45c99bbac4cb01dd70ef6c57b71e8f67 (origin/main was the same at
-  the last check, 2026-10-05)
-Current Branch: none (detached HEAD in the isolated MM-008 worktree, a sibling of the
-  original checkout)
+Updated At HEAD: 6c48825 (incomplete software checkpoint, parent 1eb8e82 = origin/main at
+  the last check, 2026-10-05). The commit holding this update follows 6c48825.
+Current Branch: wip/mm-008-scanner-spike (isolated MM-008 worktree, a sibling of the
+  original checkout), pushed to origin/wip/mm-008-scanner-spike
 Active Agent / Machine: Claude Code, Office PC (informational, not a lock)
 
 Goal: Capture repeated keyboard-wedge scans in the POS shell without triggering global
@@ -24,13 +24,13 @@ Goal: Capture repeated keyboard-wedge scans in the POS shell without triggering 
 
 Completed: scanner-input capture module; shell integration (capture-phase listener, F2
   suppression, text restore, other-editable isolation, blur and page-leave resets, Space
-  cancellation after scan keys); fixtures; 75 new tests; spike document. Nothing is
-  committed or pushed.
+  cancellation after scan keys); fixtures; 75 new tests; spike document. Committed
+  and pushed to the wip branch only (owner-authorized); main was not updated.
 
 Pending: owner software-checkpoint review; physical scanner acceptance; native WebView2
   keyboard acceptance; validation of the 50 ms threshold (provisional); browser F-key
   default-action isolation (not independently verified); the unsupported leading-Space-on-a-
-  focused-button mode; any commit or push (not authorized).
+  focused-button mode; merge to main (not authorized).
 
 Files Intentionally Changed (exactly seven paths):
   M apps/pos-terminal/src/App.tsx
@@ -42,11 +42,9 @@ Files Intentionally Changed (exactly seven paths):
   M docs/project-status/ACTIVE-WORK.md (this record)
 
 Git Snapshot (2026-10-05, isolated MM-008 worktree):
-  HEAD 1eb8e82; no commits ahead of origin/main; nothing staged for commit (0 cached
-  entries). `git status --porcelain` lists the seven paths above: the five new files show
-  as " A" because they were registered with intent-to-add (`git add -N`) in this
-  worktree's own index so that `git diff` can see them. That is not a staged checkpoint.
-  Diffstat: 7 files (see git diff --stat HEAD). Frozen docs/specifications and docs/backlog diff: 0.
+  Branch wip/mm-008-scanner-spike: checkpoint commit 6c48825 (seven paths, +1705/-5)
+  on parent 1eb8e82, plus a follow-up commit that touches only this file. origin/main is
+  still 1eb8e82. Worktree clean after the commits. Frozen docs/specifications and docs/backlog diff: 0.
   Build output (target/, dist/, node_modules/) is ignored and not part of the change.
   Original checkout: HEAD 1eb8e82, 27 protected staged entries (digest of
   path<TAB>index-blob<LF> = c7ac91711283565abda6ba071962cc8dadcc5025e123ecd9984a4a8dc7c11b64),
@@ -121,12 +119,12 @@ Do Not Touch: docs/specifications, docs/backlog; the original checkout and its s
   owner asks for a change.
 
 Exact Next Action: after context compaction, (1) re-read AGENTS.md and this file, (2)
-  verify them against Git in the MM-008 worktree (HEAD 1eb8e82, seven paths, nothing
-  staged, no running dev processes) and in the original checkout (27 staged, digest
+  verify them against Git in the MM-008 worktree (branch wip/mm-008-scanner-spike,
+  clean, no running dev processes) and in the original checkout (27 staged, digest
   above), (3) follow the next owner prompt. Do not re-run completed tests or uncertain
   operations (native key injection, dev servers) unless the owner asks. The owner reviews
-  the seven-path diff for a software checkpoint. No commit or push without separate
-  authorization. Do not reset this file to Status: NONE until the review closes.
+  the wip branch as an incomplete software checkpoint. No merge to main and no further
+  commit or push without separate authorization. Do not reset this file to Status: NONE until the review closes.
 
 Last Updated: 2026-10-05
 
