@@ -90,11 +90,18 @@ classifier errs toward leaving input alone.
 - Inside a burst, function keys and Ctrl, Alt and Meta chords are suppressed
   (`preventDefault` and a flag the shell shortcut handler honors) and the burst is rejected as
   `CONTAMINATED`. Escape is not suppressed: it aborts the burst and keeps its normal meaning.
-- A rejected scan resets the capture and changes no text; the next valid scan works
-  (`FR-HW-010`). Identical rapid scans are separate events (`FR-HW-009`); nothing deduplicates them.
+- A rejected scan resets the capture; the next valid scan works (`FR-HW-010`). A rejection after a
+  burst of at least the minimum length (`CONTAMINATED`, `TOO_LONG`, prefix or suffix mismatch)
+  consumes its Enter or Tab like a valid scan, so it cannot submit a form, press a focused button or
+  move focus. A contaminated burst shorter than the minimum is still reported, but its terminator
+  keeps its normal meaning because it may have been ordinary typing. Ordinary typing, short bursts
+  and a lone Enter or Tab are never consumed. Identical rapid scans are separate events (`FR-HW-009`); nothing deduplicates them.
 - Characters keep flowing to the focused field, because a scan cannot be recognized until its
-  terminator. On a valid scan inside the search field the shell restores the text that was there
-  before the burst began, so earlier typing is not corrupted.
+  terminator. On a valid scan, or a confidently rejected one, inside the search field the shell
+  restores the text that was there before the burst began, so earlier typing is not corrupted. The
+  text is restored only when the burst began in that field; a burst that began elsewhere, and other
+  editable controls, are never touched. A contaminated burst shorter than the minimum leaves the
+  characters in the field, because it is not classified as a scan.
 
 In the POS shell (`src/App.tsx`) a capture-phase `keydown` listener runs on the Sale page; the
 existing F2 handler honors the suppression flag. A valid scan updates the status line (length only,
@@ -120,7 +127,7 @@ human typing. The sample numeric codes have valid check digits, asserted in the 
 
 ## Software validation
 
-- `test/scanner-input.test.ts` (43 tests): every fixture type at 5 to 8 ms cadence; Tab terminator;
+- `test/scanner-input.test.ts` (52 tests): every fixture type at 5 to 8 ms cadence; Tab terminator;
   AltGr; 50 identical rapid scans; back-to-back scans with a 1 ms gap; a mixed burst tally; cadence
   at and beyond the limit for characters and the terminator; minimum and maximum length boundaries;
   Shift+Tab and Shift+Enter; human typing; late terminators; key repeat and IME composition;
@@ -128,21 +135,23 @@ human typing. The sample numeric codes have valid check digits, asserted in the 
   inside a burst; recovery after a rejected scan; Escape; configured prefix keys, prefix and suffix
   handling; hostile, markup, unicode and wrong-check-digit text kept as plain candidate text;
   the exact set of candidate fields.
-- `test/scanner-shell.test.tsx` (32 tests): scans with focus on the page, 12 repeated scans, F2
+- `test/scanner-shell.test.tsx` (42 tests): scans with focus on the page, 12 repeated scans, F2
   inside a scan, recovery after a rejected scan, existing search text preserved on a scan, text left
   alone when the scan happens elsewhere, other text fields never claimed (textarea, input,
   contenteditable), focus moving into another editable control mid-scan, a quick F2 after one key
   and Ctrl chords outside a scan, paste, IME, Tab as terminator, Shift+Tab, a focused button not
   activated by the terminator, leaving and returning to the Sale page, window blur, Escape
-  cancellation, rejection leaving typed text unchanged, and Space handling on a focused button
+  cancellation, rejected scans consuming Enter and Tab and restoring search text (focused button, search field, short bursts, ordinary typing, a burst that began elsewhere, another editable control), and Space handling on a focused button
   (cancelled after scan keys on key down and key up, left alone when pressed alone or long after
   the last key or inside the search field, a leading Space captured with the barcode field or the page focused, and the unsupported
   focused-button case pinned).
-- The existing 8 POS shell tests are unchanged and pass. All 83 tests pass.
+- The existing 8 POS shell tests are unchanged and pass. All 102 tests pass.
 - Mutation checks, each caught by the new tests and reverted: ignoring the suppression flag,
   disabling chord suppression, removing the text restore, claiming other editables, removing the
-  blur and page-leave resets, lowering the burst threshold, ignoring Shift on terminators, and
-  removing the Space cancellation.
+  blur and page-leave resets, lowering the burst threshold, ignoring Shift on terminators,
+  removing the Space cancellation, not consuming a rejected scan's terminator, consuming a short
+  contaminated burst's terminator, not restoring text after a rejected scan, and ignoring where the
+  burst began.
 
 ## Supported capture mode (narrowed)
 
@@ -197,6 +206,32 @@ limitation of timing-based capture. It affects only barcodes whose first charact
 only while a button has focus. Moving focus to the barcode field before scanning is the workflow-level
 remedy and belongs to the later POS sale work.
 
+## Real browser evidence for rejected scans
+
+Real Chrome (Playwright keyboard pipeline, Vite dev server), scans typed at about 0 ms between keys.
+Contaminated is `12`, F4, `34`, then the terminator. Overlength is 130 characters, then the
+terminator. The search field held `tea` before the scan. Page state is the Sale page unless stated.
+
+| Focus          | Scan         | Terminator | Before the fix                      | After the fix                       |
+| -------------- | ------------ | ---------- | ----------------------------------- | ----------------------------------- |
+| History button | contaminated | Enter      | button pressed, page left           | not pressed, status "Scan rejected" |
+| History button | contaminated | Tab        | focus moved to another control      | focus stays on the button           |
+| History button | overlength   | Enter      | button pressed, page left           | not pressed                         |
+| History button | overlength   | Tab        | focus moved                         | focus stays                         |
+| Search field   | contaminated | Enter      | form submitted, field `tea1234`     | no submit, field `tea`              |
+| Search field   | contaminated | Tab        | focus moved, field `tea1234`        | focus stays, field `tea`            |
+| Search field   | overlength   | Enter      | form submitted, 133 characters left | no submit, field `tea`              |
+| Search field   | overlength   | Tab        | focus moved, characters left        | focus stays, field `tea`            |
+
+Controls, unchanged by the fix: a short burst (`12`) then Enter, slow typing then Enter, and a lone
+Enter on the History button still press it; a lone Enter in the search field still submits the form.
+No page errors.
+
+Prefix and suffix rejection cannot be reached in the app, because the shell uses the default
+configuration. They were run in real Chrome against the module only (`ScanCapture` loaded from the
+dev server): `PREFIX_MISMATCH` and `SUFFIX_MISMATCH` returned `preventDefault: true` for both Enter
+and Tab. This is module evidence, not shell evidence.
+
 ## Native WebView2 attempt
 
 A native run was attempted and gave no keyboard evidence.
@@ -245,7 +280,7 @@ WebView2 (a future, separately authorized change) or a person at the keyboard wi
 
 ## Status
 
-Software work for MM-008 is complete and ready for software-checkpoint review: all 83 POS tests
+Software work for MM-008 is complete and ready for software-checkpoint review: all 102 POS tests
 pass, typecheck and `pnpm run ci` pass. The spike is **not** accepted as hardware or native
 acceptance. Outstanding: physical scanner testing, native WebView2 keyboard testing, validation of
 the 50 ms threshold, the unsupported leading-Space-on-a-focused-button mode, and the owner questions on placement and

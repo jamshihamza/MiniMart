@@ -438,3 +438,162 @@ describe("MM-008 review: Space inside a scan with a button focused", () => {
     expect(leading.defaultPrevented).toBe(false);
   });
 });
+
+describe("MM-008 review fix: rejected scans consume their terminator and restore search text", () => {
+  // jsdom runs no default actions. These checks prove the shell cancels the terminator and
+  // restores the field; a real Chrome run (docs/phase-0/mm-008-scanner-spike.md) checks the
+  // button press, form submit and focus move themselves.
+  function typeInto(search: HTMLInputElement, text: string, gapMs: number) {
+    let value = search.value;
+    for (const character of text) {
+      press(search, character, clock);
+      value += character;
+      fireEvent.change(search, { target: { value } });
+      clock += gapMs;
+    }
+  }
+
+  function contaminatedBurst(target: HTMLElement, terminator: string): KeyboardEvent {
+    press(target, "1", clock);
+    press(target, "2", clock + 4);
+    press(target, "F4", clock + 8);
+    press(target, "3", clock + 12);
+    press(target, "4", clock + 16);
+    const event = press(target, terminator, clock + 20);
+    clock += 500;
+    return event;
+  }
+
+  for (const terminator of ["Enter", "Tab"]) {
+    it(`does not let a contaminated scan's ${terminator} act on a focused button`, () => {
+      render(<PosApp />);
+      const button = screen.getByRole("button", { name: "History" });
+      button.focus();
+      const event = contaminatedBurst(button, terminator);
+      expect(status().textContent).toMatch(/^Scan rejected/);
+      expect(event.defaultPrevented).toBe(true);
+      expect(screen.getByRole("heading", { name: "New sale" })).toBeVisible();
+    });
+  }
+
+  it("does not let an overlength scan's Enter act on a focused button", () => {
+    render(<PosApp />);
+    const button = screen.getByRole("button", { name: "History" });
+    button.focus();
+    const enter = scan(button, "9".repeat(129), 3);
+    expect(status().textContent).toMatch(/^Scan rejected: input was too long/);
+    expect(enter.defaultPrevented).toBe(true);
+    expect(screen.getByRole("heading", { name: "New sale" })).toBeVisible();
+  });
+
+  it("consumes the Tab that ends an overlength scan", () => {
+    render(<PosApp />);
+    const button = screen.getByRole("button", { name: "History" });
+    button.focus();
+    for (const character of "9".repeat(129)) {
+      press(button, character, clock);
+      clock += 3;
+    }
+    const tab = press(button, "Tab", clock);
+    clock += 500;
+    expect(status().textContent).toMatch(/^Scan rejected: input was too long/);
+    expect(tab.defaultPrevented).toBe(true);
+  });
+
+  it("restores the search text after a contaminated scan and does not submit the form", () => {
+    render(<PosApp />);
+    const search = screen.getByRole("searchbox", { name: "Scan barcode or search item" });
+    search.focus();
+    fireEvent.change(search, { target: { value: "tea" } });
+    typeInto(search, "12", 4);
+    press(search, "F4", clock);
+    clock += 4;
+    typeInto(search, "34", 4);
+    expect(search).toHaveValue("tea1234");
+    const enter = press(search, "Enter", clock);
+    clock += 500;
+    expect(enter.defaultPrevented).toBe(true);
+    expect(status().textContent).toMatch(/^Scan rejected/);
+    expect(search).toHaveValue("tea");
+  });
+
+  it("restores the search text after an overlength scan", () => {
+    render(<PosApp />);
+    const search = screen.getByRole("searchbox", { name: "Scan barcode or search item" });
+    search.focus();
+    fireEvent.change(search, { target: { value: "tea" } });
+    typeInto(search, "9".repeat(129), 3);
+    const enter = press(search, "Enter", clock);
+    clock += 500;
+    expect(enter.defaultPrevented).toBe(true);
+    expect(search).toHaveValue("tea");
+    expect(status().textContent).toMatch(/^Scan rejected: input was too long/);
+  });
+
+  it("does not restore or consume for a short burst typed into the search field", () => {
+    render(<PosApp />);
+    const search = screen.getByRole("searchbox", { name: "Scan barcode or search item" });
+    search.focus();
+    fireEvent.change(search, { target: { value: "tea" } });
+    typeInto(search, "12", 4);
+    press(search, "F4", clock);
+    clock += 4;
+    const enter = press(search, "Enter", clock);
+    clock += 500;
+    expect(enter.defaultPrevented).toBe(false);
+    expect(search).toHaveValue("tea12");
+  });
+
+  it("leaves ordinary typing and its Enter alone in the search field and on a button", () => {
+    render(<PosApp />);
+    const search = screen.getByRole("searchbox", { name: "Scan barcode or search item" });
+    search.focus();
+    typeInto(search, "milk123", 160);
+    const enter = press(search, "Enter", clock);
+    clock += 500;
+    expect(enter.defaultPrevented).toBe(false);
+    expect(search).toHaveValue("milk123");
+    const button = screen.getByRole("button", { name: "History" });
+    button.focus();
+    press(button, "a", clock);
+    press(button, "b", clock + 4);
+    const shortEnter = press(button, "Enter", clock + 8);
+    clock += 500;
+    expect(shortEnter.defaultPrevented).toBe(false);
+  });
+
+  it("does not restore search text when the rejected burst began outside the field", () => {
+    render(<PosApp />);
+    const search = screen.getByRole("searchbox", { name: "Scan barcode or search item" });
+    fireEvent.change(search, { target: { value: "tea" } });
+    press(document.body, "1", clock);
+    press(document.body, "2", clock + 4);
+    press(document.body, "F4", clock + 8);
+    // Focus reaches the search field mid-burst; the field was not where the burst began.
+    search.focus();
+    fireEvent.change(search, { target: { value: "tea34" } });
+    press(search, "3", clock + 12);
+    press(search, "4", clock + 16);
+    const enter = press(search, "Enter", clock + 20);
+    clock += 500;
+    expect(enter.defaultPrevented).toBe(true);
+    expect(status().textContent).toMatch(/^Scan rejected/);
+    expect(search).toHaveValue("tea34");
+  });
+
+  it("never claims or restores another editable control during a rejected scan", () => {
+    render(
+      <>
+        <PosApp />
+        <textarea aria-label="Scratch pad" />
+      </>,
+    );
+    const notes = screen.getByRole("textbox", { name: "Scratch pad" });
+    notes.focus();
+    fireEvent.change(notes, { target: { value: "memo" } });
+    const enter = contaminatedBurst(notes, "Enter");
+    expect(enter.defaultPrevented).toBe(false);
+    expect(notes).toHaveValue("memo");
+    expect(status().textContent).not.toMatch(/^Scan rejected/);
+  });
+});

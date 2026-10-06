@@ -436,3 +436,75 @@ describe("ScanCapture keeps scans untrusted (no validity or identity inferred)",
     expect(macro.scans.map((s) => s.trust)).toEqual(["UNTRUSTED_KEYBOARD_TEXT"]);
   });
 });
+
+describe("ScanCapture rejected scans consume their terminator when confidently classified", () => {
+  const consumed = { suppressShortcuts: true, preventDefault: true };
+  const passed = { suppressShortcuts: false, preventDefault: false };
+
+  for (const terminator of ["Enter", "Tab"]) {
+    it(`consumes ${terminator} after a contaminated scan of at least the minimum length`, () => {
+      const events = [
+        ...scanKeys("12345678", { startAt: 0, gapMs: 4 }).slice(0, 4),
+        key("F4", 20),
+        ...scanKeys("5678", { startAt: 24, gapMs: 4, terminator }),
+      ];
+      const last = feed(new ScanCapture(), events).results.at(-1);
+      expect(last).toMatchObject(consumed);
+      expect(last?.rejection?.reason).toBe("CONTAMINATED");
+    });
+
+    it(`consumes ${terminator} after an overlength scan`, () => {
+      const capture = configured({ maxLength: 10 });
+      const last = feed(
+        capture,
+        scanKeys("12345678901", { startAt: 0, gapMs: 4, terminator }),
+      ).results.at(-1);
+      expect(last).toMatchObject(consumed);
+      expect(last?.rejection?.reason).toBe("TOO_LONG");
+    });
+
+    it(`consumes ${terminator} after a prefix or suffix mismatch`, () => {
+      const noPrefix = feed(
+        configured({ prefix: "]E0" }),
+        scanKeys("5901234123457", { startAt: 0, gapMs: 5, terminator }),
+      ).results.at(-1);
+      expect(noPrefix).toMatchObject(consumed);
+      expect(noPrefix?.rejection?.reason).toBe("PREFIX_MISMATCH");
+      const noSuffix = feed(
+        configured({ suffix: "~" }),
+        scanKeys("5901234123457", { startAt: 0, gapMs: 5, terminator }),
+      ).results.at(-1);
+      expect(noSuffix).toMatchObject(consumed);
+      expect(noSuffix?.rejection?.reason).toBe("SUFFIX_MISMATCH");
+    });
+  }
+
+  it("keeps the terminator of a contaminated burst shorter than the minimum", () => {
+    // Reported, but possibly ordinary typing, so Enter keeps its normal meaning.
+    const events = [key("1", 0), key("2", 4), key("F4", 8), key("Enter", 12)];
+    const last = feed(new ScanCapture(), events).results.at(-1);
+    expect(last).toMatchObject(passed);
+    expect(last?.rejection?.reason).toBe("CONTAMINATED");
+  });
+
+  it("leaves Enter and Tab alone for ordinary typing, short bursts and lone terminators", () => {
+    for (const terminator of ["Enter", "Tab"]) {
+      const slow = feed(new ScanCapture(), [
+        ...typedKeys("12345678", 0),
+        key(terminator, 8 * 140 + 400),
+      ]);
+      expect(slow.results.at(-1)).toMatchObject(passed);
+      const short = feed(new ScanCapture(), scanKeys("123", { startAt: 0, gapMs: 4, terminator }));
+      expect(short.results.at(-1)).toMatchObject(passed);
+      expect(short.results.at(-1)?.rejection).toBeUndefined();
+      expect(feed(new ScanCapture(), [key(terminator, 0)]).results[0]).toMatchObject(passed);
+    }
+  });
+
+  it("still accepts the next valid scan after a consumed rejection", () => {
+    const capture = configured({ maxLength: 10 });
+    feed(capture, scanKeys("12345678901", { startAt: 0, gapMs: 4 }));
+    const next = feed(capture, scanKeys("96385074", { startAt: 500, gapMs: 4 }));
+    expect(next.scans.map((s) => s.value)).toEqual(["96385074"]);
+  });
+});

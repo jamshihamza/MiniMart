@@ -125,7 +125,8 @@ export function PosApp() {
   const searchRef = useRef<HTMLInputElement>(null);
   const scannerRef = useRef<ScanCapture | null>(null);
   const suppressedShortcutRef = useRef(new WeakSet<KeyboardEvent>());
-  const textBeforeScanRef = useRef("");
+  // Search text from before the current burst, or null when the burst began outside the field.
+  const textBeforeScanRef = useRef<string | null>(null);
   const spaceGuardRef = useRef(false);
   const [scanCount, setScanCount] = useState(0);
 
@@ -178,14 +179,10 @@ export function PosApp() {
         event.preventDefault();
         spaceGuardRef.current = true;
       }
-      if (
-        inSearch &&
-        event.key.length === 1 &&
-        scanner.bufferedLength(event.timeStamp) === 0 &&
-        searchRef.current !== null
-      ) {
-        // Remember the text that was in the field before this possible scan began.
-        textBeforeScanRef.current = searchRef.current.value;
+      if (event.key.length === 1 && scanner.bufferedLength(event.timeStamp) === 0) {
+        // A possible scan begins here. Remember the field text only when it begins in the field.
+        textBeforeScanRef.current =
+          inSearch && searchRef.current !== null ? searchRef.current.value : null;
       }
       const result = scanner.handleKey({
         key: event.key,
@@ -199,10 +196,15 @@ export function PosApp() {
       });
       if (result.suppressShortcuts) suppressed.add(event);
       if (result.preventDefault) event.preventDefault();
+      // Scanner characters reached the field before the scan was classified; put back what the
+      // person had typed, for valid and for confidently rejected scans. A burst that began
+      // elsewhere, and text in other controls, are never touched.
+      const classified =
+        result.scan !== undefined || (result.rejection !== undefined && result.preventDefault);
+      if (classified && inSearch && textBeforeScanRef.current !== null) {
+        setQuery(textBeforeScanRef.current);
+      }
       if (result.scan !== undefined) {
-        // Scanner characters reached the field before the scan was recognized; put back what
-        // the person had typed. Text elsewhere is never touched.
-        if (inSearch) setQuery(textBeforeScanRef.current);
         setScanCount((count) => count + 1);
         setMessage(
           `Scan captured (${String(result.scan.length)} characters, untrusted keyboard text). Item lookup is unavailable in this shell preview. Nothing was added to a sale.`,

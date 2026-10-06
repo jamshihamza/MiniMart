@@ -12,8 +12,10 @@ Task: MM-008 barcode scanner keyboard-wedge spike (Phase 0). INCOMPLETE software
   checkpoint candidate for owner review. MM-008 acceptance is NOT complete: native WebView2
   and physical-scanner acceptance are pending.
 Started From Commit: 1eb8e82e45c99bbac4cb01dd70ef6c57b71e8f67
-Updated At HEAD: 6c48825 (incomplete software checkpoint, parent 1eb8e82 = origin/main at
-  the last check, 2026-10-05). The commit holding this update follows 6c48825.
+Updated At HEAD: this record describes the review-fix checkpoint that follows fe20614 on
+  wip/mm-008-scanner-spike (earlier checkpoint 6c48825, parent 1eb8e82 = origin/main at
+  the last check, 2026-10-06). Read the branch tip with git log; the tip commit is the
+  review fix.
 Current Branch: wip/mm-008-scanner-spike (isolated MM-008 worktree, a sibling of the
   original checkout), pushed to origin/wip/mm-008-scanner-spike
 Active Agent / Machine: Claude Code, Office PC (informational, not a lock)
@@ -24,8 +26,12 @@ Goal: Capture repeated keyboard-wedge scans in the POS shell without triggering 
 
 Completed: scanner-input capture module; shell integration (capture-phase listener, F2
   suppression, text restore, other-editable isolation, blur and page-leave resets, Space
-  cancellation after scan keys); fixtures; 75 new tests; spike document. Committed
-  and pushed to the wip branch only (owner-authorized); main was not updated.
+  cancellation after scan keys); fixtures; 94 new tests; spike document. Checkpoints 6c48825 and fe20614 and the review fix
+  were committed and pushed to the wip branch only (owner-authorized); main was not updated.
+  Review fix: a confidently rejected scan (contaminated, overlength, prefix or
+  suffix mismatch, at least the minimum length) now consumes its Enter or Tab, and restores
+  the search text only when the burst began in that field. Short bursts, ordinary typing and
+  lone Enter or Tab are untouched.
 
 Pending: owner software-checkpoint review; physical scanner acceptance; native WebView2
   keyboard acceptance; validation of the 50 ms threshold (provisional); browser F-key
@@ -41,23 +47,27 @@ Files Intentionally Changed (exactly seven paths):
   A docs/phase-0/mm-008-scanner-spike.md
   M docs/project-status/ACTIVE-WORK.md (this record)
 
-Git Snapshot (2026-10-05, isolated MM-008 worktree):
-  Branch wip/mm-008-scanner-spike: checkpoint commit 6c48825 (seven paths, +1705/-5)
-  on parent 1eb8e82, plus a follow-up commit that touches only this file. origin/main is
-  still 1eb8e82. Worktree clean after the commits. Frozen docs/specifications and docs/backlog diff: 0.
+Git Snapshot (2026-10-06, isolated MM-008 worktree):
+  Branch wip/mm-008-scanner-spike: 6c48825 (checkpoint), fe20614 (handoff), then the review
+  fix commit (six paths: App.tsx, scanner-input.ts, scanner-input.test.ts,
+  scanner-shell.test.tsx, the spike document and this file). origin/main is 1eb8e82 and was
+  not updated. Frozen docs/specifications and docs/backlog diff: 0.
   Build output (target/, dist/, node_modules/) is ignored and not part of the change.
   Original checkout: HEAD 1eb8e82, 27 protected staged entries (digest of
   path<TAB>index-blob<LF> = c7ac91711283565abda6ba071962cc8dadcc5025e123ecd9984a4a8dc7c11b64),
   tracked diff 0, 12 untracked archives. Not touched by this task.
-  No native app or dev server is running (the Tauri dev app and Vite were stopped).
+  No native app or dev server is running.
 
 Validation Already Run (do not repeat unless code changes):
-  - pos tests 83/83 (8 existing unchanged + 43 module + 32 shell).
+  - pos tests 102/102 (8 existing unchanged + 52 module + 42 shell), including the review-fix
+    regression tests and the unsupported-context (leading Space on a button) regression.
   - tsc typecheck; pnpm run ci exit 0; git diff --check clean; frozen diff 0.
   - Mutation checks, each caught by the new tests and reverted: ignoring the suppression
     flag, disabling chord suppression, removing the text restore, claiming other
     editables, removing the blur and page-leave resets, lowering the burst threshold,
-    ignoring Shift on terminators, removing the Space cancellation.
+    ignoring Shift on terminators, removing the Space cancellation, not consuming a
+    rejected scan's terminator, consuming a short contaminated burst's terminator, not
+    restoring text after a rejected scan, and ignoring where the burst began.
   - Real Chrome (Playwright, browser input pipeline, Vite dev server): a Space inside or
     at the end of a scan does not press a focused button (keydown and keyup cancelled);
     control cases prove a press is detectable (plain page presses on Space anywhere;
@@ -65,8 +75,14 @@ Validation Already Run (do not repeat unless code changes):
   - Real Chrome per focus context (barcode field, page, History button) with Space first,
     inside, last and absent: captured and nothing activated in the field and page contexts;
     on the button only the leading-Space case presses it.
-  - Note: App.tsx contains a Space guard (spaceGuardRef, keyup handler) that is part of
-    the working tree and covered by tests and the real-Chrome check.
+  - Real Chrome for rejected scans (contaminated and overlength, Enter and Tab, History
+    button and search field): before the fix Enter pressed the button or submitted the form,
+    Tab moved focus and the rejected characters stayed in the field; after the fix none of
+    that happens and the field text is restored. Controls (short burst, slow typing, lone
+    Enter) still behave normally. Prefix and suffix rejection were run against the module
+    in Chrome only; the app has no way to configure them.
+  - Note: App.tsx contains a Space guard (spaceGuardRef, keyup handler). It is covered by
+    tests and the real-Chrome check.
 
 SUPPORTED CAPTURE MODE (narrowed, proposed for owner review, not accepted): a scan is
   supported when the barcode field has focus or focus is on a target with no default action for
@@ -105,8 +121,9 @@ Approval-Gated Questions (owner; nothing here is decided):
       A DRAFT ADR with exact citations and the proposed boundary (DOM wedge capture is
       interaction handling; native scanner and device integration stays behind Tauri/Rust
       ports; absence of a scanner command is not proof native handling is unnecessary)
-      is in scratch, outside the repository: D:\mm-scratch\DRAFT-ADR-scanner-input-boundary.md
-      (the earlier session-temp copy is superseded). It stays DRAFT. Its shared
+      is in a scratch folder outside the repository (the owner has the path; it is not
+      recorded here). It stays DRAFT and states that this DOM spike does not satisfy
+      Architecture 33 Spike B. Its shared
       ScanCandidate interface and any native scanner command or event stream are proposals,
       not approved contracts. No standing until the controlled ADR/change-request process.
   (2) Phase-0 sequencing is unchanged: MM-009, MM-010, MM-011 and the gates in

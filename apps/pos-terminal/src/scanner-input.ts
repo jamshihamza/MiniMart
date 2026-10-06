@@ -16,7 +16,9 @@
  *   suppressed and the burst is rejected, so scanner data cannot fire a shortcut or be partly
  *   delivered. A single fast key never suppresses anything.
  * - Key repeat, IME composition and modifier-only keys never start or complete a scan.
- * - A rejected burst resets the capture; the next valid scan works.
+ * - A rejected burst resets the capture; the next valid scan works. When the rejected burst was at
+ *   least `minLength` keys long, its terminator is consumed like a valid scan's, so it cannot
+ *   submit a form, press a button or move focus.
  * - Repeated identical scans are separate input events. Idempotency is not this module's job.
  *
  * The default timings are provisional spike values. They have not been validated against a
@@ -116,8 +118,13 @@ function isFunctionKey(key: string): boolean {
   return /^F(?:[1-9]|1\d|2[0-4])$/.test(key);
 }
 
-function rejected(reason: ScanRejectionReason, length: number): ScanKeyResult {
-  return { suppressShortcuts: false, preventDefault: false, rejection: { reason, length } };
+/**
+ * A rejected scan consumes its terminator only when it was confidently a scan (a burst of at least
+ * `minLength` keys). A shorter contaminated burst is still reported, but its terminator keeps its
+ * normal meaning because it may have been ordinary typing.
+ */
+function rejected(reason: ScanRejectionReason, length: number, consume: boolean): ScanKeyResult {
+  return { suppressShortcuts: consume, preventDefault: consume, rejection: { reason, length } };
 }
 
 export class ScanCapture {
@@ -218,21 +225,22 @@ export class ScanCapture {
     const startedAt = this.startedAt;
     this.reset();
     if (!burst) return PASS;
-    if (contaminated) return rejected("CONTAMINATED", raw.length);
+    const confident = raw.length >= this.config.minLength;
+    if (contaminated) return rejected("CONTAMINATED", raw.length, confident);
     // Input shorter than a scan is ordinary typing, not a failed scan.
-    if (raw.length < this.config.minLength) return PASS;
+    if (!confident) return PASS;
 
     const { prefix, suffix, maxLength } = this.config;
     let value = raw;
     if (prefix !== "") {
-      if (!value.startsWith(prefix)) return rejected("PREFIX_MISMATCH", raw.length);
+      if (!value.startsWith(prefix)) return rejected("PREFIX_MISMATCH", raw.length, true);
       value = value.slice(prefix.length);
     }
     if (suffix !== "") {
-      if (!value.endsWith(suffix)) return rejected("SUFFIX_MISMATCH", raw.length);
+      if (!value.endsWith(suffix)) return rejected("SUFFIX_MISMATCH", raw.length, true);
       value = value.slice(0, value.length - suffix.length);
     }
-    if (value.length > maxLength) return rejected("TOO_LONG", value.length);
+    if (value.length > maxLength) return rejected("TOO_LONG", value.length, true);
     if (value === "") return PASS;
     const scan: ScanCandidate = {
       value,
