@@ -12,6 +12,7 @@
     "tauri": "tauri"
   },
   "dependencies": {
+    "@minimart/backoffice": "workspace:*",
     "@tauri-apps/api": "catalog:",
     "lucide-react": "catalog:",
     "react": "^19.1.0",

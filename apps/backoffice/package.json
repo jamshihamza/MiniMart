@@ -3,10 +3,22 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
+  "exports": {
+    "./workspace": {
+      "types": "./dist/workspace.d.ts",
+      "default": "./src/workspace.tsx"
+    }
+  },
   "scripts": {
     "build": "tsc -b",
     "clean": "tsc -b --clean",
     "typecheck": "tsc -b --pretty false"
+  },
+  "dependencies": {
+    "react": "^19.1.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.0"
   },
   "minimart": {
     "layer": "ui",

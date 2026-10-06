@@ -7,7 +7,7 @@ import {
   interpretStoreNodeStatus,
   type StoreNodeStatus,
 } from "./connectivity.js";
-import { useFlow } from "./flow.js";
+import { useFlow, type FlowState } from "./flow.js";
 import { HistoryPage } from "./pages/HistoryPage.js";
 import { ReturnsPage } from "./pages/ReturnsPage.js";
 import { ShiftPage } from "./pages/ShiftPage.js";
@@ -52,11 +52,26 @@ function describeScanRejection(rejection: ScanRejection): string {
   return `Scan rejected: input ${reasons[rejection.reason]} (${String(rejection.length)} characters). Scan again or search manually. Nothing was added to a sale.`;
 }
 
-export function PosApp() {
+/**
+ * Fictional preview state a host may keep across unmounting this workspace (preview only). It holds
+ * the visual flow and the search text. Scanner capture, status messages and the scan count are
+ * never part of it.
+ */
+export interface PosPreviewMemory {
+  readonly flow: FlowState;
+  readonly query: string;
+}
+
+export interface PosAppProps {
+  readonly restore?: PosPreviewMemory | null;
+  readonly onMemoryChange?: (memory: PosPreviewMemory) => void;
+}
+
+export function PosApp({ restore = null, onMemoryChange }: PosAppProps = {}) {
   const [preview] = useState(() => readPreview(window.location.search));
-  const [flow, flowActions] = useFlow(preview);
+  const [flow, flowActions] = useFlow(preview, restore?.flow);
   const page = flow.page;
-  const [query, setQuery] = useState(preview.query);
+  const [query, setQuery] = useState(restore?.query ?? preview.query);
   // One status region for the whole shell: scanner results and "not implemented" notices.
   const [message, setMessage] = useState("");
   const [storeNodeStatus, setStoreNodeStatus] = useState<StoreNodeStatus>("checking");
@@ -67,6 +82,10 @@ export function PosApp() {
   const textBeforeScanRef = useRef<string | null>(null);
   const spaceGuardRef = useRef(false);
   const [scanCount, setScanCount] = useState(0);
+
+  useEffect(() => {
+    onMemoryChange?.({ flow, query });
+  }, [flow, query, onMemoryChange]);
 
   useEffect(() => {
     let active = true;

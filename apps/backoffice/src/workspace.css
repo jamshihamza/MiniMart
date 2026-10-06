@@ -1,0 +1,54 @@
+/* Back Office placeholder styles. Every rule is scoped to .bo-workspace so it cannot change POS. */
+.bo-workspace {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+  background: #ffffff;
+  color: #1f2937;
+  font-family: "IBM Plex Sans", system-ui, sans-serif;
+  font-size: 14px;
+}
+.bo-workspace__nav {
+  display: flex;
+  flex: 0 0 220px;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+  border-right: 1px solid #d0d5dd;
+  background: #f2f4f7;
+}
+.bo-workspace__brand {
+  margin: 0 0 8px;
+  font-weight: 600;
+}
+.bo-workspace__link {
+  padding: 8px 10px;
+  border-radius: 6px;
+  color: inherit;
+  text-decoration: none;
+}
+.bo-workspace__link[aria-current="page"] {
+  background: #e4e7ec;
+  font-weight: 600;
+}
+.bo-workspace__main {
+  flex: 1;
+  padding: 24px;
+}
+.bo-workspace__main h1 {
+  margin: 8px 0 12px;
+  font-size: 22px;
+}
+.bo-workspace__tag {
+  display: inline-block;
+  margin: 0;
+  padding: 2px 8px;
+  border: 1px dashed #667085;
+  border-radius: 999px;
+  color: #475467;
+  font-size: 12px;
+}
+.bo-workspace__route,
+.bo-workspace__note {
+  color: #475467;
+}

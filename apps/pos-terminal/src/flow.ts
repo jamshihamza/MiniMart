@@ -63,8 +63,15 @@ export function flowStateOf(state: ScreenState): FlowState {
 
 const EMPTY: CartState = "empty";
 
-export function useFlow(initial: ScreenState): readonly [FlowState, FlowActions] {
-  const [state, setState] = useState<FlowState>(() => flowStateOf(initial));
+/**
+ * `restored` lets a host that remounts the POS workspace hand back the fictional state it showed
+ * before (preview behavior only). Without it the state starts from the preview URL as before.
+ */
+export function useFlow(
+  initial: ScreenState,
+  restored?: FlowState,
+): readonly [FlowState, FlowActions] {
+  const [state, setState] = useState<FlowState>(() => restored ?? flowStateOf(initial));
 
   const patch = useCallback((change: Partial<FlowState>) => {
     setState((current) => ({ ...current, ...change }));
