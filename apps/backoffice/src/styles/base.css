@@ -1,0 +1,54 @@
+/*
+ * Base rules matching the approved reference. The reference sets no global box-sizing reset, so none
+ * is applied here: layout widths such as the 190px sidebar plus padding depend on that.
+ */
+html,
+body {
+  margin: 0;
+  height: 100%;
+  background: var(--mm-canvas);
+}
+
+#root {
+  height: 100%;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  color: inherit;
+}
+
+*:focus-visible {
+  outline: 2px solid var(--mm-blue);
+  outline-offset: 2px;
+}
+
+a {
+  color: var(--mm-blue);
+}
+
+a:hover {
+  color: var(--mm-blue-hover);
+}
+
+table {
+  border-collapse: collapse;
+}
+
+.mm-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.mm-icon {
+  display: inline-block;
+  flex: none;
+  vertical-align: middle;
+}

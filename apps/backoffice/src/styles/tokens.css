@@ -1,0 +1,53 @@
+/*
+ * Visual tokens taken from the approved Reporting reference
+ * (docs/design/reports/source/MiniMartReports.dc.html). Values are copied, not redesigned.
+ */
+:root {
+  --mm-ink: #0f1a2b;
+  --mm-muted: #5b6576;
+  --mm-muted-2: #4a5567;
+  --mm-line: #e1e5eb;
+  --mm-line-2: #eef1f5;
+  --mm-line-strong: #cfd5de;
+  --mm-blue: #1b5fd1;
+  --mm-blue-hover: #174fb0;
+  --mm-canvas: #f2f4f7;
+  --mm-navy: #0e1b33;
+  --mm-nav-text: #c3cbd9;
+  --mm-nav-muted: #8c98ad;
+  --mm-danger: #b3261e;
+  --mm-font-sans: "IBM Plex Sans", system-ui, sans-serif;
+  --mm-font-mono: "IBM Plex Mono", monospace;
+}
+
+/* Tone sets: background, foreground, border. Used by tags, markers and note boxes. */
+.mm-tone-amber {
+  --tone-bg: #fdf3e1;
+  --tone-fg: #6b4000;
+  --tone-bd: #f0d4a0;
+}
+.mm-tone-blue {
+  --tone-bg: #e8f0fc;
+  --tone-fg: #174fb0;
+  --tone-bd: #b9cff2;
+}
+.mm-tone-red {
+  --tone-bg: #fcebea;
+  --tone-fg: #8a1f14;
+  --tone-bd: #f2b8b0;
+}
+.mm-tone-green {
+  --tone-bg: #e5f4ec;
+  --tone-fg: #0f3d24;
+  --tone-bd: #bfe2cd;
+}
+.mm-tone-gray {
+  --tone-bg: #eef1f5;
+  --tone-fg: #3d4a5e;
+  --tone-bd: #cfd5de;
+}
+.mm-tone-violet {
+  --tone-bg: #efeaff;
+  --tone-fg: #3f2a99;
+  --tone-bd: #cbbdf5;
+}

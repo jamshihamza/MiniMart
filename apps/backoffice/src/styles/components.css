@@ -1,0 +1,634 @@
+/* Design primitives. Every value is copied from the approved Reporting reference. */
+
+.mm-page {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ---------- card ---------- */
+.mm-card {
+  background: #fff;
+  border: 1px solid var(--mm-line);
+  border-radius: 11px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* ---------- tag and marker ---------- */
+.mm-tag {
+  height: 22px;
+  padding: 0 9px;
+  border-radius: 999px;
+  background: var(--tone-bg);
+  color: var(--tone-fg);
+  border: 1px solid var(--tone-bd);
+  font-size: 11px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.mm-mono {
+  font-family: var(--mm-font-mono);
+  font-size: 11.5px;
+  color: var(--mm-muted-2);
+}
+
+.mm-chips {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.mm-chip {
+  font-family: var(--mm-font-mono);
+  font-size: 11px;
+  color: var(--mm-muted-2);
+  background: #fff;
+  border: 1px solid var(--mm-line);
+  border-radius: 6px;
+  padding: 2px 6px;
+}
+
+/* ---------- button ---------- */
+.mm-btn {
+  height: 34px;
+  padding: 0 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  white-space: nowrap;
+}
+
+.mm-btn--primary {
+  background: var(--mm-blue);
+  color: #fff;
+  border: 0;
+}
+
+.mm-btn--secondary {
+  background: #fff;
+  color: var(--mm-ink);
+  border: 1px solid var(--mm-line-strong);
+}
+
+.mm-btn--ghost {
+  background: transparent;
+  color: var(--mm-blue);
+  border: 0;
+}
+
+.mm-btn--danger {
+  background: #fff;
+  color: var(--mm-danger);
+  border: 1px solid #f2b8b0;
+}
+
+/* A link drawn as a button keeps the button colors on hover. */
+a.mm-btn--primary,
+a.mm-btn--primary:hover {
+  color: #fff;
+}
+
+a.mm-btn--secondary,
+a.mm-btn--secondary:hover {
+  color: var(--mm-ink);
+}
+
+.mm-btn--lg {
+  height: 40px;
+  padding: 0 16px;
+  font-size: 14px;
+}
+
+.mm-btn[disabled] {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+/*
+ * A control with no implemented behavior. It keeps the reference look and adds a dashed outline,
+ * so it is visibly different. Activating it announces that it is not implemented.
+ */
+.mm-btn--stub {
+  outline: 1.5px dashed rgba(15, 26, 43, 0.55);
+  outline-offset: 2px;
+}
+
+.mm-btn--primary.mm-btn--stub {
+  outline-color: rgba(27, 95, 209, 0.7);
+}
+
+/* ---------- note box ---------- */
+.mm-note {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  padding: 10px 12px;
+  border-radius: 9px;
+  background: var(--tone-bg);
+  border: 1px solid var(--tone-bd);
+  color: var(--tone-fg);
+  font-size: 12px;
+}
+
+.mm-note .mm-icon {
+  margin-top: 1px;
+}
+
+/* ---------- design annotation and ribbon ---------- */
+.mm-annot {
+  border: 1.5px dashed #9aa3b2;
+  border-radius: 10px;
+  background: #fafbfc;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mm-annot__head {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.mm-annot__label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--mm-muted);
+}
+
+.mm-annot__title {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--mm-ink);
+}
+
+.mm-ribbon {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 12px;
+  border-radius: 8px;
+  background: var(--tone-bg);
+  border: 1px solid var(--tone-bd);
+  color: var(--tone-fg);
+  font-size: 12px;
+}
+
+.mm-ribbon strong {
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+/* ---------- page header ---------- */
+.mm-pagehead {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mm-crumbs {
+  font-size: 12px;
+  color: var(--mm-muted);
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.mm-crumbs__current {
+  color: var(--mm-ink);
+  font-weight: 600;
+}
+
+.mm-pagehead__row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.mm-pagehead__main {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+  min-width: 320px;
+}
+
+.mm-pagehead__title {
+  margin: 0;
+  font-size: 21px;
+  font-weight: 700;
+}
+
+.mm-pagehead__sub {
+  font-size: 12.5px;
+  color: var(--mm-muted-2);
+}
+
+.mm-pagehead__actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* ---------- table ---------- */
+.mm-tablewrap {
+  background: #fff;
+  border: 1px solid var(--mm-line);
+  border-radius: 11px;
+  overflow: hidden;
+}
+
+.mm-table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+.mm-table th {
+  text-align: left;
+  padding: 8px 12px;
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--mm-muted);
+  background: #f7f9fb;
+  border-bottom: 1px solid var(--mm-line);
+  white-space: normal;
+}
+
+.mm-table td {
+  text-align: left;
+  padding: 9px 12px;
+  font-size: 12.5px;
+  border-top: 1px solid var(--mm-line-2);
+  vertical-align: top;
+  font-weight: 400;
+  color: var(--mm-ink);
+  overflow-wrap: anywhere;
+}
+
+.mm-table th.is-num,
+.mm-table td.is-num {
+  text-align: right;
+}
+
+.mm-table td.is-bold {
+  font-weight: 600;
+}
+
+.mm-table tfoot td {
+  font-weight: 700;
+  background: #f7f9fb;
+  border-top: 1px solid var(--mm-line-strong);
+}
+
+/* ---------- filter bar and fields ---------- */
+.mm-filterbar {
+  background: #fff;
+  border: 1px solid var(--mm-line);
+  border-radius: 11px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mm-filterbar__row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: flex-end;
+}
+
+.mm-filterbar__buttons {
+  display: flex;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.mm-filterbar__hint {
+  font-size: 11.5px;
+  color: var(--mm-muted);
+}
+
+.mm-filterbar__error {
+  color: var(--mm-danger);
+  font-size: 12px;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.mm-field {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.mm-field__label {
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--mm-muted);
+}
+
+.mm-field__select {
+  height: 32px;
+  min-width: 118px;
+  border-radius: 7px;
+  border: 1px solid var(--mm-line-strong);
+  background: #fff;
+  padding: 0 8px;
+  font-size: 12.5px;
+}
+
+.mm-field__select[aria-invalid="true"] {
+  border-color: var(--mm-danger);
+}
+
+/* ---------- report context strip, definitions, pager ---------- */
+.mm-ctx {
+  display: flex;
+  gap: 22px;
+  flex-wrap: wrap;
+  font-size: 12px;
+}
+
+.mm-ctx__item {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.mm-ctx__label {
+  color: var(--mm-muted);
+  font-size: 10.5px;
+  font-weight: 600;
+}
+
+.mm-ctx__value {
+  font-weight: 600;
+}
+
+.mm-defs {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.mm-defs__term {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  font-size: 12px;
+}
+
+.mm-hint {
+  font-size: 11.5px;
+  color: var(--mm-muted);
+}
+
+.mm-pager {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  color: var(--mm-muted-2);
+  flex-wrap: wrap;
+}
+
+.mm-pager__buttons {
+  margin-left: auto;
+  display: inline-flex;
+  gap: 6px;
+}
+
+.mm-notes {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.mm-notes__row {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  font-size: 12.5px;
+}
+
+/* ---------- skeleton and state card ---------- */
+.mm-skeleton {
+  background: #fff;
+  border: 1px solid var(--mm-line);
+  border-radius: 11px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mm-skeleton__label {
+  font-size: 12.5px;
+  color: var(--mm-muted-2);
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.mm-skeleton__bar {
+  height: 16px;
+  border-radius: 6px;
+  background: var(--mm-line-2);
+}
+
+.mm-state {
+  background: #fff;
+  border: 1px solid var(--mm-line);
+  border-radius: 11px;
+  padding: 22px;
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.mm-state__icon {
+  width: 42px;
+  height: 42px;
+  flex: none;
+  border-radius: 10px;
+  background: var(--tone-bg);
+  color: var(--tone-fg);
+  display: grid;
+  place-items: center;
+}
+
+.mm-state__body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.mm-state__title {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.mm-state__text {
+  font-size: 13px;
+  color: var(--mm-muted-2);
+}
+
+.mm-state__actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.mm-state__ref {
+  font-size: 12px;
+  color: var(--mm-muted-2);
+}
+
+/* ---------- reports home ---------- */
+.mm-search {
+  display: flex;
+  gap: 10px;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  background: #fff;
+  border: 1px solid var(--mm-line);
+  border-radius: 11px;
+  padding: 12px 14px;
+}
+
+.mm-search__q {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  flex: 1;
+  min-width: 260px;
+}
+
+.mm-search__input {
+  height: 32px;
+  border-radius: 7px;
+  border: 1px solid var(--mm-line-strong);
+  padding: 0 10px;
+  font-size: 12.5px;
+}
+
+.mm-search__family {
+  min-width: 180px;
+}
+
+.mm-countline {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12.5px;
+  color: var(--mm-muted-2);
+  flex-wrap: wrap;
+}
+
+.mm-countline__hint {
+  font-size: 11.5px;
+}
+
+.mm-catalog {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+  gap: 12px;
+}
+
+.mm-fam {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mm-fam__head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mm-fam__title {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  flex: 1;
+}
+
+.mm-fam__list {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.mm-fam__list li {
+  list-style: none;
+}
+
+.mm-entry {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 38px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+  font-size: 13px;
+  color: var(--mm-ink);
+  text-decoration: none;
+}
+
+.mm-entry:hover {
+  color: var(--mm-ink);
+}
+
+.mm-entry.is-hit {
+  background: #fff8e1;
+}
+
+.mm-entry__name {
+  flex: 1;
+  font-weight: 500;
+}
+
+.mm-entry.is-hit .mm-entry__name {
+  font-weight: 700;
+}
+
+.mm-entry__chevron {
+  color: #9aa3b2;
+}
+
+.mm-entry--stub {
+  cursor: default;
+}
+
+.mm-entry--stub .mm-entry__chevron {
+  opacity: 0.6;
+}
