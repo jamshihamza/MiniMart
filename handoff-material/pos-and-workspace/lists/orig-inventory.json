@@ -1,0 +1,357 @@
+[
+ {
+  "path": ".design-package-index.json",
+  "state": "staged",
+  "bytes": 2673,
+  "sha256": "dc1a8865cac9a78c3e446fb8f4732111f250c7d8eb543acd18b95f92aaaac1b6",
+  "blob": "fecb8d96581406aa9a33a309f5f3c1d6230d8721",
+  "same_as_tracked": [],
+  "identical_to_other_pending": []
+ },
+ {
+  "path": "Incoming/MiniMart_Customers_Credit_ClaudeDesign_Source_v2-fixed.zip",
+  "state": "staged",
+  "bytes": 56354,
+  "sha256": "9210f0a414adbb7832dc79963180435eb28717fa8cb2f83523dab100a391670c",
+  "blob": "92af8386523ca3533c429da3801fcc4d286a6f86",
+  "same_as_tracked": [],
+  "identical_to_other_pending": []
+ },
+ {
+  "path": "Incoming/MiniMart_Customers_Credit_ClaudeDesign_Source_v2.zip",
+  "state": "staged",
+  "bytes": 57062,
+  "sha256": "c2619cd63e3daa0eb16967ab8e952627972da134fd8844f24a56720f6d7d1fde",
+  "blob": "29a92d58fd64fc81f22a3d51998e738eca9205da",
+  "same_as_tracked": [],
+  "identical_to_other_pending": []
+ },
+ {
+  "path": "Incoming/MiniMart_Procurement_ClaudeDesign_Source.zip",
+  "state": "staged",
+  "bytes": 54984,
+  "sha256": "5203215d9c76ae6c7300015a53fe16f69f7df2f680d32caf69c525968c2d692b",
+  "blob": "83db5235d50fff72941fc3f2f2b9e75d8de55322",
+  "same_as_tracked": [],
+  "identical_to_other_pending": []
+ },
+ {
+  "path": "Mockups/MiniMart BO - CategoryBrand & Import.dc.html",
+  "state": "staged",
+  "bytes": 2572,
+  "sha256": "36bb7cdea7aefe9baa9d3fe0456170c600d8efad35e8767c18db544053290e2c",
+  "blob": "14d5f1ef2668a6c13c07b884d154c3c3653c6072",
+  "same_as_tracked": [],
+  "identical_to_other_pending": []
+ },
+ {
+  "path": "Mockups/MiniMart BO - CategoryBrand & Import.pdf",
+  "state": "staged",
+  "bytes": 681464,
+  "sha256": "1f618c4c34b0d62b92786384ffcc8d65dc4e20e8dfdb3d0d0aeed59fa90a6203",
+  "blob": "e9f643b600cc6946f06ad20b044ef379e68f1116",
+  "same_as_tracked": [],
+  "identical_to_other_pending": []
+ },
+ {
+  "path": "Mockups/MiniMart BO - Create & Edit.dc.html",
+  "state": "staged",
+  "bytes": 2572,
+  "sha256": "36887e3dc3cf4f4d1786110349f7db74112644ff9d9a439bac5fc23d5a251236",
+  "blob": "c9f74c0a78c89177b63e5015719e06c8165fbf5f",
+  "same_as_tracked": [],
+  "identical_to_other_pending": []
+ },
+ {
+  "path": "Mockups/MiniMart BO - Create & Edit.pdf",
+  "state": "staged",
+  "bytes": 924356,
+  "sha256": "506dc4bd8b311b6a86b9c96e53758df230515b511384a46a062db0b57880281a",
+  "blob": "99076e685bc870090670423f806f7db66c6c5d39",
+  "same_as_tracked": [],
+  "identical_to_other_pending": []
+ },
+ {
+  "path": "Mockups/MiniMart BO - Design System & Docs.dc.html",
+  "state": "staged",
+  "bytes": 8490,
+  "sha256": "ebb1afe86423c2598860431da204fc29776d2acb376b2916f81b8218b327a43f",
+  "blob": "24e821324af7ae19e938845ac4f100d251037bc6",
+  "same_as_tracked": [],
+  "identical_to_other_pending": []
+ },
+ {
+  "path": "Mockups/MiniMart BO - Design System & Docs.pdf",
+  "state": "staged",
+  "bytes": 781760,
+  "sha256": "d1eebec29f252372dd7abc661c62f1d002bd031df851f09fc5f9a21ed1c85121",
+  "blob": "a37cd321b90303021f553ef3d9df26f253da9326",
+  "same_as_tracked": [],
+  "identical_to_other_pending": []
+ },
+ {
+  "path": "Mockups/MiniMart BO - Detail & Skeleton.dc.html",
+  "state": "staged",
+  "bytes": 2792,
+  "sha256": "32a21195648e1e2bbcbe03f7fd92f02025f98bcc48fb574da7050bceecd97487",
+  "blob": "f1f7a0334582742ae17ad1cddfec0208460245ee",
+  "same_as_tracked": [],
+  "identical_to_other_pending": []
+ },
+ {
+  "path": "Mockups/MiniMart BO - Detail & Skeleton.pdf",
+  "state": "staged",
+  "bytes": 949794,
+  "sha256": "02d27d0b63be111723c40d0804d24542d506b6fa7ad5b26c101cfdd56f493ce5",
+  "blob": "eaad466af09940d5a475e8943a3393132a7718d4",
+  "same_as_tracked": [],
+  "identical_to_other_pending": []
+ },
+ {
+  "path": "Mockups/MiniMart BO - Foundation & Catalog.dc.html",
+  "state": "staged",
+  "bytes": 2969,
+  "sha256": "1c082e8757b5cb30bc010a58de9a3db7e2af043e0313e2fd8c1f7662ca6ecb55",
+  "blob": "7a029b9369340f4cd2ec1b5dd8dfbae382034a35",
+  "same_as_tracked": [],
+  "identical_to_other_pending": []
+ },
+ {
+  "path": "Mockups/MiniMart BO - Foundation & Catalog.pdf",
+  "state": "staged",
+  "bytes": 1070365,
+  "sha256": "687726934da04fbc9b5c25684150715f35d01c6f171ba8ea4ddec5d88fc56a34",
+  "blob": "3ad10bf138eb53cc7454a24a3df90cdac907e927",
+  "same_as_tracked": [],
+  "identical_to_other_pending": []
+ },
+ {
+  "path": "Mockups/MiniMart BO - Pricing & Bulk.dc.html",
+  "state": "staged",
+  "bytes": 2780,
+  "sha256": "53cdc46c5e3362701a65b49bc0b4320e454c325643610129d844349dbc3cc7e2",
+  "blob": "d8c4d6e9533f05afc18eb01351cb1089f2a29af5",
+  "same_as_tracked": [],
+  "identical_to_other_pending": []
+ },
+ {
+  "path": "Mockups/MiniMart BO - Pricing & Bulk.pdf",
+  "state": "staged",
+  "bytes": 1001745,
+  "sha256": "dcd0b274b2cfa781276b19f47929734bbea4b2405767e6a7d2b1079e2db4d92b",
+  "blob": "34d88bb65ff55d05fdfe611dac0415c6f9428cbb",
+  "same_as_tracked": [],
+  "identical_to_other_pending": []
+ },
+ {
+  "path": "Mockups/MiniMart Back Office Mockups.dc.html",
+  "state": "staged",
+  "bytes": 3243,
+  "sha256": "4651586c8f4e20a493d1a3d1339e05f19aff1bf5c9bd63a8593560f712848bdc",
+  "blob": "20cb6f2608e3e1db5f3d7ea24eb83edff7458d49",
+  "same_as_tracked": [],
+  "identical_to_other_pending": []
+ },
+ {
+  "path": "Mockups/MiniMart Design System.dc.html",
+  "state": "staged",
+  "bytes": 44743,
+  "sha256": "269d7a9746b9b272614a0aab3f1429b5762cbd5c06972cd8982e16dd109b66e5",
+  "blob": "d30fc547dc941767df28c8400d7ceb4333ef76c3",
+  "same_as_tracked": [],
+  "identical_to_other_pending": []
+ },
+ {
+  "path": "Mockups/MiniMart INV - Adjustments & Opening Stock.pdf",
+  "state": "staged",
+  "bytes": 779153,
+  "sha256": "7432a243f5fbaaa8dbffc82e8067f7a7aafbb5bc868559befa9d3dcb2598cab7",
+  "blob": "313feab987a1b7b3c9da62488834b0b6ccc3ba43",
+  "same_as_tracked": [],
+  "identical_to_other_pending": []
+ },
+ {
+  "path": "Mockups/MiniMart INV - Design System & Docs.pdf",
+  "state": "staged",
+  "bytes": 839896,
+  "sha256": "60df3937012e0dd978939bc07e0de7d82c31294e03ac8d35759fc4ef7edbb53a",
+  "blob": "e597d5087cda594c08256467a61b74fcf20a7341",
+  "same_as_tracked": [],
+  "identical_to_other_pending": []
+ },
+ {
+  "path": "Mockups/MiniMart INV - Foundation & List.pdf",
+  "state": "staged",
+  "bytes": 763002,
+  "sha256": "4acc5aeb87b79c5f423a507dd36325f383a1d8a5f07a3e846407fd3e6ad5e7d7",
+  "blob": "2d0dc052e1d34356ce84e4fdc287a22c3de1e8ec",
+  "same_as_tracked": [],
+  "identical_to_other_pending": []
+ },
+ {
+  "path": "Mockups/MiniMart INV - Item & Movements.pdf",
+  "state": "staged",
+  "bytes": 700526,
+  "sha256": "2ee6ba850a297990c4ad5234d195ee8d605a9edfd92f07f55b0f40477648836c",
+  "blob": "aca377baa3ccf62ababa3008153a75fb3f6953a8",
+  "same_as_tracked": [],
+  "identical_to_other_pending": []
+ },
+ {
+  "path": "Mockups/MiniMart INV - Stock Count.pdf",
+  "state": "staged",
+  "bytes": 962663,
+  "sha256": "0801524062121215bf0b0f0bde8bd1855ab58e2c88c9013b643659bd7058537c",
+  "blob": "5e16009d86f1d52c71a78845563a3c9ac77e7126",
+  "same_as_tracked": [],
+  "identical_to_other_pending": []
+ },
+ {
+  "path": "Mockups/MiniMart POS Mockups.dc.html",
+  "state": "staged",
+  "bytes": 4590,
+  "sha256": "0306f802e49e5220291e1091c2316f36c69eabde90a44c205c26b2a2a2e87a1d",
+  "blob": "a061c7c07ec6f29330372561e035fb6f8a778e19",
+  "same_as_tracked": [],
+  "identical_to_other_pending": []
+ },
+ {
+  "path": "Mockups/MiniMartBackOffice.dc.html",
+  "state": "staged",
+  "bytes": 94381,
+  "sha256": "76b787dcfc0489d3fab11d9f409fe26c241fe8e7abf50f62d3b78dbef7d4fd79",
+  "blob": "ef47d6825afa7e68035439481e3437b9a0a5969f",
+  "same_as_tracked": [
+   "docs/design/back-office/source/MiniMartBackOffice.dc.html"
+  ],
+  "identical_to_other_pending": []
+ },
+ {
+  "path": "Mockups/MiniMartInventory.pdf",
+  "state": "staged",
+  "bytes": 306827,
+  "sha256": "ddf7b45f9410c8f6c1ddb3d37d7546c080d5031ed671a65096cebbb6d3d617d3",
+  "blob": "b8fc0d384c8d915973f86682f45f23e4b4561277",
+  "same_as_tracked": [],
+  "identical_to_other_pending": []
+ },
+ {
+  "path": "Mockups/MiniMartPOS.dc.html",
+  "state": "staged",
+  "bytes": 117821,
+  "sha256": "cdbcd1e0fc5d4d66da6fdac9101c7611fad327709443bbbc6bfec07389ab44e6",
+  "blob": "f701a629a811d8150f79b70b1353c8f58ea384c5",
+  "same_as_tracked": [
+   "docs/design/pos/source/MiniMartPOS.dc.html"
+  ],
+  "identical_to_other_pending": []
+ },
+ {
+  "path": "Incoming/MiniMart_Cash_Business_Day_ClaudeDesign_Source.zip",
+  "state": "untracked",
+  "bytes": 52738,
+  "sha256": "631d97bb93df13e5a367749dda9b380c32e5836ef7095521460f4a0e777203a0",
+  "blob": "81ee89129f23019960858b6c4866ef4fc2c86a7b",
+  "same_as_tracked": [],
+  "identical_to_other_pending": []
+ },
+ {
+  "path": "Incoming/MiniMart_Cash_Business_Day_ClaudeDesign_Source_v2.zip",
+  "state": "untracked",
+  "bytes": 71173,
+  "sha256": "0fce9a171c322e10a5ea3a38859f59b87edeea26c10a2a3fb1d78fe3cb23224f",
+  "blob": "3ceeda2a4089fb7a169a4a49a10be5df63d24769",
+  "same_as_tracked": [],
+  "identical_to_other_pending": []
+ },
+ {
+  "path": "Incoming/MiniMart_Inventory_ClaudeDesign_Source.zip",
+  "state": "untracked",
+  "bytes": 81587,
+  "sha256": "f476c65607aae2507cf3fb9ada3b988915f35e627eecb5ae9e846cd17b998589",
+  "blob": "82c401e5783bbb4e89de0d76cdf55a318292c639",
+  "same_as_tracked": [],
+  "identical_to_other_pending": []
+ },
+ {
+  "path": "Incoming/MiniMart_Inventory_ClaudeDesign_Source_v2(batch3).zip",
+  "state": "untracked",
+  "bytes": 91949,
+  "sha256": "b6ecf8a6282801f4d31322c9386502839e2fcb85bb999d9914a89e948c9df7fc",
+  "blob": "46647e181891dec00bd8fdfda9058c399fd847e0",
+  "same_as_tracked": [],
+  "identical_to_other_pending": []
+ },
+ {
+  "path": "Incoming/MiniMart_Inventory_ClaudeDesign_Source_v2(batch4).zip",
+  "state": "untracked",
+  "bytes": 100269,
+  "sha256": "1d36c2559a8ecdf13cfb31baa8e1203dc1627765f3bc2429639cb16b2bb326f3",
+  "blob": "950f007968302aa27c36c88594d774c7d7019551",
+  "same_as_tracked": [],
+  "identical_to_other_pending": []
+ },
+ {
+  "path": "Incoming/MiniMart_Inventory_ClaudeDesign_Source_v2.zip",
+  "state": "untracked",
+  "bytes": 86003,
+  "sha256": "b244655f9548e1bcd65c908fb7fad12fd3599df01b6f766e2980e6267a34f467",
+  "blob": "0966b2261404950c8362b43b9fe36ff10efd3001",
+  "same_as_tracked": [],
+  "identical_to_other_pending": []
+ },
+ {
+  "path": "Incoming/MiniMart_Reporting_ClaudeDesign_Source-V2.zip",
+  "state": "untracked",
+  "bytes": 90367,
+  "sha256": "7fdd150f2eabc74685a151393d6ae9e6eb715c2b903bcfabc0dabf678d58a774",
+  "blob": "e3dffe689066af196c2d893b7039859ae62c432c",
+  "same_as_tracked": [],
+  "identical_to_other_pending": []
+ },
+ {
+  "path": "Incoming/MiniMart_Reporting_ClaudeDesign_Source.zip",
+  "state": "untracked",
+  "bytes": 89911,
+  "sha256": "0a9b9610e8d6c6acb6c0fbd54fb3489fa77798795d35de2023801e5a87217ad1",
+  "blob": "143b97bcee5a51d36917d946923646d2a4b1ebbf",
+  "same_as_tracked": [],
+  "identical_to_other_pending": []
+ },
+ {
+  "path": "Incoming/Minimart_Accounting_Lite_ClaudeDesign_Source.zip",
+  "state": "untracked",
+  "bytes": 56271,
+  "sha256": "73d2dce78bb6bac1dbdfb3a5d4d11bcf62a921502e41c794cd9ec1e76d9a1b04",
+  "blob": "0fad3b19b9a11d2c180b37c1f4e30accab37621b",
+  "same_as_tracked": [],
+  "identical_to_other_pending": []
+ },
+ {
+  "path": "Incoming/Minimart_Accounting_Lite_ClaudeDesign_Source_v2-fixed.zip",
+  "state": "untracked",
+  "bytes": 58498,
+  "sha256": "d91206298390053da7e5275314beab25ef1f0d1e89c6de2fce89c4c8a33e46bf",
+  "blob": "320b29970fba858ddf949009475e1b29505077ae",
+  "same_as_tracked": [],
+  "identical_to_other_pending": []
+ },
+ {
+  "path": "Incoming/Minimart_Accounting_Lite_ClaudeDesign_Source_v2.zip",
+  "state": "untracked",
+  "bytes": 58872,
+  "sha256": "ce705e6258e6af26fed426f537e44a75847cbdce094ac8d7b8a9bd6faf8c3fb8",
+  "blob": "c1eea43261eb7954e0f0dea22fb1f72b85a472e2",
+  "same_as_tracked": [],
+  "identical_to_other_pending": []
+ },
+ {
+  "path": "Incoming/Minimart_Inventory_handoff_bundle.zip",
+  "state": "untracked",
+  "bytes": 11221,
+  "sha256": "5a5fa13cc6a10e3b6a74ef6728f5e8cfa7c22245c292ae82583a8635ee0f249b",
+  "blob": "7b82e68d670af8fa8c9a4266b2b8a4d285f61483",
+  "same_as_tracked": [],
+  "identical_to_other_pending": []
+ }
+]

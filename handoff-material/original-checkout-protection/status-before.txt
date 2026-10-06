@@ -1,0 +1,34 @@
+A  .design-package-index.json
+A  Incoming/MiniMart_Customers_Credit_ClaudeDesign_Source_v2-fixed.zip
+A  Incoming/MiniMart_Customers_Credit_ClaudeDesign_Source_v2.zip
+A  Incoming/MiniMart_Procurement_ClaudeDesign_Source.zip
+A  "Mockups/MiniMart BO - CategoryBrand & Import.dc.html"
+A  "Mockups/MiniMart BO - CategoryBrand & Import.pdf"
+A  "Mockups/MiniMart BO - Create & Edit.dc.html"
+A  "Mockups/MiniMart BO - Create & Edit.pdf"
+A  "Mockups/MiniMart BO - Design System & Docs.dc.html"
+A  "Mockups/MiniMart BO - Design System & Docs.pdf"
+A  "Mockups/MiniMart BO - Detail & Skeleton.dc.html"
+A  "Mockups/MiniMart BO - Detail & Skeleton.pdf"
+A  "Mockups/MiniMart BO - Foundation & Catalog.dc.html"
+A  "Mockups/MiniMart BO - Foundation & Catalog.pdf"
+A  "Mockups/MiniMart BO - Pricing & Bulk.dc.html"
+A  "Mockups/MiniMart BO - Pricing & Bulk.pdf"
+A  "Mockups/MiniMart Back Office Mockups.dc.html"
+A  "Mockups/MiniMart Design System.dc.html"
+A  "Mockups/MiniMart INV - Adjustments & Opening Stock.pdf"
+A  "Mockups/MiniMart INV - Design System & Docs.pdf"
+A  "Mockups/MiniMart INV - Foundation & List.pdf"
+A  "Mockups/MiniMart INV - Item & Movements.pdf"
+A  "Mockups/MiniMart INV - Stock Count.pdf"
+A  "Mockups/MiniMart POS Mockups.dc.html"
+A  Mockups/MiniMartBackOffice.dc.html
+A  Mockups/MiniMartInventory.pdf
+A  Mockups/MiniMartPOS.dc.html
+?? Incoming/MiniMart_Cash_Business_Day_ClaudeDesign_Source.zip
+?? Incoming/MiniMart_Cash_Business_Day_ClaudeDesign_Source_v2.zip
+?? Incoming/MiniMart_Reporting_ClaudeDesign_Source-V2.zip
+?? Incoming/MiniMart_Reporting_ClaudeDesign_Source.zip
+?? Incoming/Minimart_Accounting_Lite_ClaudeDesign_Source.zip
+?? Incoming/Minimart_Accounting_Lite_ClaudeDesign_Source_v2-fixed.zip
+?? Incoming/Minimart_Accounting_Lite_ClaudeDesign_Source_v2.zip

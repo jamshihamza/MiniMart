@@ -1,0 +1,29 @@
+Scope: all 28 workspace projects
+? Verifying lockfile against supply-chain policies (516 entries)...
+Packages are hard linked from the content-addressable store to the virtual store.
+  Content-addressable store is at: D:\.pnpm-store\v11
+  Virtual store is at:             node_modules/.pnpm
+Update available! 12.5.1 → 12.8.1.
+Changelog: https://pnpm.io/v/12.8.1
+To update, run: Invoke-WebRequest https://get.pnpm.io/install.ps1 -UseBasicParsing | Invoke-Expression
+✓ Lockfile passes supply-chain policies (516 entries in 7.7s)
+Lockfile is up to date, resolution step is skipped
+Packages: +435
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Progress: resolved 435, reused 435, downloaded 0, added 435, done
+.../esbuild@0.28.2/node_modules/esbuild postinstall$ node install.js
+.../esbuild@0.28.2/node_modules/esbuild postinstall: Done
+
+devDependencies:
++ @eslint/js 10.0.1
++ @types/node 24.13.6
++ ajv 8.20.0
++ eslint 10.11.0
++ globals 16.5.0
++ playwright 1.63.0
++ prettier 3.9.8
++ typescript 5.9.3
++ typescript-eslint 8.70.0
+
+Done in 8.8s using pnpm v12.5.1
+install exit 0

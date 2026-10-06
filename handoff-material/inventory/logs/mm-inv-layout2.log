@@ -1,0 +1,58 @@
+
+=== 1280x720: pageScrollX=[] consoleErrors=0 horizontally-clipped screens=8 innerHorizontalScroll=8
+  clip 16 ACTOR(h0.54) ; REASON / REF(h0) ; —(h0) ; View GRN(h0) ; —(h0)
+  clip 30 POSTED AT(h0.44) ; 20 Sep 18:40(h0.87)
+  clip 49 MOVING WAC(h0.54) ; LAST MOVEMENT(h0) ; 26 Sep 08:10(h0) ; 25 Sep 17:40(h0) ; 24 Sep 11:05(h0)
+  clip 02 MOVING WAC(h0.54) ; LAST MOVEMENT(h0) ; 26 Sep 08:10(h0) ; 25 Sep 17:40(h0) ; 24 Sep 11:05(h0)
+  clip 03 MOVING WAC(h0.54) ; LAST MOVEMENT(h0) ; 25 Sep 17:40(h0) ; 22 Sep 10:30(h0) ; 18 Sep 09:00(h0)
+  clip 04 MOVING WAC(h0.54) ; LAST MOVEMENT(h0) ; 26 Sep 09:55(h0)
+  clip 06 MOVING WAC(h0.54) ; LAST MOVEMENT(h0) ; 26 Sep 08:10(h0) ; 25 Sep 17:40(h0) ; 24 Sep 11:05(h0)
+  clip 07 MOVING WAC(h0.54) ; LAST MOVEMENT(h0) ; Restricted(h0.79) ; 26 Sep 08:10(h0) ; Restricted(h0.79)
+  innerScroll 16 DATE/TIME TYPE SOURCE DOC PROD
+  innerScroll 30 REFERENCE SCOPE STARTED STATUS
+  innerScroll 49 PRODUCT ITEM CODE CATEGORY BAS
+  innerScroll 02 PRODUCT ITEM CODE CATEGORY BAS
+  innerScroll 03 PRODUCT ITEM CODE CATEGORY BAS
+  innerScroll 04 PRODUCT ITEM CODE CATEGORY BAS
+  innerScroll 06 PRODUCT ITEM CODE CATEGORY BAS
+  innerScroll 07 PRODUCT ITEM CODE CATEGORY BAS
+
+=== 1366x768: pageScrollX=[] consoleErrors=0 horizontally-clipped screens=8 innerHorizontalScroll=8
+  clip 16 REASON / REF(h0.23) ; View GRN(h0.59) ; Initial load(h0.55) ; Count Correction(h0.35) ; Expiry(h0.94)
+  clip 30 POSTED AT(h0.82)
+  clip 49 LAST MOVEMENT(h0.26) ; 26 Sep 08:10(h0.36) ; 25 Sep 17:40(h0.36) ; 24 Sep 11:05(h0.36) ; 26 Sep 09:55(h0.36)
+  clip 02 LAST MOVEMENT(h0.26) ; 26 Sep 08:10(h0.36) ; 25 Sep 17:40(h0.36) ; 24 Sep 11:05(h0.36) ; 26 Sep 09:55(h0.36)
+  clip 03 LAST MOVEMENT(h0.26) ; 25 Sep 17:40(h0.36) ; 22 Sep 10:30(h0.36) ; 18 Sep 09:00(h0.36)
+  clip 04 LAST MOVEMENT(h0.26) ; 26 Sep 09:55(h0.36)
+  clip 06 LAST MOVEMENT(h0.26) ; 26 Sep 08:10(h0.36) ; 25 Sep 17:40(h0.36) ; 24 Sep 11:05(h0.36) ; 26 Sep 09:55(h0.36)
+  clip 07 LAST MOVEMENT(h0.26) ; 26 Sep 08:10(h0.36) ; 25 Sep 17:40(h0.36) ; 24 Sep 11:05(h0.36) ; 26 Sep 09:55(h0.36)
+  innerScroll 16 DATE/TIME TYPE SOURCE DOC PROD
+  innerScroll 30 REFERENCE SCOPE STARTED STATUS
+  innerScroll 49 PRODUCT ITEM CODE CATEGORY BAS
+  innerScroll 02 PRODUCT ITEM CODE CATEGORY BAS
+  innerScroll 03 PRODUCT ITEM CODE CATEGORY BAS
+  innerScroll 04 PRODUCT ITEM CODE CATEGORY BAS
+  innerScroll 06 PRODUCT ITEM CODE CATEGORY BAS
+  innerScroll 07 PRODUCT ITEM CODE CATEGORY BAS
+
+=== 1368x800: pageScrollX=[] consoleErrors=0 horizontally-clipped screens=8 innerHorizontalScroll=8
+  clip 16 REASON / REF(h0.24) ; View GRN(h0.63) ; Initial load(h0.59) ; Count Correction(h0.37) ; Count Correction(h0.37)
+  clip 30 POSTED AT(h0.82)
+  clip 49 LAST MOVEMENT(h0.28) ; 26 Sep 08:10(h0.39) ; 25 Sep 17:40(h0.39) ; 24 Sep 11:05(h0.39) ; 26 Sep 09:55(h0.39)
+  clip 02 LAST MOVEMENT(h0.28) ; 26 Sep 08:10(h0.39) ; 25 Sep 17:40(h0.39) ; 24 Sep 11:05(h0.39) ; 26 Sep 09:55(h0.39)
+  clip 03 LAST MOVEMENT(h0.28) ; 25 Sep 17:40(h0.39) ; 22 Sep 10:30(h0.39) ; 18 Sep 09:00(h0.39)
+  clip 04 LAST MOVEMENT(h0.28) ; 26 Sep 09:55(h0.39)
+  clip 06 LAST MOVEMENT(h0.28) ; 26 Sep 08:10(h0.39) ; 25 Sep 17:40(h0.39) ; 24 Sep 11:05(h0.39) ; 26 Sep 09:55(h0.39)
+  clip 07 LAST MOVEMENT(h0.28) ; 26 Sep 08:10(h0.39) ; 25 Sep 17:40(h0.39) ; 24 Sep 11:05(h0.39) ; 26 Sep 09:55(h0.39)
+  innerScroll 16 DATE/TIME TYPE SOURCE DOC PROD
+  innerScroll 30 REFERENCE SCOPE STARTED STATUS
+  innerScroll 49 PRODUCT ITEM CODE CATEGORY BAS
+  innerScroll 02 PRODUCT ITEM CODE CATEGORY BAS
+  innerScroll 03 PRODUCT ITEM CODE CATEGORY BAS
+  innerScroll 04 PRODUCT ITEM CODE CATEGORY BAS
+  innerScroll 06 PRODUCT ITEM CODE CATEGORY BAS
+  innerScroll 07 PRODUCT ITEM CODE CATEGORY BAS
+
+=== 1920x1080: pageScrollX=[] consoleErrors=0 horizontally-clipped screens=1 innerHorizontalScroll=1
+  clip 30 POSTED AT(h0.82)
+  innerScroll 30 REFERENCE SCOPE STARTED STATUS

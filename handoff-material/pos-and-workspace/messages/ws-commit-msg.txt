@@ -1,0 +1,23 @@
+WIP: ADR 0009 and workspace-host preview (POS and Back Office workspaces, not accepted)
+
+Preservation checkpoint on the owner's authorization to keep all pending work on GitHub for a
+cross-PC handoff. This is not approval of quality, behavior or the switch design. Workspace-switch
+visual approval is PENDING.
+
+Adds ADR 0009 (one application with separate POS and Back Office workspaces) and a bounded,
+preview-only host: hash routes, a workspace registry, a labelled host header with the switch at the
+top right, and a minimal Back Office placeholder. The first candidate (a floating control at the
+bottom left) was rejected by the owner and replaced by the header; the header has not been approved.
+CR-0009-A and CR-0009-B are proposed and not applied. No frozen file is edited.
+
+Two approved POS files (App.tsx, flow.ts) changed additively to restore fictional state; the
+provenance hashes were not edited and the owner has not re-confirmed those two files.
+
+Checks run at checkpoint: POS suite 214 of 214, pnpm run ci, design:validate and the Vite build
+pass. Not verified: native Tauri window, devices, assistive technology, remote CI, runtime IPC
+isolation, production authorization or security.
+
+Based on the POS checkpoint fcb253fa. It also edits apps/backoffice package.json, tsconfig.json and
+the lockfile, as the Reporting branch does, so combining them needs a deliberate merge.
+
+Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>

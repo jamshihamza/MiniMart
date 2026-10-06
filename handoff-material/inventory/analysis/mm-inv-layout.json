@@ -1,0 +1,1465 @@
+{
+ "1280x720": {
+  "pageScrollX": [],
+  "pageScrollY": [],
+  "clipped": {
+   "16": [
+    {
+     "t": "ACTOR",
+     "horiz": 0.54,
+     "vis": 0.54,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "REASON / REF",
+     "horiz": 0,
+     "vis": 0,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "—",
+     "horiz": 0,
+     "vis": 0,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "View GRN",
+     "horiz": 0,
+     "vis": 0,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "—",
+     "horiz": 0,
+     "vis": 0,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "Initial load",
+     "horiz": 0,
+     "vis": 0,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "Count Correction",
+     "horiz": 0,
+     "vis": 0,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "Expiry",
+     "horiz": 0,
+     "vis": 0,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "Count Correction",
+     "horiz": 0,
+     "vis": 0,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "Damage",
+     "horiz": 0,
+     "vis": 0,
+     "ell": false,
+     "btn": false
+    }
+   ],
+   "30": [
+    {
+     "t": "POSTED AT",
+     "horiz": 0.44,
+     "vis": 0.44,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "20 Sep 18:40",
+     "horiz": 0.87,
+     "vis": 0.87,
+     "ell": false,
+     "btn": false
+    }
+   ],
+   "49": [
+    {
+     "t": "MOVING WAC",
+     "horiz": 0.54,
+     "vis": 0.54,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "LAST MOVEMENT",
+     "horiz": 0,
+     "vis": 0,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "26 Sep 08:10",
+     "horiz": 0,
+     "vis": 0,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "25 Sep 17:40",
+     "horiz": 0,
+     "vis": 0,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "24 Sep 11:05",
+     "horiz": 0,
+     "vis": 0,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "26 Sep 09:55",
+     "horiz": 0,
+     "vis": 0,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "23 Sep 14:20",
+     "horiz": 0,
+     "vis": 0,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "22 Sep 10:30",
+     "horiz": 0,
+     "vis": 0,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "18 Sep 09:00",
+     "horiz": 0,
+     "vis": 0,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "26 Sep 07:45",
+     "horiz": 0,
+     "vis": 0,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "—",
+     "horiz": 0,
+     "vis": 0,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "20 Sep 16:10",
+     "horiz": 0,
+     "vis": 0,
+     "ell": false,
+     "btn": false
+    }
+   ],
+   "02": [
+    {
+     "t": "MOVING WAC",
+     "horiz": 0.54,
+     "vis": 0.54,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "LAST MOVEMENT",
+     "horiz": 0,
+     "vis": 0,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "26 Sep 08:10",
+     "horiz": 0,
+     "vis": 0,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "25 Sep 17:40",
+     "horiz": 0,
+     "vis": 0,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "24 Sep 11:05",
+     "horiz": 0,
+     "vis": 0,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "26 Sep 09:55",
+     "horiz": 0,
+     "vis": 0,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "23 Sep 14:20",
+     "horiz": 0,
+     "vis": 0,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "22 Sep 10:30",
+     "horiz": 0,
+     "vis": 0,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "18 Sep 09:00",
+     "horiz": 0,
+     "vis": 0,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "26 Sep 07:45",
+     "horiz": 0,
+     "vis": 0,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "—",
+     "horiz": 0,
+     "vis": 0,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "20 Sep 16:10",
+     "horiz": 0,
+     "vis": 0,
+     "ell": false,
+     "btn": false
+    }
+   ],
+   "03": [
+    {
+     "t": "MOVING WAC",
+     "horiz": 0.54,
+     "vis": 0.54,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "LAST MOVEMENT",
+     "horiz": 0,
+     "vis": 0,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "25 Sep 17:40",
+     "horiz": 0,
+     "vis": 0,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "22 Sep 10:30",
+     "horiz": 0,
+     "vis": 0,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "18 Sep 09:00",
+     "horiz": 0,
+     "vis": 0,
+     "ell": false,
+     "btn": false
+    }
+   ],
+   "04": [
+    {
+     "t": "MOVING WAC",
+     "horiz": 0.54,
+     "vis": 0.54,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "LAST MOVEMENT",
+     "horiz": 0,
+     "vis": 0,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "26 Sep 09:55",
+     "horiz": 0,
+     "vis": 0,
+     "ell": false,
+     "btn": false
+    }
+   ],
+   "06": [
+    {
+     "t": "MOVING WAC",
+     "horiz": 0.54,
+     "vis": 0.54,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "LAST MOVEMENT",
+     "horiz": 0,
+     "vis": 0,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "26 Sep 08:10",
+     "horiz": 0,
+     "vis": 0,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "25 Sep 17:40",
+     "horiz": 0,
+     "vis": 0,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "24 Sep 11:05",
+     "horiz": 0,
+     "vis": 0,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "26 Sep 09:55",
+     "horiz": 0,
+     "vis": 0,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "23 Sep 14:20",
+     "horiz": 0,
+     "vis": 0,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "22 Sep 10:30",
+     "horiz": 0,
+     "vis": 0,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "18 Sep 09:00",
+     "horiz": 0,
+     "vis": 0,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "26 Sep 07:45",
+     "horiz": 0,
+     "vis": 0,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "—",
+     "horiz": 0,
+     "vis": 0,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "20 Sep 16:10",
+     "horiz": 0,
+     "vis": 0,
+     "ell": false,
+     "btn": false
+    }
+   ],
+   "07": [
+    {
+     "t": "MOVING WAC",
+     "horiz": 0.54,
+     "vis": 0.54,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "LAST MOVEMENT",
+     "horiz": 0,
+     "vis": 0,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "Restricted",
+     "horiz": 0.79,
+     "vis": 0.79,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "26 Sep 08:10",
+     "horiz": 0,
+     "vis": 0,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "Restricted",
+     "horiz": 0.79,
+     "vis": 0.79,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "25 Sep 17:40",
+     "horiz": 0,
+     "vis": 0,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "Restricted",
+     "horiz": 0.79,
+     "vis": 0.79,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "24 Sep 11:05",
+     "horiz": 0,
+     "vis": 0,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "Restricted",
+     "horiz": 0.79,
+     "vis": 0.79,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "26 Sep 09:55",
+     "horiz": 0,
+     "vis": 0,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "Restricted",
+     "horiz": 0.79,
+     "vis": 0.79,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "23 Sep 14:20",
+     "horiz": 0,
+     "vis": 0,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "Restricted",
+     "horiz": 0.79,
+     "vis": 0.79,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "22 Sep 10:30",
+     "horiz": 0,
+     "vis": 0,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "Restricted",
+     "horiz": 0.79,
+     "vis": 0.79,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "18 Sep 09:00",
+     "horiz": 0,
+     "vis": 0,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "Restricted",
+     "horiz": 0.79,
+     "vis": 0.79,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "26 Sep 07:45",
+     "horiz": 0,
+     "vis": 0,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "Restricted",
+     "horiz": 0.79,
+     "vis": 0.79,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "—",
+     "horiz": 0,
+     "vis": 0,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "Restricted",
+     "horiz": 0.79,
+     "vis": 0.79,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "20 Sep 16:10",
+     "horiz": 0,
+     "vis": 0,
+     "ell": false,
+     "btn": false
+    }
+   ]
+  },
+  "innerScroll": {
+   "16": [
+    "DATE/TIME TYPE SOURCE DOC PROD"
+   ],
+   "30": [
+    "REFERENCE SCOPE STARTED STATUS"
+   ],
+   "49": [
+    "PRODUCT ITEM CODE CATEGORY BAS"
+   ],
+   "02": [
+    "PRODUCT ITEM CODE CATEGORY BAS"
+   ],
+   "03": [
+    "PRODUCT ITEM CODE CATEGORY BAS"
+   ],
+   "04": [
+    "PRODUCT ITEM CODE CATEGORY BAS"
+   ],
+   "06": [
+    "PRODUCT ITEM CODE CATEGORY BAS"
+   ],
+   "07": [
+    "PRODUCT ITEM CODE CATEGORY BAS"
+   ]
+  },
+  "errs": []
+ },
+ "1366x768": {
+  "pageScrollX": [],
+  "pageScrollY": [],
+  "clipped": {
+   "16": [
+    {
+     "t": "REASON / REF",
+     "horiz": 0.23,
+     "vis": 0.23,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "View GRN",
+     "horiz": 0.59,
+     "vis": 0.59,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "Initial load",
+     "horiz": 0.55,
+     "vis": 0.55,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "Count Correction",
+     "horiz": 0.35,
+     "vis": 0.35,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "Expiry",
+     "horiz": 0.94,
+     "vis": 0.94,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "Count Correction",
+     "horiz": 0.35,
+     "vis": 0.35,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "Damage",
+     "horiz": 0.72,
+     "vis": 0.72,
+     "ell": false,
+     "btn": false
+    }
+   ],
+   "30": [
+    {
+     "t": "POSTED AT",
+     "horiz": 0.82,
+     "vis": 0.82,
+     "ell": false,
+     "btn": false
+    }
+   ],
+   "49": [
+    {
+     "t": "LAST MOVEMENT",
+     "horiz": 0.26,
+     "vis": 0.26,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "26 Sep 08:10",
+     "horiz": 0.36,
+     "vis": 0.36,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "25 Sep 17:40",
+     "horiz": 0.36,
+     "vis": 0.36,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "24 Sep 11:05",
+     "horiz": 0.36,
+     "vis": 0.36,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "26 Sep 09:55",
+     "horiz": 0.36,
+     "vis": 0.36,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "23 Sep 14:20",
+     "horiz": 0.36,
+     "vis": 0.36,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "22 Sep 10:30",
+     "horiz": 0.36,
+     "vis": 0.36,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "18 Sep 09:00",
+     "horiz": 0.36,
+     "vis": 0.36,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "26 Sep 07:45",
+     "horiz": 0.36,
+     "vis": 0.36,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "20 Sep 16:10",
+     "horiz": 0.36,
+     "vis": 0.36,
+     "ell": false,
+     "btn": false
+    }
+   ],
+   "02": [
+    {
+     "t": "LAST MOVEMENT",
+     "horiz": 0.26,
+     "vis": 0.26,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "26 Sep 08:10",
+     "horiz": 0.36,
+     "vis": 0.36,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "25 Sep 17:40",
+     "horiz": 0.36,
+     "vis": 0.36,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "24 Sep 11:05",
+     "horiz": 0.36,
+     "vis": 0.36,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "26 Sep 09:55",
+     "horiz": 0.36,
+     "vis": 0.36,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "23 Sep 14:20",
+     "horiz": 0.36,
+     "vis": 0.36,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "22 Sep 10:30",
+     "horiz": 0.36,
+     "vis": 0.36,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "18 Sep 09:00",
+     "horiz": 0.36,
+     "vis": 0.36,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "26 Sep 07:45",
+     "horiz": 0.36,
+     "vis": 0.36,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "20 Sep 16:10",
+     "horiz": 0.36,
+     "vis": 0.36,
+     "ell": false,
+     "btn": false
+    }
+   ],
+   "03": [
+    {
+     "t": "LAST MOVEMENT",
+     "horiz": 0.26,
+     "vis": 0.26,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "25 Sep 17:40",
+     "horiz": 0.36,
+     "vis": 0.36,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "22 Sep 10:30",
+     "horiz": 0.36,
+     "vis": 0.36,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "18 Sep 09:00",
+     "horiz": 0.36,
+     "vis": 0.36,
+     "ell": false,
+     "btn": false
+    }
+   ],
+   "04": [
+    {
+     "t": "LAST MOVEMENT",
+     "horiz": 0.26,
+     "vis": 0.26,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "26 Sep 09:55",
+     "horiz": 0.36,
+     "vis": 0.36,
+     "ell": false,
+     "btn": false
+    }
+   ],
+   "06": [
+    {
+     "t": "LAST MOVEMENT",
+     "horiz": 0.26,
+     "vis": 0.26,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "26 Sep 08:10",
+     "horiz": 0.36,
+     "vis": 0.36,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "25 Sep 17:40",
+     "horiz": 0.36,
+     "vis": 0.36,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "24 Sep 11:05",
+     "horiz": 0.36,
+     "vis": 0.36,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "26 Sep 09:55",
+     "horiz": 0.36,
+     "vis": 0.36,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "23 Sep 14:20",
+     "horiz": 0.36,
+     "vis": 0.36,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "22 Sep 10:30",
+     "horiz": 0.36,
+     "vis": 0.36,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "18 Sep 09:00",
+     "horiz": 0.36,
+     "vis": 0.36,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "26 Sep 07:45",
+     "horiz": 0.36,
+     "vis": 0.36,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "20 Sep 16:10",
+     "horiz": 0.36,
+     "vis": 0.36,
+     "ell": false,
+     "btn": false
+    }
+   ],
+   "07": [
+    {
+     "t": "LAST MOVEMENT",
+     "horiz": 0.26,
+     "vis": 0.26,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "26 Sep 08:10",
+     "horiz": 0.36,
+     "vis": 0.36,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "25 Sep 17:40",
+     "horiz": 0.36,
+     "vis": 0.36,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "24 Sep 11:05",
+     "horiz": 0.36,
+     "vis": 0.36,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "26 Sep 09:55",
+     "horiz": 0.36,
+     "vis": 0.36,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "23 Sep 14:20",
+     "horiz": 0.36,
+     "vis": 0.36,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "22 Sep 10:30",
+     "horiz": 0.36,
+     "vis": 0.36,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "18 Sep 09:00",
+     "horiz": 0.36,
+     "vis": 0.36,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "26 Sep 07:45",
+     "horiz": 0.36,
+     "vis": 0.36,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "20 Sep 16:10",
+     "horiz": 0.36,
+     "vis": 0.36,
+     "ell": false,
+     "btn": false
+    }
+   ]
+  },
+  "innerScroll": {
+   "16": [
+    "DATE/TIME TYPE SOURCE DOC PROD"
+   ],
+   "30": [
+    "REFERENCE SCOPE STARTED STATUS"
+   ],
+   "49": [
+    "PRODUCT ITEM CODE CATEGORY BAS"
+   ],
+   "02": [
+    "PRODUCT ITEM CODE CATEGORY BAS"
+   ],
+   "03": [
+    "PRODUCT ITEM CODE CATEGORY BAS"
+   ],
+   "04": [
+    "PRODUCT ITEM CODE CATEGORY BAS"
+   ],
+   "06": [
+    "PRODUCT ITEM CODE CATEGORY BAS"
+   ],
+   "07": [
+    "PRODUCT ITEM CODE CATEGORY BAS"
+   ]
+  },
+  "errs": []
+ },
+ "1368x800": {
+  "pageScrollX": [],
+  "pageScrollY": [],
+  "clipped": {
+   "16": [
+    {
+     "t": "REASON / REF",
+     "horiz": 0.24,
+     "vis": 0.24,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "View GRN",
+     "horiz": 0.63,
+     "vis": 0.63,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "Initial load",
+     "horiz": 0.59,
+     "vis": 0.59,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "Count Correction",
+     "horiz": 0.37,
+     "vis": 0.37,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "Count Correction",
+     "horiz": 0.37,
+     "vis": 0.37,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "Damage",
+     "horiz": 0.76,
+     "vis": 0.76,
+     "ell": false,
+     "btn": false
+    }
+   ],
+   "30": [
+    {
+     "t": "POSTED AT",
+     "horiz": 0.82,
+     "vis": 0.82,
+     "ell": false,
+     "btn": false
+    }
+   ],
+   "49": [
+    {
+     "t": "LAST MOVEMENT",
+     "horiz": 0.28,
+     "vis": 0.28,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "26 Sep 08:10",
+     "horiz": 0.39,
+     "vis": 0.39,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "25 Sep 17:40",
+     "horiz": 0.39,
+     "vis": 0.39,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "24 Sep 11:05",
+     "horiz": 0.39,
+     "vis": 0.39,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "26 Sep 09:55",
+     "horiz": 0.39,
+     "vis": 0.39,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "23 Sep 14:20",
+     "horiz": 0.39,
+     "vis": 0.39,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "22 Sep 10:30",
+     "horiz": 0.39,
+     "vis": 0.39,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "18 Sep 09:00",
+     "horiz": 0.39,
+     "vis": 0.39,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "26 Sep 07:45",
+     "horiz": 0.39,
+     "vis": 0.39,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "20 Sep 16:10",
+     "horiz": 0.39,
+     "vis": 0.39,
+     "ell": false,
+     "btn": false
+    }
+   ],
+   "02": [
+    {
+     "t": "LAST MOVEMENT",
+     "horiz": 0.28,
+     "vis": 0.28,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "26 Sep 08:10",
+     "horiz": 0.39,
+     "vis": 0.39,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "25 Sep 17:40",
+     "horiz": 0.39,
+     "vis": 0.39,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "24 Sep 11:05",
+     "horiz": 0.39,
+     "vis": 0.39,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "26 Sep 09:55",
+     "horiz": 0.39,
+     "vis": 0.39,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "23 Sep 14:20",
+     "horiz": 0.39,
+     "vis": 0.39,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "22 Sep 10:30",
+     "horiz": 0.39,
+     "vis": 0.39,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "18 Sep 09:00",
+     "horiz": 0.39,
+     "vis": 0.39,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "26 Sep 07:45",
+     "horiz": 0.39,
+     "vis": 0.39,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "20 Sep 16:10",
+     "horiz": 0.39,
+     "vis": 0.39,
+     "ell": false,
+     "btn": false
+    }
+   ],
+   "03": [
+    {
+     "t": "LAST MOVEMENT",
+     "horiz": 0.28,
+     "vis": 0.28,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "25 Sep 17:40",
+     "horiz": 0.39,
+     "vis": 0.39,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "22 Sep 10:30",
+     "horiz": 0.39,
+     "vis": 0.39,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "18 Sep 09:00",
+     "horiz": 0.39,
+     "vis": 0.39,
+     "ell": false,
+     "btn": false
+    }
+   ],
+   "04": [
+    {
+     "t": "LAST MOVEMENT",
+     "horiz": 0.28,
+     "vis": 0.28,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "26 Sep 09:55",
+     "horiz": 0.39,
+     "vis": 0.39,
+     "ell": false,
+     "btn": false
+    }
+   ],
+   "06": [
+    {
+     "t": "LAST MOVEMENT",
+     "horiz": 0.28,
+     "vis": 0.28,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "26 Sep 08:10",
+     "horiz": 0.39,
+     "vis": 0.39,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "25 Sep 17:40",
+     "horiz": 0.39,
+     "vis": 0.39,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "24 Sep 11:05",
+     "horiz": 0.39,
+     "vis": 0.39,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "26 Sep 09:55",
+     "horiz": 0.39,
+     "vis": 0.39,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "23 Sep 14:20",
+     "horiz": 0.39,
+     "vis": 0.39,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "22 Sep 10:30",
+     "horiz": 0.39,
+     "vis": 0.39,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "18 Sep 09:00",
+     "horiz": 0.39,
+     "vis": 0.39,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "26 Sep 07:45",
+     "horiz": 0.39,
+     "vis": 0.39,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "20 Sep 16:10",
+     "horiz": 0.39,
+     "vis": 0.39,
+     "ell": false,
+     "btn": false
+    }
+   ],
+   "07": [
+    {
+     "t": "LAST MOVEMENT",
+     "horiz": 0.28,
+     "vis": 0.28,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "26 Sep 08:10",
+     "horiz": 0.39,
+     "vis": 0.39,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "25 Sep 17:40",
+     "horiz": 0.39,
+     "vis": 0.39,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "24 Sep 11:05",
+     "horiz": 0.39,
+     "vis": 0.39,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "26 Sep 09:55",
+     "horiz": 0.39,
+     "vis": 0.39,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "23 Sep 14:20",
+     "horiz": 0.39,
+     "vis": 0.39,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "22 Sep 10:30",
+     "horiz": 0.39,
+     "vis": 0.39,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "18 Sep 09:00",
+     "horiz": 0.39,
+     "vis": 0.39,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "26 Sep 07:45",
+     "horiz": 0.39,
+     "vis": 0.39,
+     "ell": false,
+     "btn": false
+    },
+    {
+     "t": "20 Sep 16:10",
+     "horiz": 0.39,
+     "vis": 0.39,
+     "ell": false,
+     "btn": false
+    }
+   ]
+  },
+  "innerScroll": {
+   "16": [
+    "DATE/TIME TYPE SOURCE DOC PROD"
+   ],
+   "30": [
+    "REFERENCE SCOPE STARTED STATUS"
+   ],
+   "49": [
+    "PRODUCT ITEM CODE CATEGORY BAS"
+   ],
+   "02": [
+    "PRODUCT ITEM CODE CATEGORY BAS"
+   ],
+   "03": [
+    "PRODUCT ITEM CODE CATEGORY BAS"
+   ],
+   "04": [
+    "PRODUCT ITEM CODE CATEGORY BAS"
+   ],
+   "06": [
+    "PRODUCT ITEM CODE CATEGORY BAS"
+   ],
+   "07": [
+    "PRODUCT ITEM CODE CATEGORY BAS"
+   ]
+  },
+  "errs": []
+ },
+ "1920x1080": {
+  "pageScrollX": [],
+  "pageScrollY": [],
+  "clipped": {
+   "30": [
+    {
+     "t": "POSTED AT",
+     "horiz": 0.82,
+     "vis": 0.82,
+     "ell": false,
+     "btn": false
+    }
+   ]
+  },
+  "innerScroll": {
+   "30": [
+    "REFERENCE SCOPE STARTED STATUS"
+   ]
+  },
+  "errs": []
+ }
+}

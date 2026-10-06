@@ -1,0 +1,99 @@
+MINIMART REPORTING — CLAUDE DESIGN SOURCE EXPORT MANIFEST
+Archive: MiniMart_Reporting_ClaudeDesign_Source.zip
+Status: review-ready. NOT an approved visual reference. Owner has not visually approved this package.
+
+============================================================
+PROVENANCE
+============================================================
+This Claude Design deliverable ADAPTS the Claude Code candidate. It is not authored from scratch.
+
+Candidate (unapproved input, unchanged, retained as uploads/MiniMartReports.dc.html in the handoff bundle):
+  File: candidate-INPUT-ONLY/MiniMartReports.dc.html
+  SHA-256: ac24dc44a29ce910b050efcbfc86caeacc953925657e751d55a4c0a50665aeb7
+  Size: 127024 bytes
+  Status: Claude Code-authored, review-ready, NOT a Claude Design export, NOT approved.
+
+This Claude Design source (adapted):
+  File: MiniMartReports.dc.html
+  SHA-256: 8402cf8b0338c9e6fcb4746b6fddea5536471fa2b6ef3dde58c23053d556c1da
+  Size: 127980 bytes
+
+What changed from the candidate to this adapted source:
+- Repackaged into the Claude Design <x-dc> authoring format (separate template/logic/props instead of one static HTML file with inline <x-dc>/<script> tags). The DOM output, component behavior, and screen registry (SCR(...) calls, 80 total) are otherwise the same.
+- Added a provenance header comment at the top of the logic class recording the candidate's filename, hash and size, and that this is an adaptation.
+- Added one documentation line (replacing a since-outdated "four viewports were rendered and checked" claim on screen 80) stating that live-viewport rendering is reported in THIS manifest rather than asserted on the documentation screen itself, and updated the provenance confirmation line to name this adaptation explicitly instead of saying "authored... by Claude Code" only.
+- No report calculation, requirement mapping, screen content, illustrative data, or open-decision marker was altered. The candidate's own contrast fix (muted text #6b7585, sidebar labels #8c98ad) was already present and is carried over unchanged.
+
+The candidate's own traceability.json and TRACEABILITY.md are included in this archive UNCHANGED (byte-identical to the handoff bundle's copies — hashes below match SHA256SUMS.txt in the handoff). They describe the candidate's screen registry; because the adapted source preserves the candidate's screen order, numbering, and groupings exactly, every screen number and requirement mapping in them still applies to MiniMartReports.dc.html as shipped here.
+
+============================================================
+AUTHORITATIVE SOURCE
+============================================================
+MiniMartReports.dc.html — SHA-256 8402cf8b0338c9e6fcb4746b6fddea5536471fa2b6ef3dde58c23053d556c1da
+Screen count: 80. IDs 01–80, contiguous, no gaps, no duplicates (80 SCR(...) registrations, 80 unique titles — verified by parsing the registry at packaging time).
+JS re-parsed with `new Function` at packaging time: no syntax errors.
+No screen instantiation was verified beyond the source parsing cleanly and a live preview load with no console errors at the time of writing; I did NOT individually step through all 80 screens' rendered output in this pass — see "What was not verified" below.
+
+============================================================
+CHECKS ACTUALLY PERFORMED
+============================================================
+1. Source JS parses with no syntax error (`new Function` on the extracted script) — PASS.
+2. Exactly 80 SCR(...) screen registrations in the registry — PASS.
+3. 80 unique screen titles (string-compared across all SCR(...) calls) — PASS.
+4. Grouped-page coverage: extracted the SCREENS array from all 6 grouped pages, confirmed 80 total references, 80 unique, 0 duplicates, 0 gaps against the full 01–80 range — PASS.
+5. support.js byte-for-byte hash compared against the already-accepted MiniMart Accounting-Lite package's support.js — IDENTICAL (8fe7df74405f3c55f49b7249c74ea1397e65d07dea2b1bd3b4a489bec2e28cbe). Not modified.
+6. traceability.json and TRACEABILITY.md hashes compared against SHA256SUMS.txt in the handoff bundle — IDENTICAL, confirming these were copied unchanged.
+7. All hashes in this manifest were computed directly from the final packaged bytes (same run that produced the table below), then re-verified against those same bytes before this manifest was finalized.
+
+============================================================
+WHAT WAS NOT VERIFIED (reported honestly, not claimed)
+============================================================
+- Live pixel-level rendering of all 80 screens at the four required viewports (1280×720, 1366×768, 1368×800, 1920×1080) was NOT performed screen-by-screen in this pass. A small representative sample was screenshotted during authoring; the full 80-screen/4-viewport matrix (320 renders) was not captured. This package inherits the candidate's own layout patterns (filter bar wrapping, fixed-width table columns, no page-level horizontal scroll) unchanged, which is a reasonable basis for the claim but is not independently re-verified render evidence from this pass.
+- Accessibility contrast ratios were not independently recomputed in this pass; the candidate's own WCAG contrast claim (screen 75) and its already-applied tone adjustment (#6b7585, #8c98ad) are carried over unchanged and trusted, not reconfirmed.
+- No automated accessibility tooling (axe, Lighthouse, etc.) was run.
+- Individual manual review of each of the 80 screens' rendered content against its cited requirement ID was not performed beyond the structural/registry checks above; this relies on the candidate's own requirement-to-screen mapping (reproduced in traceability.json), which has not been independently re-derived in this pass.
+
+Any of the above should be treated as open verification work for the owner's visual review, not as completed checks.
+
+============================================================
+GROUPED PAGES AND SCREEN RANGES
+============================================================
+MiniMart RPT - Reports Home & Viewer.dc.html — 01–28
+MiniMart RPT - Sales Reports.dc.html — 29–39
+MiniMart RPT - Cash, Day Close & Inventory.dc.html — 40–51
+MiniMart RPT - Purchasing & Credit.dc.html — 52–60
+MiniMart RPT - Management, Export & Print.dc.html — 61–72
+MiniMart RPT - Central & Design System.dc.html — 73–80
+These 6 groupings (plus the package index) are the proposed organization for this package's 80 screens, matching the 7-file pattern used by the approved Accounting-Lite package (6 grouped pages + 1 index, vs Accounting's 6 grouped pages + 1 index — Accounting happened to also use 7 content groups; this package's natural content groupings are 6). Screen count and coverage were preserved from the candidate; no screen was added or removed to hit a particular count.
+Package index: MiniMart Reporting Mockups.dc.html — links to all 6 grouped pages and states the provenance and unapproved status.
+
+============================================================
+FROZEN REQUIREMENTS AND DECISIONS — NOT RESOLVED
+============================================================
+Every item in the attached DECISIONS-AND-GAPS.md / COVERAGE-CHECKLIST.md remains visibly unresolved in the design, carried over unchanged from the candidate:
+- DEC-RPT-001 (OPEN), DEC-RPT-002 (PROPOSED), gross/net/discount/return definitions (OPEN, FR-RPT-016/050), aging buckets (OPEN, FR-RPT-044), low-stock threshold ownership (OPEN, DEC-INV-007), batch/expiry policy (OPEN, DEC-INV-004/005), stock-count concurrency (OPEN, DEC-INV-003), no-receipt returns (OPEN, DEC-RET-001), credit policies (OPEN, DEC-CRD-001..004), business-date/day-close policies (OPEN, DEC-CSH-001..005/DEC-COM-001), card/QR adapter baseline (PROPOSED, DEC-PAY-001), customer retention (VERIFY, DEC-CUS-002), PO/GRN policy (PROPOSED, DEC-PUR-001/002/006) — all still marked, none chosen.
+- Authority gaps carried over unchanged: report codes/filter field codes not frozen; no frozen owner screen for cash/day-close or management summary; permissions beyond reporting.read/reporting.write not defined; Export Center hand-off is a design proposal; ReportRunRequest (1–500) vs PageInfo (max 200) limit mismatch flagged, not resolved; no central/multi-branch screen; print channel undefined; audit policy undefined; export artifact retention undefined; performance targets and acceptance suite not visual.
+- Full-GL exclusion preserved: no Chart of Accounts, journal, trial balance, balance sheet, statutory P&L, or period close appears anywhere in the 80 screens.
+
+============================================================
+PACKAGED FILES AND SHA-256 (computed directly from final packaged bytes)
+============================================================
+MiniMartReports.dc.html  SHA256:8402cf8b0338c9e6fcb4746b6fddea5536471fa2b6ef3dde58c23053d556c1da  (127980 bytes)
+MiniMart RPT - Reports Home & Viewer.dc.html  SHA256:9f9beb391f6e460bd2b3459132339b1cafe69f94ed94b909048667c24c4f5cc8  (5268 bytes)
+MiniMart RPT - Sales Reports.dc.html  SHA256:59f7ccff0c80b0b704265d8de1950ed07a4c15279f5109dafb5684ab2176a6c8  (4215 bytes)
+MiniMart RPT - Cash, Day Close & Inventory.dc.html  SHA256:2da382bc21cf0217750e83b78a6f249b201f172b89143aa50affd0771a390a8e  (4358 bytes)
+MiniMart RPT - Purchasing & Credit.dc.html  SHA256:14a0d140130eeea6b9e9fac7594557c0e0a464527a8f24b5fe9de9317d793801  (4240 bytes)
+MiniMart RPT - Management, Export & Print.dc.html  SHA256:21fb3c6fbe829f9e73c9d59b57064a24c858a2e65077f026dfbeaa788751ce40  (4430 bytes)
+MiniMart RPT - Central & Design System.dc.html  SHA256:4209ea7504d83e3289359c7662292fce13ddcda3591d4554d4750ed937b305d6  (4333 bytes)
+MiniMart Reporting Mockups.dc.html  SHA256:2dfcdb07893c9d468d6436a659a7beabf54772d61d5af21abb7504b9738eb1e3  (6811 bytes)
+support.js  SHA256:8fe7df74405f3c55f49b7249c74ea1397e65d07dea2b1bd3b4a489bec2e28cbe  (69150 bytes) — unmodified, byte-identical to the Accounting-Lite package's support.js.
+traceability.json  SHA256:3baee6c658ac3840a1b4c02e10893f8aa6314fd8dc93489f5da64bd120c4fb01  (31201 bytes) — unmodified copy of the candidate's traceability file.
+TRACEABILITY.md  SHA256:4e59e4cb11e89baf3b411fec1224198ee18a65cf27c1cb251c7701bcc87f26ec  (24019 bytes) — unmodified copy of the candidate's traceability doc.
+
+TOTAL PACKAGED FILES: 11, plus this manifest = 12 files in the archive.
+
+============================================================
+STATUS
+============================================================
+REPORTING DESIGN: REVIEW-READY, ADAPTED FROM UNAPPROVED CANDIDATE. NOT APPROVED.
+Not registered in any repository. Not committed. Not pushed.

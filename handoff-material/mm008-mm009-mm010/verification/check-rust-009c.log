@@ -1,0 +1,95 @@
+$ cargo fmt --all --check && cargo check --workspace --locked && cargo test --package minimart-hw-printer --locked && cargo clippy --workspace --all-targets --locked -- -D warnings && cargo fmt --manifest-path apps/pos-terminal/src-tauri/Cargo.toml --check && cargo check --manifest-path apps/pos-terminal/src-tauri/Cargo.toml --locked && cargo test --manifest-path apps/pos-terminal/src-tauri/Cargo.toml --locked && cargo clippy --manifest-path apps/pos-terminal/src-tauri/Cargo.toml --all-targets --locked -- -D warnings
+    Checking minimart-hw-printer v0.0.0 (D:\mm-009\crates\hw-printer)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.20s
+   Compiling minimart-hw-printer v0.0.0 (D:\mm-009\crates\hw-printer)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.64s
+     Running unittests src\lib.rs (target\debug\deps\minimart_hw_printer-9f5ba14165188f90.exe)
+
+running 46 tests
+test raster::tests::a_font_set_needs_at_least_one_valid_font ... ok
+test raster::tests::a_joiner_keeps_the_font_of_the_preceding_run ... ok
+test raster::tests::a_lone_vowel_sign_renders_with_a_dotted_circle_and_is_not_rejected ... ok
+test raster::tests::a_character_in_no_font_is_a_missing_glyph_with_its_byte_offset ... ok
+test raster::tests::a_consonant_after_a_virama_must_use_the_font_of_the_virama ... ok
+test raster::tests::a_conjunct_shapes_to_one_glyph ... ok
+test raster::tests::a_mark_the_base_font_cannot_draw_is_an_error_not_a_split_run ... ok
+test raster::tests::a_prebase_vowel_sign_stays_in_its_consonant_cluster ... ok
+test raster::tests::an_explicit_chillu_sequence_shapes_like_the_atomic_chillu ... ok
+test raster::tests::bidirectional_controls_are_rejected_because_there_is_no_reordering ... ok
+test raster::tests::an_indivisible_unit_wider_than_the_width_is_an_error_not_a_clip ... ok
+test raster::tests::bitmap_geometry_is_consistent_and_padding_bits_stay_clear ... ok
+test raster::tests::control_characters_other_than_newline_are_rejected ... ok
+test raster::tests::edge_spaces_are_dropped_and_inner_spaces_keep_their_width ... ok
+test raster::tests::a_wrap_point_drops_its_spaces_and_no_line_is_wider_than_the_width ... ok
+test raster::tests::empty_and_whitespace_only_input_is_rejected ... ok
+test raster::tests::guard_documented_limits_other_scripts_and_emoji_sequences_are_not_protected ... ok
+test raster::tests::every_word_of_the_conjunct_fixtures_is_shaped_in_one_font ... ok
+test raster::tests::font_licence_texts_and_copyright_notices_are_retained ... ok
+test raster::tests::guard_protects_the_cases_it_was_written_for ... ok
+test raster::tests::fixture_fonts_match_the_recorded_hashes ... ok
+test raster::tests::ink_that_overhangs_the_width_is_an_error_and_a_left_overhang_is_padded ... ok
+test raster::tests::latin_uses_the_first_font_and_malayalam_falls_back_to_the_second ... ok
+test raster::tests::line_box_grows_for_taller_ink_than_the_font_metrics_say ... ok
+test raster::tests::input_length_is_checked_exactly_at_the_limit ... ok
+test raster::tests::only_left_to_right_runs_are_supported ... ok
+test raster::tests::a_long_conjunct_word_never_breaks_inside_a_syllable_at_any_tested_width ... ok
+test raster::tests::paragraphs_make_lines_and_a_blank_paragraph_makes_a_blank_line ... ok
+test raster::tests::line_box_uses_the_fonts_actually_used_and_never_less_than_their_metrics ... ok
+test raster::tests::sha256_matches_known_vectors ... ok
+test raster::tests::line_count_line_box_height_and_memory_limits_each_return_an_error ... ok
+test raster::tests::shaping_clusters_alone_allow_a_break_inside_a_conjunct_and_the_guard_forbids_it ... ok
+test raster::tests::size_arithmetic_is_checked_and_never_wraps ... ok
+test raster::tests::exact_platform_golden_bitmap_hashes ... ok
+test raster::tests::write_previews_when_requested ... ok
+test raster::tests::width_and_pixel_size_are_range_checked ... ok
+test raster::tests::the_outline_command_budget_is_exact_and_checked_before_drawing ... ok
+test tests::attempt_never_retries_even_after_uncertain_failure ... ok
+test tests::diagnostic_is_bounded_ascii_with_windows_line_endings ... ok
+test raster::tests::the_shaped_glyph_limit_is_exact_and_counts_spaces ... ok
+test tests::printer_name_must_be_explicit_and_bounded ... ok
+test tests::errors_have_stable_hardware_categories ... ok
+test raster::tests::the_working_memory_limit_is_exact ... ok
+test raster::tests::portable_layout_fingerprints ... ok
+test raster::tests::portable_bitmap_structure ... ok
+test raster::tests::rendering_is_repeatable_across_calls_and_font_set_instances ... ok
+
+test result: ok. 46 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.16s
+
+   Doc-tests minimart_hw_printer
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+    Checking minimart-hw-printer v0.0.0 (D:\mm-009\crates\hw-printer)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.31s
+    Checking minimart-hw-printer v0.0.0 (D:\mm-009\crates\hw-printer)
+    Checking minimart-pos-terminal v0.0.0 (D:\mm-009\apps\pos-terminal\src-tauri)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 1.25s
+   Compiling minimart-hw-printer v0.0.0 (D:\mm-009\crates\hw-printer)
+   Compiling minimart-pos-terminal v0.0.0 (D:\mm-009\apps\pos-terminal\src-tauri)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 7.97s
+     Running unittests src\lib.rs (apps\pos-terminal\src-tauri\target\debug\deps\minimart_pos_terminal_lib-0fe66c26df6f0975.exe)
+
+running 4 tests
+test printer_spike::tests::gate_passes_the_queue_name_through_only_when_explicitly_enabled ... ok
+test printer_spike::tests::gate_rejects_missing_printer_queue_even_when_enabled ... ok
+test printer_spike::tests::reply_never_claims_physical_output ... ok
+test printer_spike::tests::gate_rejects_when_the_enable_flag_is_unset_or_not_exactly_one ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src\main.rs (apps\pos-terminal\src-tauri\target\debug\deps\minimart_pos_terminal-636a09bd79c07c95.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests minimart_pos_terminal_lib
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+    Checking minimart-pos-terminal v0.0.0 (D:\mm-009\apps\pos-terminal\src-tauri)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 1.19s

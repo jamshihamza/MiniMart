@@ -1,0 +1,1136 @@
+{
+  "baseCommit": "a0350fe214dfe94525b502ce983db1a0d1fbce82",
+  "status": "review-ready; not an approved visual reference",
+  "authority": {
+    "requirements": "docs/specifications/01-business-and-functional/docs/02-functional/14-reporting/reporting.md (FR-RPT-001..065)",
+    "ui": "docs/specifications/06-ui-specification/screens/UI-RPT-001..005 and UI-EXP-001",
+    "api": "docs/specifications/05-api-contracts: API-RPT-001 (reporting.read), API-RPT-002 (reporting.read), API-RPT-003 (reporting.write), docs/06-READ-QUERY-REPORTING.md",
+    "backlog": "docs/backlog: MM-079..MM-083 (Reports), MM-097 (Export Center)",
+    "decisions": "DEC-RPT-001 (OPEN by report), DEC-RPT-002 (PROPOSED)"
+  },
+  "requirements": [
+    {
+      "id": "FR-RPT-001",
+      "title": "Reporting read-only principle",
+      "screens": ["01", "03", "11", "18", "28", "75", "77", "79", "80"]
+    },
+    {
+      "id": "FR-RPT-002",
+      "title": "Report authorization",
+      "screens": ["01", "02", "05", "06", "22"]
+    },
+    {
+      "id": "FR-RPT-003",
+      "title": "Store scope",
+      "screens": ["11", "12"]
+    },
+    {
+      "id": "FR-RPT-004",
+      "title": "Business date filter",
+      "screens": ["12", "13", "21", "29"]
+    },
+    {
+      "id": "FR-RPT-005",
+      "title": "Timestamp/date filter",
+      "screens": ["12", "13"]
+    },
+    {
+      "id": "FR-RPT-006",
+      "title": "Counter filter",
+      "screens": ["12", "33", "40", "41"]
+    },
+    {
+      "id": "FR-RPT-007",
+      "title": "Cashier filter",
+      "screens": ["12", "32", "34", "40", "41"]
+    },
+    {
+      "id": "FR-RPT-008",
+      "title": "Product filter",
+      "screens": ["12", "30", "44", "47"]
+    },
+    {
+      "id": "FR-RPT-009",
+      "title": "Category/brand filter",
+      "screens": ["03", "12", "15", "31"]
+    },
+    {
+      "id": "FR-RPT-010",
+      "title": "Supplier filter",
+      "screens": ["12", "52", "53"]
+    },
+    {
+      "id": "FR-RPT-011",
+      "title": "Customer filter",
+      "screens": ["12", "56", "58", "60"]
+    },
+    {
+      "id": "FR-RPT-012",
+      "title": "Tender filter",
+      "screens": ["12", "38"]
+    },
+    {
+      "id": "FR-RPT-013",
+      "title": "Status filter",
+      "screens": ["12", "20", "38", "39"]
+    },
+    {
+      "id": "FR-RPT-014",
+      "title": "Report generated timestamp",
+      "screens": ["01", "11", "61"]
+    },
+    {
+      "id": "FR-RPT-015",
+      "title": "Pagination/large result handling",
+      "screens": ["04", "11", "17", "19", "76"]
+    },
+    {
+      "id": "FR-RPT-016",
+      "title": "Daily sales summary",
+      "screens": ["14", "29"]
+    },
+    {
+      "id": "FR-RPT-017",
+      "title": "Sales by item",
+      "screens": ["18", "30"]
+    },
+    {
+      "id": "FR-RPT-018",
+      "title": "Sales by category",
+      "screens": ["31"]
+    },
+    {
+      "id": "FR-RPT-019",
+      "title": "Sales by cashier",
+      "screens": ["32"]
+    },
+    {
+      "id": "FR-RPT-020",
+      "title": "Sales by counter",
+      "screens": ["33"]
+    },
+    {
+      "id": "FR-RPT-021",
+      "title": "Discount report",
+      "screens": ["34"]
+    },
+    {
+      "id": "FR-RPT-022",
+      "title": "Price override report",
+      "screens": ["35"]
+    },
+    {
+      "id": "FR-RPT-023",
+      "title": "Returns report",
+      "screens": ["36"]
+    },
+    {
+      "id": "FR-RPT-024",
+      "title": "No-receipt return report",
+      "screens": ["37"]
+    },
+    {
+      "id": "FR-RPT-025",
+      "title": "Tender summary",
+      "screens": ["38"]
+    },
+    {
+      "id": "FR-RPT-026",
+      "title": "Payment exception report",
+      "screens": ["39", "62"]
+    },
+    {
+      "id": "FR-RPT-027",
+      "title": "Cash movement report",
+      "screens": ["40"]
+    },
+    {
+      "id": "FR-RPT-028",
+      "title": "Cash variance report",
+      "screens": ["41", "62"]
+    },
+    {
+      "id": "FR-RPT-029",
+      "title": "Shift close report",
+      "screens": ["42"]
+    },
+    {
+      "id": "FR-RPT-030",
+      "title": "Day close report",
+      "screens": ["43"]
+    },
+    {
+      "id": "FR-RPT-031",
+      "title": "Current stock report",
+      "screens": ["44"]
+    },
+    {
+      "id": "FR-RPT-032",
+      "title": "Low stock report",
+      "screens": ["45"]
+    },
+    {
+      "id": "FR-RPT-033",
+      "title": "Negative stock report",
+      "screens": ["46"]
+    },
+    {
+      "id": "FR-RPT-034",
+      "title": "Stock movement report",
+      "screens": ["47"]
+    },
+    {
+      "id": "FR-RPT-035",
+      "title": "Batch/expiry report",
+      "screens": ["48"]
+    },
+    {
+      "id": "FR-RPT-036",
+      "title": "Inventory valuation report",
+      "screens": ["14", "49"]
+    },
+    {
+      "id": "FR-RPT-037",
+      "title": "Stock count variance report",
+      "screens": ["50"]
+    },
+    {
+      "id": "FR-RPT-038",
+      "title": "Stock adjustment report",
+      "screens": ["51"]
+    },
+    {
+      "id": "FR-RPT-039",
+      "title": "Purchase summary",
+      "screens": ["52"]
+    },
+    {
+      "id": "FR-RPT-040",
+      "title": "Purchase by supplier",
+      "screens": ["53"]
+    },
+    {
+      "id": "FR-RPT-041",
+      "title": "Purchase return report",
+      "screens": ["54"]
+    },
+    {
+      "id": "FR-RPT-042",
+      "title": "Purchase price history",
+      "screens": ["55"]
+    },
+    {
+      "id": "FR-RPT-043",
+      "title": "Customer outstanding report",
+      "screens": ["56"]
+    },
+    {
+      "id": "FR-RPT-044",
+      "title": "Customer aging report",
+      "screens": ["14", "57"]
+    },
+    {
+      "id": "FR-RPT-045",
+      "title": "Customer statement",
+      "screens": ["58"]
+    },
+    {
+      "id": "FR-RPT-046",
+      "title": "Credit override report",
+      "screens": ["59"]
+    },
+    {
+      "id": "FR-RPT-047",
+      "title": "Management daily summary",
+      "screens": ["01", "61"]
+    },
+    {
+      "id": "FR-RPT-048",
+      "title": "Exception-oriented reporting",
+      "screens": ["01", "62"]
+    },
+    {
+      "id": "FR-RPT-049",
+      "title": "Comparative periods",
+      "screens": ["63"]
+    },
+    {
+      "id": "FR-RPT-050",
+      "title": "Report totals definition",
+      "screens": ["11", "14", "29", "74"]
+    },
+    {
+      "id": "FR-RPT-051",
+      "title": "Historical master-data semantics",
+      "screens": ["03", "15", "31"]
+    },
+    {
+      "id": "FR-RPT-052",
+      "title": "As-of reporting",
+      "screens": ["16", "49", "57"]
+    },
+    {
+      "id": "FR-RPT-053",
+      "title": "Offline local reports",
+      "screens": ["07", "11", "25"]
+    },
+    {
+      "id": "FR-RPT-054",
+      "title": "Central multi-branch report scope",
+      "screens": ["10", "73"]
+    },
+    {
+      "id": "FR-RPT-055",
+      "title": "Incomplete sync warning",
+      "screens": ["10", "73"]
+    },
+    {
+      "id": "FR-RPT-056",
+      "title": "Print report",
+      "screens": ["11", "71"]
+    },
+    {
+      "id": "FR-RPT-057",
+      "title": "Export CSV",
+      "screens": ["11", "64", "66", "67", "69"]
+    },
+    {
+      "id": "FR-RPT-058",
+      "title": "Export spreadsheet boundary",
+      "screens": ["64", "67"]
+    },
+    {
+      "id": "FR-RPT-059",
+      "title": "Export permission",
+      "screens": ["65", "70"]
+    },
+    {
+      "id": "FR-RPT-060",
+      "title": "PII-aware export",
+      "screens": ["60", "70"]
+    },
+    {
+      "id": "FR-RPT-061",
+      "title": "Report audit",
+      "screens": ["72"]
+    },
+    {
+      "id": "FR-RPT-062",
+      "title": "Report failure behavior",
+      "screens": ["08", "09", "23", "24", "26", "27", "68", "69"]
+    },
+    {
+      "id": "FR-RPT-063",
+      "title": "Report performance target",
+      "screens": ["78"]
+    },
+    {
+      "id": "FR-RPT-064",
+      "title": "No accounting claim beyond scope",
+      "screens": ["28", "79", "80"]
+    },
+    {
+      "id": "FR-RPT-065",
+      "title": "Reporting acceptance suite",
+      "screens": ["78"]
+    }
+  ],
+  "uiScreens": [
+    {
+      "source": "UI-RPT-001 Reports Home",
+      "screens": ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10"],
+      "api": "API-RPT-001"
+    },
+    {
+      "source": "UI-RPT-002 Sales Report",
+      "screens": ["29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39"],
+      "api": "API-RPT-001, API-RPT-002, API-RPT-003"
+    },
+    {
+      "source": "UI-RPT-003 Inventory Report",
+      "screens": ["44", "45", "46", "47", "48", "49", "50", "51"],
+      "api": "API-RPT-001, API-RPT-002, API-RPT-003"
+    },
+    {
+      "source": "UI-RPT-004 Purchase / Supplier Report",
+      "screens": ["52", "53", "54", "55"],
+      "api": "API-RPT-001, API-RPT-002, API-RPT-003"
+    },
+    {
+      "source": "UI-RPT-005 Credit / Collection Report",
+      "screens": ["56", "57", "58", "59", "60"],
+      "api": "API-RPT-001, API-RPT-002, API-RPT-003"
+    },
+    {
+      "source": "Shared by UI-RPT-002..005 (viewer anatomy, rules and states)",
+      "screens": [
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28"
+      ],
+      "api": "API-RPT-002"
+    },
+    {
+      "source": "UI-EXP-001 Export Center (hand-off proposal)",
+      "screens": ["64", "65", "66", "67", "68", "69", "70", "71", "72"],
+      "api": "API-RPT-003, API-IMP-005, API-IMP-010"
+    },
+    {
+      "source": "No frozen owner screen: cash and day-close reports",
+      "screens": ["40", "41", "42", "43"],
+      "api": "API-RPT-002"
+    },
+    {
+      "source": "No frozen owner screen: management summary (UI-SYS-003 is the nearest)",
+      "screens": ["61", "62", "63"],
+      "api": "API-RPT-002"
+    },
+    {
+      "source": "No frozen UI: central reports (Phase 3)",
+      "screens": ["73"],
+      "api": "API-RPT-002"
+    },
+    {
+      "source": "Design package only",
+      "screens": ["74", "75", "76", "77", "78", "79", "80"],
+      "api": "none"
+    }
+  ],
+  "decisions": [
+    {
+      "id": "DEC-RPT-001",
+      "status": "OPEN",
+      "text": "Historical versus current master grouping, decided per report.",
+      "affects": "Sales by Category; grouping screens"
+    },
+    {
+      "id": "DEC-RPT-002",
+      "status": "PROPOSED",
+      "text": "The Phase-2 baseline report list is the one in the Reporting FRS. The design follows that list; it is not frozen.",
+      "affects": "Reports Home"
+    },
+    {
+      "id": "FR-RPT-050 / 016",
+      "status": "OPEN",
+      "text": "Definitions of gross sales, discounts, returns, net sales and tax for reports. FR-RPT-016 requires \"approved\" definitions that no document states.",
+      "affects": "Every sales report; definitions screen"
+    },
+    {
+      "id": "FR-RPT-044",
+      "status": "OPEN",
+      "text": "Approved aging buckets and the due-date basis (with DEC-CRD-002).",
+      "affects": "Customer Aging Report"
+    },
+    {
+      "id": "DEC-INV-007",
+      "status": "OPEN",
+      "text": "Who owns the reorder or low-stock threshold.",
+      "affects": "Low Stock Report"
+    },
+    {
+      "id": "DEC-INV-004 / 005",
+      "status": "OPEN",
+      "text": "Batch selection and expiry/FEFO policy; DEC-POS-003 expiry-sale policy is VERIFY.",
+      "affects": "Batch / Expiry Report"
+    },
+    {
+      "id": "DEC-INV-003",
+      "status": "OPEN",
+      "text": "Stock-count concurrency policy.",
+      "affects": "Stock Count Variance Report"
+    },
+    {
+      "id": "DEC-RET-001",
+      "status": "OPEN",
+      "text": "Whether no-receipt returns exist and under what eligibility.",
+      "affects": "No-Receipt Return Report"
+    },
+    {
+      "id": "DEC-CRD-001 / 002 / 003 / 004",
+      "status": "OPEN",
+      "text": "Credit limit, collection allocation, customer advance and suspended-credit override policies.",
+      "affects": "Credit reports"
+    },
+    {
+      "id": "DEC-CSH-001..005, DEC-COM-001",
+      "status": "OPEN",
+      "text": "Business-date rollover, day close, late transactions, reopen and active-shift policies.",
+      "affects": "Cash and day close reports; date filters"
+    },
+    {
+      "id": "DEC-PAY-001",
+      "status": "PROPOSED",
+      "text": "Card and QR adapter baseline behaviour.",
+      "affects": "Tender and Payment Exception reports"
+    },
+    {
+      "id": "DEC-CUS-002",
+      "status": "VERIFY",
+      "text": "Customer retention and anonymisation period.",
+      "affects": "Customer data screens"
+    },
+    {
+      "id": "DEC-PUR-001 / 002 / 006",
+      "status": "PROPOSED",
+      "text": "Purchase-order and direct-GRN policy. Tax recoverability is VERIFY.",
+      "affects": "Purchasing reports"
+    },
+    {
+      "id": "DEC-INV-001",
+      "status": "RESOLVED",
+      "text": "Moving weighted-average cost per Item per Store. Used for inventory valuation.",
+      "affects": "Inventory Valuation Report"
+    },
+    {
+      "id": "DEC-INV-010",
+      "status": "RESOLVED",
+      "text": "Phase-1 negative-stock default is BLOCK.",
+      "affects": "Negative Stock Report"
+    }
+  ],
+  "gaps": [
+    {
+      "gap": "Report codes, name keys, filter field codes and operators are not frozen",
+      "detail": "ReportDefinition and ReportRunRequest define only the shapes. The design uses human labels."
+    },
+    {
+      "gap": "No frozen screen owns Cash/Shift/Day-close reports or the Management Daily Summary",
+      "detail": "UI-RPT-001..005 cover sales/tender, inventory, purchasing/payables and credit/collections. The cash and management reports in FR-RPT-027..030 and 047..049 have no named screen."
+    },
+    {
+      "gap": "Permissions beyond reporting.read and reporting.write are not defined",
+      "detail": "Needed for cost-sensitive access, source drill-down, unmasking customer data, sensitive export and per-cashier visibility."
+    },
+    {
+      "gap": "Hand-off from a report to Export Center is not described",
+      "detail": "UI-EXP-001 lists import and export operations only. The \"Continue in Export Center\" link is a design proposal."
+    },
+    {
+      "gap": "Page limits differ between contracts",
+      "detail": "ReportRunRequest.limit allows 1–500 while PageInfo.limit allows at most 200."
+    },
+    {
+      "gap": "No central or multi-branch report screen exists (Phase 3)",
+      "detail": "UI-CLD-001..003 are cloud screens; FR-RPT-054/055 have no frozen screen."
+    },
+    {
+      "gap": "Print channel, page size and orientation are undefined",
+      "detail": "FR-RPT-056 says \"readable form\" only."
+    },
+    {
+      "gap": "Audit policy for report access and export is undefined",
+      "detail": "FR-RPT-061 is a SHOULD \"according to policy\"."
+    },
+    {
+      "gap": "Export artifact retention is a policy seam",
+      "detail": "API 16-IMPORT-EXPORT-JOB-ARTIFACT."
+    },
+    {
+      "gap": "Performance targets and the acceptance suite are not visual",
+      "detail": "FR-RPT-063 and FR-RPT-065 need data volumes and tests, not screens."
+    }
+  ],
+  "screens": [
+    {
+      "number": "01",
+      "name": "Reports Home — authorized catalog",
+      "group": "Reports Home",
+      "requirements": ["FR-RPT-001", "FR-RPT-002", "FR-RPT-014", "FR-RPT-047", "FR-RPT-048"],
+      "unresolved": []
+    },
+    {
+      "number": "02",
+      "name": "Reports Home — search and family filter applied",
+      "group": "Reports Home",
+      "requirements": ["FR-RPT-002"],
+      "unresolved": []
+    },
+    {
+      "number": "03",
+      "name": "Report definition — supported filters and grouping",
+      "group": "Reports Home",
+      "requirements": ["FR-RPT-001", "FR-RPT-009", "FR-RPT-051"],
+      "unresolved": []
+    },
+    {
+      "number": "04",
+      "name": "Reports Home — loading",
+      "group": "Reports Home",
+      "requirements": ["FR-RPT-015"],
+      "unresolved": []
+    },
+    {
+      "number": "05",
+      "name": "Reports Home — empty (no authorized reports)",
+      "group": "Reports Home",
+      "requirements": ["FR-RPT-002"],
+      "unresolved": []
+    },
+    {
+      "number": "06",
+      "name": "Reports Home — permission denied",
+      "group": "Reports Home",
+      "requirements": ["FR-RPT-002"],
+      "unresolved": []
+    },
+    {
+      "number": "07",
+      "name": "Reports Home — local scope (cloud sync unavailable)",
+      "group": "Reports Home",
+      "requirements": ["FR-RPT-053"],
+      "unresolved": []
+    },
+    {
+      "number": "08",
+      "name": "Reports Home — Store Node unavailable",
+      "group": "Reports Home",
+      "requirements": ["FR-RPT-062"],
+      "unresolved": []
+    },
+    {
+      "number": "09",
+      "name": "Reports Home — incompatible client",
+      "group": "Reports Home",
+      "requirements": ["FR-RPT-062"],
+      "unresolved": []
+    },
+    {
+      "number": "10",
+      "name": "Reports Home — later-phase central reports",
+      "group": "Reports Home",
+      "requirements": ["FR-RPT-054", "FR-RPT-055"],
+      "unresolved": []
+    },
+    {
+      "number": "11",
+      "name": "Report viewer — anatomy",
+      "group": "Report viewer",
+      "requirements": [
+        "FR-RPT-001",
+        "FR-RPT-003",
+        "FR-RPT-014",
+        "FR-RPT-015",
+        "FR-RPT-050",
+        "FR-RPT-053",
+        "FR-RPT-056",
+        "FR-RPT-057"
+      ],
+      "unresolved": []
+    },
+    {
+      "number": "12",
+      "name": "Filter bar — filters and applicability",
+      "group": "Report viewer",
+      "requirements": [
+        "FR-RPT-003",
+        "FR-RPT-004",
+        "FR-RPT-005",
+        "FR-RPT-006",
+        "FR-RPT-007",
+        "FR-RPT-008",
+        "FR-RPT-009",
+        "FR-RPT-010",
+        "FR-RPT-011",
+        "FR-RPT-012",
+        "FR-RPT-013"
+      ],
+      "unresolved": []
+    },
+    {
+      "number": "13",
+      "name": "Business date versus timestamp",
+      "group": "Report viewer",
+      "requirements": ["FR-RPT-004", "FR-RPT-005"],
+      "unresolved": []
+    },
+    {
+      "number": "14",
+      "name": "Totals definitions — status of each term",
+      "group": "Report viewer",
+      "requirements": ["FR-RPT-050", "FR-RPT-016", "FR-RPT-036", "FR-RPT-044"],
+      "unresolved": []
+    },
+    {
+      "number": "15",
+      "name": "Grouping basis — historical or current master",
+      "group": "Report viewer",
+      "requirements": ["FR-RPT-009", "FR-RPT-051"],
+      "unresolved": []
+    },
+    {
+      "number": "16",
+      "name": "As-of reporting",
+      "group": "Report viewer",
+      "requirements": ["FR-RPT-052"],
+      "unresolved": []
+    },
+    {
+      "number": "17",
+      "name": "Pagination and bounded results",
+      "group": "Report viewer",
+      "requirements": ["FR-RPT-015"],
+      "unresolved": []
+    },
+    {
+      "number": "18",
+      "name": "Drill-down — source reference (read-only)",
+      "group": "Report viewer",
+      "requirements": ["FR-RPT-017", "FR-RPT-001"],
+      "unresolved": []
+    },
+    {
+      "number": "19",
+      "name": "Report — loading",
+      "group": "Report states",
+      "requirements": ["FR-RPT-015"],
+      "unresolved": []
+    },
+    {
+      "number": "20",
+      "name": "Report — empty result",
+      "group": "Report states",
+      "requirements": ["FR-RPT-013"],
+      "unresolved": []
+    },
+    {
+      "number": "21",
+      "name": "Report — validation error",
+      "group": "Report states",
+      "requirements": ["FR-RPT-004"],
+      "unresolved": []
+    },
+    {
+      "number": "22",
+      "name": "Report — permission denied",
+      "group": "Report states",
+      "requirements": ["FR-RPT-002"],
+      "unresolved": []
+    },
+    {
+      "number": "23",
+      "name": "Report — definition conflict",
+      "group": "Report states",
+      "requirements": ["FR-RPT-062"],
+      "unresolved": []
+    },
+    {
+      "number": "24",
+      "name": "Report — run failed (no partial totals)",
+      "group": "Report states",
+      "requirements": ["FR-RPT-062"],
+      "unresolved": []
+    },
+    {
+      "number": "25",
+      "name": "Report — local scope (cloud sync unavailable)",
+      "group": "Report states",
+      "requirements": ["FR-RPT-053"],
+      "unresolved": []
+    },
+    {
+      "number": "26",
+      "name": "Report — Store Node unavailable",
+      "group": "Report states",
+      "requirements": ["FR-RPT-062"],
+      "unresolved": []
+    },
+    {
+      "number": "27",
+      "name": "Report — incompatible client",
+      "group": "Report states",
+      "requirements": ["FR-RPT-062"],
+      "unresolved": []
+    },
+    {
+      "number": "28",
+      "name": "Read-only guarantee and operational scope",
+      "group": "Report states",
+      "requirements": ["FR-RPT-001", "FR-RPT-064"],
+      "unresolved": []
+    },
+    {
+      "number": "29",
+      "name": "Daily Sales Summary",
+      "group": "Sales reports",
+      "requirements": ["FR-RPT-016", "FR-RPT-004", "FR-RPT-050"],
+      "unresolved": ["OPEN FR-RPT-016", "VERIFY FR-RPT-004"]
+    },
+    {
+      "number": "30",
+      "name": "Sales by Item",
+      "group": "Sales reports",
+      "requirements": ["FR-RPT-017", "FR-RPT-008"],
+      "unresolved": ["VERIFY FR-RPT-017", "VERIFY FR-RPT-009"]
+    },
+    {
+      "number": "31",
+      "name": "Sales by Category",
+      "group": "Sales reports",
+      "requirements": ["FR-RPT-018", "FR-RPT-009", "FR-RPT-051"],
+      "unresolved": ["OPEN DEC-RPT-001"]
+    },
+    {
+      "number": "32",
+      "name": "Sales by Cashier",
+      "group": "Sales reports",
+      "requirements": ["FR-RPT-019", "FR-RPT-007"],
+      "unresolved": ["VERIFY FR-RPT-007"]
+    },
+    {
+      "number": "33",
+      "name": "Sales by Counter",
+      "group": "Sales reports",
+      "requirements": ["FR-RPT-020", "FR-RPT-006"],
+      "unresolved": ["OPEN DEC-CSH-005"]
+    },
+    {
+      "number": "34",
+      "name": "Discount Report",
+      "group": "Sales reports",
+      "requirements": ["FR-RPT-021", "FR-RPT-007"],
+      "unresolved": ["OPEN FR-RPT-021"]
+    },
+    {
+      "number": "35",
+      "name": "Price Override Report",
+      "group": "Sales reports",
+      "requirements": ["FR-RPT-022"],
+      "unresolved": ["OPEN FR-RPT-022"]
+    },
+    {
+      "number": "36",
+      "name": "Returns Report",
+      "group": "Sales reports",
+      "requirements": ["FR-RPT-023"],
+      "unresolved": ["OPEN DEC-RET-002"]
+    },
+    {
+      "number": "37",
+      "name": "No-Receipt Return Report",
+      "group": "Sales reports",
+      "requirements": ["FR-RPT-024"],
+      "unresolved": ["OPEN DEC-RET-001"]
+    },
+    {
+      "number": "38",
+      "name": "Tender Summary",
+      "group": "Sales reports",
+      "requirements": ["FR-RPT-025", "FR-RPT-012", "FR-RPT-013"],
+      "unresolved": ["OPEN DEC-PAY-001"]
+    },
+    {
+      "number": "39",
+      "name": "Payment Exception Report",
+      "group": "Sales reports",
+      "requirements": ["FR-RPT-026", "FR-RPT-013"],
+      "unresolved": ["OPEN DEC-PAY-001"]
+    },
+    {
+      "number": "40",
+      "name": "Cash Movement Report",
+      "group": "Cash and day close reports",
+      "requirements": ["FR-RPT-027", "FR-RPT-006", "FR-RPT-007"],
+      "unresolved": ["OPEN DEC-CSH-002"]
+    },
+    {
+      "number": "41",
+      "name": "Cash Variance Report",
+      "group": "Cash and day close reports",
+      "requirements": ["FR-RPT-028", "FR-RPT-006", "FR-RPT-007"],
+      "unresolved": ["OPEN DEC-CSH-002"]
+    },
+    {
+      "number": "42",
+      "name": "Shift Close Report",
+      "group": "Cash and day close reports",
+      "requirements": ["FR-RPT-029"],
+      "unresolved": ["OPEN DEC-CSH-002"]
+    },
+    {
+      "number": "43",
+      "name": "Day Close Report",
+      "group": "Cash and day close reports",
+      "requirements": ["FR-RPT-030"],
+      "unresolved": ["OPEN DEC-CSH-003"]
+    },
+    {
+      "number": "44",
+      "name": "Current Stock",
+      "group": "Inventory reports",
+      "requirements": ["FR-RPT-031", "FR-RPT-008"],
+      "unresolved": ["OPEN DEC-INV-004"]
+    },
+    {
+      "number": "45",
+      "name": "Low Stock Report — threshold ownership undefined",
+      "group": "Inventory reports",
+      "requirements": ["FR-RPT-032"],
+      "unresolved": ["OPEN DEC-INV-007"]
+    },
+    {
+      "number": "46",
+      "name": "Negative Stock Report — normally empty",
+      "group": "Inventory reports",
+      "requirements": ["FR-RPT-033"],
+      "unresolved": ["RESOLVED DEC-INV-010"]
+    },
+    {
+      "number": "47",
+      "name": "Stock Movement Report",
+      "group": "Inventory reports",
+      "requirements": ["FR-RPT-034", "FR-RPT-008"],
+      "unresolved": ["VERIFY FR-RPT-034"]
+    },
+    {
+      "number": "48",
+      "name": "Batch / Expiry Report",
+      "group": "Inventory reports",
+      "requirements": ["FR-RPT-035"],
+      "unresolved": ["OPEN DEC-INV-005", "VERIFY DEC-POS-003"]
+    },
+    {
+      "number": "49",
+      "name": "Inventory Valuation Report",
+      "group": "Inventory reports",
+      "requirements": ["FR-RPT-036", "FR-RPT-052"],
+      "unresolved": ["RESOLVED DEC-INV-001"]
+    },
+    {
+      "number": "50",
+      "name": "Stock Count Variance Report",
+      "group": "Inventory reports",
+      "requirements": ["FR-RPT-037"],
+      "unresolved": ["OPEN DEC-INV-003"]
+    },
+    {
+      "number": "51",
+      "name": "Stock Adjustment Report",
+      "group": "Inventory reports",
+      "requirements": ["FR-RPT-038"],
+      "unresolved": ["VERIFY FR-RPT-038"]
+    },
+    {
+      "number": "52",
+      "name": "Purchase Summary",
+      "group": "Purchasing reports",
+      "requirements": ["FR-RPT-039", "FR-RPT-010"],
+      "unresolved": ["OPEN DEC-PUR-001", "VERIFY FR-ACC-011"]
+    },
+    {
+      "number": "53",
+      "name": "Purchase by Supplier",
+      "group": "Purchasing reports",
+      "requirements": ["FR-RPT-040", "FR-RPT-010"],
+      "unresolved": ["VERIFY FR-RPT-040"]
+    },
+    {
+      "number": "54",
+      "name": "Purchase Return Report",
+      "group": "Purchasing reports",
+      "requirements": ["FR-RPT-041"],
+      "unresolved": ["VERIFY FR-RPT-041"]
+    },
+    {
+      "number": "55",
+      "name": "Purchase Price History — cost-sensitive",
+      "group": "Purchasing reports",
+      "requirements": ["FR-RPT-042"],
+      "unresolved": ["GAP FR-RPT-042"]
+    },
+    {
+      "number": "56",
+      "name": "Customer Outstanding Report",
+      "group": "Credit and collection reports",
+      "requirements": ["FR-RPT-043", "FR-RPT-011"],
+      "unresolved": ["VERIFY FR-RPT-060", "VERIFY FR-ACC-021"]
+    },
+    {
+      "number": "57",
+      "name": "Customer Aging Report",
+      "group": "Credit and collection reports",
+      "requirements": ["FR-RPT-044", "FR-RPT-052"],
+      "unresolved": ["OPEN FR-RPT-044"]
+    },
+    {
+      "number": "58",
+      "name": "Customer Statement",
+      "group": "Credit and collection reports",
+      "requirements": ["FR-RPT-045", "FR-RPT-011"],
+      "unresolved": ["OPEN DEC-CRD-003"]
+    },
+    {
+      "number": "59",
+      "name": "Credit Override Report",
+      "group": "Credit and collection reports",
+      "requirements": ["FR-RPT-046"],
+      "unresolved": ["OPEN DEC-CRD-001", "OPEN DEC-CRD-004"]
+    },
+    {
+      "number": "60",
+      "name": "Customer data — masked by default",
+      "group": "Credit and collection reports",
+      "requirements": ["FR-RPT-011", "FR-RPT-060"],
+      "unresolved": []
+    },
+    {
+      "number": "61",
+      "name": "Management Daily Summary",
+      "group": "Management summary",
+      "requirements": ["FR-RPT-047", "FR-RPT-014"],
+      "unresolved": []
+    },
+    {
+      "number": "62",
+      "name": "Exception Highlights",
+      "group": "Management summary",
+      "requirements": ["FR-RPT-048", "FR-RPT-026", "FR-RPT-028"],
+      "unresolved": []
+    },
+    {
+      "number": "63",
+      "name": "Comparative Periods — optional",
+      "group": "Management summary",
+      "requirements": ["FR-RPT-049"],
+      "unresolved": []
+    },
+    {
+      "number": "64",
+      "name": "Export dialog — format and scope",
+      "group": "Export and print",
+      "requirements": ["FR-RPT-057", "FR-RPT-058"],
+      "unresolved": []
+    },
+    {
+      "number": "65",
+      "name": "Export — permission required",
+      "group": "Export and print",
+      "requirements": ["FR-RPT-059"],
+      "unresolved": []
+    },
+    {
+      "number": "66",
+      "name": "Export job — queued and running",
+      "group": "Export and print",
+      "requirements": ["FR-RPT-057"],
+      "unresolved": []
+    },
+    {
+      "number": "67",
+      "name": "Export job — completed, hand off to Export Center",
+      "group": "Export and print",
+      "requirements": ["FR-RPT-057", "FR-RPT-058"],
+      "unresolved": []
+    },
+    {
+      "number": "68",
+      "name": "Export job — failed and cancelled",
+      "group": "Export and print",
+      "requirements": ["FR-RPT-062"],
+      "unresolved": []
+    },
+    {
+      "number": "69",
+      "name": "Export — outcome unknown (recovery)",
+      "group": "Export and print",
+      "requirements": ["FR-RPT-057", "FR-RPT-062"],
+      "unresolved": []
+    },
+    {
+      "number": "70",
+      "name": "Export — personal data minimised",
+      "group": "Export and print",
+      "requirements": ["FR-RPT-060", "FR-RPT-059"],
+      "unresolved": []
+    },
+    {
+      "number": "71",
+      "name": "Print preview",
+      "group": "Export and print",
+      "requirements": ["FR-RPT-056"],
+      "unresolved": []
+    },
+    {
+      "number": "72",
+      "name": "Report access and export audit notice",
+      "group": "Export and print",
+      "requirements": ["FR-RPT-061"],
+      "unresolved": []
+    },
+    {
+      "number": "73",
+      "name": "Central report — incomplete sync warning",
+      "group": "Central and later phase",
+      "requirements": ["FR-RPT-054", "FR-RPT-055"],
+      "unresolved": []
+    },
+    {
+      "number": "74",
+      "name": "Report components",
+      "group": "Design system and documentation",
+      "requirements": ["FR-RPT-050"],
+      "unresolved": []
+    },
+    {
+      "number": "75",
+      "name": "Accessibility and keyboard behaviour",
+      "group": "Design system and documentation",
+      "requirements": ["FR-RPT-001"],
+      "unresolved": []
+    },
+    {
+      "number": "76",
+      "name": "Responsive behaviour",
+      "group": "Design system and documentation",
+      "requirements": ["FR-RPT-015"],
+      "unresolved": []
+    },
+    {
+      "number": "77",
+      "name": "Requirement to screen index",
+      "group": "Design system and documentation",
+      "requirements": ["FR-RPT-001"],
+      "unresolved": []
+    },
+    {
+      "number": "78",
+      "name": "Open decisions and authority gaps",
+      "group": "Design system and documentation",
+      "requirements": ["FR-RPT-063", "FR-RPT-065"],
+      "unresolved": []
+    },
+    {
+      "number": "79",
+      "name": "Boundaries — what this package does not define",
+      "group": "Design system and documentation",
+      "requirements": ["FR-RPT-064", "FR-RPT-001"],
+      "unresolved": []
+    },
+    {
+      "number": "80",
+      "name": "Documentation — confirmations",
+      "group": "Design system and documentation",
+      "requirements": ["FR-RPT-001", "FR-RPT-064"],
+      "unresolved": []
+    }
+  ],
+  "coverage": {
+    "requirementsTotal": 65,
+    "requirementsWithScreens": 65,
+    "requirementsWithoutScreens": []
+  }
+}

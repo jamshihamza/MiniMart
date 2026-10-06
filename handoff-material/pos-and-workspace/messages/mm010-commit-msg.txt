@@ -1,0 +1,21 @@
+MM-010: test-only sync proof harness (WIP, acceptance incomplete)
+
+Software-only spike under packages/sync-protocol/test/. No production src,
+schema, migration, launcher or frozen-document change.
+
+- Fictional BusinessDayStateChanged fixture validated against the frozen schema
+- Test-only side, terminal and quarantine tables, tenant + peer scoped
+- Same-transaction outbox, dispatcher, Cloud inbox dedup, retry, lost request
+  and response, abandoned leases, outage, bounded retry, replay after
+  exhaustion, quarantine, advisory-lock checkpoint experiment with negative
+  control, loopback 127.0.0.1 round trip
+- Test dependencies at already-locked versions, one CI step, harness typecheck
+
+Validated locally against postgres:17-alpine (Testcontainers): 11 files,
+90 tests passed; harness typecheck, ESLint, Prettier and pnpm run ci passed.
+
+Not done: OS-process restart evidence, CI run, auth/enrollment/mTLS, pull/ack/
+compatibility routes, conformance suite. Ten frozen contract gaps remain OPEN
+(see docs/phase-0/mm-010-sync-proof-spike.md). MM-010 acceptance INCOMPLETE.
+
+Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>

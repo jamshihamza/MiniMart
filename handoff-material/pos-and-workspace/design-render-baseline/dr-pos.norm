@@ -1,0 +1,414 @@
+TAP version 13
+# Subtest: sc-if renders the true branch and omits the false branch
+not ok 1 - sc-if renders the true branch and omits the false branch
+  ---
+  duration_ms: N
+  type: 'test'
+  location: 'D:\\mm-pos\\tools\\design-render\\tests\\dc-runtime.test.mjs:28:1'
+  failureType: 'hookFailed'
+  error: |-
+    browserType.launch: Executable doesn't exist at C:\Users\ACCOUNTS\AppData\Local\ms-playwright\chromium_headless_shell-1243\chrome-headless-shell-win64\chrome-headless-shell.exe
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    TestContext.<anonymous> (<WT>\tools\design-render\tests\dc-runtime.test.mjs:13:28)
+    <WT>\tools\design-render\tests\dc-runtime.test.mjs:12:1
+  ...
+# Subtest: sc-if flips branches when the underlying expression flips
+not ok 2 - sc-if flips branches when the underlying expression flips
+  ---
+  duration_ms: N
+  type: 'test'
+  location: 'D:\\mm-pos\\tools\\design-render\\tests\\dc-runtime.test.mjs:39:1'
+  failureType: 'hookFailed'
+  error: |-
+    browserType.launch: Executable doesn't exist at C:\Users\ACCOUNTS\AppData\Local\ms-playwright\chromium_headless_shell-1243\chrome-headless-shell-win64\chrome-headless-shell.exe
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    TestContext.<anonymous> (<WT>\tools\design-render\tests\dc-runtime.test.mjs:13:28)
+    <WT>\tools\design-render\tests\dc-runtime.test.mjs:12:1
+  ...
+# Subtest: sc-for renders one row per list item
+not ok 3 - sc-for renders one row per list item
+  ---
+  duration_ms: N
+  type: 'test'
+  location: 'D:\\mm-pos\\tools\\design-render\\tests\\dc-runtime.test.mjs:50:1'
+  failureType: 'hookFailed'
+  error: |-
+    browserType.launch: Executable doesn't exist at C:\Users\ACCOUNTS\AppData\Local\ms-playwright\chromium_headless_shell-1243\chrome-headless-shell-win64\chrome-headless-shell.exe
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    TestContext.<anonymous> (<WT>\tools\design-render\tests\dc-runtime.test.mjs:13:28)
+    <WT>\tools\design-render\tests\dc-runtime.test.mjs:12:1
+  ...
+# Subtest: image-slot is emulated with a visible placeholder when its real runtime is unavailable
+not ok 4 - image-slot is emulated with a visible placeholder when its real runtime is unavailable
+  ---
+  duration_ms: N
+  type: 'test'
+  location: 'D:\\mm-pos\\tools\\design-render\\tests\\dc-runtime.test.mjs:61:1'
+  failureType: 'hookFailed'
+  error: |-
+    browserType.launch: Executable doesn't exist at C:\Users\ACCOUNTS\AppData\Local\ms-playwright\chromium_headless_shell-1243\chrome-headless-shell-win64\chrome-headless-shell.exe
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    TestContext.<anonymous> (<WT>\tools\design-render\tests\dc-runtime.test.mjs:13:28)
+    <WT>\tools\design-render\tests\dc-runtime.test.mjs:12:1
+  ...
+# Subtest: an unsupported Claude Design primitive fails the render instead of disappearing silently
+not ok 5 - an unsupported Claude Design primitive fails the render instead of disappearing silently
+  ---
+  duration_ms: N
+  type: 'test'
+  location: 'D:\\mm-pos\\tools\\design-render\\tests\\dc-runtime.test.mjs:78:1'
+  failureType: 'hookFailed'
+  error: |-
+    browserType.launch: Executable doesn't exist at C:\Users\ACCOUNTS\AppData\Local\ms-playwright\chromium_headless_shell-1243\chrome-headless-shell-win64\chrome-headless-shell.exe
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    TestContext.<anonymous> (<WT>\tools\design-render\tests\dc-runtime.test.mjs:13:28)
+    <WT>\tools\design-render\tests\dc-runtime.test.mjs:12:1
+  ...
+not ok 6 - D:\\mm-pos\\tools\\design-render\\tests\\dc-runtime.test.mjs
+  ---
+  duration_ms: N
+  location: 'D:\\mm-pos\\tools\\design-render\\tests\\dc-runtime.test.mjs:18:1'
+  failureType: 'hookFailed'
+  error: "Cannot read properties of undefined (reading 'close')"
+  code: 'ERR_TEST_FAILURE'
+  name: 'TypeError'
+  stack: |-
+    TestContext.<anonymous> (file:///<WT>/tools/design-render/tests/dc-runtime.test.mjs:19:17)
+    TestHook.runInAsyncScope (node:async_hooks:213:14)
+    TestHook.run (node:internal/test_runner/test:1106:25)
+    TestHook.run (node:internal/test_runner/test:1427:18)
+    TestHook.run (node:internal/util:585:20)
+    Test.runHook (node:internal/test_runner/test:1024:20)
+    after (node:internal/test_runner/test:1064:20)
+    Test.run (node:internal/test_runner/test:1132:13)
+  ...
+# Subtest: renderer fails clearly when the source file is missing
+ok 7 - renderer fails clearly when the source file is missing
+  ---
+  duration_ms: N
+  type: 'test'
+  ...
+# Subtest: renderer produces a PNG from the local fixture page
+not ok 8 - renderer produces a PNG from the local fixture page
+  ---
+  duration_ms: N
+  type: 'test'
+  location: 'D:\\mm-pos\\tools\\design-render\\tests\\render.test.mjs:72:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    fixture: render failed: browserType.launch: Executable doesn't exist at C:\Users\ACCOUNTS\AppData\Local\ms-playwright\chromium_headless_shell-1243\chrome-headless-shell-win64\chrome-headless-shell.exe
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    renderPackage (file:///<WT>/tools/design-render/render.mjs:370:11)
+    async TestContext.<anonymous> (file:///<WT>/tools/design-render/tests/render.test.mjs:74:18)
+    async Test.run (node:internal/test_runner/test:1113:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:788:7)
+  ...
+# Subtest: a letter-suffixed screen number still renders through the full pipeline
+not ok 9 - a letter-suffixed screen number still renders through the full pipeline
+  ---
+  duration_ms: N
+  type: 'test'
+  location: 'D:\\mm-pos\\tools\\design-render\\tests\\render.test.mjs:81:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    fixture: render failed: browserType.launch: Executable doesn't exist at C:\Users\ACCOUNTS\AppData\Local\ms-playwright\chromium_headless_shell-1243\chrome-headless-shell-win64\chrome-headless-shell.exe
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    renderPackage (file:///<WT>/tools/design-render/render.mjs:370:11)
+    async TestContext.<anonymous> (file:///<WT>/tools/design-render/tests/render.test.mjs:90:18)
+    async Test.run (node:internal/test_runner/test:1113:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:788:7)
+  ...
+# Subtest: an unsupported primitive fails the full render pipeline, not just the unit-level check
+not ok 10 - an unsupported primitive fails the full render pipeline, not just the unit-level check
+  ---
+  duration_ms: N
+  type: 'test'
+  location: 'D:\\mm-pos\\tools\\design-render\\tests\\render.test.mjs:95:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The input did not match the regular expression /Unsupported Claude Design primitive/. Input:
+    
+    "Error: fixture: render failed: browserType.launch: Executable doesn't exist at C:\\Users\\ACCOUNTS\\AppData\\Local\\ms-playwright\\chromium_headless_shell-1243\\chrome-headless-shell-win64\\chrome-headless-shell.exe\n" +
+      '╔════════════════════════════════════════════════════════════╗\n' +
+      '║ Looks like Playwright was just installed or updated.       ║\n' +
+      '║ Please run the following command to download new browsers: ║\n' +
+      '║                                                            ║\n' +
+      '║     npx playwright install                                 ║\n' +
+      '║                                                            ║\n' +
+      '║ <3 Playwright Team                                         ║\n' +
+      '╚════════════════════════════════════════════════════════════╝'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual:
+  error: |-
+    fixture: render failed: browserType.launch: Executable doesn't exist at C:\Users\ACCOUNTS\AppData\Local\ms-playwright\chromium_headless_shell-1243\chrome-headless-shell-win64\chrome-headless-shell.exe
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+  stack: |-
+    renderPackage (file:///<WT>/tools/design-render/render.mjs:370:11)
+    async waitForActual (node:assert:621:5)
+    async strict.rejects (node:assert:744:25)
+    async TestContext.<anonymous> (file:///<WT>/tools/design-render/tests/render.test.mjs:104:3)
+    async Test.run (node:internal/test_runner/test:1113:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:788:7)
+  operator: 'rejects'
+  stack: |-
+    process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    async TestContext.<anonymous> (file:///<WT>/tools/design-render/tests/render.test.mjs:104:3)
+    async Test.run (node:internal/test_runner/test:1113:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:788:7)
+  ...
+# Subtest: an uncaught page error fails the render
+not ok 11 - an uncaught page error fails the render
+  ---
+  duration_ms: N
+  type: 'test'
+  location: 'D:\\mm-pos\\tools\\design-render\\tests\\render.test.mjs:107:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The input did not match the regular expression /fixture pageerror/. Input:
+    
+    "Error: fixture: render failed: browserType.launch: Executable doesn't exist at C:\\Users\\ACCOUNTS\\AppData\\Local\\ms-playwright\\chromium_headless_shell-1243\\chrome-headless-shell-win64\\chrome-headless-shell.exe\n" +
+      '╔════════════════════════════════════════════════════════════╗\n' +
+      '║ Looks like Playwright was just installed or updated.       ║\n' +
+      '║ Please run the following command to download new browsers: ║\n' +
+      '║                                                            ║\n' +
+      '║     npx playwright install                                 ║\n' +
+      '║                                                            ║\n' +
+      '║ <3 Playwright Team                                         ║\n' +
+      '╚════════════════════════════════════════════════════════════╝'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual:
+  error: |-
+    fixture: render failed: browserType.launch: Executable doesn't exist at C:\Users\ACCOUNTS\AppData\Local\ms-playwright\chromium_headless_shell-1243\chrome-headless-shell-win64\chrome-headless-shell.exe
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+  stack: |-
+    renderPackage (file:///<WT>/tools/design-render/render.mjs:370:11)
+    async waitForActual (node:assert:621:5)
+    async strict.rejects (node:assert:744:25)
+    async TestContext.<anonymous> (file:///<WT>/tools/design-render/tests/render.test.mjs:116:3)
+    async Test.run (node:internal/test_runner/test:1113:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:788:7)
+  operator: 'rejects'
+  stack: |-
+    process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    async TestContext.<anonymous> (file:///<WT>/tools/design-render/tests/render.test.mjs:116:3)
+    async Test.run (node:internal/test_runner/test:1113:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:788:7)
+  ...
+# Subtest: a missing local dependency that is not a known-inert asset fails the render
+not ok 12 - a missing local dependency that is not a known-inert asset fails the render
+  ---
+  duration_ms: N
+  type: 'test'
+  location: 'D:\\mm-pos\\tools\\design-render\\tests\\render.test.mjs:119:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The input did not match the regular expression /failed resource request/. Input:
+    
+    "Error: fixture: render failed: browserType.launch: Executable doesn't exist at C:\\Users\\ACCOUNTS\\AppData\\Local\\ms-playwright\\chromium_headless_shell-1243\\chrome-headless-shell-win64\\chrome-headless-shell.exe\n" +
+      '╔════════════════════════════════════════════════════════════╗\n' +
+      '║ Looks like Playwright was just installed or updated.       ║\n' +
+      '║ Please run the following command to download new browsers: ║\n' +
+      '║                                                            ║\n' +
+      '║     npx playwright install                                 ║\n' +
+      '║                                                            ║\n' +
+      '║ <3 Playwright Team                                         ║\n' +
+      '╚════════════════════════════════════════════════════════════╝'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual:
+  error: |-
+    fixture: render failed: browserType.launch: Executable doesn't exist at C:\Users\ACCOUNTS\AppData\Local\ms-playwright\chromium_headless_shell-1243\chrome-headless-shell-win64\chrome-headless-shell.exe
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+  stack: |-
+    renderPackage (file:///<WT>/tools/design-render/render.mjs:370:11)
+    async waitForActual (node:assert:621:5)
+    async strict.rejects (node:assert:744:25)
+    async TestContext.<anonymous> (file:///<WT>/tools/design-render/tests/render.test.mjs:128:3)
+    async Test.run (node:internal/test_runner/test:1113:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:788:7)
+  operator: 'rejects'
+  stack: |-
+    process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    async TestContext.<anonymous> (file:///<WT>/tools/design-render/tests/render.test.mjs:128:3)
+    async Test.run (node:internal/test_runner/test:1113:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:788:7)
+  ...
+# Subtest: an unresolved external asset from a non-allowlisted host fails the render
+not ok 13 - an unresolved external asset from a non-allowlisted host fails the render
+  ---
+  duration_ms: N
+  type: 'test'
+  location: 'D:\\mm-pos\\tools\\design-render\\tests\\render.test.mjs:131:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The input did not match the regular expression /unresolved external resource/. Input:
+    
+    "Error: fixture: render failed: browserType.launch: Executable doesn't exist at C:\\Users\\ACCOUNTS\\AppData\\Local\\ms-playwright\\chromium_headless_shell-1243\\chrome-headless-shell-win64\\chrome-headless-shell.exe\n" +
+      '╔════════════════════════════════════════════════════════════╗\n' +
+      '║ Looks like Playwright was just installed or updated.       ║\n' +
+      '║ Please run the following command to download new browsers: ║\n' +
+      '║                                                            ║\n' +
+      '║     npx playwright install                                 ║\n' +
+      '║                                                            ║\n' +
+      '║ <3 Playwright Team                                         ║\n' +
+      '╚════════════════════════════════════════════════════════════╝'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual:
+  error: |-
+    fixture: render failed: browserType.launch: Executable doesn't exist at C:\Users\ACCOUNTS\AppData\Local\ms-playwright\chromium_headless_shell-1243\chrome-headless-shell-win64\chrome-headless-shell.exe
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+  stack: |-
+    renderPackage (file:///<WT>/tools/design-render/render.mjs:370:11)
+    async waitForActual (node:assert:621:5)
+    async strict.rejects (node:assert:744:25)
+    async TestContext.<anonymous> (file:///<WT>/tools/design-render/tests/render.test.mjs:140:3)
+    async Test.run (node:internal/test_runner/test:1113:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:788:7)
+  operator: 'rejects'
+  stack: |-
+    process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    async TestContext.<anonymous> (file:///<WT>/tools/design-render/tests/render.test.mjs:140:3)
+    async Test.run (node:internal/test_runner/test:1113:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:788:7)
+  ...
+# Subtest: schema accepts a valid manifest
+ok 14 - schema accepts a valid manifest
+  ---
+  duration_ms: N
+  type: 'test'
+  ...
+# Subtest: duplicate screen numbers are rejected after numeric normalization
+ok 15 - duplicate screen numbers are rejected after numeric normalization
+  ---
+  duration_ms: N
+  type: 'test'
+  ...
+# Subtest: letter-suffixed screen numbers are supported and normalized
+ok 16 - letter-suffixed screen numbers are supported and normalized
+  ---
+  duration_ms: N
+  type: 'test'
+  ...
+# Subtest: missing package and slug are rejected
+ok 17 - missing package and slug are rejected
+  ---
+  duration_ms: N
+  type: 'test'
+  ...
+# Subtest: invalid phaseLabel is rejected
+ok 18 - invalid phaseLabel is rejected
+  ---
+  duration_ms: N
+  type: 'test'
+  ...
+1..18
+# tests 18
+# suites 0
+# pass 6
+# fail 12
+# cancelled 0
+# skipped 0
+# todo 0
+

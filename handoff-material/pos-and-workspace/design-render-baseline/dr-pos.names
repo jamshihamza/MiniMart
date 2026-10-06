@@ -1,0 +1,18 @@
+not ok 1 - sc-if renders the true branch and omits the false branch
+not ok 10 - an unsupported primitive fails the full render pipeline, not just the unit-level check
+not ok 11 - an uncaught page error fails the render
+not ok 12 - a missing local dependency that is not a known-inert asset fails the render
+not ok 13 - an unresolved external asset from a non-allowlisted host fails the render
+not ok 2 - sc-if flips branches when the underlying expression flips
+not ok 3 - sc-for renders one row per list item
+not ok 4 - image-slot is emulated with a visible placeholder when its real runtime is unavailable
+not ok 5 - an unsupported Claude Design primitive fails the render instead of disappearing silently
+not ok 6 - D:\\mm-pos\\tools\\design-render\\tests\\dc-runtime.test.mjs
+not ok 8 - renderer produces a PNG from the local fixture page
+not ok 9 - a letter-suffixed screen number still renders through the full pipeline
+ok 14 - schema accepts a valid manifest
+ok 15 - duplicate screen numbers are rejected after numeric normalization
+ok 16 - letter-suffixed screen numbers are supported and normalized
+ok 17 - missing package and slug are rejected
+ok 18 - invalid phaseLabel is rejected
+ok 7 - renderer fails clearly when the source file is missing

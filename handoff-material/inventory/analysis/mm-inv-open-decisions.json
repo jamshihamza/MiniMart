@@ -1,0 +1,11 @@
+[
+ "DEC-INV-003 OPEN: Stock-count concurrency: scope lock vs snapshot/movement reconciliation.",
+ "DEC-INV-004 OPEN: Batch physical depletion policy.",
+ "DEC-INV-005 OPEN: Expiry/FEFO behaviour.",
+ "DEC-INV-007 OPEN: Low-stock / reorder threshold ownership.",
+ "DEC-INV-008 PROPOSED: Opening stock through controlled audited posting.",
+ "GAP: approve/reject adjustment and count approval have no frozen API operation or permission",
+ "GAP: cancel-count operation not in the frozen API registry",
+ "GAP: cost (WAC) visibility permission code not in the frozen registry",
+ "GAP: display precision for cost and quantity is not defined (FR-INV-007, FR-INV-093)"
+]

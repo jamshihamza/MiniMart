@@ -1,0 +1,16 @@
+WIP: preserve original checkout archives and mockups (unapproved, not accepted)
+
+Preservation commit on the owner's authorization to keep all pending work on GitHub for a
+cross-PC handoff. This is not approval of any file.
+
+Holds the pending work of the original checkout that lived only in its index and working tree on
+the Office PC: the 27 staged entries (Mockups HTML and PDF exports and the design package index)
+and the 12 untracked design source archives in Incoming/. Built with an isolated temporary index
+on top of main (1eb8e82); the original checkout was not changed.
+
+All files are classified as archive and unapproved in
+docs/project-status/ORIGINAL-CHECKOUT-PRESERVATION.md, with sizes, SHA-256 hashes and duplicate
+notes. Duplicates are kept. Nothing here is design authority, and approval attaches only to the
+registered sources under docs/design. Do not merge this branch.
+
+Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>

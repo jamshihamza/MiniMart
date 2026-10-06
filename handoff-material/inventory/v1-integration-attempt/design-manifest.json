@@ -1,0 +1,452 @@
+{
+  "package": "Inventory",
+  "slug": "inventory",
+  "status": "review-ready",
+  "sourceFile": "source/MiniMartInventory.dc.html",
+  "sourceOfTruth": "Claude Design export MiniMart_Inventory_ClaudeDesign_Source.zip (SHA-256 f476c65607aae2507cf3fb9ada3b988915f35e627eecb5ae9e846cd17b998589), registered byte for byte at docs/design/inventory/source/MiniMartInventory.dc.html. Unapproved visual candidate. See provenance.json.",
+  "screenCount": 60,
+  "primaryViewport": "1366x768",
+  "supportedViewports": ["1280x720", "1368x800", "1920x1080"],
+  "screenGroups": [
+    "Foundation & List",
+    "Item & Movements",
+    "Adjustments & Opening Stock",
+    "Stock Count",
+    "Design System & Docs"
+  ],
+  "screens": [
+    {
+      "number": "01",
+      "name": "Inventory Summary",
+      "group": "Foundation & List",
+      "renderFile": "01-inventory-summary.png",
+      "notes": "Requirements: FR-INV-001, FR-INV-004, FR-INV-021. Unresolved dependencies: DEC-INV-007 OPEN."
+    },
+    {
+      "number": "02",
+      "name": "Inventory — populated list",
+      "group": "Foundation & List",
+      "renderFile": "02-inventory-populated-list.png",
+      "notes": "Requirements: FR-INV-001, FR-INV-004, FR-INV-006, FR-INV-007, FR-INV-019, FR-INV-020, FR-INV-023, FR-INV-093. Unresolved dependencies: DEC-INV-005 OPEN (expiry availability)."
+    },
+    {
+      "number": "03",
+      "name": "Inventory — filtered Low Stock",
+      "group": "Foundation & List",
+      "renderFile": "03-inventory-filtered-low-stock.png",
+      "notes": "Requirements: FR-INV-021. Unresolved dependencies: DEC-INV-007 OPEN."
+    },
+    {
+      "number": "04",
+      "name": "Inventory — Zero Stock",
+      "group": "Foundation & List",
+      "renderFile": "04-inventory-zero-stock.png",
+      "notes": "Requirements: FR-INV-022."
+    },
+    {
+      "number": "05",
+      "name": "Inventory — Store Node unavailable",
+      "group": "Foundation & List",
+      "renderFile": "05-inventory-store-node-unavailable.png",
+      "notes": "Requirements: FR-INV-028."
+    },
+    {
+      "number": "06",
+      "name": "Inventory — Cloud Sync unavailable",
+      "group": "Foundation & List",
+      "renderFile": "06-inventory-cloud-sync-unavailable.png",
+      "notes": "Requirements: FR-INV-028, FR-INV-079."
+    },
+    {
+      "number": "07",
+      "name": "Inventory — read-only / permission-limited",
+      "group": "Foundation & List",
+      "renderFile": "07-inventory-read-only-permission-limited.png",
+      "notes": "Requirements: FR-INV-026, FR-INV-104. Unresolved dependencies: GAP cost-visibility permission."
+    },
+    {
+      "number": "08",
+      "name": "Inventory Item Detail — Overview",
+      "group": "Item & Movements",
+      "renderFile": "08-inventory-item-detail-overview.png",
+      "notes": "Requirements: FR-INV-001, FR-INV-003, FR-INV-004, FR-INV-005, FR-INV-006, FR-INV-021, FR-INV-092, FR-INV-093, FR-INV-105. Unresolved dependencies: DEC-INV-007 OPEN."
+    },
+    {
+      "number": "09",
+      "name": "Inventory Item Detail — Movement History",
+      "group": "Item & Movements",
+      "renderFile": "09-inventory-item-detail-movement-history.png",
+      "notes": "Requirements: FR-INV-002, FR-INV-024, FR-INV-032, FR-INV-054."
+    },
+    {
+      "number": "10",
+      "name": "Movement Detail Drawer",
+      "group": "Item & Movements",
+      "renderFile": "10-movement-detail-drawer.png",
+      "notes": "Requirements: FR-INV-002, FR-INV-027, FR-INV-030, FR-INV-031, FR-INV-034, FR-INV-043, FR-INV-047, FR-INV-048, FR-INV-050, FR-INV-051."
+    },
+    {
+      "number": "11",
+      "name": "Inventory Item Detail — Batch / Expiry",
+      "group": "Item & Movements",
+      "renderFile": "11-inventory-item-detail-batch-expiry.png",
+      "notes": "Requirements: FR-INV-014, FR-INV-015."
+    },
+    {
+      "number": "12",
+      "name": "Batch Detail",
+      "group": "Item & Movements",
+      "renderFile": "12-batch-detail.png",
+      "notes": "Requirements: FR-INV-014, FR-INV-015, FR-INV-018, FR-INV-037, FR-INV-045, FR-INV-046."
+    },
+    {
+      "number": "13",
+      "name": "Near Expiry list",
+      "group": "Item & Movements",
+      "renderFile": "13-near-expiry-list.png",
+      "notes": "Requirements: FR-INV-015, FR-INV-017."
+    },
+    {
+      "number": "14",
+      "name": "Expired Stock list",
+      "group": "Item & Movements",
+      "renderFile": "14-expired-stock-list.png",
+      "notes": "Requirements: FR-INV-015, FR-INV-016. Unresolved dependencies: DEC-INV-005 OPEN."
+    },
+    {
+      "number": "15",
+      "name": "Moving WAC — authorized view",
+      "group": "Item & Movements",
+      "renderFile": "15-moving-wac-authorized-view.png",
+      "notes": "Requirements: FR-INV-026, FR-INV-092, FR-INV-104, FR-INV-105. Unresolved dependencies: GAP cost-visibility permission."
+    },
+    {
+      "number": "16",
+      "name": "Movement History — store-wide",
+      "group": "Item & Movements",
+      "renderFile": "16-movement-history-store-wide.png",
+      "notes": "Requirements: FR-INV-002, FR-INV-024, FR-INV-030, FR-INV-031, FR-INV-032, FR-INV-034, FR-INV-036, FR-INV-037, FR-INV-038, FR-INV-039, FR-INV-040, FR-INV-041, FR-INV-043, FR-INV-047, FR-INV-048, FR-INV-049, FR-INV-050, FR-INV-051, FR-INV-054."
+    },
+    {
+      "number": "17",
+      "name": "Adjustment History",
+      "group": "Adjustments & Opening Stock",
+      "renderFile": "17-adjustment-history.png",
+      "notes": "Requirements: FR-INV-030, FR-INV-037, FR-INV-038, FR-INV-040, FR-INV-049, FR-INV-089."
+    },
+    {
+      "number": "18",
+      "name": "New Adjustment",
+      "group": "Adjustments & Opening Stock",
+      "renderFile": "18-new-adjustment.png",
+      "notes": "Requirements: FR-INV-003, FR-INV-007, FR-INV-080, FR-INV-081, FR-INV-082, FR-INV-083."
+    },
+    {
+      "number": "19",
+      "name": "Adjustment — batch tracked",
+      "group": "Adjustments & Opening Stock",
+      "renderFile": "19-adjustment-batch-tracked.png",
+      "notes": "Requirements: FR-INV-014, FR-INV-080, FR-INV-084."
+    },
+    {
+      "number": "20",
+      "name": "Adjustment — validation",
+      "group": "Adjustments & Opening Stock",
+      "renderFile": "20-adjustment-validation.png",
+      "notes": "Requirements: FR-INV-008, FR-INV-012, FR-INV-085, FR-INV-101."
+    },
+    {
+      "number": "21",
+      "name": "Negative Stock Blocked",
+      "group": "Adjustments & Opening Stock",
+      "renderFile": "21-negative-stock-blocked.png",
+      "notes": "Requirements: FR-INV-008, FR-INV-012, FR-INV-085, FR-INV-101."
+    },
+    {
+      "number": "22",
+      "name": "Adjustment — approval required",
+      "group": "Adjustments & Opening Stock",
+      "renderFile": "22-adjustment-approval-required.png",
+      "notes": "Requirements: FR-INV-086. Unresolved dependencies: GAP approve operation and permission."
+    },
+    {
+      "number": "23",
+      "name": "Adjustment — review",
+      "group": "Adjustments & Opening Stock",
+      "renderFile": "23-adjustment-review.png",
+      "notes": "Requirements: FR-INV-087."
+    },
+    {
+      "number": "24",
+      "name": "Adjustment — posted",
+      "group": "Adjustments & Opening Stock",
+      "renderFile": "24-adjustment-posted.png",
+      "notes": "Requirements: FR-INV-027, FR-INV-087."
+    },
+    {
+      "number": "25",
+      "name": "Adjustment — correction / compensating action",
+      "group": "Adjustments & Opening Stock",
+      "renderFile": "25-adjustment-correction-compensating-action.png",
+      "notes": "Requirements: FR-INV-090."
+    },
+    {
+      "number": "26",
+      "name": "Adjustment — safe retry / uncertain state",
+      "group": "Adjustments & Opening Stock",
+      "renderFile": "26-adjustment-safe-retry-uncertain-state.png",
+      "notes": "Requirements: FR-INV-052, FR-INV-088."
+    },
+    {
+      "number": "27",
+      "name": "Opening Stock — entry",
+      "group": "Adjustments & Opening Stock",
+      "renderFile": "27-opening-stock-entry.png",
+      "notes": "Requirements: FR-INV-036. Unresolved dependencies: DEC-INV-008 PROPOSED."
+    },
+    {
+      "number": "28",
+      "name": "Opening Stock — review",
+      "group": "Adjustments & Opening Stock",
+      "renderFile": "28-opening-stock-review.png",
+      "notes": "Requirements: FR-INV-036. Unresolved dependencies: DEC-INV-008 PROPOSED."
+    },
+    {
+      "number": "29",
+      "name": "Opening Stock — posted",
+      "group": "Adjustments & Opening Stock",
+      "renderFile": "29-opening-stock-posted.png",
+      "notes": "Requirements: FR-INV-036. Unresolved dependencies: DEC-INV-008 PROPOSED."
+    },
+    {
+      "number": "30",
+      "name": "Stock Counts — master list",
+      "group": "Stock Count",
+      "renderFile": "30-stock-counts-master-list.png",
+      "notes": "Requirements: FR-INV-058, FR-INV-077."
+    },
+    {
+      "number": "31",
+      "name": "Create Stock Count",
+      "group": "Stock Count",
+      "renderFile": "31-create-stock-count.png",
+      "notes": "Requirements: FR-INV-056, FR-INV-058."
+    },
+    {
+      "number": "32",
+      "name": "Count Scope",
+      "group": "Stock Count",
+      "renderFile": "32-count-scope.png",
+      "notes": "Requirements: FR-INV-057, FR-INV-063, FR-INV-076."
+    },
+    {
+      "number": "33",
+      "name": "Count Entry — standard",
+      "group": "Stock Count",
+      "renderFile": "33-count-entry-standard.png",
+      "notes": "Requirements: FR-INV-007, FR-INV-059, FR-INV-064."
+    },
+    {
+      "number": "34",
+      "name": "Count Entry — blind",
+      "group": "Stock Count",
+      "renderFile": "34-count-entry-blind.png",
+      "notes": "Requirements: FR-INV-063."
+    },
+    {
+      "number": "35",
+      "name": "Count Entry — barcode/search",
+      "group": "Stock Count",
+      "renderFile": "35-count-entry-barcode-search.png",
+      "notes": "Requirements: FR-INV-019, FR-INV-059, FR-INV-060, FR-INV-061."
+    },
+    {
+      "number": "36",
+      "name": "Batch Count",
+      "group": "Stock Count",
+      "renderFile": "36-batch-count.png",
+      "notes": "Requirements: FR-INV-014, FR-INV-062."
+    },
+    {
+      "number": "37",
+      "name": "Count Review",
+      "group": "Stock Count",
+      "renderFile": "37-count-review.png",
+      "notes": "Requirements: FR-INV-064, FR-INV-065, FR-INV-068."
+    },
+    {
+      "number": "38",
+      "name": "Variance Review",
+      "group": "Stock Count",
+      "renderFile": "38-variance-review.png",
+      "notes": "Requirements: FR-INV-065, FR-INV-068."
+    },
+    {
+      "number": "39",
+      "name": "Recount Requested",
+      "group": "Stock Count",
+      "renderFile": "39-recount-requested.png",
+      "notes": "Requirements: FR-INV-067."
+    },
+    {
+      "number": "40",
+      "name": "Recount Completed",
+      "group": "Stock Count",
+      "renderFile": "40-recount-completed.png",
+      "notes": "Requirements: FR-INV-067."
+    },
+    {
+      "number": "41",
+      "name": "Count Approval Required",
+      "group": "Stock Count",
+      "renderFile": "41-count-approval-required.png",
+      "notes": "Requirements: FR-INV-069. Unresolved dependencies: GAP approve operation and permission."
+    },
+    {
+      "number": "42",
+      "name": "Count Ready to Post",
+      "group": "Stock Count",
+      "renderFile": "42-count-ready-to-post.png",
+      "notes": "Requirements: FR-INV-070."
+    },
+    {
+      "number": "43",
+      "name": "Count Posted",
+      "group": "Stock Count",
+      "renderFile": "43-count-posted.png",
+      "notes": "Requirements: FR-INV-039, FR-INV-070, FR-INV-071."
+    },
+    {
+      "number": "44",
+      "name": "Zero Variance Count",
+      "group": "Stock Count",
+      "renderFile": "44-zero-variance-count.png",
+      "notes": "Requirements: FR-INV-071."
+    },
+    {
+      "number": "45",
+      "name": "Cancel Count",
+      "group": "Stock Count",
+      "renderFile": "45-cancel-count.png",
+      "notes": "Requirements: FR-INV-072. Unresolved dependencies: GAP cancel operation."
+    },
+    {
+      "number": "46",
+      "name": "Posted Count — read-only",
+      "group": "Stock Count",
+      "renderFile": "46-posted-count-read-only.png",
+      "notes": "Requirements: FR-INV-073."
+    },
+    {
+      "number": "47",
+      "name": "Count Audit / Timeline",
+      "group": "Stock Count",
+      "renderFile": "47-count-audit-timeline.png",
+      "notes": "Requirements: FR-INV-027, FR-INV-077, FR-INV-078."
+    },
+    {
+      "number": "48",
+      "name": "Count Concurrency — authority-dependent",
+      "group": "Stock Count",
+      "renderFile": "48-count-concurrency-authority-dependent.png",
+      "notes": "Requirements: FR-INV-074, FR-INV-075, FR-INV-076. Unresolved dependencies: DEC-INV-003 OPEN."
+    },
+    {
+      "number": "49",
+      "name": "Inventory list — 1280×720",
+      "group": "Design System & Docs",
+      "renderFile": "49-inventory-list-1280-720.png"
+    },
+    {
+      "number": "50",
+      "name": "Count entry — 1280×720",
+      "group": "Design System & Docs",
+      "renderFile": "50-count-entry-1280-720.png",
+      "notes": "Requirements: FR-INV-059."
+    },
+    {
+      "number": "51",
+      "name": "Adjustment — 1280×720",
+      "group": "Design System & Docs",
+      "renderFile": "51-adjustment-1280-720.png"
+    },
+    {
+      "number": "52",
+      "name": "Inventory DataTable components",
+      "group": "Design System & Docs",
+      "renderFile": "52-inventory-datatable-components.png"
+    },
+    {
+      "number": "53",
+      "name": "Quantity / Stock status components",
+      "group": "Design System & Docs",
+      "renderFile": "53-quantity-stock-status-components.png",
+      "notes": "Requirements: FR-INV-023."
+    },
+    {
+      "number": "54",
+      "name": "Movement components",
+      "group": "Design System & Docs",
+      "renderFile": "54-movement-components.png",
+      "notes": "Requirements: FR-INV-033, FR-INV-035, FR-INV-040."
+    },
+    {
+      "number": "55",
+      "name": "Batch / Expiry components",
+      "group": "Design System & Docs",
+      "renderFile": "55-batch-expiry-components.png",
+      "notes": "Requirements: FR-INV-016, FR-INV-017."
+    },
+    {
+      "number": "56",
+      "name": "Adjustment components",
+      "group": "Design System & Docs",
+      "renderFile": "56-adjustment-components.png"
+    },
+    {
+      "number": "57",
+      "name": "Count components",
+      "group": "Design System & Docs",
+      "renderFile": "57-count-components.png"
+    },
+    {
+      "number": "58",
+      "name": "Permission / Approval components",
+      "group": "Design System & Docs",
+      "renderFile": "58-permission-approval-components.png",
+      "notes": "Requirements: FR-INV-026. Unresolved dependencies: GAP permission codes."
+    },
+    {
+      "number": "59",
+      "name": "Offline / Error states",
+      "group": "Design System & Docs",
+      "renderFile": "59-offline-error-states.png",
+      "notes": "Requirements: FR-INV-028, FR-INV-052, FR-INV-079."
+    },
+    {
+      "number": "60",
+      "name": "Inventory component inventory + documentation",
+      "group": "Design System & Docs",
+      "renderFile": "60-inventory-component-inventory-documentation.png"
+    }
+  ],
+  "authorityDependent": true,
+  "openDecisions": [
+    "DEC-INV-003 OPEN: Stock-count concurrency: scope lock vs snapshot/movement reconciliation.",
+    "DEC-INV-004 OPEN: Batch physical depletion policy.",
+    "DEC-INV-005 OPEN: Expiry/FEFO behaviour.",
+    "DEC-INV-007 OPEN: Low-stock / reorder threshold ownership.",
+    "DEC-INV-008 PROPOSED: Opening stock through controlled audited posting.",
+    "GAP: approve/reject adjustment and count approval have no frozen API operation or permission",
+    "GAP: cancel-count operation not in the frozen API registry",
+    "GAP: cost (WAC) visibility permission code not in the frozen registry",
+    "GAP: UI-INV-006 Reorder / Low Stock has no designed screen"
+  ],
+  "changelog": [
+    {
+      "date": "2026-10-04",
+      "summary": "Registered the Claude Design Inventory export (60 screens, five grouped pages, index, six print variants, support.js, doc-page.js and the export manifest) as an unapproved visual candidate. Status review-ready; no owner visual approval."
+    }
+  ],
+  "notes": "Unapproved Inventory visual candidate (UI-INV-001..006 and the Inventory behaviour required by FR-INV). The earlier note that an approved Inventory source existed in Claude Design is historical and does not approve the bytes registered here. The source cites no FR-INV, BR-INV or UI-INV identifier on any screen; requirement coverage is established by the integration traceability in provenance.json, not by the design. No stock-ledger rule, costing, permission, API or decision is invented; unresolved items stay OPEN. The package ships the real support.js (byte-identical to the accepted copies) and doc-page.js for the six print variants. It is NOT an approved visual reference; owner visual approval has not been given."
+}

@@ -1,0 +1,7 @@
+Scope: all 28 workspace projects
+✓ Lockfile passes supply-chain policies (verified 2d ago)
+apps/pos-terminal                        | [WARN] deprecated @testing-library/jest-dom@6.10.0
+[WARN] 3 deprecated subdependencies found: glob@10.5.0, uuid@10.0.0, whatwg-encoding@3.1.1
+Already up to date
+Progress: resolved 0, reused 394, downloaded 0, added 0, done
+Done in 848ms using pnpm v12.5.1

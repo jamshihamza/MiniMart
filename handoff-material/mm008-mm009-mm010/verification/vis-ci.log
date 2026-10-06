@@ -1,0 +1,9 @@
+$ prettier --check . && eslint . && node infra/tooling/check-frozen-manifests.mjs && node --test infra/tooling/check-frozen-manifests.test.mjs && node infra/tooling/check-protected-test-ownership.mjs && node --test infra/tooling/check-protected-test-ownership.test.mjs && node infra/tooling/check-dependency-boundaries.mjs && node --test infra/tooling/check-dependency-boundaries.test.mjs && tsc -b --pretty false
+Checking formatting...
+[[33mwarn[39m] apps/backoffice/src/App.tsx
+[[33mwarn[39m] apps/backoffice/src/components/Primitives.tsx
+[[33mwarn[39m] apps/backoffice/src/reports/ReportsHome.tsx
+[[33mwarn[39m] apps/backoffice/src/reports/ReportViewer.tsx
+[[33mwarn[39m] apps/backoffice/src/shell/AppShell.tsx
+[[33mwarn[39m] Code style issues found in 5 files. Run Prettier with --write to fix.
+[ELIFECYCLE] Command failed with exit code 1.

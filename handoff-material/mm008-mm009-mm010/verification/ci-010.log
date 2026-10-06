@@ -1,0 +1,44 @@
+$ prettier --check . && eslint . && node infra/tooling/check-frozen-manifests.mjs && node --test infra/tooling/check-frozen-manifests.test.mjs && node infra/tooling/check-protected-test-ownership.mjs && node --test infra/tooling/check-protected-test-ownership.test.mjs && node infra/tooling/check-dependency-boundaries.mjs && node --test infra/tooling/check-dependency-boundaries.test.mjs && tsc -b --pretty false
+Checking formatting...
+All matched files use Prettier code style!
+Verified frozen manifest: docs/specifications/01-business-and-functional/FREEZE-MANIFEST.json
+Verified frozen manifest: docs/specifications/02-domain-model/MANIFEST-v1.0-FROZEN.json
+Verified frozen manifest: docs/specifications/03-database-model/MANIFEST-v1.2-FROZEN.json
+Verified frozen manifest: docs/specifications/04-architecture/MANIFEST-v1.0-FROZEN.json
+Verified frozen manifest: docs/specifications/05-api-contracts/MANIFEST-v1.0-FROZEN.json
+Verified frozen manifest: docs/specifications/06-ui-specification/MANIFEST-v1.0-FROZEN.json
+Verified frozen manifest: docs/backlog/MANIFEST-v0.1.json
+Verified 419 frozen files across 7 manifests.
+✔ frozen manifest gate rejects an accidental file edit (6.3626ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 78.1619
+Protected test ownership valid: database, service runtime, POS; 15 domain/coordinator/sync scaffolds require tests when implemented.
+✔ implemented source requires a runnable package test script (16.5607ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 83.4095
+Dependency boundaries valid for 27 frozen workspace packages.
+✔ accepts a module importing another module public port (6.7103ms)
+✔ rejects cross-module internal imports (4.9304ms)
+✔ rejects workspace dependency cycles (11.9783ms)
+✔ rejects packages importing application launchers (12.3206ms)
+✔ rejects domain dependencies on infrastructure (4.5647ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 109.71

@@ -1,0 +1,18 @@
+WIP: Reporting visual-only first slice in apps/backoffice (incomplete, not accepted)
+
+Preservation checkpoint on the owner's authorization to keep all pending work on GitHub for a
+cross-PC handoff. This is not approval of quality or behavior.
+
+Contains the first representative slice of the Reporting visual implementation under the bounded
+Phase-0 exception in ADR 0007: a React and Vite host in apps/backoffice with a hash router, shell,
+primitives, a state inspector, Reports Home and one report viewer, all with fictional data.
+
+Known gaps, recorded in docs/project-status/ACTIVE-WORK.md: the Prettier check fails on five files
+(pnpm run ci exits 1), no component test exists (the app test script fails with no test files),
+the fidelity note and comparison were not written, and no owner visual review is recorded.
+Type check, ESLint on apps/backoffice and the Vite build pass.
+
+Based on origin/main. It also edits apps/backoffice package.json, tsconfig.json and the lockfile,
+as the workspace-switch branch does, so combining them needs a deliberate merge.
+
+Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>

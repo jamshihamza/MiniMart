@@ -1,0 +1,24 @@
+docs/design/RENDER-FIDELITY-REPORT.md
+docs/design/inventory/TRACEABILITY.md
+docs/design/inventory/design-manifest.json
+docs/design/inventory/provenance.json
+docs/design/inventory/source/.gitkeep
+docs/design/inventory/source/INVENTORY-REVISION-MANIFEST.txt
+docs/design/inventory/source/MiniMart INV - Adjustments & Opening Stock.dc.html
+docs/design/inventory/source/MiniMart INV - Design System & Docs.dc.html
+docs/design/inventory/source/MiniMart INV - Foundation & List.dc.html
+docs/design/inventory/source/MiniMart INV - Item & Movements.dc.html
+docs/design/inventory/source/MiniMart INV - Stock Count.dc.html
+docs/design/inventory/source/MiniMart INV Print - Adjustments & Opening Stock.dc.html
+docs/design/inventory/source/MiniMart INV Print - Combined (01-60).dc.html
+docs/design/inventory/source/MiniMart INV Print - Design System & Docs.dc.html
+docs/design/inventory/source/MiniMart INV Print - Foundation & List.dc.html
+docs/design/inventory/source/MiniMart INV Print - Item & Movements.dc.html
+docs/design/inventory/source/MiniMart INV Print - New States (61-67).dc.html
+docs/design/inventory/source/MiniMart INV Print - Stock Count.dc.html
+docs/design/inventory/source/MiniMart Inventory Mockups.dc.html
+docs/design/inventory/source/MiniMartInventory.dc.html
+docs/design/inventory/source/doc-page.js
+docs/design/inventory/source/support.js
+docs/design/inventory/traceability.json
+tools/design-render/report.mjs

@@ -1,0 +1,177 @@
+
+[1m[46m RUN [49m[22m [36mv3.2.7 [39m[90mD:/mm-010/packages/sync-protocol[39m
+
+ [31m❯[39m test/delivery-recovery.test.ts [2m([22m[2m13 tests[22m[2m | [22m[33m13 skipped[39m[2m)[22m[33m 8991[2mms[22m[39m
+   [2m[90m↓[39m[22m round trip[2m > [22mdelivers fictional messages Store to Cloud, applies each once and records delivery
+   [2m[90m↓[39m[22m round trip[2m > [22mwrites a checkpoint as an optimization only
+   [2m[90m↓[39m[22m duplicate delivery[2m > [22manswers DUPLICATE for the same message and keeps one receipt and one effect
+   [2m[90m↓[39m[22m duplicate delivery[2m > [22mapplies one message once when two deliveries race
+   [2m[90m↓[39m[22m duplicate delivery[2m > [22mscopes deduplication by tenant and peer, not by message id alone
+   [2m[90m↓[39m[22m retries keep one stable identity[2m > [22mrepeats the same messageId, payload and occurredAt on every attempt
+   [2m[90m↓[39m[22m lost request and lost ACK[2m > [22mretries a lost request and applies the message once
+   [2m[90m↓[39m[22m lost request and lost ACK[2m > [22mretries after a lost response and the Cloud answers DUPLICATE, with one effect
+   [2m[90m↓[39m[22m crashes modelled as abandoned leases and new dispatcher instances[2m > [22mrecovers after a crash between the send and recording the result
+   [2m[90m↓[39m[22m crashes modelled as abandoned leases and new dispatcher instances[2m > [22mrecovers after a crash between the claim and the send
+   [2m[90m↓[39m[22m crashes modelled as abandoned leases and new dispatcher instances[2m > [22mends with one effect and a published row after the worker's database backends are terminated mid-run
+   [2m[90m↓[39m[22m crashes modelled as abandoned leases and new dispatcher instances[2m > [22mnever lets two concurrent dispatchers claim the same row
+   [2m[90m↓[39m[22m Cloud-side atomicity[2m > [22mleaves no receipt and no effect when the apply fails before the receipt is marked applied
+ [31m❯[39m test/outage-replay.test.ts [2m([22m[2m5 tests[22m[2m | [22m[33m5 skipped[39m[2m)[22m[33m 307[2mms[22m[39m
+   [2m[90m↓[39m[22m Cloud outage[2m > [22mlets Store postings continue and makes retries and backlog observable
+   [2m[90m↓[39m[22m Cloud outage[2m > [22mstops retrying after the bounded attempts and keeps the business fact
+   [2m[90m↓[39m[22m replay after reconnect[2m > [22mdrains a backlog exactly once after an outage and a lost response
+   [2m[90m↓[39m[22m replay after reconnect[2m > [22mconverges after the Cloud fails part-way through a batch
+   [2m[90m↓[39m[22m delivery order does not change the result[2m > [22mproduces the same effects when a backlog is delivered forward or in reverse
+ [31m❯[39m test/quarantine.test.ts [2m([22m[2m6 tests[22m[2m | [22m[33m6 skipped[39m[2m)[22m[33m 302[2mms[22m[39m
+   [2m[90m↓[39m[22m an incompatible contract version, end to end[2m > [22mquarantines it, applies nothing from it, and does not block compatible messages
+   [2m[90m↓[39m[22m redelivery of a quarantined message[2m > [22manswers QUARANTINED again and keeps one quarantine row and one dead letter per peer
+   [2m[90m↓[39m[22m other rejections happen before any storage[2m > [22mquarantines an unregistered message type
+   [2m[90m↓[39m[22m other rejections happen before any storage[2m > [22mrejects a structurally invalid message without quarantining or applying it
+   [2m[90m↓[39m[22m other rejections happen before any storage[2m > [22mrejects a message with no usable identity
+   [2m[90m↓[39m[22m other rejections happen before any storage[2m > [22mrejects a valid registered type the harness does not apply
+ [31m❯[39m test/checkpoint.test.ts [2m([22m[2m7 tests[22m[2m | [22m[33m7 skipped[39m[2m)[22m[32m 294[2mms[22m[39m
+   [2m[90m↓[39m[22m concurrent first insertion[2m > [22mnegative control: without the lock, two first writers both insert and leave duplicate rows
+   [2m[90m↓[39m[22m concurrent first insertion[2m > [22mwith the advisory lock, concurrent first writers leave one row
+   [2m[90m↓[39m[22m concurrent first insertion[2m > [22mupdates the single row on later writes
+   [2m[90m↓[39m[22m delivery is independent of checkpoints[2m > [22mdelivers everything when checkpoints are disabled
+   [2m[90m↓[39m[22m delivery is independent of checkpoints[2m > [22mdelivers everything when the checkpoint is deleted or stale between batches
+   [2m[90m↓[39m[22m delivery is independent of checkpoints[2m > [22mdelivers everything when duplicate checkpoint rows already exist
+   [2m[90m↓[39m[22m delivery is independent of checkpoints[2m > [22mdelivers everything, and reports the problem, when the checkpoint write itself fails
+ [32m✓[39m test/harness-isolation.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 73[2mms[22m[39m
+ [31m❯[39m test/database-assumptions.test.ts [2m([22m[2m11 tests[22m[2m | [22m[33m11 skipped[39m[2m)[22m[33m 324[2mms[22m[39m
+   [2m[90m↓[39m[22m foreign keys: no seed rows are needed for the sync tables[2m > [22mhas no foreign key from or to any frozen sync table, in the Store and the Cloud databases
+   [2m[90m↓[39m[22m foreign keys: no seed rows are needed for the sync tables[2m > [22mkeeps the foreign key on store_service_instances, which this harness does not use
+   [2m[90m↓[39m[22m the frozen constraints the harness relies on, and the gaps it works around[2m > [22mmakes inbox receipts unique on (tenant_id, peer_id, message_id)
+   [2m[90m↓[39m[22m the frozen constraints the harness relies on, and the gaps it works around[2m > [22mmakes outbox events unique on (tenant_id, event_id)
+   [2m[90m↓[39m[22m the frozen constraints the harness relies on, and the gaps it works around[2m > [22mhas NO unique key on sync checkpoints over tenant, peer and stream (the checkpoint gap)
+   [2m[90m↓[39m[22m the frozen constraints the harness relies on, and the gaps it works around[2m > [22mhas NO unique key on dead letters over the source message (the dead-letter gap)
+   [2m[90m↓[39m[22m the frozen constraints the harness relies on, and the gaps it works around[2m > [22mhas exactly one updated_at column on sync checkpoints (the baseline carries the CR-DB-004 fix)
+   [2m[90m↓[39m[22m the frozen constraints the harness relies on, and the gaps it works around[2m > [22mhas no outbox column that could carry a terminal or dead-letter state
+   [2m[90m↓[39m[22m the experiment stays out of production schema[2m > [22mcreates the test-only schema only in the isolated test databases
+   [2m[90m↓[39m[22m the experiment stays out of production schema[2m > [22mrecords only the frozen baseline in the migration ledger
+   [2m[90m↓[39m[22m the experiment stays out of production schema[2m > [22mkeeps the Store-only and Cloud-only test tables apart
+ [32m✓[39m test/loopback-server.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 77[2mms[22m[39m
+ [32m✓[39m test/contract-fixture.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+ [32m✓[39m test/transport-faults.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [31m❯[39m test/outbox-atomicity.test.ts [2m([22m[2m4 tests[22m[2m | [22m[33m4 skipped[39m[2m)[22m[33m 320[2mms[22m[39m
+   [2m[90m↓[39m[22m same-transaction outbox with a synthetic fact[2m > [22mcommits the fact, the outbox row and the side row together
+   [2m[90m↓[39m[22m same-transaction outbox with a synthetic fact[2m > [22mrolls back every row when the transaction fails after the outbox insert
+   [2m[90m↓[39m[22m same-transaction outbox with a synthetic fact[2m > [22mleaves earlier committed postings untouched when a later one fails
+   [2m[90m↓[39m[22m same-transaction outbox with a synthetic fact[2m > [22mrejects a second outbox row with the same tenant and event id
+ [31m❯[39m test/loopback-roundtrip.test.ts [2m([22m[2m2 tests[22m[2m | [22m[33m2 skipped[39m[2m)[22m[32m 299[2mms[22m[39m
+   [2m[90m↓[39m[22m loopback HTTP experiment[2m > [22mdelivers Store messages to the Cloud database over 127.0.0.1
+   [2m[90m↓[39m[22m loopback HTTP experiment[2m > [22mbacks off while the test server is stopped and delivers once it is running again
+
+[31m⎯⎯⎯⎯⎯⎯[39m[1m[41m Failed Suites 7 [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
+
+[41m[1m FAIL [22m[49m test/checkpoint.test.ts[2m [ test/checkpoint.test.ts ][22m
+[31m[1mPostgresUnavailableError[22m: PostgreSQL is not available for the MM-010 integration tests. Set MINIMART_TEST_POSTGRES_URL to an administrative PostgreSQL 17 URL, for example postgresql://postgres:postgres@localhost:5432/postgres, or start Docker Desktop so Testcontainers can run postgres:17-alpine. See docs/phase-0/mm-010-sync-proof-spike.md. Cause: Could not find a working container runtime strategy[39m
+[36m [2m❯[22m administrativeConnectionString test/harness/postgres.ts:[2m53:11[22m[39m
+    [90m 51| [39m    [35mreturn[39m managedContainer[33m.[39m[34mgetConnectionUri[39m()[33m;[39m
+    [90m 52| [39m  } [35mcatch[39m (error) {
+    [90m 53| [39m    [35mthrow[39m [35mnew[39m [33mPostgresUnavailableError[39m(error)[33m;[39m
+    [90m   | [39m          [31m^[39m
+    [90m 54| [39m  }
+    [90m 55| [39m}
+[90m [2m❯[22m createIsolatedDatabase test/harness/postgres.ts:[2m64:20[22m[39m
+[90m [2m❯[22m createDatabasePair test/harness/database-pair.ts:[2m20:17[22m[39m
+[90m [2m❯[22m test/checkpoint.test.ts:[2m45:15[22m[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/7]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m test/database-assumptions.test.ts[2m [ test/database-assumptions.test.ts ][22m
+[31m[1mPostgresUnavailableError[22m: PostgreSQL is not available for the MM-010 integration tests. Set MINIMART_TEST_POSTGRES_URL to an administrative PostgreSQL 17 URL, for example postgresql://postgres:postgres@localhost:5432/postgres, or start Docker Desktop so Testcontainers can run postgres:17-alpine. See docs/phase-0/mm-010-sync-proof-spike.md. Cause: Could not find a working container runtime strategy[39m
+[36m [2m❯[22m administrativeConnectionString test/harness/postgres.ts:[2m53:11[22m[39m
+    [90m 51| [39m    [35mreturn[39m managedContainer[33m.[39m[34mgetConnectionUri[39m()[33m;[39m
+    [90m 52| [39m  } [35mcatch[39m (error) {
+    [90m 53| [39m    [35mthrow[39m [35mnew[39m [33mPostgresUnavailableError[39m(error)[33m;[39m
+    [90m   | [39m          [31m^[39m
+    [90m 54| [39m  }
+    [90m 55| [39m}
+[90m [2m❯[22m createIsolatedDatabase test/harness/postgres.ts:[2m64:20[22m[39m
+[90m [2m❯[22m createDatabasePair test/harness/database-pair.ts:[2m20:17[22m[39m
+[90m [2m❯[22m test/database-assumptions.test.ts:[2m20:15[22m[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/7]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m test/delivery-recovery.test.ts[2m [ test/delivery-recovery.test.ts ][22m
+[31m[1mPostgresUnavailableError[22m: PostgreSQL is not available for the MM-010 integration tests. Set MINIMART_TEST_POSTGRES_URL to an administrative PostgreSQL 17 URL, for example postgresql://postgres:postgres@localhost:5432/postgres, or start Docker Desktop so Testcontainers can run postgres:17-alpine. See docs/phase-0/mm-010-sync-proof-spike.md. Cause: Could not find a working container runtime strategy[39m
+[36m [2m❯[22m administrativeConnectionString test/harness/postgres.ts:[2m53:11[22m[39m
+    [90m 51| [39m    [35mreturn[39m managedContainer[33m.[39m[34mgetConnectionUri[39m()[33m;[39m
+    [90m 52| [39m  } [35mcatch[39m (error) {
+    [90m 53| [39m    [35mthrow[39m [35mnew[39m [33mPostgresUnavailableError[39m(error)[33m;[39m
+    [90m   | [39m          [31m^[39m
+    [90m 54| [39m  }
+    [90m 55| [39m}
+[90m [2m❯[22m createIsolatedDatabase test/harness/postgres.ts:[2m64:20[22m[39m
+[90m [2m❯[22m createDatabasePair test/harness/database-pair.ts:[2m20:17[22m[39m
+[90m [2m❯[22m test/delivery-recovery.test.ts:[2m55:15[22m[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/7]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m test/loopback-roundtrip.test.ts[2m [ test/loopback-roundtrip.test.ts ][22m
+[31m[1mPostgresUnavailableError[22m: PostgreSQL is not available for the MM-010 integration tests. Set MINIMART_TEST_POSTGRES_URL to an administrative PostgreSQL 17 URL, for example postgresql://postgres:postgres@localhost:5432/postgres, or start Docker Desktop so Testcontainers can run postgres:17-alpine. See docs/phase-0/mm-010-sync-proof-spike.md. Cause: Could not find a working container runtime strategy[39m
+[36m [2m❯[22m administrativeConnectionString test/harness/postgres.ts:[2m53:11[22m[39m
+    [90m 51| [39m    [35mreturn[39m managedContainer[33m.[39m[34mgetConnectionUri[39m()[33m;[39m
+    [90m 52| [39m  } [35mcatch[39m (error) {
+    [90m 53| [39m    [35mthrow[39m [35mnew[39m [33mPostgresUnavailableError[39m(error)[33m;[39m
+    [90m   | [39m          [31m^[39m
+    [90m 54| [39m  }
+    [90m 55| [39m}
+[90m [2m❯[22m createIsolatedDatabase test/harness/postgres.ts:[2m64:20[22m[39m
+[90m [2m❯[22m createDatabasePair test/harness/database-pair.ts:[2m20:17[22m[39m
+[90m [2m❯[22m test/loopback-roundtrip.test.ts:[2m36:15[22m[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/7]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m test/outage-replay.test.ts[2m [ test/outage-replay.test.ts ][22m
+[31m[1mPostgresUnavailableError[22m: PostgreSQL is not available for the MM-010 integration tests. Set MINIMART_TEST_POSTGRES_URL to an administrative PostgreSQL 17 URL, for example postgresql://postgres:postgres@localhost:5432/postgres, or start Docker Desktop so Testcontainers can run postgres:17-alpine. See docs/phase-0/mm-010-sync-proof-spike.md. Cause: Could not find a working container runtime strategy[39m
+[36m [2m❯[22m administrativeConnectionString test/harness/postgres.ts:[2m53:11[22m[39m
+    [90m 51| [39m    [35mreturn[39m managedContainer[33m.[39m[34mgetConnectionUri[39m()[33m;[39m
+    [90m 52| [39m  } [35mcatch[39m (error) {
+    [90m 53| [39m    [35mthrow[39m [35mnew[39m [33mPostgresUnavailableError[39m(error)[33m;[39m
+    [90m   | [39m          [31m^[39m
+    [90m 54| [39m  }
+    [90m 55| [39m}
+[90m [2m❯[22m createIsolatedDatabase test/harness/postgres.ts:[2m64:20[22m[39m
+[90m [2m❯[22m createDatabasePair test/harness/database-pair.ts:[2m20:17[22m[39m
+[90m [2m❯[22m test/outage-replay.test.ts:[2m47:15[22m[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/7]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m test/outbox-atomicity.test.ts[2m [ test/outbox-atomicity.test.ts ][22m
+[31m[1mPostgresUnavailableError[22m: PostgreSQL is not available for the MM-010 integration tests. Set MINIMART_TEST_POSTGRES_URL to an administrative PostgreSQL 17 URL, for example postgresql://postgres:postgres@localhost:5432/postgres, or start Docker Desktop so Testcontainers can run postgres:17-alpine. See docs/phase-0/mm-010-sync-proof-spike.md. Cause: Could not find a working container runtime strategy[39m
+[36m [2m❯[22m administrativeConnectionString test/harness/postgres.ts:[2m53:11[22m[39m
+    [90m 51| [39m    [35mreturn[39m managedContainer[33m.[39m[34mgetConnectionUri[39m()[33m;[39m
+    [90m 52| [39m  } [35mcatch[39m (error) {
+    [90m 53| [39m    [35mthrow[39m [35mnew[39m [33mPostgresUnavailableError[39m(error)[33m;[39m
+    [90m   | [39m          [31m^[39m
+    [90m 54| [39m  }
+    [90m 55| [39m}
+[90m [2m❯[22m createIsolatedDatabase test/harness/postgres.ts:[2m64:20[22m[39m
+[90m [2m❯[22m createDatabasePair test/harness/database-pair.ts:[2m20:17[22m[39m
+[90m [2m❯[22m test/outbox-atomicity.test.ts:[2m21:15[22m[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/7]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m test/quarantine.test.ts[2m [ test/quarantine.test.ts ][22m
+[31m[1mPostgresUnavailableError[22m: PostgreSQL is not available for the MM-010 integration tests. Set MINIMART_TEST_POSTGRES_URL to an administrative PostgreSQL 17 URL, for example postgresql://postgres:postgres@localhost:5432/postgres, or start Docker Desktop so Testcontainers can run postgres:17-alpine. See docs/phase-0/mm-010-sync-proof-spike.md. Cause: Could not find a working container runtime strategy[39m
+[36m [2m❯[22m administrativeConnectionString test/harness/postgres.ts:[2m53:11[22m[39m
+    [90m 51| [39m    [35mreturn[39m managedContainer[33m.[39m[34mgetConnectionUri[39m()[33m;[39m
+    [90m 52| [39m  } [35mcatch[39m (error) {
+    [90m 53| [39m    [35mthrow[39m [35mnew[39m [33mPostgresUnavailableError[39m(error)[33m;[39m
+    [90m   | [39m          [31m^[39m
+    [90m 54| [39m  }
+    [90m 55| [39m}
+[90m [2m❯[22m createIsolatedDatabase test/harness/postgres.ts:[2m64:20[22m[39m
+[90m [2m❯[22m createDatabasePair test/harness/database-pair.ts:[2m20:17[22m[39m
+[90m [2m❯[22m test/quarantine.test.ts:[2m47:15[22m[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/7]⎯[22m[39m
+
+
+[2m Test Files [22m [1m[31m7 failed[39m[22m[2m | [22m[1m[32m4 passed[39m[22m[90m (11)[39m
+[2m      Tests [22m [1m[32m38 passed[39m[22m[2m | [22m[33m48 skipped[39m[90m (86)[39m
+[2m   Start at [22m 12:56:17
+[2m   Duration [22m 18.97s[2m (transform 192ms, setup 0ms, collect 5.83s, tests 11.00s, environment 1ms, prepare 753ms)[22m
+
+exit=1

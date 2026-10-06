@@ -1,0 +1,27 @@
+Add visual-only POS UI for all 31 approved reference screens
+
+Implement the owner-approved MiniMartPOS.dc.html reference (screens 01 to 30
+plus 02b) as a frontend-only visual implementation in apps/pos-terminal, under
+the bounded Phase-0 exception in ADR 0008.
+
+- Shell, Sale, search, customer, hold, payment, history, returns, shift and
+  state screens with fictional fixtures and a screens registry checked against
+  the reference manifest.
+- Controls without implemented behavior are visibly identified stubs. No real
+  sale, payment, calculation, persistence, API call or hardware operation.
+- Record the POS design source approval and, separately, the owner's visual
+  implementation approval, bound to the reference hash, implementation file
+  hashes and the candidate path list (provenance.json).
+- Scanner module and its tests are unchanged. scanner-shell.test.tsx keeps all
+  42 tests; two selectors changed because the approved design lacks the old
+  controls.
+
+Approval scope: all 31 POS visual screens are owner-approved. Production and
+business functionality, MM-008 acceptance, native validation and remote CI
+remain incomplete. This branch inherits the incomplete MM-008 software
+checkpoint. POS and Back Office workspace switching has owner direction but is
+not implemented and is not part of this commit. Known limitation kept: with the
+History detail open the STATUS header overflows, and at 1280x720 the CUSTOMER
+header is clipped on screens 17 and 28 (inherited from the reference).
+
+Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>

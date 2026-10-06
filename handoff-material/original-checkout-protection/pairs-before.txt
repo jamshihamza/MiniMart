@@ -1,0 +1,27 @@
+.design-package-index.json	fecb8d96581406aa9a33a309f5f3c1d6230d8721
+Incoming/MiniMart_Customers_Credit_ClaudeDesign_Source_v2-fixed.zip	92af8386523ca3533c429da3801fcc4d286a6f86
+Incoming/MiniMart_Customers_Credit_ClaudeDesign_Source_v2.zip	29a92d58fd64fc81f22a3d51998e738eca9205da
+Incoming/MiniMart_Procurement_ClaudeDesign_Source.zip	83db5235d50fff72941fc3f2f2b9e75d8de55322
+Mockups/MiniMart BO - CategoryBrand & Import.dc.html	14d5f1ef2668a6c13c07b884d154c3c3653c6072
+Mockups/MiniMart BO - CategoryBrand & Import.pdf	e9f643b600cc6946f06ad20b044ef379e68f1116
+Mockups/MiniMart BO - Create & Edit.dc.html	c9f74c0a78c89177b63e5015719e06c8165fbf5f
+Mockups/MiniMart BO - Create & Edit.pdf	99076e685bc870090670423f806f7db66c6c5d39
+Mockups/MiniMart BO - Design System & Docs.dc.html	24e821324af7ae19e938845ac4f100d251037bc6
+Mockups/MiniMart BO - Design System & Docs.pdf	a37cd321b90303021f553ef3d9df26f253da9326
+Mockups/MiniMart BO - Detail & Skeleton.dc.html	f1f7a0334582742ae17ad1cddfec0208460245ee
+Mockups/MiniMart BO - Detail & Skeleton.pdf	eaad466af09940d5a475e8943a3393132a7718d4
+Mockups/MiniMart BO - Foundation & Catalog.dc.html	7a029b9369340f4cd2ec1b5dd8dfbae382034a35
+Mockups/MiniMart BO - Foundation & Catalog.pdf	3ad10bf138eb53cc7454a24a3df90cdac907e927
+Mockups/MiniMart BO - Pricing & Bulk.dc.html	d8c4d6e9533f05afc18eb01351cb1089f2a29af5
+Mockups/MiniMart BO - Pricing & Bulk.pdf	34d88bb65ff55d05fdfe611dac0415c6f9428cbb
+Mockups/MiniMart Back Office Mockups.dc.html	20cb6f2608e3e1db5f3d7ea24eb83edff7458d49
+Mockups/MiniMart Design System.dc.html	d30fc547dc941767df28c8400d7ceb4333ef76c3
+Mockups/MiniMart INV - Adjustments & Opening Stock.pdf	313feab987a1b7b3c9da62488834b0b6ccc3ba43
+Mockups/MiniMart INV - Design System & Docs.pdf	e597d5087cda594c08256467a61b74fcf20a7341
+Mockups/MiniMart INV - Foundation & List.pdf	2d0dc052e1d34356ce84e4fdc287a22c3de1e8ec
+Mockups/MiniMart INV - Item & Movements.pdf	aca377baa3ccf62ababa3008153a75fb3f6953a8
+Mockups/MiniMart INV - Stock Count.pdf	5e16009d86f1d52c71a78845563a3c9ac77e7126
+Mockups/MiniMart POS Mockups.dc.html	a061c7c07ec6f29330372561e035fb6f8a778e19
+Mockups/MiniMartBackOffice.dc.html	ef47d6825afa7e68035439481e3437b9a0a5969f
+Mockups/MiniMartInventory.pdf	b8fc0d384c8d915973f86682f45f23e4b4561277
+Mockups/MiniMartPOS.dc.html	f701a629a811d8150f79b70b1353c8f58ea384c5

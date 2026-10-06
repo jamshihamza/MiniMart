@@ -1,0 +1,12 @@
+import { createRequire } from "node:module";
+const require = createRequire("D:/mm-vis/package.json");
+const { chromium } = require("playwright");
+const b = await chromium.launch({ headless: true, executablePath: "C:/Program Files/Google/Chrome/Application/chrome.exe" });
+const p = await b.newPage();
+p.on("pageerror", (e) => console.log("PAGEERROR", e.message.slice(0, 300)));
+p.on("console", (m) => { if (m.type() === "error") console.log("CONSOLE", m.text().slice(0, 300)); });
+await p.goto("http://127.0.0.1:1420/?screen=03&inspect=0");
+await p.waitForTimeout(2500);
+console.log("root html:", (await p.evaluate(() => document.getElementById("root")?.innerHTML.length)));
+console.log((await p.evaluate(() => document.body.innerText)).slice(0, 400));
+await b.close();

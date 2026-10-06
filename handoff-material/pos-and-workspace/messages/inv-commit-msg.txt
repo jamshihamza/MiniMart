@@ -1,0 +1,18 @@
+WIP: Inventory visual candidate, batch 4 (paused, unapproved, not accepted)
+
+Preservation checkpoint on the owner's authorization to keep all pending work on GitHub for a
+cross-PC handoff. This is not approval of the Inventory design. The owner-directed pause stands.
+
+Registers the Claude Design Inventory export (batch 4, 67 screens, 17 of its 18 files byte for
+byte) as a review-ready, unapproved visual candidate under docs/design/inventory, with provenance,
+traceability and an Inventory section in the fidelity report generator. The manifest status is not
+promoted and no implementation exists.
+
+Checks re-run at checkpoint: design:validate, test:design-render 17 of 17 (system Chrome path set),
+pnpm run ci exit 0, frozen specifications and backlog diff empty. git diff --check reports one
+error: a blank line at the end of the preserved upstream INVENTORY-REVISION-MANIFEST.txt.
+
+Known design defects and approval-gated questions are listed in docs/project-status/ACTIVE-WORK.md.
+No independent owner approval is recorded.
+
+Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>

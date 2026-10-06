@@ -1,0 +1,10 @@
+$ node tools/design-render/render.mjs "--all-ready"
+Rendered 88 screens for accounting.
+Rendered 60 screens for back-office.
+Rendered 77 screens for cash-shifts.
+Rendered 74 screens for customers.
+Rendered 60 screens for inventory.
+Rendered 31 screens for pos.
+Rendered 74 screens for procurement.
+Rendered 80 screens for reports.
+exit 0
