@@ -6,6 +6,11 @@ rust-version.workspace = true
 publish.workspace = true
 license.workspace = true
 
+[dependencies]
+# MM-009 software-only raster renderer (ADR 0006). Exact versions are part of that decision.
+rustybuzz = "=0.20.1"
+ab_glyph_rasterizer = "=0.1.10"
+
 [target.'cfg(windows)'.dependencies]
 windows = { version = "0.61.3", features = ["Win32_Graphics_Printing", "Win32_Graphics_Gdi"] }
 

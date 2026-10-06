@@ -3,6 +3,8 @@
 
 use std::sync::atomic::{AtomicBool, Ordering};
 
+mod raster;
+
 #[cfg(windows)]
 #[allow(unsafe_code)]
 mod windows_spooler;
