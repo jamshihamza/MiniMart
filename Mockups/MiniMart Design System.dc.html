@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/lucide-static@0.469.0/font/lucide.css">
+<script src="./image-slot.js"></script>
+<style>body{margin:0;background:#f2f4f7}button,input{font-family:inherit;color:inherit}[class^="icon-"]{font-family:lucide!important;font-style:normal;line-height:1;display:inline-block}a{color:#1b5fd1}a:hover{color:#174fb0}</style>
+</helmet>
+<div style="font-family:'IBM Plex Sans',system-ui,sans-serif;color:#0f1a2b;font-variant-numeric:tabular-nums;padding:40px 48px 64px;display:flex;flex-direction:column;gap:36px;width:1360px">
+  <div style="display:flex;flex-direction:column;gap:8px">
+    <span style="font:600 12px 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#4a5567">MINIMART POS · DESIGN SYSTEM</span>
+    <span style="font-size:30px;font-weight:700">Foundations, components and states</span>
+    <span style="font-size:15px;color:#4a5567;max-width:820px;line-height:1.5">Light working surfaces, navy navigation, one blue for actions and one green reserved for completing a sale. Status is always icon + text + colour, never colour alone. Screens: <a href="MiniMart POS Mockups.dc.html">MiniMart POS Mockups</a>.</span>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:14px">
+    <span style="font-size:20px;font-weight:700">Colour</span>
+    <div style="display:grid;grid-template-columns:repeat(8,1fr);gap:12px">
+      <sc-for list="{{ colors }}" as="c" hint-placeholder-count="16">
+        <div style="background:#fff;border:1px solid #e1e5eb;border-radius:10px;overflow:hidden">
+          <div style="height:64px;background:{{ c.hex }};border-bottom:1px solid #e1e5eb"></div>
+          <div style="padding:8px 10px;display:flex;flex-direction:column;gap:2px"><span style="font-size:13px;font-weight:600">{{ c.name }}</span><span style="font:500 11.5px 'IBM Plex Mono',monospace;color:#4a5567">{{ c.hex }}</span><span style="font-size:11.5px;color:#6b7585">{{ c.use }}</span></div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1.3fr 1fr;gap:24px">
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <span style="font-size:20px;font-weight:700">Typography · IBM Plex Sans, tabular figures</span>
+      <div style="background:#fff;border:1px solid #e1e5eb;border-radius:12px;padding:6px 18px">
+        <sc-for list="{{ type }}" as="t" hint-placeholder-count="8">
+          <div style="display:grid;grid-template-columns:150px 1fr;align-items:baseline;gap:16px;padding:10px 0;border-bottom:1px solid #eef1f5">
+            <span style="font:500 11.5px 'IBM Plex Mono',monospace;color:#4a5567">{{ t.spec }}</span>
+            <span style="font-size:{{ t.size }};font-weight:{{ t.w }};letter-spacing:{{ t.ls }};font-family:{{ t.ff }}">{{ t.sample }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <span style="font-size:20px;font-weight:700">Spacing · radius · elevation</span>
+      <div style="background:#fff;border:1px solid #e1e5eb;border-radius:12px;padding:16px 18px;display:flex;flex-direction:column;gap:16px">
+        <div style="display:flex;align-items:flex-end;gap:14px">
+          <sc-for list="{{ space }}" as="s" hint-placeholder-count="8">
+            <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><div style="width:{{ s.px }};height:{{ s.px }};background:#1b5fd1;border-radius:2px"></div><span style="font:500 11px 'IBM Plex Mono',monospace;color:#4a5567">{{ s.v }}</span></div>
+          </sc-for>
+        </div>
+        <div style="display:flex;gap:14px">
+          <sc-for list="{{ radii }}" as="r" hint-placeholder-count="4">
+            <div style="display:flex;flex-direction:column;gap:6px;align-items:center"><div style="width:64px;height:48px;border:1.5px solid #0e1b33;border-radius:{{ r.v }};background:#f7f9fb"></div><span style="font:500 11px 'IBM Plex Mono',monospace;color:#4a5567">{{ r.v }} · {{ r.use }}</span></div>
+          </sc-for>
+        </div>
+        <div style="display:flex;gap:18px;padding:14px;background:#f2f4f7;border-radius:10px">
+          <sc-for list="{{ shadows }}" as="s" hint-placeholder-count="3">
+            <div style="flex:1;height:64px;background:#fff;border-radius:10px;box-shadow:{{ s.v }};border:{{ s.bd }};display:grid;place-items:center;font-size:12px;font-weight:600;color:#4a5567">{{ s.name }}</div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:14px">
+    <span style="font-size:20px;font-weight:700">Buttons · hierarchy × state</span>
+    <div style="background:#fff;border:1px solid #e1e5eb;border-radius:12px;padding:8px 18px">
+      <div style="display:grid;grid-template-columns:150px repeat(6,1fr);gap:12px;padding:8px 0;font:600 11px 'IBM Plex Mono',monospace;color:#6b7585"><span></span><span>DEFAULT</span><span>HOVER</span><span>FOCUSED</span><span>PRESSED</span><span>LOADING</span><span>DISABLED</span></div>
+      <sc-for list="{{ buttons }}" as="b" hint-placeholder-count="5">
+        <div style="display:grid;grid-template-columns:150px repeat(6,1fr);gap:12px;align-items:center;padding:10px 0;border-top:1px solid #eef1f5">
+          <div style="display:flex;flex-direction:column;gap:1px"><span style="font-size:13.5px;font-weight:600">{{ b.name }}</span><span style="font-size:11.5px;color:#6b7585">{{ b.use }}</span></div>
+          <sc-for list="{{ b.states }}" as="s" hint-placeholder-count="6">
+            <button style="height:{{ b.h }};border-radius:8px;border:{{ s.bd }};background:{{ s.bg }};color:{{ s.fg }};box-shadow:{{ s.ring }};font-size:14px;font-weight:600;display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:0 12px;cursor:pointer"><i class="{{ s.icon }}" style="font-size:15px"></i>{{ s.label }}</button>
+          </sc-for>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <span style="font-size:20px;font-weight:700">Inputs</span>
+      <div style="background:#fff;border:1px solid #e1e5eb;border-radius:12px;padding:16px 18px;display:flex;flex-direction:column;gap:14px">
+        <div style="display:flex;align-items:center;gap:10px;height:54px;padding:0 8px 0 16px;border:2px solid #1b5fd1;border-radius:10px;box-shadow:0 0 0 4px #dbe7fb"><i class="icon-scan-barcode" style="font-size:22px;color:#1b5fd1"></i><span style="flex:1;font-size:17px;font-weight:500">coffee</span><span style="width:34px;height:34px;border-radius:8px;background:#f2f4f7;display:grid;place-items:center"><i class="icon-x" style="font-size:17px"></i></span></div>
+        <span style="font-size:12px;color:#6b7585;margin-top:-8px">Scan / search field · always focused on the Sale screen · 54 px · clear when populated</span>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <sc-for list="{{ inputs }}" as="f" hint-placeholder-count="6">
+            <div style="display:flex;flex-direction:column;gap:5px">
+              <span style="font-size:13px;font-weight:600;color:{{ f.lc }}">{{ f.label }}</span>
+              <div style="height:40px;border-radius:8px;border:{{ f.bd }};box-shadow:{{ f.ring }};background:{{ f.bg }};padding:0 12px;display:flex;align-items:center;justify-content:space-between;font-size:14px;color:{{ f.fg }}"><span>{{ f.val }}</span><i class="{{ f.icon }}" style="font-size:15px;color:#6b7585"></i></div>
+              <span style="font-size:12px;color:{{ f.hc }};display:inline-flex;align-items:center;gap:5px"><i class="{{ f.hIcon }}" style="font-size:13px"></i>{{ f.help }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <span style="font-size:20px;font-weight:700">Tabs · chips · keyboard · tooltip</span>
+      <div style="background:#fff;border:1px solid #e1e5eb;border-radius:12px;padding:16px 18px;display:flex;flex-direction:column;gap:18px">
+        <div style="display:flex;gap:4px;border-bottom:1px solid #e1e5eb">
+          <span style="padding:10px 14px;font-size:14px;font-weight:600;color:#0f1a2b;box-shadow:inset 0 -2px 0 #1b5fd1">Items</span><span style="padding:10px 14px;font-size:14px;font-weight:500;color:#4a5567">Tenders</span><span style="padding:10px 14px;font-size:14px;font-weight:500;color:#4a5567">Audit</span><span style="padding:10px 14px;font-size:14px;font-weight:500;color:#9aa3b2">Returns · 0</span>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <span style="height:34px;padding:0 14px;border-radius:999px;background:#0e1b33;color:#fff;font-size:13px;font-weight:600;display:inline-flex;align-items:center">Selected</span>
+          <span style="height:34px;padding:0 14px;border-radius:999px;border:1px solid #cfd5de;background:#fff;color:#3d4a5e;font-size:13px;font-weight:600;display:inline-flex;align-items:center">Default</span>
+          <span style="height:34px;padding:0 14px;border-radius:999px;border:1px solid #9aa3b2;background:#f7f9fb;color:#3d4a5e;font-size:13px;font-weight:600;display:inline-flex;align-items:center">Hover</span>
+          <span style="height:34px;padding:0 14px;border-radius:999px;border:1px solid #cfd5de;background:#fff;color:#3d4a5e;font-size:13px;font-weight:600;display:inline-flex;align-items:center;box-shadow:0 0 0 2px #fff,0 0 0 4px #1b5fd1">Focused</span>
+          <span style="height:34px;padding:0 14px;border-radius:999px;border:1px solid #e1e5eb;background:#f7f9fb;color:#9aa3b2;font-size:13px;font-weight:600;display:inline-flex;align-items:center">Disabled</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:16px">
+          <div style="display:flex;align-items:center;gap:6px;font-size:13px;color:#4a5567">Confirm <span style="min-width:22px;height:22px;padding:0 6px;border-radius:5px;border:1px solid #cfd5de;box-shadow:inset 0 -1.5px 0 #cfd5de;background:#fff;font:600 11.5px 'IBM Plex Mono',monospace;color:#0f1a2b;display:inline-flex;align-items:center;justify-content:center">Enter</span></div>
+          <div style="display:flex;align-items:center;gap:6px;font-size:13px;color:#4a5567">Close <span style="min-width:22px;height:22px;padding:0 6px;border-radius:5px;border:1px solid #cfd5de;box-shadow:inset 0 -1.5px 0 #cfd5de;background:#fff;font:600 11.5px 'IBM Plex Mono',monospace;color:#0f1a2b;display:inline-flex;align-items:center;justify-content:center">Esc</span></div>
+          <span style="font-size:12px;color:#6b7585">Shortcut badge · only for spec-defined shortcuts</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:14px">
+          <span style="width:36px;height:36px;border-radius:8px;border:1px solid #e1e5eb;display:grid;place-items:center;color:#4a5567"><i class="icon-server" style="font-size:17px"></i></span>
+          <div style="position:relative;padding:8px 10px;border-radius:7px;background:#0f1a2b;color:#fff;font-size:12.5px;max-width:280px;line-height:1.4">Store Node · local server in this store. Checkout works while it is online, even without internet.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:14px">
+    <span style="font-size:20px;font-weight:700">ShortcutBadge</span>
+    <div style="background:#fff;border:1px solid #e1e5eb;border-radius:12px;padding:16px 18px;display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;align-items:center;gap:22px">
+        <div style="display:flex;align-items:center;gap:8px"><span style="min-width:26px;height:26px;padding:0 8px;border-radius:6px;border:1px solid #cfd5de;background:#fff;font:600 11.5px 'IBM Plex Mono',monospace;color:#0f1a2b;display:inline-flex;align-items:center;justify-content:center">F2</span><span style="font-size:13px;color:#4a5567">Focus item search — confirmed, Sale screen only</span></div>
+        <div style="display:flex;align-items:center;gap:8px"><span style="min-width:26px;height:26px;padding:0 8px;border-radius:6px;border:1px solid #cfd5de;background:#fff;font:600 11.5px 'IBM Plex Mono',monospace;color:#0f1a2b;display:inline-flex;align-items:center;justify-content:center">Esc</span><span style="font-size:13px;color:#4a5567">Clear a non-empty search field — confirmed</span></div>
+        <div style="display:flex;align-items:center;gap:8px"><span style="min-width:52px;height:26px;padding:0 8px;border-radius:6px;border:1px solid #cfd5de;background:#fff;font:600 11.5px 'IBM Plex Mono',monospace;color:#0f1a2b;display:inline-flex;align-items:center;justify-content:center;gap:3px">Ctrl+K</span><span style="font-size:13px;color:#4a5567">Combination style — design-system presentation only, no action assigned</span></div>
+      </div>
+      <span style="font-size:12px;color:#6b7585">Every shortcut always has a visible, clickable equivalent. A badge is only added once the mapping is confirmed in the implementation; guessed keys are never shown to the cashier. Actions without a confirmed key (Customer, Hold, Recall, Payment, Complete Sale, Return, Manager Override) reserve badge space so a key can be added later without resizing the control — documented as "Shortcut: authority-defined".</span>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <sc-for list="{{ badgeSlots }}" as="b" hint-placeholder-count="7">
+          <div style="display:flex;align-items:center;gap:8px;height:36px;padding:0 12px;border-radius:8px;border:1px solid #e1e5eb;background:#fff"><span style="font-size:13px;font-weight:500">{{ b.label }}</span><span style="font:500 11px 'IBM Plex Mono',monospace;color:#9aa3b2">{{ b.slot }}</span></div>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:14px">
+    <span style="font-size:20px;font-weight:700">ProductCard image slot <span style="font-size:13px;font-weight:400;color:#6b7585">— final direction: realistic packshot photography, not illustration</span></span>
+    <div style="background:#fff;border:1px solid #e1e5eb;border-radius:12px;padding:16px 18px;display:grid;grid-template-columns:180px 1fr;gap:20px;align-items:start">
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div style="width:170px;height:130px;border-radius:8px;overflow:hidden;background:#fafbfc;border:1px solid #e1e5eb"><image-slot id="ds-packshot-demo" shape="rect" fit="contain" placeholder="Drop packshot"></image-slot></div>
+        <span style="font-size:11.5px;color:#6b7585">Live slot · drop an image to preview real photography here</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;font-size:13px;color:#4a5567">
+        <span style="font-size:14px;font-weight:600;color:#0f1a2b">Slot specification</span>
+        <span>• Neutral, near-white background (#fafbfc) so any packshot's own background reads as clean.</span>
+        <span>• <code style="font:500 12px 'IBM Plex Mono',monospace">object-fit: contain</code>, fixed aspect box — the photo is never cropped or stretched.</span>
+        <span>• Consistent padding on all sides (≈8–10% of slot width) so packaging never touches the edge.</span>
+        <span>• Card layout, name/unit/price/stock position and sizing are unaffected by whether the slot is filled — an empty slot reserves the same box.</span>
+        <span style="color:#8a5100;font-weight:600">Mockups currently show this slot as an explicit "TEMP" placeholder (dashed border + icon), never as descriptive text or a flat illustration. Final implementation supplies real demo packshot assets in this exact box.</span>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:14px">
+    <span style="font-size:20px;font-weight:700">ProductResultsGrid</span>
+    <div style="background:#fff;border:1px solid #e1e5eb;border-radius:12px;overflow:hidden">
+      <div style="display:grid;grid-template-columns:minmax(0,1fr) 130px 100px 90px 110px;gap:12px;padding:8px 14px;background:#f7f9fb;border-bottom:1px solid #e1e5eb;font-size:11.5px;font-weight:600;letter-spacing:.04em;color:#6b7585"><span>PRODUCT</span><span>SKU</span><span>UNIT</span><span style="text-align:right">PRICE</span><span>STOCK</span></div>
+      <sc-for list="{{ productGridRows }}" as="p" hint-placeholder-count="4">
+        <div style="display:grid;grid-template-columns:minmax(0,1fr) 130px 100px 90px 110px;gap:12px;align-items:center;padding:0 14px;height:42px;border-top:1px solid #eef1f5;background:{{ p.bg }};box-shadow:{{ p.ring }}">
+          <span style="font-size:13.5px;font-weight:600">{{ p.n }}</span><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#4a5567">{{ p.sku }}</span><span style="font-size:12.5px;color:#4a5567">{{ p.d }}</span><span style="text-align:right;font-weight:700;font-size:13.5px">{{ p.price }}</span><span style="font-size:12px;font-weight:600;color:{{ p.sfg }}">{{ p.stock }}</span>
+        </div>
+      </sc-for>
+      <div style="padding:10px 14px;font-size:12px;color:#6b7585;border-top:1px solid #eef1f5">Keyboard-navigable rows for larger catalogues; a compact companion to Tile view in the same product-discovery area. Switching Tile ↔ Grid never touches the cart, customer, or totals on the right.</div>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:14px">
+    <span style="font-size:20px;font-weight:700">Design-documentation phase labels <span style="font-size:13px;font-weight:400;color:#6b7585">(design docs only — never shown in the cashier-facing UI)</span></span>
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <span style="height:26px;padding:0 10px;border-radius:6px;background:#eef1f5;color:#0e1b33;font:600 12px 'IBM Plex Mono',monospace;display:inline-flex;align-items:center">CURRENT FOUNDATION</span>
+      <span style="height:26px;padding:0 10px;border-radius:6px;background:#e8f0fc;color:#174fb0;font:600 12px 'IBM Plex Mono',monospace;display:inline-flex;align-items:center">PLANNED PRODUCT FLOW</span>
+      <span style="height:26px;padding:0 10px;border-radius:6px;background:#fdf3e1;color:#8a5100;font:600 12px 'IBM Plex Mono',monospace;display:inline-flex;align-items:center">DESIGN CONCEPT</span>
+      <span style="height:26px;padding:0 10px;border-radius:6px;background:#fcebea;color:#b3261e;font:600 12px 'IBM Plex Mono',monospace;display:inline-flex;align-items:center">AUTHORITY-DEPENDENT</span>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:14px">
+    <span style="font-size:20px;font-weight:700">Status badges · icon + text + colour</span>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px">
+      <sc-for list="{{ badgeGroups }}" as="g" hint-placeholder-count="4">
+        <div style="background:#fff;border:1px solid #e1e5eb;border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:10px">
+          <span style="font-size:13px;font-weight:600">{{ g.title }}</span>
+          <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-start">
+            <sc-for list="{{ g.items }}" as="b" hint-placeholder-count="4">
+              <span style="display:inline-flex;align-items:center;gap:5px;height:26px;padding:0 10px;border-radius:999px;background:{{ b.bg }};color:{{ b.fg }};border:1px solid {{ b.bd }};font-size:12.5px;font-weight:600"><i class="{{ b.icon }}" style="font-size:13px"></i>{{ b.label }}</span>
+            </sc-for>
+          </div>
+          <span style="font-size:12px;color:#6b7585">{{ g.note }}</span>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <span style="font-size:20px;font-weight:700">Connection indicators</span>
+      <div style="background:#fff;border:1px solid #e1e5eb;border-radius:12px;padding:16px 18px;display:flex;flex-direction:column;gap:12px">
+        <sc-for list="{{ conn }}" as="c" hint-placeholder-count="3">
+          <div style="display:grid;grid-template-columns:230px 1fr;align-items:center;gap:14px;padding-bottom:12px;border-bottom:1px solid #eef1f5">
+            <div style="display:flex;gap:6px;flex-wrap:wrap">
+              <span style="display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 11px;border-radius:999px;border:1px solid {{ c.a.bd }};background:{{ c.a.bg }};color:{{ c.a.fg }};font-size:12.5px;font-weight:600"><i class="{{ c.a.icon }}" style="font-size:14px"></i>{{ c.a.label }}</span>
+              <span style="display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 11px;border-radius:999px;border:1px solid {{ c.b.bd }};background:{{ c.b.bg }};color:{{ c.b.fg }};font-size:12.5px;font-weight:600"><i class="{{ c.b.icon }}" style="font-size:14px"></i>{{ c.b.label }}</span>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:2px"><span style="font-size:13.5px;font-weight:600">{{ c.title }}</span><span style="font-size:12.5px;color:#4a5567">{{ c.body }}</span></div>
+          </div>
+        </sc-for>
+        <span style="font-size:12px;color:#6b7585">Two separate pills in the top bar. Store Node = local store network. Cloud sync = head-office connection. Internet loss alone never blocks checkout.</span>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <span style="font-size:20px;font-weight:700">Hardware status</span>
+      <div style="background:#fff;border:1px solid #e1e5eb;border-radius:12px;padding:16px 18px;display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <sc-for list="{{ hw }}" as="h" hint-placeholder-count="8">
+          <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:9px;border:1px solid {{ h.bd }};background:{{ h.bg }}">
+            <i class="{{ h.icon }}" style="font-size:17px;color:#3d4a5e"></i>
+            <div style="flex:1;display:flex;flex-direction:column;gap:1px"><span style="font-size:13px;font-weight:600">{{ h.dev }}</span><span style="font-size:12px;color:#4a5567">{{ h.hint }}</span></div>
+            <span style="display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;color:{{ h.fg }}"><i class="{{ h.sIcon }}" style="font-size:13px"></i>{{ h.st }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:420px 1fr;gap:24px">
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <span style="font-size:20px;font-weight:700">Cart rows</span>
+      <div style="background:#fff;border:1px solid #e1e5eb;border-radius:12px;padding:8px 0">
+        <sc-for list="{{ cartRows }}" as="l" hint-placeholder-count="3">
+          <div style="display:flex;flex-direction:column;gap:3px;padding:4px 8px">
+            <span style="font:600 10.5px 'IBM Plex Mono',monospace;color:#6b7585;padding-left:4px">{{ l.state }}</span>
+            <div style="display:grid;grid-template-columns:minmax(0,1fr) auto 74px 30px;align-items:center;gap:10px;padding:8px 6px 8px 10px;border-radius:8px;background:{{ l.bg }};box-shadow:{{ l.ring }}">
+              <div style="display:flex;flex-direction:column;gap:2px"><span style="font-size:14px;font-weight:600">Fresh Milk 1 L</span><span style="font-size:12px;color:#6b7585">RM 7.20 each · Grocery</span></div>
+              <div style="display:flex;align-items:center;border:1px solid {{ l.qbd }};box-shadow:{{ l.qring }};border-radius:8px;background:#fff;height:34px"><span style="width:32px;display:grid;place-items:center;color:#4a5567"><i class="icon-minus" style="font-size:15px"></i></span><span style="min-width:26px;text-align:center;font-weight:700">2</span><span style="width:32px;display:grid;place-items:center;color:#4a5567"><i class="icon-plus" style="font-size:15px"></i></span></div>
+              <span style="text-align:right;font-weight:700">RM 14.40</span>
+              <span style="width:30px;height:30px;display:grid;place-items:center;color:#6b7585"><i class="icon-trash-2" style="font-size:15px"></i></span>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <span style="font-size:20px;font-weight:700">Product tiles · table row</span>
+      <div style="display:flex;gap:12px">
+        <sc-for list="{{ tiles }}" as="p" hint-placeholder-count="4">
+          <div style="width:170px;display:flex;flex-direction:column;gap:5px">
+            <span style="font:600 10.5px 'IBM Plex Mono',monospace;color:#6b7585">{{ p.state }}</span>
+            <div style="background:#fff;border:1px solid {{ p.bd }};box-shadow:{{ p.ring }};border-radius:10px;padding:8px 8px 10px;display:flex;flex-direction:column;gap:5px;opacity:{{ p.op }}">
+              <div style="height:82px;border-radius:6px;background:repeating-linear-gradient(135deg,#f5f7fa 0 6px,#edf0f4 6px 12px);display:grid;place-items:center;font:500 10px 'IBM Plex Mono',monospace;color:#6b7585">packshot</div>
+              <span style="font-size:13.5px;font-weight:600">{{ p.n }}</span><span style="font-size:12px;color:#6b7585">{{ p.d }}</span>
+              <div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font-size:15px;font-weight:700">{{ p.price }}</span><span style="font-size:11.5px;font-weight:600;color:{{ p.sfg }}">{{ p.stock }}</span></div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="background:#fff;border:1px solid #e1e5eb;border-radius:12px;overflow:hidden">
+        <div style="display:grid;grid-template-columns:140px 110px 1fr 110px 150px;gap:12px;padding:9px 16px;background:#f7f9fb;border-bottom:1px solid #e1e5eb;font-size:11.5px;font-weight:600;letter-spacing:.04em;color:#6b7585"><span>RECEIPT</span><span>TIME</span><span>CUSTOMER</span><span style="text-align:right">TOTAL</span><span>STATUS</span></div>
+        <div style="display:grid;grid-template-columns:140px 110px 1fr 110px 150px;gap:12px;align-items:center;padding:0 16px;height:46px;border-bottom:1px solid #eef1f5;font-size:13.5px"><span style="font:500 12.5px 'IBM Plex Mono',monospace">POS01-000141</span><span style="color:#4a5567">14:21</span><span>Walk-in Customer</span><span style="text-align:right;font-weight:600">RM 12.60</span><span style="display:inline-flex;align-items:center;gap:5px;justify-self:start;height:24px;padding:0 9px;border-radius:999px;background:#e5f4ec;color:#146c43;font-size:12px;font-weight:600"><i class="icon-circle-check" style="font-size:13px"></i>Completed</span></div>
+        <div style="display:grid;grid-template-columns:140px 110px 1fr 110px 150px;gap:12px;align-items:center;padding:0 16px;height:46px;font-size:13.5px;background:#eef4fd;box-shadow:inset 0 0 0 2px #1b5fd1"><span style="font:500 12.5px 'IBM Plex Mono',monospace">POS01-000139</span><span style="color:#4a5567">13:58</span><span>Walk-in Customer · selected</span><span style="text-align:right;font-weight:600">RM 32.40</span><span style="display:inline-flex;align-items:center;gap:5px;justify-self:start;height:24px;padding:0 9px;border-radius:999px;background:#e5f4ec;color:#146c43;font-size:12px;font-weight:600"><i class="icon-circle-check" style="font-size:13px"></i>Completed</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:14px">
+    <span style="font-size:20px;font-weight:700">Toasts</span>
+    <div style="display:flex;gap:14px;flex-wrap:wrap">
+      <sc-for list="{{ toasts }}" as="t" hint-placeholder-count="4">
+        <div style="width:310px;display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border-radius:10px;background:#0f1a2b;color:#fff;box-shadow:0 10px 30px rgba(14,27,51,.25);font-size:13px">
+          <i class="{{ t.icon }}" style="font-size:17px;color:{{ t.c }};margin-top:1px"></i>
+          <div style="flex:1;display:flex;flex-direction:column;gap:2px"><span style="font-weight:600">{{ t.title }}</span><span style="color:#c3cbd9">{{ t.body }}</span></div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:14px">
+    <span style="font-size:20px;font-weight:700">Dialog system</span>
+    <span style="font-size:13.5px;color:#4a5567;margin-top:-6px">Header: icon tile + title + close. Body: plain statement of consequence. Footer: secondary left of primary; destructive actions use red fill only when the action can't be undone.</span>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:start">
+      <sc-for list="{{ dialogs }}" as="d" hint-placeholder-count="9">
+        <div style="background:#fff;border-radius:14px;box-shadow:0 12px 36px rgba(14,27,51,.14);border:1px solid #e1e5eb;display:flex;flex-direction:column">
+          <div style="display:flex;align-items:center;gap:12px;padding:14px 14px 14px 18px;border-bottom:1px solid #e1e5eb">
+            <div style="width:32px;height:32px;border-radius:9px;background:{{ d.ibg }};color:{{ d.ifg }};display:grid;place-items:center"><i class="{{ d.icon }}" style="font-size:17px"></i></div>
+            <span style="font-size:16px;font-weight:600;flex:1">{{ d.title }}</span><i class="icon-x" style="font-size:17px;color:#4a5567"></i>
+          </div>
+          <div style="padding:14px 18px;display:flex;flex-direction:column;gap:10px">
+            <span style="font-size:13.5px;color:#4a5567;line-height:1.45">{{ d.body }}</span>
+            <sc-if value="{{ d.hasField }}" hint-placeholder-val="{{ false }}"><div style="height:40px;border-radius:8px;border:2px solid #1b5fd1;box-shadow:0 0 0 4px #dbe7fb;padding:0 12px;display:flex;align-items:center;justify-content:space-between;font-size:14px"><span>{{ d.field }}</span><span style="color:#6b7585;font-size:12.5px">{{ d.fieldHint }}</span></div></sc-if>
+          </div>
+          <div style="display:flex;justify-content:flex-end;gap:8px;padding:12px 18px;border-top:1px solid #e1e5eb;background:#f7f9fb;border-radius:0 0 14px 14px">
+            <button style="height:38px;padding:0 14px;border-radius:8px;border:1px solid #cfd5de;background:#fff;font-size:13.5px;font-weight:600">{{ d.sec }}</button>
+            <button style="height:38px;padding:0 14px;border-radius:8px;border:0;background:{{ d.pbg }};color:#fff;font-size:13.5px;font-weight:600">{{ d.pri }}</button>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:14px">
+    <span style="font-size:20px;font-weight:700">Empty · loading · error patterns</span>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px">
+      <sc-for list="{{ empties }}" as="e" hint-placeholder-count="8">
+        <div style="background:#fff;border:1px solid #e1e5eb;border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:8px;align-items:flex-start;min-height:170px">
+          <div style="width:40px;height:40px;border-radius:10px;background:{{ e.ibg }};color:{{ e.ifg }};display:grid;place-items:center"><i class="{{ e.icon }}" style="font-size:20px"></i></div>
+          <span style="font-size:14.5px;font-weight:600">{{ e.title }}</span>
+          <span style="font-size:13px;color:#4a5567;line-height:1.4">{{ e.body }}</span>
+          <button style="margin-top:auto;height:34px;padding:0 12px;border-radius:8px;border:1px solid #cfd5de;background:#fff;font-size:13px;font-weight:600">{{ e.action }}</button>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const pill=(label,icon,k)=>{const c={ok:['#e5f4ec','#146c43','#bfe3cf'],bad:['#fcebea','#b3261e','#f3c3bf'],warn:['#fdf3e1','#8a5100','#f0d4a0'],mute:['#f2f4f7','#4a5567','#e1e5eb'],info:['#e8f0fc','#174fb0','#c9dbf8']}[k];return {label,icon,bg:c[0],fg:c[1],bd:c[2]};};
+class Component extends DCLogic {
+  renderVals(){
+    const colors=[['Navy 900','#0e1b33','Sidebar'],['Navy 700','#1f3a6b','Active nav'],['Ink','#0f1a2b','Primary text'],['Ink 2','#4a5567','Secondary text'],['Ink 3','#6b7585','Meta, hints'],['Border','#e1e5eb','Dividers'],['Border strong','#cfd5de','Controls'],['App bg','#f2f4f7','Canvas'],
+      ['Blue 600','#1b5fd1','Actions, focus'],['Blue 50','#e8f0fc','Selected tint'],['Green 700','#157347','Complete Sale only'],['Success','#146c43','Confirmed'],['Teal','#0d7a76','Discounts'],['Amber','#8a5100','Unconfirmed, warn'],['Red','#b3261e','Failed, destructive'],['Surface','#ffffff','Cards, panels']].map(([name,hex,use])=>({name,hex,use}));
+    const type=[['Display 34/700','34px',700,'RM 46.60'],['Total 31/700','31px',700,'RM 46.60'],['Title 20/600','20px',600,'Sale History'],['Dialog 17/600','17px',600,'Cash payment'],['Body 14/500','14px',500,'Instant Noodles Curry 5 × 80 g'],['Small 13/400','13px',400,'Scan a barcode or select a product.'],['Label 11.5/600 caps','11.5px',600,'RECEIPT · STATUS'],['Mono 12.5/500','12.5px',500,'POS01-000142']].map(([spec,size,w,sample],i)=>({spec,size,w,sample,ls:i===6?'0.06em':'0',ff:i===7?"'IBM Plex Mono',monospace":'inherit'}));
+    const space=[2,4,6,8,12,16,20,24,32].map(v=>({v,px:v+'px'}));
+    const radii=[['6px','tags'],['8px','controls'],['10px','tiles'],['14px','dialogs']].map(([v,use])=>({v,use}));
+    const shadows=[['Flat · border','none','1px solid #e1e5eb'],['Raised · hover','0 2px 8px rgba(14,27,51,.08)','1px solid #e1e5eb'],['Overlay · dialog','0 24px 60px rgba(14,27,51,.3)','0']].map(([name,v,bd])=>({name,v,bd}));
+    const ring='0 0 0 2px #fff,0 0 0 4px #1b5fd1';
+    const mk=(name,use,h,base,hov,press,label,icon,disBg,disFg,disBd)=>({name,use,h,states:[
+      {...base,label,icon,ring:'none'},{...base,bg:hov,label,icon,ring:'none'},{...base,label,icon,ring},{...base,bg:press,label,icon,ring:'inset 0 2px 3px rgba(0,0,0,.18)'},{...base,label:'Working…',icon:'icon-loader-circle',ring:'none'},{bg:disBg,fg:disFg,bd:disBd,label,icon,ring:'none'}]});
+    const buttons=[
+      mk('Complete Sale','One per screen','52px',{bg:'#157347',fg:'#fff',bd:'0'},'#12633d','#0f5433','Complete','icon-circle-check','#9aa3b2','#fff','0'),
+      mk('Primary','Main action','40px',{bg:'#1b5fd1',fg:'#fff',bd:'0'},'#174fb0','#12418f','Confirm','','#c9d3e0','#fff','0'),
+      mk('Secondary','Alternatives','40px',{bg:'#fff',fg:'#0f1a2b',bd:'1px solid #cfd5de'},'#f2f4f7','#e6e9ee','Print','icon-printer','#f7f9fb','#9aa3b2','1px solid #e1e5eb'),
+      mk('Ghost','Low emphasis','40px',{bg:'transparent',fg:'#1b5fd1',bd:'0'},'#e8f0fc','#d4e3fa','Details','','transparent','#9aa3b2','0'),
+      mk('Destructive','Irreversible','40px',{bg:'#b3261e',fg:'#fff',bd:'0'},'#9c2019','#841b15','Clear cart','icon-trash-2','#e8c4c1','#fff','0')];
+    const inputs=[['Default','Walk-in Customer','1px solid #cfd5de','none','#fff','#0f1a2b','#0f1a2b','','','#6b7585','Helper text'],['Focused','MGR-0012','2px solid #1b5fd1','0 0 0 4px #dbe7fb','#fff','#0f1a2b','#0f1a2b','','','#6b7585','Visible 2 px ring + halo'],['Error','RM 4O.00','2px solid #b3261e','0 0 0 4px #fbdedb','#fff','#0f1a2b','#b3261e','icon-circle-alert','icon-circle-alert','#b3261e','Enter an amount like 40.00'],['Success','RM 50.00','1.5px solid #3a9a6a','none','#fff','#0f1a2b','#0f1a2b','icon-check','icon-circle-check','#146c43','Change due RM 3.40'],['Select','Damaged packaging','1px solid #cfd5de','none','#fff','#0f1a2b','#0f1a2b','icon-chevron-down','','#6b7585','Dropdown'],['Disabled','Not configured','1px solid #e1e5eb','none','#f7f9fb','#9aa3b2','#6b7585','icon-lock','icon-lock','#6b7585','Unavailable for this store']].map(([label,val,bd,rg,bg,fg,lc,icon,hIcon,hc,help])=>({label,val,bd,ring:rg,bg,fg,lc,icon,hIcon,hc,help}));
+    const b=(l,i,k)=>pill(l,i,k);
+    const badgeGroups=[
+      {title:'Card / QR payment',note:'Unconfirmed is amber with “?” — never styled like success.',items:[b('Waiting','icon-loader-circle','info'),b('Approved','icon-circle-check','ok'),b('Declined','icon-circle-x','bad'),b('Unconfirmed','icon-circle-help','warn')]},
+      {title:'Refund',note:'Refund state is shown separately from the return.',items:[b('Pending','icon-clock','info'),b('Refunded','icon-circle-check','ok'),b('Failed','icon-circle-x','bad'),b('Unconfirmed','icon-circle-help','warn')]},
+      {title:'Sale',note:'Posted sales carry a lock; they are never edited.',items:[b('Completed','icon-circle-check','ok'),b('Partially returned','icon-undo-2','mute'),b('Refund pending','icon-clock','info'),b('Posted','icon-lock','mute')]},
+      {title:'Shift',note:'Shown in the sidebar and Shift header.',items:[b('Open','icon-circle-check','ok'),b('Closing','icon-loader-circle','warn'),b('Closed','icon-lock','mute')]}];
+    const conn=[
+      {a:pill('Store Node online','icon-server','ok'),b:pill('Sync healthy','icon-cloud','mute'),title:'Normal',body:'Checkout, history, returns and shift all available.'},
+      {a:pill('Store Node online','icon-server','ok'),b:pill('Cloud sync unavailable · 14 queued','icon-cloud-off','warn'),title:'Cloud down, store fine',body:'Checkout continues locally. Sales queue and sync later.'},
+      {a:pill('Store Node online','icon-server','ok'),b:pill('Sync pending · 3','icon-refresh-cw','warn'),title:'Catching up',body:'Connected; queued records are uploading.'},
+      {a:pill('Store Node offline','icon-server-off','bad'),b:pill('Sync status unknown','icon-cloud','mute'),title:'Store Node unavailable',body:'Blocking. Operations that need the Store Node are paused.'}];
+    const hw=[['Scanner','icon-scan-barcode','Ready','ok','Scans go to the search field'],['Scanner','icon-scan-barcode','Not detected','warn','Reconnect the USB cable'],['Receipt printer','icon-printer','Ready','ok','Printer POS-01-P1'],['Receipt printer','icon-printer','Unavailable','bad','Check power and paper'],['Receipt printer','icon-printer','Print failed','bad','Retry or reprint later'],['Receipt printer','icon-printer','Outcome unknown','warn','Check if the receipt came out'],['Cash drawer','icon-archive','Closed','mute','Opens on cash tender'],['Cash drawer','icon-archive','Open','warn','Close the drawer to continue']].map(([dev,icon,st,k,hint])=>{const c={ok:['#146c43','icon-circle-check','#fff','#e1e5eb'],bad:['#b3261e','icon-circle-x','#fdf6f5','#f3c3bf'],warn:['#8a5100','icon-circle-help','#fffaf0','#f0d4a0'],mute:['#4a5567','icon-circle-dot','#fff','#e1e5eb']}[k];return {dev,icon,st,hint,fg:c[0],sIcon:c[1],bg:c[2],bd:c[3]};});
+    const cartRows=[['DEFAULT','transparent','none','#cfd5de','none'],['SELECTED','#eef4fd','inset 0 0 0 1.5px #1b5fd1','#cfd5de','none'],['QUANTITY FOCUSED','#eef4fd','inset 0 0 0 1.5px #1b5fd1','#1b5fd1','0 0 0 3px #dbe7fb']].map(([state,bg,rg,qbd,qring])=>({state,bg,ring:rg,qbd,qring}));
+    const tiles=[['DEFAULT','Mineral Water','1.5 L','RM 1.80','In stock 96','#146c43','#e1e5eb','none',1],['HOVER','Cola','1.5 L','RM 4.20','In stock 30','#146c43','#9dbbef','0 2px 8px rgba(14,27,51,.08)',1],['FOCUSED · LOW','3-in-1 White Coffee','20 × 36 g','RM 12.90','Low · 3','#8a5100','#e1e5eb','0 0 0 2px #fff,0 0 0 4px #1b5fd1',1],['UNAVAILABLE','Laundry Detergent','2.5 kg','RM 21.90','Out of stock','#b3261e','#e1e5eb','none',0.55]].map(([state,n,d,price,stock,sfg,bd,rg,op])=>({state,n,d,price,stock,sfg,bd,ring:rg,op}));
+    const toasts=[['icon-circle-check','#5fd39b','Sale held','H-0008 · recall from Held Sales.'],['icon-printer','#f5b44a','Receipt printer unavailable','The sale is saved. Reprint from Sale History.'],['icon-cloud-off','#f5b44a','Cloud sync paused','Checkout continues on the Store Node.'],['icon-circle-x','#ff8a80','Couldn\u2019t add item','Laundry Detergent 2.5 kg is out of stock.']].map(([icon,c,title,body])=>({icon,c,title,body}));
+    const D=(icon,tone,title,body,sec,pri,pbg,field,fieldHint)=>{const t={info:['#e8f0fc','#1b5fd1'],danger:['#fcebea','#b3261e'],neutral:['#eef1f5','#0e1b33'],warn:['#fdf3e1','#8a5100']}[tone];return {icon,ibg:t[0],ifg:t[1],title,body,sec,pri,pbg,hasField:!!field,field,fieldHint};};
+    const dialogs=[
+      D('icon-trash-2','danger','Remove item?','Remove Fresh Milk 1 L × 2 (RM 14.40) from the current sale.','Keep','Remove item','#b3261e'),
+      D('icon-trash-2','danger','Clear cart?','All 6 lines (RM 46.60) will be removed. This can\u2019t be undone. Hold the sale instead if the customer is coming back.','Hold instead','Clear cart','#b3261e'),
+      D('icon-percent','info','Apply discount','Discount applies to the whole sale. Amounts above your limit need manager approval.','Cancel','Apply RM 2.00','#1b5fd1','RM 2.00','Sale discount'),
+      D('icon-archive-restore','warn','Recall held sale?','The current cart has 3 items. Hold it first so it isn\u2019t lost, then recall H-0006.','Cancel','Hold current & recall','#1b5fd1'),
+      D('icon-user','info','Select customer','Search by name, phone or member number. Walk-in is used when none is attached.','Use walk-in','Attach','#1b5fd1','012','3 matches'),
+      D('icon-circle-help','warn','Confirm payment?','Mark RM 46.60 by DuitNow QR as paid only if the provider confirmed it. Receipt POS01-000142 will be posted.','Back','Confirm payment','#1b5fd1'),
+      D('icon-ban','danger','Cancel card payment?','A cancel request will be sent to terminal T-01. If the customer already paid, the terminal result decides the outcome.','Keep waiting','Send cancel','#b3261e'),
+      D('icon-printer','warn','Receipt didn\u2019t print','Printer POS-01-P1 is unavailable. The sale is posted; you can reprint from Sale History.','Skip','Retry print','#1b5fd1'),
+      D('icon-log-out','info','Close shift?','Counted RM 760.40 against expected RM 762.40 (−RM 2.00). No more sales can be made on SH-POS01-0268 after closing.','Back','Close shift','#1b5fd1'),
+      D('icon-undo-2','info','Confirm return','3 units go back to stock now. RM 15.40 is refunded to Card •••• 4821 and confirmed by the terminal separately.','Back','Confirm return','#1b5fd1'),
+      D('icon-shield-check','neutral','Manager approval required','Apply sale discount RM 5.00. Approval is recorded in the audit log with the manager ID.','Cancel','Approve','#1b5fd1','••••','PIN'),
+      D('icon-file-text','warn','Leave with unsaved count?','You\u2019ve entered a partial cash count. Leaving now discards it.','Stay','Discard count','#b3261e')];
+    const empties=[['icon-scan-barcode','#f2f4f7','#6b7585','Cart is empty','Scan a barcode or select a product to start a sale.','Recall held sale'],['icon-search','#fdf3e1','#8a5100','No products found','Nothing matches “9556012345678”. Check the barcode or search by name.','Search by name'],['icon-inbox','#f2f4f7','#6b7585','No sales for this date','Completed sales on POS-01 appear here.','Change date'],['icon-archive-restore','#f2f4f7','#6b7585','No held sales','Sales you hold on this register appear here.','Back to sale'],['icon-loader-circle','#e8f0fc','#1b5fd1','Loading products','Fetching the product list from the Store Node.','Cancel'],['icon-refresh-cw','#fcebea','#b3261e','Couldn\u2019t load history','The Store Node didn\u2019t respond in time. Your data is safe.','Try again'],['icon-lock','#eef1f5','#0e1b33','Permission required','Your role can\u2019t void a posted sale. A manager can approve it.','Request approval'],['icon-cloud-off','#fdf3e1','#8a5100','Sync pending','14 sales are queued on the Store Node and will upload when the cloud is reachable.','View queue']].map(([icon,ibg,ifg,title,body,action])=>({icon,ibg,ifg,title,body,action}));
+    const badgeSlots=['Customer','Hold','Recall','Payment','Complete Sale','Return','Manager Override'].map(label=>({label,slot:'Shortcut: authority-defined'}));
+    const productGridRows=[['Jasmine Rice 5 kg','95550102310','5 kg','RM 18.50','#146c43','In stock 16',true],['3-in-1 White Coffee','95550102347','20 × 36 g','RM 12.90','#8a5100','Low · 3',false],['Laundry Detergent 2.5 kg','95550102386','2.5 kg','RM 21.90','#b3261e','Out of stock',false]].map(([n,sku,d,price,sfg,stock,sel])=>({n,sku,d,price,sfg,stock,bg:sel?'#eef4fd':'#fff',ring:sel?'inset 0 0 0 2px #1b5fd1':'none'}));
+    return {colors,type,space,radii,shadows,buttons,inputs,badgeGroups,conn,hw,cartRows,tiles,toasts,dialogs,empties,productGridRows,badgeSlots};
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#e6e9ee;font-family:'IBM Plex Sans',system-ui,sans-serif;color:#0f1a2b}a{color:#1b5fd1}a:hover{color:#174fb0}</style>
+</helmet>
+<section style="padding:40px 48px 24px;display:flex;flex-direction:column;gap:10px;max-width:1100px">
+  <span style="font:600 12px 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#4a5567">MINIMART POS · MASTER MOCKUP SET · 1366 × 768</span>
+  <span style="font-size:30px;font-weight:700">30 screens, grouped by flow</span>
+  <span style="font-size:15px;color:#4a5567;line-height:1.5">Every artboard is the same live component at its primary viewport, so all screens share one shell, one type scale and one set of controls. Each one is clickable. Components and states live in <a href="MiniMart Design System.dc.html">MiniMart Design System</a>. F2 (focus search) and Esc (clear search) are the only shortcut badges shown — the only two confirmed in the implementation; other candidate keys remain provisional and are omitted rather than guessed. Generic Tax line, rounding on cash only, split tender shown as a labelled concept, packshots as labelled placeholders, Shift screens labelled as a planned flow.</span>
+</section>
+<sc-for list="{{ groups }}" as="g" hint-placeholder-count="5">
+  <section id="{{ g.id }}" style="padding:28px 48px 40px;border-top:1px solid #cfd5de">
+    <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:20px"><span style="font-size:22px;font-weight:700">{{ g.title }}</span><span style="font-size:14px;color:#4a5567">{{ g.sub }}</span></div>
+    <div style="display:flex;flex-wrap:wrap;gap:36px 32px">
+      <sc-for list="{{ g.items }}" as="s" hint-placeholder-count="4">
+        <div id="s{{ s.n }}" style="display:flex;flex-direction:column;gap:10px">
+          <div style="display:flex;align-items:center;gap:10px"><span style="font:600 12px 'IBM Plex Mono',monospace;padding:4px 8px;border-radius:5px;background:#0e1b33;color:#fff">{{ s.n }}</span><span style="font-size:15px;font-weight:600">{{ s.t }}</span></div>
+          <div style="width:1366px;height:768px;border-radius:8px;overflow:hidden;box-shadow:0 1px 3px rgba(14,27,51,.12),0 8px 24px rgba(14,27,51,.08);background:#f2f4f7">
+            <dc-import name="MiniMartPOS" screen="{{ s.n }}" embedded="{{ true }}" hint-size="1366px,768px" style="width:1366px;height:768px"></dc-import>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+</sc-for>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const G=[
+['checkout','Checkout','Scan, search, customer, hold — CURRENT FOUNDATION',[['01','Main Sale — empty cart'],['02','Main Sale — populated cart'],['02b','Sale — Grid view (current foundation · product presentation state)'],['03','Product search results'],['04','Product not found'],['05','Customer selection'],['06','Identified customer'],['07','Hold sale confirmation'],['08','Held-sales list · recall']]],
+['payment','Payment','Selection → tender → result — CURRENT FOUNDATION; split tender shown separately as concept',[['09','Payment selection'],['10','Cash payment'],['11','Card payment — waiting'],['12','Card payment — failed'],['13','Card payment — uncertain'],['14','QR / DuitNow payment'],['15','Sale completed'],['25','Printer unavailable after sale']]],
+['history','History & returns','Posted sales are read-only; returns are separate transactions — CURRENT FOUNDATION',[['16','Sale history'],['17','Sale detail'],['28','Permission denied'],['24','Manager override'],['18','Return — locate sale'],['19','Return — item selection'],['20','Return / refund confirmation'],['21','Refund unconfirmed']]],
+['shift','Shift','Open → closing → closed — PLANNED PRODUCT FLOW, not yet in Phase-0 backlog',[['22','Shift open / current shift'],['23','Shift close']]],
+['ops','Operational states','Store Node, cloud sync, loading, empty',[['26','Store Node unavailable'],['27','Cloud sync unavailable — local POS operational'],['29','Loading'],['30','Empty state — no sale history']]]];
+class Component extends DCLogic {
+  renderVals(){ return {groups:G.map(([id,title,sub,items])=>({id,title,sub,items:items.map(([n,t])=>({n,t}))}))}; }
+}
+</script>
+</body>
+</html>

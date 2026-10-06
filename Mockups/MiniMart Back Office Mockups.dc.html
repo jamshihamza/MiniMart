@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#e6e9ee;font-family:'IBM Plex Sans',system-ui,sans-serif;color:#0f1a2b}a{color:#1b5fd1}a:hover{color:#174fb0}</style>
+</helmet>
+<div style="padding:48px;display:flex;flex-direction:column;gap:20px;max-width:900px">
+  <span style="font:600 12px 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#4a5567">MINIMART BACK OFFICE · FOUNDATION + CATALOG + PRICING</span>
+  <span style="font-size:30px;font-weight:700">Visual implementation reference — index</span>
+  <span style="font-size:15px;color:#4a5567;line-height:1.5">Same visual family as the approved <a href="MiniMart POS Mockups.dc.html">MiniMart POS mockups</a>. Split into linked pages so each stays light and responsive — one 60-artboard canvas overloaded the browser. Item identity is company-wide; store context is assignment/pricing, never a duplicate product master. Full documentation (authority-dependent items, confirmations, component inventory) is on the Design System & Docs page.</span>
+  <div style="display:flex;flex-direction:column;gap:10px;margin-top:6px">
+    <sc-for list="{{ pages }}" as="p" hint-placeholder-count="6">
+      <a href="{{ p.href }}" style="display:flex;align-items:center;gap:14px;padding:16px 18px;border-radius:12px;border:1px solid #e1e5eb;background:#fff;text-decoration:none;color:#0f1a2b">
+        <span style="font:600 11.5px 'IBM Plex Mono',monospace;padding:4px 8px;border-radius:6px;background:#0e1b33;color:#fff">{{ p.range }}</span>
+        <div style="display:flex;flex-direction:column;gap:2px;flex:1"><span style="font-size:15px;font-weight:600">{{ p.title }}</span><span style="font-size:12.5px;color:#6b7585">{{ p.sub }}</span></div>
+        <span style="color:#1b5fd1;font-size:13px;font-weight:600">Open →</span>
+      </a>
+    </sc-for>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const P=[
+['01–11','MiniMart BO - Foundation & Catalog.dc.html','Foundation & Catalog list','Dashboard, connection/permission states, Products list & drawer'],
+['12–18, 30–33','MiniMart BO - Detail & Skeleton.dc.html','Product Detail & Skeleton Items','Detail tabs, incomplete-item workflow'],
+['19–29','MiniMart BO - Create & Edit.dc.html','Catalog — Create / Edit','New/Edit Product tabs, validation, duplicates, lifecycle'],
+['34–40','MiniMart BO - CategoryBrand & Import.dc.html','Category / Brand & Product Import','Maintenance screens and the import stepper'],
+['41–54','MiniMart BO - Pricing & Bulk.dc.html','Pricing & Bulk Price Change','Price list, detail, history, schedule, bulk workflow'],
+['55–60','MiniMart BO - Design System & Docs.dc.html','Responsive & Design System','1280×720 artboards, DataTable/Form/Status DS, component inventory, full documentation']];
+class Component extends DCLogic {
+  renderVals(){ return {pages:P.map(([range,href,title,sub])=>({range,href,title,sub}))}; }
+}
+</script>
+</body>
+</html>

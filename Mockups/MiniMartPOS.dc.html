@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/lucide-static@0.469.0/font/lucide.css">
+<style>
+html,body{margin:0;height:100%;background:#f2f4f7}
+button,input,select,textarea{font-family:inherit;color:inherit}
+[class^="icon-"]{font-family:lucide!important;font-style:normal;line-height:1;display:inline-block;speak:never}
+*:focus-visible{outline:2px solid #1b5fd1;outline-offset:2px}
+a{color:#1b5fd1}a:hover{color:#174fb0}
+</style>
+</helmet>
+<div data-screen-label="{{ scrLabel }}" style="position:relative;display:flex;width:100%;height:{{ rootH }};min-width:1240px;background:#f2f4f7;font-family:'IBM Plex Sans',system-ui,sans-serif;color:#0f1a2b;overflow:hidden;font-variant-numeric:tabular-nums;font-size:14px;line-height:1.35">
+
+<aside style="width:184px;flex:none;background:#0e1b33;color:#c3cbd9;display:flex;flex-direction:column;padding:16px 12px 14px;gap:22px">
+  <div style="display:flex;align-items:center;gap:10px;padding:2px 6px">
+    <div style="width:34px;height:34px;border-radius:9px;background:#1b5fd1;display:grid;place-items:center;color:#fff"><i class="icon-shopping-cart" style="font-size:19px"></i></div>
+    <div style="display:flex;flex-direction:column;gap:1px"><span style="color:#fff;font-weight:700;font-size:14px;letter-spacing:0.09em">MINIMART</span><span style="font-size:11.5px;color:#8c98ad">Retail POS</span></div>
+  </div>
+  <nav style="display:flex;flex-direction:column;gap:4px">
+    <sc-for list="{{ nav }}" as="n" hint-placeholder-count="4">
+      <button onClick="{{ n.go }}" disabled="{{ n.disabled }}" aria-current="{{ n.current }}" style="display:flex;align-items:center;gap:12px;height:44px;padding:0 12px;border-radius:8px;border:0;background:{{ n.bg }};color:{{ n.fg }};font-size:14.5px;font-weight:{{ n.fw }};cursor:{{ n.cursor }};text-align:left;box-shadow:{{ n.bar }}">
+        <i class="{{ n.icon }}" style="font-size:19px"></i><span style="flex:1">{{ n.label }}</span><i class="{{ n.trail }}" style="font-size:14px;color:#6f7c93"></i>
+      </button>
+    </sc-for>
+  </nav>
+  <div style="margin-top:auto;display:flex;flex-direction:column;gap:12px">
+    <div style="display:flex;flex-direction:column;gap:8px;padding:10px 10px 11px;border-radius:10px;background:#15254a">
+      <span style="font-size:10.5px;font-weight:600;letter-spacing:0.1em;color:#8c98ad">DEVICES</span>
+      <sc-for list="{{ devices }}" as="d" hint-placeholder-count="3">
+        <div style="display:flex;align-items:center;gap:8px;font-size:12.5px">
+          <i class="{{ d.icon }}" style="font-size:14px;color:#8c98ad"></i><span style="flex:1;color:#dbe1ea">{{ d.label }}</span>
+          <span style="display:inline-flex;align-items:center;gap:5px;color:{{ d.fg }};font-weight:500"><span style="width:7px;height:7px;border-radius:50%;background:{{ d.dot }}"></span>{{ d.status }}</span>
+        </div>
+      </sc-for>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;padding:4px 4px 0">
+      <div style="width:34px;height:34px;border-radius:50%;background:#26406e;color:#fff;display:grid;place-items:center;font-size:12.5px;font-weight:600">DC</div>
+      <div style="display:flex;flex-direction:column;gap:2px;min-width:0">
+        <span style="color:#fff;font-size:13px;font-weight:600">Demo Cashier</span>
+        <span style="display:inline-flex;align-items:center;gap:5px;font-size:11.5px;color:#aab4c5"><span style="width:7px;height:7px;border-radius:50%;background:{{ shiftDot }}"></span>{{ shiftSide }}</span>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<div style="flex:1;min-width:0;display:flex;flex-direction:column">
+  <header style="height:56px;flex:none;background:#fff;border-bottom:1px solid #e1e5eb;display:flex;align-items:center;padding:0 16px 0 20px;gap:22px">
+    <div style="display:flex;align-items:center;gap:8px;font-weight:600;font-size:14px"><i class="icon-store" style="font-size:17px;color:#4a5567"></i>MiniMart Central</div>
+    <div style="display:flex;align-items:center;gap:6px;font-size:13px;color:#4a5567"><i class="icon-monitor" style="font-size:15px"></i>Register <span style="font-family:'IBM Plex Mono',monospace;font-weight:500;color:#0f1a2b">POS-01</span></div>
+    <div style="display:flex;align-items:center;gap:6px;font-size:13px;color:#4a5567"><i class="icon-calendar" style="font-size:15px"></i>Business date <span style="color:#0f1a2b;font-weight:500">Sat, 26 Sep 2026</span><span style="color:#6b7585">· 14:32</span></div>
+    <div style="margin-left:auto;display:flex;align-items:center;gap:8px">
+      <div title="Local Store Node connection" style="display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 11px;border-radius:999px;border:1px solid {{ nodeP.bd }};background:{{ nodeP.bg }};color:{{ nodeP.fg }};font-size:12.5px;font-weight:600"><i class="{{ nodeP.icon }}" style="font-size:14px"></i>{{ nodeP.label }}</div>
+      <div title="Cloud synchronisation" style="display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 11px;border-radius:999px;border:1px solid {{ syncP.bd }};background:{{ syncP.bg }};color:{{ syncP.fg }};font-size:12.5px;font-weight:600"><i class="{{ syncP.icon }}" style="font-size:14px"></i>{{ syncP.label }}</div>
+      <button aria-label="Notifications" style="position:relative;width:36px;height:36px;border-radius:8px;border:1px solid #e1e5eb;background:#fff;display:grid;place-items:center;cursor:pointer;color:#4a5567"><i class="icon-bell" style="font-size:17px"></i><span style="position:absolute;top:7px;right:8px;width:7px;height:7px;border-radius:50%;background:#c0342b;border:1.5px solid #fff"></span></button>
+      <button style="display:flex;align-items:center;gap:8px;height:36px;padding:0 8px 0 4px;border-radius:8px;border:1px solid #e1e5eb;background:#fff;cursor:pointer;font-size:13px;font-weight:500"><span style="width:28px;height:28px;border-radius:50%;background:#e8f0fc;color:#1b5fd1;display:grid;place-items:center;font-size:11.5px;font-weight:700">DC</span>Demo Cashier<i class="icon-chevron-down" style="font-size:14px;color:#6b7585"></i></button>
+    </div>
+  </header>
+
+  <div style="position:relative;flex:1;min-height:0;display:flex">
+
+  <sc-if value="{{ isSale }}" hint-placeholder-val="{{ true }}">
+    <section style="flex:1;min-width:0;display:flex;flex-direction:column;padding:16px 18px 0 20px;gap:12px">
+      <sc-if value="{{ cloudBanner }}" hint-placeholder-val="{{ false }}">
+        <div role="status" style="display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:10px;background:#fdf3e1;border:1px solid #f0d4a0;color:#6b4000;font-size:13px">
+          <i class="icon-cloud-off" style="font-size:18px"></i>
+          <div style="flex:1"><strong style="font-weight:600">Cloud sync unavailable.</strong> Checkout continues on the Store Node. 14 sales are queued and will sync when the connection returns.</div>
+          <button style="height:30px;padding:0 10px;border-radius:7px;border:1px solid #e3bd78;background:#fff;font-size:12.5px;font-weight:600;cursor:pointer;color:#6b4000">Details</button>
+        </div>
+      </sc-if>
+      <div style="display:flex;align-items:center;gap:10px;height:54px;padding:0 8px 0 16px;background:#fff;border:2px solid #1b5fd1;border-radius:10px;box-shadow:0 0 0 4px #dbe7fb">
+        <i class="icon-scan-barcode" style="font-size:22px;color:#1b5fd1"></i>
+        <input aria-label="Scan barcode or search products" value="{{ q }}" onChange="{{ onQ }}" disabled="{{ loading }}" placeholder="Scan barcode or search products…" style="flex:1;min-width:0;border:0;outline:none;background:transparent;font-size:17px;font-weight:500;height:100%">
+        <sc-if value="{{ hasQ }}" hint-placeholder-val="{{ false }}">
+          <button onClick="{{ clearQ }}" aria-label="Clear search" style="width:34px;height:34px;border-radius:8px;border:0;background:#f2f4f7;display:grid;place-items:center;cursor:pointer;color:#4a5567"><i class="icon-x" style="font-size:17px"></i></button>
+        </sc-if>
+        <span style="display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 8px;border-radius:6px;border:1px solid #cfd5de;background:#fff;font:600 11px 'IBM Plex Mono',monospace;color:#4a5567">F2</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+        <sc-for list="{{ chips }}" as="c" hint-placeholder-count="6">
+          <button onClick="{{ c.pick }}" aria-pressed="{{ c.on }}" style="height:34px;padding:0 14px;border-radius:999px;border:1px solid {{ c.bd }};background:{{ c.bg }};color:{{ c.fg }};font-size:13px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px">{{ c.label }}<span style="font-weight:500;opacity:.75">{{ c.count }}</span></button>
+        </sc-for>
+        <sc-if value="{{ hasQ }}" hint-placeholder-val="{{ false }}">
+          <span style="display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 8px;border-radius:6px;border:1px solid #cfd5de;background:#fff;font:600 11px 'IBM Plex Mono',monospace;color:#4a5567">Esc clears</span>
+        </sc-if>
+        <div style="margin-left:auto;display:flex;align-items:center;gap:2px;padding:2px;border:1px solid #e1e5eb;border-radius:9px;background:#f2f4f7" role="group" aria-label="Product browser view">
+          <button onClick="{{ toTiles }}" aria-pressed="{{ tilesOn }}" title="Tile view" style="width:32px;height:30px;border-radius:7px;border:0;background:{{ tilesBg }};color:{{ tilesFg }};display:grid;place-items:center;cursor:pointer"><i class="icon-layout-grid" style="font-size:16px"></i></button>
+          <button onClick="{{ toGrid }}" aria-pressed="{{ gridOn }}" title="Grid view" style="width:32px;height:30px;border-radius:7px;border:0;background:{{ gridBg }};color:{{ gridFg }};display:grid;place-items:center;cursor:pointer"><i class="icon-list" style="font-size:16px"></i></button>
+        </div>
+      </div>
+
+      <sc-if value="{{ showTiles }}" hint-placeholder-val="{{ true }}">
+        <div style="flex:1;min-height:0;overflow:auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(158px,1fr));gap:10px;align-content:start;padding-bottom:16px">
+          <sc-for list="{{ products }}" as="p" hint-placeholder-count="12">
+            <button onClick="{{ p.add }}" disabled="{{ p.out }}" style="text-align:left;background:#fff;border:1px solid #e1e5eb;border-radius:10px;padding:8px 8px 10px;display:flex;flex-direction:column;gap:5px;cursor:{{ p.cursor }};opacity:{{ p.op }}" style-hover="border-color:#9dbbef;box-shadow:0 2px 8px rgba(14,27,51,.08)">
+              <div style="position:relative;height:82px;border-radius:6px;background:#f7f8fa;border:1px dashed #d5dae2;display:grid;place-items:center;padding:6px"><i class="icon-image" style="font-size:22px;color:#b7bfcb"></i><span style="position:absolute;top:4px;right:5px;font:600 8px 'IBM Plex Mono',monospace;letter-spacing:.04em;color:#9aa3b2">TEMP</span></div>
+              <span style="font-size:13.5px;font-weight:600;line-height:1.25;margin-top:2px">{{ p.n }}</span>
+              <span style="font-size:12px;color:#6b7585">{{ p.d }}</span>
+              <div style="display:flex;align-items:baseline;justify-content:space-between;gap:6px;margin-top:2px"><span style="font-size:15px;font-weight:700">{{ p.price }}</span><span style="font-size:11.5px;font-weight:600;color:{{ p.stockFg }}">{{ p.stock }}</span></div>
+            </button>
+          </sc-for>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ showGridView }}" hint-placeholder-val="{{ false }}">
+        <div style="flex:1;min-height:0;overflow:auto;background:#fff;border:1px solid #e1e5eb;border-radius:10px">
+          <div style="position:sticky;top:0;display:grid;grid-template-columns:minmax(0,1fr) 130px 100px 90px 110px;gap:12px;padding:8px 14px;background:#f7f9fb;border-bottom:1px solid #e1e5eb;font-size:11.5px;font-weight:600;letter-spacing:.04em;color:#6b7585"><span>PRODUCT</span><span>SKU</span><span>UNIT</span><span style="text-align:right">PRICE</span><span>STOCK</span></div>
+          <sc-for list="{{ gridRows }}" as="p" hint-placeholder-count="10">
+            <button onClick="{{ p.add }}" disabled="{{ p.out }}" style="width:100%;display:grid;grid-template-columns:minmax(0,1fr) 130px 100px 90px 110px;gap:12px;align-items:center;padding:0 14px;height:42px;border:0;border-top:1px solid #eef1f5;background:{{ p.bg }};box-shadow:{{ p.ring }};text-align:left;cursor:{{ p.cursor }};opacity:{{ p.op }}" style-hover="background:#f7fafe">
+            <span style="font-size:13.5px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ p.n }}</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#4a5567">{{ p.sku }}</span>
+            <span style="font-size:12.5px;color:#4a5567">{{ p.d }}</span>
+            <span style="text-align:right;font-weight:700;font-size:13.5px">{{ p.price }}</span>
+            <span style="font-size:12px;font-weight:600;color:{{ p.stockFg }}">{{ p.stock }}</span>
+            </button>
+          </sc-for>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ showResults }}" hint-placeholder-val="{{ false }}">
+        <div style="background:#fff;border:1px solid #e1e5eb;border-radius:12px;overflow:hidden;display:flex;flex-direction:column;min-height:0">
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;font-size:13px;color:#4a5567"><span><strong style="color:#0f1a2b">{{ resultCount }}</strong> for “{{ q }}”</span><span>Select a row to add it to the cart</span></div>
+          <div style="display:grid;grid-template-columns:44px minmax(0,1fr) 132px 92px 92px 80px;gap:12px;padding:7px 14px;background:#f7f9fb;border-top:1px solid #e1e5eb;font-size:11.5px;font-weight:600;letter-spacing:.04em;color:#6b7585"><span></span><span>PRODUCT</span><span>BARCODE</span><span>STOCK</span><span style="text-align:right">PRICE</span><span></span></div>
+          <sc-for list="{{ results }}" as="r" hint-placeholder-count="4">
+            <div style="display:grid;grid-template-columns:44px minmax(0,1fr) 132px 92px 92px 80px;align-items:center;gap:12px;padding:8px 14px;border-top:1px solid #eef1f5;background:{{ r.bg }};box-shadow:{{ r.ring }}">
+              <div style="width:44px;height:44px;border-radius:6px;background:#f7f8fa;border:1px dashed #d5dae2;display:grid;place-items:center"><i class="icon-image" style="font-size:16px;color:#b7bfcb"></i></div>
+              <div style="min-width:0;display:flex;flex-direction:column;gap:2px"><span style="font-weight:600;font-size:14px">{{ r.n }}</span><span style="font-size:12px;color:#6b7585">{{ r.d }} · {{ r.c }}</span></div>
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#4a5567">{{ r.sku }}</span>
+              <span style="font-size:12.5px;font-weight:600;color:{{ r.stockFg }}">{{ r.stock }}</span>
+              <span style="text-align:right;font-weight:700;font-size:15px">{{ r.price }}</span>
+              <button onClick="{{ r.add }}" style="height:34px;border-radius:8px;border:1px solid #cfd5de;background:#fff;font-size:13px;font-weight:600;display:inline-flex;align-items:center;justify-content:center;gap:4px;cursor:pointer"><i class="icon-plus" style="font-size:14px"></i>Add</button>
+            </div>
+          </sc-for>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ showNotFound }}" hint-placeholder-val="{{ false }}">
+        <div role="alert" style="background:#fff;border:1px solid #e1e5eb;border-radius:12px;padding:20px 22px;display:flex;gap:16px;align-items:flex-start">
+          <div style="width:40px;height:40px;flex:none;border-radius:10px;background:#fdf3e1;color:#8a5100;display:grid;place-items:center"><i class="icon-scan-barcode" style="font-size:20px"></i></div>
+          <div style="display:flex;flex-direction:column;gap:6px;flex:1">
+            <span style="font-size:16px;font-weight:600">No product matches <span style="font-family:'IBM Plex Mono',monospace">{{ q }}</span></span>
+            <span style="font-size:13.5px;color:#4a5567;max-width:520px">This barcode isn't in the product list on the Store Node. Check the barcode on the pack, or search by product name. Nothing was added to the cart.</span>
+            <div style="display:flex;gap:8px;margin-top:8px">
+              <button onClick="{{ clearQ }}" style="height:36px;padding:0 14px;border-radius:8px;border:1px solid #cfd5de;background:#fff;font-size:13px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px"><i class="icon-search" style="font-size:15px"></i>Search by name</button>
+              <button onClick="{{ clearQ }}" style="height:36px;padding:0 12px;border-radius:8px;border:0;background:transparent;color:#1b5fd1;font-size:13px;font-weight:600;cursor:pointer">Clear and scan again</button>
+            </div>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ loading }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:#4a5567"><i class="icon-loader-circle" style="font-size:16px;color:#1b5fd1"></i>Loading products from the Store Node…</div>
+        <div aria-busy="true" style="flex:1;min-height:0;overflow:hidden;display:grid;grid-template-columns:repeat(auto-fill,minmax(158px,1fr));gap:10px;align-content:start">
+          <sc-for list="{{ skel }}" as="s" hint-placeholder-count="12">
+            <div style="background:#fff;border:1px solid #e1e5eb;border-radius:10px;padding:8px 8px 12px;display:flex;flex-direction:column;gap:8px">
+              <div style="height:82px;border-radius:6px;background:#eef1f5"></div>
+              <div style="height:12px;width:80%;border-radius:4px;background:#eef1f5"></div>
+              <div style="height:10px;width:45%;border-radius:4px;background:#f2f4f7"></div>
+              <div style="height:14px;width:35%;border-radius:4px;background:#eef1f5;margin-top:4px"></div>
+            </div>
+          </sc-for>
+        </div>
+      </sc-if>
+    </section>
+
+    <aside aria-label="Current sale" style="width:412px;flex:none;background:#fff;border-left:1px solid #e1e5eb;display:flex;flex-direction:column;min-height:0">
+      <div style="height:52px;flex:none;display:flex;align-items:center;gap:10px;padding:0 12px 0 16px;border-bottom:1px solid #e1e5eb">
+        <span style="font-size:16px;font-weight:600">Current Sale</span>
+        <span style="height:22px;padding:0 8px;border-radius:999px;background:#eef1f5;color:#3d4a5e;font-size:12px;font-weight:600;display:inline-flex;align-items:center">{{ itemCount }}</span>
+        <button onClick="{{ clearCart }}" disabled="{{ cartEmpty }}" style="margin-left:auto;height:32px;padding:0 10px;border-radius:7px;border:0;background:transparent;color:{{ clearFg }};font-size:13px;font-weight:600;display:inline-flex;align-items:center;gap:6px;cursor:pointer" style-hover="background:#fcebea"><i class="icon-trash-2" style="font-size:15px"></i>Clear</button>
+      </div>
+      <div style="flex:none;display:flex;align-items:center;gap:10px;padding:9px 12px 9px 16px;border-bottom:1px solid #e1e5eb">
+        <div style="width:34px;height:34px;border-radius:50%;background:{{ custBg }};color:{{ custFg }};display:grid;place-items:center"><i class="{{ custIcon }}" style="font-size:17px"></i></div>
+        <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:1px"><span style="font-size:14px;font-weight:600">{{ custName }}</span><span style="font-size:12px;color:#6b7585">{{ custSub }}</span></div>
+        <button onClick="{{ openCustomer }}" style="height:32px;padding:0 12px;border-radius:7px;border:1px solid #cfd5de;background:#fff;font-size:13px;font-weight:600;cursor:pointer">{{ custBtn }}</button>
+      </div>
+      <div style="flex:1;min-height:0;overflow:auto;padding:6px 0">
+        <sc-if value="{{ cartEmpty }}" hint-placeholder-val="{{ false }}">
+          <div style="height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:24px;text-align:center">
+            <div style="width:48px;height:48px;border-radius:12px;background:#f2f4f7;color:#6b7585;display:grid;place-items:center"><i class="icon-scan-barcode" style="font-size:24px"></i></div>
+            <span style="font-size:15px;font-weight:600">Cart is empty</span>
+            <span style="font-size:13px;color:#6b7585;max-width:240px">Scan a barcode or select a product to start a sale.</span>
+            <button onClick="{{ openHeld }}" style="margin-top:6px;height:34px;padding:0 12px;border-radius:8px;border:1px solid #cfd5de;background:#fff;font-size:13px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px"><i class="icon-archive-restore" style="font-size:15px"></i>Recall held sale · 3</button>
+          </div>
+        </sc-if>
+        <sc-for list="{{ lines }}" as="l" hint-placeholder-count="5">
+          <div onClick="{{ l.select }}" style="display:grid;grid-template-columns:minmax(0,1fr) auto 74px 30px;align-items:center;gap:10px;padding:8px 6px 8px 10px;margin:2px 8px;border-radius:8px;background:{{ l.bg }};box-shadow:{{ l.ring }};cursor:pointer">
+            <div style="min-width:0;display:flex;flex-direction:column;gap:2px"><span style="font-size:14px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ l.name }}</span><span style="font-size:12px;color:#6b7585">{{ l.unit }} each · {{ l.detail }}</span></div>
+            <div style="display:flex;align-items:center;border:1px solid #cfd5de;border-radius:8px;background:#fff;height:34px">
+              <button onClick="{{ l.dec }}" aria-label="Decrease quantity" style="width:32px;height:32px;border:0;background:transparent;display:grid;place-items:center;cursor:pointer;color:#4a5567;border-radius:7px"><i class="icon-minus" style="font-size:15px"></i></button>
+              <span style="min-width:26px;text-align:center;font-weight:700;font-size:14px">{{ l.qty }}</span>
+              <button onClick="{{ l.inc }}" aria-label="Increase quantity" style="width:32px;height:32px;border:0;background:transparent;display:grid;place-items:center;cursor:pointer;color:#4a5567;border-radius:7px"><i class="icon-plus" style="font-size:15px"></i></button>
+            </div>
+            <span style="text-align:right;font-weight:700;font-size:14px">{{ l.total }}</span>
+            <button onClick="{{ l.remove }}" aria-label="Remove item" style="width:30px;height:30px;border:0;background:transparent;border-radius:7px;color:#6b7585;display:grid;place-items:center;cursor:pointer" style-hover="background:#fcebea;color:#c0342b"><i class="icon-trash-2" style="font-size:15px"></i></button>
+          </div>
+        </sc-for>
+      </div>
+      <div style="flex:none;display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:8px 12px;border-top:1px solid #e1e5eb">
+        <button style="height:36px;border-radius:7px;border:1px solid #e1e5eb;background:#fff;font-size:12.5px;font-weight:600;color:#3d4a5e;display:inline-flex;align-items:center;justify-content:center;gap:5px;cursor:pointer"><i class="icon-sticky-note" style="font-size:14px"></i>Note</button>
+        <button onClick="{{ openDiscount }}" disabled="{{ cartEmpty }}" style="height:36px;border-radius:7px;border:1px solid #e1e5eb;background:#fff;font-size:12.5px;font-weight:600;color:#3d4a5e;display:inline-flex;align-items:center;justify-content:center;gap:5px;cursor:pointer"><i class="icon-percent" style="font-size:14px"></i>Discount</button>
+        <button onClick="{{ openHold }}" disabled="{{ cartEmpty }}" style="height:36px;border-radius:7px;border:1px solid #e1e5eb;background:#fff;font-size:12.5px;font-weight:600;color:#3d4a5e;display:inline-flex;align-items:center;justify-content:center;gap:5px;cursor:pointer"><i class="icon-pause" style="font-size:14px"></i>Hold</button>
+        <button onClick="{{ openHeld }}" style="height:36px;border-radius:7px;border:1px solid #e1e5eb;background:#fff;font-size:12.5px;font-weight:600;color:#3d4a5e;display:inline-flex;align-items:center;justify-content:center;gap:5px;cursor:pointer"><i class="icon-archive-restore" style="font-size:14px"></i>Recall · 3</button>
+      </div>
+      <div style="flex:none;padding:10px 16px 10px;border-top:1px solid #e1e5eb;display:flex;flex-direction:column;gap:4px;font-size:13.5px">
+        <div style="display:flex;justify-content:space-between;color:#4a5567"><span>Subtotal</span><span style="color:#0f1a2b;font-weight:500">{{ t.sub }}</span></div>
+        <div style="display:flex;justify-content:space-between;color:#4a5567"><span>Discount</span><span style="color:#0d7a76;font-weight:600">{{ t.disc }}</span></div>
+        <div style="display:flex;justify-content:space-between;color:#4a5567"><span>Tax</span><span style="color:#0f1a2b;font-weight:500">{{ t.tax }}</span></div>
+        <div style="display:flex;justify-content:space-between;color:#4a5567"><span>Rounding <span style="font-size:12px;color:#6b7585">(cash only)</span></span><span style="color:#0f1a2b;font-weight:500">{{ t.round }}</span></div>
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-top:6px;padding-top:8px;border-top:1px dashed #cfd5de"><span style="font-size:14px;font-weight:700;letter-spacing:.08em">TOTAL</span><span style="font-size:31px;font-weight:700;letter-spacing:-0.01em;line-height:1.1">{{ t.total }}</span></div>
+      </div>
+      <div style="flex:none;padding:10px 12px 12px;background:#f7f9fb;border-top:1px solid #e1e5eb;display:flex;flex-direction:column;gap:10px">
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px">
+          <sc-for list="{{ payMethods }}" as="m" hint-placeholder-count="4">
+            <button onClick="{{ m.go }}" disabled="{{ m.disabled }}" title="{{ m.title }}" style="height:52px;border-radius:8px;border:1px solid {{ m.bd }};background:{{ m.bg }};color:{{ m.fg }};display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:{{ m.cursor }};font-size:12.5px;font-weight:600">
+              <i class="{{ m.icon }}" style="font-size:18px"></i><span>{{ m.label }}</span>
+            </button>
+          </sc-for>
+        </div>
+        <button onClick="{{ completeSale }}" disabled="{{ cartEmpty }}" style="height:56px;border-radius:10px;border:0;background:{{ completeBg }};color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 18px;cursor:pointer;font-size:17px;font-weight:700;box-shadow:0 1px 2px rgba(14,27,51,.15)" style-hover="filter:brightness(0.94)">
+          <span style="display:inline-flex;align-items:center;gap:10px"><i class="icon-circle-check" style="font-size:20px"></i>Complete Sale</span><span>{{ t.total }}</span>
+        </button>
+      </div>
+    </aside>
+
+    <sc-if value="{{ nodeDown }}" hint-placeholder-val="{{ false }}">
+      <div style="position:absolute;inset:0;background:rgba(242,244,247,0.82);display:flex;align-items:center;justify-content:center;z-index:5">
+        <div role="alertdialog" style="width:520px;background:#fff;border:1px solid #e1e5eb;border-radius:14px;box-shadow:0 12px 36px rgba(14,27,51,.16);padding:24px;display:flex;flex-direction:column;gap:14px">
+          <div style="display:flex;gap:14px;align-items:flex-start">
+            <div style="width:44px;height:44px;flex:none;border-radius:11px;background:#fcebea;color:#b3261e;display:grid;place-items:center"><i class="icon-server-off" style="font-size:22px"></i></div>
+            <div style="display:flex;flex-direction:column;gap:6px">
+              <span style="font-size:18px;font-weight:600">Store Node unavailable</span>
+              <span style="font-size:14px;color:#4a5567">This register can't reach the Store Node on the store network. Checkout, history, returns and shift are paused until the connection returns.</span>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:auto 1fr;gap:6px 16px;padding:12px 14px;border-radius:10px;background:#f7f9fb;font-size:13px">
+            <span style="color:#6b7585">Last connected</span><span style="font-weight:500">14:28:40</span>
+            <span style="color:#6b7585">Affects</span><span style="font-weight:500">Local store network (not internet or cloud sync)</span>
+            <span style="color:#6b7585">What to check</span><span style="font-weight:500">Network cable on this register, or ask a manager to check the Store Node</span>
+          </div>
+          <div style="display:flex;gap:8px;justify-content:flex-end">
+            <button style="height:40px;padding:0 16px;border-radius:8px;border:1px solid #cfd5de;background:#fff;font-size:14px;font-weight:600;cursor:pointer">Connection details</button>
+            <button style="height:40px;padding:0 16px;border-radius:8px;border:0;background:#1b5fd1;color:#fff;font-size:14px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:8px"><i class="icon-refresh-cw" style="font-size:16px"></i>Retry connection</button>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+  </sc-if>
+
+  <sc-if value="{{ isHistory }}" hint-placeholder-val="{{ false }}">
+    <section style="flex:1;min-width:0;display:flex;flex-direction:column;padding:18px 20px 16px;gap:14px">
+      <div style="display:flex;align-items:baseline;gap:12px"><span style="font-size:20px;font-weight:600">Sale History</span><span style="font-size:13px;color:#6b7585">{{ histSummary }}</span></div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <div style="display:flex;align-items:center;gap:8px;height:40px;padding:0 12px;flex:1;min-width:220px;max-width:340px;background:#fff;border:1px solid #cfd5de;border-radius:8px"><i class="icon-search" style="font-size:16px;color:#6b7585"></i><input placeholder="Receipt no., customer or product" style="flex:1;min-width:0;border:0;outline:none;background:transparent;font-size:14px"></div>
+        <sc-for list="{{ histFilters }}" as="f" hint-placeholder-count="4">
+          <button style="height:40px;padding:0 12px;border-radius:8px;border:1px solid #cfd5de;background:#fff;font-size:13px;display:inline-flex;align-items:center;gap:8px;cursor:pointer"><i class="{{ f.icon }}" style="font-size:15px;color:#6b7585"></i><span style="color:#6b7585">{{ f.k }}</span><span style="font-weight:600">{{ f.v }}</span><i class="icon-chevron-down" style="font-size:14px;color:#6b7585"></i></button>
+        </sc-for>
+      </div>
+      <div style="flex:1;min-height:0;background:#fff;border:1px solid #e1e5eb;border-radius:12px;overflow:auto;display:flex;flex-direction:column">
+        <div style="position:sticky;top:0;display:grid;grid-template-columns:{{ histCols }};gap:12px;padding:9px 16px;background:#f7f9fb;border-bottom:1px solid #e1e5eb;font-size:11.5px;font-weight:600;letter-spacing:.04em;color:#6b7585"><span>RECEIPT</span><span>DATE / TIME</span><span>CUSTOMER</span><span style="text-align:right">ITEMS</span><span style="text-align:right">TOTAL</span><span style="display:{{ tenderDisplay }}">TENDER</span><span>STATUS</span></div>
+        <sc-if value="{{ histEmpty }}" hint-placeholder-val="{{ false }}">
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:40px;text-align:center">
+            <div style="width:48px;height:48px;border-radius:12px;background:#f2f4f7;color:#6b7585;display:grid;place-items:center"><i class="icon-inbox" style="font-size:24px"></i></div>
+            <span style="font-size:15px;font-weight:600">No sales for this business date</span>
+            <span style="font-size:13px;color:#6b7585;max-width:320px">Completed sales on POS-01 appear here. Try another date or clear the filters.</span>
+            <div style="display:flex;gap:8px;margin-top:6px"><button style="height:34px;padding:0 12px;border-radius:8px;border:1px solid #cfd5de;background:#fff;font-size:13px;font-weight:600;cursor:pointer">Change date</button><button style="height:34px;padding:0 12px;border-radius:8px;border:0;background:transparent;color:#1b5fd1;font-size:13px;font-weight:600;cursor:pointer">Clear filters</button></div>
+          </div>
+        </sc-if>
+        <sc-for list="{{ hist }}" as="h" hint-placeholder-count="10">
+          <div onClick="{{ h.open }}" style="display:grid;grid-template-columns:{{ histCols }};align-items:center;gap:12px;padding:0 16px;height:46px;flex:none;border-bottom:1px solid #eef1f5;background:{{ h.bg }};box-shadow:{{ h.ring }};cursor:pointer;font-size:13.5px" style-hover="background:#f7f9fb">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;font-weight:500;white-space:nowrap">{{ h.r }}</span>
+            <span style="color:#4a5567;white-space:nowrap">26 Sep · {{ h.t }}</span>
+            <span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ h.c }}</span>
+            <span style="text-align:right;color:#4a5567">{{ h.i }}</span>
+            <span style="text-align:right;font-weight:600">{{ h.total }}</span>
+            <span style="display:{{ tenderDisplay }};align-items:center;gap:6px;color:#3d4a5e;white-space:nowrap;overflow:hidden"><i class="{{ h.tIcon }}" style="font-size:14px"></i>{{ h.tender }}</span>
+            <span style="display:inline-flex;align-items:center;gap:5px;justify-self:start;height:24px;padding:0 9px;border-radius:999px;background:{{ h.sBg }};color:{{ h.sFg }};font-size:12px;font-weight:600;white-space:nowrap"><i class="{{ h.sIcon }}" style="font-size:13px"></i>{{ h.s }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+    <sc-if value="{{ detail }}" hint-placeholder-val="{{ false }}">
+      <aside aria-label="Sale detail" style="width:430px;flex:none;background:#fff;border-left:1px solid #e1e5eb;display:flex;flex-direction:column;min-height:0">
+        <div style="flex:none;display:flex;align-items:center;gap:10px;padding:14px 12px 12px 18px;border-bottom:1px solid #e1e5eb">
+          <div style="display:flex;flex-direction:column;gap:4px;flex:1">
+            <span style="font-size:11.5px;font-weight:600;letter-spacing:.06em;color:#6b7585">RECEIPT</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:17px;font-weight:500">POS01-000139</span>
+          </div>
+          <span style="display:inline-flex;align-items:center;gap:5px;height:24px;padding:0 9px;border-radius:999px;background:#e5f4ec;color:#146c43;font-size:12px;font-weight:600"><i class="icon-circle-check" style="font-size:13px"></i>Completed</span>
+          <button onClick="{{ closeDetail }}" aria-label="Close" style="width:32px;height:32px;border-radius:7px;border:0;background:transparent;display:grid;place-items:center;cursor:pointer;color:#4a5567"><i class="icon-x" style="font-size:18px"></i></button>
+        </div>
+        <div style="flex:1;min-height:0;overflow:auto;padding:14px 18px;display:flex;flex-direction:column;gap:14px">
+          <div style="display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;background:#f2f4f7;color:#3d4a5e;font-size:12.5px"><i class="icon-lock" style="font-size:14px"></i>Posted sale · read-only. Reverse items with a return.</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px 16px;font-size:13px">
+            <div style="display:flex;flex-direction:column;gap:2px"><span style="color:#6b7585;font-size:12px">Business date</span><span style="font-weight:500">Sat, 26 Sep 2026</span></div>
+            <div style="display:flex;flex-direction:column;gap:2px"><span style="color:#6b7585;font-size:12px">Time</span><span style="font-weight:500">13:58:12</span></div>
+            <div style="display:flex;flex-direction:column;gap:2px"><span style="color:#6b7585;font-size:12px">Store / register</span><span style="font-weight:500">MiniMart Central · POS-01</span></div>
+            <div style="display:flex;flex-direction:column;gap:2px"><span style="color:#6b7585;font-size:12px">Cashier</span><span style="font-weight:500">Demo Cashier</span></div>
+            <div style="display:flex;flex-direction:column;gap:2px"><span style="color:#6b7585;font-size:12px">Customer</span><span style="font-weight:500">Walk-in Customer</span></div>
+            <div style="display:flex;flex-direction:column;gap:2px"><span style="color:#6b7585;font-size:12px">Items</span><span style="font-weight:500">4 lines · 6 units</span></div>
+          </div>
+          <div style="border:1px solid #e1e5eb;border-radius:10px;overflow:hidden">
+            <sc-for list="{{ detailLines }}" as="d" hint-placeholder-count="4">
+              <div style="display:flex;justify-content:space-between;gap:10px;padding:9px 12px;border-bottom:1px solid #eef1f5;font-size:13.5px">
+                <div style="display:flex;flex-direction:column;gap:1px"><span style="font-weight:600">{{ d.n }}</span><span style="font-size:12px;color:#6b7585">{{ d.qty }} × {{ d.unit }}</span></div><span style="font-weight:600">{{ d.total }}</span>
+              </div>
+            </sc-for>
+            <div style="padding:10px 12px;display:flex;flex-direction:column;gap:4px;font-size:13px;background:#f7f9fb">
+              <div style="display:flex;justify-content:space-between;color:#4a5567"><span>Subtotal</span><span style="color:#0f1a2b">RM 33.40</span></div>
+              <div style="display:flex;justify-content:space-between;color:#4a5567"><span>Discount</span><span style="color:#0d7a76;font-weight:600">−RM 1.00</span></div>
+              <div style="display:flex;justify-content:space-between;color:#4a5567"><span>Tax</span><span style="color:#0f1a2b">RM 0.00</span></div>
+              <div style="display:flex;justify-content:space-between;color:#4a5567"><span>Rounding</span><span style="color:#0f1a2b">RM 0.00</span></div>
+              <div style="display:flex;justify-content:space-between;align-items:baseline;margin-top:4px;padding-top:6px;border-top:1px dashed #cfd5de"><span style="font-weight:700;letter-spacing:.08em">TOTAL</span><span style="font-size:20px;font-weight:700">RM 32.40</span></div>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <span style="font-size:12px;font-weight:600;letter-spacing:.06em;color:#6b7585">TENDER</span>
+            <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid #e1e5eb;border-radius:10px;font-size:13.5px"><i class="icon-qr-code" style="font-size:18px;color:#3d4a5e"></i><div style="flex:1;display:flex;flex-direction:column;gap:1px"><span style="font-weight:600">DuitNow QR</span><span style="font-size:12px;color:#6b7585;font-family:'IBM Plex Mono',monospace">Ref DN-8841207 · Confirmed 13:58:40</span></div><span style="font-weight:600">RM 32.40</span></div>
+          </div>
+        </div>
+        <div style="flex:none;display:flex;gap:8px;padding:12px 18px;border-top:1px solid #e1e5eb;background:#f7f9fb">
+          <button style="flex:1;height:42px;border-radius:8px;border:1px solid #cfd5de;background:#fff;font-size:14px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px"><i class="icon-printer" style="font-size:16px"></i>Print Receipt</button>
+          <button onClick="{{ startReturn }}" style="flex:1;height:42px;border-radius:8px;border:0;background:#1b5fd1;color:#fff;font-size:14px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px"><i class="icon-undo-2" style="font-size:16px"></i>Start Return</button>
+        </div>
+      </aside>
+    </sc-if>
+  </sc-if>
+
+  <sc-if value="{{ isReturns }}" hint-placeholder-val="{{ false }}">
+    <section style="flex:1;min-width:0;display:flex;flex-direction:column;padding:18px 20px 16px;gap:14px;overflow:auto">
+      <div style="display:flex;align-items:center;gap:20px">
+        <span style="font-size:20px;font-weight:600">Returns</span>
+        <div style="display:flex;align-items:center;gap:8px">
+          <sc-for list="{{ retSteps }}" as="s" hint-placeholder-count="3">
+            <div style="display:flex;align-items:center;gap:8px">
+              <span style="width:24px;height:24px;border-radius:50%;background:{{ s.bg }};color:{{ s.fg }};border:1px solid {{ s.bd }};display:grid;place-items:center;font-size:12px;font-weight:700"><i class="{{ s.icon }}" style="font-size:13px"></i>{{ s.num }}</span>
+              <span style="font-size:13px;font-weight:{{ s.fw }};color:{{ s.tc }}">{{ s.label }}</span>
+              <span style="width:28px;height:1px;background:#cfd5de;opacity:{{ s.lineOp }}"></span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+
+      <sc-if value="{{ ret1 }}" hint-placeholder-val="{{ false }}">
+        <div style="background:#fff;border:1px solid #e1e5eb;border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:10px;max-width:760px">
+          <span style="font-size:15px;font-weight:600">Find the original sale</span>
+          <div style="display:flex;gap:8px">
+            <div style="flex:1;display:flex;align-items:center;gap:10px;height:50px;padding:0 14px;background:#fff;border:2px solid #1b5fd1;border-radius:10px;box-shadow:0 0 0 4px #dbe7fb"><i class="icon-scan-barcode" style="font-size:20px;color:#1b5fd1"></i><input placeholder="Scan receipt barcode or enter receipt number" style="flex:1;border:0;outline:none;font-size:16px;background:transparent"></div>
+            <button style="height:50px;padding:0 20px;border-radius:10px;border:0;background:#1b5fd1;color:#fff;font-size:14px;font-weight:600;cursor:pointer">Find sale</button>
+          </div>
+          <span style="font-size:12.5px;color:#6b7585">Only posted sales from this store can be returned. The original sale is never edited; the return is recorded as a separate transaction.</span>
+        </div>
+        <div style="background:#fff;border:1px solid #e1e5eb;border-radius:12px;overflow:hidden;max-width:760px">
+          <div style="padding:12px 16px;font-size:13px;font-weight:600;color:#3d4a5e;border-bottom:1px solid #e1e5eb">Recent sales on POS-01 · today</div>
+          <sc-for list="{{ retRecent }}" as="h" hint-placeholder-count="5">
+            <div style="display:grid;grid-template-columns:140px 70px minmax(0,1fr) 100px 110px 90px;align-items:center;gap:12px;padding:0 16px;height:50px;border-bottom:1px solid #eef1f5;font-size:13.5px">
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;font-weight:500">{{ h.r }}</span><span style="color:#4a5567">{{ h.t }}</span><span>{{ h.c }}</span><span style="text-align:right;font-weight:600">{{ h.total }}</span><span style="display:inline-flex;align-items:center;gap:6px;color:#3d4a5e"><i class="{{ h.tIcon }}" style="font-size:14px"></i>{{ h.tender }}</span>
+              <button onClick="{{ pickSale }}" style="height:32px;border-radius:7px;border:1px solid #cfd5de;background:#fff;font-size:13px;font-weight:600;cursor:pointer">Select</button>
+            </div>
+          </sc-for>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ ret2 }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;gap:14px;align-items:flex-start">
+          <div style="flex:1;min-width:0;background:#fff;border:1px solid #e1e5eb;border-radius:12px;overflow:hidden">
+            <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid #e1e5eb">
+              <div style="display:flex;flex-direction:column;gap:2px;flex:1"><span style="font-size:12px;color:#6b7585">Original sale</span><span style="font-family:'IBM Plex Mono',monospace;font-size:15px;font-weight:500">POS01-000131</span></div>
+              <span style="font-size:13px;color:#4a5567">26 Sep 2026 · 11:08 · Walk-in · Card •••• 4821</span>
+              <span style="display:inline-flex;align-items:center;gap:5px;height:24px;padding:0 9px;border-radius:999px;background:#f2f4f7;color:#3d4a5e;font-size:12px;font-weight:600"><i class="icon-lock" style="font-size:12px"></i>Posted</span>
+            </div>
+            <div style="display:grid;grid-template-columns:28px minmax(0,1fr) 60px 90px 120px 90px;gap:12px;padding:8px 16px;background:#f7f9fb;border-bottom:1px solid #e1e5eb;font-size:11.5px;font-weight:600;letter-spacing:.04em;color:#6b7585"><span></span><span>ITEM</span><span style="text-align:right">SOLD</span><span style="text-align:right">RETURNABLE</span><span style="text-align:center">RETURN QTY</span><span style="text-align:right">REFUND</span></div>
+            <sc-for list="{{ retLines }}" as="l" hint-placeholder-count="4">
+              <div style="display:grid;grid-template-columns:28px minmax(0,1fr) 60px 90px 120px 90px;align-items:center;gap:12px;padding:0 16px;height:56px;border-bottom:1px solid #eef1f5;background:{{ l.bg }}">
+                <span style="width:20px;height:20px;border-radius:5px;border:1.5px solid {{ l.cbd }};background:{{ l.cbg }};color:#fff;display:grid;place-items:center"><i class="icon-check" style="font-size:13px;opacity:{{ l.checkOp }}"></i></span>
+                <div style="display:flex;flex-direction:column;gap:1px;min-width:0"><span style="font-weight:600;font-size:14px">{{ l.n }}</span><span style="font-size:12px;color:#6b7585">{{ l.unit }} each</span></div>
+                <span style="text-align:right;color:#4a5567">{{ l.sold }}</span><span style="text-align:right;color:#4a5567">{{ l.sold }}</span>
+                <div style="justify-self:center;display:flex;align-items:center;border:1px solid #cfd5de;border-radius:8px;background:#fff;height:34px">
+                  <button onClick="{{ l.dec }}" aria-label="Decrease" style="width:32px;height:32px;border:0;background:transparent;display:grid;place-items:center;cursor:pointer;color:#4a5567"><i class="icon-minus" style="font-size:15px"></i></button>
+                  <span style="min-width:24px;text-align:center;font-weight:700">{{ l.qty }}</span>
+                  <button onClick="{{ l.inc }}" aria-label="Increase" style="width:32px;height:32px;border:0;background:transparent;display:grid;place-items:center;cursor:pointer;color:#4a5567"><i class="icon-plus" style="font-size:15px"></i></button>
+                </div>
+                <span style="text-align:right;font-weight:600">{{ l.amt }}</span>
+              </div>
+            </sc-for>
+            <div style="display:flex;align-items:center;gap:12px;padding:12px 16px">
+              <span style="font-size:13px;font-weight:600">Return reason</span>
+              <button style="height:38px;min-width:240px;padding:0 12px;border-radius:8px;border:1px solid #cfd5de;background:#fff;font-size:13.5px;display:inline-flex;align-items:center;justify-content:space-between;gap:8px;cursor:pointer"><span>Damaged packaging</span><i class="icon-chevron-down" style="font-size:14px;color:#6b7585"></i></button>
+            </div>
+          </div>
+          <div style="width:340px;flex:none;background:#fff;border:1px solid #e1e5eb;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:12px">
+            <span style="font-size:15px;font-weight:600">Return summary</span>
+            <div style="display:flex;flex-direction:column;gap:6px;font-size:13.5px">
+              <div style="display:flex;justify-content:space-between"><span style="color:#4a5567">Items returning</span><span style="font-weight:600">{{ retUnits }}</span></div>
+              <div style="display:flex;justify-content:space-between"><span style="color:#4a5567">Back to stock</span><span style="font-weight:600">Yes · reason recorded</span></div>
+              <div style="display:flex;justify-content:space-between;align-items:baseline;padding-top:8px;margin-top:4px;border-top:1px dashed #cfd5de"><span style="font-weight:700;letter-spacing:.06em">REFUND DUE</span><span style="font-size:24px;font-weight:700">{{ retAmt }}</span></div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:4px;padding:10px 12px;border-radius:10px;border:1px solid #e1e5eb">
+              <span style="font-size:12px;color:#6b7585">Refund to original tender</span>
+              <span style="display:inline-flex;align-items:center;gap:8px;font-weight:600"><i class="icon-credit-card" style="font-size:16px"></i>Card •••• 4821</span>
+            </div>
+            <span style="font-size:12.5px;color:#4a5567">The return is recorded when you confirm. The card refund is sent to the terminal and confirmed separately.</span>
+            <button onClick="{{ reviewReturn }}" style="height:46px;border-radius:9px;border:0;background:#1b5fd1;color:#fff;font-size:15px;font-weight:600;cursor:pointer">Review return</button>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ ret3 }}" hint-placeholder-val="{{ false }}">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:980px">
+          <div style="background:#fff;border:1px solid #e1e5eb;border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:12px">
+            <div style="display:flex;align-items:center;gap:12px"><div style="width:40px;height:40px;border-radius:10px;background:#e5f4ec;color:#146c43;display:grid;place-items:center"><i class="icon-circle-check" style="font-size:21px"></i></div><div style="display:flex;flex-direction:column;gap:2px"><span style="font-size:12px;font-weight:600;letter-spacing:.06em;color:#146c43">RETURN · RECORDED</span><span style="font-size:17px;font-weight:600">3 units returned to stock</span></div></div>
+            <div style="display:grid;grid-template-columns:auto 1fr;gap:6px 16px;font-size:13px"><span style="color:#6b7585">Return ref</span><span style="font-family:'IBM Plex Mono',monospace">RT-POS01-000019</span><span style="color:#6b7585">Original sale</span><span style="font-family:'IBM Plex Mono',monospace">POS01-000131</span><span style="color:#6b7585">Items</span><span>Cream Crackers × 2, Cola × 1</span><span style="color:#6b7585">Reason</span><span>Damaged packaging</span></div>
+          </div>
+          <div style="background:#fff;border:1.5px solid #e3bd78;border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:12px">
+            <div style="display:flex;align-items:center;gap:12px"><div style="width:40px;height:40px;border-radius:10px;background:#fdf3e1;color:#8a5100;display:grid;place-items:center"><i class="icon-circle-help" style="font-size:21px"></i></div><div style="display:flex;flex-direction:column;gap:2px"><span style="font-size:12px;font-weight:600;letter-spacing:.06em;color:#8a5100">REFUND · UNCONFIRMED</span><span style="font-size:17px;font-weight:600">RM 15.40 to Card •••• 4821</span></div></div>
+            <span style="font-size:13.5px;color:#4a5567">The terminal didn't confirm whether the refund went through. Check the terminal before refunding again.</span>
+            <div style="display:flex;flex-direction:column;gap:6px;font-size:13px">
+              <div style="display:flex;align-items:center;gap:8px"><i class="icon-circle-check" style="font-size:15px;color:#146c43"></i><span style="flex:1">Refund requested</span><span style="color:#6b7585">14:41:10</span></div>
+              <div style="display:flex;align-items:center;gap:8px"><i class="icon-circle-check" style="font-size:15px;color:#146c43"></i><span style="flex:1">Sent to terminal T-01</span><span style="color:#6b7585">14:41:12</span></div>
+              <div style="display:flex;align-items:center;gap:8px"><i class="icon-circle-help" style="font-size:15px;color:#8a5100"></i><span style="flex:1;font-weight:600">Result not received</span><span style="color:#6b7585">—</span></div>
+            </div>
+            <div style="display:flex;gap:8px;margin-top:2px"><button style="height:40px;padding:0 14px;border-radius:8px;border:0;background:#1b5fd1;color:#fff;font-size:14px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:8px"><i class="icon-refresh-cw" style="font-size:15px"></i>Check refund status</button><button style="height:40px;padding:0 14px;border-radius:8px;border:1px solid #cfd5de;background:#fff;font-size:14px;font-weight:600;cursor:pointer">Get manager help</button></div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;max-width:980px;padding:12px 16px;border-radius:10px;background:#fff;border:1px solid #e1e5eb;font-size:13px;color:#4a5567">
+          <span style="font-weight:600;color:#0f1a2b">Refund states</span>
+          <span style="display:inline-flex;align-items:center;gap:5px;height:24px;padding:0 9px;border-radius:999px;background:#e8f0fc;color:#174fb0;font-weight:600;font-size:12px"><i class="icon-clock" style="font-size:13px"></i>Pending</span>
+          <span style="display:inline-flex;align-items:center;gap:5px;height:24px;padding:0 9px;border-radius:999px;background:#e5f4ec;color:#146c43;font-weight:600;font-size:12px"><i class="icon-circle-check" style="font-size:13px"></i>Refunded</span>
+          <span style="display:inline-flex;align-items:center;gap:5px;height:24px;padding:0 9px;border-radius:999px;background:#fcebea;color:#b3261e;font-weight:600;font-size:12px"><i class="icon-circle-x" style="font-size:13px"></i>Failed</span>
+          <span style="display:inline-flex;align-items:center;gap:5px;height:24px;padding:0 9px;border-radius:999px;background:#fdf3e1;color:#8a5100;font-weight:600;font-size:12px"><i class="icon-circle-help" style="font-size:13px"></i>Unconfirmed</span>
+          <div style="margin-left:auto;display:flex;gap:8px"><button style="height:36px;padding:0 12px;border-radius:8px;border:1px solid #cfd5de;background:#fff;font-size:13px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px"><i class="icon-printer" style="font-size:15px"></i>Print return slip</button><button onClick="{{ goSale }}" style="height:36px;padding:0 14px;border-radius:8px;border:1px solid #cfd5de;background:#fff;font-size:13px;font-weight:600;cursor:pointer">Done</button></div>
+        </div>
+      </sc-if>
+    </section>
+  </sc-if>
+
+  <sc-if value="{{ isShift }}" hint-placeholder-val="{{ false }}">
+    <section style="flex:1;min-width:0;display:flex;flex-direction:column;padding:18px 20px 16px;gap:14px;overflow:auto">
+      <div style="display:flex;align-items:center;gap:16px">
+        <span style="font-size:20px;font-weight:600">Shift</span>
+        <div style="display:flex;align-items:center;gap:6px">
+          <sc-for list="{{ shiftSteps }}" as="s" hint-placeholder-count="3">
+            <span style="display:inline-flex;align-items:center;gap:5px;height:26px;padding:0 10px;border-radius:999px;border:1px solid {{ s.bd }};background:{{ s.bg }};color:{{ s.fg }};font-size:12.5px;font-weight:600"><i class="{{ s.icon }}" style="font-size:13px"></i>{{ s.label }}</span>
+            <i class="icon-chevron-right" style="font-size:14px;color:#9aa3b2;opacity:{{ s.arrowOp }}"></i>
+          </sc-for>
+        </div>
+        <div style="margin-left:auto;display:flex;gap:8px">
+          <sc-if value="{{ shiftOpen }}" hint-placeholder-val="{{ true }}">
+            <button style="height:40px;padding:0 14px;border-radius:8px;border:1px solid #cfd5de;background:#fff;font-size:14px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px"><i class="icon-plus" style="font-size:15px"></i>Cash in</button>
+            <button style="height:40px;padding:0 14px;border-radius:8px;border:1px solid #cfd5de;background:#fff;font-size:14px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px"><i class="icon-minus" style="font-size:15px"></i>Cash out</button>
+            <button onClick="{{ startClose }}" style="height:40px;padding:0 16px;border-radius:8px;border:0;background:#1b5fd1;color:#fff;font-size:14px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px"><i class="icon-log-out" style="font-size:15px"></i>Close shift</button>
+          </sc-if>
+        </div>
+      </div>
+
+      <sc-if value="{{ shiftOpen }}" hint-placeholder-val="{{ true }}">
+        <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px">
+          <div style="background:#fff;border:1px solid #e1e5eb;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:10px">
+            <span style="font-size:12px;font-weight:600;letter-spacing:.06em;color:#6b7585">CURRENT SHIFT</span>
+            <div style="display:grid;grid-template-columns:auto 1fr;gap:8px 14px;font-size:13.5px"><span style="color:#6b7585">Cashier</span><span style="font-weight:600">Demo Cashier</span><span style="color:#6b7585">Register</span><span style="font-weight:600">POS-01</span><span style="color:#6b7585">Business date</span><span style="font-weight:600">Sat, 26 Sep 2026</span><span style="color:#6b7585">Opened</span><span style="font-weight:600">08:00 · 6 h 32 m</span><span style="color:#6b7585">Shift ref</span><span style="font-family:'IBM Plex Mono',monospace">SH-POS01-0268</span></div>
+          </div>
+          <div style="background:#fff;border:1px solid #e1e5eb;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:10px">
+            <span style="font-size:12px;font-weight:600;letter-spacing:.06em;color:#6b7585">CASH IN DRAWER</span>
+            <div style="display:flex;flex-direction:column;gap:6px;font-size:13.5px">
+              <div style="display:flex;justify-content:space-between"><span style="color:#4a5567">Opening cash</span><span>RM 200.00</span></div>
+              <div style="display:flex;justify-content:space-between"><span style="color:#4a5567">Cash sales</span><span>RM 612.40</span></div>
+              <div style="display:flex;justify-content:space-between"><span style="color:#4a5567">Cash in</span><span>RM 0.00</span></div>
+              <div style="display:flex;justify-content:space-between"><span style="color:#4a5567">Cash out</span><span>−RM 50.00</span></div>
+              <div style="display:flex;justify-content:space-between;align-items:baseline;padding-top:8px;margin-top:2px;border-top:1px dashed #cfd5de"><span style="font-weight:600">Expected cash</span><span style="font-size:20px;font-weight:700">RM 762.40</span></div>
+            </div>
+          </div>
+          <div style="background:#fff;border:1px solid #e1e5eb;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:10px">
+            <span style="font-size:12px;font-weight:600;letter-spacing:.06em;color:#6b7585">SALES THIS SHIFT</span>
+            <div style="display:flex;flex-direction:column;gap:6px;font-size:13.5px">
+              <div style="display:flex;justify-content:space-between"><span style="display:inline-flex;align-items:center;gap:6px;color:#4a5567"><i class="icon-banknote" style="font-size:14px"></i>Cash · 24</span><span>RM 612.40</span></div>
+              <div style="display:flex;justify-content:space-between"><span style="display:inline-flex;align-items:center;gap:6px;color:#4a5567"><i class="icon-credit-card" style="font-size:14px"></i>Card · 9</span><span>RM 388.20</span></div>
+              <div style="display:flex;justify-content:space-between"><span style="display:inline-flex;align-items:center;gap:6px;color:#4a5567"><i class="icon-qr-code" style="font-size:14px"></i>DuitNow QR · 8</span><span>RM 283.70</span></div>
+              <div style="display:flex;justify-content:space-between;align-items:baseline;padding-top:8px;margin-top:2px;border-top:1px dashed #cfd5de"><span style="font-weight:600">41 sales</span><span style="font-size:20px;font-weight:700">RM 1,284.30</span></div>
+            </div>
+          </div>
+        </div>
+        <div style="background:#fff;border:1px solid #e1e5eb;border-radius:12px;overflow:hidden">
+          <div style="padding:12px 16px;font-size:14px;font-weight:600;border-bottom:1px solid #e1e5eb">Cash movements</div>
+          <div style="display:grid;grid-template-columns:80px 140px 110px minmax(0,1fr) 180px;gap:12px;padding:8px 16px;background:#f7f9fb;border-bottom:1px solid #e1e5eb;font-size:11.5px;font-weight:600;letter-spacing:.04em;color:#6b7585"><span>TIME</span><span>TYPE</span><span style="text-align:right">AMOUNT</span><span>REASON</span><span>BY</span></div>
+          <div style="display:grid;grid-template-columns:80px 140px 110px minmax(0,1fr) 180px;gap:12px;align-items:center;padding:0 16px;height:46px;border-bottom:1px solid #eef1f5;font-size:13.5px"><span style="color:#4a5567">11:15</span><span style="display:inline-flex;align-items:center;gap:6px"><i class="icon-minus" style="font-size:14px;color:#6b7585"></i>Cash out</span><span style="text-align:right;font-weight:600">−RM 50.00</span><span>Supplier payment · ice delivery</span><span style="color:#4a5567">Demo Cashier · approved by Manager</span></div>
+          <div style="display:grid;grid-template-columns:80px 140px 110px minmax(0,1fr) 180px;gap:12px;align-items:center;padding:0 16px;height:46px;font-size:13.5px"><span style="color:#4a5567">08:00</span><span style="display:inline-flex;align-items:center;gap:6px"><i class="icon-log-in" style="font-size:14px;color:#6b7585"></i>Opening cash</span><span style="text-align:right;font-weight:600">RM 200.00</span><span>Shift opened</span><span style="color:#4a5567">Demo Cashier</span></div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ shiftClosing }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;gap:14px;align-items:flex-start">
+          <div style="flex:1;min-width:0;background:#fff;border:1px solid #e1e5eb;border-radius:12px;overflow:hidden">
+            <div style="padding:12px 16px;border-bottom:1px solid #e1e5eb;display:flex;align-items:baseline;gap:10px"><span style="font-size:15px;font-weight:600">Count cash in drawer</span><span style="font-size:12.5px;color:#6b7585">Enter the number of notes and coins</span></div>
+            <sc-for list="{{ denoms }}" as="d" hint-placeholder-count="7">
+              <div style="display:grid;grid-template-columns:120px 150px minmax(0,1fr);align-items:center;gap:12px;padding:0 16px;height:48px;border-bottom:1px solid #eef1f5;font-size:14px">
+                <span style="font-weight:600">{{ d.label }}</span>
+                <div style="display:flex;align-items:center;gap:8px"><span style="color:#6b7585">×</span><div style="width:90px;height:36px;border-radius:8px;border:1px solid {{ d.bd }};box-shadow:{{ d.ring }};background:#fff;display:flex;align-items:center;justify-content:flex-end;padding:0 10px;font-weight:600">{{ d.qty }}</div></div>
+                <span style="text-align:right;font-weight:600">{{ d.amt }}</span>
+              </div>
+            </sc-for>
+          </div>
+          <div style="width:360px;flex:none;background:#fff;border:1px solid #e1e5eb;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:12px">
+            <span style="font-size:15px;font-weight:600">Close shift SH-POS01-0268</span>
+            <div style="display:flex;flex-direction:column;gap:8px;font-size:14px">
+              <div style="display:flex;justify-content:space-between"><span style="color:#4a5567">Expected cash</span><span style="font-weight:600">RM 762.40</span></div>
+              <div style="display:flex;justify-content:space-between"><span style="color:#4a5567">Counted cash</span><span style="font-weight:600">RM 760.40</span></div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 12px;border-radius:9px;background:#fdf3e1;color:#6b4000"><span style="display:inline-flex;align-items:center;gap:6px;font-weight:600"><i class="icon-triangle-alert" style="font-size:15px"></i>Difference</span><span style="font-size:18px;font-weight:700">−RM 2.00</span></div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:6px"><span style="font-size:13px;font-weight:600">Note</span><div style="min-height:64px;border:1px solid #cfd5de;border-radius:8px;padding:8px 10px;font-size:13.5px;color:#6b7585">Add a note for the manager (optional)</div></div>
+            <div style="display:flex;gap:8px"><button onClick="{{ backShift }}" style="flex:1;height:44px;border-radius:8px;border:1px solid #cfd5de;background:#fff;font-size:14px;font-weight:600;cursor:pointer">Back</button><button onClick="{{ openCloseShift }}" style="flex:1.4;height:44px;border-radius:8px;border:0;background:#1b5fd1;color:#fff;font-size:14px;font-weight:600;cursor:pointer">Close shift</button></div>
+          </div>
+        </div>
+      </sc-if>
+    </section>
+  </sc-if>
+  </div>
+</div>
+
+<sc-if value="{{ hasDialog }}" hint-placeholder-val="{{ false }}">
+  <div style="position:absolute;inset:0;background:rgba(14,27,51,0.46);display:flex;align-items:center;justify-content:center;z-index:10;padding:24px">
+    <div role="dialog" aria-modal="true" aria-label="{{ dlg.t }}" style="width:{{ dlg.w }};max-width:100%;max-height:100%;overflow:auto;background:#fff;border-radius:14px;box-shadow:0 24px 60px rgba(14,27,51,.3);display:flex;flex-direction:column">
+      <div style="flex:none;display:flex;align-items:center;gap:12px;padding:14px 14px 14px 20px;border-bottom:1px solid #e1e5eb">
+        <div style="width:34px;height:34px;border-radius:9px;background:{{ dlg.ibg }};color:{{ dlg.ifg }};display:grid;place-items:center"><i class="{{ dlg.i }}" style="font-size:18px"></i></div>
+        <span style="font-size:17px;font-weight:600;flex:1">{{ dlg.t }}</span>
+        <button onClick="{{ closeDlg }}" aria-label="Close" style="width:34px;height:34px;border-radius:8px;border:0;background:transparent;display:grid;place-items:center;cursor:pointer;color:#4a5567"><i class="icon-x" style="font-size:18px"></i></button>
+      </div>
+
+      <sc-if value="{{ d.customer }}" hint-placeholder-val="{{ false }}">
+        <div style="padding:16px 20px;display:flex;flex-direction:column;gap:10px">
+          <div style="display:flex;align-items:center;gap:10px;height:46px;padding:0 12px;border:2px solid #1b5fd1;border-radius:9px;box-shadow:0 0 0 4px #dbe7fb"><i class="icon-search" style="font-size:18px;color:#1b5fd1"></i><span style="font-size:15px;font-weight:500">012</span><span style="width:1.5px;height:20px;background:#1b5fd1;margin-left:-8px"></span><span style="margin-left:auto;font-size:12px;color:#6b7585">Name, phone or member no.</span></div>
+          <button onClick="{{ useWalkin }}" style="display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:9px;border:1px solid #e1e5eb;background:#fff;text-align:left;cursor:pointer"><div style="width:34px;height:34px;border-radius:50%;background:#f2f4f7;color:#4a5567;display:grid;place-items:center"><i class="icon-user" style="font-size:17px"></i></div><div style="flex:1;display:flex;flex-direction:column;gap:1px"><span style="font-weight:600">Walk-in Customer</span><span style="font-size:12px;color:#6b7585">No customer attached to this sale</span></div></button>
+          <span style="font-size:12px;font-weight:600;letter-spacing:.06em;color:#6b7585;margin-top:4px">2 MATCHES</span>
+          <sc-for list="{{ customers }}" as="c" hint-placeholder-count="2">
+            <button onClick="{{ pickCustomer }}" style="display:grid;grid-template-columns:34px minmax(0,1fr) auto;align-items:center;gap:12px;padding:10px 12px;border-radius:9px;border:1px solid {{ c.bd }};background:{{ c.bg }};box-shadow:{{ c.ring }};text-align:left;cursor:pointer">
+              <div style="width:34px;height:34px;border-radius:50%;background:#e8f0fc;color:#1b5fd1;display:grid;place-items:center;font-size:12px;font-weight:700">{{ c.ini }}</div>
+              <div style="display:flex;flex-direction:column;gap:1px"><span style="font-weight:600">{{ c.n }}</span><span style="font-size:12.5px;color:#4a5567">{{ c.ph }}</span></div>
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#4a5567">{{ c.id }}</span>
+            </button>
+          </sc-for>
+        </div>
+        <div style="display:flex;justify-content:flex-end;gap:8px;padding:12px 20px;border-top:1px solid #e1e5eb;background:#f7f9fb">
+          <button onClick="{{ closeDlg }}" style="height:40px;padding:0 16px;border-radius:8px;border:1px solid #cfd5de;background:#fff;font-size:14px;font-weight:600;cursor:pointer">Cancel</button>
+          <button onClick="{{ pickCustomer }}" style="height:40px;padding:0 16px;border-radius:8px;border:0;background:#1b5fd1;color:#fff;font-size:14px;font-weight:600;cursor:pointer">Attach Aisyah R.</button>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ d.hold }}" hint-placeholder-val="{{ false }}">
+        <div style="padding:16px 20px;display:flex;flex-direction:column;gap:12px">
+          <span style="font-size:14px;color:#4a5567">The cart will be cleared and saved on this register. You can recall it from Held Sales.</span>
+          <div style="display:grid;grid-template-columns:auto 1fr;gap:6px 16px;padding:12px 14px;border-radius:10px;background:#f7f9fb;font-size:13.5px"><span style="color:#6b7585">Items</span><span style="font-weight:600">{{ holdItems }}</span><span style="color:#6b7585">Customer</span><span style="font-weight:600">{{ custName }}</span><span style="color:#6b7585">Amount</span><span style="font-weight:700">{{ t.total }}</span></div>
+          <div style="display:flex;flex-direction:column;gap:6px"><span style="font-size:13px;font-weight:600">Label <span style="font-weight:400;color:#6b7585">(optional)</span></span><div style="height:42px;border:2px solid #1b5fd1;box-shadow:0 0 0 4px #dbe7fb;border-radius:8px;padding:0 12px;display:flex;align-items:center;font-size:14px">Customer fetching wallet</div></div>
+        </div>
+        <div style="display:flex;justify-content:flex-end;gap:8px;padding:12px 20px;border-top:1px solid #e1e5eb;background:#f7f9fb">
+          <button onClick="{{ closeDlg }}" style="height:40px;padding:0 16px;border-radius:8px;border:1px solid #cfd5de;background:#fff;font-size:14px;font-weight:600;cursor:pointer">Cancel</button>
+          <button onClick="{{ doHold }}" style="height:40px;padding:0 16px;border-radius:8px;border:0;background:#1b5fd1;color:#fff;font-size:14px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px"><i class="icon-pause" style="font-size:15px"></i>Hold sale</button>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ d.held }}" hint-placeholder-val="{{ false }}">
+        <div style="padding:8px 0 4px">
+          <div style="display:grid;grid-template-columns:64px 80px minmax(0,1fr) 110px 60px 100px 88px;gap:12px;padding:8px 20px;font-size:11.5px;font-weight:600;letter-spacing:.04em;color:#6b7585"><span>TIME</span><span>REF</span><span>LABEL · CUSTOMER</span><span>CASHIER</span><span style="text-align:right">ITEMS</span><span style="text-align:right">AMOUNT</span><span></span></div>
+          <sc-for list="{{ held }}" as="h" hint-placeholder-count="3">
+            <div style="display:grid;grid-template-columns:64px 80px minmax(0,1fr) 110px 60px 100px 88px;align-items:center;gap:12px;padding:0 12px 0 20px;height:56px;border-top:1px solid #eef1f5;background:{{ h.bg }};box-shadow:{{ h.ring }};font-size:13.5px">
+              <span style="font-weight:600">{{ h.t }}</span><span style="font-family:'IBM Plex Mono',monospace;font-size:12.5px">{{ h.ref }}</span>
+              <div style="display:flex;flex-direction:column;gap:1px;min-width:0"><span style="font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ h.label }}</span><span style="font-size:12px;color:#6b7585">{{ h.cust }}</span></div>
+              <span style="color:#4a5567">{{ h.cashier }}</span><span style="text-align:right">{{ h.items }}</span><span style="text-align:right;font-weight:700">{{ h.amt }}</span>
+              <button onClick="{{ recall }}" style="height:34px;border-radius:8px;border:{{ h.btnBd }};background:{{ h.btnBg }};color:{{ h.btnFg }};font-size:13px;font-weight:600;cursor:pointer">Recall</button>
+            </div>
+          </sc-for>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;padding:12px 20px;border-top:1px solid #e1e5eb;background:#f7f9fb">
+          <span style="font-size:12.5px;color:#6b7585">Recalling loads the sale into an empty cart.</span>
+          <button onClick="{{ closeDlg }}" style="height:40px;padding:0 16px;border-radius:8px;border:1px solid #cfd5de;background:#fff;font-size:14px;font-weight:600;cursor:pointer">Close</button>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ d.pay }}" hint-placeholder-val="{{ false }}">
+        <div style="padding:18px 20px;display:flex;flex-direction:column;gap:14px">
+          <div style="display:flex;align-items:baseline;justify-content:space-between;padding:14px 16px;border-radius:10px;background:#f7f9fb;border:1px solid #e1e5eb"><span style="font-size:14px;font-weight:600;color:#4a5567">Amount due</span><span style="font-size:34px;font-weight:700">{{ t.total }}</span></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+            <sc-for list="{{ payTiles }}" as="m" hint-placeholder-count="4">
+              <button onClick="{{ m.go }}" disabled="{{ m.disabled }}" style="display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:10px;border:1.5px solid {{ m.bd }};background:{{ m.bg }};box-shadow:{{ m.ring }};text-align:left;cursor:{{ m.cursor }};opacity:{{ m.op }}">
+                <div style="width:42px;height:42px;border-radius:10px;background:{{ m.ibg }};color:{{ m.ifg }};display:grid;place-items:center"><i class="{{ m.icon }}" style="font-size:21px"></i></div>
+                <div style="display:flex;flex-direction:column;gap:2px"><span style="font-size:15px;font-weight:600">{{ m.label }}</span><span style="font-size:12.5px;color:{{ m.subFg }};display:inline-flex;align-items:center;gap:5px"><span style="width:7px;height:7px;border-radius:50%;background:{{ m.dot }}"></span>{{ m.sub }}</span></div>
+              </button>
+            </sc-for>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:10px;border:1px dashed #cfd5de">
+            <i class="icon-split" style="font-size:18px;color:#4a5567"></i>
+            <div style="flex:1;display:flex;flex-direction:column;gap:1px"><span style="font-size:14px;font-weight:600">Split across tenders</span><span style="font-size:12.5px;color:#6b7585">Pay part by one method and the rest by another</span></div>
+            <span style="height:22px;padding:0 8px;border-radius:6px;background:#eef1f5;color:#3d4a5e;font:600 11px 'IBM Plex Mono',monospace;display:inline-flex;align-items:center">CONCEPT</span>
+          </div>
+        </div>
+        <div style="display:flex;justify-content:space-between;gap:8px;padding:12px 20px;border-top:1px solid #e1e5eb;background:#f7f9fb">
+          <span style="display:inline-flex;align-items:center;gap:6px;font-size:12.5px;color:#4a5567"><i class="{{ custIcon }}" style="font-size:14px"></i>{{ custName }} · {{ itemCount }}</span>
+          <button onClick="{{ closeDlg }}" style="height:40px;padding:0 16px;border-radius:8px;border:1px solid #cfd5de;background:#fff;font-size:14px;font-weight:600;cursor:pointer">Back to sale</button>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ d.cash }}" hint-placeholder-val="{{ false }}">
+        <div style="padding:18px 20px;display:grid;grid-template-columns:minmax(0,1fr) 250px;gap:18px">
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <div style="display:flex;flex-direction:column;gap:4px;padding:12px 14px;border-radius:10px;background:#f7f9fb;border:1px solid #e1e5eb">
+              <div style="display:flex;justify-content:space-between;font-size:13px;color:#4a5567"><span>Sale total</span><span>{{ t.total }}</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:13px;color:#4a5567"><span>Cash rounding</span><span>{{ cash.round }}</span></div>
+              <div style="display:flex;justify-content:space-between;align-items:baseline;margin-top:4px"><span style="font-size:14px;font-weight:600">Amount due</span><span style="font-size:26px;font-weight:700">{{ cash.due }}</span></div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:6px"><span style="font-size:13px;font-weight:600">Cash received</span>
+              <div style="height:60px;border:2px solid #1b5fd1;box-shadow:0 0 0 4px #dbe7fb;border-radius:10px;padding:0 16px;display:flex;align-items:center;gap:10px"><span style="font-size:16px;color:#6b7585;font-weight:600">RM</span><span style="font-size:30px;font-weight:700;flex:1;text-align:right">{{ cash.recv }}</span></div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-radius:10px;background:{{ cash.chBg }};color:{{ cash.chFg }}"><span style="font-size:15px;font-weight:600">{{ cash.chLabel }}</span><span style="font-size:30px;font-weight:700">{{ cash.change }}</span></div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <span style="font-size:13px;font-weight:600">Quick amounts</span>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+              <sc-for list="{{ quick }}" as="k" hint-placeholder-count="6">
+                <button onClick="{{ k.go }}" style="height:50px;border-radius:9px;border:1px solid {{ k.bd }};background:{{ k.bg }};color:{{ k.fg }};font-size:15px;font-weight:700;cursor:pointer">{{ k.label }}</button>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+        <div style="display:flex;justify-content:space-between;gap:8px;padding:12px 20px;border-top:1px solid #e1e5eb;background:#f7f9fb">
+          <button onClick="{{ openPay }}" style="height:44px;padding:0 16px;border-radius:8px;border:1px solid #cfd5de;background:#fff;font-size:14px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px"><i class="icon-arrow-left" style="font-size:15px"></i>Other method</button>
+          <button onClick="{{ confirmCash }}" disabled="{{ cash.short }}" style="height:44px;padding:0 20px;border-radius:8px;border:0;background:{{ cash.btnBg }};color:#fff;font-size:15px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:8px"><i class="icon-circle-check" style="font-size:17px"></i>Confirm cash payment</button>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ d.card }}" hint-placeholder-val="{{ false }}">
+        <div style="padding:22px 24px 18px;display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center">
+          <div style="width:60px;height:60px;border-radius:16px;background:{{ card.ibg }};color:{{ card.ifg }};display:grid;place-items:center"><i class="{{ card.icon }}" style="font-size:30px"></i></div>
+          <span style="height:24px;padding:0 10px;border-radius:999px;background:{{ card.ibg }};color:{{ card.ifg }};font-size:11.5px;font-weight:700;letter-spacing:.08em;display:inline-flex;align-items:center">{{ card.tag }}</span>
+          <span style="font-size:19px;font-weight:600">{{ card.title }}</span>
+          <span style="font-size:14px;color:#4a5567;max-width:400px">{{ card.body }}</span>
+          <span style="font-size:28px;font-weight:700;margin-top:2px">{{ t.total }}</span>
+          <sc-if value="{{ card.warn }}" hint-placeholder-val="{{ false }}">
+            <div role="alert" style="display:flex;align-items:center;gap:8px;padding:10px 12px;border-radius:9px;background:#fdf3e1;border:1px solid #f0d4a0;color:#6b4000;font-size:13px;font-weight:600;text-align:left"><i class="icon-triangle-alert" style="font-size:16px"></i>Don't charge the customer again until the result is confirmed.</div>
+          </sc-if>
+          <div style="width:100%;display:flex;flex-direction:column;gap:7px;padding:12px 14px;border-radius:10px;background:#f7f9fb;text-align:left;font-size:13px">
+            <sc-for list="{{ card.steps }}" as="s" hint-placeholder-count="3">
+              <div style="display:flex;align-items:center;gap:8px"><i class="{{ s.icon }}" style="font-size:15px;color:{{ s.fg }}"></i><span style="flex:1;font-weight:{{ s.fw }}">{{ s.label }}</span><span style="color:#6b7585;font-family:'IBM Plex Mono',monospace;font-size:12px">{{ s.time }}</span></div>
+            </sc-for>
+          </div>
+        </div>
+        <div style="display:flex;justify-content:flex-end;gap:8px;padding:12px 20px;border-top:1px solid #e1e5eb;background:#f7f9fb">
+          <sc-for list="{{ card.actions }}" as="a" hint-placeholder-count="2">
+            <button onClick="{{ a.go }}" style="height:42px;padding:0 16px;border-radius:8px;border:{{ a.bd }};background:{{ a.bg }};color:{{ a.fg }};font-size:14px;font-weight:600;cursor:pointer">{{ a.label }}</button>
+          </sc-for>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;padding:8px 20px;border-top:1px dashed #e1e5eb;font:500 11px 'IBM Plex Mono',monospace;color:#6b7585"><span>PROTOTYPE · simulate terminal:</span><button onClick="{{ simOk }}" style="border:0;background:none;color:#1b5fd1;font:inherit;cursor:pointer;padding:0">approved</button><button onClick="{{ simFail }}" style="border:0;background:none;color:#1b5fd1;font:inherit;cursor:pointer;padding:0">declined</button><button onClick="{{ simUnc }}" style="border:0;background:none;color:#1b5fd1;font:inherit;cursor:pointer;padding:0">no response</button></div>
+      </sc-if>
+
+      <sc-if value="{{ d.qr }}" hint-placeholder-val="{{ false }}">
+        <div style="padding:18px 20px;display:grid;grid-template-columns:230px minmax(0,1fr);gap:20px;align-items:start">
+          <div style="width:230px;height:230px;border-radius:12px;border:1px solid #e1e5eb;background:repeating-linear-gradient(45deg,#f5f7fa 0 7px,#edf0f4 7px 14px);display:grid;place-items:center;font:500 11px 'IBM Plex Mono',monospace;color:#6b7585;text-align:center">dynamic DuitNow QR<br>from payment provider</div>
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <div style="display:flex;flex-direction:column;gap:2px"><span style="font-size:13px;color:#4a5567">Amount due</span><span style="font-size:30px;font-weight:700">{{ t.total }}</span></div>
+            <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:9px;background:#e8f0fc;color:#174fb0;font-size:14px;font-weight:600"><i class="icon-loader-circle" style="font-size:17px"></i>Waiting for customer to scan and pay</div>
+            <div style="display:grid;grid-template-columns:auto 1fr;gap:5px 14px;font-size:13px"><span style="color:#6b7585">Payment ref</span><span style="font-family:'IBM Plex Mono',monospace">DN-8841233</span><span style="color:#6b7585">QR created</span><span>14:33:05</span><span style="color:#6b7585">Expires</span><span>14:38:05</span></div>
+            <span style="font-size:12.5px;color:#4a5567">Only mark as paid when the provider confirms. A screenshot on the customer's phone is not a confirmation.</span>
+          </div>
+        </div>
+        <div style="padding:0 20px 14px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:12px;color:#4a5567"><span style="font-weight:600;margin-right:4px">QR states</span>
+          <span style="display:inline-flex;align-items:center;gap:5px;height:24px;padding:0 9px;border-radius:999px;background:#eef1f5;color:#3d4a5e;font-weight:600"><i class="icon-qr-code" style="font-size:13px"></i>QR shown</span>
+          <span style="display:inline-flex;align-items:center;gap:5px;height:24px;padding:0 9px;border-radius:999px;background:#e8f0fc;color:#174fb0;font-weight:600"><i class="icon-loader-circle" style="font-size:13px"></i>Waiting</span>
+          <span style="display:inline-flex;align-items:center;gap:5px;height:24px;padding:0 9px;border-radius:999px;background:#e5f4ec;color:#146c43;font-weight:600"><i class="icon-circle-check" style="font-size:13px"></i>Paid</span>
+          <span style="display:inline-flex;align-items:center;gap:5px;height:24px;padding:0 9px;border-radius:999px;background:#fcebea;color:#b3261e;font-weight:600"><i class="icon-circle-x" style="font-size:13px"></i>Failed / expired</span>
+          <span style="display:inline-flex;align-items:center;gap:5px;height:24px;padding:0 9px;border-radius:999px;background:#fdf3e1;color:#8a5100;font-weight:600"><i class="icon-circle-help" style="font-size:13px"></i>Unconfirmed</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;gap:8px;padding:12px 20px;border-top:1px solid #e1e5eb;background:#f7f9fb">
+          <button onClick="{{ openPay }}" style="height:42px;padding:0 16px;border-radius:8px;border:1px solid #cfd5de;background:#fff;font-size:14px;font-weight:600;cursor:pointer;color:#b3261e">Cancel QR payment</button>
+          <button onClick="{{ simQrOk }}" style="height:42px;padding:0 16px;border-radius:8px;border:1px solid #cfd5de;background:#fff;font-size:14px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px"><i class="icon-refresh-cw" style="font-size:15px"></i>Check status</button>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ d.success }}" hint-placeholder-val="{{ false }}">
+        <div style="padding:22px 24px 16px;display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center">
+          <div style="width:60px;height:60px;border-radius:50%;background:#e5f4ec;color:#146c43;display:grid;place-items:center"><i class="icon-check" style="font-size:32px"></i></div>
+          <span style="font-size:20px;font-weight:600;margin-top:6px">Sale completed</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:13.5px;color:#4a5567">Receipt POS01-000142 · 14:33:40</span>
+        </div>
+        <div style="margin:4px 24px 0;border:1px solid #e1e5eb;border-radius:10px;overflow:hidden">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;padding:12px 14px;background:#f7f9fb"><span style="font-weight:700;letter-spacing:.08em;font-size:13px">TOTAL</span><span style="font-size:26px;font-weight:700">{{ succ.total }}</span></div>
+          <sc-for list="{{ succ.rows }}" as="r" hint-placeholder-count="2">
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:9px 14px;border-top:1px solid #eef1f5;font-size:14px"><span style="display:inline-flex;align-items:center;gap:8px;color:#3d4a5e"><i class="{{ r.icon }}" style="font-size:15px"></i>{{ r.label }}</span><span style="font-weight:{{ r.fw }}">{{ r.val }}</span></div>
+          </sc-for>
+        </div>
+        <div style="margin:10px 24px 0;display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:9px;background:{{ succ.pBg }};border:1px solid {{ succ.pBd }};color:{{ succ.pFg }};font-size:13px">
+          <i class="{{ succ.pIcon }}" style="font-size:16px"></i><span style="flex:1;text-align:left"><strong style="font-weight:600">{{ succ.pTitle }}</strong> {{ succ.pBody }}</span>
+          <sc-if value="{{ printFail }}" hint-placeholder-val="{{ false }}"><button style="height:30px;padding:0 10px;border-radius:7px;border:1px solid #e3bd78;background:#fff;color:#6b4000;font-size:12.5px;font-weight:600;cursor:pointer">Retry print</button></sc-if>
+        </div>
+        <div style="padding:16px 24px 20px;display:flex;flex-direction:column;gap:8px">
+          <button onClick="{{ newSale }}" autofocus style="height:52px;border-radius:10px;border:0;background:#1b5fd1;color:#fff;font-size:16px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 0 0 3px #fff,0 0 0 5px #1b5fd1"><i class="icon-plus" style="font-size:18px"></i>New Sale</button>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+            <button style="height:42px;border-radius:8px;border:1px solid #cfd5de;background:#fff;font-size:14px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:6px"><i class="icon-printer" style="font-size:15px"></i>Print Receipt</button>
+            <button onClick="{{ viewSale }}" style="height:42px;border-radius:8px;border:1px solid #cfd5de;background:#fff;font-size:14px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:6px"><i class="icon-file-text" style="font-size:15px"></i>View Sale</button>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ d.override }}" hint-placeholder-val="{{ false }}">
+        <div style="padding:16px 20px;display:flex;flex-direction:column;gap:12px">
+          <span style="font-size:14px;color:#4a5567">This action needs a manager. The approval is recorded in the audit log with the manager's ID.</span>
+          <div style="display:grid;grid-template-columns:auto 1fr;gap:6px 16px;padding:12px 14px;border-radius:10px;background:#f7f9fb;border:1px solid #e1e5eb;font-size:13.5px"><span style="color:#6b7585">Action</span><span style="font-weight:600">Apply sale discount · RM 5.00</span><span style="color:#6b7585">Sale</span><span style="font-family:'IBM Plex Mono',monospace">In progress · POS-01</span><span style="color:#6b7585">Requested by</span><span>Demo Cashier · 14:32</span></div>
+          <div style="display:flex;flex-direction:column;gap:6px"><span style="font-size:13px;font-weight:600">Reason</span><button style="height:40px;padding:0 12px;border-radius:8px;border:1px solid #cfd5de;background:#fff;font-size:14px;display:flex;align-items:center;justify-content:space-between;cursor:pointer"><span>Price match</span><i class="icon-chevron-down" style="font-size:14px;color:#6b7585"></i></button></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+            <div style="display:flex;flex-direction:column;gap:6px"><span style="font-size:13px;font-weight:600">Manager ID</span><div style="height:44px;border:1px solid #cfd5de;border-radius:8px;padding:0 12px;display:flex;align-items:center;font-family:'IBM Plex Mono',monospace;font-size:14px">MGR-0012</div></div>
+            <div style="display:flex;flex-direction:column;gap:6px"><span style="font-size:13px;font-weight:600">PIN</span><div style="height:44px;border:2px solid #1b5fd1;box-shadow:0 0 0 4px #dbe7fb;border-radius:8px;padding:0 12px;display:flex;align-items:center;gap:10px"><span style="width:10px;height:10px;border-radius:50%;background:#0f1a2b"></span><span style="width:10px;height:10px;border-radius:50%;background:#0f1a2b"></span><span style="width:10px;height:10px;border-radius:50%;background:#0f1a2b"></span><span style="width:10px;height:10px;border-radius:50%;background:#0f1a2b"></span><span style="width:10px;height:10px;border-radius:50%;border:1.5px solid #9aa3b2"></span><span style="width:10px;height:10px;border-radius:50%;border:1.5px solid #9aa3b2"></span></div></div>
+          </div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;padding:12px 20px;border-top:1px solid #e1e5eb;background:#f7f9fb">
+          <span style="display:inline-flex;align-items:center;gap:6px;font-size:12.5px;color:#4a5567"><i class="icon-shield-check" style="font-size:14px"></i>Audited action</span>
+          <div style="display:flex;gap:8px"><button onClick="{{ closeDlg }}" style="height:40px;padding:0 16px;border-radius:8px;border:1px solid #cfd5de;background:#fff;font-size:14px;font-weight:600;cursor:pointer">Cancel</button><button onClick="{{ closeDlg }}" style="height:40px;padding:0 16px;border-radius:8px;border:0;background:#1b5fd1;color:#fff;font-size:14px;font-weight:600;cursor:pointer">Approve</button></div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ d.permission }}" hint-placeholder-val="{{ false }}">
+        <div style="padding:16px 20px;display:flex;flex-direction:column;gap:10px">
+          <span style="font-size:15px;font-weight:600">You can't start returns with the Cashier role</span>
+          <span style="font-size:14px;color:#4a5567">A manager can approve this return once, or sign in to process it. Nothing has changed on sale POS01-000139.</span>
+        </div>
+        <div style="display:flex;justify-content:flex-end;gap:8px;padding:12px 20px;border-top:1px solid #e1e5eb;background:#f7f9fb">
+          <button onClick="{{ closeDlg }}" style="height:40px;padding:0 16px;border-radius:8px;border:1px solid #cfd5de;background:#fff;font-size:14px;font-weight:600;cursor:pointer">Cancel</button>
+          <button onClick="{{ toOverride }}" style="height:40px;padding:0 16px;border-radius:8px;border:0;background:#1b5fd1;color:#fff;font-size:14px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px"><i class="icon-shield-check" style="font-size:15px"></i>Request manager approval</button>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ d.retConfirm }}" hint-placeholder-val="{{ false }}">
+        <div style="padding:16px 20px;display:flex;flex-direction:column;gap:12px">
+          <span style="font-size:14px;color:#4a5567">This creates a return against POS01-000131. The original sale stays unchanged.</span>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+            <div style="border:1px solid #e1e5eb;border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;gap:6px">
+              <span style="display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;letter-spacing:.06em;color:#6b7585"><i class="icon-package" style="font-size:14px"></i>1 · RETURN</span>
+              <span style="font-size:14px;font-weight:600">3 units back to stock</span>
+              <span style="font-size:13px;color:#4a5567">Cream Crackers 400 g × 2<br>Cola 1.5 L × 1<br>Reason: Damaged packaging</span>
+              <span style="font-size:12.5px;color:#146c43;font-weight:600">Recorded immediately</span>
+            </div>
+            <div style="border:1px solid #e1e5eb;border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;gap:6px">
+              <span style="display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;letter-spacing:.06em;color:#6b7585"><i class="icon-hand-coins" style="font-size:14px"></i>2 · REFUND</span>
+              <span style="font-size:22px;font-weight:700">RM 15.40</span>
+              <span style="font-size:13px;color:#4a5567">To Card •••• 4821 via terminal T-01</span>
+              <span style="font-size:12.5px;color:#174fb0;font-weight:600">Confirmed by the terminal separately</span>
+            </div>
+          </div>
+        </div>
+        <div style="display:flex;justify-content:flex-end;gap:8px;padding:12px 20px;border-top:1px solid #e1e5eb;background:#f7f9fb">
+          <button onClick="{{ closeDlg }}" style="height:42px;padding:0 16px;border-radius:8px;border:1px solid #cfd5de;background:#fff;font-size:14px;font-weight:600;cursor:pointer">Back</button>
+          <button onClick="{{ confirmReturn }}" style="height:42px;padding:0 18px;border-radius:8px;border:0;background:#1b5fd1;color:#fff;font-size:14px;font-weight:600;cursor:pointer">Confirm return · Refund RM 15.40</button>
+        </div>
+      </sc-if>
+    </div>
+  </div>
+</sc-if>
+
+<sc-if value="{{ printFail }}" hint-placeholder-val="{{ false }}">
+  <div role="status" style="position:absolute;right:20px;bottom:20px;z-index:20;width:360px;display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border-radius:10px;background:#0f1a2b;color:#fff;box-shadow:0 10px 30px rgba(14,27,51,.3);font-size:13px">
+    <i class="icon-printer" style="font-size:17px;color:#f5b44a;margin-top:1px"></i>
+    <div style="flex:1;display:flex;flex-direction:column;gap:2px"><span style="font-weight:600">Receipt printer unavailable</span><span style="color:#c3cbd9">Check power and paper. The sale is saved; you can reprint from Sale History.</span></div>
+  </div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;screen&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;01&quot;,&quot;02&quot;,&quot;02b&quot;,&quot;03&quot;,&quot;04&quot;,&quot;05&quot;,&quot;06&quot;,&quot;07&quot;,&quot;08&quot;,&quot;09&quot;,&quot;10&quot;,&quot;11&quot;,&quot;12&quot;,&quot;13&quot;,&quot;14&quot;,&quot;15&quot;,&quot;16&quot;,&quot;17&quot;,&quot;18&quot;,&quot;19&quot;,&quot;20&quot;,&quot;21&quot;,&quot;22&quot;,&quot;23&quot;,&quot;24&quot;,&quot;25&quot;,&quot;26&quot;,&quot;27&quot;,&quot;28&quot;,&quot;29&quot;,&quot;30&quot;],&quot;default&quot;:&quot;02&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;embedded&quot;:{&quot;editor&quot;:null,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;}}">
+const RM=(s)=>(s<0?'−RM ':'RM ')+(Math.abs(s)/100).toLocaleString('en-MY',{minimumFractionDigits:2,maximumFractionDigits:2});
+const CAT=[
+{id:'milk',n:'Fresh Milk',d:'1 L · chilled',p:720,c:'Grocery',s:24},
+{id:'bread',n:'White Bread',d:'600 g',p:390,c:'Grocery',s:6},
+{id:'rice',n:'Jasmine Rice',d:'5 kg',p:1850,c:'Grocery',s:16},
+{id:'oil',n:'Palm Cooking Oil',d:'2 kg',p:1390,c:'Grocery',s:11},
+{id:'water',n:'Mineral Water',d:'1.5 L',p:180,c:'Beverages',s:96},
+{id:'cola',n:'Cola',d:'1.5 L',p:420,c:'Beverages',s:30},
+{id:'crackers',n:'Cream Crackers',d:'400 g',p:560,c:'Snacks',s:18},
+{id:'coffee',n:'3-in-1 White Coffee',d:'20 × 36 g',p:1290,c:'Beverages',s:3},
+{id:'tea',n:'Teh Tarik Mix',d:'15 × 30 g',p:1050,c:'Beverages',s:14},
+{id:'noodles',n:'Instant Noodles Curry',d:'5 × 80 g',p:480,c:'Grocery',s:40},
+{id:'detergent',n:'Laundry Detergent',d:'2.5 kg',p:2190,c:'Household',s:0},
+{id:'soap',n:'Bath Soap',d:'3 × 90 g',p:640,c:'Personal Care',s:22},
+{id:'bcoffee',n:'Black Coffee Powder',d:'200 g',p:890,c:'Beverages',s:9},
+{id:'creamer',n:'Coffee Creamer',d:'450 g',p:980,c:'Grocery',s:12},
+{id:'icoffee',n:'Iced Coffee Can',d:'240 ml',p:260,c:'Beverages',s:48},
+{id:'dish',n:'Dishwashing Liquid',d:'900 ml',p:550,c:'Household',s:20}];
+CAT.forEach((p,i)=>{p.sku='95550'+String(10231+i*37).padStart(6,'0')+'0'+(i%10);});
+const BY=Object.fromEntries(CAT.map(p=>[p.id,p]));
+const CART0=[['milk',2],['noodles',2],['coffee',1],['cola',1],['bread',1],['water',2]];
+const CUST=[{n:'Aisyah R.',ph:'012-••• 4418',id:'MM-000482',ini:'AR'},{n:'Hafiz M.',ph:'012-••• 0356',id:'MM-000601',ini:'HM'}];
+const HELD=[{t:'13:52',ref:'H-0007',label:'Customer fetching wallet',cust:'Walk-in Customer',items:5,amt:2380},{t:'13:10',ref:'H-0006',label:'Price check · rice',cust:'Aisyah R.',items:12,amt:8740},{t:'11:47',ref:'H-0005',label:'No label',cust:'Walk-in Customer',items:2,amt:620}];
+const HIST=[['000141','14:21','Walk-in',3,1260,'Cash','Completed'],['000140','14:09','Aisyah R.',12,8740,'Card','Completed'],['000139','13:58','Walk-in',6,3240,'DuitNow QR','Completed'],['000138','13:41','Walk-in',1,180,'Cash','Completed'],['000137','13:30','Daniel T.',8,5410,'Card','Completed'],['000136','13:02','Walk-in',4,1970,'Cash','Partially returned'],['000135','12:47','Walk-in',2,840,'DuitNow QR','Completed'],['000134','12:31','Priya K.',15,11285,'Card','Refund pending'],['000133','12:10','Walk-in',5,2230,'Cash','Completed'],['000132','11:36','Walk-in',3,1560,'Cash','Completed'],['000131','11:08','Walk-in',5,3570,'Card','Completed'],['000130','10:52','Hafiz M.',7,4120,'Cash','Completed']];
+const TICON={'Cash':'icon-banknote','Card':'icon-credit-card','DuitNow QR':'icon-qr-code'};
+const ST={'Completed':['#e5f4ec','#146c43','icon-circle-check'],'Partially returned':['#eef1f5','#3d4a5e','icon-undo-2'],'Refund pending':['#e8f0fc','#174fb0','icon-clock']};
+const RET0={oil:0,crackers:2,cola:1,soap:0};
+const RETL=[['oil',1],['crackers',2],['cola',1],['soap',1]];
+const DEN=[['RM 100',10000,4],['RM 50',5000,4],['RM 20',2000,5],['RM 10',1000,4],['RM 5',500,3],['RM 1',100,5],['Coins',null,'RM 0.40']];
+const NAMES={'01':'Sale — empty cart','02':'Sale — populated cart','02b':'Sale — Grid view (concept)','03':'Product search results','04':'Product not found','05':'Customer selection','06':'Identified customer','07':'Hold sale','08':'Held sales','09':'Payment selection','10':'Cash payment','11':'Card — waiting','12':'Card — failed','13':'Card — uncertain','14':'DuitNow QR','15':'Sale completed','16':'Sale history','17':'Sale detail','18':'Return — locate sale','19':'Return — select items','20':'Return confirmation','21':'Refund unconfirmed','22':'Shift open','23':'Shift close','24':'Manager override','25':'Printer unavailable','26':'Store Node unavailable','27':'Cloud sync unavailable','28':'Permission denied','29':'Loading','30':'Empty history'};
+function cfg(s){
+  const full=CART0.map(([id,qty])=>({id,qty}));
+  const b={scr:s,view:'sale',q:'',cat:'All',cart:full,sel:'coffee',disc:200,cust:false,dialog:null,cashRecv:5000,tender:'cash',node:'on',sync:'ok',loading:false,detail:false,histEmpty:false,ret:1,retQ:{...RET0},shift:'open',printFail:false,cardState:'wait',browseView:'tiles'};
+  const E={cart:[],sel:null,disc:0};
+  const m={'01':E,'02b':{browseView:'grid'},'03':{q:'coffee'},'04':{q:'9556012345678'},'05':{dialog:'customer'},'06':{cust:true},'07':{dialog:'hold'},'08':{...E,dialog:'held'},'09':{cust:true,dialog:'pay'},'10':{dialog:'cash'},'11':{dialog:'card',cardState:'wait',tender:'card'},'12':{dialog:'card',cardState:'fail',tender:'card'},'13':{dialog:'card',cardState:'unc',tender:'card'},'14':{dialog:'qr',tender:'qr'},'15':{dialog:'success'},'16':{view:'history'},'17':{view:'history',detail:true},'18':{view:'returns',ret:1},'19':{view:'returns',ret:2},'20':{view:'returns',ret:2,dialog:'retConfirm'},'21':{view:'returns',ret:3},'22':{view:'shift'},'23':{view:'shift',shift:'closing'},'24':{dialog:'override'},'25':{dialog:'success',printFail:true},'26':{node:'off',sync:'unknown'},'27':{sync:'down'},'28':{view:'history',detail:true,dialog:'permission'},'29':{...E,loading:true},'30':{view:'history',histEmpty:true}};
+  return {...b,...(m[s]||{})};
+}
+const DLG={customer:['Select customer','icon-users','600px'],hold:['Hold sale','icon-pause','480px'],held:['Held sales','icon-archive-restore','780px'],pay:['Take payment','icon-wallet','640px'],cash:['Cash payment','icon-banknote','680px'],card:['Card payment','icon-credit-card','520px'],qr:['DuitNow QR payment','icon-qr-code','680px'],success:['Payment accepted','icon-receipt','480px'],override:['Manager approval required','icon-shield-check','520px'],permission:['Permission required','icon-lock','480px'],retConfirm:['Confirm return and refund','icon-undo-2','620px']};
+const pill=(label,icon,k)=>{const c={ok:['#e5f4ec','#146c43','#bfe3cf'],bad:['#fcebea','#b3261e','#f3c3bf'],warn:['#fdf3e1','#8a5100','#f0d4a0'],mute:['#f2f4f7','#4a5567','#e1e5eb']}[k];return {label,icon,bg:c[0],fg:c[1],bd:c[2]};};
+
+class Component extends DCLogic {
+  state = cfg((this.props && this.props.screen) || '02');
+  componentDidUpdate(pp){ if(pp.screen!==this.props.screen) this.setState(cfg(this.props.screen||'02')); }
+  upd(id,fn){ this.setState(s=>{const cart=s.cart.map(l=>l.id===id?{...l,qty:fn(l.qty)}:l); return {cart,sel:id};}); }
+  add(id){ const p=BY[id]; if(!p||!p.s) return; this.setState(s=>{const has=s.cart.find(l=>l.id===id); const cart=has?s.cart.map(l=>l.id===id?{...l,qty:l.qty+1}:l):[...s.cart,{id,qty:1}]; return {cart,sel:id,q:''};}); }
+  renderVals(){
+    const s=this.state, set=(o)=>this.setState(o), stop=(f)=>(e)=>{e&&e.stopPropagation&&e.stopPropagation();f();};
+    const node=s.node==='on';
+    const units=s.cart.reduce((a,l)=>a+l.qty,0);
+    const sub=s.cart.reduce((a,l)=>a+BY[l.id].p*l.qty,0);
+    const disc=Math.min(s.disc,sub), total=sub-disc, empty=!s.cart.length;
+    const t={sub:RM(sub),disc:disc?RM(-disc):RM(0),tax:RM(0),round:RM(0),total:RM(total)};
+    const nav=[['sale','Sale','icon-shopping-cart'],['history','History','icon-history'],['returns','Returns','icon-undo-2'],['shift','Shift','icon-clock']].map(([k,label,icon])=>{
+      const on=s.view===k, dis=!node&&k!=='sale';
+      return {label,icon,disabled:dis,current:on?'page':undefined,bg:on?'#1f3a6b':'transparent',fg:dis?'#5d6a82':on?'#fff':'#c3cbd9',fw:on?600:500,cursor:dis?'not-allowed':'pointer',bar:on?'inset 3px 0 0 #5b9bff':'none',trail:dis?'icon-lock':'',go:()=>set({view:k,dialog:null,detail:false,ret:1,shift:'open'})};
+    });
+    const pf=s.printFail;
+    const devices=[{icon:'icon-scan-barcode',label:'Scanner',status:'Ready',dot:'#34c185',fg:'#9fe0c0'},{icon:'icon-printer',label:'Printer',status:pf?'Offline':'Ready',dot:pf?'#f5b44a':'#34c185',fg:pf?'#f8cf85':'#9fe0c0'},{icon:'icon-archive',label:'Drawer',status:'Closed',dot:'#8c98ad',fg:'#c3cbd9'}];
+    const nodeP=node?pill('Store Node online','icon-server','ok'):pill('Store Node offline','icon-server-off','bad');
+    const syncP={ok:pill('Sync healthy','icon-cloud','mute'),down:pill('Cloud sync unavailable · 14 queued','icon-cloud-off','warn'),unknown:pill('Sync status unknown','icon-cloud','mute'),pending:pill('Sync pending · 3','icon-refresh-cw','warn')}[s.sync];
+    const q=s.q.trim().toLowerCase();
+    const pool=CAT.filter(p=>s.cat==='All'||p.c===s.cat);
+    const stock=(p)=>p.s===0?['Out of stock','#b3261e']:p.s<=6?['Low · '+p.s,'#8a5100']:['In stock '+p.s,'#146c43'];
+    const products=pool.map(p=>{const [st,fg]=stock(p);return {...p,price:RM(p.p),stock:st,stockFg:fg,out:p.s===0,op:p.s===0?0.55:1,cursor:p.s===0?'not-allowed':'pointer',add:()=>this.add(p.id)};});
+    const matches=q?CAT.filter(p=>(p.n+' '+p.d+' '+p.sku).toLowerCase().includes(q)):[];
+    const results=matches.map((p,i)=>{const [st,fg]=stock(p);return {...p,price:RM(p.p),stock:st,stockFg:fg,bg:i===0?'#eef4fd':'#fff',ring:i===0?'inset 0 0 0 2px #1b5fd1':'none',add:()=>this.add(p.id)};});
+    const gridOn2=s.browseView==='grid';
+    const gridRows=pool.map((p,i)=>{const [st,fg]=stock(p);const sel=p.id===s.sel;return {...p,price:RM(p.p),stock:st,stockFg:fg,out:p.s===0,op:p.s===0?0.55:1,cursor:p.s===0?'not-allowed':'pointer',bg:sel?'#eef4fd':'#fff',ring:sel?'inset 0 0 0 2px #1b5fd1':'none',add:()=>this.add(p.id)};});
+    const chips=['All','Beverages','Snacks','Grocery','Household','Personal Care'].map(c=>{const on=s.cat===c;return {label:c,count:c==='All'?CAT.length:CAT.filter(p=>p.c===c).length,on,bg:on?'#0e1b33':'#fff',fg:on?'#fff':'#3d4a5e',bd:on?'#0e1b33':'#cfd5de',pick:()=>set({cat:c})};});
+    const lines=s.cart.map(l=>{const p=BY[l.id],on=s.sel===l.id;return {name:p.n+' '+p.d.split(' · ')[0],detail:p.c,unit:RM(p.p),qty:l.qty,total:RM(p.p*l.qty),bg:on?'#eef4fd':'transparent',ring:on?'inset 0 0 0 1.5px #1b5fd1':'none',select:()=>set({sel:l.id}),inc:stop(()=>this.upd(l.id,x=>x+1)),dec:stop(()=>this.upd(l.id,x=>Math.max(1,x-1))),remove:stop(()=>this.setState(st=>{const cart=st.cart.filter(x=>x.id!==l.id);return {cart,disc:cart.length?st.disc:0};}))};});
+    const methods=[['cash','Cash','icon-banknote',true],['card','Card','icon-credit-card',true],['qr','DuitNow','icon-qr-code',true],['other','Other','icon-wallet',false]];
+    const payMethods=methods.map(([k,label,icon,en])=>{const ok=en&&!empty&&node;return {label,icon,disabled:!ok,title:en?label:'Not configured for this store',bg:'#fff',fg:ok?'#0f1a2b':'#9aa3b2',bd:'#cfd5de',cursor:ok?'pointer':'not-allowed',go:()=>set(k==='cash'?{dialog:'cash',tender:'cash'}:k==='card'?{dialog:'card',cardState:'wait',tender:'card'}:{dialog:'qr',tender:'qr'})};});
+    const payTiles=methods.map(([k,label,icon,en],i)=>({label:k==='qr'?'DuitNow QR':label,icon,disabled:!en,sub:en?(k==='cash'?'Drawer ready':k==='card'?'Terminal T-01 ready':'Provider connected'):'Not configured',dot:en?'#34c185':'#9aa3b2',subFg:en?'#4a5567':'#6b7585',bd:i===0?'#1b5fd1':'#e1e5eb',ring:i===0?'0 0 0 3px #dbe7fb':'none',bg:en?'#fff':'#f7f9fb',ibg:en?'#e8f0fc':'#eef1f5',ifg:en?'#1b5fd1':'#9aa3b2',cursor:en?'pointer':'not-allowed',op:en?1:0.75,go:()=>payMethods[i].go()}));
+    const rounded=Math.round(total/5)*5, change=s.cashRecv-rounded, short=change<0;
+    const cash={due:RM(rounded),round:RM(rounded-total),recv:(s.cashRecv/100).toFixed(2),change:RM(Math.abs(change)),chLabel:short?'Still due':'Change due',chBg:short?'#fcebea':'#e5f4ec',chFg:short?'#b3261e':'#146c43',short,btnBg:short?'#9aa3b2':'#157347'};
+    const quick=[['Exact',rounded],['RM 50',5000],['RM 100',10000],['RM 20',2000],['RM 10',1000],['Clear',0]].map(([label,v])=>{const on=s.cashRecv===v&&v>0;return {label,bg:on?'#e8f0fc':'#fff',bd:on?'#1b5fd1':'#cfd5de',fg:on?'#174fb0':'#0f1a2b',go:()=>set({cashRecv:v})};});
+    const now='14:33:02';
+    const CS={
+      wait:{icon:'icon-credit-card',ibg:'#e8f0fc',ifg:'#174fb0',tag:'WAITING',title:'Waiting for card terminal',body:'Ask the customer to tap, insert or swipe their card on terminal T-01.',warn:false,steps:[['icon-circle-check','#146c43','Sent to terminal T-01',now,500],['icon-loader-circle','#1b5fd1','Waiting for customer','',600],['icon-circle','#9aa3b2','Terminal result','',500]],actions:[['Cancel payment',()=>set({dialog:'pay'}),'1px solid #cfd5de','#fff','#b3261e']]},
+      fail:{icon:'icon-circle-x',ibg:'#fcebea',ifg:'#b3261e',tag:'NOT APPROVED',title:'Card payment not approved',body:'The terminal returned “Declined”. The sale is still open and nothing has been recorded as paid.',warn:false,steps:[['icon-circle-check','#146c43','Sent to terminal T-01',now,500],['icon-circle-check','#146c43','Card presented','14:33:19',500],['icon-circle-x','#b3261e','Declined by terminal','14:33:24',600]],actions:[['Choose another method',()=>set({dialog:'pay'}),'1px solid #cfd5de','#fff','#0f1a2b'],['Try card again',()=>set({cardState:'wait'}),'0','#1b5fd1','#fff']]},
+      unc:{icon:'icon-circle-help',ibg:'#fdf3e1',ifg:'#8a5100',tag:'UNCONFIRMED',title:'Payment result unknown',body:'Terminal T-01 stopped responding before returning a result. The customer may or may not have been charged.',warn:true,steps:[['icon-circle-check','#146c43','Sent to terminal T-01',now,500],['icon-circle-check','#146c43','Card presented','14:33:19',500],['icon-circle-help','#8a5100','No result received · attempt CP-000142-1','—',600]],actions:[['Get manager help',()=>set({dialog:'override'}),'1px solid #cfd5de','#fff','#0f1a2b'],['Check terminal result',()=>{},'0','#1b5fd1','#fff']]}
+    }[s.cardState];
+    const card={...CS,steps:CS.steps.map(([icon,fg,label,time,fw])=>({icon,fg,label,time,fw})),actions:CS.actions.map(([label,go,bd,bg,fg])=>({label,go,bd,bg,fg}))};
+    const tRows={cash:[{icon:'icon-banknote',label:'Cash received',val:RM(s.cashRecv),fw:600},{icon:'icon-coins',label:'Change given',val:RM(Math.max(0,change)),fw:700}],card:[{icon:'icon-credit-card',label:'Card •••• 4821 · approved',val:RM(total),fw:600}],qr:[{icon:'icon-qr-code',label:'DuitNow QR · DN-8841233',val:RM(total),fw:600}]}[s.tender];
+    const succ={total:RM(s.tender==='cash'?rounded:total),rows:tRows,pIcon:pf?'icon-triangle-alert':'icon-printer',pTitle:pf?'Receipt not printed.':'Receipt printed.',pBody:pf?'Printer unavailable.':'Printer POS-01-P1',pBg:pf?'#fdf3e1':'#f7f9fb',pBd:pf?'#f0d4a0':'#e1e5eb',pFg:pf?'#6b4000':'#3d4a5e'};
+    const dm=s.dialog&&DLG[s.dialog];
+    const dlgTone={success:['#e5f4ec','#146c43'],override:['#eef1f5','#0e1b33'],permission:['#eef1f5','#0e1b33']}[s.dialog]||['#e8f0fc','#1b5fd1'];
+    const dlg=dm?{t:dm[0],i:dm[1],w:dm[2],ibg:dlgTone[0],ifg:dlgTone[1]}:{t:'',i:'',w:'480px',ibg:'',ifg:''};
+    const d={};Object.keys(DLG).forEach(k=>d[k]=s.dialog===k);
+    const customers=CUST.map((c,i)=>({...c,bg:i===0?'#eef4fd':'#fff',bd:i===0?'#1b5fd1':'#e1e5eb',ring:i===0?'0 0 0 3px #dbe7fb':'none'}));
+    const held=HELD.map((h,i)=>({...h,cashier:'Demo Cashier',amt:RM(h.amt),bg:i===0?'#eef4fd':'#fff',ring:i===0?'inset 0 0 0 2px #1b5fd1':'none',btnBd:i===0?'0':'1px solid #cfd5de',btnBg:i===0?'#1b5fd1':'#fff',btnFg:i===0?'#fff':'#0f1a2b'}));
+    const mkH=(r,sel)=>{const st=ST[r[6]];return {r:'POS01-'+r[0],t:r[1],c:r[2]==='Walk-in'?'Walk-in Customer':r[2],i:r[3],total:RM(r[4]),tender:r[5],tIcon:TICON[r[5]],s:r[6],sBg:st[0],sFg:st[1],sIcon:st[2],bg:sel?'#eef4fd':'#fff',ring:sel?'inset 0 0 0 2px #1b5fd1':'none',open:()=>set({detail:true})};};
+    const hist=s.histEmpty?[]:HIST.map(r=>mkH(r,s.detail&&r[0]==='000139'));
+    const detailLines=[['Jasmine Rice 5 kg',1,1850],['Mineral Water 1.5 L',3,180],['Cream Crackers 400 g',1,560],['White Bread 600 g',1,390]].map(([n,qty,p])=>({n,qty,unit:RM(p),total:RM(p*qty)}));
+    const retLines=RETL.map(([id,sold])=>{const p=BY[id],qv=s.retQ[id]||0;return {n:p.n+' '+p.d,unit:RM(p.p),sold,qty:qv,amt:qv?RM(p.p*qv):'—',bg:qv?'#f7fafe':'#fff',cbg:qv?'#1b5fd1':'#fff',cbd:qv?'#1b5fd1':'#9aa3b2',checkOp:qv?1:0,inc:()=>this.setState(st=>({retQ:{...st.retQ,[id]:Math.min(sold,(st.retQ[id]||0)+1)}})),dec:()=>this.setState(st=>({retQ:{...st.retQ,[id]:Math.max(0,(st.retQ[id]||0)-1)}}))};});
+    const retU=RETL.reduce((a,[id])=>a+(s.retQ[id]||0),0), retA=RETL.reduce((a,[id])=>a+(s.retQ[id]||0)*BY[id].p,0);
+    const retSteps=['Find sale','Select items','Refund'].map((label,i)=>{const n=i+1,done=n<s.ret,cur=n===s.ret;return {label,num:done?'':String(n),icon:done?'icon-check':'',bg:done?'#157347':cur?'#1b5fd1':'#fff',fg:done||cur?'#fff':'#6b7585',bd:done?'#157347':cur?'#1b5fd1':'#cfd5de',fw:cur?600:500,tc:cur?'#0f1a2b':'#4a5567',lineOp:i<2?1:0};});
+    const closing=s.shift==='closing';
+    const shiftSteps=[['Open','icon-circle-check'],['Closing','icon-loader-circle'],['Closed','icon-lock']].map(([label,icon],i)=>{const cur=(i===0&&!closing)||(i===1&&closing);return {label,icon,bg:cur?(i===0?'#e5f4ec':'#fdf3e1'):'#fff',fg:cur?(i===0?'#146c43':'#8a5100'):'#6b7585',bd:cur?(i===0?'#bfe3cf':'#f0d4a0'):'#e1e5eb',arrowOp:i<2?1:0};});
+    const denoms=DEN.map(([label,v,qv],i)=>({label,qty:v?qv:'0.40',amt:v?RM(v*qv):qv,bd:i===5?'#1b5fd1':'#cfd5de',ring:i===5?'0 0 0 3px #dbe7fb':'none'}));
+    return {
+      rootH:this.props.embedded?'100%':'100vh', scrLabel:s.scr+' '+(NAMES[s.scr]||''),
+      nav,devices,nodeP,syncP,shiftDot:closing?'#f5b44a':'#34c185',shiftSide:closing?'Shift closing':'Shift open · since 08:00',
+      isSale:s.view==='sale',isHistory:s.view==='history',isReturns:s.view==='returns',isShift:s.view==='shift',
+      cloudBanner:s.sync==='down',q:s.q,hasQ:!!s.q,onQ:(e)=>set({q:e.target.value}),clearQ:()=>set({q:''}),loading:s.loading,
+      chips,products,results,resultCount:results.length+(results.length===1?' result':' results'),
+      showTiles:!q&&!s.loading&&!gridOn2,showGridView:!q&&!s.loading&&gridOn2,showResults:!!q&&results.length>0,showNotFound:!!q&&!results.length,skel:Array.from({length:12},(_,i)=>i),gridRows,
+      tilesOn:!gridOn2,gridOn:gridOn2,tilesBg:!gridOn2?'#fff':'transparent',tilesFg:!gridOn2?'#0f1a2b':'#6b7585',gridBg:gridOn2?'#fff':'transparent',gridFg:gridOn2?'#0f1a2b':'#6b7585',
+      toTiles:()=>set({browseView:'tiles'}),toGrid:()=>set({browseView:'grid'}),
+      nodeDown:!node,lines,cartEmpty:empty,itemCount:units+(units===1?' item':' items'),clearFg:empty?'#9aa3b2':'#b3261e',
+      clearCart:()=>set({cart:[],sel:null,disc:0}),
+      custName:s.cust?'Aisyah R.':'Walk-in Customer',custSub:s.cust?'Member MM-000482 · 012-••• 4418':'No customer attached',custBtn:s.cust?'Change':'Select',custIcon:s.cust?'icon-user-round':'icon-user',custBg:s.cust?'#e8f0fc':'#f2f4f7',custFg:s.cust?'#1b5fd1':'#6b7585',
+      openCustomer:()=>set({dialog:'customer'}),useWalkin:()=>set({cust:false,dialog:null}),pickCustomer:()=>set({cust:true,dialog:null}),
+      openHold:()=>set({dialog:'hold'}),doHold:()=>set({cart:[],sel:null,disc:0,dialog:null,cust:false}),openHeld:()=>set({dialog:'held'}),
+      recall:()=>set({cart:CART0.map(([id,qty])=>({id,qty})),disc:200,sel:null,dialog:null}),openDiscount:()=>set({dialog:'override'}),
+      holdItems:s.cart.length+' lines · '+units+' units',t,payMethods,payTiles,completeSale:()=>set({dialog:'pay'}),completeBg:empty||!node?'#9aa3b2':'#157347',
+      hasDialog:!!dm,dlg,d,closeDlg:()=>set({dialog:null}),openPay:()=>set({dialog:'pay'}),customers,held,
+      cash,quick,confirmCash:()=>set({dialog:'success',tender:'cash'}),card,
+      simOk:()=>set({dialog:'success',tender:'card'}),simFail:()=>set({cardState:'fail'}),simUnc:()=>set({cardState:'unc'}),simQrOk:()=>set({dialog:'success',tender:'qr'}),
+      succ,printFail:pf&&s.dialog==='success',newSale:()=>this.setState({...cfg('01')}),viewSale:()=>set({...cfg('17')}),
+      toOverride:()=>set({dialog:'override'}),startReturn:()=>set({dialog:'permission'}),
+      histSummary:s.histEmpty?'POS-01 · Sat, 26 Sep 2026':'12 of 41 sales · POS-01 · Sat, 26 Sep 2026',
+      histFilters:[{icon:'icon-calendar',k:'Date',v:'Today'},{icon:'icon-circle-dot',k:'Status',v:'All'},{icon:'icon-wallet',k:'Tender',v:'All'},{icon:'icon-user',k:'Cashier',v:'All'}],
+      histCols:s.detail?'124px 92px minmax(0,1fr) 44px 88px 0px 124px':'140px 110px minmax(0,1fr) 60px 110px 130px 160px',
+      tenderDisplay:s.detail?'none':'inline-flex',
+      hist,histEmpty:s.histEmpty,detail:s.detail,closeDetail:()=>set({detail:false}),detailLines,
+      ret1:s.ret===1,ret2:s.ret===2,ret3:s.ret===3,retSteps,retRecent:HIST.slice(0,5).map(r=>mkH(r,false)),pickSale:()=>set({ret:2}),
+      retLines,retUnits:retU+(retU===1?' unit':' units'),retAmt:RM(retA),reviewReturn:()=>set({dialog:'retConfirm'}),confirmReturn:()=>set({dialog:null,ret:3}),goSale:()=>set({view:'sale'}),
+      shiftOpen:!closing,shiftClosing:closing,shiftSteps,startClose:()=>set({shift:'closing'}),backShift:()=>set({shift:'open'}),openCloseShift:()=>{},denoms
+    };
+  }
+}
+</script>
+</body>
+</html>
