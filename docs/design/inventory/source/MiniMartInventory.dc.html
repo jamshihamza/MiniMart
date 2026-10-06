@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/lucide-static@0.469.0/font/lucide.css">
+<style>
+html,body{margin:0;height:100%;background:#f2f4f7}
+button,input,select,textarea{font-family:inherit;color:inherit}
+[class^="icon-"]{font-family:lucide!important;font-style:normal;line-height:1;display:inline-block;speak:never}
+*:focus-visible{outline:2px solid #1b5fd1;outline-offset:2px}
+a{color:#1b5fd1}a:hover{color:#174fb0}
+</style>
+</helmet>
+<div data-screen-label="{{ scrLabel }}" style="position:relative;display:flex;width:100%;height:{{ rootH }};min-width:1160px;background:#f2f4f7;font-family:'IBM Plex Sans',system-ui,sans-serif;color:#0f1a2b;overflow:hidden;font-variant-numeric:tabular-nums;font-size:13.5px;line-height:1.35">
+
+<aside style="width:190px;flex:none;background:#0e1b33;color:#c3cbd9;display:flex;flex-direction:column;padding:14px 10px 12px;gap:6px;overflow:auto">
+  <div style="display:flex;align-items:center;gap:9px;padding:2px 6px 10px">
+    <div style="width:30px;height:30px;border-radius:8px;background:#1b5fd1;display:grid;place-items:center;color:#fff"><i class="icon-store" style="font-size:16px"></i></div>
+    <div style="display:flex;flex-direction:column;gap:1px"><span style="color:#fff;font-weight:700;font-size:13px;letter-spacing:.08em">MINIMART</span><span style="font-size:10.5px;color:#8c98ad">Back Office</span></div>
+  </div>
+  <sc-for list="{{ nav }}" as="grp" hint-placeholder-count="6">
+    <div style="display:flex;flex-direction:column;gap:1px;margin-top:6px">
+      <span style="font-size:10px;font-weight:600;letter-spacing:.09em;color:#8c98ad;padding:4px 10px">{{ grp.label }}</span>
+      <sc-for list="{{ grp.items }}" as="it" hint-placeholder-count="3">
+        <button onClick="{{ it.go }}" disabled="{{ it.stub }}" style="display:flex;align-items:center;gap:9px;height:34px;padding:0 10px;border-radius:7px;border:0;background:{{ it.bg }};color:{{ it.fg }};font-size:12.5px;font-weight:{{ it.fw }};cursor:{{ it.cursor }};text-align:left">
+          <i class="{{ it.icon }}" style="font-size:15px"></i><span style="flex:1">{{ it.label }}</span>
+          <sc-if value="{{ it.stub }}" hint-placeholder-val="{{ false }}"><i class="icon-corner-down-right" style="font-size:11px;color:#4d5a72"></i></sc-if>
+        </button>
+      </sc-for>
+    </div>
+  </sc-for>
+  <div style="margin-top:auto;padding-top:10px"><span style="font-size:10px;color:#8c98ad;padding:0 10px">Structural navigation only outside this package</span></div>
+</aside>
+
+<div style="flex:1;min-width:0;display:flex;flex-direction:column">
+  <header style="height:50px;flex:none;background:#fff;border-bottom:1px solid #e1e5eb;display:flex;align-items:center;padding:0 16px;gap:16px">
+    <div style="display:flex;align-items:center;gap:6px;font-weight:600;font-size:13px"><i class="icon-building-2" style="font-size:15px;color:#4a5567"></i>MiniMart Sdn Bhd</div>
+    <div style="display:flex;align-items:center;gap:6px;font-size:12.5px;color:#4a5567"><i class="icon-store" style="font-size:14px"></i>Store <span style="font-weight:600;color:#0f1a2b">MiniMart Central</span></div>
+    <div style="display:flex;align-items:center;gap:6px;font-size:12.5px;color:#4a5567"><i class="icon-calendar" style="font-size:14px"></i>Business date <span style="color:#0f1a2b;font-weight:500">Sat, 26 Sep 2026</span></div>
+    <div style="margin-left:auto;display:flex;align-items:center;gap:8px">
+      <div title="Store Node connection" style="display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 10px;border-radius:999px;border:1px solid {{ nodeP.bd }};background:{{ nodeP.bg }};color:{{ nodeP.fg }};font-size:12px;font-weight:600"><i class="{{ nodeP.icon }}" style="font-size:13px"></i>{{ nodeP.label }}</div>
+      <div title="Cloud synchronisation" style="display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 10px;border-radius:999px;border:1px solid {{ syncP.bd }};background:{{ syncP.bg }};color:{{ syncP.fg }};font-size:12px;font-weight:600"><i class="{{ syncP.icon }}" style="font-size:13px"></i>{{ syncP.label }}</div>
+      <button style="display:flex;align-items:center;gap:7px;height:32px;padding:0 8px 0 4px;border-radius:7px;border:1px solid #e1e5eb;background:#fff;cursor:pointer;font-size:12.5px;font-weight:500"><span style="width:24px;height:24px;border-radius:50%;background:#e8f0fc;color:#1b5fd1;display:grid;place-items:center;font-size:10.5px;font-weight:700">SM</span>Siti M. <span style="color:#5b6576">· {{ roleLabel }}</span></button>
+    </div>
+  </header>
+
+  <div style="position:relative;flex:1;min-height:0;overflow:auto">
+
+  <sc-if value="{{ nodeDown }}" hint-placeholder-val="{{ false }}">
+    <div style="padding:40px;display:flex;justify-content:center">
+      <div style="max-width:540px;width:100%;background:#fff;border:1px solid #e1e5eb;border-radius:14px;padding:24px;display:flex;flex-direction:column;gap:14px">
+        <div style="display:flex;gap:14px;align-items:flex-start">
+          <div style="width:44px;height:44px;flex:none;border-radius:11px;background:#fcebea;color:#b3261e;display:grid;place-items:center"><i class="icon-server-off" style="font-size:22px"></i></div>
+          <div style="display:flex;flex-direction:column;gap:6px"><span style="font-size:17px;font-weight:600">Store Node unavailable</span><span style="font-size:13.5px;color:#4a5567">Inventory Store Node-backed operations — stock levels, movements, adjustments and counts for MiniMart Central — are unavailable until the connection returns. This is separate from Cloud Sync status.</span></div>
+        </div>
+        <button style="height:40px;border-radius:8px;border:0;background:#1b5fd1;color:#fff;font-size:14px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px"><i class="icon-refresh-cw" style="font-size:15px"></i>Retry connection</button>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ nodeUp }}" hint-placeholder-val="{{ true }}">
+  <sc-if value="{{ cloudDown }}" hint-placeholder-val="{{ false }}">
+    <div style="display:flex;align-items:center;gap:10px;padding:10px 22px;background:#fdf3e1;border-bottom:1px solid #f0d4a0;color:#6b4000;font-size:12.5px"><i class="icon-cloud-off" style="font-size:16px"></i><div style="flex:1"><strong style="font-weight:600">Cloud sync unavailable.</strong> Local inventory operations on the Store Node continue normally — stock, movements, adjustments and counts remain fully usable. 22 records are queued.</div></div>
+  </sc-if>
+
+  <sc-if value="{{ isDash }}" hint-placeholder-val="{{ false }}">
+    <div style="padding:20px 24px;display:flex;flex-direction:column;gap:16px">
+      <div style="display:flex;align-items:baseline;gap:10px"><h1 style="font-size:19px;font-weight:700;margin:0">Inventory Summary</h1><span style="font-size:12.5px;color:#5b6576">MiniMart Central · Sat, 26 Sep 2026</span></div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px">
+        <sc-for list="{{ invTiles }}" as="t" hint-placeholder-count="7">
+          <div style="background:#fff;border:1px solid #e1e5eb;border-radius:11px;padding:14px 16px;display:flex;flex-direction:column;gap:6px">
+            <span style="display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:600;color:#5b6576"><i class="{{ t.icon }}" style="font-size:13px"></i>{{ t.label }}</span>
+            <span style="font-size:24px;font-weight:700;color:{{ t.vc }}">{{ t.value }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isList }}" hint-placeholder-val="{{ false }}">
+    <div style="padding:16px 22px;display:flex;flex-direction:column;gap:12px;height:100%;overflow:auto">
+      <div style="display:flex;align-items:baseline;gap:10px">
+        <h1 style="font-size:19px;font-weight:700;margin:0">Inventory</h1>
+        <span style="font-size:12.5px;color:#5b6576">Store: MiniMart Central</span>
+        <sc-if value="{{ readOnly }}" hint-placeholder-val="{{ false }}"><span style="display:inline-flex;align-items:center;gap:5px;height:22px;padding:0 8px;border-radius:999px;background:#eef1f5;color:#3d4a5e;font-size:11.5px;font-weight:600"><i class="icon-lock" style="font-size:12px"></i>Read-only</span></sc-if>
+        <div style="margin-left:auto;display:flex;gap:8px">
+          <button onClick="{{ goNewAdj }}" disabled="{{ readOnly }}" style="height:34px;padding:0 12px;border-radius:8px;border:1px solid #cfd5de;background:#fff;font-size:12.5px;font-weight:600;cursor:pointer">New Adjustment</button>
+          <button onClick="{{ goNewCount }}" disabled="{{ readOnly }}" style="height:34px;padding:0 14px;border-radius:8px;border:0;background:{{ newCountBg }};color:#fff;font-size:12.5px;font-weight:600;cursor:pointer">New Stock Count</button>
+          <div style="position:relative">
+            <button onClick="{{ toggleMore }}" disabled="{{ readOnly }}" style="height:34px;padding:0 10px;border-radius:8px;border:1px solid #cfd5de;background:#fff;font-size:12.5px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:5px;color:#3d4a5e">More<i class="icon-chevron-down" style="font-size:12px"></i></button>
+            <sc-if value="{{ moreOpen }}" hint-placeholder-val="{{ false }}">
+              <div style="position:absolute;right:0;top:38px;background:#fff;border:1px solid #e1e5eb;border-radius:9px;box-shadow:0 8px 20px rgba(14,27,51,.14);min-width:160px;z-index:6;padding:5px">
+                <button onClick="{{ goOpening }}" style="width:100%;text-align:left;height:32px;padding:0 10px;border:0;background:transparent;font-size:12.5px;color:#3d4a5e;cursor:pointer;border-radius:6px">Opening Stock</button>
+              </div>
+            </sc-if>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <sc-for list="{{ secondaryNav }}" as="n" hint-placeholder-count="3">
+          <button onClick="{{ n.go }}" style="height:32px;padding:0 12px;border-radius:8px;border:1px solid #cfd5de;background:#fff;font-size:12px;font-weight:600;cursor:pointer;color:#3d4a5e">{{ n.label }}</button>
+        </sc-for>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+        <div style="display:flex;align-items:center;gap:8px;height:36px;padding:0 12px;flex:1;min-width:220px;max-width:360px;background:#fff;border:1px solid #cfd5de;border-radius:8px"><i class="icon-search" style="font-size:15px;color:#5b6576"></i><span style="font-size:13px;color:#6b7585">Barcode, item code or description</span></div>
+        <sc-for list="{{ invFilters }}" as="f" hint-placeholder-count="5">
+          <button aria-pressed="{{ f.on }}" style="height:36px;padding:0 11px;border-radius:8px;border:1px solid {{ f.bd }};background:{{ f.bg }};color:{{ f.fg }};font-size:12.5px;font-weight:600;cursor:pointer">{{ f.label }}</button>
+        </sc-for>
+        <span style="margin-left:auto;font-size:12px;color:#5b6576">{{ invResultLabel }}</span>
+      </div>
+      <div role="table" aria-label="Inventory list" style="flex:1;min-height:0;background:#fff;border:1px solid #e1e5eb;border-radius:11px;overflow:auto">
+        <div role="row" style="position:sticky;top:0;display:grid;grid-template-columns:minmax(200px,1.6fr) 100px 110px 84px 84px 84px 100px 110px 110px 96px;min-width:1160px;gap:10px;padding:8px 14px;background:#f7f9fb;border-bottom:1px solid #e1e5eb;font-size:10.5px;font-weight:600;letter-spacing:.04em;color:#5b6576"><span role="columnheader">PRODUCT</span><span role="columnheader">ITEM CODE</span><span role="columnheader">CATEGORY</span><span role="columnheader">BASE</span><span role="columnheader">ON HAND</span><span role="columnheader">AVAIL.</span><span role="columnheader">STOCK STATUS</span><span role="columnheader">BATCH/EXP</span><span role="columnheader">MOVING WAC</span><span role="columnheader">LAST MOVEMENT</span></div>
+        <sc-for list="{{ invRows }}" as="p" hint-placeholder-count="8">
+          <div role="row" tabIndex="0" onClick="{{ p.open }}" onKeyDown="{{ p.onKey }}" aria-label="{{ p.ariaLabel }}" style="display:grid;grid-template-columns:minmax(200px,1.6fr) 100px 110px 84px 84px 84px 100px 110px 110px 96px;min-width:1160px;align-items:center;gap:10px;padding:0 14px;height:46px;border-top:1px solid #eef1f5;cursor:pointer" style-hover="background:#f7f9fb">
+            <span role="cell" style="font-weight:600;font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ p.n }}</span>
+            <span role="cell" style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#4a5567">{{ p.code }}</span>
+            <span style="font-size:12px;color:#4a5567;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ p.cat }}</span>
+            <span style="font-size:12px;color:#4a5567">{{ p.base }}</span>
+            <span style="font-size:13px;font-weight:600;color:{{ p.qtyFg }}">{{ p.onHand }}</span>
+            <span style="font-size:13px;color:#4a5567">{{ p.avail }}</span>
+            <span style="display:inline-flex;align-items:center;gap:5px;justify-self:start;height:22px;padding:0 8px;border-radius:999px;background:{{ p.stBg }};color:{{ p.stFg }};font-size:11px;font-weight:600;white-space:nowrap"><i class="{{ p.stIcon }}" style="font-size:12px"></i>{{ p.st }}</span>
+            <span style="font-size:11.5px;color:#4a5567">{{ p.batchExp }}</span>
+            <span style="font-size:12.5px;font-family:'IBM Plex Mono',monospace;color:{{ p.wacFg }}">{{ p.wac }}</span>
+            <span style="font-size:11.5px;color:#5b6576">{{ p.lastMv }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isDetail }}" hint-placeholder-val="{{ false }}">
+    <div style="padding:16px 22px;display:flex;flex-direction:column;gap:14px;height:100%;overflow:auto">
+      <div style="display:flex;align-items:center;gap:14px;padding-bottom:2px">
+        <div style="width:52px;height:52px;flex:none;border-radius:9px;background:#f7f8fa;border:1px dashed #d5dae2;display:grid;place-items:center"><i class="icon-image" style="font-size:20px;color:#b7bfcb"></i></div>
+        <div style="display:flex;flex-direction:column;gap:2px;flex:1;min-width:0"><h1 style="font-size:18px;font-weight:700;margin:0">{{ dItem.n }}</h1><span style="font-size:12.5px;color:#5b6576;font-family:'IBM Plex Mono',monospace">{{ dItem.code }} · Store: MiniMart Central</span></div>
+        <span style="display:inline-flex;align-items:center;gap:5px;height:24px;padding:0 9px;border-radius:999px;background:{{ dItem.stBg }};color:{{ dItem.stFg }};font-size:12px;font-weight:600"><i class="{{ dItem.stIcon }}" style="font-size:13px"></i>{{ dItem.st }}</span>
+      </div>
+      <sc-if value="{{ wacAuth }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:10px;background:#e8f0fc;border:1px solid #b9cff2;color:#174fb0;font-size:12.5px"><i class="icon-shield-check" style="font-size:15px"></i>Authorized cost view — Moving WAC visible because your role has cost-visibility permission.</div>
+      </sc-if>
+      <div style="display:flex;gap:4px;border-bottom:1px solid #e1e5eb">
+        <sc-for list="{{ invTabs }}" as="t" hint-placeholder-count="6">
+          <button onClick="{{ t.go }}" style="padding:9px 13px;border:0;background:transparent;font-size:12.5px;font-weight:{{ t.fw }};color:{{ t.fg }};box-shadow:{{ t.ring }};cursor:pointer">{{ t.label }}</button>
+        </sc-for>
+      </div>
+      <div style="flex:1;overflow:auto">{{ invTabContent }}</div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isBatchList }}" hint-placeholder-val="{{ false }}">
+    <div style="padding:16px 22px;display:flex;flex-direction:column;gap:14px">
+      <h1 style="font-size:19px;font-weight:700;margin:0">{{ batchListTitle }}</h1>
+      <div role="table" aria-label="{{ batchListTitle }} batches" style="background:#fff;border:1px solid #e1e5eb;border-radius:11px;overflow:hidden">
+        <div role="row" style="display:grid;grid-template-columns:minmax(180px,1.4fr) 120px 90px 140px 120px 110px 130px;gap:10px;padding:8px 14px;background:#f7f9fb;border-bottom:1px solid #e1e5eb;font-size:10.5px;font-weight:600;color:#5b6576"><span role="columnheader">PRODUCT</span><span role="columnheader">BATCH</span><span role="columnheader">QTY</span><span role="columnheader">SOURCE / RECEIVED</span><span role="columnheader">EXPIRY DATE</span><span role="columnheader">EXPIRY STATUS</span><span role="columnheader">STORE</span></div>
+        <sc-for list="{{ batchRows }}" as="b" hint-placeholder-count="4">
+          <div role="row" style="display:grid;grid-template-columns:minmax(180px,1.4fr) 120px 90px 140px 120px 110px 130px;gap:10px;align-items:center;padding:0 14px;height:44px;border-top:1px solid #eef1f5;font-size:12.5px">
+            <span role="cell" style="font-weight:600">{{ b.n }}</span><span role="cell" style="font-family:'IBM Plex Mono',monospace;font-size:11.5px">{{ b.batch }}</span><span role="cell">{{ b.qty }}</span><span role="cell" style="font-size:11.5px;color:#4a5567">{{ b.received }}</span><span role="cell">{{ b.expiry }}</span>
+            <span role="cell" style="display:inline-flex;align-items:center;gap:5px;height:22px;padding:0 8px;border-radius:999px;background:{{ b.stBg }};color:{{ b.stFg }};font-size:11px;font-weight:600"><i class="{{ b.stIcon }}" style="font-size:12px"></i>{{ b.st }}</span>
+            <span style="font-size:12px;color:#4a5567">MiniMart Central</span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isMovements }}" hint-placeholder-val="{{ false }}">
+    <div style="padding:16px 22px;display:flex;flex-direction:column;gap:14px">
+      <div style="display:flex;align-items:baseline;gap:10px"><h1 style="font-size:19px;font-weight:700;margin:0">Movement History — Store-wide</h1><span style="font-size:12.5px;color:#5b6576">Append-only. Every row traces to a source document.</span></div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <sc-for list="{{ moveFilters }}" as="f" hint-placeholder-count="6">
+          <button aria-pressed="{{ f.on }}" style="height:32px;padding:0 11px;border-radius:8px;border:1px solid {{ f.bd }};background:{{ f.bg }};color:{{ f.fg }};font-size:12px;font-weight:600;cursor:pointer">{{ f.label }}</button>
+        </sc-for>
+      </div>
+      <div role="table" aria-label="Movement history, store-wide" style="background:#fff;border:1px solid #e1e5eb;border-radius:11px;overflow:auto">
+        <div role="row" style="display:grid;grid-template-columns:110px 130px 130px minmax(160px,1.4fr) 80px 80px 90px 70px 100px 1fr;min-width:1200px;gap:10px;padding:8px 14px;background:#f7f9fb;border-bottom:1px solid #e1e5eb;font-size:10.5px;font-weight:600;color:#5b6576"><span role="columnheader">DATE/TIME</span><span role="columnheader">TYPE</span><span role="columnheader">SOURCE DOC</span><span role="columnheader">PRODUCT</span><span role="columnheader">QTY IN</span><span role="columnheader">QTY OUT</span><span role="columnheader">RUNNING</span><span role="columnheader">UOM</span><span role="columnheader">ACTOR</span><span role="columnheader">REASON / REF</span></div>
+        <sc-for list="{{ moveRows }}" as="m" hint-placeholder-count="6">
+          <div role="row" tabIndex="0" onClick="{{ m.open }}" onKeyDown="{{ m.onKey }}" aria-label="{{ m.ariaLabel }}" style="display:grid;grid-template-columns:110px 130px 130px minmax(160px,1.4fr) 80px 80px 90px 70px 100px 1fr;min-width:1200px;gap:10px;align-items:center;padding:0 14px;height:42px;border-top:1px solid #eef1f5;font-size:12.5px;cursor:pointer" style-hover="background:#f7f9fb">
+            <span role="cell" style="color:#4a5567;font-size:11.5px">{{ m.t }}</span><span role="cell" style="font-weight:600">{{ m.type }}</span><span role="cell" style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#1b5fd1">{{ m.doc }}</span><span role="cell" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ m.product }}</span><span role="cell" style="color:#146c43;font-weight:600">{{ m.qIn }}</span><span role="cell" style="color:#b3261e;font-weight:600">{{ m.qOut }}</span><span role="cell" style="font-weight:600">{{ m.run }}</span><span role="cell" style="color:#4a5567">{{ m.uom }}</span><span role="cell" style="font-size:11.5px">{{ m.actor }}</span><span role="cell" style="font-size:11.5px;color:#5b6576">{{ m.reason }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isAdjustment }}" hint-placeholder-val="{{ false }}">
+    <div style="padding:16px 22px;display:flex;flex-direction:column;gap:14px;max-width:1040px">
+      <div style="display:flex;align-items:baseline;gap:10px">
+        <h1 style="font-size:19px;font-weight:700;margin:0">Adjustments</h1>
+        <sc-if value="{{ adjIsHistory }}" hint-placeholder-val="{{ false }}"><div style="margin-left:auto"><button onClick="{{ goNewAdj }}" style="height:34px;padding:0 14px;border-radius:8px;border:0;background:#1b5fd1;color:#fff;font-size:12.5px;font-weight:600;cursor:pointer">New Adjustment</button></div></sc-if>
+      </div>
+      <sc-if value="{{ adjIsHistory }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <sc-for list="{{ adjFilters }}" as="f" hint-placeholder-count="5"><button aria-pressed="{{ f.on }}" style="height:32px;padding:0 11px;border-radius:8px;border:1px solid {{ f.bd }};background:{{ f.bg }};color:{{ f.fg }};font-size:12px;font-weight:600;cursor:pointer">{{ f.label }}</button></sc-for>
+        </div>
+        <div role="table" aria-label="Adjustment history" style="background:#fff;border:1px solid #e1e5eb;border-radius:11px;overflow:hidden">
+          <div role="row" style="display:grid;grid-template-columns:130px minmax(160px,1.4fr) 110px 130px 120px 110px 150px;gap:10px;padding:8px 14px;background:#f7f9fb;border-bottom:1px solid #e1e5eb;font-size:10.5px;font-weight:600;color:#5b6576"><span role="columnheader">REFERENCE</span><span role="columnheader">ITEM</span><span role="columnheader">DATE</span><span role="columnheader">REASON</span><span role="columnheader">ACTOR</span><span role="columnheader">QTY EFFECT</span><span role="columnheader">STATUS</span></div>
+          <sc-for list="{{ adjHistRows }}" as="r" hint-placeholder-count="4">
+            <div role="row" style="display:grid;grid-template-columns:130px minmax(160px,1.4fr) 110px 130px 120px 110px 150px;gap:10px;align-items:center;padding:0 14px;height:44px;border-top:1px solid #eef1f5;font-size:12.5px"><span role="cell" style="font-family:'IBM Plex Mono',monospace;color:#1b5fd1">{{ r.ref }}</span><span role="cell">{{ r.item }}</span><span role="cell" style="color:#4a5567">{{ r.date }}</span><span role="cell">{{ r.reason }}</span><span role="cell">{{ r.actor }}</span><span role="cell" style="font-weight:600">{{ r.qty }}</span><span role="cell" style="display:inline-flex;align-items:center;gap:5px;height:22px;padding:0 8px;border-radius:999px;background:{{ r.stBg }};color:{{ r.stFg }};font-size:11px;font-weight:600">{{ r.status }}</span></div>
+          </sc-for>
+        </div>
+        <span style="font-size:12px;color:#5b6576">Posted adjustments are read-only. Correction uses a new Correction / Compensating Adjustment, never an edit.</span>
+      </sc-if>
+      <sc-if value="{{ adjIsFlow }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;align-items:center;gap:6px">
+          <sc-for list="{{ adjSteps }}" as="s" hint-placeholder-count="4">
+            <span style="display:inline-flex;align-items:center;gap:5px;height:26px;padding:0 10px;border-radius:999px;border:1px solid {{ s.bd }};background:{{ s.bg }};color:{{ s.fg }};font-size:12px;font-weight:600">{{ s.label }}</span>
+            <i class="icon-chevron-right" style="font-size:13px;color:#6b7585;opacity:{{ s.arrowOp }}"></i>
+          </sc-for>
+        </div>
+        <div>{{ adjBody }}</div>
+      </sc-if>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isOpening }}" hint-placeholder-val="{{ false }}">
+    <div style="padding:16px 22px;display:flex;flex-direction:column;gap:14px;max-width:900px">
+      <h1 style="font-size:19px;font-weight:700;margin:0">Opening Stock</h1>
+      <div style="display:flex;align-items:center;gap:6px">
+        <sc-for list="{{ openSteps }}" as="s" hint-placeholder-count="3">
+          <span style="display:inline-flex;align-items:center;gap:5px;height:26px;padding:0 10px;border-radius:999px;border:1px solid {{ s.bd }};background:{{ s.bg }};color:{{ s.fg }};font-size:12px;font-weight:600">{{ s.label }}</span>
+          <i class="icon-chevron-right" style="font-size:13px;color:#6b7585;opacity:{{ s.arrowOp }}"></i>
+        </sc-for>
+      </div>
+      <div>{{ openBody }}</div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isCount }}" hint-placeholder-val="{{ false }}">
+    <div style="padding:16px 22px;display:flex;flex-direction:column;gap:14px;max-width:1080px">
+      <div style="display:flex;align-items:baseline;gap:10px">
+        <h1 style="font-size:19px;font-weight:700;margin:0">Stock Counts</h1>
+        <sc-if value="{{ countIsMaster }}" hint-placeholder-val="{{ false }}"><div style="margin-left:auto"><button onClick="{{ goNewCount }}" style="height:34px;padding:0 14px;border-radius:8px;border:0;background:#1b5fd1;color:#fff;font-size:12.5px;font-weight:600;cursor:pointer">New Stock Count</button></div></sc-if>
+      </div>
+      <sc-if value="{{ countIsMaster }}" hint-placeholder-val="{{ false }}">
+        <div style="background:#fff;border:1px solid #e1e5eb;border-radius:11px;overflow:auto">
+          <div style="display:grid;grid-template-columns:130px minmax(140px,1.2fr) 110px 130px 140px 90px 140px 140px;min-width:1050px;gap:10px;padding:8px 14px;background:#f7f9fb;border-bottom:1px solid #e1e5eb;font-size:10.5px;font-weight:600;color:#5b6576"><span>REFERENCE</span><span>SCOPE</span><span>STARTED</span><span>STATUS</span><span>COUNTED BY</span><span>VARIANCE</span><span>APPROVAL</span><span>POSTED AT</span></div>
+          <sc-for list="{{ countRows }}" as="c" hint-placeholder-count="6">
+            <div style="display:grid;grid-template-columns:130px minmax(140px,1.2fr) 110px 130px 140px 90px 140px 140px;min-width:1050px;gap:10px;align-items:center;padding:0 14px;height:44px;border-top:1px solid #eef1f5;font-size:12.5px"><span style="font-family:'IBM Plex Mono',monospace;color:#1b5fd1">{{ c.ref }}</span><span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ c.scope }}</span><span style="color:#4a5567">{{ c.started }}</span><span style="display:inline-flex;align-items:center;height:22px;padding:0 8px;border-radius:999px;background:{{ c.stBg }};color:{{ c.stFg }};font-size:11px;font-weight:600">{{ c.status }}</span><span>{{ c.by }}</span><span style="font-size:11.5px;color:#4a5567">{{ c.variance }}</span><span style="font-size:11.5px;color:#4a5567">{{ c.approval }}</span><span style="font-size:11.5px;color:#4a5567">{{ c.postedAt }}</span></div>
+          </sc-for>
+        </div>
+      </sc-if>
+      <sc-if value="{{ countIsFlow }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;align-items:center;gap:6px">
+          <sc-for list="{{ countSteps }}" as="s" hint-placeholder-count="4">
+            <span style="display:inline-flex;align-items:center;gap:5px;height:26px;padding:0 10px;border-radius:999px;border:1px solid {{ s.bd }};background:{{ s.bg }};color:{{ s.fg }};font-size:12px;font-weight:600">{{ s.label }}</span>
+            <i class="icon-chevron-right" style="font-size:13px;color:#6b7585;opacity:{{ s.arrowOp }}"></i>
+          </sc-for>
+        </div>
+        <div>{{ countBody }}</div>
+      </sc-if>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isDSGallery }}" hint-placeholder-val="{{ false }}">
+    <div style="padding:20px 24px;display:flex;flex-direction:column;gap:16px">
+      <h1 style="font-size:19px;font-weight:700;margin:0">{{ dsTitle }}</h1>
+      <div>{{ dsBody }}</div>
+    </div>
+  </sc-if>
+  </sc-if>
+
+  <sc-if value="{{ drawerOpen }}" hint-placeholder-val="{{ false }}">
+    <aside style="position:absolute;top:0;right:0;bottom:0;width:380px;background:#fff;border-left:1px solid #e1e5eb;box-shadow:-8px 0 24px rgba(14,27,51,.14);z-index:5;display:flex;flex-direction:column">
+      <div style="flex:none;display:flex;align-items:center;gap:10px;padding:12px 10px 12px 16px;border-bottom:1px solid #e1e5eb"><span style="font-size:14px;font-weight:600;flex:1">{{ drawerTitle }}</span><button onClick="{{ closeDrawer }}" aria-label="Close" style="width:30px;height:30px;border-radius:7px;border:0;background:transparent;display:grid;place-items:center;cursor:pointer;color:#4a5567"><i class="icon-x" style="font-size:16px"></i></button></div>
+      <div style="flex:1;overflow:auto;padding:16px">{{ drawerContent }}</div>
+    </aside>
+  </sc-if>
+  </div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1366,&quot;height&quot;:768},&quot;screen&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;01&quot;,&quot;02&quot;,&quot;03&quot;,&quot;04&quot;,&quot;05&quot;,&quot;06&quot;,&quot;07&quot;,&quot;08&quot;,&quot;09&quot;,&quot;10&quot;,&quot;11&quot;,&quot;12&quot;,&quot;13&quot;,&quot;14&quot;,&quot;15&quot;,&quot;16&quot;,&quot;17&quot;,&quot;18&quot;,&quot;19&quot;,&quot;20&quot;,&quot;21&quot;,&quot;22&quot;,&quot;23&quot;,&quot;24&quot;,&quot;25&quot;,&quot;26&quot;,&quot;27&quot;,&quot;28&quot;,&quot;29&quot;,&quot;30&quot;,&quot;31&quot;,&quot;32&quot;,&quot;33&quot;,&quot;34&quot;,&quot;35&quot;,&quot;36&quot;,&quot;37&quot;,&quot;38&quot;,&quot;39&quot;,&quot;40&quot;,&quot;41&quot;,&quot;42&quot;,&quot;43&quot;,&quot;44&quot;,&quot;45&quot;,&quot;46&quot;,&quot;47&quot;,&quot;48&quot;,&quot;49&quot;,&quot;50&quot;,&quot;51&quot;,&quot;52&quot;,&quot;53&quot;,&quot;54&quot;,&quot;55&quot;,&quot;56&quot;,&quot;57&quot;,&quot;58&quot;,&quot;59&quot;,&quot;60&quot;,&quot;61&quot;,&quot;62&quot;,&quot;63&quot;,&quot;64&quot;,&quot;65&quot;,&quot;66&quot;,&quot;67&quot;],&quot;default&quot;:&quot;02&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;embedded&quot;:{&quot;editor&quot;:null,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;}}">
+const E=React.createElement;
+const RM=(c)=>c==null?'—':(c<0?'−RM ':'RM ')+(Math.abs(c)/100).toLocaleString('en-MY',{minimumFractionDigits:2,maximumFractionDigits:2});
+const pill=(bg,fg,icon,label)=>({bg,fg,icon,label});
+const CATS=['Grocery','Beverages','Snacks','Dairy','Bakery','Household','Personal Care'];
+const ITEMS=[
+{n:'Fresh Milk 1 L',code:'MM-00124',cat:'Dairy',base:'EACH',onHand:48,wac:474,batch:false,expiry:false,low:20,lastMv:'26 Sep 08:10',mgd:true},
+{n:'White Bread 600 g',code:'MM-00131',cat:'Bakery',base:'EACH',onHand:6,wac:250,batch:false,expiry:true,low:10,lastMv:'25 Sep 17:40',mgd:true},
+{n:'Jasmine Rice 5 kg',code:'MM-00118',cat:'Grocery',base:'EACH',onHand:120,wac:1500,batch:false,expiry:false,low:20,lastMv:'24 Sep 11:05',mgd:true},
+{n:'Cola 1.5 L',code:'MM-00142',cat:'Beverages',base:'EACH',onHand:0,wac:300,batch:false,expiry:false,low:24,lastMv:'26 Sep 09:55',mgd:true},
+{n:'Cream Crackers 400 g',code:'MM-00156',cat:'Snacks',base:'EACH',onHand:34,wac:420,batch:true,expiry:true,low:15,lastMv:'23 Sep 14:20',mgd:true},
+{n:'3-in-1 White Coffee',code:'MM-00163',cat:'Beverages',base:'EACH',onHand:9,wac:980,batch:true,expiry:true,low:12,lastMv:'22 Sep 10:30',mgd:true},
+{n:'Laundry Detergent 2.5 kg',code:'MM-00171',cat:'Household',base:'EACH',onHand:2,wac:1700,batch:false,expiry:false,low:10,lastMv:'18 Sep 09:00',mgd:true},
+{n:'Bath Soap 3×90 g',code:'MM-00188',cat:'Personal Care',base:'EACH',onHand:60,wac:480,batch:false,expiry:false,low:20,lastMv:'26 Sep 07:45',mgd:true},
+{n:'Instant Noodles Curry',code:'MM-00195',cat:'—',base:'—',onHand:null,wac:null,batch:false,expiry:false,low:null,lastMv:'—',mgd:false},
+{n:'Teh Tarik Mix 15×30 g',code:'MM-00202',cat:'Beverages',base:'EACH',onHand:200,wac:800,batch:true,expiry:true,low:40,lastMv:'20 Sep 16:10',mgd:true}];
+const BATCHES=[
+{idx:4,batch:'B-2609-01',qty:23,expiry:'02 Oct 2026',status:'nearExpiry',received:'GRN-2026-00098'},
+{idx:4,batch:'B-2609-02',qty:11,expiry:'30 Nov 2026',status:'valid',received:'GRN-2026-00112'},
+{idx:5,batch:'B-2508-04',qty:9,expiry:'05 Sep 2026',status:'expired',received:'GRN-2026-00071'},
+{idx:9,batch:'B-2607-09',qty:200,expiry:'15 Mar 2027',status:'valid',received:'GRN-2026-00050'}];
+const MOVES=[
+{t:'26 Sep 09:55',type:'Sale',doc:'SALE-000482',product:'Cola 1.5 L',qIn:'—',qOut:'24',run:'0',uom:'EACH',actor:'POS-01',reason:'—'},
+{t:'26 Sep 08:10',type:'Goods Receipt',doc:'GRN-2026-00124',product:'Fresh Milk 1 L',qIn:'36',qOut:'—',run:'48',uom:'EACH',actor:'Ravi K.',reason:'View GRN'},
+{t:'25 Sep 17:40',type:'Sale',doc:'SALE-000471',product:'White Bread 600 g',qIn:'—',qOut:'4',run:'6',uom:'EACH',actor:'POS-02',reason:'—'},
+{t:'24 Sep 11:05',type:'Opening Stock',doc:'OPEN-2026-00003',product:'Jasmine Rice 5 kg',qIn:'120',qOut:'—',run:'120',uom:'EACH',actor:'Siti M.',reason:'Initial load'},
+{t:'23 Sep 14:20',type:'Positive Adjustment',doc:'ADJ-2026-00041',product:'Cream Crackers 400 g',qIn:'6',qOut:'—',run:'34',uom:'EACH',actor:'Siti M.',reason:'Count Correction'},
+{t:'22 Sep 10:30',type:'Wastage / Expiry',doc:'ADJ-2026-00039',product:'3-in-1 White Coffee',qIn:'—',qOut:'3',run:'9',uom:'EACH',actor:'Siti M.',reason:'Expiry'},
+{t:'20 Sep 16:10',type:'Stock Count Variance',doc:'CNT-2026-00012',product:'Teh Tarik Mix 15×30 g',qIn:'5',qOut:'—',run:'200',uom:'EACH',actor:'Ravi K.',reason:'Count Correction'},
+{t:'18 Sep 09:00',type:'Negative Adjustment',doc:'ADJ-2026-00030',product:'Laundry Detergent 2.5 kg',qIn:'—',qOut:'5',run:'2',uom:'EACH',actor:'Siti M.',reason:'Damage'}];
+const ADJH=[
+{ref:'ADJ-2026-00041',item:'Cream Crackers 400 g',date:'23 Sep 2026',reason:'Count Correction',actor:'Siti M.',qty:'+6 EACH',status:'Posted'},
+{ref:'ADJ-2026-00039',item:'3-in-1 White Coffee',date:'22 Sep 2026',reason:'Expiry',actor:'Siti M.',qty:'−3 EACH',status:'Posted'},
+{ref:'ADJ-2026-00030',item:'Laundry Detergent 2.5 kg',date:'18 Sep 2026',reason:'Damage',actor:'Siti M.',qty:'−5 EACH',status:'Posted'}, // Phase-1 BLOCK: result 2 EACH, never negative
+{ref:'ADJ-2026-00044',item:'Jasmine Rice 5 kg',date:'26 Sep 2026',reason:'Data Correction',actor:'Ravi K.',qty:'−40 EACH',status:'Awaiting Approval'}];
+const COUNTS=[
+{ref:'CNT-2026-00012',scope:'Whole Store',started:'20 Sep 2026',status:'Posted',by:'Ravi K.',variance:'+1 net',approval:'Approved · Siti M.',postedAt:'20 Sep 18:40'},
+{ref:'CNT-2026-00015',scope:'Category: Beverages',started:'27 Sep 2026',status:'In Progress',by:'Ravi K.',variance:'—',approval:'—',postedAt:'—'},
+{ref:'CNT-2026-00016',scope:'Selected Items (12)',started:'27 Sep 2026',status:'Review',by:'Siti M.',variance:'3 lines vary',approval:'—',postedAt:'—'},
+{ref:'CNT-2026-00017',scope:'Category: Snacks',started:'26 Sep 2026',status:'Recount Requested',by:'Ravi K.',variance:'1 line flagged',approval:'—',postedAt:'—'},
+{ref:'CNT-2026-00018',scope:'Whole Store',started:'25 Sep 2026',status:'Awaiting Approval',by:'Siti M.',variance:'2 lines need approval',approval:'Pending',postedAt:'—'},
+{ref:'CNT-2026-00019',scope:'Category: Dairy',started:'24 Sep 2026',status:'Ready to Post',by:'Siti M.',variance:'Zero variance',approval:'Not required',postedAt:'—'},
+{ref:'CNT-2026-00011',scope:'Selected Items (5)',started:'15 Sep 2026',status:'Cancelled',by:'Ravi K.',variance:'—',approval:'—',postedAt:'—'},
+{ref:'CNT-2026-00009',scope:'Whole Store',started:'01 Sep 2026',status:'Draft',by:'—',variance:'—',approval:'—',postedAt:'—'}];
+const REVIEW_LINES=[ // All lines belong to count CNT-2026-00012 (Whole Store, posted 20 Sep 2026 18:40); net variance +1 EACH matches COUNTS and the store-wide ledger row.
+{n:'Fresh Milk 1 L',expected:48,counted:48,variance:0,batch:'—'},
+{n:'White Bread 600 g',expected:6,counted:9,variance:3,batch:'—'},
+{n:'Cream Crackers 400 g',expected:34,counted:32,variance:-2,batch:'B-2609-01/02'},
+{n:'Bath Soap 3×90 g',expected:60,counted:60,variance:0,batch:'—'}];
+const REVIEW_LINES_REF='CNT-2026-00012';
+function stockStatus(it){
+  if(!it.mgd) return pill('#eef1f5','#3d4a5e','icon-ban','Not Stock-Managed');
+  if(it.onHand===0) return pill('#eef1f5','#4a5567','icon-circle-dashed','Zero Stock');
+  if(it.onHand<=it.low) return pill('#fdf3e1','#8a5100','icon-triangle-alert','Low Stock');
+  return pill('#e5f4ec','#146c43','icon-circle-check','In Stock');
+}
+// Phase-1 negative-stock BLOCK (DEC-INV-006/010): no posted movement may leave a negative running balance. No item is ever onHand<0.
+// A "Negative" filter remains available on the list (FR-INV-023) and will show 0 results under the current Phase-1 policy.
+function expStatus(st){return {valid:pill('#e5f4ec','#146c43','icon-circle-check','Valid'),nearExpiry:pill('#fdf3e1','#8a5100','icon-triangle-alert','Near Expiry'),expired:pill('#fcebea','#b3261e','icon-circle-x','Expired')}[st];}
+function countStPill(st){const m={'Draft':pill('#eef1f5','#3d4a5e',null,st),'In Progress':pill('#e8f0fc','#1b5fd1',null,st),'Review':pill('#fdf3e1','#8a5100',null,st),'Recount Requested':pill('#fdf3e1','#8a5100',null,st),'Awaiting Approval':pill('#fdf3e1','#8a5100',null,st),'Ready to Post':pill('#e8f0fc','#1b5fd1',null,st),'Posted':pill('#e5f4ec','#146c43',null,st),'Cancelled':pill('#eef1f5','#5b6576',null,st)};return m[st];}
+const NAV=[['Dashboard',[['Dashboard','icon-layout-dashboard',false]]],
+['MASTERS',[['Products','icon-package',true],['Categories','icon-shapes',true],['Brands','icon-tag',true],['Suppliers','icon-truck',true],['Customers','icon-users',true]]],
+['OPERATIONS',[['Inventory','icon-boxes',false],['Purchases','icon-shopping-bag',true],['Sales','icon-receipt',true],['Returns','icon-undo-2',true],['Cash & Shifts','icon-clock',true]]],
+['FINANCE',[['Accounting','icon-calculator',true],['Reconciliation','icon-scale',true]]],
+['MANAGEMENT',[['Reports','icon-bar-chart-3',true]]],
+['ADMINISTRATION',[['Users & Access','icon-shield',true],['Organization','icon-building-2',true],['Devices','icon-monitor',true],['Sync & Diagnostics','icon-refresh-cw',true],['Settings','icon-settings',true]]]];
+const NAMES={'01':'Inventory Summary','02':'Inventory — populated list','03':'Inventory — filtered Low Stock','04':'Inventory — Zero Stock','05':'Inventory — Store Node unavailable','06':'Inventory — Cloud Sync unavailable','07':'Inventory — read-only / permission-limited',
+'08':'Inventory Item Detail — Overview','09':'Inventory Item Detail — Movement History','10':'Movement Detail Drawer','11':'Inventory Item Detail — Batch / Expiry','12':'Batch Detail','13':'Near Expiry list','14':'Expired Stock list','15':'Moving WAC — authorized view','16':'Movement History — store-wide',
+'17':'Adjustment History','18':'New Adjustment','19':'Adjustment — batch tracked','20':'Adjustment — validation','21':'Negative Stock Blocked','22':'Adjustment — approval required','23':'Adjustment — review','24':'Adjustment — posted','25':'Adjustment — correction / compensating action','26':'Adjustment — safe retry / uncertain state',
+'27':'Opening Stock — entry','28':'Opening Stock — review','29':'Opening Stock — posted',
+'30':'Stock Counts — master list','31':'Create Stock Count','32':'Count Scope','33':'Count Entry — standard','34':'Count Entry — blind','35':'Count Entry — barcode/search','36':'Batch Count','37':'Count Review','38':'Variance Review','39':'Recount Requested','40':'Recount Completed','41':'Count Approval Required','42':'Count Ready to Post','43':'Count Posted','44':'Zero Variance Count','45':'Cancel Count','46':'Posted Count — read-only','47':'Count Audit / Timeline','48':'Count Concurrency — authority-dependent',
+'55':'Batch / Expiry components','49':'Inventory list — 1280×720','50':'Count entry — 1280×720','51':'Adjustment — 1280×720','52':'Inventory DataTable components','53':'Quantity / Stock status components','54':'Movement components','56':'Adjustment components','57':'Count components','58':'Permission / Approval components','59':'Offline / Error states','60':'Inventory component inventory + documentation',
+'61':'Reorder / Low Stock — decision support','62':'Inventory — LOADING state','63':'Inventory — EMPTY state','64':'Inventory — CONFLICT (stale version) state','65':'Inventory — INCOMPATIBLE_CLIENT state',
+'66':'Inventory — VALIDATION_ERROR (field-level) state','67':'Inventory — PERMISSION_DENIED (posting) state'};
+function cfg(s){
+  const b={scr:s,view:'list',node:'on',sync:'ok',role:'admin',listMode:'populated',detailIdx:0,tab:'overview',adjState:'new',openState:'entry',countState:'master',ds:'table',drawer:null,wacAuth:false};
+  const m={
+    '01':{view:'dashboard'},'02':{view:'list',listMode:'populated'},'03':{view:'list',listMode:'lowstock'},'04':{view:'list',listMode:'zerostock'},'05':{node:'off'},'06':{sync:'down'},'07':{role:'viewer'},
+    '08':{view:'detail',detailIdx:0,tab:'overview'},'09':{view:'detail',detailIdx:0,tab:'movements'},'10':{view:'detail',detailIdx:0,tab:'movements',drawer:'movement'},'11':{view:'detail',detailIdx:4,tab:'batch'},'12':{view:'detail',detailIdx:4,tab:'batch',drawer:'batch'},'13':{view:'batchList',batchMode:'nearExpiry'},'14':{view:'batchList',batchMode:'expired'},'15':{view:'detail',detailIdx:0,tab:'overview',wacAuth:true},'16':{view:'movements'},
+    '17':{view:'adjustment',adjState:'history'},'18':{view:'adjustment',adjState:'new',detailIdx:0},'19':{view:'adjustment',adjState:'new',detailIdx:4},'20':{view:'adjustment',adjState:'validation',detailIdx:6},'21':{view:'adjustment',adjState:'blocked',detailIdx:6},'22':{view:'adjustment',adjState:'approval'},'23':{view:'adjustment',adjState:'review'},'24':{view:'adjustment',adjState:'posted'},'25':{view:'adjustment',adjState:'correction'},'26':{view:'adjustment',adjState:'retry'},
+    '27':{view:'opening',openState:'entry'},'28':{view:'opening',openState:'review'},'29':{view:'opening',openState:'posted'},
+    '30':{view:'count',countState:'master'},'31':{view:'count',countState:'create'},'32':{view:'count',countState:'scope'},'33':{view:'count',countState:'entryStandard'},'34':{view:'count',countState:'entryBlind'},'35':{view:'count',countState:'entrySearch'},'36':{view:'count',countState:'batch'},'37':{view:'count',countState:'review'},'38':{view:'count',countState:'variance'},'39':{view:'count',countState:'recountReq'},'40':{view:'count',countState:'recountDone'},'41':{view:'count',countState:'approval'},'42':{view:'count',countState:'readyPost'},'43':{view:'count',countState:'posted'},'44':{view:'count',countState:'zeroVariance'},'45':{view:'count',countState:'cancel'},'46':{view:'count',countState:'readonly'},'47':{view:'count',countState:'audit'},'48':{view:'count',countState:'concurrency'},
+    '49':{view:'list',listMode:'populated'},'50':{view:'count',countState:'entryStandard'},'51':{view:'adjustment',adjState:'review'},
+    '52':{view:'dsGallery',ds:'table'},'53':{view:'dsGallery',ds:'quantity'},'54':{view:'dsGallery',ds:'movement'},'55':{view:'dsGallery',ds:'batch'},'56':{view:'dsGallery',ds:'adjustment'},'57':{view:'dsGallery',ds:'count'},'58':{view:'dsGallery',ds:'permission'},'59':{view:'dsGallery',ds:'offline'},'60':{view:'dsGallery',ds:'inventory'},
+    '61':{view:'dsGallery',ds:'reorder'},'62':{view:'dsGallery',ds:'loading'},'63':{view:'dsGallery',ds:'empty'},'64':{view:'dsGallery',ds:'conflict'},'65':{view:'dsGallery',ds:'incompat'},
+    '66':{view:'dsGallery',ds:'validationError'},'67':{view:'dsGallery',ds:'permissionDenied'}};
+  return {...b,...(m[s]||{})};
+}
+function card(children,style){return E('div',{style:Object.assign({background:'#fff',border:'1px solid #e1e5eb',borderRadius:'11px',padding:'16px',display:'flex',flexDirection:'column',gap:'10px'},style||{})},...[].concat(children));}
+function kv(l,v,vc){return E('div',{style:{display:'flex',justifyContent:'space-between',fontSize:'13px'}},E('span',{style:{color:'#5b6576'}},l),E('span',{style:{fontWeight:600,color:vc||'#0f1a2b'}},v));}
+function noteBox(text,tone,live){const c={amber:['#fdf3e1','#6b4000','#f0d4a0'],blue:['#e8f0fc','#174fb0','#b9cff2'],red:['#fcebea','#8a1f14','#f2b8b0']}[tone||'amber'];
+  const a=live?(tone==='red'?{role:'alert','aria-live':'assertive'}:{role:'status','aria-live':'polite'}):{role:'note'};
+  return E('div',{...a,style:{display:'flex',gap:'8px',alignItems:'flex-start',padding:'10px 12px',borderRadius:'9px',background:c[0],border:'1px solid '+c[2],color:c[1],fontSize:'12px'}},E('i',{className:'icon-info','aria-hidden':'true',style:{fontSize:'14px',marginTop:'1px'}}),E('span',null,text));}
+class Component extends DCLogic {
+  state = cfg((this.props&&this.props.screen)||'02');
+  componentDidUpdate(pp){ if(pp.screen!==this.props.screen) this.setState(cfg(this.props.screen||'02')); }
+  renderVals(){
+    const s=this.state, set=(o)=>this.setState(o);
+    const node=s.node==='on', cloudOk=s.sync==='ok', readOnly=s.role==='viewer';
+    const nodeP=node?pill('#e5f4ec','#146c43','icon-server','Store Node online'):pill('#fcebea','#b3261e','icon-server-off','Store Node unavailable');
+    const syncP=cloudOk?pill('#f2f4f7','#4a5567','icon-cloud','Sync healthy'):pill('#fdf3e1','#8a5100','icon-cloud-off','Cloud sync unavailable · 22 queued');
+    const roleLabel=readOnly?'Read-only role':'Inventory Manager';
+    const newCountBg=readOnly?'#6b7585':'#1b5fd1';
+    const nav=NAV.map(([label,items])=>({label,items:items.map(([lbl,icon,stub])=>{
+      const active=(lbl==='Dashboard'&&s.view==='dashboard')||(lbl==='Inventory'&&s.view!=='dashboard');
+      return {label:lbl,icon,stub,bg:active?'#1f3a6b':'transparent',fg:stub?'#5d6a82':active?'#fff':'#c3cbd9',fw:active?600:500,cursor:stub?'not-allowed':'pointer',
+        go:lbl==='Dashboard'?()=>set({view:'dashboard'}):lbl==='Inventory'?()=>set({view:'list',listMode:'populated'}):()=>{}};
+    })}));
+    const items=ITEMS.map((it,i)=>({...it,i}));
+    const rowsSrc=s.listMode==='lowstock'?items.filter(it=>it.mgd&&it.onHand>0&&it.onHand<=it.low):s.listMode==='zerostock'?items.filter(it=>it.mgd&&it.onHand===0):items;
+    const invRows=rowsSrc.map((it,idx)=>{const stp=stockStatus(it),batches=BATCHES.filter(b=>b.idx===it.i);
+      return {n:it.n,code:it.code,cat:it.cat,base:it.base,onHand:it.onHand==null?'—':it.onHand+' '+it.base,avail:it.onHand==null?'—':it.onHand+' '+it.base,qtyFg:it.onHand==null?'#6b7585':it.onHand<0?'#b3261e':it.onHand===0?'#4a5567':'#0f1a2b',
+        stBg:stp.bg,stFg:stp.fg,stIcon:stp.icon,st:stp.label,batchExp:it.batch?'Batch'+(it.expiry?' + Expiry':''):it.expiry?'Expiry':'—',
+        wac:readOnly?'Restricted':RM(it.wac),wacFg:readOnly?'#4a5567':'#0f1a2b',lastMv:it.lastMv,open:()=>set({view:'detail',detailIdx:it.i,tab:'overview'}),onKey:(e)=>{if((e.key==='Enter'||e.key===' ')&&e.target===e.currentTarget){e.preventDefault();set({view:'detail',detailIdx:it.i,tab:'overview'});}},ariaLabel:it.n+', '+(it.onHand==null?'not stock managed':it.onHand+' '+it.base+' on hand')+', '+stp.label+'. Activate to open item detail.'};});
+    const invFilters=['Low Stock','Zero Stock','Negative','Batch Tracked','Expiry Tracked','Stock-managed only'].map((label,i)=>({label,on:(s.listMode==='lowstock'&&i===0)||(s.listMode==='zerostock'&&i===1),bg:'#fff',fg:'#3d4a5e',bd:'#cfd5de'}));
+    const invResultLabel=s.listMode==='lowstock'?invRows.length+' low-stock items':s.listMode==='zerostock'?invRows.length+' zero-stock items':invRows.length+' of '+items.length+' items';
+    const secondaryNav=[['Movement History',()=>set({view:'movements'})],['Batch / Expiry',()=>set({view:'batchList',batchMode:'nearExpiry'})],['Low Stock',()=>set({view:'list',listMode:'lowstock'})]].map(([label,go])=>({label,go}));
+    const goNewAdj=()=>set({view:'adjustment',adjState:'new',detailIdx:0}), goNewCount=()=>set({view:'count',countState:'create'});
+    const goOpening=()=>set({view:'opening',openState:'entry',moreOpen:false}), toggleMore=()=>set({moreOpen:!s.moreOpen}), moreOpen=!!s.moreOpen;
+    const invTiles=[['icon-boxes','Stock-managed items',items.filter(it=>it.mgd).length,'#146c43'],['icon-triangle-alert','Low Stock',items.filter(it=>it.mgd&&it.onHand>0&&it.onHand<=it.low).length,'#8a5100'],['icon-circle-dashed','Zero Stock',items.filter(it=>it.mgd&&it.onHand===0).length,'#4a5567'],['icon-clock-alert','Near Expiry',BATCHES.filter(b=>b.status==='nearExpiry').length,'#8a5100'],['icon-circle-x','Expired',BATCHES.filter(b=>b.status==='expired').length,'#b3261e'],['icon-clipboard-list','Counts In Progress or Review',COUNTS.filter(c=>['In Progress','Review'].includes(c.status)).length,'#1b5fd1'],['icon-shield-alert','Adjustments Awaiting Approval',ADJH.filter(a=>a.status==='Awaiting Approval').length,'#8a5100']].map(([icon,label,value,vc])=>({icon,label,value,vc}));
+    const dItem0=items[s.detailIdx]||items[0]; const dstp=stockStatus(dItem0);
+    const dItem={n:dItem0.n,code:dItem0.code,stBg:dstp.bg,stFg:dstp.fg,stIcon:dstp.icon,st:dstp.label};
+    const TABS=[['overview','Overview'],['movements','Movement History'],['batch','Batch / Expiry'],['adjustments','Adjustments'],['counts','Stock Counts'],['audit','Audit / Trace']];
+    const invTabs=TABS.map(([k,label])=>({label,fw:s.tab===k?600:500,fg:s.tab===k?'#0f1a2b':'#4a5567',ring:s.tab===k?'inset 0 -2px 0 #1b5fd1':'none',go:()=>set({tab:k})}));
+    const overviewC=E('div',{style:{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'14px'}},
+      card([E('span',{style:{fontSize:'12.5px',fontWeight:600}},'Stock position'),kv('On Hand',dItem0.onHand==null?'—':dItem0.onHand+' '+dItem0.base,dItem0.onHand<0?'#b3261e':undefined),kv('Available',dItem0.onHand==null?'—':dItem0.onHand+' '+dItem0.base),kv('Base UoM',dItem0.base),kv('Stock-managed',dItem0.mgd?'Yes':'No'),kv('Low-stock indicator',dItem0.mgd&&dItem0.onHand<=dItem0.low?'Below threshold':'Above threshold'),kv('Last movement',dItem0.lastMv)]),
+      card([E('span',{style:{fontSize:'12.5px',fontWeight:600}},'Moving WAC · Inventory-owned, read-only'),kv('Moving WAC',s.wacAuth||true?RM(dItem0.wac)+' / '+dItem0.base:'Restricted'),E('span',{style:{fontSize:'11.5px',color:'#5b6576'}},'Item × Store. Calculation formula is not shown here — see authoritative costing specification.'),(dItem0.batch||dItem0.expiry)?E('span',{style:{fontSize:'11.5px',color:'#5b6576'}},'Batch/expiry tracked — see Batch / Expiry tab for detail.'):null]));
+    const moveRowsForItem=MOVES.filter(m=>m.product===dItem0.n);
+    const movementsC=E('div',{style:{background:'#fff',border:'1px solid #e1e5eb',borderRadius:'11px',overflow:'auto'}},
+      E('div',{style:{display:'grid',gridTemplateColumns:'110px 130px 130px 80px 80px 90px 1fr',gap:'10px',padding:'8px 14px',background:'#f7f9fb',borderBottom:'1px solid #e1e5eb',fontSize:'10.5px',fontWeight:600,color:'#5b6576'}},E('span',null,'DATE/TIME'),E('span',null,'TYPE'),E('span',null,'SOURCE DOC'),E('span',null,'IN'),E('span',null,'OUT'),E('span',null,'RUNNING'),E('span',null,'REASON')),
+      ...(moveRowsForItem.length?moveRowsForItem:[{t:'—',type:'No movements yet',doc:'—',qIn:'—',qOut:'—',run:'—',reason:'—'}]).map(m=>E('div',{onClick:()=>set({drawer:'movement'}),style:{display:'grid',gridTemplateColumns:'110px 130px 130px 80px 80px 90px 1fr',gap:'10px',alignItems:'center',padding:'0 14px',height:'42px',borderTop:'1px solid #eef1f5',fontSize:'12.5px',cursor:'pointer'}},E('span',{style:{color:'#4a5567',fontSize:'11.5px'}},m.t),E('span',{style:{fontWeight:600}},m.type),E('span',{style:{fontFamily:"'IBM Plex Mono',monospace",fontSize:'11.5px',color:'#1b5fd1'}},m.doc),E('span',{style:{color:'#146c43',fontWeight:600}},m.qIn),E('span',{style:{color:'#b3261e',fontWeight:600}},m.qOut),E('span',{style:{fontWeight:600}},m.run),E('span',{style:{fontSize:'11.5px',color:'#5b6576'}},m.reason))));
+    const itemBatches=BATCHES.filter(b=>b.idx===s.detailIdx);
+    const batchC=E('div',{style:{display:'flex',flexDirection:'column',gap:'12px'}},
+      (dItem0.batch||dItem0.expiry)?E('div',{style:{background:'#fff',border:'1px solid #e1e5eb',borderRadius:'11px',overflow:'hidden'}},
+        E('div',{style:{display:'grid',gridTemplateColumns:'140px 90px 140px 120px',gap:'10px',padding:'8px 14px',background:'#f7f9fb',borderBottom:'1px solid #e1e5eb',fontSize:'10.5px',fontWeight:600,color:'#5b6576'}},E('span',null,'BATCH'),E('span',null,'QTY'),E('span',null,'EXPIRY'),E('span',null,'STATUS')),
+        ...(itemBatches.length?itemBatches:[null]).map(b=>b?E('div',{onClick:()=>set({drawer:'batch'}),style:{display:'grid',gridTemplateColumns:'140px 90px 140px 120px',gap:'10px',alignItems:'center',padding:'0 14px',height:'42px',borderTop:'1px solid #eef1f5',fontSize:'12.5px',cursor:'pointer'}},E('span',{style:{fontFamily:"'IBM Plex Mono',monospace"}},b.batch),E('span',null,b.qty),E('span',null,b.expiry),(()=>{const es=expStatus(b.status);return E('span',{style:{display:'inline-flex',alignItems:'center',gap:'5px',height:'22px',padding:'0 8px',borderRadius:'999px',background:es.bg,color:es.fg,fontSize:'11px',fontWeight:600}},es.label);})()):E('div',{style:{padding:'14px',fontSize:'12.5px',color:'#5b6576'}},'No batches recorded.')))
+      :E('div',{style:{fontSize:'12.5px',color:'#5b6576'}},'This item is not batch or expiry tracked.'));
+    const simpleListC=(rows,cols)=>E('div',{style:{background:'#fff',border:'1px solid #e1e5eb',borderRadius:'11px',overflow:'hidden'}},...rows.map(r=>E('div',{style:{display:'flex',gap:'14px',padding:'10px 14px',borderTop:'1px solid #eef1f5',fontSize:'12.5px'}},...cols.map(c=>E('span',{style:{flex:1}},r[c])))));
+    const adjustmentsTabC=simpleListC(ADJH.filter(a=>a.item===dItem0.n).length?ADJH.filter(a=>a.item===dItem0.n):[{ref:'—',date:'—',reason:'No adjustments for this item',status:''}],['ref','date','reason','status']);
+    const countsTabC=E('div',{style:{fontSize:'12.5px',color:'#4a5567'}},'Stock-count lines involving this item appear in the relevant count\u2019s Review / Variance screens.');
+    const auditC=E('div',{style:{background:'#fff',border:'1px solid #e1e5eb',borderRadius:'11px',overflow:'hidden'}},
+      E('div',{style:{display:'grid',gridTemplateColumns:'110px 140px 1fr',gap:'10px',padding:'8px 14px',background:'#f7f9fb',borderBottom:'1px solid #e1e5eb',fontSize:'10.5px',fontWeight:600,color:'#5b6576'}},E('span',null,'AT'),E('span',null,'ACTOR'),E('span',null,'EVENT')),
+      E('div',{style:{display:'grid',gridTemplateColumns:'110px 140px 1fr',gap:'10px',alignItems:'center',padding:'0 14px',height:'40px',borderTop:'1px solid #eef1f5',fontSize:'12.5px'}},E('span',null,dItem0.lastMv),E('span',null,'Store Node'),E('span',null,'Last stock-affecting event posted for this item')));
+    const invTabContent={overview:overviewC,movements:movementsC,batch:batchC,adjustments:adjustmentsTabC,counts:countsTabC,audit:auditC}[s.tab];
+    const batchListTitle=s.batchMode==='nearExpiry'?'Near Expiry':'Expired Stock';
+    const batchRows=BATCHES.filter(b=>b.status===(s.batchMode==='nearExpiry'?'nearExpiry':'expired')).map(b=>{const it=items[b.idx],es=expStatus(b.status);return {n:it.n,batch:b.batch,qty:b.qty+' '+it.base,received:b.received,expiry:b.expiry,stBg:es.bg,stFg:es.fg,stIcon:es.icon,st:es.label};});
+    const moveFilters=['Goods Receipt','Sale','Adjustment','Stock Count Variance','Opening Stock','Damage / Wastage'].map((label,i)=>({label,on:false,bg:'#fff',fg:'#3d4a5e',bd:'#cfd5de'}));
+    const moveRows=MOVES.map(m=>({...m,open:()=>set({drawer:'movement'}),onKey:(e)=>{if((e.key==='Enter'||e.key===' ')&&e.target===e.currentTarget){e.preventDefault();set({drawer:'movement'});}},ariaLabel:m.type+' '+m.product+' on '+m.t+', document '+m.doc+'. Activate to open movement detail.'}));
+    const adjIsHistory=s.adjState==='history', adjIsFlow=!adjIsHistory;
+    const adjFilters=['Item','Date range','Reason','Actor','Status'].map(label=>({label,on:false,bg:'#fff',fg:'#3d4a5e',bd:'#cfd5de'}));
+    const adjHistRows=ADJH.map(r=>{const st={'Posted':pill('#e5f4ec','#146c43'),'Awaiting Approval':pill('#fdf3e1','#8a5100')}[r.status];return {...r,stBg:st.bg,stFg:st.fg};});
+    const ADJ_STEP_ORDER=['new','validation','approval','review','posted'];
+    const adjStepIdx=s.adjState==='blocked'?1:s.adjState==='correction'||s.adjState==='retry'?4:ADJ_STEP_ORDER.indexOf(s.adjState);
+    const adjSteps=['Draft','Validate','Approval','Review','Posted'].map((label,i)=>({label,bd:i<=adjStepIdx?'#1b5fd1':'#cfd5de',bg:i===adjStepIdx?'#1b5fd1':'#fff',fg:i===adjStepIdx?'#fff':i<adjStepIdx?'#1b5fd1':'#5b6576',arrowOp:i<4?1:0}));
+    const adjItem=items[s.detailIdx]||items[0];
+    const dirDown=adjItem.onHand!=null&&adjItem.onHand-5<0;
+    const adjBody=(()=>{
+      if(s.adjState==='new') return E('div',{style:{display:'flex',flexDirection:'column',gap:'12px',maxWidth:'620px'}},
+        card([kv('Store','MiniMart Central'),kv('Item',adjItem.n+' · '+adjItem.code),kv('Current Quantity (read-only)',adjItem.onHand==null?'—':adjItem.onHand+' '+adjItem.base)]),
+        card([E('span',{style:{fontSize:'12.5px',fontWeight:600}},'Adjustment'),
+          E('div',{style:{display:'flex',gap:'10px'}},E('button',{type:'button','aria-pressed':'true',style:{flex:1,height:'36px',borderRadius:'8px',border:'1.5px solid #1b5fd1',background:'#eef4fd',color:'#1b5fd1',fontWeight:600,fontSize:'12.5px'}},'Increase by'),E('button',{type:'button','aria-pressed':'false',style:{flex:1,height:'36px',borderRadius:'8px',border:'1px solid #cfd5de',background:'#fff',color:'#3d4a5e',fontWeight:600,fontSize:'12.5px'}},'Decrease by')),
+          E('div',{style:{display:'flex',gap:'10px'}},
+            E('div',{style:{flex:1,display:'flex',flexDirection:'column',gap:'4px'}},E('label',{htmlFor:'adjQty',style:{fontSize:'12px',fontWeight:600}},'Quantity'),E('input',{id:'adjQty',type:'number',min:'0',step:'1',defaultValue:'5',style:{height:'38px',border:'1.5px solid #1b5fd1',boxShadow:'0 0 0 3px #dbe7fb',borderRadius:'8px',padding:'0 11px',fontSize:'13px',fontFamily:'inherit'}})),
+            E('div',{style:{flex:1,display:'flex',flexDirection:'column',gap:'4px'}},E('span',{id:'adjResultLbl',style:{fontSize:'12px',fontWeight:600}},'Resulting Quantity (preview)'),E('output',{htmlFor:'adjQty','aria-live':'polite',style:{height:'38px',border:'1px solid #e1e5eb',borderRadius:'8px',display:'flex',alignItems:'center',padding:'0 11px',fontWeight:700,color:adjItem.onHand!=null&&adjItem.onHand-5<0?'#b3261e':'#0f1a2b'}},adjItem.onHand==null?'—':(adjItem.onHand-5)+' '+adjItem.base))),
+          adjItem.batch?card([kv('Batch',BATCHES.find(b=>b.idx===adjItem.i)?BATCHES.find(b=>b.idx===adjItem.i).batch:'Select batch')],{padding:'10px 12px',background:'#f7f9fb'}):null,
+          E('div',{style:{display:'flex',flexDirection:'column',gap:'4px'}},E('label',{htmlFor:'adjReason',style:{fontSize:'12px',fontWeight:600}},'Reason Code'),E('select',{id:'adjReason',defaultValue:'Damage',style:{height:'38px',border:'1px solid #cfd5de',borderRadius:'8px',padding:'0 11px',fontSize:'13px',fontFamily:'inherit',background:'#fff'}},E('option',null,'Damage'),E('option',null,'Expiry'),E('option',null,'Count Correction'),E('option',null,'Data Correction'))),
+          E('div',{style:{display:'flex',flexDirection:'column',gap:'4px'}},E('label',{htmlFor:'adjNote',style:{fontSize:'12px',fontWeight:600}},'Note'),E('textarea',{id:'adjNote',rows:'1','aria-describedby':'adjNoteHint',placeholder:'Required for some reasons — rule is authority-dependent',style:{height:'38px',border:'1px solid #cfd5de',borderRadius:'8px',padding:'8px 11px',fontSize:'13px',fontFamily:'inherit',resize:'vertical'}}),E('span',{id:'adjNoteHint',style:{fontSize:'11px',color:'#5b6576'}},'Whether a note is required for this reason is authority-dependent — not decided by this design.'))]),
+        E('div',{style:{display:'flex',justifyContent:'flex-end',gap:'8px'}},E('button',{onClick:()=>set({adjState:'validation'}),style:{height:'40px',padding:'0 18px',borderRadius:'8px',border:0,background:'#1b5fd1',color:'#fff',fontWeight:600,cursor:'pointer'}},'Continue')));
+      if(s.adjState==='validation') { const blocked=adjItem.onHand-5<0; return E('div',{style:{display:'flex',flexDirection:'column',gap:'12px',maxWidth:'560px'}},
+        card([kv('Current Quantity',adjItem.onHand+' '+adjItem.base),kv('Requested decrease','5 '+adjItem.base),kv('Result',(adjItem.onHand-5)+' '+adjItem.base,blocked?'#b3261e':undefined)]),
+        blocked?noteBox('This adjustment would reduce stock below zero. Phase-1 inventory policy blocks negative stock. Posting is blocked — no stock effect occurs.','red',true):noteBox('Result is valid. Continue to review before posting.','blue'),
+        E('div',{style:{display:'flex',justifyContent:'flex-end',gap:'8px'}},E('button',{onClick:()=>set({adjState:'new'}),style:{height:'40px',padding:'0 16px',borderRadius:'8px',border:'1px solid #cfd5de',background:'#fff',fontWeight:600,cursor:'pointer'}},'Back'),
+          blocked?E('button',{onClick:()=>set({adjState:'blocked'}),style:{height:'40px',padding:'0 18px',borderRadius:'8px',border:0,background:'#b3261e',color:'#fff',fontWeight:600,cursor:'pointer'}},'Change Quantity')
+          :E('button',{onClick:()=>set({adjState:'review'}),style:{height:'40px',padding:'0 18px',borderRadius:'8px',border:0,background:'#1b5fd1',color:'#fff',fontWeight:600,cursor:'pointer'}},'Continue'))); }
+      if(s.adjState==='blocked') return card([
+        E('div',{style:{display:'flex',gap:'12px',alignItems:'flex-start'}},E('div',{style:{width:'40px',height:'40px',borderRadius:'10px',background:'#fcebea',color:'#b3261e',display:'grid',placeItems:'center',flex:'none'}},E('i',{className:'icon-ban',style:{fontSize:'20px'}})),E('div',{style:{display:'flex',flexDirection:'column',gap:'4px'}},E('span',{style:{fontSize:'16px',fontWeight:700,color:'#b3261e'}},'BLOCKED'),E('span',{style:{fontSize:'13px',color:'#4a5567'}},'Phase-1 inventory policy does not permit negative stock.'))),
+        kv('Current',adjItem.onHand+' '+adjItem.base),kv('Requested decrease','5 '+adjItem.base),kv('Result',(adjItem.onHand-5)+' '+adjItem.base,'#b3261e'),
+        E('div',{style:{display:'flex',gap:'8px',justifyContent:'flex-end',marginTop:'6px'}},E('button',{onClick:()=>set({adjState:'new'}),style:{height:'38px',padding:'0 14px',borderRadius:'8px',border:'1px solid #cfd5de',background:'#fff',fontWeight:600,cursor:'pointer'}},'Back'),E('button',{onClick:()=>set({adjState:'new'}),style:{height:'38px',padding:'0 14px',borderRadius:'8px',border:0,background:'#1b5fd1',color:'#fff',fontWeight:600,cursor:'pointer'}},'Change quantity'))
+      ],{maxWidth:'480px'});
+      if(s.adjState==='approval') return E('div',{style:{display:'flex',flexDirection:'column',gap:'12px',maxWidth:'560px'}},
+        card([kv('Adjustment reference','ADJ-2026-00044'),kv('Product','Jasmine Rice 5 kg'),kv('Store','MiniMart Central'),kv('Current quantity','120 EACH'),kv('Requested adjustment','−40 EACH'),kv('Resulting quantity','80 EACH'),kv('Reason','Data Correction'),kv('Note','Recorded during count reconciliation'),kv('Requested by','Ravi K.'),kv('Requested at','26 Sep 2026 14:10'),kv('Approval status','Awaiting Approval','#8a5100')]),
+        card([E('span',{style:{fontSize:'12px',fontWeight:600}},'Approval / rejection note (optional)'),E('div',{style:{height:'56px',border:'1px solid #cfd5de',borderRadius:'8px',padding:'8px 11px',fontSize:'12.5px',color:'#6b7585'}},'Add a note for this decision')]),
+        E('span',{style:{fontSize:'11px',color:'#5b6576'}},'Approval thresholds, approver roles and note requirements are configured by policy — not decided here.'),
+        E('div',{style:{display:'flex',justifyContent:'flex-end',gap:'8px'}},E('button',{style:{height:'40px',padding:'0 16px',borderRadius:'8px',border:'1px solid #b3261e',background:'#fff',color:'#b3261e',fontWeight:600,cursor:'pointer'}},'Reject'),E('button',{style:{height:'40px',padding:'0 18px',borderRadius:'8px',border:0,background:'#146c43',color:'#fff',fontWeight:600,cursor:'pointer'}},'Approve')));
+      if(s.adjState==='review') { const apprState=s.reviewApproval||'none'; const stMap={none:['Approval not required','#4a5567'],approved:['Approved','#146c43'],awaiting:['Awaiting approval','#8a5100'],rejected:['Rejected','#b3261e']}[apprState];
+        const canPost=apprState==='none'||apprState==='approved';
+        return E('div',{style:{display:'flex',flexDirection:'column',gap:'12px',maxWidth:'560px'}},
+        E('div',{style:{display:'flex',gap:'6px'}},['none','awaiting','approved','rejected'].map(k=>E('button',{key:k,onClick:()=>set({reviewApproval:k}),style:{height:'26px',padding:'0 9px',borderRadius:'999px',fontSize:'11px',fontWeight:600,border:apprState===k?'1.5px solid #1b5fd1':'1px solid #cfd5de',background:apprState===k?'#eef4fd':'#fff',color:apprState===k?'#1b5fd1':'#5b6576',cursor:'pointer'}},{none:'No approval needed',awaiting:'Awaiting approval',approved:'Approved',rejected:'Rejected'}[k]))),
+        card([kv('Product',adjItem.n),kv('Store','MiniMart Central'),kv('Current Quantity',adjItem.onHand+' '+adjItem.base),kv('Adjustment','−5 '+adjItem.base),kv('Resulting Quantity',(adjItem.onHand-5)+' '+adjItem.base),kv('Batch',adjItem.batch?'B-2609-01':'—'),kv('Reason','Damage'),kv('Actor','Siti M.'),kv('Approval',stMap[0],stMap[1])]),
+        apprState==='rejected'?noteBox('This adjustment was rejected. Return to the draft to correct it before resubmitting.','red'):apprState==='awaiting'?noteBox('Posting is disabled while this adjustment awaits approval.','amber'):null,
+        E('div',{style:{display:'flex',justifyContent:'flex-end',gap:'8px'}},
+          apprState==='rejected'?E('button',{onClick:()=>set({adjState:'new'}),style:{height:'40px',padding:'0 18px',borderRadius:'8px',border:0,background:'#1b5fd1',color:'#fff',fontWeight:600,cursor:'pointer'}},'Return to draft')
+          :E('button',{onClick:canPost?()=>set({adjState:'posted'}):undefined,disabled:!canPost,style:{height:'40px',padding:'0 18px',borderRadius:'8px',border:0,background:canPost?'#1b5fd1':'#c7cdd6',color:'#fff',fontWeight:600,cursor:canPost?'pointer':'not-allowed'}},canPost?'Post Adjustment':'Awaiting approval'))); }
+      if(s.adjState==='posted') return card([E('div',{style:{display:'flex',gap:'12px',alignItems:'flex-start'}},E('div',{style:{width:'40px',height:'40px',borderRadius:'10px',background:'#e5f4ec',color:'#146c43',display:'grid',placeItems:'center',flex:'none'}},E('i',{className:'icon-circle-check',style:{fontSize:'20px'}})),E('div',{style:{display:'flex',flexDirection:'column',gap:'4px'}},E('span',{style:{fontSize:'16px',fontWeight:700}},'Adjustment Posted'),E('span',{style:{fontSize:'13px',color:'#4a5567'}},'Stock Movement Created · Audit Recorded'))),kv('Movement reference','ADJ-2026-00045')],{maxWidth:'480px'});
+      if(s.adjState==='correction') return E('div',{style:{display:'flex',flexDirection:'column',gap:'12px',maxWidth:'620px'}},
+        card([E('span',{style:{fontSize:'12.5px',fontWeight:600}},'Original adjustment (read-only)'),kv('Reference','ADJ-2026-00030'),kv('Effect','−5 EACH'),kv('Reason','Damage'),kv('Status','Posted')]),
+        noteBox('Posted adjustments cannot be edited. Create a Correction / Compensating Adjustment to fix the resulting quantity.','blue'),
+        E('button',{style:{alignSelf:'flex-start',height:'38px',padding:'0 14px',borderRadius:'8px',border:0,background:'#1b5fd1',color:'#fff',fontWeight:600,cursor:'pointer'}},'Create Correction / Compensating Adjustment'));
+      if(s.adjState==='retry') return card([E('span',{style:{fontSize:'15px',fontWeight:600}},'Posting status uncertain'),E('span',{style:{fontSize:'13px',color:'#4a5567'}},'The last attempt to post this adjustment did not confirm. Retrying is safe — the same operation reference is reused, so no duplicate stock movement is created.'),kv('Operation reference','ADJ-OP-88213'),E('div',{style:{display:'flex',gap:'8px'}},E('button',{style:{height:'38px',padding:'0 14px',borderRadius:'8px',border:'1px solid #cfd5de',background:'#fff',fontWeight:600,cursor:'pointer'}},'Check status'),E('button',{style:{height:'38px',padding:'0 14px',borderRadius:'8px',border:0,background:'#1b5fd1',color:'#fff',fontWeight:600,cursor:'pointer'}},'Retry safely'))],{maxWidth:'480px'});
+      return null;
+    })();
+    const openSteps=['Entry','Review','Posted'].map((label,i)=>{const idx={entry:0,review:1,posted:2}[s.openState];return {label,bd:i<=idx?'#1b5fd1':'#cfd5de',bg:i===idx?'#1b5fd1':'#fff',fg:i===idx?'#fff':i<idx?'#1b5fd1':'#5b6576',arrowOp:i<2?1:0};});
+    const openBody=(()=>{
+      if(s.openState==='entry') return E('div',{style:{display:'flex',flexDirection:'column',gap:'12px',maxWidth:'560px'}},
+        card([kv('Item','Jasmine Rice 5 kg · MM-00118'),kv('Quantity','120 EACH'),kv('Batch / Expiry','Not tracked for this item'),kv('Reference','OPEN-2026-00004'),kv('Reason / note','Initial stock load for new store')]),
+        E('button',{onClick:()=>set({openState:'review'}),style:{alignSelf:'flex-end',height:'40px',padding:'0 18px',borderRadius:'8px',border:0,background:'#1b5fd1',color:'#fff',fontWeight:600,cursor:'pointer'}},'Review'));
+      if(s.openState==='review') return E('div',{style:{display:'flex',flexDirection:'column',gap:'12px',maxWidth:'560px'}},
+        card([kv('Item','Jasmine Rice 5 kg'),kv('Quantity','120 EACH'),kv('Reference','OPEN-2026-00004'),kv('Note','Initial stock load for new store')]),
+        E('button',{onClick:()=>set({openState:'posted'}),style:{alignSelf:'flex-end',height:'40px',padding:'0 18px',borderRadius:'8px',border:0,background:'#1b5fd1',color:'#fff',fontWeight:600,cursor:'pointer'}},'Post Opening Stock'));
+      return card([E('span',{style:{fontSize:'15px',fontWeight:600}},'Opening Stock posted'),E('span',{style:{fontSize:'13px',color:'#4a5567'}},'Movement OPEN-2026-00004 created. Stock is now visible in Inventory.')],{maxWidth:'480px'});
+    })();
+    const countRows=COUNTS.map(c=>{const st=countStPill(c.status);return {...c,stBg:st.bg,stFg:st.fg};});
+    const countIsMaster=s.countState==='master', countIsFlow=!countIsMaster;
+    const COUNT_STEP_ORDER=['create','scope','entryStandard','review','readyPost'];
+    const countStepIdxMap={create:0,scope:1,entryStandard:2,entryBlind:2,entrySearch:2,batch:2,review:3,variance:3,recountReq:3,recountDone:3,approval:4,readyPost:4,posted:4,zeroVariance:4,cancel:4,readonly:4,audit:4,concurrency:2};
+    const countSteps=['Setup','Scope','Capture','Review','Post'].map((label,i)=>{const idx=countStepIdxMap[s.countState]??2;return {label,bd:i<=idx?'#1b5fd1':'#cfd5de',bg:i===idx?'#1b5fd1':'#fff',fg:i===idx?'#fff':i<idx?'#1b5fd1':'#5b6576',arrowOp:i<4?1:0};});
+    function varianceRow(l){const sign=l.variance>0?'+':l.variance<0?'':'';const color=l.variance>0?'#146c43':l.variance<0?'#b3261e':'#4a5567';const icon=l.variance>0?'icon-arrow-up':l.variance<0?'icon-arrow-down':'icon-minus';
+      return E('div',{style:{display:'grid',gridTemplateColumns:'1fr 90px 90px 100px 90px',gap:'10px',alignItems:'center',padding:'0 14px',height:'42px',borderTop:'1px solid #eef1f5',fontSize:'12.5px'}},E('span',null,l.n),E('span',null,l.expected),E('span',null,l.counted),E('span',{style:{display:'inline-flex',alignItems:'center',gap:'4px',color,fontWeight:700}},E('i',{className:icon,style:{fontSize:'12px'}}),sign+l.variance),E('span',null,l.batch));}
+    const countBody=(()=>{
+      if(s.countState==='create') return card([kv('Store','MiniMart Central'),kv('Count Reference','CNT-2026-00020 (auto)'),kv('Notes','—')],{maxWidth:'520px'});
+      if(s.countState==='scope') return E('div',{style:{display:'flex',flexDirection:'column',gap:'12px',maxWidth:'560px'}},
+        card([E('span',{style:{fontSize:'12.5px',fontWeight:600}},'Scope'),E('div',{style:{display:'flex',gap:'8px'}},['Selected Items','Category','Whole Store'].map((l,i)=>E('button',{key:l,style:{height:'36px',padding:'0 12px',borderRadius:'8px',border:i===1?'1.5px solid #1b5fd1':'1px solid #cfd5de',background:i===1?'#eef4fd':'#fff',color:i===1?'#1b5fd1':'#3d4a5e',fontWeight:600,fontSize:'12.5px'}},l))),kv('Selected scope','Category: Beverages')]),
+        card([E('span',{style:{fontSize:'12.5px',fontWeight:600}},'Count Mode'),E('div',{style:{display:'flex',gap:'8px'}},['Standard Count','Blind Count'].map((l,i)=>E('button',{key:l,style:{height:'36px',padding:'0 12px',borderRadius:'8px',border:i===1?'1.5px solid #1b5fd1':'1px solid #cfd5de',background:i===1?'#eef4fd':'#fff',color:i===1?'#1b5fd1':'#3d4a5e',fontWeight:600,fontSize:'12.5px'}},l)))]));
+      if(s.countState==='entryStandard'||s.countState==='entrySearch') return E('div',{style:{display:'flex',flexDirection:'column',gap:'10px'}},
+        s.countState==='entrySearch'?E('div',{style:{display:'flex',alignItems:'center',gap:'8px',height:'40px',padding:'0 12px',background:'#fff',border:'1.5px solid #1b5fd1',boxShadow:'0 0 0 3px #dbe7fb',borderRadius:'8px',maxWidth:'420px'}},E('i',{className:'icon-scan-barcode',style:{fontSize:'16px',color:'#1b5fd1'}}),E('span',{style:{fontSize:'13px',color:'#6b7585'}},'Scan barcode or search product')):null,
+        E('div',{style:{background:'#fff',border:'1px solid #e1e5eb',borderRadius:'11px',overflow:'hidden'}},
+          E('div',{style:{display:'grid',gridTemplateColumns:'1fr 110px 90px 100px 90px',gap:'10px',padding:'8px 14px',background:'#f7f9fb',borderBottom:'1px solid #e1e5eb',fontSize:'10.5px',fontWeight:600,color:'#5b6576'}},E('span',null,'PRODUCT'),E('span',null,'ITEM CODE'),E('span',null,'EXPECTED'),E('span',null,'COUNTED'),E('span',null,'STATUS')),
+          ...ITEMS.filter(it=>it.mgd&&!it.batch).slice(0,4).map(it=>E('div',{key:it.code,style:{display:'grid',gridTemplateColumns:'1fr 110px 90px 100px 90px',gap:'10px',alignItems:'center',padding:'0 14px',height:'42px',borderTop:'1px solid #eef1f5',fontSize:'12.5px'}},E('span',null,it.n),E('span',{style:{fontFamily:"'IBM Plex Mono',monospace",fontSize:'11.5px'}},it.code),E('span',null,it.onHand+' '+it.base),E('label',{htmlFor:'count-'+it.code,className:'sr-only',style:{position:'absolute',width:'1px',height:'1px',overflow:'hidden'}},'Counted quantity for '+it.n),E('input',{id:'count-'+it.code,type:'number',min:'0',step:'1',placeholder:'—','aria-label':'Counted quantity for '+it.n,style:{height:'30px',border:'1px solid #cfd5de',borderRadius:'7px',padding:'0 8px',width:'70px',fontFamily:'inherit',fontSize:'12.5px'}}),E('span',null,'Pending')))));
+      if(s.countState==='entryBlind') return E('div',{style:{display:'flex',flexDirection:'column',gap:'10px'}},
+        noteBox('Blind count — expected quantity is hidden from the counter until review.','blue'),
+        E('div',{style:{background:'#fff',border:'1px solid #e1e5eb',borderRadius:'11px',overflow:'hidden'}},
+          E('div',{style:{display:'grid',gridTemplateColumns:'1fr 110px 100px 90px',gap:'10px',padding:'8px 14px',background:'#f7f9fb',borderBottom:'1px solid #e1e5eb',fontSize:'10.5px',fontWeight:600,color:'#5b6576'}},E('span',null,'PRODUCT'),E('span',null,'ITEM CODE'),E('span',null,'COUNTED'),E('span',null,'STATUS')),
+          ...ITEMS.filter(it=>it.mgd&&!it.batch).slice(0,4).map(it=>E('div',{key:it.code,style:{display:'grid',gridTemplateColumns:'1fr 110px 100px 90px',gap:'10px',alignItems:'center',padding:'0 14px',height:'42px',borderTop:'1px solid #eef1f5',fontSize:'12.5px'}},E('span',null,it.n),E('span',{style:{fontFamily:"'IBM Plex Mono',monospace",fontSize:'11.5px'}},it.code),E('input',{id:'bcount-'+it.code,type:'number',min:'0',step:'1',placeholder:'—','aria-label':'Counted quantity for '+it.n+' (blind count: expected quantity hidden)',style:{height:'30px',border:'1px solid #cfd5de',borderRadius:'7px',padding:'0 8px',width:'70px',fontFamily:'inherit',fontSize:'12.5px'}}),E('span',null,'Pending')))));
+      if(s.countState==='batch') return E('div',{style:{background:'#fff',border:'1px solid #e1e5eb',borderRadius:'11px',overflow:'hidden'}},
+        E('div',{style:{display:'grid',gridTemplateColumns:'1fr 110px 90px 100px',gap:'10px',padding:'8px 14px',background:'#f7f9fb',borderBottom:'1px solid #e1e5eb',fontSize:'10.5px',fontWeight:600,color:'#5b6576'}},E('span',null,'PRODUCT / BATCH'),E('span',null,'EXPECTED'),E('span',null,'COUNTED'),E('span',null,'STATUS')),
+        ...BATCHES.map(b=>{const it=ITEMS[b.idx];return E('div',{key:b.batch,style:{display:'grid',gridTemplateColumns:'1fr 110px 90px 100px',gap:'10px',alignItems:'center',padding:'0 14px',height:'44px',borderTop:'1px solid #eef1f5',fontSize:'12.5px'}},E('span',null,it.n+' — '+b.batch),E('span',null,b.qty),E('div',{style:{height:'30px',border:'1px solid #cfd5de',borderRadius:'7px',display:'flex',alignItems:'center',padding:'0 8px',width:'70px'}},'—'),E('span',{style:{color:'#8a5100',fontWeight:600}},'Pending'));}));
+      if(s.countState==='review'||s.countState==='variance') return E('div',{style:{display:'flex',flexDirection:'column',gap:'12px'}},
+        kv('Count reference',REVIEW_LINES_REF),
+        noteBox('Expected quantity basis is determined by configured inventory count policy — not fixed by this design.','blue'),
+        E('div',{style:{background:'#fff',border:'1px solid #e1e5eb',borderRadius:'11px',overflow:'hidden'}},
+          E('div',{style:{display:'grid',gridTemplateColumns:'1fr 90px 90px 100px 90px',gap:'10px',padding:'8px 14px',background:'#f7f9fb',borderBottom:'1px solid #e1e5eb',fontSize:'10.5px',fontWeight:600,color:'#5b6576'}},E('span',null,'PRODUCT'),E('span',null,'EXPECTED'),E('span',null,'COUNTED'),E('span',null,'VARIANCE'),E('span',null,'BATCH')),
+          ...REVIEW_LINES.map(l=>varianceRow(l))));
+      if(s.countState==='recountReq') return card([kv('Product','White Bread 600 g'),kv('Expected quantity','6 EACH'),kv('Original count','9 EACH'),kv('Original variance','+3 EACH'),kv('Recount value','Pending'),kv('Requested by','Siti M.'),kv('Requested at','27 Sep 10:20')],{maxWidth:'480px'});
+      if(s.countState==='recountDone') return card([kv('Product','White Bread 600 g'),kv('Expected quantity','6 EACH'),kv('Original count','9 EACH (superseded, still visible)'),kv('Recount value','6 EACH'),kv('New variance','0'),kv('Recounted by','Ravi K.'),kv('When','27 Sep 11:05')],{maxWidth:'480px'});
+      if(s.countState==='approval') return card([kv('Count','CNT-2026-00018'),kv('Total lines','48'),kv('Variance lines','2'),kv('Approval-required lines','2'),kv('Requested by','Siti M.'),kv('Reviewed by','—'),kv('Approver','Pending'),E('span',{style:{fontSize:'11.5px',color:'#5b6576'}},'Approval threshold is configured by policy.')],{maxWidth:'520px'});
+      if(s.countState==='readyPost') return E('div',{style:{display:'flex',flexDirection:'column',gap:'12px',maxWidth:'520px'}},
+        card([kv('Count','CNT-2026-00019'),kv('Total lines','30'),kv('Variance lines','0'),kv('Approval','Not required')]),
+        E('button',{style:{alignSelf:'flex-end',height:'40px',padding:'0 18px',borderRadius:'8px',border:0,background:'#1b5fd1',color:'#fff',fontWeight:600,cursor:'pointer'}},'Post Count'));
+      if(s.countState==='posted') return card([E('div',{style:{display:'flex',gap:'12px',alignItems:'flex-start'}},E('div',{style:{width:'40px',height:'40px',borderRadius:'10px',background:'#e5f4ec',color:'#146c43',display:'grid',placeItems:'center',flex:'none'}},E('i',{className:'icon-circle-check',style:{fontSize:'20px'}})),E('div',{style:{display:'flex',flexDirection:'column',gap:'4px'}},E('span',{style:{fontSize:'16px',fontWeight:700}},'Count Posted'),E('span',{style:{fontSize:'13px',color:'#4a5567'}},'Variance Movements Created · Audit Recorded'))),kv('Movement references','ADJ-2026-00050, ADJ-2026-00051'),E('span',{style:{fontSize:'11.5px',color:'#5b6576'}},'Zero-variance lines created no movement.')],{maxWidth:'520px'});
+      if(s.countState==='zeroVariance') return E('div',{style:{background:'#fff',border:'1px solid #e1e5eb',borderRadius:'11px',overflow:'hidden'}},
+        E('div',{style:{display:'grid',gridTemplateColumns:'1fr 90px 90px 100px',gap:'10px',padding:'8px 14px',background:'#f7f9fb',borderBottom:'1px solid #e1e5eb',fontSize:'10.5px',fontWeight:600,color:'#5b6576'}},E('span',null,'PRODUCT'),E('span',null,'EXPECTED'),E('span',null,'COUNTED'),E('span',null,'VARIANCE')),
+        ...ITEMS.filter(it=>it.mgd).slice(0,4).map(it=>E('div',{key:it.code,style:{display:'grid',gridTemplateColumns:'1fr 90px 90px 100px',gap:'10px',alignItems:'center',padding:'0 14px',height:'42px',borderTop:'1px solid #eef1f5',fontSize:'12.5px'}},E('span',null,it.n),E('span',null,it.onHand),E('span',null,it.onHand),E('span',{style:{color:'#4a5567',fontWeight:600}},'0'))));
+      if(s.countState==='cancel') return card([kv('Count','CNT-2026-00011'),kv('Status','Cancelled'),kv('Reason','Wrong scope selected'),E('span',{style:{fontSize:'11.5px',color:'#5b6576'}},'Cancellation creates no stock effect. A posted count cannot be cancelled.')],{maxWidth:'480px'});
+      if(s.countState==='readonly') return E('div',{style:{display:'flex',flexDirection:'column',gap:'12px'}},
+        kv('Count reference',REVIEW_LINES_REF),
+        noteBox('Posted count — read-only. Correction uses a new Count or a Controlled Adjustment, never an edit here.','blue'),
+        E('div',{style:{background:'#fff',border:'1px solid #e1e5eb',borderRadius:'11px',overflow:'hidden'}},
+          E('div',{style:{display:'grid',gridTemplateColumns:'1fr 90px 90px 100px',gap:'10px',padding:'8px 14px',background:'#f7f9fb',borderBottom:'1px solid #e1e5eb',fontSize:'10.5px',fontWeight:600,color:'#5b6576'}},E('span',null,'PRODUCT'),E('span',null,'EXPECTED'),E('span',null,'COUNTED'),E('span',null,'VARIANCE')),
+          ...REVIEW_LINES.map(l=>varianceRow(l))));
+      if(s.countState==='audit') return E('div',{style:{background:'#fff',border:'1px solid #e1e5eb',borderRadius:'11px',overflow:'hidden'}},
+        E('div',{style:{display:'grid',gridTemplateColumns:'110px 130px 1fr',gap:'10px',padding:'8px 14px',background:'#f7f9fb',borderBottom:'1px solid #e1e5eb',fontSize:'10.5px',fontWeight:600,color:'#5b6576'}},E('span',null,'AT'),E('span',null,'ACTOR'),E('span',null,'EVENT')),
+        ...[['20 Sep 09:00','Ravi K.','Count created — Whole Store'],['20 Sep 15:30','Ravi K.','Capture completed — 48 lines'],['20 Sep 16:10','Siti M.','Reviewed — 2 lines varied'],['20 Sep 17:00','Siti M.','Approved'],['20 Sep 18:40','Store Node','Posted — variance movements created']].map(([t,a,e])=>E('div',{key:t+e,style:{display:'grid',gridTemplateColumns:'110px 130px 1fr',gap:'10px',alignItems:'center',padding:'0 14px',height:'40px',borderTop:'1px solid #eef1f5',fontSize:'12.5px'}},E('span',{style:{color:'#4a5567'}},t),E('span',null,a),E('span',null,e))));
+      if(s.countState==='concurrency') return E('div',{style:{display:'flex',flexDirection:'column',gap:'12px',maxWidth:'700px'}},
+        card([E('span',{style:{fontSize:'14px',fontWeight:700}},'COUNT BASIS / CONCURRENCY'),E('span',{style:{fontSize:'12.5px',color:'#4a5567'}},'Expected quantity basis is determined by configured inventory count policy. This is an open MiniMart decision — Design shows illustrative examples of both directions without choosing one.')]),
+        E('div',{style:{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'12px'}},
+          card([E('span',{style:{fontSize:'12px',fontWeight:700,color:'#8a5100'}},'AUTHORITY-DEPENDENT EXAMPLE'),E('span',{style:{fontSize:'12.5px',fontWeight:600}},'Scope Locked'),E('span',{style:{fontSize:'12px',color:'#5b6576'}},'Stock-affecting transactions on in-scope items are held until the count closes.')]),
+          card([E('span',{style:{fontSize:'12px',fontWeight:700,color:'#8a5100'}},'AUTHORITY-DEPENDENT EXAMPLE'),E('span',{style:{fontSize:'12.5px',fontWeight:600}},'Transactions Continue + Reconciliation'),E('span',{style:{fontSize:'12px',color:'#5b6576'}},'Transactions continue; variance is reconciled against activity that happened during the count.')])));
+      return null;
+    })();
+    const dsGalleries={
+      table:['Inventory List','Movement Ledger','Count Master List','Adjustment History'].map(n=>({n,d:'Sticky header, permission-aware columns, horizontal scroll only where needed.'})),
+      quantity:[['In Stock',stockStatus({mgd:true,onHand:50,low:10})],['Low Stock',stockStatus({mgd:true,onHand:5,low:10})],['Zero Stock',stockStatus({mgd:true,onHand:0,low:10})],['Not Stock-Managed',stockStatus({mgd:false})]],
+      movement:['Goods Receipt','Sale','Sales Return','Purchase Return','Opening Stock','Positive Adjustment','Negative Adjustment','Stock Count Variance','Damage','Wastage / Expiry'].map(n=>({n})),
+      batch:[['Valid',expStatus('valid')],['Near Expiry',expStatus('nearExpiry')],['Expired',expStatus('expired')]],
+      adjustment:['Draft','Validation','Blocked','Awaiting Approval','Review','Posted','Correction','Retry'].map(n=>({n})),
+      count:['Draft','In Progress','Review','Recount Requested','Awaiting Approval','Ready to Post','Posted','Cancelled'].map(n=>({n,p:countStPill(n)})),
+      permission:['Inventory View','Create Adjustment','Approve Adjustment','Post Adjustment','Create Count','Count Entry','Review Count','Approve Count','Post Count','View WAC','Opening Stock'].map(n=>({n})),
+      offline:[['Store Node Unavailable','Blocking — Inventory operations unavailable'],['Cloud Sync Unavailable','Non-blocking — local Inventory continues'],['Posting Uncertain','Safe retry, no duplicate movement']],
+      inventory:[{title:'Shell',items:['InventorySummary','InventoryTable','StockQuantity','StockStatus','LowStockBadge','ZeroStockBadge','NegativeStockBadge','WACValue']},{title:'Movements',items:['MovementTable','MovementTypeBadge','MovementDirection','MovementDetailDrawer','SourceDocumentLink']},{title:'Batch',items:['BatchBadge','BatchTable','ExpiryStatus','ExpiryDate','BatchDetail']},{title:'Adjustment',items:['AdjustmentStatus','AdjustmentDirection','AdjustmentReason','AdjustmentReview','AdjustmentApproval','AdjustmentPostedState','NegativeStockBlockedState']},{title:'Count',items:['StockCountStatus','StockCountScope','CountEntryTable','BlindCountMode','CountVariance','RecountState','CountApproval','CountPostSummary','CountAuditTimeline']},{title:'Shared',items:['OpeningStockForm','InventoryPermissionState','InventoryOfflineState']}]
+    };
+    const dsTitleMap={table:'Inventory DataTable components',quantity:'Quantity / Stock status components',movement:'Movement components',batch:'Batch / Expiry components',adjustment:'Adjustment components',count:'Count components',permission:'Permission / Approval components',offline:'Offline / Error states',inventory:'Inventory component inventory',reorder:'Reorder / Low Stock — decision support',loading:'Inventory — LOADING state',empty:'Inventory — EMPTY state',conflict:'Inventory — CONFLICT (stale version) state',incompat:'Inventory — INCOMPATIBLE_CLIENT state',validationError:'Inventory — VALIDATION_ERROR (field-level) state',permissionDenied:'Inventory — PERMISSION_DENIED (posting) state'};
+    const dsBody=(()=>{
+      const g=s.ds;
+      if(g==='table') return E('div',{style:{display:'grid',gridTemplateColumns:'repeat(2,1fr)',gap:'12px'}},...dsGalleries.table.map(t=>card([E('span',{style:{fontWeight:600,fontSize:'12.5px'}},t.n),E('span',{style:{fontSize:'12px',color:'#5b6576'}},t.d)])));
+      if(g==='quantity') return E('div',{style:{display:'flex',gap:'10px',flexWrap:'wrap'}},...dsGalleries.quantity.map(([n,p])=>E('span',{key:n,style:{display:'inline-flex',alignItems:'center',gap:'5px',height:'26px',padding:'0 10px',borderRadius:'999px',background:p.bg,color:p.fg,fontSize:'12px',fontWeight:600}},E('i',{className:p.icon,style:{fontSize:'13px'}}),p.label)));
+      if(g==='movement') return E('div',{style:{display:'flex',gap:'8px',flexWrap:'wrap'}},...dsGalleries.movement.map(m=>E('span',{key:m.n,style:{height:'28px',padding:'0 10px',borderRadius:'8px',background:'#eef1f5',color:'#3d4a5e',fontSize:'12px',fontWeight:600,display:'flex',alignItems:'center'}},m.n)));
+      if(g==='batch') return E('div',{style:{display:'flex',gap:'10px'}},...dsGalleries.batch.map(([n,p])=>E('span',{key:n,style:{display:'inline-flex',alignItems:'center',gap:'5px',height:'26px',padding:'0 10px',borderRadius:'999px',background:p.bg,color:p.fg,fontSize:'12px',fontWeight:600}},E('i',{className:p.icon,style:{fontSize:'13px'}}),p.label)));
+      if(g==='adjustment') return E('div',{style:{display:'flex',gap:'8px',flexWrap:'wrap'}},...dsGalleries.adjustment.map(a=>E('span',{key:a.n,style:{height:'28px',padding:'0 10px',borderRadius:'8px',background:'#eef1f5',color:'#3d4a5e',fontSize:'12px',fontWeight:600,display:'flex',alignItems:'center'}},a.n)));
+      if(g==='count') return E('div',{style:{display:'flex',gap:'8px',flexWrap:'wrap'}},...dsGalleries.count.map(c=>E('span',{key:c.n,style:{height:'26px',padding:'0 10px',borderRadius:'999px',background:c.p.bg,color:c.p.fg,fontSize:'12px',fontWeight:600,display:'flex',alignItems:'center'}},c.n)));
+      if(g==='permission') return E('div',{style:{display:'flex',gap:'8px',flexWrap:'wrap'}},...dsGalleries.permission.map(p=>E('span',{key:p.n,style:{height:'28px',padding:'0 10px',borderRadius:'8px',background:'#eef1f5',color:'#3d4a5e',fontSize:'12px',fontWeight:600,display:'flex',alignItems:'center'}},p.n)));
+      if(g==='offline') return E('div',{style:{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:'12px'}},...dsGalleries.offline.map(([n,d])=>card([E('span',{style:{fontWeight:600,fontSize:'12.5px'}},n),E('span',{style:{fontSize:'12px',color:'#5b6576'}},d)])));
+      if(g==='reorder') return E('div',{style:{display:'flex',flexDirection:'column',gap:'12px',maxWidth:'640px'}},
+        noteBox('UI-INV-006 Reorder / Low Stock has no dedicated frozen screen. Shown here as decision support only — it does not assign reorder/low-stock threshold ownership (DEC-INV-007, OPEN). The threshold column is an illustrative example, not a configured value.','amber'),
+        E('div',{style:{background:'#fff',border:'1px solid #e1e5eb',borderRadius:'11px',overflow:'hidden'}},
+          E('div',{style:{display:'grid',gridTemplateColumns:'1.4fr 90px 100px 1fr',gap:'10px',padding:'8px 14px',background:'#f7f9fb',borderBottom:'1px solid #e1e5eb',fontSize:'10.5px',fontWeight:600,color:'#5b6576'}},E('span',null,'ITEM'),E('span',null,'ON HAND'),E('span',null,'THRESHOLD (example)'),E('span',null,'SUGGESTED ACTION')),
+          ...ITEMS.filter(it=>it.mgd&&it.onHand>0&&it.onHand<=it.low).map(it=>E('div',{style:{display:'grid',gridTemplateColumns:'1.4fr 90px 100px 1fr',gap:'10px',alignItems:'center',padding:'0 14px',height:'42px',borderTop:'1px solid #eef1f5',fontSize:'12.5px'}},E('span',{style:{fontWeight:600}},it.n),E('span',null,it.onHand+' '+it.base),E('span',{style:{color:'#5b6576'}},it.low+' '+it.base+' (example)'),E('span',{style:{color:'#5b6576'}},'No frozen reorder operation exists — review manually')))));
+      if(g==='loading') return E('div',{role:'status','aria-live':'polite',style:{display:'flex',flexDirection:'column',gap:'10px',maxWidth:'640px'}},E('span',{style:{fontSize:'12.5px',color:'#5b6576'}},'Loading inventory…'),...[0,1,2,3].map(i=>E('div',{key:i,style:{height:'38px',borderRadius:'8px',background:'#eef1f5'}})));
+      if(g==='empty') return card([E('span',{style:{fontWeight:600,fontSize:'14px'}},'No items match these filters'),E('span',{style:{fontSize:'12.5px',color:'#5b6576'}},'Try clearing Low Stock, Zero Stock or Negative, or widen the search.'),E('button',{style:{alignSelf:'flex-start',height:'34px',padding:'0 14px',borderRadius:'8px',border:'1px solid #cfd5de',background:'#fff',fontWeight:600,fontSize:'12.5px',cursor:'pointer'}},'Clear filters')],{maxWidth:'480px'});
+      if(g==='conflict') return E('div',{role:'alert',style:{maxWidth:'560px'}},noteBox('This item changed on the server since you opened it (stock quantity or version is stale). Refresh to see the current value before adjusting or counting it. Your unsaved entry is preserved where possible.','red'));
+      if(g==='incompat') return E('div',{role:'alert',style:{maxWidth:'560px'}},noteBox('This client version cannot post inventory changes until it is updated. Viewing remains available; posting (adjustment, count, opening stock) is blocked until the client is compatible.','red',true));
+      if(g==='validationError') return E('div',{style:{maxWidth:'560px',display:'flex',flexDirection:'column',gap:'10px'}},
+        E('div',{role:'alert',style:{fontSize:'12.5px',color:'#8a1f14',fontWeight:600}},'1 field needs attention before you can continue.'),
+        E('div',{style:{display:'flex',flexDirection:'column',gap:'4px'}},E('label',{htmlFor:'exQty',style:{fontSize:'12px',fontWeight:600}},'Quantity'),E('input',{id:'exQty',type:'number','aria-invalid':'true','aria-describedby':'exQtyErr',style:{height:'38px',border:'1.5px solid #b3261e',borderRadius:'8px',padding:'0 11px',fontSize:'13px',fontFamily:'inherit'}}),E('span',{id:'exQtyErr',role:'alert',style:{fontSize:'11.5px',color:'#8a1f14'}},'Enter a quantity greater than 0 to continue.')));
+      if(g==='permissionDenied') return E('div',{role:'alert',style:{maxWidth:'560px'}},noteBox('Your current role (Read-only) can view inventory but cannot post adjustments, counts or opening stock. Ask an Inventory Manager or Admin to make this change.','amber',true));
+      return E('div',{style:{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:'12px'}},...dsGalleries.inventory.map(gr=>card([E('span',{style:{fontWeight:700,fontSize:'12.5px'}},gr.title),...gr.items.map(i=>E('span',{key:i,style:{fontSize:'12px',color:'#4a5567',fontFamily:"'IBM Plex Mono',monospace"}},i))])));
+    })();
+    const BATCH_MOVES=[
+      {t:'12 Sep 08:20',type:'Goods Receipt',doc:'GRN-2026-00098',qIn:'20',qOut:'—',run:'20'},
+      {t:'19 Sep 13:05',type:'Sale',doc:'SALE-000410',qIn:'—',qOut:'3',run:'17'},
+      {t:'23 Sep 14:20',type:'Positive Adjustment',doc:'ADJ-2026-00041',qIn:'6',qOut:'—',run:'23'}];
+// F4 fix: batch B-2609-01's ledger now ends with the SAME event (ADJ-2026-00041, +6, 23 Sep 14:20) as the
+// item-level ledger entry for Cream Crackers 400 g; batch qty 23 + 11 = item on-hand 34 (unchanged).
+    const drawerContent=s.drawer==='movement'?E('div',{style:{display:'flex',flexDirection:'column',gap:'10px'}},kv('Movement','SALE-000482'),kv('Date/time','26 Sep 09:55'),kv('Store','MiniMart Central'),kv('Product','Cola 1.5 L'),kv('Quantity effect','−24 EACH'),kv('Movement type','Sale'),kv('Source process','Sales'),kv('Source document','SALE-000482'),kv('Actor','POS-01'),noteBox('This is a posted historical fact — it cannot be edited or deleted from here.','blue'),E('a',{href:'#',style:{fontSize:'12.5px',fontWeight:600}},'View source document →')):
+      s.drawer==='batch'?E('div',{style:{display:'flex',flexDirection:'column',gap:'12px'}},kv('Product','Cream Crackers 400 g'),kv('Batch','B-2609-01'),kv('Store','MiniMart Central'),kv('Quantity','20 EACH'),kv('Expiry','02 Oct 2026'),kv('Status','Near Expiry'),kv('Source receipt','GRN-2026-00098'),
+        E('span',{style:{fontSize:'12px',fontWeight:600,marginTop:'4px'}},'Movement history for this batch'),
+        E('div',{style:{border:'1px solid #e1e5eb',borderRadius:'9px',overflow:'hidden'}},
+          E('div',{style:{display:'grid',gridTemplateColumns:'90px 1fr 60px 60px 60px',gap:'6px',padding:'6px 10px',background:'#f7f9fb',borderBottom:'1px solid #e1e5eb',fontSize:'10px',fontWeight:600,color:'#5b6576'}},'DATE','TYPE','IN','OUT','QTY'),
+          ...BATCH_MOVES.map(m=>E('div',{key:m.doc,style:{display:'grid',gridTemplateColumns:'90px 1fr 60px 60px 60px',gap:'6px',alignItems:'center',padding:'0 10px',height:'34px',borderTop:'1px solid #eef1f5',fontSize:'11.5px'}},E('span',{style:{color:'#4a5567',fontSize:'10.5px'}},m.t),E('span',{style:{fontWeight:600}},m.type),E('span',{style:{color:'#146c43'}},m.qIn),E('span',{style:{color:'#b3261e'}},m.qOut),E('span',{style:{fontWeight:600}},m.run)))),
+        noteBox('Batch identity remains understandable even if later item master data changes.','blue')):null;
+    return {
+      rootH:this.props.embedded?'100%':'100vh', scrLabel:s.scr+' '+(NAMES[s.scr]||''),
+      nav, nodeP, syncP, roleLabel, nodeDown:!node, nodeUp:node, cloudDown:!cloudOk, readOnly,
+      isDash:s.view==='dashboard', invTiles,
+      isList:s.view==='list', invFilters, invResultLabel, invRows, secondaryNav, goNewAdj, goNewCount, goOpening, toggleMore, moreOpen,
+      isDetail:s.view==='detail', dItem, wacAuth:s.wacAuth, invTabs, invTabContent,
+      isBatchList:s.view==='batchList', batchListTitle, batchRows,
+      isMovements:s.view==='movements', moveFilters, moveRows,
+      isAdjustment:s.view==='adjustment', adjIsHistory, adjIsFlow, adjFilters, adjHistRows, adjSteps, adjBody,
+      isOpening:s.view==='opening', openSteps, openBody,
+      isCount:s.view==='count', countIsMaster, countIsFlow, countRows, countSteps, countBody,
+      isDSGallery:s.view==='dsGallery', dsTitle:dsTitleMap[s.ds], dsBody,
+      drawerOpen:!!s.drawer, drawerTitle:s.drawer==='movement'?'Movement detail':s.drawer==='batch'?'Batch detail':'', drawerContent, closeDrawer:()=>set({drawer:null})
+    };
+  }
+}
+
+</script>
+</body>
+</html>

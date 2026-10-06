@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#e6e9ee;font-family:'IBM Plex Sans',system-ui,sans-serif;color:#0f1a2b}a{color:#1b5fd1}a:hover{color:#174fb0}</style>
+</helmet>
+<section style="padding:36px 48px 20px;display:flex;flex-direction:column;gap:8px;max-width:1100px">
+  <a href="MiniMart Inventory Mockups.dc.html" style="font-size:12.5px">← Inventory index</a>
+  <div style="display:flex;gap:6px;flex-wrap:wrap;padding:2px 0 4px"><a href="MiniMart INV - Foundation & List.dc.html" style="height:28px;padding:0 12px;border-radius:999px;font-size:11.5px;font-weight:600;border:1px solid #cfd5de;background:#fff;color:#3d4a5e;text-decoration:none;display:inline-flex;align-items:center">01–07 Foundation & List</a><a href="MiniMart INV - Item & Movements.dc.html" style="height:28px;padding:0 12px;border-radius:999px;font-size:11.5px;font-weight:600;border:1px solid #cfd5de;background:#fff;color:#3d4a5e;text-decoration:none;display:inline-flex;align-items:center">08–16 Item & Movements</a><a href="MiniMart INV - Adjustments & Opening Stock.dc.html" style="height:28px;padding:0 12px;border-radius:999px;font-size:11.5px;font-weight:600;border:1px solid #cfd5de;background:#fff;color:#3d4a5e;text-decoration:none;display:inline-flex;align-items:center">17–29 Adjustments & Opening</a><a href="MiniMart INV - Stock Count.dc.html" style="height:28px;padding:0 12px;border-radius:999px;font-size:11.5px;font-weight:600;border:1px solid #cfd5de;background:#fff;color:#3d4a5e;text-decoration:none;display:inline-flex;align-items:center">30–48 Stock Count</a><a href="MiniMart INV - Design System & Docs.dc.html" style="height:28px;padding:0 12px;border-radius:999px;font-size:11.5px;font-weight:600;border:1px solid #0e1b33;background:#0e1b33;color:#fff;text-decoration:none;display:inline-flex;align-items:center">49–60 Design System & Docs</a></div>
+  <span style="font-size:26px;font-weight:700">Inventory — Responsive / Design System & Documentation</span>
+  <span style="font-size:14px;color:#4a5567">Screens 49–67, plus the package's documentation record.</span>
+</section>
+<section style="padding:20px 48px 32px;border-top:1px solid #cfd5de">
+  <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:16px"><span style="font-size:19px;font-weight:700">Responsive — 1280×720</span></div>
+  <div style="display:flex;flex-wrap:wrap;gap:28px">
+    <sc-for list="{{ respScreens }}" as="s" hint-placeholder-count="3">
+      <div id="s{{ s.n }}" style="display:flex;flex-direction:column;gap:8px">
+        <div style="display:flex;align-items:center;gap:9px"><span style="font:600 11px 'IBM Plex Mono',monospace;padding:3px 6px;border-radius:5px;background:#0e1b33;color:#fff">{{ s.n }}</span><span style="font-size:13.5px;font-weight:600">{{ s.t }}</span></div>
+        <div style="width:1280px;height:720px;border-radius:8px;overflow:hidden;box-shadow:0 1px 3px rgba(14,27,51,.12),0 8px 24px rgba(14,27,51,.08);background:#f2f4f7">
+          <dc-import name="MiniMartInventory" screen="{{ s.n }}" embedded="{{ true }}" hint-size="1280px,720px" style="width:1280px;height:720px"></dc-import>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+</section>
+<section style="padding:20px 48px 32px;border-top:1px solid #cfd5de">
+  <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:16px"><span style="font-size:19px;font-weight:700">Design system pages</span></div>
+  <div style="display:flex;flex-wrap:wrap;gap:28px">
+    <sc-for list="{{ dsScreens }}" as="s" hint-placeholder-count="9">
+      <div id="s{{ s.n }}" style="display:flex;flex-direction:column;gap:8px">
+        <div style="display:flex;align-items:center;gap:9px"><span style="font:600 11px 'IBM Plex Mono',monospace;padding:3px 6px;border-radius:5px;background:#0e1b33;color:#fff">{{ s.n }}</span><span style="font-size:13.5px;font-weight:600">{{ s.t }}</span></div>
+        <div style="width:1366px;height:768px;border-radius:8px;overflow:hidden;box-shadow:0 1px 3px rgba(14,27,51,.12),0 8px 24px rgba(14,27,51,.08);background:#f2f4f7">
+          <dc-import name="MiniMartInventory" screen="{{ s.n }}" embedded="{{ true }}" hint-size="1366px,768px" style="width:1366px;height:768px"></dc-import>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+</section>
+<section style="padding:20px 48px 32px;border-top:1px solid #cfd5de">
+  <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:16px"><span style="font-size:19px;font-weight:700">New in this revision — missing states &amp; decision support (61–65)</span></div>
+  <div style="display:flex;flex-wrap:wrap;gap:28px">
+    <sc-for list="{{ newScreens }}" as="s" hint-placeholder-count="5">
+      <div id="s{{ s.n }}" style="display:flex;flex-direction:column;gap:8px">
+        <div style="display:flex;align-items:center;gap:9px"><span style="font:600 11px 'IBM Plex Mono',monospace;padding:3px 6px;border-radius:5px;background:#0e1b33;color:#fff">{{ s.n }}</span><span style="font-size:13.5px;font-weight:600">{{ s.t }}</span></div>
+        <div style="width:1366px;height:768px;border-radius:8px;overflow:hidden;box-shadow:0 1px 3px rgba(14,27,51,.12),0 8px 24px rgba(14,27,51,.08);background:#f2f4f7">
+          <dc-import name="MiniMartInventory" screen="{{ s.n }}" embedded="{{ true }}" hint-size="1366px,768px" style="width:1366px;height:768px"></dc-import>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+</section>
+<section style="padding:26px 48px 60px;border-top:1px solid #cfd5de;display:flex;flex-direction:column;gap:16px;max-width:900px">
+  <span style="font-size:21px;font-weight:700">Documentation</span>
+  <sc-for list="{{ docs }}" as="d" hint-placeholder-count="8">
+    <div style="display:flex;flex-direction:column;gap:6px">
+      <span style="font-size:14px;font-weight:600">{{ d.h }}</span>
+      <sc-for list="{{ d.lines }}" as="l" hint-placeholder-count="4"><span style="font-size:13px;color:#4a5567;line-height:1.5">{{ l }}</span></sc-for>
+    </div>
+  </sc-for>
+</section>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals(){
+    const respScreens=[['49','Inventory list — 1280×720'],['50','Count entry — 1280×720'],['51','Adjustment — 1280×720']].map(([n,t])=>({n,t}));
+    const dsScreens=[['52','Inventory DataTable components'],['53','Quantity / Stock status components'],['54','Movement components'],['55','Batch / Expiry components'],['56','Adjustment components'],['57','Count components'],['58','Permission / Approval components'],['59','Offline / Error states'],['60','Inventory component inventory + documentation']].map(([n,t])=>({n,t}));
+    const newScreens=[['61','Reorder / Low Stock — decision support'],['62','Inventory — LOADING state'],['63','Inventory — EMPTY state'],['64','Inventory — CONFLICT (stale version) state'],['65','Inventory — INCOMPATIBLE_CLIENT state'],['66','Inventory — VALIDATION_ERROR (field-level) state'],['67','Inventory — PERMISSION_DENIED (posting) state']].map(([n,t])=>({n,t}));
+    const docs=[
+      {h:'1. Screen index',lines:['65 artboards: 60 original (Foundation, Item/Movements, Adjustments, Opening Stock, Stock Count, Design System — numbered 01–60) plus 7 added across this revision (61–65: Reorder/Low Stock decision support, LOADING, EMPTY, CONFLICT and INCOMPATIBLE_CLIENT states; 66–67: VALIDATION_ERROR field-level and PERMISSION_DENIED posting states), split across 5 linked pages for a lighter, responsive canvas. Reuses the review-ready MiniMart Back Office shell, nav, status language, tables, forms and dialogs — no redesign of the shell, Catalog or Pricing. Back Office itself is review-ready, not an approved visual reference; in this repository only Accounting-Lite, Cash/Business Day, Customers + Credit, Procurement and Reporting are approved.']},
+      {h:'2. Component inventory',lines:['Reuses existing Back Office components. Adds: InventorySummary, InventoryTable, StockQuantity, StockStatus, LowStockBadge, ZeroStockBadge, NegativeStockBadge, WACValue, MovementTable, MovementTypeBadge, MovementDirection, MovementDetailDrawer, SourceDocumentLink, BatchBadge, BatchTable, ExpiryStatus, ExpiryDate, BatchDetail, AdjustmentStatus, AdjustmentDirection, AdjustmentReason, AdjustmentReview, AdjustmentApproval, AdjustmentPostedState, NegativeStockBlockedState, StockCountStatus, StockCountScope, CountEntryTable, BlindCountMode, CountVariance, RecountState, CountApproval, CountPostSummary, CountAuditTimeline, OpeningStockForm, InventoryPermissionState, InventoryOfflineState. Full detail in screens 52–60 above.']},
+      {h:'3. Changelog',lines:['New package: MiniMart Back Office — Inventory. Built on the review-ready (not approved) MiniMart Back Office visual system (dark navy nav, light workspace, compact tables, restrained blue/teal, amber/red exceptions). No changes to the Back Office shell, Catalog or Pricing packages.']},
+      {h:'4. Authority-dependent items not invented by Design',lines:['Exact WAC calculation formula · repeated-scan behavior in count entry · count concurrency / basis policy (locked scope vs. continue-and-reconcile) · adjustment reason catalogue and which reasons require a note · approval thresholds for adjustments and counts · exact permission/role matrix · negative-stock reporting/valuation treatment beyond Phase-1 block · return-condition/disposition rules · exact keyboard shortcuts.']},
+      {h:'5. Open decisions preserved',lines:['Count concurrency (screen 48) is shown as an explicit COUNT BASIS / CONCURRENCY information panel with two labeled AUTHORITY-DEPENDENT examples (scope lock, transactions-continue-and-reconcile) — neither is chosen as the product behavior. Adjustment reason catalogue, approval thresholds and repeated-scan behavior are shown as examples only.']},
+      {h:'6. Later-phase / concept items',lines:['Inter-branch Stock Transfer is documented as later-phase only — no active "New Transfer" action exists in current Phase-1 screens. Full inventory valuation reporting is documented as planned/later phase; only Moving WAC (Item × Store, read-only) is shown in current screens.']},
+      {h:'7. Ownership boundaries preserved',lines:['Inventory owns InventoryPosition and StockCount, scoped Item × Store. Item identity itself remains company-wide and owned by Catalog — no second product master was created. Goods Receipt and Purchase Return remain Procurement-owned; Inventory only shows the resulting posted movement with a "View source document" link, never an edit action. Sale and Sales Return ownership was not duplicated — Inventory shows only their resulting stock movements.']},
+      {h:'8–20. Confirmations',lines:[
+        '8. Current stock is never shown as an arbitrary editable balance — no "Edit Stock" / "Set Quantity" action exists anywhere in the package.',
+        '9. Posted stock movements are read-only historical fact — no Edit/Delete Movement action exists; correction requires a new compensating adjustment.',
+        '10. Moving WAC is read-only and Inventory-owned — no Edit/Override WAC or Set Cost action exists, and the calculation formula is not shown in the UI.',
+        '11. Inventory is Store-scoped (Item × Store); Item identity itself remains company-wide and is owned by Catalog.',
+        '12. Phase-1 negative stock is BLOCKED — no "Allow negative" / "Proceed anyway" / manager-override option is offered in the current Phase-1 adjustment flow; negative stock only appears as a historical/diagnostic status.',
+        '13. Stock Count posting creates explicit variance adjustment movements (with references) rather than visually implying a direct "set stock to counted quantity" overwrite.',
+        '14. Posted Stock Counts remain immutable — no Edit/Reopen action exists; correction uses a new Count or a Controlled Adjustment.',
+        '15. Stock Count concurrency policy was not invented — screen 48 shows it as an explicit open, authority-dependent decision with labeled examples only.',
+        '16. Goods Receipt and Purchase Return remain Procurement-owned documents; Inventory shows only the resulting posted movement.',
+        '17. Sale and Sales Return lifecycle was not duplicated inside Inventory — only resulting stock movements are shown.',
+        '18. Inter-branch Stock Transfer is treated as later-phase — no active current workflow or primary action for it exists.',
+        '19. Cloud Sync outage alone does not block local Inventory operations while the Store Node remains available (screen 06); Store Node unavailable (screen 05) is a separate, blocking state that hides Store Node-backed content rather than leaving it looking live.',
+        '20. Inventory valuation reporting is not presented as a current Phase-1 operational workflow — only permission-aware Moving WAC is shown; a full valuation dashboard is out of scope for this package.']},
+      {h:'21. Responsive',lines:['Primary viewport 1366×768; screens 49–51 additionally show the Inventory list, Count Entry and Adjustment review at 1280×720 with quantity/status/variance columns prioritized and no clipped inputs. The same fluid shell also holds up at 1368×800 and 1920×1080.']}
+    ];
+    return {respScreens,dsScreens,newScreens,docs};
+  }
+}
+
+</script>
+</body>
+</html>

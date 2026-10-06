@@ -1,0 +1,295 @@
+{
+  "status": "review-ready; unapproved visual candidate; no owner visual approval",
+  "kind": "Claude Design revision (v2, batch 4) of the Inventory visual design",
+  "upstreamArchive": {
+    "name": "MiniMart_Inventory_ClaudeDesign_Source_v2(batch4).zip",
+    "localLocation": "Incoming/ (untracked in the original checkout; not committed)",
+    "sha256": "1d36c2559a8ecdf13cfb31baa8e1203dc1627765f3bc2429639cb16b2bb326f3",
+    "bytes": 100269,
+    "integrity": "unzip -t: no errors; 18 files"
+  },
+  "earlierExports": {
+    "note": "Preserved unmodified in Incoming/ and not registered. Only batch 4 is registered.",
+    "first": {
+      "name": "MiniMart_Inventory_ClaudeDesign_Source.zip",
+      "sha256": "f476c65607aae2507cf3fb9ada3b988915f35e627eecb5ae9e846cd17b998589",
+      "bytes": 81587,
+      "screens": 60
+    },
+    "v2": {
+      "name": "MiniMart_Inventory_ClaudeDesign_Source_v2.zip",
+      "sha256": "b244655f9548e1bcd65c908fb7fad12fd3599df01b6f766e2980e6267a34f467",
+      "bytes": 86003,
+      "screens": 65
+    },
+    "v2Batch3": {
+      "name": "MiniMart_Inventory_ClaudeDesign_Source_v2(batch3).zip",
+      "sha256": "b6ecf8a6282801f4d31322c9386502839e2fcb85bb999d9914a89e948c9df7fc",
+      "bytes": 91949,
+      "screens": 65
+    },
+    "firstExportIntegration": "The first export's integrated record (provenance, traceability and manifest) was an earlier uncommitted state of this candidate; its export manifest hash was 29dd19f3337218d0e92c4b137322fc045cfa39045a53a403d2f997af65d3ea58 and its source hash a18dc6c21a64cfb77056d222fe948e55a67800122acf31469cd20f826ca76479."
+  },
+  "exportManifest": {
+    "path": "source/INVENTORY-REVISION-MANIFEST.txt",
+    "sha256": "2615142f375632e4d1655c1f47b5789aa86c7524e742297d9d399930552e0175",
+    "bytes": 35573,
+    "verification": "The manifest is cumulative: it keeps the hashes of earlier batches and states 'TOTAL PACKAGED FILES 15' and '17' in different sections. Taking the last declaration for each file, all 14 .dc.html files, support.js and doc-page.js match the packaged bytes. TRACEABILITY-v2.md is not hashed by the manifest; its actual hash is recorded in upstreamFilesNotRegistered."
+  },
+  "inventory": {
+    "reconciliation": "The manifest's claim of 17 packaged files = 14 .dc.html + support.js + doc-page.js + TRACEABILITY-v2.md. The archive holds 18 files: 16 payload files, 1 documentation file and the manifest.",
+    "payload": {
+      "source": 1,
+      "groupedPages": 5,
+      "index": 1,
+      "printVariants": 7,
+      "runtime": ["support.js", "doc-page.js"],
+      "total": 16
+    },
+    "documentation": ["TRACEABILITY-v2.md"],
+    "manifest": ["INVENTORY-REVISION-MANIFEST.txt"],
+    "archiveTotal": 18,
+    "printVariants": [
+      "Foundation & List 01-07",
+      "Item & Movements 08-16",
+      "Adjustments & Opening Stock 17-29",
+      "Stock Count 30-48",
+      "Design System & Docs 49-60",
+      "New States 61-67",
+      "Combined 01-60 (legacy; does not include 61-67)"
+    ]
+  },
+  "authoritativeSource": {
+    "path": "source/MiniMartInventory.dc.html",
+    "sha256": "48f47b59272038f50fabadca30d0863c823e21ff1564ca9dbfa75fb9ba397358",
+    "bytes": 97722
+  },
+  "runtime": {
+    "support.js": {
+      "sha256": "8fe7df74405f3c55f49b7249c74ea1397e65d07dea2b1bd3b4a489bec2e28cbe",
+      "comparison": "byte-identical to docs/design/{accounting,cash-shifts,customers,procurement,reports}/source/support.js"
+    },
+    "doc-page.js": {
+      "sha256": "f52ae9c02fca7ab44c37f3ff363194fdf81caa20ae63e2fe1f518ed21133185e",
+      "note": "Required by the seven print variants; present in no other package."
+    }
+  },
+  "files": [
+    {
+      "path": "source/INVENTORY-REVISION-MANIFEST.txt",
+      "sha256": "2615142f375632e4d1655c1f47b5789aa86c7524e742297d9d399930552e0175",
+      "bytes": 35573,
+      "origin": "Claude Design revision manifest (cumulative; several sections are stale)",
+      "finalManifestDeclaration": "not self-declared",
+      "integrationAdjusted": false
+    },
+    {
+      "path": "source/MiniMart INV - Adjustments & Opening Stock.dc.html",
+      "sha256": "53d976734174d53b58b77e732019ea430b1629e3ae2367e92255f319ce72c24f",
+      "bytes": 4377,
+      "origin": "Claude Design export",
+      "finalManifestDeclaration": "match",
+      "integrationAdjusted": false
+    },
+    {
+      "path": "source/MiniMart INV - Design System & Docs.dc.html",
+      "sha256": "447167ce453f5ea1d41f3e720f88c9a908af7d01957ab5514746b6ca673d9c82",
+      "bytes": 13678,
+      "origin": "Claude Design export",
+      "finalManifestDeclaration": "match",
+      "integrationAdjusted": false
+    },
+    {
+      "path": "source/MiniMart INV - Foundation & List.dc.html",
+      "sha256": "ab01f1ac82e1cb6b13881be188b5f32470c31b5092ba8f6632e99b80e10f7c44",
+      "bytes": 3992,
+      "origin": "Claude Design export",
+      "finalManifestDeclaration": "match",
+      "integrationAdjusted": false
+    },
+    {
+      "path": "source/MiniMart INV - Item & Movements.dc.html",
+      "sha256": "58242ba376605e82621ebd1e7a03b629758750f919741a823f2f534122639786",
+      "bytes": 4045,
+      "origin": "Claude Design export",
+      "finalManifestDeclaration": "match",
+      "integrationAdjusted": false
+    },
+    {
+      "path": "source/MiniMart INV - Stock Count.dc.html",
+      "sha256": "a02356410699804f0bd2265c9383227ebb01dcca82e5eac3a1080aa02f8b5c7d",
+      "bytes": 4268,
+      "origin": "Claude Design export",
+      "finalManifestDeclaration": "match",
+      "integrationAdjusted": false
+    },
+    {
+      "path": "source/MiniMart INV Print - Adjustments & Opening Stock.dc.html",
+      "sha256": "dece66e74d1479417ae8427c4195d5ba28b1a4249ef2dcb9a2f459e6dec7b689",
+      "bytes": 2273,
+      "origin": "Claude Design export",
+      "finalManifestDeclaration": "match",
+      "integrationAdjusted": false
+    },
+    {
+      "path": "source/MiniMart INV Print - Combined (01-60).dc.html",
+      "sha256": "9aa4fa43959c1d4cc4d0c003fceec2bf76ff9b286bc998a2c99357d73eb6c18e",
+      "bytes": 3875,
+      "origin": "Claude Design export",
+      "finalManifestDeclaration": "match",
+      "integrationAdjusted": false
+    },
+    {
+      "path": "source/MiniMart INV Print - Design System & Docs.dc.html",
+      "sha256": "648817c801c958b70c331a501e9667e419c93fa86aa2aae4ec2bcf06191b909e",
+      "bytes": 2245,
+      "origin": "Claude Design export",
+      "finalManifestDeclaration": "match",
+      "integrationAdjusted": false
+    },
+    {
+      "path": "source/MiniMart INV Print - Foundation & List.dc.html",
+      "sha256": "09d73f4dc2d0eb3d0a2d556332ed3fd0ca898a91ecd87da6a081264d9a01733e",
+      "bytes": 2100,
+      "origin": "Claude Design export",
+      "finalManifestDeclaration": "match",
+      "integrationAdjusted": false
+    },
+    {
+      "path": "source/MiniMart INV Print - Item & Movements.dc.html",
+      "sha256": "f68438a482139d1926f971f00d3853794fdbad67fb2c36045d87e0c89d9a1aa3",
+      "bytes": 2118,
+      "origin": "Claude Design export",
+      "finalManifestDeclaration": "match",
+      "integrationAdjusted": false
+    },
+    {
+      "path": "source/MiniMart INV Print - New States (61-67).dc.html",
+      "sha256": "23fb502d2417718ffc9cb5517356730cc6f4cd5d20ffd01776b32027d4a4e4d9",
+      "bytes": 2175,
+      "origin": "Claude Design export",
+      "finalManifestDeclaration": "match",
+      "integrationAdjusted": false
+    },
+    {
+      "path": "source/MiniMart INV Print - Stock Count.dc.html",
+      "sha256": "4feef14bd0e419beb0281bb7d8d993247ec49099550533046afde412a409beac",
+      "bytes": 2382,
+      "origin": "Claude Design export",
+      "finalManifestDeclaration": "match",
+      "integrationAdjusted": false
+    },
+    {
+      "path": "source/MiniMart Inventory Mockups.dc.html",
+      "sha256": "8d51886418c1ca31f0f704b606a3620401a91888d1ccbbd43ec72e84624f7a52",
+      "bytes": 4826,
+      "origin": "Claude Design export",
+      "finalManifestDeclaration": "match",
+      "integrationAdjusted": false
+    },
+    {
+      "path": "source/MiniMartInventory.dc.html",
+      "sha256": "48f47b59272038f50fabadca30d0863c823e21ff1564ca9dbfa75fb9ba397358",
+      "bytes": 97722,
+      "origin": "Claude Design export",
+      "finalManifestDeclaration": "match",
+      "integrationAdjusted": false
+    },
+    {
+      "path": "source/doc-page.js",
+      "sha256": "f52ae9c02fca7ab44c37f3ff363194fdf81caa20ae63e2fe1f518ed21133185e",
+      "bytes": 38579,
+      "origin": "Claude Design export; print runtime; byte-identical to the first Inventory export's copy",
+      "finalManifestDeclaration": "match",
+      "integrationAdjusted": false
+    },
+    {
+      "path": "source/support.js",
+      "sha256": "8fe7df74405f3c55f49b7249c74ea1397e65d07dea2b1bd3b4a489bec2e28cbe",
+      "bytes": 69150,
+      "origin": "Claude Design export; byte-identical to the accepted support.js of the Accounting-Lite, Cash, Customers, Procurement and Reporting packages",
+      "finalManifestDeclaration": "match",
+      "integrationAdjusted": false
+    }
+  ],
+  "upstreamFilesNotRegistered": [
+    {
+      "name": "TRACEABILITY-v2.md",
+      "sha256": "fc666d9b42304fd86243430e895ad86f8d8df27e5ea959ead38d62b0fdac4b90",
+      "bytes": 10510,
+      "reason": "Not registered: the file fails the repository prettier gate (pnpm run ci runs prettier --check on docs/design/**/*.md), it is superseded by the integration traceability, and 13 of its rows do not match the screens. Its bytes are preserved in the upstream archive in Incoming/. Registering it would need a one-line .prettierignore change, which is outside this candidate."
+    }
+  ],
+  "priorState": "docs/design/inventory/design-manifest.json was a draft stub whose note said an approved Inventory source existed in Claude Design. That note is historical and does not approve the bytes registered here.",
+  "manifestClaimsChecked": [
+    "F1-F17: each claimed fix was verified independently; results are in traceability.json (priorFindings) and TRACEABILITY.md. Verified fixed: F1, F2, F7, F14, F16. Partially fixed: F4, F8, F10, F12, F13, F15. Not fixed: F3, F11, F17. Owner questions unchanged: F5, F6, F9.",
+    "Claim: 'New Stock Count' button fixed (newCountBg). Not effective: the value is never returned from renderVals; the button still renders at 1.14:1.",
+    "Claim: row keyboard handlers guard nested controls. Only the keydown path is guarded; a nested button's native click still opens the row.",
+    "Claim: F3 changed the store ledger's CNT-2026-00012 row to +1. The rendered ledger still shows +5.",
+    "Claim: F14 dead link fixed. Verified: no href remains; 53 references resolve.",
+    "Claim: print split completed. Verified for coverage (Combined 01-60 plus New States 61-67, 60 and 7 pages); the print headers of six screens keep the old titles.",
+    "Claim: TRACEABILITY-v2.md classifies all 67 screens. It covers 67 numbers, but 13 single-screen rows carry titles that are not the registry titles, and its claims for 09 and 11 are false.",
+    "Claim: no rendering or contrast was run. Integration ran them; see the fidelity report."
+  ],
+  "designGuidelines": {
+    "note": "No file is named 'design guidelines'. The guidance was located by content and by references in AGENTS.md and docs/design/README.md.",
+    "frozenGuidance": [
+      {
+        "path": "docs/specifications/06-ui-specification/docs/01-DESIGN-SYSTEM.md",
+        "covers": "visual direction, 8px spacing, 14/13px type, 40x40 targets, semantic status tokens, required shared components (including Money, Quantity, EmptyState, ErrorState, SideDrawer), form and table behaviour"
+      },
+      {
+        "path": "docs/specifications/06-ui-specification/docs/11-RESPONSIVE-WINDOW-BEHAVIOR.md",
+        "covers": "Back Office target 1366x768 and above; 1280x720 is the POS validation minimum"
+      },
+      {
+        "path": "docs/specifications/06-ui-specification/docs/17-SCREEN-STATE-CONTRACT.md",
+        "covers": "ten screen states"
+      },
+      {
+        "path": "docs/specifications/06-ui-specification/docs/18-COMMAND-AND-RECOVERY-CONTRACT.md",
+        "covers": "idempotent commands, recovery"
+      },
+      {
+        "path": "docs/specifications/06-ui-specification/docs/20-MONEY-QUANTITY-CONTRACT.md",
+        "covers": "decimal-string money and quantity"
+      },
+      {
+        "path": "docs/specifications/06-ui-specification/docs/24-ACCESSIBILITY-ACCEPTANCE-MATRIX.md",
+        "covers": "critical workflows (including stock count posting) must pass keyboard-only completion, focus, dialog trap, errors tied to fields"
+      },
+      {
+        "path": "docs/specifications/06-ui-specification/docs/25-DOCUMENT-LIFECYCLE-PATTERN.md",
+        "covers": "draft, posting, posted, correction"
+      },
+      {
+        "path": "docs/specifications/06-ui-specification/docs/07-KEYBOARD-ACCESSIBILITY.md",
+        "covers": "keyboard and accessibility"
+      }
+    ],
+    "repositoryRules": [
+      {
+        "path": "AGENTS.md",
+        "covers": "authority model; an approved-visual-reference is visual authority only"
+      },
+      {
+        "path": "docs/design/README.md",
+        "covers": "manifest statuses, render contract, operator workflow"
+      }
+    ],
+    "approvedReferences": "approved-visual-reference packages in this repository: accounting, cash-shifts, customers, procurement, reports. back-office and pos are review-ready, not approved. The Inventory design is visually consistent with the approved packages' Back Office shell.",
+    "genuinelyMissing": [
+      "No frozen palette or token values: 01-DESIGN-SYSTEM.md states that the exact palette is chosen during visual design review. Colour comes from the approved packages, not from a specification.",
+      "No frozen print or paper-size guideline for design review packs; docs/design/README.md treats PDF as an optional archive. The print variants use the page size set by doc-page.js (1366x840 CSS px).",
+      "No frozen definition of display rounding for cost or quantity (see traceability finding F5)."
+    ]
+  },
+  "integrationAdjustments": [
+    "None to upstream bytes: 17 of the 18 archive files are registered byte for byte and verified against the upstream extraction; TRACEABILITY-v2.md is deliberately not registered (see upstreamFilesNotRegistered).",
+    "The first export's INVENTORY-EXPORT-MANIFEST.txt is no longer registered in source/ (it belongs to the superseded export; its hash is recorded above and the archive is preserved in Incoming/).",
+    "Removed the placeholder source/.gitkeep and replaced the draft manifest stub. docs/design/inventory/exports/.gitkeep is untouched.",
+    "design-manifest.json, provenance.json, traceability.json and TRACEABILITY.md were created by integration. TRACEABILITY.md is the integration's frozen-requirement mapping; the design's own TRACEABILITY-v2.md is evaluated but not registered (see upstreamFilesNotRegistered).",
+    "No link, wording, style or behaviour in any upstream file was changed."
+  ],
+  "protectedLocalWork": "The original checkout has 27 staged entries, including Mockups/MiniMart INV PDFs and MiniMartInventory.pdf from an earlier session. They were neither read for this integration nor modified, and are not part of this candidate."
+}

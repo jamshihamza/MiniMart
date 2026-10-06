@@ -1,0 +1,1442 @@
+{
+  "kind": "Integration traceability built from the frozen Inventory authority by reading all 67 rendered screens of the batch 4 revision. The design supplies no requirement identifiers and its own TRACEABILITY-v2.md is a control-type classification that does not match the screens; 67 unique screens are not evidence of coverage.",
+  "authority": [
+    "docs/specifications/01-business-and-functional/docs/02-functional/07-inventory/ (FR-INV-001..110)",
+    "docs/specifications/06-ui-specification/screens/UI-INV-001..006",
+    "docs/specifications/06-ui-specification/docs/17, 18, 20, 24",
+    "docs/specifications/05-api-contracts/registry/operations-v1.0.json (API-INV-001..015)",
+    "docs/specifications/01-business-and-functional/docs/02-functional/DECISION-REGISTER.md (DEC-INV-001..010)"
+  ],
+  "evidenceLevels": {
+    "DEMONSTRATED": "a screen renders the state, data or control",
+    "PARTIAL": "only part is shown",
+    "ANNOTATED": "design-intent text only",
+    "GAP": "UI-relevant, not shown",
+    "NO-UI": "domain or service requirement, not a screen requirement",
+    "LATER": "later phase, correctly not shown"
+  },
+  "summary": {
+    "requirements": 110,
+    "NO-UI": 15,
+    "PARTIAL": 24,
+    "LATER": 5,
+    "DEMONSTRATED": 56,
+    "ANNOTATED": 4,
+    "GAP": 6
+  },
+  "uiScreens": [
+    {
+      "id": "UI-INV-001",
+      "name": "Inventory Overview",
+      "screens": ["01", "02", "03", "04", "05", "06", "07", "49"],
+      "coverage": "covered",
+      "note": "Adjustment commands listed under this screen (API-INV-010..013) are designed on 17-26."
+    },
+    {
+      "id": "UI-INV-002",
+      "name": "Item Stock Detail",
+      "screens": ["08", "09", "10", "11", "12", "13", "14", "15"],
+      "coverage": "partial",
+      "note": "Adjustments, Stock Counts and Audit / Trace tabs are drawn but their content is not shown."
+    },
+    {
+      "id": "UI-INV-003",
+      "name": "Stock Movement Explorer",
+      "screens": ["16", "10"],
+      "coverage": "partial",
+      "note": "No export, no batch column; the drawer has no dialog semantics or focus handling."
+    },
+    {
+      "id": "UI-INV-004",
+      "name": "Stock Count List",
+      "screens": ["30"],
+      "coverage": "partial",
+      "note": "Rows are not keyboard-activatable; the list is not a table; no filter state (the empty state 63 is for the Inventory list)."
+    },
+    {
+      "id": "UI-INV-005",
+      "name": "Stock Count Workspace",
+      "screens": [
+        "31",
+        "32",
+        "33",
+        "34",
+        "35",
+        "36",
+        "37",
+        "38",
+        "39",
+        "40",
+        "41",
+        "42",
+        "43",
+        "44",
+        "45",
+        "46",
+        "47",
+        "48",
+        "50"
+      ],
+      "coverage": "partial",
+      "note": "Counted-quantity inputs exist on 33, 34, 35 and 50 but are inert; batch count (36), create count (31) and scope (32 uses buttons) have no inputs; approval and cancellation have no frozen API operation."
+    },
+    {
+      "id": "UI-INV-006",
+      "name": "Reorder / Low Stock",
+      "screens": ["61"],
+      "coverage": "partial",
+      "note": "Screen 61 is decision support with example thresholds and states that no reorder operation exists. Reorder ownership is DEC-INV-007 (OPEN)."
+    }
+  ],
+  "states": [
+    {
+      "state": "LOADING",
+      "coverage": "covered (static)",
+      "note": "62: skeleton with a polite live region."
+    },
+    {
+      "state": "READY",
+      "coverage": "covered",
+      "note": "01-04, 08-17, 30."
+    },
+    {
+      "state": "EMPTY",
+      "coverage": "covered (static)",
+      "note": "63: next action 'Clear filters' is not wired to any filter."
+    },
+    {
+      "state": "VALIDATION_ERROR",
+      "coverage": "partial",
+      "note": "66: one field (Quantity) with aria-invalid and a described error; the rule 'greater than 0' is not in the frozen FRS; 20/21 show the negative-stock block."
+    },
+    {
+      "state": "PERMISSION_DENIED",
+      "coverage": "partial",
+      "note": "07 (read-only) and 67 (posting). 67 names an 'Inventory Manager' role that is not a frozen persona; no frozen permission code is shown."
+    },
+    {
+      "state": "CONFLICT",
+      "coverage": "covered (static)",
+      "note": "64: stale version / quantity message; STOCK_CHANGED is a frozen code but the screen does not show a refresh action."
+    },
+    {
+      "state": "LOCAL_CLOUD_OFFLINE",
+      "coverage": "covered",
+      "note": "06, 59."
+    },
+    {
+      "state": "STORE_NODE_UNREACHABLE",
+      "coverage": "covered",
+      "note": "05, 59."
+    },
+    {
+      "state": "INCOMPATIBLE_CLIENT",
+      "coverage": "covered (static)",
+      "note": "65."
+    },
+    {
+      "state": "RECOVERY_REQUIRED",
+      "coverage": "covered",
+      "note": "26, 59."
+    }
+  ],
+  "api": {
+    "operations": "API-INV-001..015 (15). Permission codes in the frozen registry: inventory.read, inventory.write, inventory.post, inventory.adjustment.read, inventory.adjustment.edit, inventory.adjustment.post, inventory.adjustment.correct.",
+    "notInRegistry": [
+      "approve or reject an adjustment (screen 22)",
+      "approve a count (41)",
+      "cancel a count (45)",
+      "recount as a separate command (39, 40)",
+      "opening stock entry (27-29, DEC-INV-008 PROPOSED)",
+      "cost / WAC visibility permission (7, 15, 58)"
+    ]
+  },
+  "decisions": [
+    {
+      "id": "DEC-INV-001",
+      "status": "RESOLVED",
+      "topic": "Moving weighted-average cost per Item per Store.",
+      "design": "08, 15 show Moving WAC read-only; the formula is not shown."
+    },
+    {
+      "id": "DEC-INV-002",
+      "status": "RESOLVED for Phase 1",
+      "topic": "Negative stock blocked initially; later modes need separate approval.",
+      "design": "20, 21, 63."
+    },
+    {
+      "id": "DEC-INV-003",
+      "status": "OPEN",
+      "topic": "Stock-count concurrency: scope lock vs snapshot/movement reconciliation.",
+      "design": "48 shows both as labelled examples, neither chosen."
+    },
+    {
+      "id": "DEC-INV-004",
+      "status": "OPEN",
+      "topic": "Batch physical depletion policy.",
+      "design": "Not decided on any screen."
+    },
+    {
+      "id": "DEC-INV-005",
+      "status": "OPEN",
+      "topic": "Expiry/FEFO behaviour.",
+      "design": "Not decided; screen 02 still counts an all-expired item as available (finding F9)."
+    },
+    {
+      "id": "DEC-INV-006",
+      "status": "RESOLVED",
+      "topic": "Phase-1 negative stock blocked.",
+      "design": "20, 21."
+    },
+    {
+      "id": "DEC-INV-007",
+      "status": "OPEN",
+      "topic": "Low-stock / reorder threshold ownership.",
+      "design": "61 labels thresholds as examples and states ownership is open."
+    },
+    {
+      "id": "DEC-INV-008",
+      "status": "PROPOSED",
+      "topic": "Opening stock through controlled audited posting.",
+      "design": "27, 28, 29 show a flow the frozen API does not define."
+    },
+    {
+      "id": "DEC-INV-009",
+      "status": "RESOLVED",
+      "topic": "Valuation report belongs in Phase 2 reporting.",
+      "design": "Not shown."
+    },
+    {
+      "id": "DEC-INV-010",
+      "status": "RESOLVED",
+      "topic": "Phase-1 default negative-stock behaviour is BLOCK.",
+      "design": "20, 21."
+    }
+  ],
+  "priorFindings": [
+    {
+      "id": "F1",
+      "severity": "high",
+      "claimed": "FIXED",
+      "verified": "FIXED - verified",
+      "evidence": "No screen shows a negative balance: Laundry Detergent is 2 EACH, the ledger's ADJ-2026-00030 row runs to 2, and 20/21 compute 2 - 5 = -3 and block. A Negative chip was added but it is inert and no screen shows its result (FR-INV-023 stays partial). The docs page still says negative stock appears 'as a historical/diagnostic status', which no screen shows."
+    },
+    {
+      "id": "F2",
+      "severity": "medium",
+      "claimed": "FIXED",
+      "verified": "FIXED - verified",
+      "evidence": "The tile 'Counts In Progress or Review' = 2 equals CNT-2026-00015 (In Progress) + CNT-2026-00016 (Review) on screen 30. The subset is the design's choice; the frozen authority does not define the KPI."
+    },
+    {
+      "id": "F3",
+      "severity": "medium",
+      "claimed": "FIXED (bounded)",
+      "verified": "NOT FIXED",
+      "evidence": "30 and 37/46 now agree (+1 net, CNT-2026-00012). The store ledger (16) still shows CNT-2026-00012 as Teh Tarik Mix +5, not +1 (the manifest says it was changed), 43 still references ADJ-2026-00050 and -00051, 47 puts review at 16:10 and posting at 18:40 while the ledger row is dated 16:10, and 37/46 expected quantities (34 for Cream Crackers) do not match the 20 Sep position."
+    },
+    {
+      "id": "F4",
+      "severity": "low",
+      "claimed": "FIXED (bounded)",
+      "verified": "PARTIAL",
+      "evidence": "Batch ledger on 12 now ends with ADJ-2026-00041 +6 and B-2609-01 = 23, B-2609-02 = 11 (sum 34), consistent on 11, 13 and 36. But the batch detail header on 12 still says 20 EACH."
+    },
+    {
+      "id": "F5",
+      "severity": "medium",
+      "claimed": "owner question",
+      "verified": "UNCHANGED",
+      "evidence": "Not a design fix. Number inputs are hard-coded to step 1 and min 0 for every item."
+    },
+    {
+      "id": "F6",
+      "severity": "high",
+      "claimed": "owner question",
+      "verified": "UNCHANGED",
+      "evidence": "Approve, cancel, opening stock and cost-visibility flows remain drawn; the manifest and TRACEABILITY-v2 label 22, 39 and 41 as unresolved gaps, which is accurate."
+    },
+    {
+      "id": "F7",
+      "severity": "medium",
+      "claimed": "FIXED",
+      "verified": "FIXED - verified",
+      "evidence": "Screen 61 exists, labels thresholds as examples, states DEC-INV-007 is OPEN and that no reorder operation exists."
+    },
+    {
+      "id": "F8",
+      "severity": "medium",
+      "claimed": "FIXED (62-67)",
+      "verified": "MOSTLY FIXED",
+      "evidence": "LOADING, EMPTY, CONFLICT, INCOMPATIBLE_CLIENT, VALIDATION_ERROR and PERMISSION_DENIED now have screens (static). Qualifiers: 66 states a '> 0' rule that is not in the frozen FRS; 67 names an 'Inventory Manager' role that is not a frozen persona; 63's action is not wired; 64 has no refresh action."
+    },
+    {
+      "id": "F9",
+      "severity": "low",
+      "claimed": "owner question",
+      "verified": "UNCHANGED",
+      "evidence": "3-in-1 White Coffee is still available and Low Stock while its only batch is expired (DEC-INV-005 OPEN)."
+    },
+    {
+      "id": "F10",
+      "severity": "high",
+      "claimed": "PARTIALLY FIXED",
+      "verified": "PARTIALLY FIXED",
+      "evidence": "Better than claimed: an h1 exists on 66 of 67 screens (05 has none); ARIA role=table with named tables on 02, 03, 04, 06, 07, 13, 14, 16, 17 and 49; labelled number, select and textarea controls on 18, 19, 33, 34, 35, 50 and 66; live regions on 18, 19, 20, 62, 64, 65, 66, 67; no unlabelled control or nameless button. Still open: no literal table, caption or th anywhere; header-like grids without table roles on 09, 10, 11, 12, 30, 33-38, 44, 46, 50 and 61; no dialog semantics, focus movement or focus return for the movement and batch drawers; no inputs on 27, 31, 36 or the approval note on 22; the count list scroll region (30) is a focusable unnamed div; controls are inert (18 ignores typed values, 33 does not feed review). The manifest's claim that 09 and 11 were converted is false."
+    },
+    {
+      "id": "F11",
+      "severity": "high",
+      "claimed": "NOT FIXED",
+      "verified": "NOT FIXED",
+      "evidence": "Identical to the first export: 02, 03, 04, 06, 07, 16, 30, 49 clip or scroll horizontally at 1280x720, 1366x768 and 1368x800, and 30 at 1920x1080. No action button is clipped or off-viewport at any of the four sizes (only the table rows exceed the width), but the MOVING WAC and LAST MOVEMENT columns are cut off."
+    },
+    {
+      "id": "F12",
+      "severity": "medium",
+      "claimed": "PARTIALLY FIXED",
+      "verified": "PARTIALLY FIXED",
+      "evidence": "Computed on 3,351 rendered text elements: every earlier pair now passes 4.5:1 (sidebar notes, placeholder, headings, meta text, Restricted). One pair still fails: 'New Stock Count' white on #f0f0f0 (1.14:1) on 02, 03, 04, 06 and 49. The claimed fix does not work because newCountBg is defined but never returned from renderVals, so the style hole stays empty."
+    },
+    {
+      "id": "F13",
+      "severity": "low",
+      "claimed": "FIXED",
+      "verified": "PARTIAL",
+      "evidence": "Grouped pages now match the registry. The print variants were left unchanged and their page headers still carry the shortened titles for 08, 09, 11, 25, 26 and 60 (19 header mismatches across five variants)."
+    },
+    {
+      "id": "F14",
+      "severity": "low",
+      "claimed": "FIXED",
+      "verified": "FIXED - verified",
+      "evidence": "The index now shows a plain, non-clickable label for the Back Office reference; 53 local references resolve and none is dangling."
+    },
+    {
+      "id": "F15",
+      "severity": "low",
+      "claimed": "FIXED in manifest",
+      "verified": "PARTIAL",
+      "evidence": "The revision manifest places documentation on screens 52-60, but it is cumulative and internally inconsistent (see N10)."
+    },
+    {
+      "id": "F16",
+      "severity": "medium",
+      "claimed": "FIXED",
+      "verified": "FIXED - verified",
+      "evidence": "No 'approved Back Office' wording remains; the index and docs say review-ready (not approved) and name the five approved packages."
+    },
+    {
+      "id": "F17",
+      "severity": "high",
+      "claimed": "UNRESOLVED / TRACEABILITY-v2.md",
+      "verified": "NOT FIXED",
+      "evidence": "No requirement identifier appears on any screen. TRACEABILITY-v2.md covers 67 screens but classifies by control type, not by requirement, and 13 of its single-screen rows carry a title that is not the screen's registry title (see N1)."
+    }
+  ],
+  "newFindings": [
+    {
+      "id": "N1",
+      "type": "design-defect",
+      "severity": "high",
+      "title": "TRACEABILITY-v2.md rows do not match the screens",
+      "detail": "13 single-screen rows describe a different screen from the registry: 05 'empty state' (actual: Store Node unavailable), 06 'read-only role' (Cloud Sync unavailable), 07 'offline/local scope' (read-only / permission-limited), 15, 36, 39, 40, 41, 42, 43, 44, 45 and 48. Claims for 09 and 11 (keyboard-activatable rows, ARIA table) are false: only 02, 03, 04, 06, 07, 16 and 49 have tabbable rows and 11 has no table role. The file says it was not checked against FR-INV; it is not usable as coverage evidence.",
+      "screens": ["05", "06", "07", "09", "11", "15", "36", "39-45", "48"]
+    },
+    {
+      "id": "N2",
+      "type": "design-defect",
+      "severity": "medium",
+      "title": "The 'New Stock Count' fix is ineffective",
+      "detail": "newCountBg is defined on one line and used on another but is not in the values returned by renderVals; the button background is still missing (computed #f0f0f0, white text, 1.14:1).",
+      "screens": ["02", "03", "04", "06", "49"]
+    },
+    {
+      "id": "N3",
+      "type": "design-defect",
+      "severity": "medium",
+      "title": "Batch detail disagrees with its own table and ledger",
+      "detail": "Screen 12's header shows Quantity 20 EACH for B-2609-01; the batch table, near-expiry list and the same screen's ledger (ending 23) show 23.",
+      "screens": ["12", "11", "13"]
+    },
+    {
+      "id": "N4",
+      "type": "design-defect",
+      "severity": "medium",
+      "title": "Count variance chain still inconsistent (F3 remainder)",
+      "detail": "See F3 in the prior findings.",
+      "screens": ["16", "43", "46", "47"]
+    },
+    {
+      "id": "N5",
+      "type": "design-defect",
+      "severity": "medium",
+      "title": "Row keyboard handlers do not isolate nested controls",
+      "detail": "Driven in a browser: Enter and Space on a focused row open it (Space does not scroll), other keys are ignored, and a nested input keeps its own typing. But a nested button's Enter or Space still fires its own click and then the row's unguarded onClick opens the row; a mouse click behaves the same. The e.target check only guards the keydown path. No shipped row contains a nested control today.",
+      "screens": ["02", "03", "04", "06", "07", "16", "49"]
+    },
+    {
+      "id": "N6",
+      "type": "design-defect",
+      "severity": "high",
+      "title": "Drawers have no dialog behaviour",
+      "detail": "After Enter on a movement row the drawer opens but focus stays on the row, there is no role=dialog or aria-modal, the next Tab moves to the next row behind the drawer, and Escape does not close it.",
+      "screens": ["10", "12", "16"]
+    },
+    {
+      "id": "N7",
+      "type": "design-defect",
+      "severity": "medium",
+      "title": "Controls are inert",
+      "detail": "Typing 7 into the adjustment quantity or pressing Decrease leaves the preview at 43 and Continue goes to a canned 'Requested decrease 5'; the Negative, Zero Stock and Low Stock chips on 02 do not filter ('10 of 10 items'); entered counts do not reach review; 66 shows the error whatever is typed. TRACEABILITY-v2 discloses the first and third; the filter chips are not disclosed.",
+      "screens": ["02", "18", "19", "33", "34", "35", "50", "66"]
+    },
+    {
+      "id": "N8",
+      "type": "design-defect",
+      "severity": "medium",
+      "title": "Remaining accessibility structure gaps",
+      "detail": "Screen 05 has no h1; no literal table markup anywhere; inputs missing on 27, 31, 36 and the approval note on 22; the count list (30) rows are not activatable and its scroll region is an unnamed focusable div.",
+      "screens": [
+        "05",
+        "09",
+        "10",
+        "11",
+        "12",
+        "22",
+        "27",
+        "30",
+        "31",
+        "33-38",
+        "44",
+        "46",
+        "50",
+        "61"
+      ]
+    },
+    {
+      "id": "N9",
+      "type": "design-defect",
+      "severity": "low",
+      "title": "Print variants keep the old titles",
+      "detail": "08, 09, 11, 25, 26, 60 print headers differ from the source registry. The New States headers add '- New in revision', a label rather than a title.",
+      "screens": ["08", "09", "11", "25", "26", "60"]
+    },
+    {
+      "id": "N10",
+      "type": "export-claim",
+      "severity": "medium",
+      "title": "The revision manifest is cumulative and self-contradictory",
+      "detail": "It says TOTAL PACKAGED FILES 15 + manifest = 16, then 17 + manifest = 18, still says 65 screens and 'print variants unchanged' in older sections, lists superseded hashes for the source, and does not hash TRACEABILITY-v2.md. Actual archive: 18 files = 16 payload (14 .dc.html + support.js + doc-page.js) + TRACEABILITY-v2.md + the manifest; the final declared hash of every payload file matches.",
+      "screens": ["manifest"]
+    },
+    {
+      "id": "N11",
+      "type": "authority-question",
+      "severity": "medium",
+      "title": "New state screens carry non-frozen wording",
+      "detail": "67 tells the user to ask 'an Inventory Manager or Admin' (frozen personas are Storekeeper, Manager, Admin, Audit; no permission code is named); 66 states a quantity must be greater than 0 (FR-INV-081 only requires an explicit direction and quantity; FR-INV-007 requires precision rules); the quantity inputs are fixed at step 1.",
+      "screens": ["66", "67", "18", "33"]
+    },
+    {
+      "id": "N12",
+      "type": "design-defect",
+      "severity": "low",
+      "title": "Stale documentation text",
+      "detail": "The Design System & Docs page still says negative stock appears 'as a historical/diagnostic status' although no screen shows a negative balance now.",
+      "screens": ["docs", "page"]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "FR-INV-091",
+      "title": "Costing policy explicit",
+      "priority": "MUST",
+      "phase": "1/2",
+      "evidence": "NO-UI",
+      "screens": [],
+      "note": "Costing policy is a domain requirement."
+    },
+    {
+      "id": "FR-INV-092",
+      "title": "Initial weighted-average costing baseline",
+      "priority": "MUST",
+      "phase": "1/2",
+      "evidence": "PARTIAL",
+      "screens": ["08", "15"],
+      "note": "Moving WAC is displayed read-only; the baseline method itself is a domain rule."
+    },
+    {
+      "id": "FR-INV-093",
+      "title": "Cost precision",
+      "priority": "MUST",
+      "phase": "1/2",
+      "evidence": "PARTIAL",
+      "screens": ["02", "08"],
+      "note": "Cost is shown to two decimals; no display rounding rule is frozen (see audit finding F5)."
+    },
+    {
+      "id": "FR-INV-094",
+      "title": "GRN cost input",
+      "priority": "MUST",
+      "phase": "1/2",
+      "evidence": "NO-UI",
+      "screens": [],
+      "note": "GRN cost input is a domain requirement."
+    },
+    {
+      "id": "FR-INV-095",
+      "title": "Free quantity costing",
+      "priority": "MUST",
+      "phase": "1/2",
+      "evidence": "NO-UI",
+      "screens": [],
+      "note": "Free-quantity costing is a domain requirement."
+    },
+    {
+      "id": "FR-INV-096",
+      "title": "Purchase discount acquisition-cost treatment",
+      "priority": "MUST",
+      "phase": "1/2",
+      "evidence": "NO-UI",
+      "screens": [],
+      "note": "Discount treatment is a domain requirement."
+    },
+    {
+      "id": "FR-INV-097",
+      "title": "Purchase tax acquisition-cost boundary",
+      "priority": "MUST",
+      "phase": "2",
+      "evidence": "NO-UI",
+      "screens": [],
+      "note": "Tax boundary is a domain requirement."
+    },
+    {
+      "id": "FR-INV-098",
+      "title": "Ancillary landed-cost extension",
+      "priority": "LATER",
+      "phase": "3+",
+      "evidence": "LATER",
+      "screens": [],
+      "note": "Landed cost is Phase 3+."
+    },
+    {
+      "id": "FR-INV-099",
+      "title": "Purchase return costing",
+      "priority": "MUST",
+      "phase": "1/2",
+      "evidence": "NO-UI",
+      "screens": [],
+      "note": "Purchase-return costing is a domain requirement."
+    },
+    {
+      "id": "FR-INV-100",
+      "title": "Sales cost-of-goods input",
+      "priority": "MUST",
+      "phase": "2",
+      "evidence": "NO-UI",
+      "screens": [],
+      "note": "Sales COGS input is a domain requirement."
+    },
+    {
+      "id": "FR-INV-101",
+      "title": "Negative stock costing boundary",
+      "priority": "MUST",
+      "phase": "1/2",
+      "evidence": "DEMONSTRATED",
+      "screens": ["20", "21"],
+      "note": "Phase-1 default blocks negative stock."
+    },
+    {
+      "id": "FR-INV-102",
+      "title": "Cost history",
+      "priority": "MUST",
+      "phase": "2",
+      "evidence": "NO-UI",
+      "screens": [],
+      "note": "Cost history is a Phase 2 domain requirement."
+    },
+    {
+      "id": "FR-INV-103",
+      "title": "Cost recomputation control",
+      "priority": "MUST",
+      "phase": "2",
+      "evidence": "NO-UI",
+      "screens": [],
+      "note": "Cost recomputation control is a Phase 2 domain requirement."
+    },
+    {
+      "id": "FR-INV-104",
+      "title": "Cost access permission",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "PARTIAL",
+      "screens": ["07", "15"],
+      "note": "Restricted WAC and an authorized cost view are shown; the frozen API has no cost-visibility permission code (see audit finding F6)."
+    },
+    {
+      "id": "FR-INV-105",
+      "title": "Cost override prohibition",
+      "priority": "MUST",
+      "phase": "1/2",
+      "evidence": "ANNOTATED",
+      "screens": ["08", "15"],
+      "note": "'Read-only' text only; no cost edit control exists."
+    },
+    {
+      "id": "FR-INV-106",
+      "title": "Inventory valuation report basis",
+      "priority": "MUST",
+      "phase": "2",
+      "evidence": "LATER",
+      "screens": [],
+      "note": "Phase 2 valuation report basis."
+    },
+    {
+      "id": "FR-INV-107",
+      "title": "Batch vs costing separation",
+      "priority": "MUST",
+      "phase": "1/2",
+      "evidence": "NO-UI",
+      "screens": [],
+      "note": "Batch/costing separation is a domain requirement."
+    },
+    {
+      "id": "FR-INV-108",
+      "title": "Costing tests",
+      "priority": "MUST",
+      "phase": "1/2",
+      "evidence": "NO-UI",
+      "screens": [],
+      "note": "Costing tests are not a screen requirement."
+    },
+    {
+      "id": "FR-INV-109",
+      "title": "Costing baseline gate satisfied",
+      "priority": "MUST",
+      "phase": "1/2",
+      "evidence": "NO-UI",
+      "screens": [],
+      "note": "Costing baseline gate is a process requirement."
+    },
+    {
+      "id": "FR-INV-110",
+      "title": "Accounting validation boundary",
+      "priority": "MUST",
+      "phase": "2",
+      "evidence": "NO-UI",
+      "screens": [],
+      "note": "Accounting boundary is a domain requirement."
+    },
+    {
+      "id": "FR-INV-001",
+      "title": "Current stock visibility",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "DEMONSTRATED",
+      "screens": ["01", "02", "08"],
+      "note": "On-hand and available per item and store."
+    },
+    {
+      "id": "FR-INV-002",
+      "title": "Stock traceability",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "DEMONSTRATED",
+      "screens": ["09", "10", "16"],
+      "note": "Movements carry source document, type, actor and running balance."
+    },
+    {
+      "id": "FR-INV-003",
+      "title": "No arbitrary stock edit",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "DEMONSTRATED",
+      "screens": ["08", "18"],
+      "note": "Current quantity is read-only; changes go through the adjustment flow. The 'no Edit Stock action' confirmation (docs item 8) is on the Design System & Docs grouped page only."
+    },
+    {
+      "id": "FR-INV-004",
+      "title": "Store-specific inventory",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "DEMONSTRATED",
+      "screens": ["01", "02", "08"],
+      "note": "Store shown in the header and as 'Item x Store'."
+    },
+    {
+      "id": "FR-INV-005",
+      "title": "Item-specific inventory",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "DEMONSTRATED",
+      "screens": ["08"],
+      "note": "Item identity (code) with store position."
+    },
+    {
+      "id": "FR-INV-006",
+      "title": "Available vs physical extension",
+      "priority": "SHOULD",
+      "phase": "1",
+      "evidence": "DEMONSTRATED",
+      "screens": ["02", "08"],
+      "note": "ON HAND and AVAIL. are separate columns; Phase 1 values are equal."
+    },
+    {
+      "id": "FR-INV-007",
+      "title": "Quantity precision",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "PARTIAL",
+      "screens": ["18", "33", "66"],
+      "note": "Quantity inputs exist but are hard-coded to step 1 and min 0 (whole units for every item); no fractional-UoM item, no UoM conversion and no invalid-fraction rejection state is shown."
+    },
+    {
+      "id": "FR-INV-008",
+      "title": "Negative stock policy",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "PARTIAL",
+      "screens": ["20", "21"],
+      "note": "Only the BLOCK outcome is shown; the configurable policy itself is not."
+    },
+    {
+      "id": "FR-INV-009",
+      "title": "Negative stock allow mode",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "GAP",
+      "screens": [],
+      "note": "Allow mode is not shown. FR text is MUST/Phase 1 but DEC-INV-002/010 resolve Phase 1 to BLOCK; modes are later. Authority tension, not resolved here."
+    },
+    {
+      "id": "FR-INV-010",
+      "title": "Negative stock warn mode",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "GAP",
+      "screens": [],
+      "note": "Warn mode not shown (see FR-INV-009)."
+    },
+    {
+      "id": "FR-INV-011",
+      "title": "Negative stock approval mode",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "GAP",
+      "screens": [],
+      "note": "Negative-stock approval mode not shown (see FR-INV-009)."
+    },
+    {
+      "id": "FR-INV-012",
+      "title": "Negative stock block mode",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "DEMONSTRATED",
+      "screens": ["20", "21"],
+      "note": "Blocked adjustment states that no stock effect occurs."
+    },
+    {
+      "id": "FR-INV-013",
+      "title": "Negative stock by operation",
+      "priority": "SHOULD",
+      "phase": "1",
+      "evidence": "GAP",
+      "screens": [],
+      "note": "Per-operation policy differences are not shown; only the adjustment path appears."
+    },
+    {
+      "id": "FR-INV-014",
+      "title": "Batch stock visibility",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "DEMONSTRATED",
+      "screens": ["11", "12", "19", "36"],
+      "note": "Batch quantities per item."
+    },
+    {
+      "id": "FR-INV-015",
+      "title": "Expiry visibility",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "DEMONSTRATED",
+      "screens": ["11", "12", "13", "14"],
+      "note": "Expiry date and status."
+    },
+    {
+      "id": "FR-INV-016",
+      "title": "Expired stock identification",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "DEMONSTRATED",
+      "screens": ["14", "55"],
+      "note": "Expired stock list and badge."
+    },
+    {
+      "id": "FR-INV-017",
+      "title": "Near-expiry identification",
+      "priority": "SHOULD",
+      "phase": "1",
+      "evidence": "DEMONSTRATED",
+      "screens": ["13", "55"],
+      "note": "Near-expiry list and badge."
+    },
+    {
+      "id": "FR-INV-018",
+      "title": "Batch identity preservation",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "DEMONSTRATED",
+      "screens": ["12"],
+      "note": "Batch identity with source receipt and history."
+    },
+    {
+      "id": "FR-INV-019",
+      "title": "Inventory enquiry by barcode",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "PARTIAL",
+      "screens": ["02", "35"],
+      "note": "The search field on 02 is still a text-looking element, not an input; barcode scanning is shown only on count entry (35)."
+    },
+    {
+      "id": "FR-INV-020",
+      "title": "Inventory enquiry by item search",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "DEMONSTRATED",
+      "screens": ["02"],
+      "note": "Search by code or description."
+    },
+    {
+      "id": "FR-INV-021",
+      "title": "Low-stock extension",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "PARTIAL",
+      "screens": ["01", "03", "08", "61"],
+      "note": "Low-stock list, tile and indicator are shown, and screen 61 adds decision support with example thresholds labelled as examples. The threshold and its owner stay DEC-INV-007 (OPEN); no reorder operation exists."
+    },
+    {
+      "id": "FR-INV-022",
+      "title": "Zero-stock visibility",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "DEMONSTRATED",
+      "screens": ["04"],
+      "note": "Zero-stock filter and badge."
+    },
+    {
+      "id": "FR-INV-023",
+      "title": "Negative-stock reportability",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "PARTIAL",
+      "screens": ["02", "03", "04", "06", "07", "63"],
+      "note": "A Negative filter chip now exists on the list screens, but it is inert (clicking it leaves '10 of 10 items') and no screen shows its result, so 'all negative items can be listed' is not demonstrated. No negative balance remains in the data."
+    },
+    {
+      "id": "FR-INV-024",
+      "title": "Inventory movement history",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "DEMONSTRATED",
+      "screens": ["09", "16"],
+      "note": "Item and store-wide movement history."
+    },
+    {
+      "id": "FR-INV-025",
+      "title": "Inventory valuation extension",
+      "priority": "MUST",
+      "phase": "2",
+      "evidence": "LATER",
+      "screens": [],
+      "note": "Phase 2 valuation report; the design states it is not presented (docs item 20)."
+    },
+    {
+      "id": "FR-INV-026",
+      "title": "Inventory permission",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "PARTIAL",
+      "screens": ["07", "15", "58", "67"],
+      "note": "Read-only role, restricted WAC, a permission component list and a PERMISSION_DENIED posting state are shown. The labels are not frozen permission codes and 67 names an 'Inventory Manager' role that is not a frozen persona (see finding F6 and N11)."
+    },
+    {
+      "id": "FR-INV-027",
+      "title": "Inventory audit",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "PARTIAL",
+      "screens": ["10", "24", "47"],
+      "note": "Actor and 'Audit Recorded' appear. The Audit / Trace tab on item detail has no screen showing its content."
+    },
+    {
+      "id": "FR-INV-028",
+      "title": "Offline inventory operation",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "DEMONSTRATED",
+      "screens": ["05", "06", "59"],
+      "note": "Store Node unavailable (blocking) and Cloud Sync unavailable (non-blocking) are separate states."
+    },
+    {
+      "id": "FR-INV-029",
+      "title": "Inventory restart durability",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "NO-UI",
+      "screens": [],
+      "note": "Restart durability is a service requirement."
+    },
+    {
+      "id": "FR-INV-030",
+      "title": "Inventory history immutability",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "DEMONSTRATED",
+      "screens": ["10", "16", "17"],
+      "note": "Append-only ledger note and read-only posted movement."
+    },
+    {
+      "id": "FR-INV-056",
+      "title": "Create stock count",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "DEMONSTRATED",
+      "screens": ["31"],
+      "note": "Create stock count."
+    },
+    {
+      "id": "FR-INV-057",
+      "title": "Count scope",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "DEMONSTRATED",
+      "screens": ["32"],
+      "note": "Whole store, category or selected items."
+    },
+    {
+      "id": "FR-INV-058",
+      "title": "Count reference/time",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "PARTIAL",
+      "screens": ["30", "31"],
+      "note": "Reference is auto-assigned; the count time is shown only as a start date."
+    },
+    {
+      "id": "FR-INV-059",
+      "title": "Capture counted quantity",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "PARTIAL",
+      "screens": ["33", "34", "35", "50"],
+      "note": "Counted quantity is now a labelled number input (step 1, min 0), but entering a value changes nothing and does not carry to the review screens; batch count (36) has no input."
+    },
+    {
+      "id": "FR-INV-060",
+      "title": "Barcode count entry",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "DEMONSTRATED",
+      "screens": ["35"],
+      "note": "Scan barcode or search product."
+    },
+    {
+      "id": "FR-INV-061",
+      "title": "Manual item search in count",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "DEMONSTRATED",
+      "screens": ["35"],
+      "note": "Search product within a count."
+    },
+    {
+      "id": "FR-INV-062",
+      "title": "Batch count",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "DEMONSTRATED",
+      "screens": ["36"],
+      "note": "Batch count."
+    },
+    {
+      "id": "FR-INV-063",
+      "title": "Blind count option",
+      "priority": "SHOULD",
+      "phase": "1",
+      "evidence": "DEMONSTRATED",
+      "screens": ["32", "34"],
+      "note": "Blind count hides the expected quantity."
+    },
+    {
+      "id": "FR-INV-064",
+      "title": "Expected quantity",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "DEMONSTRATED",
+      "screens": ["33", "37"],
+      "note": "Expected quantity shown."
+    },
+    {
+      "id": "FR-INV-065",
+      "title": "Variance calculation",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "DEMONSTRATED",
+      "screens": ["37", "38"],
+      "note": "Variance per line."
+    },
+    {
+      "id": "FR-INV-066",
+      "title": "Variance value extension",
+      "priority": "SHOULD",
+      "phase": "2",
+      "evidence": "LATER",
+      "screens": [],
+      "note": "Phase 2 variance value; not shown."
+    },
+    {
+      "id": "FR-INV-067",
+      "title": "Recount",
+      "priority": "SHOULD",
+      "phase": "1",
+      "evidence": "DEMONSTRATED",
+      "screens": ["39", "40"],
+      "note": "Recount with the original count still visible."
+    },
+    {
+      "id": "FR-INV-068",
+      "title": "Count review",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "DEMONSTRATED",
+      "screens": ["37", "38"],
+      "note": "Count and variance review."
+    },
+    {
+      "id": "FR-INV-069",
+      "title": "Count approval",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "PARTIAL",
+      "screens": ["41"],
+      "note": "Approval-required count is shown, but the frozen API has no approve operation or permission (see audit finding F6)."
+    },
+    {
+      "id": "FR-INV-070",
+      "title": "Count posting",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "DEMONSTRATED",
+      "screens": ["42", "43"],
+      "note": "Ready to post and posted summary."
+    },
+    {
+      "id": "FR-INV-071",
+      "title": "Count zero variance",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "DEMONSTRATED",
+      "screens": ["43", "44"],
+      "note": "Zero-variance lines create no movement."
+    },
+    {
+      "id": "FR-INV-072",
+      "title": "Count cancellation",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "PARTIAL",
+      "screens": ["45"],
+      "note": "Cancellation is shown, but the frozen API has no cancel operation (see audit finding F6)."
+    },
+    {
+      "id": "FR-INV-073",
+      "title": "Posted count immutability",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "DEMONSTRATED",
+      "screens": ["46"],
+      "note": "Posted count is read-only."
+    },
+    {
+      "id": "FR-INV-074",
+      "title": "Concurrent sales during count policy",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "ANNOTATED",
+      "screens": ["48"],
+      "note": "Shown as an open, authority-dependent decision (DEC-INV-003) with two labelled examples; neither is chosen."
+    },
+    {
+      "id": "FR-INV-075",
+      "title": "Count locking option",
+      "priority": "SHOULD",
+      "phase": "1",
+      "evidence": "ANNOTATED",
+      "screens": ["48"],
+      "note": "Scope-lock example only."
+    },
+    {
+      "id": "FR-INV-076",
+      "title": "Count without full shutdown",
+      "priority": "SHOULD",
+      "phase": "1",
+      "evidence": "PARTIAL",
+      "screens": ["32", "48"],
+      "note": "Category and selected-item scopes exist; the policy for trading during a count is open."
+    },
+    {
+      "id": "FR-INV-077",
+      "title": "Count user attribution",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "DEMONSTRATED",
+      "screens": ["30", "47"],
+      "note": "Counted by and timeline actors."
+    },
+    {
+      "id": "FR-INV-078",
+      "title": "Count audit",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "DEMONSTRATED",
+      "screens": ["47"],
+      "note": "Count audit timeline."
+    },
+    {
+      "id": "FR-INV-079",
+      "title": "Count offline",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "PARTIAL",
+      "screens": ["06", "59"],
+      "note": "Offline states are shown for Inventory generally, not for count entry."
+    },
+    {
+      "id": "FR-INV-080",
+      "title": "Create manual adjustment",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "DEMONSTRATED",
+      "screens": ["18", "19"],
+      "note": "Create adjustment."
+    },
+    {
+      "id": "FR-INV-081",
+      "title": "Adjustment direction/quantity",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "DEMONSTRATED",
+      "screens": ["18"],
+      "note": "Increase or decrease with quantity and a resulting-quantity preview."
+    },
+    {
+      "id": "FR-INV-082",
+      "title": "Adjustment reason code",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "DEMONSTRATED",
+      "screens": ["18"],
+      "note": "Reason code is a labelled select with four example options; the catalogue is authority-dependent."
+    },
+    {
+      "id": "FR-INV-083",
+      "title": "Adjustment note",
+      "priority": "SHOULD",
+      "phase": "1",
+      "evidence": "DEMONSTRATED",
+      "screens": ["18"],
+      "note": "Note field."
+    },
+    {
+      "id": "FR-INV-084",
+      "title": "Adjustment batch",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "DEMONSTRATED",
+      "screens": ["19"],
+      "note": "Batch selection."
+    },
+    {
+      "id": "FR-INV-085",
+      "title": "Adjustment negative-stock check",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "DEMONSTRATED",
+      "screens": ["20", "21"],
+      "note": "Negative result blocked."
+    },
+    {
+      "id": "FR-INV-086",
+      "title": "Adjustment approval threshold",
+      "priority": "SHOULD",
+      "phase": "1",
+      "evidence": "DEMONSTRATED",
+      "screens": ["22"],
+      "note": "Approval screen; thresholds are policy, not shown."
+    },
+    {
+      "id": "FR-INV-087",
+      "title": "Adjustment posting",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "DEMONSTRATED",
+      "screens": ["23", "24"],
+      "note": "Review and posted."
+    },
+    {
+      "id": "FR-INV-088",
+      "title": "Adjustment safe retry",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "DEMONSTRATED",
+      "screens": ["26"],
+      "note": "Safe retry."
+    },
+    {
+      "id": "FR-INV-089",
+      "title": "Adjustment search/history",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "DEMONSTRATED",
+      "screens": ["17"],
+      "note": "History with item, date, reason, actor and status filters."
+    },
+    {
+      "id": "FR-INV-090",
+      "title": "Adjustment correction",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "DEMONSTRATED",
+      "screens": ["25"],
+      "note": "Compensating adjustment; original stays visible."
+    },
+    {
+      "id": "FR-INV-031",
+      "title": "Stock movement source",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "DEMONSTRATED",
+      "screens": ["10", "16"],
+      "note": "Source document and process per movement."
+    },
+    {
+      "id": "FR-INV-032",
+      "title": "Goods receipt movement",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "DEMONSTRATED",
+      "screens": ["09", "16"],
+      "note": "Goods Receipt row with View GRN link."
+    },
+    {
+      "id": "FR-INV-033",
+      "title": "Purchase return movement",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "PARTIAL",
+      "screens": ["54"],
+      "note": "Purchase Return appears only as a badge; no ledger row."
+    },
+    {
+      "id": "FR-INV-034",
+      "title": "Sale movement",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "DEMONSTRATED",
+      "screens": ["10", "16"],
+      "note": "Sale movement rows."
+    },
+    {
+      "id": "FR-INV-035",
+      "title": "Sales return movement",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "PARTIAL",
+      "screens": ["54"],
+      "note": "Sales Return appears only as a badge; no ledger row."
+    },
+    {
+      "id": "FR-INV-036",
+      "title": "Opening stock movement",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "DEMONSTRATED",
+      "screens": ["16", "27", "28", "29"],
+      "note": "Opening Stock movement and entry/review/posted flow (DEC-INV-008 PROPOSED)."
+    },
+    {
+      "id": "FR-INV-037",
+      "title": "Positive adjustment movement",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "DEMONSTRATED",
+      "screens": ["12", "16", "17"],
+      "note": "Positive adjustment rows."
+    },
+    {
+      "id": "FR-INV-038",
+      "title": "Negative adjustment movement",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "DEMONSTRATED",
+      "screens": ["16", "17"],
+      "note": "Negative adjustment rows."
+    },
+    {
+      "id": "FR-INV-039",
+      "title": "Stock count variance movement",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "PARTIAL",
+      "screens": ["16", "43", "46"],
+      "note": "Count variance rows appear but the references, amounts and times still disagree across 16, 43, 47 and 46 (finding F3)."
+    },
+    {
+      "id": "FR-INV-040",
+      "title": "Damage movement",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "PARTIAL",
+      "screens": ["16", "17", "54"],
+      "note": "Damage appears as an adjustment reason and a badge; the ledger shows it as 'Negative Adjustment'."
+    },
+    {
+      "id": "FR-INV-041",
+      "title": "Expiry/wastage movement",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "DEMONSTRATED",
+      "screens": ["16"],
+      "note": "Wastage / Expiry row."
+    },
+    {
+      "id": "FR-INV-042",
+      "title": "Future transfer movement",
+      "priority": "LATER",
+      "phase": "3",
+      "evidence": "LATER",
+      "screens": [],
+      "note": "Future transfer; docs item 18 states no active workflow exists."
+    },
+    {
+      "id": "FR-INV-043",
+      "title": "Movement quantity sign",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "DEMONSTRATED",
+      "screens": ["10", "16"],
+      "note": "Signed effect and IN/OUT columns."
+    },
+    {
+      "id": "FR-INV-044",
+      "title": "Movement unit conversion snapshot",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "GAP",
+      "screens": [],
+      "note": "No unit-conversion snapshot on the movement detail (10)."
+    },
+    {
+      "id": "FR-INV-045",
+      "title": "Movement batch",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "PARTIAL",
+      "screens": ["12"],
+      "note": "Batch history shown on batch detail; the store-wide ledger (16) has no batch column."
+    },
+    {
+      "id": "FR-INV-046",
+      "title": "Movement expiry context",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "PARTIAL",
+      "screens": ["12"],
+      "note": "Expiry shown on batch detail only."
+    },
+    {
+      "id": "FR-INV-047",
+      "title": "Movement actor",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "DEMONSTRATED",
+      "screens": ["10", "16"],
+      "note": "Actor on each movement."
+    },
+    {
+      "id": "FR-INV-048",
+      "title": "Movement timestamp/business date",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "PARTIAL",
+      "screens": ["10", "16"],
+      "note": "Date and time shown; the business date is not shown per movement."
+    },
+    {
+      "id": "FR-INV-049",
+      "title": "Movement reason",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "DEMONSTRATED",
+      "screens": ["16", "17"],
+      "note": "Reason column."
+    },
+    {
+      "id": "FR-INV-050",
+      "title": "Movement reference",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "DEMONSTRATED",
+      "screens": ["10", "16"],
+      "note": "Reference column."
+    },
+    {
+      "id": "FR-INV-051",
+      "title": "Movement cannot be directly edited",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "ANNOTATED",
+      "screens": ["10", "16"],
+      "note": "'Cannot be edited or deleted' text only; no edit control exists."
+    },
+    {
+      "id": "FR-INV-052",
+      "title": "Movement duplicate protection",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "DEMONSTRATED",
+      "screens": ["26", "59"],
+      "note": "Safe retry with a reused operation reference."
+    },
+    {
+      "id": "FR-INV-053",
+      "title": "Movement ordering/concurrency",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "NO-UI",
+      "screens": [],
+      "note": "Ordering and concurrency are service requirements."
+    },
+    {
+      "id": "FR-INV-054",
+      "title": "Balance reconciliation",
+      "priority": "MUST",
+      "phase": "1",
+      "evidence": "PARTIAL",
+      "screens": ["09", "16", "12"],
+      "note": "RUNNING column shown. Item and batch ledgers now agree on the running balance, but batch detail (12) shows 20 EACH while the batch table and ledger give 23 (finding N3)."
+    },
+    {
+      "id": "FR-INV-055",
+      "title": "Movement export/report",
+      "priority": "SHOULD",
+      "phase": "1",
+      "evidence": "GAP",
+      "screens": [],
+      "note": "No export or report action on the movement history screens."
+    }
+  ]
+}

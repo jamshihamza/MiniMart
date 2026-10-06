@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#e6e9ee;font-family:'IBM Plex Sans',system-ui,sans-serif;color:#0f1a2b}a{color:#1b5fd1}a:hover{color:#174fb0}</style>
+</helmet>
+<div style="padding:48px;display:flex;flex-direction:column;gap:20px;max-width:900px">
+  <span style="font:600 12px 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#4a5567">MINIMART BACK OFFICE · INVENTORY</span>
+  <span style="font-size:30px;font-weight:700">Visual implementation reference — index</span>
+  <span style="font-size:11px;color:#9aa3b2;display:inline-flex;align-items:center;gap:6px"><i class="icon-info" style="font-size:12px"></i>Back Office (unavailable reference — not included in this archive, cannot be verified to resolve)</span>
+  <span style="font-size:15px;color:#4a5567;line-height:1.5">Extends the review-ready (not approved) MiniMart Back Office shell, nav, status language, tables, forms and dialogs — no redesign of the shell, Catalog or Pricing; in the repository only Accounting-Lite, Cash/Business Day, Customers + Credit, Procurement and Reporting are approved visual references. Inventory is Store-scoped (Item × Store); Item identity itself remains company-wide and owned by Catalog. Phase-1 negative stock is blocked. Full documentation (authority-dependent items, open decisions, confirmations, component inventory) is on the Design System & Docs page.</span>
+  <div style="display:flex;flex-direction:column;gap:10px;margin-top:6px">
+    <sc-for list="{{ pages }}" as="p" hint-placeholder-count="5">
+      <a href="{{ p.href }}" style="display:flex;align-items:center;gap:14px;padding:16px 18px;border-radius:12px;border:1px solid #e1e5eb;background:#fff;text-decoration:none;color:#0f1a2b">
+        <span style="font:600 11.5px 'IBM Plex Mono',monospace;padding:4px 8px;border-radius:6px;background:#0e1b33;color:#fff">{{ p.range }}</span>
+        <div style="display:flex;flex-direction:column;gap:2px;flex:1"><span style="font-size:15px;font-weight:600">{{ p.title }}</span><span style="font-size:12.5px;color:#6b7585">{{ p.sub }}</span></div>
+        <span style="color:#1b5fd1;font-size:13px;font-weight:600">Open →</span>
+      </a>
+    </sc-for>
+  </div>
+  <span style="font-size:12.5px;font-weight:600;color:#4a5567;margin-top:14px">Print / PDF exports — one artboard per page, same 6 groupings plus the new-states addendum</span>
+  <div style="display:flex;gap:8px;flex-wrap:wrap">
+    <sc-for list="{{ printPages }}" as="p" hint-placeholder-count="6">
+      <a href="{{ p.href }}" style="height:32px;padding:0 12px;border-radius:8px;border:1px solid #cfd5de;background:#fff;color:#3d4a5e;font-size:12px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center">{{ p.label }}</a>
+    </sc-for>
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const P=[
+['01–07','MiniMart INV - Foundation & List.dc.html','Foundation & List','Summary, populated/low-stock/zero-stock list, connection & permission states'],
+['08–16','MiniMart INV - Item & Movements.dc.html','Item Detail & Movements','Detail tabs, movement/batch drawers, near-expiry & expired, store-wide ledger'],
+['17–29','MiniMart INV - Adjustments & Opening Stock.dc.html','Adjustments & Opening Stock','Draft, validation, negative-stock block, approval, review, posted, correction, retry'],
+['30–48','MiniMart INV - Stock Count.dc.html','Stock Count','Master list, create/scope, standard/blind/batch capture, review, variance, recount, approval, posting'],
+['49–60','MiniMart INV - Design System & Docs.dc.html','Responsive & Design System','1280×720 artboards, component galleries, full documentation & confirmations']];
+const PP=[
+['MiniMart INV Print - Foundation & List.dc.html','01–07 Foundation & List'],
+['MiniMart INV Print - Item & Movements.dc.html','08–16 Item & Movements'],
+['MiniMart INV Print - Adjustments & Opening Stock.dc.html','17–29 Adjustments & Opening'],
+['MiniMart INV Print - Stock Count.dc.html','30–48 Stock Count'],
+['MiniMart INV Print - Design System & Docs.dc.html','49–60 Design System & Docs'],
+['MiniMart INV Print - New States (61-67).dc.html','61–67 New States (this revision)'],
+['MiniMart INV Print - Combined (01-60).dc.html','Combined 01–60 (legacy scope — does not include 61–67)']];
+class Component extends DCLogic {
+  renderVals(){ return {pages:P.map(([range,href,title,sub])=>({range,href,title,sub})), printPages:PP.map(([href,label])=>({href,label}))}; }
+}
+
+</script>
+</body>
+</html>
