@@ -1,7 +1,7 @@
 {
   "package": "MiniMart POS",
   "slug": "pos",
-  "status": "review-ready",
+  "status": "approved-visual-reference",
   "sourceFile": "source/MiniMartPOS.dc.html",
   "sourceOfTruth": "Claude Design export committed at docs/design/pos/source/MiniMartPOS.dc.html",
   "screenCount": 31,
@@ -179,7 +179,16 @@
   "authorityDependent": false,
   "openDecisions": [],
   "laterPhase": false,
-  "changelog": [],
+  "changelog": [
+    {
+      "date": "2026-10-06",
+      "summary": "Owner explicitly approved the registered MiniMartPOS.dc.html (SHA-256 cdbcd1e0fc5d4d66da6fdac9101c7611fad327709443bbbc6bfec07389ab44e6, 117,821 bytes, 31 screens) as the POS visual design reference. Status review-ready to approved-visual-reference, visual authority only. Source bytes are unchanged. The approval record and documented limitations are in provenance.json. The supplementary files in SUPPLEMENTARY.md do not inherit this approval. Optional design changes can be reviewed later."
+    },
+    {
+      "date": "2026-10-06",
+      "summary": "Owner separately approved the frontend visual implementation of all 31 screens (01 to 30 plus 02b) on wip/visual-pos-ui. This is recorded in provenance.json under implementationApproval, bound to the reference source hash, the implementation file hashes and the candidate path list. It is separate from the design source approval, covers fictional-only visual behavior, and leaves MM-008 acceptance, native Tauri and remote CI evidence, and POS and Back Office consolidation pending."
+    }
+  ],
   "lastReviewedCommit": null,
-  "notes": "All 31 screen identifiers and names were verified from the approved interactive Claude Design source. The source references ./support.js, which is not present in the repository; the local renderer's Claude Design adapter supplies the required render-only runtime without modifying the source. No additional local design source file is directly required. Routes and per-screen phase labels remain unset because the source does not define them using the manifest vocabulary."
+  "notes": "All 31 screen identifiers and names were verified from the approved interactive Claude Design source. The source references ./support.js, which is not present in the repository; the local renderer's Claude Design adapter supplies the required render-only runtime without modifying the source. No additional local design source file is directly required. Routes and per-screen phase labels remain unset because the source does not define them using the manifest vocabulary. Owner visual approval recorded 2026-10-06, bound to the source bytes in provenance.json (approval.boundTo). It approves the visual design only; it does not approve any business, API, data, security or hardware decision, and the prototype logic inside the mockup (cart arithmetic, rounding, change, held sales, tender simulation) is demonstration only."
 }

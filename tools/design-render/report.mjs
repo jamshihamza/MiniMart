@@ -293,6 +293,14 @@ export function buildReportMarkdown() {
       " were produced; the ReportRunRequest (1-500) versus PageInfo (max 200) limit mismatch and the owner screen for cash, day-close and" +
       " management reports stay open and are listed on screen 78.",
     "",
+    "## POS review notes",
+    "",
+    "Status: `approved-visual-reference` (owner visual approval recorded 2026-10-06; visual authority only). Approval is bound to `source/MiniMartPOS.dc.html` (SHA-256 `cdbcd1e0...44e6`, 117,821 bytes, 31 screens), recomputed from the working-tree bytes before it was recorded and equal to the hash in `supplementary-provenance.json`. The source bytes are unchanged. See `provenance.json` for the approval record.",
+    "",
+    "**Approval record:** the owner approved the registered `MiniMartPOS.dc.html` as the POS visual design reference on 2026-10-06 and left optional design changes for later review. It approves the visual design only. It does not approve implementation by itself, and it does not resolve any business, API, data, security or hardware decision; frozen authority wins on any conflict. The supplementary files (`MiniMart POS Mockups.dc.html`, `MiniMart Design System.dc.html`) do not inherit this approval.",
+    "",
+    "**Retained limitations:** `support.js` is not shipped with the package, so the repository renders (2026-09-27, 31 of 31 RUNTIME-COMPLETE with the known-missing `support.js`) use the compatible adapter. For implementation comparison the tracked Procurement runtime was used unchanged, from a scratch copy outside the repository. Product images are static TEMP placeholders. Screen 02b is a concept. The mockup contains prototype logic (cart arithmetic, rounding, change, held sales, tender simulation) that is demonstration only. All names, amounts, devices and times are fictional. MM-007 physical validation remains PENDING, DEC-HW-001 remains OPEN and MM-008 scanner acceptance remains incomplete; the device statuses on screen are illustrative.",
+    "",
     "## Procurement viewport verification",
     "",
     "`primaryViewport` (1366x768) is verified as part of the normal `pnpm design:render --package procurement`" +

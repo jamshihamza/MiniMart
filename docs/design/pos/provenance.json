@@ -1,0 +1,166 @@
+{
+  "status": "approved-visual-reference",
+  "kind": "claude-design-source-registered-as-exported",
+  "authoritativeSource": {
+    "path": "source/MiniMartPOS.dc.html",
+    "sha256": "cdbcd1e0fc5d4d66da6fdac9101c7611fad327709443bbbc6bfec07389ab44e6",
+    "bytes": 117821,
+    "screens": 31,
+    "bytesChangedByApproval": false
+  },
+  "runtime": {
+    "referencedAs": "./support.js",
+    "presentInPackage": false,
+    "note": "The source references ./support.js but the package does not ship it. The repository renderer (tools/design-render/dc-runtime.mjs) supplies a compatible adapter. For implementation comparison, the tracked Procurement runtime (docs/design/procurement/source/support.js, SHA-256 8fe7df74405f3c55f49b7249c74ea1397e65d07dea2b1bd3b4a489bec2e28cbe) was used unchanged, from a scratch copy outside the repository, to render the reference. No runtime file was added to or copied into the POS package. The reference was rendered this way for the visual-only implementation comparison (all 31 screens at 1366x768, 1280x720, 1368x800 and 1920x1080) with Playwright and system Chrome; the scratch copy and the PNGs are not in the repository. The real runtime fetched React and the fonts and icons from their CDNs."
+  },
+  "approval": {
+    "date": "2026-10-06",
+    "status": "approved-visual-reference",
+    "scope": "Visual reference only. Does not approve any business, API, data, security or hardware decision. Frozen specifications and the Decision Register remain the authority. It does not by itself approve implementation: the frontend-only implementation is governed by ADR 0008 on its own WIP branch.",
+    "approvedBy": "Project owner (explicit written instruction in the working session)",
+    "wording": "Owner approves the existing registered MiniMartPOS.dc.html mockup as the POS visual design reference. Optional design changes can be reviewed later.",
+    "boundTo": {
+      "note": "Approval is bound to these exact source bytes. The supplementary files listed in supplementary-provenance.json are NOT covered and stay unapproved.",
+      "sourcePath": "source/MiniMartPOS.dc.html",
+      "sourceSha256": "cdbcd1e0fc5d4d66da6fdac9101c7611fad327709443bbbc6bfec07389ab44e6"
+    },
+    "verifiedBeforeRecording": [
+      "docs/design/pos/source/MiniMartPOS.dc.html exists and is the manifest sourceFile",
+      "SHA-256 recomputed from the working-tree bytes equals the value above and equals the sourceDependency hash already recorded in supplementary-provenance.json",
+      "File size is 117,821 bytes"
+    ],
+    "limitationsAccepted": [
+      "support.js is not shipped with the package, so repository renders use the compatible adapter; the fidelity report lists the 31 screens as RUNTIME-COMPLETE with the known-missing support.js (render of 2026-09-27).",
+      "Product images are static TEMP placeholders in the source; no real product imagery is part of the reference.",
+      "Screen 02b (grid view) is a concept presentation.",
+      "The mockup contains prototype logic (cart arithmetic, discount, rounding, change, held sales, tender and card-result simulation). It is demonstration only and is not product behavior.",
+      "All names, amounts, stock levels, device statuses, customers, receipt numbers and times are fictional specimen values.",
+      "Device statuses shown for the scanner, printer and drawer are illustrative. MM-007 physical validation remains pending and DEC-HW-001 remains open; MM-008 scanner acceptance remains incomplete."
+    ],
+    "doesNotResolve": [
+      "Any decision the Decision Register marks OPEN, VERIFY, DEFERRED or PROPOSED",
+      "Cash rounding, discount and manager-approval thresholds, hold and recall policy, return and refund rules, tax, payment-provider behavior",
+      "Any API contract, permission, role or security rule"
+    ]
+  },
+  "implementationApproval": {
+    "status": "approved-visual-implementation",
+    "date": "2026-10-06",
+    "recordedSeparatelyFrom": "approval (the Claude Design source approval above). That approval covers the mockup source bytes only. This record covers the frontend implementation bytes listed below.",
+    "approvedBy": "Project owner (explicit written instruction in the working session)",
+    "wording": "Owner has visually reviewed and approves all 31 implemented POS visual screens (01 to 30 plus 02b). Owner asked that the checkpoint be prepared. The approval itself authorizes no commit or push.",
+    "method": "The owner reviewed the running preview (screens opened with ?screen=<id>). The approval is visual only.",
+    "scope": "Fictional-only visual implementation under ADR 0008. It approves how the screens look and how the fictional states and dialogs step, and nothing else. No real sale, payment, card, refund, receipt, shift close, calculation, persistence, API call, sync, authentication or hardware operation exists or is approved.",
+    "branch": "wip/visual-pos-ui",
+    "baseCommit": "a30a1490b5d07e3c7ec45debd44bfa898421fb40",
+    "boundTo": {
+      "referenceSourcePath": "source/MiniMartPOS.dc.html",
+      "referenceSourceSha256": "cdbcd1e0fc5d4d66da6fdac9101c7611fad327709443bbbc6bfec07389ab44e6",
+      "referenceRuntimeSha256": "8fe7df74405f3c55f49b7249c74ea1397e65d07dea2b1bd3b4a489bec2e28cbe",
+      "hashScheme": "SHA-256 of each file's bytes. implementationDigest is the SHA-256 of the lines 'path<TAB>sha256<LF>' sorted by path (C order). candidatePathsDigest is the SHA-256 of the candidate paths joined by LF with a trailing LF, sorted by path.",
+      "implementationFiles": {
+        "apps/pos-terminal/index.html": "a607454b742d924b090ea79b8e40fe13c313542b0dea5c08dca3027ea1924956",
+        "apps/pos-terminal/src/App.tsx": "3592601a1c05111696eef3ef2b3cb6e9ec3bbc062ab51639ce60e005e420284b",
+        "apps/pos-terminal/src/components/StubButton.tsx": "621d49c3c6f6aabac287674162e5d61c1f1c57105a297584a23d279439676729",
+        "apps/pos-terminal/src/dialogs/Dialog.tsx": "73ff09e961dd33272c5a38f5b4ddefd67c1b5d47b367f5368af0695b3142d8e8",
+        "apps/pos-terminal/src/dialogs/DialogHost.tsx": "e2ec217441ffacdc10f22bcd9b5c5dde2cab6149c6cbe20da835a76e5f7783df",
+        "apps/pos-terminal/src/dialogs/PaymentDialogs.tsx": "30f0b37ed89ad2bd21ce6fd32baf91ff2bde0b0b6810fe0ddc296c29b88cf8a0",
+        "apps/pos-terminal/src/dialogs/SaleDialogs.tsx": "ac25a211dda2c8a8af6ba142e81840edf102efe4127182a93deefe49c61d9bcd",
+        "apps/pos-terminal/src/fixtures-flow.ts": "5590f5f667ed91f3c4aca644078f9988cc9004efff19ae5c3be7450f31ad4ba7",
+        "apps/pos-terminal/src/fixtures.ts": "ea13a4f6d9718727cd433b917927fc6f0966a963847c3c76625a438d111a64ce",
+        "apps/pos-terminal/src/flow.ts": "21c77fff0bbb14ad2a42040b0e38ebc61c11d29a6f73a9b128a473e2184e9599",
+        "apps/pos-terminal/src/pages/HistoryPage.tsx": "529ad323913324b4da1f98851dd41f280ba8a705d9055a8430f77bb37bc2393b",
+        "apps/pos-terminal/src/pages/ReturnsPage.tsx": "5abd7b0b05bb19c02e9777b6f7c687d1c73f1d63953d22bd6f41c9f447609ada",
+        "apps/pos-terminal/src/pages/ShiftPage.tsx": "461a1b630db58947418e24b8673defa36faaa5ec858e9eaaad98188bccaa34f6",
+        "apps/pos-terminal/src/preview.ts": "d5a58ef7371af9064c602f5bb8cefbc2abf64306bbe3905ce4713ef4ac7ac8a6",
+        "apps/pos-terminal/src/sale/CartPanel.tsx": "ec98aead986c79cdd3d2a0c81ec1fef595e9189f0a0acf7eb00444b79f099396",
+        "apps/pos-terminal/src/sale/ProductBrowser.tsx": "52d0eb8a61b999c971bcf534d3de19232f29040297bd3c8d23b9a8602f79a3dd",
+        "apps/pos-terminal/src/sale/SalePage.tsx": "64669ea32dbf2b86e29f37a612d041f7cedffbcfad1c3a7cdb6b5be7114e80cb",
+        "apps/pos-terminal/src/sale/SearchResults.tsx": "ac34e2e4d19f016a88e30334e05eb1f20b3dd985a826001de9cdfd0ece350fe5",
+        "apps/pos-terminal/src/screens.ts": "543cd94862ebddc721e4e5d3d50aa41f05bb7f3bd4fa03f501464cf18d6a9fc5",
+        "apps/pos-terminal/src/shell/PreviewInspector.tsx": "1984c152c887dbf2eb907c848d353dc4f05636c497f7b4afeee3943a74848035",
+        "apps/pos-terminal/src/shell/Sidebar.tsx": "90b5be44622d51b98adb72e42928cddab493940e3b28f69c50d090733a4eb241",
+        "apps/pos-terminal/src/shell/TopBar.tsx": "ac5e6c4e5469c0d2194e12cb494c83908fbf216b30c8d1082601cccc24c536d9",
+        "apps/pos-terminal/src/styles.css": "0dc486f10b340681d973e7707f9220a76e12dece8b3c24a3accc78c983ae4fef",
+        "apps/pos-terminal/test/App.test.tsx": "1cc9440dbcf586a062719ecafbbf19fa4e42d6da434115f27b88d86f47997cac",
+        "apps/pos-terminal/test/fixtures-flow.test.ts": "cd59f3037d85bad41c1bad6bd511e9919bf85ca7bc534d38bdd84df9f4de9039",
+        "apps/pos-terminal/test/fixtures.test.ts": "b7a6c7060df98641a9d0da5010979b831403cc0d5fdfd615011454b5b9797859",
+        "apps/pos-terminal/test/flow.test.tsx": "0667b8dc6cb013516f61187b86ee5e045ef560f26c41046587d8f879819df217",
+        "apps/pos-terminal/test/preview.test.tsx": "bc87ffe5e10e611c9331a79a1c0d58badfeea01ba77513d1f0cd851298f50fd2",
+        "apps/pos-terminal/test/scanner-shell.test.tsx": "5e2c487bcbc89b0c28b4a023cb3f23c8168a76187b1c103be80144e6156db65e",
+        "apps/pos-terminal/test/screens.test.tsx": "7d9a6e50f648df50f323110d279a7fd8050614aa389e6d6eb5d77bb00813af04"
+      },
+      "implementationDigest": "14c2b703df41642a9b3e3fa77d933b3e848e029cd13b231e56a9527ad2f30108",
+      "removedImplementationFiles": ["apps/pos-terminal/src/components/ShellControls.tsx"],
+      "preservedUnchangedFiles": {
+        "apps/pos-terminal/src/scanner-input.ts": "0960b3ea0fe825196f128895857bcf3f6124b72f2f104e366d4f232c9768411e",
+        "apps/pos-terminal/test/scanner-input.test.ts": "bb4f146790a5299a72002838564ff6fe97babd3e7ef613b28cb9ee62a6bd8d3b",
+        "apps/pos-terminal/test/scanner-fixtures.ts": "b2a95dabc7ed989397a32ff6aeb80ea9e54f42facb8d376bbe250f93f743afa3",
+        "apps/pos-terminal/src/connectivity.ts": "8ccf77b4962f8f2f790abb543e616b10271a503023ed2d4ecd94c3e8b0d7f3ad"
+      },
+      "preservedUnchangedDigest": "8f8301e7c7a3ef1283041f37c17331a2483ecbafdb33e1dac9e4d6f3a7b37680",
+      "candidatePaths": [
+        "apps/pos-terminal/index.html",
+        "apps/pos-terminal/src/App.tsx",
+        "apps/pos-terminal/src/components/ShellControls.tsx",
+        "apps/pos-terminal/src/components/StubButton.tsx",
+        "apps/pos-terminal/src/dialogs/Dialog.tsx",
+        "apps/pos-terminal/src/dialogs/DialogHost.tsx",
+        "apps/pos-terminal/src/dialogs/PaymentDialogs.tsx",
+        "apps/pos-terminal/src/dialogs/SaleDialogs.tsx",
+        "apps/pos-terminal/src/fixtures-flow.ts",
+        "apps/pos-terminal/src/fixtures.ts",
+        "apps/pos-terminal/src/flow.ts",
+        "apps/pos-terminal/src/pages/HistoryPage.tsx",
+        "apps/pos-terminal/src/pages/ReturnsPage.tsx",
+        "apps/pos-terminal/src/pages/ShiftPage.tsx",
+        "apps/pos-terminal/src/preview.ts",
+        "apps/pos-terminal/src/sale/CartPanel.tsx",
+        "apps/pos-terminal/src/sale/ProductBrowser.tsx",
+        "apps/pos-terminal/src/sale/SalePage.tsx",
+        "apps/pos-terminal/src/sale/SearchResults.tsx",
+        "apps/pos-terminal/src/screens.ts",
+        "apps/pos-terminal/src/shell/PreviewInspector.tsx",
+        "apps/pos-terminal/src/shell/Sidebar.tsx",
+        "apps/pos-terminal/src/shell/TopBar.tsx",
+        "apps/pos-terminal/src/styles.css",
+        "apps/pos-terminal/test/App.test.tsx",
+        "apps/pos-terminal/test/fixtures-flow.test.ts",
+        "apps/pos-terminal/test/fixtures.test.ts",
+        "apps/pos-terminal/test/flow.test.tsx",
+        "apps/pos-terminal/test/preview.test.tsx",
+        "apps/pos-terminal/test/scanner-shell.test.tsx",
+        "apps/pos-terminal/test/screens.test.tsx",
+        "docs/adr/0008-bounded-phase-0-visual-only-pos-ui-exception.md",
+        "docs/design/RENDER-FIDELITY-REPORT.md",
+        "docs/design/pos/design-manifest.json",
+        "docs/design/pos/provenance.json",
+        "docs/phase-0/visual-pos-screens.md",
+        "docs/project-status/ACTIVE-WORK.md",
+        "tools/design-render/report.mjs"
+      ],
+      "candidatePathsDigest": "55a92b39afcc32f539a32e63d930afdfe1f6668bd5c1f089ec867145de6fc10f",
+      "note": "The 7 documentation and tooling paths in the candidate list are not hashed here because several of them record these hashes and cannot contain their own. They are bound by path. Changing any hashed implementation file voids this binding until the owner re-approves."
+    },
+    "intentionalVisualDifferences": "Listed in docs/phase-0/visual-pos-screens.md, section 'Differences from the approved reference': devices and providers shown as not tested or not connected, receipt not printed, cloud pill not checked, real MM-006 Store Node pill, stub controls with a dashed outline, fixed fictional lines and totals, preset-only search results, preview-only labels, dialog focus handling, hidden h1 and skip link, fonts from the same CDN link, and the History STATUS-header overflow inherited from the reference.",
+    "limitationsAccepted": [
+      "Everything shown is fictional presentation; totals, change, refunds and differences are fixed strings.",
+      "Fonts load from the Google Fonts CDN; bundling is an open decision.",
+      "While the History detail pane is open (screens 17 and 28) the STATUS header overflows its 0 px track at every tested viewport, and at 1280x720 the CUSTOMER header is clipped too. This is inherited from the reference.",
+      "Pixel comparison against the reference is a similarity measure, not a fidelity certification."
+    ],
+    "acceptanceGaps": [
+      "MM-008 inherited software checkpoint: scanner acceptance stays INCOMPLETE (native WebView2, physical scanner, provisional 50 ms burst threshold, F-key default-action isolation).",
+      "MM-007 physical validation pending; DEC-HW-001 open.",
+      "Production and business functionality is not implemented.",
+      "Native Tauri window not launched for this work.",
+      "Remote CI has not run; nothing is pushed.",
+      "POS and Back Office workspace switching has owner direction but no ADR or change record, is not implemented and is not part of this checkpoint."
+    ],
+    "doesNotResolve": [
+      "Any decision the Decision Register marks OPEN, VERIFY, DEFERRED or PROPOSED",
+      "Any business, API, data, security or hardware decision",
+      "Acceptance of MM-005, MM-006, MM-007, MM-008, MM-009 or MM-010, or any Phase-1 backlog item"
+    ]
+  }
+}

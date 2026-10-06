@@ -289,13 +289,14 @@ describe("MM-008 review: terminators, focus, pages and cancellation", () => {
 
   it("stops a terminator from activating a focused button", () => {
     render(<PosApp />);
-    const search = screen.getByRole("button", { name: "Search" });
-    search.focus();
+    // The approved design has no search submit button, so another always-focusable button is used.
+    const button = screen.getByRole("button", { name: "Note" });
+    button.focus();
     for (const character of "96385074") {
-      press(search, character, clock);
+      press(button, character, clock);
       clock += 5;
     }
-    const enter = press(search, "Enter", clock);
+    const enter = press(button, "Enter", clock);
     clock += 400;
     expect(enter.defaultPrevented).toBe(true);
   });
@@ -306,7 +307,8 @@ describe("MM-008 review: terminators, focus, pages and cancellation", () => {
     press(document.body, "6", clock + 4);
     press(document.body, "3", clock + 8);
     fireEvent.click(screen.getByRole("button", { name: "History" }));
-    fireEvent.click(screen.getByRole("button", { name: "Back to sale" }));
+    // The approved design has no "Back to sale" button; the Sale navigation entry returns to the page.
+    fireEvent.click(screen.getByRole("button", { name: "Sale", exact: true }));
     press(document.body, "8", clock + 12);
     const enter = press(document.body, "Enter", clock + 16);
     clock += 500;
