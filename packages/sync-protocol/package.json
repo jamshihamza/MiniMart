@@ -15,7 +15,18 @@
   "scripts": {
     "build": "tsc -b",
     "clean": "tsc -b --clean",
-    "typecheck": "tsc -b --pretty false"
+    "typecheck": "tsc -b --pretty false",
+    "typecheck:harness": "tsc -p tsconfig.test.json --noEmit",
+    "test": "vitest run --maxWorkers=1 --fileParallelism=false"
+  },
+  "devDependencies": {
+    "@minimart/database": "workspace:*",
+    "@testcontainers/postgresql": "^11.8.0",
+    "@types/pg": "^8.15.5",
+    "ajv": "^8.20.0",
+    "pg": "^8.16.3",
+    "vitest": "^3.2.4",
+    "yaml": "^2.9.1"
   },
   "minimart": {
     "layer": "infrastructure",

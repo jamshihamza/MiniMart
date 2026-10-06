@@ -44,6 +44,8 @@ jobs:
         run: pnpm run test:database
       - name: Service runtime and system-contract tests
         run: pnpm run test:service-runtime
+      - name: Sync proof harness typecheck and tests (test-only, MM-010)
+        run: pnpm run test:sync-proof
       - name: POS shell and connectivity tests
         run: pnpm run test:pos-shell
       - name: POS frontend production build

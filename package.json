@@ -23,6 +23,7 @@
     "test:protected-tests": "node --test infra/tooling/check-protected-test-ownership.test.mjs",
     "test:database": "pnpm --filter @minimart/database test",
     "test:service-runtime": "pnpm --filter @minimart/service-runtime test",
+    "test:sync-proof": "pnpm --filter @minimart/sync-protocol typecheck:harness && pnpm --filter @minimart/sync-protocol test",
     "test:pos-shell": "pnpm --filter @minimart/pos-terminal test",
     "design:validate": "node tools/design-render/validate.mjs",
     "design:render": "node tools/design-render/render.mjs",
