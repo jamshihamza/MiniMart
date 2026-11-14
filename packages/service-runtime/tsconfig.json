@@ -5,6 +5,28 @@
     "rootDir": "./src",
     "tsBuildInfoFile": "./dist/.tsbuildinfo"
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx"],
-  "references": [{ "path": "../database" }]
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx"
+  ],
+  "references": [
+    {
+      "path": "../database"
+    },
+    {
+      "path": "../shared-kernel"
+    },
+    {
+      "path": "../application/coordinators"
+    },
+    {
+      "path": "../query"
+    },
+    {
+      "path": "../modules/iam"
+    },
+    {
+      "path": "../modules/organization"
+    }
+  ]
 }

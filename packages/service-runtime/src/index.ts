@@ -30,3 +30,9 @@ export {
 } from "./system-http.js";
 export { StoreSystemHost, type SystemHostResource } from "./system-host.js";
 export { loadDevelopmentSystemHttpOptions } from "./system-http-config.js";
+export {
+  DEMO_API_PREFIX,
+  loadDemoApiPort,
+  StoreDemoApiServer,
+  type DemoApiOptions,
+} from "./demo-api.js";

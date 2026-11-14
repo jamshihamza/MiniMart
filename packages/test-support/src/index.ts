@@ -1,7 +1,7 @@
 import { randomUUID } from "node:crypto";
 
 import { PostgreSqlContainer, type StartedPostgreSqlContainer } from "@testcontainers/postgresql";
-import { runMigrations } from "@minimart/database";
+import { createTransactionRunner, poolSql, runMigrations } from "@minimart/database";
 import {
   uuidv7,
   type Sql,
@@ -17,27 +17,6 @@ async function administrativeConnectionString(): Promise<string> {
   if (configured !== undefined && configured !== "") return configured;
   managedContainer ??= await new PostgreSqlContainer("postgres:17-alpine").start();
   return managedContainer.getConnectionUri();
-}
-
-export function transactionRunner(pool: Pool): TransactionRunner {
-  return {
-    async run<Result>(work: (sql: Sql) => Promise<Result>): Promise<Result> {
-      const client = await pool.connect();
-      try {
-        await client.query("BEGIN");
-        const result = await work({
-          query: async (text, parameters) => client.query(text, parameters as unknown[]),
-        } as Sql);
-        await client.query("COMMIT");
-        return result;
-      } catch (error) {
-        await client.query("ROLLBACK");
-        throw error;
-      } finally {
-        client.release();
-      }
-    },
-  };
 }
 
 export interface StoreTestDatabase {
@@ -96,8 +75,8 @@ export async function createStoreTestDatabase(prefix = "mm_mod"): Promise<StoreT
   let dropped = false;
   return {
     pool,
-    sql: { query: async (text, parameters) => pool.query(text, parameters as unknown[]) } as Sql,
-    transactions: transactionRunner(pool),
+    sql: poolSql(pool),
+    transactions: createTransactionRunner(pool),
     context: {
       tenantId,
       companyId,

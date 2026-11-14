@@ -19,10 +19,16 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@minimart/database": "workspace:*"
+    "@minimart/database": "workspace:*",
+    "@minimart/shared-kernel": "workspace:*",
+    "@minimart/application-coordinators": "workspace:*",
+    "@minimart/query": "workspace:*",
+    "@minimart/module-iam": "workspace:*",
+    "@minimart/module-organization": "workspace:*"
   },
   "devDependencies": {
-    "vitest": "^3.2.4"
+    "vitest": "^3.2.4",
+    "@minimart/test-support": "workspace:*"
   },
   "minimart": {
     "layer": "application",

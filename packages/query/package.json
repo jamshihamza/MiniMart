@@ -15,8 +15,7 @@
   "scripts": {
     "build": "tsc -b",
     "clean": "tsc -b --clean",
-    "typecheck": "tsc -b --pretty false",
-    "test": "vitest run --maxWorkers=1 --fileParallelism=false"
+    "typecheck": "tsc -b --pretty false"
   },
   "minimart": {
     "layer": "query",
@@ -35,10 +34,5 @@
     "@minimart/module-sales": "workspace:*",
     "@minimart/module-payments": "workspace:*",
     "@minimart/module-cash-business-day": "workspace:*"
-  },
-  "devDependencies": {
-    "@minimart/test-support": "workspace:*",
-    "@minimart/application-coordinators": "workspace:*",
-    "vitest": "^3.2.4"
   }
 }

@@ -20,7 +20,8 @@
   },
   "dependencies": {
     "kysely": "^0.28.8",
-    "pg": "^8.16.3"
+    "pg": "^8.16.3",
+    "@minimart/shared-kernel": "workspace:*"
   },
   "devDependencies": {
     "@testcontainers/postgresql": "^11.8.0",

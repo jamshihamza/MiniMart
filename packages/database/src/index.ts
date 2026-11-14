@@ -1,4 +1,5 @@
 export { databaseConfigFromEnvironment, type DatabaseConfig } from "./config.js";
+export { createTransactionRunner, poolSql } from "./transactions.js";
 export { checkDatabaseHealth, type DatabaseHealth } from "./health.js";
 export {
   createDatabasePool,

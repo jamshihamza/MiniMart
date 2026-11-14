@@ -5,6 +5,19 @@
     "rootDir": "./src",
     "tsBuildInfoFile": "./dist/.tsbuildinfo"
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx"],
-  "references": [{ "path": "../../packages/service-runtime" }]
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx"
+  ],
+  "references": [
+    {
+      "path": "../../packages/service-runtime"
+    },
+    {
+      "path": "../../packages/database"
+    },
+    {
+      "path": "../../packages/application/coordinators"
+    }
+  ]
 }
