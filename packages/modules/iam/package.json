@@ -19,7 +19,8 @@
   "scripts": {
     "build": "tsc -b",
     "clean": "tsc -b --clean",
-    "typecheck": "tsc -b --pretty false"
+    "typecheck": "tsc -b --pretty false",
+    "test": "vitest run --maxWorkers=1 --fileParallelism=false"
   },
   "minimart": {
     "layer": "domain",
@@ -27,5 +28,12 @@
     "capabilities": [
       "iam-public"
     ]
+  },
+  "dependencies": {
+    "@minimart/shared-kernel": "workspace:*"
+  },
+  "devDependencies": {
+    "@minimart/test-support": "workspace:*",
+    "vitest": "^3.2.4"
   }
 }

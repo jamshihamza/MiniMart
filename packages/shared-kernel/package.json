@@ -15,7 +15,8 @@
   "scripts": {
     "build": "tsc -b",
     "clean": "tsc -b --clean",
-    "typecheck": "tsc -b --pretty false"
+    "typecheck": "tsc -b --pretty false",
+    "test": "vitest run"
   },
   "minimart": {
     "layer": "shared",
@@ -23,5 +24,8 @@
     "capabilities": [
       "shared-kernel"
     ]
+  },
+  "devDependencies": {
+    "vitest": "^3.2.4"
   }
 }

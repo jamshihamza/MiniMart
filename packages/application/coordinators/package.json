@@ -15,7 +15,8 @@
   "scripts": {
     "build": "tsc -b",
     "clean": "tsc -b --clean",
-    "typecheck": "tsc -b --pretty false"
+    "typecheck": "tsc -b --pretty false",
+    "test": "vitest run --maxWorkers=1 --fileParallelism=false"
   },
   "minimart": {
     "layer": "application",
@@ -23,5 +24,20 @@
     "capabilities": [
       "posting-coordination"
     ]
+  },
+  "dependencies": {
+    "@minimart/shared-kernel": "workspace:*",
+    "@minimart/module-organization": "workspace:*",
+    "@minimart/module-iam": "workspace:*",
+    "@minimart/module-catalog": "workspace:*",
+    "@minimart/module-pricing": "workspace:*",
+    "@minimart/module-inventory": "workspace:*",
+    "@minimart/module-sales": "workspace:*",
+    "@minimart/module-payments": "workspace:*",
+    "@minimart/module-cash-business-day": "workspace:*"
+  },
+  "devDependencies": {
+    "@minimart/test-support": "workspace:*",
+    "vitest": "^3.2.4"
   }
 }

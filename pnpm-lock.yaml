@@ -267,7 +267,42 @@ importers:
 
   packages/api-contract: {}
 
-  packages/application/coordinators: {}
+  packages/application/coordinators:
+    dependencies:
+      '@minimart/module-cash-business-day':
+        specifier: workspace:*
+        version: link:../../modules/cash-business-day
+      '@minimart/module-catalog':
+        specifier: workspace:*
+        version: link:../../modules/catalog
+      '@minimart/module-iam':
+        specifier: workspace:*
+        version: link:../../modules/iam
+      '@minimart/module-inventory':
+        specifier: workspace:*
+        version: link:../../modules/inventory
+      '@minimart/module-organization':
+        specifier: workspace:*
+        version: link:../../modules/organization
+      '@minimart/module-payments':
+        specifier: workspace:*
+        version: link:../../modules/payments
+      '@minimart/module-pricing':
+        specifier: workspace:*
+        version: link:../../modules/pricing
+      '@minimart/module-sales':
+        specifier: workspace:*
+        version: link:../../modules/sales
+      '@minimart/shared-kernel':
+        specifier: workspace:*
+        version: link:../../shared-kernel
+    devDependencies:
+      '@minimart/test-support':
+        specifier: workspace:*
+        version: link:../../test-support
+      vitest:
+        specifier: ^3.2.4
+        version: 3.2.7(@types/node@24.13.6)(jiti@2.7.0)(jsdom@26.1.0(supports-color@7.2.0))(lightningcss@1.32.0)(supports-color@7.2.0)(yaml@2.9.1)
 
   packages/country-packs: {}
 
@@ -292,33 +327,159 @@ importers:
 
   packages/modules/accounting-lite: {}
 
-  packages/modules/cash-business-day: {}
+  packages/modules/cash-business-day:
+    dependencies:
+      '@minimart/shared-kernel':
+        specifier: workspace:*
+        version: link:../../shared-kernel
+    devDependencies:
+      '@minimart/test-support':
+        specifier: workspace:*
+        version: link:../../test-support
+      vitest:
+        specifier: ^3.2.4
+        version: 3.2.7(@types/node@24.13.6)(jiti@2.7.0)(jsdom@26.1.0(supports-color@7.2.0))(lightningcss@1.32.0)(supports-color@7.2.0)(yaml@2.9.1)
 
-  packages/modules/catalog: {}
+  packages/modules/catalog:
+    dependencies:
+      '@minimart/shared-kernel':
+        specifier: workspace:*
+        version: link:../../shared-kernel
+    devDependencies:
+      '@minimart/test-support':
+        specifier: workspace:*
+        version: link:../../test-support
+      vitest:
+        specifier: ^3.2.4
+        version: 3.2.7(@types/node@24.13.6)(jiti@2.7.0)(jsdom@26.1.0(supports-color@7.2.0))(lightningcss@1.32.0)(supports-color@7.2.0)(yaml@2.9.1)
 
   packages/modules/country-policy: {}
 
   packages/modules/customer-and-credit: {}
 
-  packages/modules/iam: {}
+  packages/modules/iam:
+    dependencies:
+      '@minimart/shared-kernel':
+        specifier: workspace:*
+        version: link:../../shared-kernel
+    devDependencies:
+      '@minimart/test-support':
+        specifier: workspace:*
+        version: link:../../test-support
+      vitest:
+        specifier: ^3.2.4
+        version: 3.2.7(@types/node@24.13.6)(jiti@2.7.0)(jsdom@26.1.0(supports-color@7.2.0))(lightningcss@1.32.0)(supports-color@7.2.0)(yaml@2.9.1)
 
-  packages/modules/inventory: {}
+  packages/modules/inventory:
+    dependencies:
+      '@minimart/shared-kernel':
+        specifier: workspace:*
+        version: link:../../shared-kernel
+    devDependencies:
+      '@minimart/test-support':
+        specifier: workspace:*
+        version: link:../../test-support
+      vitest:
+        specifier: ^3.2.4
+        version: 3.2.7(@types/node@24.13.6)(jiti@2.7.0)(jsdom@26.1.0(supports-color@7.2.0))(lightningcss@1.32.0)(supports-color@7.2.0)(yaml@2.9.1)
 
-  packages/modules/organization: {}
+  packages/modules/organization:
+    dependencies:
+      '@minimart/shared-kernel':
+        specifier: workspace:*
+        version: link:../../shared-kernel
+    devDependencies:
+      '@minimart/test-support':
+        specifier: workspace:*
+        version: link:../../test-support
+      vitest:
+        specifier: ^3.2.4
+        version: 3.2.7(@types/node@24.13.6)(jiti@2.7.0)(jsdom@26.1.0(supports-color@7.2.0))(lightningcss@1.32.0)(supports-color@7.2.0)(yaml@2.9.1)
 
-  packages/modules/payments: {}
+  packages/modules/payments:
+    dependencies:
+      '@minimart/shared-kernel':
+        specifier: workspace:*
+        version: link:../../shared-kernel
+    devDependencies:
+      '@minimart/test-support':
+        specifier: workspace:*
+        version: link:../../test-support
+      vitest:
+        specifier: ^3.2.4
+        version: 3.2.7(@types/node@24.13.6)(jiti@2.7.0)(jsdom@26.1.0(supports-color@7.2.0))(lightningcss@1.32.0)(supports-color@7.2.0)(yaml@2.9.1)
 
-  packages/modules/pricing: {}
+  packages/modules/pricing:
+    dependencies:
+      '@minimart/shared-kernel':
+        specifier: workspace:*
+        version: link:../../shared-kernel
+    devDependencies:
+      '@minimart/test-support':
+        specifier: workspace:*
+        version: link:../../test-support
+      vitest:
+        specifier: ^3.2.4
+        version: 3.2.7(@types/node@24.13.6)(jiti@2.7.0)(jsdom@26.1.0(supports-color@7.2.0))(lightningcss@1.32.0)(supports-color@7.2.0)(yaml@2.9.1)
 
   packages/modules/procurement: {}
 
   packages/modules/returns: {}
 
-  packages/modules/sales: {}
+  packages/modules/sales:
+    dependencies:
+      '@minimart/shared-kernel':
+        specifier: workspace:*
+        version: link:../../shared-kernel
+    devDependencies:
+      '@minimart/test-support':
+        specifier: workspace:*
+        version: link:../../test-support
+      vitest:
+        specifier: ^3.2.4
+        version: 3.2.7(@types/node@24.13.6)(jiti@2.7.0)(jsdom@26.1.0(supports-color@7.2.0))(lightningcss@1.32.0)(supports-color@7.2.0)(yaml@2.9.1)
 
   packages/observability: {}
 
-  packages/query: {}
+  packages/query:
+    dependencies:
+      '@minimart/module-cash-business-day':
+        specifier: workspace:*
+        version: link:../modules/cash-business-day
+      '@minimart/module-catalog':
+        specifier: workspace:*
+        version: link:../modules/catalog
+      '@minimart/module-iam':
+        specifier: workspace:*
+        version: link:../modules/iam
+      '@minimart/module-inventory':
+        specifier: workspace:*
+        version: link:../modules/inventory
+      '@minimart/module-organization':
+        specifier: workspace:*
+        version: link:../modules/organization
+      '@minimart/module-payments':
+        specifier: workspace:*
+        version: link:../modules/payments
+      '@minimart/module-pricing':
+        specifier: workspace:*
+        version: link:../modules/pricing
+      '@minimart/module-sales':
+        specifier: workspace:*
+        version: link:../modules/sales
+      '@minimart/shared-kernel':
+        specifier: workspace:*
+        version: link:../shared-kernel
+    devDependencies:
+      '@minimart/application-coordinators':
+        specifier: workspace:*
+        version: link:../application/coordinators
+      '@minimart/test-support':
+        specifier: workspace:*
+        version: link:../test-support
+      vitest:
+        specifier: ^3.2.4
+        version: 3.2.7(@types/node@24.13.6)(jiti@2.7.0)(jsdom@26.1.0(supports-color@7.2.0))(lightningcss@1.32.0)(supports-color@7.2.0)(yaml@2.9.1)
 
   packages/service-runtime:
     dependencies:
@@ -330,11 +491,32 @@ importers:
         specifier: ^3.2.4
         version: 3.2.7(@types/node@24.13.6)(jiti@2.7.0)(jsdom@26.1.0(supports-color@7.2.0))(lightningcss@1.32.0)(supports-color@7.2.0)(yaml@2.9.1)
 
-  packages/shared-kernel: {}
+  packages/shared-kernel:
+    devDependencies:
+      vitest:
+        specifier: ^3.2.4
+        version: 3.2.7(@types/node@24.13.6)(jiti@2.7.0)(jsdom@26.1.0(supports-color@7.2.0))(lightningcss@1.32.0)(supports-color@7.2.0)(yaml@2.9.1)
 
   packages/sync-protocol: {}
 
-  packages/test-support: {}
+  packages/test-support:
+    dependencies:
+      '@minimart/database':
+        specifier: workspace:*
+        version: link:../database
+      '@minimart/shared-kernel':
+        specifier: workspace:*
+        version: link:../shared-kernel
+      '@testcontainers/postgresql':
+        specifier: ^11.8.0
+        version: 11.14.0(supports-color@7.2.0)
+      pg:
+        specifier: ^8.16.3
+        version: 8.23.0
+    devDependencies:
+      '@types/pg':
+        specifier: ^8.15.5
+        version: 8.23.1
 
 packages:
 

@@ -5,5 +5,34 @@
     "rootDir": "./src",
     "tsBuildInfoFile": "./dist/.tsbuildinfo"
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx"]
+  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "references": [
+    {
+      "path": "../shared-kernel"
+    },
+    {
+      "path": "../modules/organization"
+    },
+    {
+      "path": "../modules/iam"
+    },
+    {
+      "path": "../modules/catalog"
+    },
+    {
+      "path": "../modules/pricing"
+    },
+    {
+      "path": "../modules/inventory"
+    },
+    {
+      "path": "../modules/sales"
+    },
+    {
+      "path": "../modules/payments"
+    },
+    {
+      "path": "../modules/cash-business-day"
+    }
+  ]
 }
