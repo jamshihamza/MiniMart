@@ -91,6 +91,18 @@ Status: `approved-visual-reference` (owner visual approval recorded 2026-10-04; 
 - Remaining defects: (1) the export dialog is still a static mock (documented, not interactive); (2) the grouped pages are 1366 px canvases and scroll horizontally on narrow windows, and the index scrolls horizontally at 390 px (upstream behaviour); (3) the upstream V2 manifest text is retained as exported and still says the Back Office target was verified in the Claude Design project and repeats the V1 diff statement.
 - Remaining limitations: the export dialog is drawn inline, not as an overlay; static renders show only the first screenful of long pages; the sidebar scrolls internally; shell navigation is structural and only Reports is live; no PDF export or phase labels were produced; the ReportRunRequest (1-500) versus PageInfo (max 200) limit mismatch and the owner screen for cash, day-close and management reports stay open and are listed on screen 78.
 
+## Inventory review notes
+
+Status: `review-ready` (2026-11-13), NOT `approved-visual-reference`. Source `MiniMartInventory.dc.html`, SHA-256 `48f47b59272038f50fabadca30d0863c823e21ff1564ca9dbfa75fb9ba397358`, from `MiniMart_Inventory_ClaudeDesign_Source_v2(batch4).zip`. Every packaged file's hash appears in the export's revision manifest, which itself states REVIEW-READY, NOT APPROVED. `support.js` is byte-identical to the approved packages' real runtime.
+
+- Structure: 67 screens, IDs 01-67 with no gaps, 67 unique titles, 67 state mappings; the five grouped pages list the same 67 titles once each.
+- Render: 67/67 RUNTIME-COMPLETE on the real runtime, 0 BLOCKED, 0 KNOWN-DIFFERENCE, 0 page errors at 1280x720, 1366x768, 1368x800 and 1920x1080 (pinned Chromium, cloud workspace). No page-level horizontal scroll and no unreachable content below the fold at any size.
+- FINDING 1 (blocks approval, export item F12): the enabled `New Stock Count` header button renders white text on a light-grey default background on screens 02, 03, 04, 06 and 49 (contrast 1.15:1) and is effectively invisible. The export's `newCountBg` fix does not take effect in the real runtime.
+- FINDING 2 (blocks approval, export item F11): the inventory list (02, 03, 04, 06, 07, 49) needs 1188px and the store-wide movement history (16) needs 1228px. At 1366x768 and 1368x800 the `LAST MOVEMENT` values and the `REASON / REF` column are clipped; at 1280x720 `MOVING WAC` is clipped too. All inside the table's own scroll container. Clean at 1920x1080.
+- FINDING 3 (export item F10, still open by the export's own statement): only 10 screens use table semantics; no drawer has dialog semantics; screen 05 has no `h1`. Real form controls exist only on 18, 19, 33-35, 50 and 66.
+- Measured contrast of rendered text otherwise: the only other failing pair is the disabled sidebar navigation labels (3.15:1), which are inactive controls. Input placeholder text was not measured.
+- Not done here: a requirement-by-requirement FR-INV / UI-INV audit and keyboard interaction testing.
+
 ## Procurement viewport verification
 
 `primaryViewport` (1366x768) is verified as part of the normal `pnpm design:render --package procurement` run (see the table below). The package's declared `supportedViewports` were additionally verified with a one-off, non-authoritative render pass (`renderPackage()` called directly with `viewportOverride`/`outputRoot`, screenshots kept outside the tracked tree) using the same strict renderer -- every check (unsupported primitive, pageerror, unresolved asset) still applied:
@@ -433,7 +445,77 @@ Package: MiniMart Customers + Credit. Rendered 74 screen(s) at 2026-10-01T07:17:
 
 ## inventory
 
-Status: **UNVERIFIED** — not rendered in this workspace.
+Package: Inventory. Rendered 67 screen(s) at 2026-11-13T15:30:31.837Z. All screens RUNTIME-COMPLETE.
+
+| Screen | Name                                             | Status           | Notes                                                                               |
+| ------ | ------------------------------------------------ | ---------------- | ----------------------------------------------------------------------------------- |
+| 01     | Inventory Summary                                | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 02     | Inventory — populated list                       | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 03     | Inventory — filtered Low Stock                   | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 04     | Inventory — Zero Stock                           | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 05     | Inventory — Store Node unavailable               | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 06     | Inventory — Cloud Sync unavailable               | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 07     | Inventory — read-only / permission-limited       | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 08     | Inventory Item Detail — Overview                 | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 09     | Inventory Item Detail — Movement History         | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 10     | Movement Detail Drawer                           | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 11     | Inventory Item Detail — Batch / Expiry           | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 12     | Batch Detail                                     | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 13     | Near Expiry list                                 | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 14     | Expired Stock list                               | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 15     | Moving WAC — authorized view                     | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 16     | Movement History — store-wide                    | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 17     | Adjustment History                               | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 18     | New Adjustment                                   | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 19     | Adjustment — batch tracked                       | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 20     | Adjustment — validation                          | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 21     | Negative Stock Blocked                           | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 22     | Adjustment — approval required                   | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 23     | Adjustment — review                              | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 24     | Adjustment — posted                              | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 25     | Adjustment — correction / compensating action    | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 26     | Adjustment — safe retry / uncertain state        | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 27     | Opening Stock — entry                            | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 28     | Opening Stock — review                           | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 29     | Opening Stock — posted                           | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 30     | Stock Counts — master list                       | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 31     | Create Stock Count                               | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 32     | Count Scope                                      | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 33     | Count Entry — standard                           | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 34     | Count Entry — blind                              | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 35     | Count Entry — barcode/search                     | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 36     | Batch Count                                      | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 37     | Count Review                                     | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 38     | Variance Review                                  | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 39     | Recount Requested                                | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 40     | Recount Completed                                | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 41     | Count Approval Required                          | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 42     | Count Ready to Post                              | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 43     | Count Posted                                     | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 44     | Zero Variance Count                              | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 45     | Cancel Count                                     | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 46     | Posted Count — read-only                         | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 47     | Count Audit / Timeline                           | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 48     | Count Concurrency — authority-dependent          | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 49     | Inventory list — 1280×720                        | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 50     | Count entry — 1280×720                           | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 51     | Adjustment — 1280×720                            | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 52     | Inventory DataTable components                   | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 53     | Quantity / Stock status components               | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 54     | Movement components                              | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 55     | Batch / Expiry components                        | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 56     | Adjustment components                            | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 57     | Count components                                 | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 58     | Permission / Approval components                 | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 59     | Offline / Error states                           | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 60     | Inventory component inventory + documentation    | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 61     | Reorder / Low Stock — decision support           | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 62     | Inventory — LOADING state                        | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 63     | Inventory — EMPTY state                          | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 64     | Inventory — CONFLICT (stale version) state       | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 65     | Inventory — INCOMPATIBLE_CLIENT state            | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 66     | Inventory — VALIDATION_ERROR (field-level) state | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
+| 67     | Inventory — PERMISSION_DENIED (posting) state    | RUNTIME-COMPLETE | rendered by the real Claude Design runtime (support.js), not the compatible adapter |
 
 ## pos
 

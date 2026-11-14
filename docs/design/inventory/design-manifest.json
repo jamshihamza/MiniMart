@@ -1,18 +1,427 @@
 {
   "package": "Inventory",
   "slug": "inventory",
-  "status": "draft",
-  "sourceFile": null,
-  "sourceOfTruth": null,
-  "screenCount": null,
+  "status": "review-ready",
+  "sourceFile": "source/MiniMartInventory.dc.html",
+  "sourceOfTruth": "Claude Design export registered at docs/design/inventory/source/MiniMartInventory.dc.html (revision v2, batch 4)",
+  "screenCount": 67,
   "primaryViewport": "1366x768",
   "supportedViewports": ["1280x720", "1368x800", "1920x1080"],
-  "screenGroups": [],
-  "screens": [],
+  "screenGroups": [
+    "Foundation & List",
+    "Item & Movements",
+    "Adjustments & Opening Stock",
+    "Stock Count",
+    "Design System & Docs"
+  ],
+  "screens": [
+    {
+      "number": "01",
+      "name": "Inventory Summary",
+      "group": "Foundation & List",
+      "renderFile": "01-inventory-summary.png"
+    },
+    {
+      "number": "02",
+      "name": "Inventory — populated list",
+      "group": "Foundation & List",
+      "renderFile": "02-inventory-populated-list.png"
+    },
+    {
+      "number": "03",
+      "name": "Inventory — filtered Low Stock",
+      "group": "Foundation & List",
+      "renderFile": "03-inventory-filtered-low-stock.png"
+    },
+    {
+      "number": "04",
+      "name": "Inventory — Zero Stock",
+      "group": "Foundation & List",
+      "renderFile": "04-inventory-zero-stock.png"
+    },
+    {
+      "number": "05",
+      "name": "Inventory — Store Node unavailable",
+      "group": "Foundation & List",
+      "renderFile": "05-inventory-store-node-unavailable.png"
+    },
+    {
+      "number": "06",
+      "name": "Inventory — Cloud Sync unavailable",
+      "group": "Foundation & List",
+      "renderFile": "06-inventory-cloud-sync-unavailable.png"
+    },
+    {
+      "number": "07",
+      "name": "Inventory — read-only / permission-limited",
+      "group": "Foundation & List",
+      "renderFile": "07-inventory-read-only-permission-limited.png"
+    },
+    {
+      "number": "08",
+      "name": "Inventory Item Detail — Overview",
+      "group": "Item & Movements",
+      "renderFile": "08-inventory-item-detail-overview.png"
+    },
+    {
+      "number": "09",
+      "name": "Inventory Item Detail — Movement History",
+      "group": "Item & Movements",
+      "renderFile": "09-inventory-item-detail-movement-history.png"
+    },
+    {
+      "number": "10",
+      "name": "Movement Detail Drawer",
+      "group": "Item & Movements",
+      "renderFile": "10-movement-detail-drawer.png"
+    },
+    {
+      "number": "11",
+      "name": "Inventory Item Detail — Batch / Expiry",
+      "group": "Item & Movements",
+      "renderFile": "11-inventory-item-detail-batch-expiry.png"
+    },
+    {
+      "number": "12",
+      "name": "Batch Detail",
+      "group": "Item & Movements",
+      "renderFile": "12-batch-detail.png"
+    },
+    {
+      "number": "13",
+      "name": "Near Expiry list",
+      "group": "Item & Movements",
+      "renderFile": "13-near-expiry-list.png"
+    },
+    {
+      "number": "14",
+      "name": "Expired Stock list",
+      "group": "Item & Movements",
+      "renderFile": "14-expired-stock-list.png"
+    },
+    {
+      "number": "15",
+      "name": "Moving WAC — authorized view",
+      "group": "Item & Movements",
+      "renderFile": "15-moving-wac-authorized-view.png"
+    },
+    {
+      "number": "16",
+      "name": "Movement History — store-wide",
+      "group": "Item & Movements",
+      "renderFile": "16-movement-history-store-wide.png"
+    },
+    {
+      "number": "17",
+      "name": "Adjustment History",
+      "group": "Adjustments & Opening Stock",
+      "renderFile": "17-adjustment-history.png"
+    },
+    {
+      "number": "18",
+      "name": "New Adjustment",
+      "group": "Adjustments & Opening Stock",
+      "renderFile": "18-new-adjustment.png"
+    },
+    {
+      "number": "19",
+      "name": "Adjustment — batch tracked",
+      "group": "Adjustments & Opening Stock",
+      "renderFile": "19-adjustment-batch-tracked.png"
+    },
+    {
+      "number": "20",
+      "name": "Adjustment — validation",
+      "group": "Adjustments & Opening Stock",
+      "renderFile": "20-adjustment-validation.png"
+    },
+    {
+      "number": "21",
+      "name": "Negative Stock Blocked",
+      "group": "Adjustments & Opening Stock",
+      "renderFile": "21-negative-stock-blocked.png"
+    },
+    {
+      "number": "22",
+      "name": "Adjustment — approval required",
+      "group": "Adjustments & Opening Stock",
+      "renderFile": "22-adjustment-approval-required.png"
+    },
+    {
+      "number": "23",
+      "name": "Adjustment — review",
+      "group": "Adjustments & Opening Stock",
+      "renderFile": "23-adjustment-review.png"
+    },
+    {
+      "number": "24",
+      "name": "Adjustment — posted",
+      "group": "Adjustments & Opening Stock",
+      "renderFile": "24-adjustment-posted.png"
+    },
+    {
+      "number": "25",
+      "name": "Adjustment — correction / compensating action",
+      "group": "Adjustments & Opening Stock",
+      "renderFile": "25-adjustment-correction-compensating-action.png"
+    },
+    {
+      "number": "26",
+      "name": "Adjustment — safe retry / uncertain state",
+      "group": "Adjustments & Opening Stock",
+      "renderFile": "26-adjustment-safe-retry-uncertain-state.png"
+    },
+    {
+      "number": "27",
+      "name": "Opening Stock — entry",
+      "group": "Adjustments & Opening Stock",
+      "renderFile": "27-opening-stock-entry.png"
+    },
+    {
+      "number": "28",
+      "name": "Opening Stock — review",
+      "group": "Adjustments & Opening Stock",
+      "renderFile": "28-opening-stock-review.png"
+    },
+    {
+      "number": "29",
+      "name": "Opening Stock — posted",
+      "group": "Adjustments & Opening Stock",
+      "renderFile": "29-opening-stock-posted.png"
+    },
+    {
+      "number": "30",
+      "name": "Stock Counts — master list",
+      "group": "Stock Count",
+      "renderFile": "30-stock-counts-master-list.png"
+    },
+    {
+      "number": "31",
+      "name": "Create Stock Count",
+      "group": "Stock Count",
+      "renderFile": "31-create-stock-count.png"
+    },
+    {
+      "number": "32",
+      "name": "Count Scope",
+      "group": "Stock Count",
+      "renderFile": "32-count-scope.png"
+    },
+    {
+      "number": "33",
+      "name": "Count Entry — standard",
+      "group": "Stock Count",
+      "renderFile": "33-count-entry-standard.png"
+    },
+    {
+      "number": "34",
+      "name": "Count Entry — blind",
+      "group": "Stock Count",
+      "renderFile": "34-count-entry-blind.png"
+    },
+    {
+      "number": "35",
+      "name": "Count Entry — barcode/search",
+      "group": "Stock Count",
+      "renderFile": "35-count-entry-barcode-search.png"
+    },
+    {
+      "number": "36",
+      "name": "Batch Count",
+      "group": "Stock Count",
+      "renderFile": "36-batch-count.png"
+    },
+    {
+      "number": "37",
+      "name": "Count Review",
+      "group": "Stock Count",
+      "renderFile": "37-count-review.png"
+    },
+    {
+      "number": "38",
+      "name": "Variance Review",
+      "group": "Stock Count",
+      "renderFile": "38-variance-review.png"
+    },
+    {
+      "number": "39",
+      "name": "Recount Requested",
+      "group": "Stock Count",
+      "renderFile": "39-recount-requested.png"
+    },
+    {
+      "number": "40",
+      "name": "Recount Completed",
+      "group": "Stock Count",
+      "renderFile": "40-recount-completed.png"
+    },
+    {
+      "number": "41",
+      "name": "Count Approval Required",
+      "group": "Stock Count",
+      "renderFile": "41-count-approval-required.png"
+    },
+    {
+      "number": "42",
+      "name": "Count Ready to Post",
+      "group": "Stock Count",
+      "renderFile": "42-count-ready-to-post.png"
+    },
+    {
+      "number": "43",
+      "name": "Count Posted",
+      "group": "Stock Count",
+      "renderFile": "43-count-posted.png"
+    },
+    {
+      "number": "44",
+      "name": "Zero Variance Count",
+      "group": "Stock Count",
+      "renderFile": "44-zero-variance-count.png"
+    },
+    {
+      "number": "45",
+      "name": "Cancel Count",
+      "group": "Stock Count",
+      "renderFile": "45-cancel-count.png"
+    },
+    {
+      "number": "46",
+      "name": "Posted Count — read-only",
+      "group": "Stock Count",
+      "renderFile": "46-posted-count-read-only.png"
+    },
+    {
+      "number": "47",
+      "name": "Count Audit / Timeline",
+      "group": "Stock Count",
+      "renderFile": "47-count-audit-timeline.png"
+    },
+    {
+      "number": "48",
+      "name": "Count Concurrency — authority-dependent",
+      "group": "Stock Count",
+      "renderFile": "48-count-concurrency-authority-dependent.png"
+    },
+    {
+      "number": "49",
+      "name": "Inventory list — 1280×720",
+      "group": "Design System & Docs",
+      "renderFile": "49-inventory-list-1280-720.png"
+    },
+    {
+      "number": "50",
+      "name": "Count entry — 1280×720",
+      "group": "Design System & Docs",
+      "renderFile": "50-count-entry-1280-720.png"
+    },
+    {
+      "number": "51",
+      "name": "Adjustment — 1280×720",
+      "group": "Design System & Docs",
+      "renderFile": "51-adjustment-1280-720.png"
+    },
+    {
+      "number": "52",
+      "name": "Inventory DataTable components",
+      "group": "Design System & Docs",
+      "renderFile": "52-inventory-datatable-components.png"
+    },
+    {
+      "number": "53",
+      "name": "Quantity / Stock status components",
+      "group": "Design System & Docs",
+      "renderFile": "53-quantity-stock-status-components.png"
+    },
+    {
+      "number": "54",
+      "name": "Movement components",
+      "group": "Design System & Docs",
+      "renderFile": "54-movement-components.png"
+    },
+    {
+      "number": "55",
+      "name": "Batch / Expiry components",
+      "group": "Design System & Docs",
+      "renderFile": "55-batch-expiry-components.png"
+    },
+    {
+      "number": "56",
+      "name": "Adjustment components",
+      "group": "Design System & Docs",
+      "renderFile": "56-adjustment-components.png"
+    },
+    {
+      "number": "57",
+      "name": "Count components",
+      "group": "Design System & Docs",
+      "renderFile": "57-count-components.png"
+    },
+    {
+      "number": "58",
+      "name": "Permission / Approval components",
+      "group": "Design System & Docs",
+      "renderFile": "58-permission-approval-components.png"
+    },
+    {
+      "number": "59",
+      "name": "Offline / Error states",
+      "group": "Design System & Docs",
+      "renderFile": "59-offline-error-states.png"
+    },
+    {
+      "number": "60",
+      "name": "Inventory component inventory + documentation",
+      "group": "Design System & Docs",
+      "renderFile": "60-inventory-component-inventory-documentation.png"
+    },
+    {
+      "number": "61",
+      "name": "Reorder / Low Stock — decision support",
+      "group": "Design System & Docs",
+      "renderFile": "61-reorder-low-stock-decision-support.png"
+    },
+    {
+      "number": "62",
+      "name": "Inventory — LOADING state",
+      "group": "Design System & Docs",
+      "renderFile": "62-inventory-loading-state.png"
+    },
+    {
+      "number": "63",
+      "name": "Inventory — EMPTY state",
+      "group": "Design System & Docs",
+      "renderFile": "63-inventory-empty-state.png"
+    },
+    {
+      "number": "64",
+      "name": "Inventory — CONFLICT (stale version) state",
+      "group": "Design System & Docs",
+      "renderFile": "64-inventory-conflict-stale-version-state.png"
+    },
+    {
+      "number": "65",
+      "name": "Inventory — INCOMPATIBLE_CLIENT state",
+      "group": "Design System & Docs",
+      "renderFile": "65-inventory-incompatible-client-state.png"
+    },
+    {
+      "number": "66",
+      "name": "Inventory — VALIDATION_ERROR (field-level) state",
+      "group": "Design System & Docs",
+      "renderFile": "66-inventory-validation-error-field-level-state.png"
+    },
+    {
+      "number": "67",
+      "name": "Inventory — PERMISSION_DENIED (posting) state",
+      "group": "Design System & Docs",
+      "renderFile": "67-inventory-permission-denied-posting-state.png"
+    }
+  ],
   "authorityDependent": false,
   "openDecisions": [],
   "laterPhase": false,
   "changelog": [],
   "lastReviewedCommit": null,
-  "notes": "Approved Inventory source exists in Claude Design but has not yet been copied into the repository. The approved filename is MiniMartInventory.dc.html; do not change this package to a render-ready status until that real source file is present."
+  "notes": "Source SHA-256 48f47b59272038f50fabadca30d0863c823e21ff1564ca9dbfa75fb9ba397358 from MiniMart_Inventory_ClaudeDesign_Source_v2(batch4).zip. All 67 screen names come from the source's NAMES map and its 67 screen-state mappings (01-67, no gaps); groups follow the five grouped wrapper pages. The export's own revision manifest states REVIEW-READY, NOT APPROVED, with open accessibility, clipping and contrast items; see docs/design/RENDER-FIDELITY-REPORT.md. The package ships the real support.js (byte-identical to the other approved packages); the renderer uses it directly."
 }

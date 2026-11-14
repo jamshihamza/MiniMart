@@ -293,6 +293,33 @@ export function buildReportMarkdown() {
       " were produced; the ReportRunRequest (1-500) versus PageInfo (max 200) limit mismatch and the owner screen for cash, day-close and" +
       " management reports stay open and are listed on screen 78.",
     "",
+    "## Inventory review notes",
+    "",
+    "Status: `review-ready` (2026-11-13), NOT `approved-visual-reference`. Source `MiniMartInventory.dc.html`," +
+      " SHA-256 `48f47b59272038f50fabadca30d0863c823e21ff1564ca9dbfa75fb9ba397358`, from" +
+      " `MiniMart_Inventory_ClaudeDesign_Source_v2(batch4).zip`. Every packaged file's hash appears in the export's" +
+      " revision manifest, which itself states REVIEW-READY, NOT APPROVED. `support.js` is byte-identical to the" +
+      " approved packages' real runtime.",
+    "",
+    "- Structure: 67 screens, IDs 01-67 with no gaps, 67 unique titles, 67 state mappings; the five grouped pages" +
+      " list the same 67 titles once each.",
+    "- Render: 67/67 RUNTIME-COMPLETE on the real runtime, 0 BLOCKED, 0 KNOWN-DIFFERENCE, 0 page errors at" +
+      " 1280x720, 1366x768, 1368x800 and 1920x1080 (pinned Chromium, cloud workspace). No page-level horizontal" +
+      " scroll and no unreachable content below the fold at any size.",
+    "- FINDING 1 (blocks approval, export item F12): the enabled `New Stock Count` header button renders white text" +
+      " on a light-grey default background on screens 02, 03, 04, 06 and 49 (contrast 1.15:1) and is effectively" +
+      " invisible. The export's `newCountBg` fix does not take effect in the real runtime.",
+    "- FINDING 2 (blocks approval, export item F11): the inventory list (02, 03, 04, 06, 07, 49) needs 1188px and" +
+      " the store-wide movement history (16) needs 1228px. At 1366x768 and 1368x800 the `LAST MOVEMENT` values" +
+      " and the `REASON / REF` column are clipped; at 1280x720 `MOVING WAC` is clipped too. All inside the table's" +
+      " own scroll container. Clean at 1920x1080.",
+    "- FINDING 3 (export item F10, still open by the export's own statement): only 10 screens use table semantics;" +
+      " no drawer has dialog semantics; screen 05 has no `h1`. Real form controls exist only on 18, 19, 33-35, 50" +
+      " and 66.",
+    "- Measured contrast of rendered text otherwise: the only other failing pair is the disabled sidebar navigation" +
+      " labels (3.15:1), which are inactive controls. Input placeholder text was not measured.",
+    "- Not done here: a requirement-by-requirement FR-INV / UI-INV audit and keyboard interaction testing.",
+    "",
     "## Procurement viewport verification",
     "",
     "`primaryViewport` (1366x768) is verified as part of the normal `pnpm design:render --package procurement`" +
