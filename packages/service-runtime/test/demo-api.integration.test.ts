@@ -90,7 +90,11 @@ describe("demonstration Store API", () => {
     });
     expect(created.status).toBe(201);
     const itemId = created.body["itemId"] as string;
-    const duplicate = await call("POST", "/items", { itemCode: "A-1", name: "x", sellingPrice: "1" });
+    const duplicate = await call("POST", "/items", {
+      itemCode: "A-1",
+      name: "x",
+      sellingPrice: "1",
+    });
     expect(duplicate).toMatchObject({ status: 409, body: { code: "ITEM_CODE_TAKEN" } });
 
     const lines = [{ itemId, quantity: "3" }];
@@ -113,7 +117,12 @@ describe("demonstration Store API", () => {
       body: { code: "SHIFT_REQUIRED" },
     });
 
-    const opened = await call("POST", "/shifts", { counterId, openingCash: "100" }, "http-open-0001");
+    const opened = await call(
+      "POST",
+      "/shifts",
+      { counterId, openingCash: "100" },
+      "http-open-0001",
+    );
     expect(opened).toMatchObject({ status: 201, body: { status: "OPEN", expectedCash: "100.00" } });
     const shiftId = opened.body["shiftId"] as string;
 
@@ -136,7 +145,11 @@ describe("demonstration Store API", () => {
     const oversell = await call(
       "POST",
       "/sales",
-      { ...sale, lines: [{ itemId, quantity: "8" }], tenders: [{ methodCode: "CASH", amount: "20" }] },
+      {
+        ...sale,
+        lines: [{ itemId, quantity: "8" }],
+        tenders: [{ methodCode: "CASH", amount: "20" }],
+      },
       "http-sale-0003",
     );
     expect(oversell).toMatchObject({ status: 422, body: { code: "NEGATIVE_STOCK_BLOCKED" } });
@@ -154,10 +167,17 @@ describe("demonstration Store API", () => {
     ]);
     const movements = await call("GET", `/inventory/movements?itemId=${itemId}`);
     expect(
-      (movements.body["movements"] as { movementType: string }[]).map((entry) => entry.movementType),
+      (movements.body["movements"] as { movementType: string }[]).map(
+        (entry) => entry.movementType,
+      ),
     ).toEqual(["ADJUSTMENT", "SALE", "OPENING_STOCK"]);
 
-    await call("POST", `/shifts/${shiftId}/cash-out`, { amount: "20", reason: "Ice" }, "http-out-0001");
+    await call(
+      "POST",
+      `/shifts/${shiftId}/cash-out`,
+      { amount: "20", reason: "Ice" },
+      "http-out-0001",
+    );
     const dash = await call("GET", "/dashboard");
     expect(dash.body).toMatchObject({
       businessDate: "2026-09-26",
@@ -166,7 +186,12 @@ describe("demonstration Store API", () => {
       itemCount: 1,
       stockValue: "8.00",
     });
-    const closed = await call("POST", `/shifts/${shiftId}/close`, { countedCash: "87.50" }, "http-close-1");
+    const closed = await call(
+      "POST",
+      `/shifts/${shiftId}/close`,
+      { countedCash: "87.50" },
+      "http-close-1",
+    );
     expect(closed.body).toMatchObject({
       status: "CLOSED",
       expectedCash: "87.50",
@@ -177,7 +202,11 @@ describe("demonstration Store API", () => {
     expect((closed.body["cashMovements"] as unknown[]).length).toBe(3);
     const sales = await call("GET", "/sales");
     expect(sales.body["sales"]).toEqual([
-      expect.objectContaining({ documentNo: "POS01-000001", grandTotal: "7.50", tenders: ["CASH"] }),
+      expect.objectContaining({
+        documentNo: "POS01-000001",
+        grandTotal: "7.50",
+        tenders: ["CASH"],
+      }),
     ]);
     const dayId = (dash.body["businessDays"] as { businessDayId: string }[])[0]!.businessDayId;
     expect((await call("POST", `/business-days/${dayId}/close`, {})).body["status"]).toBe("CLOSED");

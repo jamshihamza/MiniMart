@@ -16,7 +16,8 @@ export function createTransactionRunner(pool: Pool): TransactionRunner {
       try {
         await client.query("BEGIN");
         const result = await work({
-          query: async (text, parameters) => client.query(text, parameters as unknown[] | undefined),
+          query: async (text, parameters) =>
+            client.query(text, parameters as unknown[] | undefined),
         } as Sql);
         await client.query("COMMIT");
         return result;

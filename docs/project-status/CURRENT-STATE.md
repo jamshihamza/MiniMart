@@ -81,8 +81,8 @@ Status as recorded in each `docs/design/<package>/design-manifest.json` at HEAD.
 | Accounting-Lite     | `approved-visual-reference` | 88      | `ebe8ca7f38b9b9d5cd9c16fed421bfe5f5863653ec9478a081d368d2bb9df12e` |
 | POS                 | `review-ready`              | 31      | not approved                                                       |
 | Back Office         | `review-ready`              | 60      | not approved                                                       |
-| Inventory           | `draft`                     | none    | no source registered                                               |
-| Reports             | no manifest                 | none    | not started                                                        |
+| Inventory           | `review-ready`              | 67      | not approved                                                       |
+| Reports             | see its manifest            |         | see `docs/design/reports/design-manifest.json`                     |
 | Administration      | no manifest                 | none    | not started                                                        |
 
 Accounting-Lite was approved and pushed in commit
@@ -104,9 +104,15 @@ From repository history and `docs/phase-0/`:
   receipt printer was detected, no physical job was submitted and physical output is
   unverified. Do not describe it as hardware-validated.
 - MM-008 to MM-011: no evidence in the repository of implementation.
-- The business-module packages under `packages/modules/` exist as boundary skeletons
-  (index files only). No Accounting-Lite or Reports application code was found; for
-  those areas only visual packages exist.
+- **Working demonstration slice (2026-11-14, provisional):** catalog, pricing,
+  inventory, sales, payments, cash / shift / Business Day, organization and IAM modules
+  have demonstration code, with coordinators, read queries, a demonstration API
+  (`/api/demo/v0`, not the frozen Store API contract), a live POS screen and a Back
+  Office app. Run with `pnpm demo`; see `docs/demo/README.md`. Its decisions are
+  provisional and owner-delegated: `docs/adr/0006-working-demonstration-slice.md`.
+- The remaining module packages (accounting-lite, country-policy, customer-and-credit,
+  procurement, returns) are still boundary skeletons (index files only); for those
+  areas only visual packages exist.
 
 ## Local Work Warning (Office PC)
 

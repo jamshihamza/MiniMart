@@ -26,7 +26,8 @@ import {
 
 const money = (value: string | null): string | null =>
   value === null ? null : formatDec(parseDec(value));
-const quantity = (value: string, precision: number): string => formatDec(parseDec(value), precision);
+const quantity = (value: string, precision: number): string =>
+  formatDec(parseDec(value), precision);
 
 export interface CatalogEntry extends ItemRecord {
   readonly sellingPrice: string | null;
@@ -74,9 +75,9 @@ export async function stockLedger(
 ) {
   const movements = await listMovements(sql, context, options);
   const items = new Map(
-    (
-      await getItems(sql, context, [...new Set(movements.map((movement) => movement.itemId))])
-    ).map((item) => [item.itemId, item]),
+    (await getItems(sql, context, [...new Set(movements.map((movement) => movement.itemId))])).map(
+      (item) => [item.itemId, item],
+    ),
   );
   return movements.map((movement) => {
     const item = items.get(movement.itemId);

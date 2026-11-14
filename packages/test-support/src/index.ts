@@ -92,11 +92,17 @@ export async function createStoreTestDatabase(prefix = "mm_mod"): Promise<StoreT
       if (dropped) return;
       dropped = true;
       await pool.end();
-      await adminPool.query(
-        "SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE datname = $1 AND pid <> pg_backend_pid()",
-        [name],
-      );
-      await adminPool.query(`DROP DATABASE "${name}"`);
+      // The pool is closed; its backends may take a moment to exit. Wait for them instead of
+      // terminating them, which races with the closing sockets and surfaces as an unhandled error.
+      for (let attempt = 0; ; attempt += 1) {
+        try {
+          await adminPool.query(`DROP DATABASE "${name}"`);
+          break;
+        } catch (error) {
+          if (attempt >= 50 || (error as { code?: string }).code !== "55006") throw error;
+          await new Promise((resolve) => setTimeout(resolve, 100));
+        }
+      }
       await adminPool.end();
       if (managedContainer !== undefined) {
         await managedContainer.stop();

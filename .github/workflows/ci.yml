@@ -46,6 +46,12 @@ jobs:
         run: pnpm run test:service-runtime
       - name: POS shell and connectivity tests
         run: pnpm run test:pos-shell
+      - name: Domain modules and coordinators
+        run: pnpm run test:domain
+      - name: Back Office
+        run: pnpm run test:backoffice
+      - name: Back Office build
+        run: pnpm --filter @minimart/backoffice build
       - name: POS frontend production build
         run: pnpm --filter @minimart/pos-terminal build
 

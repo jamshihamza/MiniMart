@@ -237,7 +237,8 @@ export class StoreDemoApiServer {
   async #context(request: IncomingMessage): Promise<StoreContext> {
     const { sql } = this.#options;
     const store = await findActiveStore(sql);
-    if (store === null) throw new HttpError(503, "STORE_NOT_PROVISIONED", "No store is provisioned");
+    if (store === null)
+      throw new HttpError(503, "STORE_NOT_PROVISIONED", "No store is provisioned");
     const header = request.headers["x-minimart-user"];
     const username = typeof header === "string" && header !== "" ? header : DEMO_CASHIER;
     const user = await findUser(sql, store.tenantId, username);

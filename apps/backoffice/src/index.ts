@@ -1,1 +1,1 @@
-export {};
+export { BackOfficeApp } from "./App.js";

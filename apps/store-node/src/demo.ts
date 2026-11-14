@@ -74,6 +74,9 @@ async function main(): Promise<void> {
     }),
   );
 
+  // Stopping PostgreSQL ends idle connections; that must not crash the shutdown.
+  pool.on("error", () => undefined);
+
   let server: StoreDemoApiServer | undefined;
   let stopping = false;
   const stop = async (): Promise<void> => {

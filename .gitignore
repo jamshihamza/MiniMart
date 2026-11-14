@@ -24,3 +24,6 @@ docs/design/*/exports/*
 
 # Cached real CDN assets (fonts/icons) fetched during design rendering.
 tools/design-render/vendor-cache/
+
+# Demonstration launcher data (embedded PostgreSQL cluster).
+.demo-data/

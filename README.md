@@ -16,3 +16,9 @@ organized according to the frozen Architecture v1.0 monorepo structure.
 
 The authoritative specifications are indexed by SPECIFICATION-INDEX.md. Files under
 docs/specifications/ and docs/backlog/ are controlled specification artifacts.
+
+## Working demonstration
+
+`pnpm install` then `pnpm demo`, and open <http://127.0.0.1:4780/pos/> and
+<http://127.0.0.1:4780/backoffice/>. See `docs/demo/README.md`. The demonstration is
+provisional and not for production use: `docs/adr/0006-working-demonstration-slice.md`.
