@@ -4,6 +4,7 @@ import {
   ensureOpenBusinessDay,
   findOpenBusinessDay,
   getShift,
+  listBusinessDays,
   openShift,
   postCashMovement,
   type BusinessDayRecord,
@@ -219,13 +220,24 @@ export async function closeCashierShift(
   });
 }
 
-/** Closes the Business Day. Refused while a shift is open. */
+/** Closes the Business Day. Refused while a shift is open. Safe to retry with the same key. */
 export async function closeStoreBusinessDay(
   transactions: TransactionRunner,
   context: StoreContext,
-  businessDayId: string,
+  command: { readonly idempotencyKey: string; readonly businessDayId: string },
 ): Promise<BusinessDayRecord> {
   return transactions.run(async (sql) => {
+    const { idempotencyKey, businessDayId } = command;
+    const claim = await claimIdempotency(sql, context, "BUSINESS_DAY_CLOSE", idempotencyKey, {
+      businessDayId,
+    });
+    if (claim.replayOf !== null) {
+      const closed = (await listBusinessDays(sql, context)).find(
+        (entry) => entry.businessDayId === claim.replayOf,
+      );
+      if (closed === undefined) throw new Error("Replayed Business Day could not be found");
+      return closed;
+    }
     const day = await closeBusinessDay(sql, context, businessDayId);
     await recordPosting(sql, context, {
       actionCode: "BUSINESS_DAY_CLOSED",
@@ -236,6 +248,7 @@ export async function closeStoreBusinessDay(
       postingEnvelopeId: uuidv7(context.now),
       payload: { businessDate: day.businessDate },
     });
+    await claim.complete("BUSINESS_DAY", day.businessDayId);
     return day;
   });
 }
@@ -342,13 +355,27 @@ export interface CreateProductCommand extends CreateItemInput {
   readonly openingUnitCost?: string;
 }
 
-/** Creates a sellable item with its store price and, optionally, its opening stock. */
+/**
+ * Creates a sellable item with its store price and, optionally, its opening stock. Safe to retry
+ * with the same key: the item is created once.
+ */
 export async function createProduct(
   transactions: TransactionRunner,
   context: StoreContext,
-  command: CreateProductCommand,
+  command: CreateProductCommand & { readonly idempotencyKey: string },
 ): Promise<ItemRecord> {
-  return transactions.run((sql) => createProductIn(sql, context, command));
+  return transactions.run(async (sql) => {
+    const { idempotencyKey, ...request } = command;
+    const claim = await claimIdempotency(sql, context, "ITEM_CREATE", idempotencyKey, request);
+    if (claim.replayOf !== null) {
+      const [existing] = await getItems(sql, context, [claim.replayOf]);
+      if (existing === undefined) throw new Error("Replayed item could not be found");
+      return existing;
+    }
+    const item = await createProductIn(sql, context, request);
+    await claim.complete("ITEM", item.itemId);
+    return item;
+  });
 }
 
 export async function createProductIn(

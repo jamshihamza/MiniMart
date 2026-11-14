@@ -1,13 +1,27 @@
 import {
   DomainError,
   formatDec,
+  mulDec,
   parseDec,
+  roundDec,
   uuidv7,
+  type Dec,
   type Sql,
   type StoreContext,
 } from "@minimart/shared-kernel";
 
 type Scope = Pick<StoreContext, "tenantId" | "companyId" | "storeId" | "currencyCode" | "now">;
+
+/** Decimal places of a money amount on a sale. */
+export const MONEY_PLACES = 2;
+
+/**
+ * Extended amount of one sale line: quantity × unit price, rounded half away from zero to money
+ * precision. No discount or tax is applied; those rules are not implemented.
+ */
+export function extendSaleLine(quantity: Dec, unitPrice: Dec): Dec {
+  return roundDec(mulDec(quantity, unitPrice), MONEY_PLACES);
+}
 
 /** Sets the item's store selling price from now on. The previous price entry is end-dated. */
 export async function setItemPrice(

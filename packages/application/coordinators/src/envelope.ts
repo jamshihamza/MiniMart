@@ -38,6 +38,35 @@ export async function recordPosting(sql: Sql, context: Scope, event: PostingEven
       JSON.stringify(event.payload),
     ],
   );
+  await recordEvent(sql, context, {
+    producerContext: event.targetContext,
+    aggregateType: event.targetType,
+    aggregateId: event.targetId,
+    eventType: event.eventType,
+    postingEnvelopeId: event.postingEnvelopeId,
+    payload: event.payload,
+  });
+}
+
+export interface DomainEventRecord {
+  /** The one context that owns and produces this event. */
+  readonly producerContext: string;
+  readonly aggregateType: string;
+  readonly aggregateId: string;
+  readonly eventType: string;
+  readonly postingEnvelopeId: string;
+  readonly payload: Readonly<Record<string, unknown>>;
+}
+
+/**
+ * Writes one outbox message for a fact committed in this posting envelope. Events of one envelope
+ * share its id as their correlation identity.
+ */
+export async function recordEvent(
+  sql: Sql,
+  context: Pick<Scope, "tenantId" | "now">,
+  event: DomainEventRecord,
+): Promise<void> {
   await sql.query(
     `INSERT INTO integration.outbox_messages (outbox_message_id, tenant_id, event_id, producer_context,
        aggregate_type, aggregate_id, event_type, event_version, posting_envelope_id, correlation_id,
@@ -47,9 +76,9 @@ export async function recordPosting(sql: Sql, context: Scope, event: PostingEven
       uuidv7(context.now),
       context.tenantId,
       uuidv7(context.now),
-      event.targetContext,
-      event.targetType,
-      event.targetId,
+      event.producerContext,
+      event.aggregateType,
+      event.aggregateId,
       event.eventType,
       event.postingEnvelopeId,
       JSON.stringify(event.payload),

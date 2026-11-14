@@ -403,6 +403,7 @@ export class StoreDemoApiServer {
           ...posted,
           receipt: await saleReceipt(sql, context, posted.saleId),
           changeDue: posted.quote?.payment.changeDue ?? null,
+          cashTendered: posted.quote?.payment.cashTendered ?? null,
         },
         posted.replayed ? 200 : 201,
       );
@@ -410,6 +411,7 @@ export class StoreDemoApiServer {
     }
     if (route === "/items") {
       const item = await createProduct(transactions, context, {
+        idempotencyKey: this.#idempotencyKey(request),
         itemCode: text(body, "itemCode"),
         name: text(body, "name"),
         sellingPrice: text(body, "sellingPrice"),
@@ -468,7 +470,12 @@ export class StoreDemoApiServer {
       return;
     }
     if (segments.length === 3 && segments[0] === "business-days" && segments[2] === "close") {
-      json(await closeStoreBusinessDay(transactions, context, uuid(segments[1], "businessDayId")));
+      json(
+        await closeStoreBusinessDay(transactions, context, {
+          idempotencyKey: this.#idempotencyKey(request),
+          businessDayId: uuid(segments[1], "businessDayId"),
+        }),
+      );
       return;
     }
     throw new HttpError(404, "NOT_FOUND", `No demo route for ${key}`);

@@ -72,6 +72,7 @@ export interface Quote {
   readonly taxTotal: string;
   readonly grandTotal: string;
   readonly payment: {
+    readonly cashTendered?: string | null;
     readonly remaining: string;
     readonly changeDue: string;
     readonly settled: boolean;
@@ -195,12 +196,13 @@ export const storeApi = {
     lines: readonly CartLine[],
     tenders: readonly Tender[],
   ) =>
-    call<{ saleId: string; documentNo: string; changeDue: string | null; receipt: Receipt }>(
-      "POST",
-      "/sales",
-      { counterId, lines, tenders },
-      idempotencyKey,
-    ),
+    call<{
+      saleId: string;
+      documentNo: string;
+      changeDue: string | null;
+      cashTendered: string | null;
+      receipt: Receipt;
+    }>("POST", "/sales", { counterId, lines, tenders }, idempotencyKey),
   sales: () => call<{ sales: SaleSummary[] }>("GET", "/sales?limit=50"),
   receipt: (saleId: string) => call<Receipt>("GET", `/sales/${saleId}`),
   shift: (shiftId: string) => call<ShiftDetail>("GET", `/shifts/${shiftId}`),

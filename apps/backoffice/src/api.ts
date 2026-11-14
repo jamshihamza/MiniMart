@@ -166,7 +166,8 @@ export const backOfficeApi = {
   context: () => call<StoreOverview>("GET", "/context"),
   dashboard: () => call<Dashboard>("GET", "/dashboard"),
   items: () => call<{ items: CatalogItem[] }>("GET", "/items?limit=200"),
-  createItem: (product: NewProduct) => call<CatalogItem>("POST", "/items", product),
+  createItem: (idempotencyKey: string, product: NewProduct) =>
+    call<CatalogItem>("POST", "/items", product, idempotencyKey),
   movements: () => call<{ movements: Movement[] }>("GET", "/inventory/movements?limit=200"),
   adjust: (
     idempotencyKey: string,
@@ -176,8 +177,8 @@ export const backOfficeApi = {
   receipt: (saleId: string) => call<Receipt>("GET", `/sales/${saleId}`),
   shifts: () => call<{ shifts: Shift[] }>("GET", "/shifts"),
   shift: (shiftId: string) => call<ShiftDetail>("GET", `/shifts/${shiftId}`),
-  closeBusinessDay: (businessDayId: string) =>
-    call<BusinessDay>("POST", `/business-days/${businessDayId}/close`, {}),
+  closeBusinessDay: (idempotencyKey: string, businessDayId: string) =>
+    call<BusinessDay>("POST", `/business-days/${businessDayId}/close`, {}, idempotencyKey),
 };
 
 export type BackOfficeApi = typeof backOfficeApi;

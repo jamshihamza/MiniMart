@@ -58,6 +58,14 @@ Provisional decisions (each one is a placeholder for the real decision):
 | Money arithmetic | Exact decimals on the server; the clients never compute money (totals come from a server quote).                 |
 | Embedded DB      | `embedded-postgres` with a fixed local-only demo password, data under `.demo-data/` (git-ignored).               |
 
+Known limits inside the slice:
+
+- The frozen schema has no column for cash handed over or change given. The receipt shown at
+  completion carries both (from the posting response); a receipt reopened from history shows the
+  applied tenders only.
+- Sale posting emits `SalePosted`, `TenderPosted`, `StockIssued` and `CashMovementPosted` from
+  their owning contexts. Outbox `causation_id` is not populated.
+
 Not implemented in the demonstration: returns and refunds, discounts and promotions,
 customers and credit, procurement, accounting-lite, reports, country policy,
 cloud sync, receipt printing on hardware, the Tauri POS wiring of the live screens

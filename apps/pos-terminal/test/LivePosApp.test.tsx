@@ -89,6 +89,7 @@ function fakeApi(shift: typeof openShift | null): StoreApi {
       saleId: "sale-1",
       documentNo: "POS01-000001",
       changeDue: "7.50",
+      cashTendered: "10.00",
       receipt,
     })),
     sales: vi.fn(async () => ({ sales: [] })),
@@ -117,7 +118,10 @@ describe("live POS", () => {
     const complete = screen.getByRole("button", { name: /Complete Sale/ });
     await waitFor(() => expect(complete).toBeEnabled());
     await user.click(complete);
-    expect(await screen.findByRole("dialog")).toHaveTextContent("POS01-000001");
+    const dialog = await screen.findByRole("dialog");
+    expect(dialog).toHaveTextContent("POS01-000001");
+    expect(dialog).toHaveTextContent("Cash receivedRM 10.00");
+    expect(dialog).toHaveTextContent("ChangeRM 7.50");
     expect(api.postSale).toHaveBeenCalledTimes(1);
     expect(api.postSale).toHaveBeenCalledWith(
       expect.any(String),

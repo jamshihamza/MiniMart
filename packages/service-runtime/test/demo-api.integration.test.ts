@@ -79,7 +79,7 @@ describe("demonstration Store API", () => {
     expect(context.body).toMatchObject({ operator: "tester", shift: null, businessDay: null });
     const counterId = (context.body["counter"] as { counterId: string }).counterId;
 
-    const created = await call("POST", "/items", {
+    const product = {
       itemCode: "A-1",
       name: "Cola 320ml",
       barcode: "9556001000011",
@@ -87,14 +87,20 @@ describe("demonstration Store API", () => {
       sellingPrice: "2.50",
       openingQuantity: "10",
       openingUnitCost: "1.60",
-    });
+    };
+    expect((await call("POST", "/items", product)).body["code"]).toBe("IDEMPOTENCY_KEY_REQUIRED");
+    const created = await call("POST", "/items", product, "create-item-0001");
     expect(created.status).toBe(201);
+    expect((await call("POST", "/items", product, "create-item-0001")).body["itemId"]).toBe(
+      created.body["itemId"],
+    );
     const itemId = created.body["itemId"] as string;
-    const duplicate = await call("POST", "/items", {
-      itemCode: "A-1",
-      name: "x",
-      sellingPrice: "1",
-    });
+    const duplicate = await call(
+      "POST",
+      "/items",
+      { itemCode: "A-1", name: "x", sellingPrice: "1" },
+      "create-item-0002",
+    );
     expect(duplicate).toMatchObject({ status: 409, body: { code: "ITEM_CODE_TAKEN" } });
 
     const lines = [{ itemId, quantity: "3" }];
@@ -209,7 +215,9 @@ describe("demonstration Store API", () => {
       }),
     ]);
     const dayId = (dash.body["businessDays"] as { businessDayId: string }[])[0]!.businessDayId;
-    expect((await call("POST", `/business-days/${dayId}/close`, {})).body["status"]).toBe("CLOSED");
+    expect(
+      (await call("POST", `/business-days/${dayId}/close`, {}, "close-day-0001")).body["status"],
+    ).toBe("CLOSED");
   });
 
   it("answers bad requests with problem details", async () => {

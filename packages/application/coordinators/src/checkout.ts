@@ -7,17 +7,16 @@ import { getItems, type ItemRecord } from "@minimart/module-catalog";
 import { postStockMovement } from "@minimart/module-inventory";
 import { findActiveStore, requireCounter } from "@minimart/module-organization";
 import {
-  isTenderMethod,
+  allocateTenders,
   recordSettledCheckout,
-  type TenderMethod,
+  type TenderAllocation,
 } from "@minimart/module-payments";
-import { currentPrices } from "@minimart/module-pricing";
+import { currentPrices, extendSaleLine, MONEY_PLACES } from "@minimart/module-pricing";
 import { getSale, insertCompletedSale, nextSaleDocumentNo } from "@minimart/module-sales";
 import {
   DomainError,
   formatDec,
   isUuid,
-  mulDec,
   parseDec,
   roundDec,
   uuidv7,
@@ -27,7 +26,7 @@ import {
   type TransactionRunner,
 } from "@minimart/shared-kernel";
 
-import { claimIdempotency, recordPosting } from "./envelope.js";
+import { claimIdempotency, recordEvent, recordPosting } from "./envelope.js";
 
 export interface SaleLineRequest {
   readonly itemId: string;
@@ -54,6 +53,8 @@ export interface QuoteLine {
 
 export interface PaymentQuote {
   readonly tenderedTotal: string;
+  /** Cash handed over before change, or null when no cash was offered. */
+  readonly cashTendered: string | null;
   readonly appliedTotal: string;
   readonly remaining: string;
   readonly changeDue: string;
@@ -78,22 +79,10 @@ interface PricedLine {
   readonly lineTotal: Dec;
 }
 
-interface AppliedTender {
-  readonly methodCode: TenderMethod;
-  readonly applied: Dec;
-  readonly reference: string | undefined;
-}
-
-interface Priced {
+interface Priced extends TenderAllocation {
   readonly lines: readonly PricedLine[];
   readonly total: Dec;
-  readonly tenders: readonly AppliedTender[];
-  readonly tendered: Dec;
-  readonly applied: Dec;
-  readonly change: Dec;
 }
-
-const MONEY_PLACES = 2;
 
 function parseAmount(value: unknown, code: string, label: string): Dec {
   if (typeof value !== "string") {
@@ -151,57 +140,20 @@ async function price(
       });
     }
     const unitPrice = parseDec(priceText);
-    const lineTotal = roundDec(mulDec(quantity, unitPrice), MONEY_PLACES);
+    const lineTotal = extendSaleLine(quantity, unitPrice);
     total += lineTotal;
     lines.push({ item, quantity, unitPrice, lineTotal });
   }
 
-  // Non-cash tenders are applied first and may not exceed what is due; cash covers the rest and
-  // any cash handed over beyond that is change.
-  const tenders: AppliedTender[] = [];
-  let tendered = 0n;
-  let remaining = total;
-  let cashTendered = 0n;
-  for (const request of tenderRequests) {
-    if (!isTenderMethod(request.methodCode)) {
-      throw new DomainError(
-        "TENDER_METHOD_UNSUPPORTED",
-        "Tender method is not supported",
-        "VALIDATION",
-      );
-    }
-    const amount = roundDec(
+  const offers = tenderRequests.map((request) => ({
+    methodCode: request.methodCode,
+    amount: roundDec(
       parseAmount(request.amount, "TENDER_AMOUNT_INVALID", "Tender amount"),
       MONEY_PLACES,
-    );
-    if (amount <= 0n) {
-      throw new DomainError(
-        "TENDER_AMOUNT_INVALID",
-        "Tender amount must be positive",
-        "VALIDATION",
-      );
-    }
-    tendered += amount;
-    if (request.methodCode === "CASH") {
-      cashTendered += amount;
-      continue;
-    }
-    if (amount > remaining) {
-      throw new DomainError(
-        "NON_CASH_TENDER_EXCEEDS_DUE",
-        "A card or DuitNow amount cannot be more than the amount due",
-        "VALIDATION",
-      );
-    }
-    remaining -= amount;
-    tenders.push({ methodCode: request.methodCode, applied: amount, reference: request.reference });
-  }
-  const cashApplied = cashTendered < remaining ? cashTendered : remaining;
-  if (cashApplied > 0n) {
-    tenders.push({ methodCode: "CASH", applied: cashApplied, reference: undefined });
-  }
-  const applied = total - (remaining - cashApplied);
-  return { lines, total, tenders, tendered, applied, change: cashTendered - cashApplied };
+    ),
+    ...(request.reference === undefined ? {} : { reference: request.reference }),
+  }));
+  return { lines, total, ...allocateTenders(total, offers) };
 }
 
 function toQuote(context: StoreContext, priced: Priced): SaleQuote {
@@ -226,6 +178,7 @@ function toQuote(context: StoreContext, priced: Priced): SaleQuote {
     grandTotal: formatDec(priced.total),
     payment: {
       tenderedTotal: formatDec(priced.tendered),
+      cashTendered: priced.cashTendered > 0n ? formatDec(priced.cashTendered) : null,
       appliedTotal: formatDec(priced.applied),
       remaining: formatDec(remaining),
       changeDue: formatDec(priced.change),
@@ -316,42 +269,58 @@ export async function postSale(
 
     const saleId = uuidv7(context.now);
     const postingEnvelopeId = uuidv7(context.now);
-    const saleLines = [];
-    let lineNo = 0;
-    for (const line of priced.lines) {
-      lineNo += 1;
-      const saleLineId = uuidv7(context.now);
-      let unitCost = 0n;
-      if (line.item.stockManaged) {
-        const movement = await postStockMovement(sql, context, {
-          itemId: line.item.itemId,
-          quantityDelta: -line.quantity,
-          movementType: "SALE",
-          sourceContext: "SALES",
-          sourceType: "SALE",
-          sourceId: saleId,
-          sourceLineId: saleLineId,
-          sourceEffectKey: `sale:${saleId}:line:${lineNo}:stock`,
-          postingEnvelopeId,
-          businessDate: shift.businessDate,
-        });
-        unitCost = movement.unitCost;
-      }
-      saleLines.push({
-        saleLineId,
-        lineNo,
+    // Line numbers follow the cart, but stock positions are locked in item-id order so that two
+    // counters selling the same items in a different order cannot deadlock each other.
+    const numbered = priced.lines.map((line, index) => ({
+      line,
+      lineNo: index + 1,
+      saleLineId: uuidv7(context.now),
+    }));
+    const unitCosts = new Map<string, Dec>();
+    const stockIssues: { stockMovementId: string; itemId: string; quantity: string }[] = [];
+    const lockOrder = numbered
+      .filter((entry) => entry.line.item.stockManaged)
+      .sort((left, right) =>
+        left.line.item.itemId < right.line.item.itemId
+          ? -1
+          : left.line.item.itemId > right.line.item.itemId
+            ? 1
+            : 0,
+      );
+    for (const { line, lineNo, saleLineId } of lockOrder) {
+      const movement = await postStockMovement(sql, context, {
         itemId: line.item.itemId,
-        itemCode: line.item.itemCode,
-        itemName: line.item.name,
-        uomCode: line.item.uomCode,
-        quantity: formatDec(line.quantity, 8),
-        unitPrice: formatDec(line.unitPrice, 8),
-        discountAmount: "0",
-        taxAmount: "0",
-        lineTotal: formatDec(line.lineTotal, 8),
-        unitCost: formatDec(unitCost, 8),
+        quantityDelta: -line.quantity,
+        movementType: "SALE",
+        sourceContext: "SALES",
+        sourceType: "SALE",
+        sourceId: saleId,
+        sourceLineId: saleLineId,
+        sourceEffectKey: `sale:${saleId}:line:${lineNo}:stock`,
+        postingEnvelopeId,
+        businessDate: shift.businessDate,
+      });
+      unitCosts.set(saleLineId, movement.unitCost);
+      stockIssues.push({
+        stockMovementId: movement.stockMovementId,
+        itemId: line.item.itemId,
+        quantity: formatDec(line.quantity, line.item.quantityPrecision),
       });
     }
+    const saleLines = numbered.map(({ line, lineNo, saleLineId }) => ({
+      saleLineId,
+      lineNo,
+      itemId: line.item.itemId,
+      itemCode: line.item.itemCode,
+      itemName: line.item.name,
+      uomCode: line.item.uomCode,
+      quantity: formatDec(line.quantity, 8),
+      unitPrice: formatDec(line.unitPrice, 8),
+      discountAmount: "0",
+      taxAmount: "0",
+      lineTotal: formatDec(line.lineTotal, 8),
+      unitCost: formatDec(unitCosts.get(saleLineId) ?? 0n, 8),
+    }));
 
     const documentNo = await nextSaleDocumentNo(sql, context, counter);
     const total = formatDec(priced.total, 8);
@@ -378,7 +347,7 @@ export async function postSale(
       },
       lines: saleLines,
     });
-    await recordSettledCheckout(sql, context, {
+    const checkout = await recordSettledCheckout(sql, context, {
       saleId,
       payableAmount: total,
       postingEnvelopeId,
@@ -388,40 +357,90 @@ export async function postSale(
         ...(tender.reference === undefined ? {} : { externalReference: tender.reference }),
       })),
     });
+    const cashMovementIds: string[] = [];
     for (const tender of priced.tenders) {
       await addTenderToShift(sql, context, shift.shiftId, tender.methodCode, tender.applied);
       if (tender.methodCode === "CASH") {
-        await postCashMovement(sql, context, {
-          shiftId: shift.shiftId,
-          movementType: "CASH_SALE",
-          amount: tender.applied,
-          sourceContext: "SALES",
-          sourceType: "SALE",
-          sourceId: saleId,
-          sourceEffectKey: `sale:${saleId}:cash`,
-          postingEnvelopeId,
-        });
+        cashMovementIds.push(
+          await postCashMovement(sql, context, {
+            shiftId: shift.shiftId,
+            movementType: "CASH_SALE",
+            amount: tender.applied,
+            sourceContext: "SALES",
+            sourceType: "SALE",
+            sourceId: saleId,
+            sourceEffectKey: `sale:${saleId}:cash`,
+            postingEnvelopeId,
+          }),
+        );
       }
     }
     const quote = toQuote(context, priced);
+    // One audit event for the posting, and one outbox event per fact from the context that owns it.
     await recordPosting(sql, context, {
-      actionCode: "SALE_COMPLETED",
+      actionCode: "SALE_POSTED",
       targetContext: "SALES",
       targetType: "SALE",
       targetId: saleId,
-      eventType: "SaleCompleted",
+      eventType: "SalePosted",
       postingEnvelopeId,
       payload: {
         documentNo,
         businessDate: shift.businessDate,
         grandTotal: quote.grandTotal,
         shiftId: shift.shiftId,
-        tenders: priced.tenders.map((tender) => ({
-          methodCode: tender.methodCode,
-          amount: formatDec(tender.applied),
-        })),
+        cashTendered: quote.payment.cashTendered,
+        changeDue: quote.payment.changeDue,
       },
     });
+    for (const [index, tender] of priced.tenders.entries()) {
+      const postedTenderId = checkout.postedTenderIds[index];
+      if (postedTenderId === undefined) throw new Error("Posted tender id is missing");
+      await recordEvent(sql, context, {
+        producerContext: "PAYMENTS",
+        aggregateType: "POSTED_TENDER",
+        aggregateId: postedTenderId,
+        eventType: "TenderPosted",
+        postingEnvelopeId,
+        payload: {
+          saleId,
+          checkoutPaymentId: checkout.checkoutPaymentId,
+          methodCode: tender.methodCode,
+          amount: formatDec(tender.applied),
+          businessDate: shift.businessDate,
+        },
+      });
+    }
+    for (const issue of stockIssues) {
+      await recordEvent(sql, context, {
+        producerContext: "INVENTORY",
+        aggregateType: "STOCK_MOVEMENT",
+        aggregateId: issue.stockMovementId,
+        eventType: "StockIssued",
+        postingEnvelopeId,
+        payload: {
+          saleId,
+          itemId: issue.itemId,
+          quantity: issue.quantity,
+          businessDate: shift.businessDate,
+        },
+      });
+    }
+    for (const cashMovementId of cashMovementIds) {
+      await recordEvent(sql, context, {
+        producerContext: "CASH",
+        aggregateType: "CASH_MOVEMENT",
+        aggregateId: cashMovementId,
+        eventType: "CashMovementPosted",
+        postingEnvelopeId,
+        payload: {
+          saleId,
+          shiftId: shift.shiftId,
+          movementType: "CASH_SALE",
+          businessDate: shift.businessDate,
+        },
+      });
+    }
     await claim.complete("SALE", saleId);
     return { saleId, documentNo, businessDate: shift.businessDate, replayed: false, quote };
   });

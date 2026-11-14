@@ -77,10 +77,12 @@ function artIndex(item: CatalogItem): number | null {
 function ReceiptDialog({
   receipt,
   changeDue,
+  cashTendered,
   onClose,
 }: {
   receipt: Receipt;
   changeDue: string | null;
+  cashTendered: string | null;
   onClose: () => void;
 }) {
   return (
@@ -121,6 +123,12 @@ function ReceiptDialog({
               <dd>RM {tender.amount}</dd>
             </div>
           ))}
+          {cashTendered !== null && (
+            <div>
+              <dt>Cash received</dt>
+              <dd>RM {cashTendered}</dd>
+            </div>
+          )}
           {changeDue !== null && (
             <div>
               <dt>Change</dt>
@@ -405,9 +413,11 @@ export function LivePosApp({ api = storeApi }: { api?: StoreApi }) {
   const [quote, setQuote] = useState<Quote | null>(null);
   const [posting, setPosting] = useState(false);
   const [outcomeUnknown, setOutcomeUnknown] = useState(false);
-  const [receipt, setReceipt] = useState<{ receipt: Receipt; changeDue: string | null } | null>(
-    null,
-  );
+  const [receipt, setReceipt] = useState<{
+    receipt: Receipt;
+    changeDue: string | null;
+    cashTendered: string | null;
+  } | null>(null);
   const [sales, setSales] = useState<SaleSummary[]>([]);
   const [message, setMessage] = useState("Connecting to the Store Node…");
   const [now, setNow] = useState(() => new Date());
@@ -548,6 +558,7 @@ export function LivePosApp({ api = storeApi }: { api?: StoreApi }) {
       setReceipt({
         receipt: posted.receipt,
         changeDue: posted.changeDue ?? quote.payment.changeDue,
+        cashTendered: posted.cashTendered ?? quote.payment.cashTendered ?? null,
       });
       setMessage(`Sale ${posted.documentNo} completed.`);
       clearSale();
@@ -1018,7 +1029,8 @@ export function LivePosApp({ api = storeApi }: { api?: StoreApi }) {
                       <ShellButton
                         onClick={() =>
                           void api.receipt(sale.saleId).then(
-                            (loaded) => setReceipt({ receipt: loaded, changeDue: null }),
+                            (loaded) =>
+                              setReceipt({ receipt: loaded, changeDue: null, cashTendered: null }),
                             (error: unknown) => setMessage(describe(error)),
                           )
                         }
@@ -1097,6 +1109,7 @@ export function LivePosApp({ api = storeApi }: { api?: StoreApi }) {
         <ReceiptDialog
           receipt={receipt.receipt}
           changeDue={receipt.changeDue}
+          cashTendered={receipt.cashTendered}
           onClose={() => {
             setReceipt(null);
             searchRef.current?.focus();

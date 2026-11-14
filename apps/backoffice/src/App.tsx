@@ -108,6 +108,7 @@ interface PageProps {
 }
 
 function DashboardPage({ api, notify }: PageProps) {
+  const closeKeyRef = useRef<string | null>(null);
   const load = useCallback(() => api.dashboard(), [api]);
   const [data, reload] = useLoad<Dashboard>(load, notify);
   if (data === null) return <p className="note">Loading…</p>;
@@ -179,15 +180,22 @@ function DashboardPage({ api, notify }: PageProps) {
                 <button
                   type="button"
                   className="button"
-                  onClick={() =>
-                    void api.closeBusinessDay(day.businessDayId).then(
+                  onClick={() => {
+                    closeKeyRef.current ??= globalThis.crypto.randomUUID();
+                    void api.closeBusinessDay(closeKeyRef.current, day.businessDayId).then(
                       () => {
+                        closeKeyRef.current = null;
                         notify(`Business Day ${day.businessDate} closed.`);
                         return reload();
                       },
-                      (error: unknown) => notify(reason(error)),
-                    )
-                  }
+                      (error: unknown) => {
+                        if (!(error instanceof ApiProblem) || error.code !== "UNREACHABLE") {
+                          closeKeyRef.current = null;
+                        }
+                        notify(reason(error));
+                      },
+                    );
+                  }}
                 >
                   Close Business Day
                 </button>
@@ -206,6 +214,7 @@ function DashboardPage({ api, notify }: PageProps) {
 }
 
 function ProductsPage({ api, notify }: PageProps) {
+  const createKeyRef = useRef<string | null>(null);
   const load = useCallback(() => api.items(), [api]);
   const [data, reload] = useLoad(load, notify);
   const [creating, setCreating] = useState(false);
@@ -242,8 +251,9 @@ function ProductsPage({ api, notify }: PageProps) {
         .filter((key) => form[key].trim() !== "")
         .map((key) => [key, form[key].trim()]),
     );
+    createKeyRef.current ??= globalThis.crypto.randomUUID();
     void api
-      .createItem({
+      .createItem(createKeyRef.current, {
         itemCode: form.itemCode.trim(),
         name: form.name.trim(),
         sellingPrice: form.sellingPrice,
@@ -251,6 +261,7 @@ function ProductsPage({ api, notify }: PageProps) {
       })
       .then(
         (item) => {
+          createKeyRef.current = null;
           notify(`${item.name} created.`);
           setCreating(false);
           setForm({
@@ -264,7 +275,13 @@ function ProductsPage({ api, notify }: PageProps) {
           });
           return reload();
         },
-        (error: unknown) => notify(reason(error)),
+        (error: unknown) => {
+          // Keep the key only when the outcome is unknown, so a retry cannot create a second item.
+          if (!(error instanceof ApiProblem) || error.code !== "UNREACHABLE") {
+            createKeyRef.current = null;
+          }
+          notify(reason(error));
+        },
       );
   }
 

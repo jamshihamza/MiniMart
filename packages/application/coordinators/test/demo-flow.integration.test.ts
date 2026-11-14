@@ -99,6 +99,7 @@ describe("demo store flow", () => {
     expect(quote.itemCount).toBe("5");
     expect(quote.payment).toEqual({
       tenderedTotal: "50.00",
+      cashTendered: "50.00",
       appliedTotal: "22.90",
       remaining: "0.00",
       changeDue: "27.10",
@@ -175,12 +176,26 @@ describe("demo store flow", () => {
       { methodCode: "CARD", amount: "10.00000000" },
       { methodCode: "CASH", amount: "12.90000000" },
     ]);
-    const counts = await database.pool.query<{ sales: string; audits: string; outbox: string }>(
+    const counts = await database.pool.query<{ sales: string; audits: string }>(
       `SELECT (SELECT count(*) FROM sales.sales)::text AS sales,
-         (SELECT count(*) FROM audit.audit_events WHERE action_code = 'SALE_COMPLETED')::text AS audits,
-         (SELECT count(*) FROM integration.outbox_messages WHERE event_type = 'SaleCompleted')::text AS outbox`,
+         (SELECT count(*) FROM audit.audit_events WHERE action_code = 'SALE_POSTED')::text AS audits`,
     );
-    expect(counts.rows[0]).toEqual({ sales: "1", audits: "1", outbox: "1" });
+    expect(counts.rows[0]).toEqual({ sales: "1", audits: "1" });
+    // One outbox event per fact, each from the context that owns it, all in the sale's envelope.
+    const events = await database.pool.query<{ producer: string; type: string; n: string }>(
+      `SELECT o.producer_context AS producer, o.event_type AS type, count(*)::text AS n
+       FROM integration.outbox_messages o
+       JOIN sales.sales s ON s.posting_envelope_id = o.posting_envelope_id
+       WHERE s.sale_id = $1 GROUP BY 1, 2 ORDER BY 1, 2`,
+      [posted.saleId],
+    );
+    expect(events.rows).toEqual([
+      { producer: "CASH", type: "CashMovementPosted", n: "1" },
+      { producer: "INVENTORY", type: "StockIssued", n: "2" },
+      { producer: "PAYMENTS", type: "TenderPosted", n: "2" },
+      { producer: "SALES", type: "SalePosted", n: "1" },
+    ]);
+    expect(posted.quote?.payment.cashTendered).toBe("20.00");
   });
 
   it("rolls the whole sale back when stock would go negative", async () => {
@@ -265,7 +280,8 @@ describe("demo store flow", () => {
   });
 
   it("creates a product that is immediately sellable", async () => {
-    const item = await createProduct(database.transactions, context, {
+    const product = {
+      idempotencyKey: "create-item-0001",
       itemCode: "MM-00200",
       name: "Teh Tarik Mix",
       barcode: "9556001000202",
@@ -273,9 +289,15 @@ describe("demo store flow", () => {
       sellingPrice: "8.00",
       openingQuantity: "5",
       openingUnitCost: "5.50",
-    });
+    };
+    const item = await createProduct(database.transactions, context, product);
+    // A retry with the same key returns the same item and adds no second opening stock.
+    const again = await createProduct(database.transactions, context, product);
+    expect(again.itemId).toBe(item.itemId);
+    expect(await onHand(item.itemId)).toBe("5.00000000");
     await expectDomainError(
       createProduct(database.transactions, context, {
+        idempotencyKey: "create-item-0002",
         itemCode: "mm-00200",
         name: "Duplicate",
         sellingPrice: "1.00",
@@ -322,7 +344,10 @@ describe("demo store flow", () => {
     ).toEqual(["OPENING_FLOAT", "CASH_SALE", "CASH_OUT"]);
     const businessDayId = (await getShift(database.sql, context, shiftId))!.businessDayId;
     await expectDomainError(
-      closeStoreBusinessDay(database.transactions, context, businessDayId),
+      closeStoreBusinessDay(database.transactions, context, {
+        idempotencyKey: "close-day-early",
+        businessDayId,
+      }),
       "OPEN_SHIFTS_BLOCK_DAY_CLOSE",
     );
 
@@ -344,8 +369,12 @@ describe("demo store flow", () => {
       }),
       "SHIFT_REQUIRED",
     );
-    const day = await closeStoreBusinessDay(database.transactions, context, businessDayId);
+    const closeDay = { idempotencyKey: "close-day-0001", businessDayId };
+    const day = await closeStoreBusinessDay(database.transactions, context, closeDay);
     expect(day.status).toBe("CLOSED");
+    expect((await closeStoreBusinessDay(database.transactions, context, closeDay)).status).toBe(
+      "CLOSED",
+    );
     await expectDomainError(
       openCashierShift(database.transactions, context, {
         idempotencyKey: "open-shift-after-day-close",

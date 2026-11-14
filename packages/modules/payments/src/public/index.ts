@@ -3,6 +3,7 @@ import {
   formatDec,
   parseDec,
   uuidv7,
+  type Dec,
   type Sql,
   type StoreContext,
 } from "@minimart/shared-kernel";
@@ -13,6 +14,87 @@ export type TenderMethod = (typeof MANUAL_TENDER_METHODS)[number];
 
 export function isTenderMethod(value: unknown): value is TenderMethod {
   return typeof value === "string" && (MANUAL_TENDER_METHODS as readonly string[]).includes(value);
+}
+
+export interface TenderOffer {
+  readonly methodCode: string;
+  /** Amount handed over (cash) or confirmed (card, DuitNow), at money precision. */
+  readonly amount: Dec;
+  readonly reference?: string;
+}
+
+export interface AppliedTender {
+  readonly methodCode: TenderMethod;
+  readonly applied: Dec;
+  readonly reference: string | undefined;
+}
+
+export interface TenderAllocation {
+  readonly tenders: readonly AppliedTender[];
+  /** Everything offered, cash and non-cash. */
+  readonly tendered: Dec;
+  /** Cash handed over, before change. */
+  readonly cashTendered: Dec;
+  /** Amount applied to the payable. Equal to the payable when the sale is settled. */
+  readonly applied: Dec;
+  /** Cash to give back. */
+  readonly change: Dec;
+}
+
+/**
+ * Applies offered tenders to a payable amount. Non-cash tenders are applied first and may not
+ * exceed what is due; cash covers the rest, and cash beyond that is change. Pure: writes nothing.
+ */
+export function allocateTenders(payable: Dec, offers: readonly TenderOffer[]): TenderAllocation {
+  const tenders: AppliedTender[] = [];
+  let tendered = 0n;
+  let remaining = payable;
+  let cashTendered = 0n;
+  for (const offer of offers) {
+    if (!isTenderMethod(offer.methodCode)) {
+      throw new DomainError(
+        "TENDER_METHOD_UNSUPPORTED",
+        "Tender method is not supported",
+        "VALIDATION",
+      );
+    }
+    if (offer.amount <= 0n) {
+      throw new DomainError(
+        "TENDER_AMOUNT_INVALID",
+        "Tender amount must be positive",
+        "VALIDATION",
+      );
+    }
+    tendered += offer.amount;
+    if (offer.methodCode === "CASH") {
+      cashTendered += offer.amount;
+      continue;
+    }
+    if (offer.amount > remaining) {
+      throw new DomainError(
+        "NON_CASH_TENDER_EXCEEDS_DUE",
+        "A card or DuitNow amount cannot be more than the amount due",
+        "VALIDATION",
+      );
+    }
+    remaining -= offer.amount;
+    tenders.push({
+      methodCode: offer.methodCode,
+      applied: offer.amount,
+      reference: offer.reference,
+    });
+  }
+  const cashApplied = cashTendered < remaining ? cashTendered : remaining;
+  if (cashApplied > 0n) {
+    tenders.push({ methodCode: "CASH", applied: cashApplied, reference: undefined });
+  }
+  return {
+    tenders,
+    tendered,
+    cashTendered,
+    applied: payable - (remaining - cashApplied),
+    change: cashTendered - cashApplied,
+  };
 }
 
 export interface SettledTenderInput {
@@ -29,6 +111,12 @@ export interface TenderRecord {
   readonly externalReference: string | null;
 }
 
+export interface SettledCheckout {
+  readonly checkoutPaymentId: string;
+  /** One id per tender, in input order. */
+  readonly postedTenderIds: readonly string[];
+}
+
 /**
  * Records a fully settled checkout: one checkout payment, and a commitment plus an immutable posted
  * tender for each component. The components must add up to the payable amount exactly.
@@ -42,7 +130,7 @@ export async function recordSettledCheckout(
     readonly postingEnvelopeId: string;
     readonly tenders: readonly SettledTenderInput[];
   },
-): Promise<string> {
+): Promise<SettledCheckout> {
   const payable = parseDec(input.payableAmount);
   let applied = 0n;
   for (const tender of input.tenders) {
@@ -79,9 +167,12 @@ export async function recordSettledCheckout(
       context.now,
     ],
   );
+  const postedTenderIds: string[] = [];
   let index = 0;
   for (const tender of input.tenders) {
     index += 1;
+    const postedTenderId = uuidv7(context.now);
+    postedTenderIds.push(postedTenderId);
     const commitmentId = uuidv7(context.now);
     const sourceKey = `sale:${input.saleId}:tender:${index}`;
     const amount = formatDec(parseDec(tender.amount), 8);
@@ -108,7 +199,7 @@ export async function recordSettledCheckout(
          settlement_source_key, posting_envelope_id, posted_at)
        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)`,
       [
-        uuidv7(context.now),
+        postedTenderId,
         context.tenantId,
         input.saleId,
         checkoutPaymentId,
@@ -123,7 +214,7 @@ export async function recordSettledCheckout(
       ],
     );
   }
-  return checkoutPaymentId;
+  return { checkoutPaymentId, postedTenderIds };
 }
 
 export async function listTenders(
